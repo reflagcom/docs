@@ -4,7 +4,7 @@ In order to get started quickly with the full set of tracking and customer satis
 
 ### Set up browser tracking (recommended)
 
-Tracking in the browser through Segment Analytics.js can be done by using the [Bucket Web (Actions) destination](https://app.segment.com/goto-my-workspace/destinations/catalog/bucket-web). It loads the Bucket Tracking SDK for you and automatically enables [Live Satisfaction](../product-handbook/automated-feedback-changes.md) for immediate customer feedback.
+Tracking in the browser through Segment Analytics.js can be done by using the [Bucket Web (Actions) destination](https://app.segment.com/goto-my-workspace/destinations/catalog/bucket-web). It loads the Bucket Tracking SDK for you and automatically enables [Live Satisfaction](../product-handbook/automated-feedback-surveys.md) for immediate customer feedback.
 
 * Set up [Bucket Web (Actions) destination](https://app.segment.com/goto-my-workspace/destinations/catalog/bucket-web) to receive data from a Segment website source.
 
@@ -45,7 +45,7 @@ Tracking from your backend services can be done through Segment cloud destinatio
 * Enable the destination
 * Check your Bucket Tracking page for data to arrive. Data should start flowing immediately
 
-> [Live Satisfaction](../product-handbook/automated-feedback-changes.md) will not be enabled when using a cloud destination, as browser scripting is required for gathering customer feedback in your app UI
+> [Live Satisfaction](../product-handbook/automated-feedback-surveys.md) will not be enabled when using a cloud destination, as browser scripting is required for gathering customer feedback in your app UI
 
 ### Running both server and browser tracking
 

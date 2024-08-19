@@ -36,7 +36,7 @@ declare module "@bucketco/react-sdk" {
 
 ### Add the context provider
 
-Add the `BucketProvider` context provider to your application. This will initialize the Bucket SDK to fetch feature flags and listen for [Live Satisfaction](../product-handbook/automated-feedback-changes.md) events.
+Add the `BucketProvider` context provider to your application. This will initialize the Bucket SDK to fetch feature flags and listen for [Live Satisfaction](../product-handbook/automated-feedback-surveys.md) events.
 
 ```jsx
 import { BucketProvider } from "@bucketco/react-sdk"

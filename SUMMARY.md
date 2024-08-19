@@ -34,7 +34,7 @@
 * [Create your first feature flag](product-handbook/create-your-first-feature-flag.md)
 * [Create your first app](product-handbook/create-your-first-app.md)
 * [STARS Framework](product-handbook/stars-framework.md)
-* [Automated feedback changes](product-handbook/automated-feedback-changes.md)
+* [Automated feedback surveys](product-handbook/automated-feedback-surveys.md)
 * [Environments](product-handbook/environments.md)
 * [Data export](product-handbook/data-export.md)
 

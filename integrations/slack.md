@@ -81,7 +81,7 @@ Feature reports are designed for features whose adoption and satisfaction you wa
 
 ### User feedback
 
-Sends an immediate notification when a user leaves feedback on a feature with [Live Satisfaction](../product-handbook/automated-feedback-changes.md).&#x20;
+Sends an immediate notification when a user leaves feedback on a feature with [Live Satisfaction](../product-handbook/automated-feedback-surveys.md).&#x20;
 
 Notifications include the user’s name, company, CSAT score, and feedback (if provided).&#x20;
 

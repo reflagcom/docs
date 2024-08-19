@@ -25,7 +25,7 @@ If you’ve [created the feature](create-your-first-feature.md), select it from 
 
 You can add new features as well. Give the feature a name, select a [feature view](https://docs.bucket.co/product-handbook/create-your-first-feature#select-a-feature-view), choose [the source](https://docs.bucket.co/product-handbook/create-your-first-feature#choose-the-source), and set a [target segment](https://docs.bucket.co/product-handbook/create-your-first-feature#select-a-target-segment).&#x20;
 
-[Live Satisfaction](automated-feedback-changes.md) is enabled by default.
+[Live Satisfaction](automated-feedback-surveys.md) is enabled by default.
 
 After selecting or creating a feature, you will see the feature’s Tracking Status in different environments and whether Live Satisfaction is enabled or disabled. A `✓` indicates that feature events have been tracked in that environment. An `X` means that no feature events have been tracked in that environment.&#x20;
 
@@ -117,7 +117,7 @@ If no channel is selected, you will not receive notifications.&#x20;
 
 ### Follow goal progress
 
-You’ve launched the feature and are evaluating it. Bucket automatically tracks quantitative metrics with [STARS](../introduction/concepts/feature/stars.md) and collects qualitative feedback with [Live Satisfaction](automated-feedback-changes.md).
+You’ve launched the feature and are evaluating it. Bucket automatically tracks quantitative metrics with [STARS](../introduction/concepts/feature/stars.md) and collects qualitative feedback with [Live Satisfaction](automated-feedback-surveys.md).
 
 If you’ve activated Slack notifications, you will receive weekly goal updates.
 
