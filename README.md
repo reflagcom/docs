@@ -28,5 +28,5 @@ Bucket's feature flags enable you to safely and gradually roll out features to c
 
 For the feature evaluation, Bucket relies on events for tracking feature interactions and asking customers for feedback.&#x20;
 
-Events are abstracted into a [feature](introduction/concepts/feature/). Each feature comes with a [STARS](introduction/concepts/feature/stars.md) funnel. Feature interactions can be used to prompt in-app CSAT feature surveys to end-users at just the right time. This feature is called [Live Satisfaction](product-handbook/live-satisfaction.md).
+Events are abstracted into a [feature](introduction/concepts/feature/). Each feature comes with a [STARS](introduction/concepts/feature/stars.md) funnel. Feature interactions can be used to prompt in-app CSAT feature surveys to end-users at just the right time. This feature is called [Live Satisfaction](product-handbook/automated-feedback-changes.md).
 

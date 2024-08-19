@@ -17,7 +17,7 @@ Bucket includes two default feature views: All features and Key features.
 
 ### Enable Live Satisfaction
 
-Enable [Live Satisfaction](live-satisfaction.md) to collect in-app user feedback on a feature after the user surpasses the minimum number of interactions.&#x20;
+Enable [Live Satisfaction](automated-feedback-changes.md) to collect in-app user feedback on a feature after the user surpasses the minimum number of interactions.&#x20;
 
 You can also customize the prompt when creating a new feature.
 

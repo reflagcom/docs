@@ -68,7 +68,7 @@ So far, every company in the funnel has moved to the next step (you can’t un-t
 
 In the Satisfied step, we ask the Retained accounts how satisfied they are with the feature.&#x20;
 
-Collecting feature satisfaction is done using a CSAT scoring framework through [Live Satisfaction](live-satisfaction.md). The user provides a score between 1-5 with 1 being very dissatisfied and 5 being very satisfied.
+Collecting feature satisfaction is done using a CSAT scoring framework through [Live Satisfaction](automated-feedback-changes.md). The user provides a score between 1-5 with 1 being very dissatisfied and 5 being very satisfied.
 
 The Satisfied step will remain empty until a user provides feedback. Once a user from a company gives feedback, their rating and comments will be logged and permanently stored even if the company drops off from Retained.&#x20;
 

@@ -1,13 +1,13 @@
-# Live Satisfaction
+# Automated feedback changes
 
-### What is Live Satisfaction?
+### What are automated feedback surveys?
 
-Live Satisfaction are no-code feedback surveys that collect in-app user feedback right after a user uses a feature.
+They're no-code feedback surveys that collect in-app user feedback right after a user uses a feature.
 
 ### Getting started
 
 * Select the [feature](../introduction/concepts/feature/) that you would like to start collecting feedback for
-* Go to `Settings` and click on `Enable Live Satisfaction`
+* Go to `Settings` and click on `Enable Feedback surveys`
 * Enter a question in the `Prompt question` input. For example: `How did you like the new Huddle feature?`
 * Click the `Save` button to save your settings
 
@@ -22,7 +22,7 @@ Live Satisfaction are no-code feedback surveys that collect in-app user feedback
     \
     Select or search for a specific user you’d like to test it on (generally yourself or another team member) and click `Trigger the prompt`.\
     \
-    Make sure that you’ve enabled Live Satisfaction and clicked the `Save` button _before_ testing.
+    Make sure that you’ve enabled feedback surveys and clicked the `Save` button _before_ testing.
 
 ![](https://files.readme.io/8264245-Test\_Live\_Satisfaction.png)
 
@@ -49,11 +49,11 @@ Live Satisfaction are no-code feedback surveys that collect in-app user feedback
 
 ### Configure max surveys per user per period
 
-If you've enabled Live Satisfaction for multiple features, you don’t want to overload users with surveys.&#x20;
+If you've enabled surveys for multiple features, you don’t want to overload users with them.&#x20;
 
 To configure the maximum number of surveys each user sees during a given period, do the following:
 
-* On the sidebar, click `Settings`. Then, select `Live Satisfaction`.
+* On the sidebar, click `Settings`. Then, select `Feedback`.
 * Using the `Minimum time between asking for feedback` dropdown, you can define the duration required after a survey appears before a user is asked again.&#x20;
 * You can choose from 11 pre-defined delay periods ranging from 5 minutes to 3 months.\
   \
@@ -94,13 +94,13 @@ The remaining time is visualized by the circle around the `x` button. When the c
 
 ### Customizing the feedback widget
 
-The behavior, language, positioning, content, and design of the feedback widget are fully customizable. This lets you integrate Live Satisfaction with your app while following existing UI and design guidelines.\
+The behavior, language, positioning, content, and design of the feedback widget are fully customizable. This lets you integrate the feedback surveys with your app while following existing UI and design guidelines.\
 \
 You can find the complete developer documentation [on GitHub](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/tracking-sdk/FEEDBACK.md).
 
 ![](https://files.readme.io/2506596-Customized\_Widgets.png)
 
-Here's a glimpse of how you can tailor the Live Satisfaction feedback widget to your needs.
+Here's a glimpse of how you can tailor the feedback widget to your needs.
 
 #### Positioning
 
@@ -130,7 +130,7 @@ More information can be found in the [developer documentation](https://github.co
 
 #### Using your UI
 
-You can replace the existing UI with your own and intercept the standard Live Satisfaction event to trigger your own or collect feedback manually and pass it along to Bucket.
+You can replace the existing UI with your own and intercept the standard feedback survey event to trigger your own or collect feedback manually and pass it along to Bucket.
 
 Check out the[ developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/tracking-sdk/FEEDBACK.md#using-your-own-ui-to-collect-feedback) for the full rundown.
 
@@ -148,7 +148,7 @@ The [developer documentation](https://github.com/bucketco/bucket-javascript-sdk/
 
 ### Technical overview
 
-When the[ Bucket Browser Tracking SDK](https://github.com/bucketco/bucket-tracking-sdk) is installed in your web application, browsers using your application will automatically open and maintain a connection to Bucket’s servers through a real-time server sent events connection.
+When the[ Bucket Browser Tracking SDK](https://github.com/bucketco/bucket-tracking-sdk) is installed in your web application, browsers using your application will automatically open and maintain a connection to Bucket’s servers through a real-time server-sent events connection.
 
 This allows the installed SDK to react to any events that are sent to Bucket, even events you send through other means, for example, from your servers.&#x20;
 
