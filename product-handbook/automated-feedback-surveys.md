@@ -1,4 +1,4 @@
-# Automated feedback changes
+# Automated feedback surveys
 
 ### What are automated feedback surveys?
 
@@ -8,7 +8,8 @@ They're no-code feedback surveys that collect in-app user feedback right after a
 
 * Select the [feature](../introduction/concepts/feature/) that you would like to start collecting feedback for
 * Go to `Settings` and click on `Enable Feedback surveys`
-* Enter a question in the `Prompt question` input. For example: `How did you like the new Huddle feature?`
+* Enter a question in the `Prompt question` input. \
+  For example: `How did you like the new Huddle feature?`
 * Click the `Save` button to save your settings
 
 <div align="left">
