@@ -4,30 +4,32 @@
 
 The React SDK is an open-source client-side Typescript/JavaScript library that allows you to integrate Bucket with your app.&#x20;
 
+It also works out of the box with Next.js.
+
 ### Getting started
 
 You can find the[ full developer documentation on GitHub](https://github.com/bucketco/bucket-tracking-sdk/blob/main/packages/react-sdk/README.md).
 
 ### Install the SDK
 
-Install the SDK:
+Install the SDK.
 
 ```
 npm i @bucketco/react-sdk
 ```
 
-### Define your feature flags (optional)
+### Define your features
 
-To get type-safe feature flags, extend the definition of the `Flags` interface and define which flags you have. See the example below for the details.&#x20;
+To get a type-safe feature, extend the definition of the `Features` interface and define which features you have. See the example below for the details.&#x20;
 
-If no explicit flag definitions are provided, your flag lookups will not be type-checked.
+If no explicit feature definitions are provided, your feature lookups will not be type-checked.
 
 #### Example
 
 ```jsx
-// Define your flags by extending the `Flags` interface in @bucketco/react-sdk
+// Define your features by extending the `Features` interface in @bucketco/react-sdk
 declare module "@bucketco/react-sdk" {
-  interface Flags {
+  interface Features {
     huddle: boolean;
     recordVideo: boolean;
   }
@@ -36,7 +38,9 @@ declare module "@bucketco/react-sdk" {
 
 ### Add the context provider
 
-Add the `BucketProvider` context provider to your application. This will initialize the Bucket SDK to fetch feature flags and listen for [Live Satisfaction](../product-handbook/automated-feedback-surveys.md) events.
+Add the `BucketProvider` context provider to your application. This will initialize the Bucket SDK to fetch feature configuration and listen for [automated feedback survey](../product-handbook/automated-feedback-surveys.md) events.
+
+_Note: Once a feature configuration has been successfully fetched, it's stored in `localStorage` and will be used as a fallback for up to 30 days if the client cannot connect to Bucket's servers._
 
 ```jsx
 import { BucketProvider } from "@bucketco/react-sdk"
@@ -46,7 +50,7 @@ import { BucketProvider } from "@bucketco/react-sdk"
   company={ id: "acme_inc" }
   user={ id: "john doe" }
   loadingComponent={<Loading />}
-  fallbackFlags={["huddle"]}
+  fallbackFeatures={["huddle"]}
 >
 {/* children here are shown when loading finishes or immediately if no `loadingComponent` is given */}
 </BucketProvider>
@@ -54,55 +58,60 @@ import { BucketProvider } from "@bucketco/react-sdk"
 
 Find additional details in the [developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/react-sdk/README.md#2-add-the-bucketprovider-context-provider).
 
-### Create a Release
+### Implement feature targeting&#x20;
 
-[Create a Release](../product-handbook/create-your-first-release.md) for a feature in Bucket to roll out and evaluate it.
-
-### Implement the feature flag hook
-
-`useFlagIsEnabled()` returns the state of a given [feature flag](../product-handbook/create-your-first-feature-flag.md) for the current context.
+`useFeature()` returns the state of a given feature for the current company/user:
 
 ```jsx
-import { useFlagIsEnabled } from "@bucketco/react-sdk";
+import { useFeature } from "@bucketco/react-sdk";
 
 function StartHuddleButton() {
-  const joinHuddleFlagEnabled = useFlagIsEnabled("huddle");
-  // true / false
+  const {isEnabled, track} = useFeature("huddle");
 
-  if (!joinHuddleFlagEnabled) {
+  if (!isEnabled) {
     return null;
   }
 
-  return <Button />;
+  return <button onClick={() => track()}>Start huddle!</button>;
 }
 ```
 
-### Implement the feature tracking hook
+This example checks if a user should be shown the `Start huddle` button by checking the `isEnabled` boolean _and_ then sends an event once the Huddle starts to let Bucket automatically track usage and potentially [collect feedback](../product-handbook/automated-feedback-surveys.md).&#x20;
 
-`useTrack()` lets you send events to Bucket whenever a user uses a feature. These events are used in Bucket to analyze [feature](../product-handbook/create-your-first-feature.md) usage.
+### Custom event tracking
+
+`useTrack()` lets you send custom events to Bucket whenever a user uses a feature:
 
 ```jsx
-import { useTrack } from "@bucketco/react-sdk";
+import { useFeature } from "@bucketco/react-sdk";
 
-function StartHuddle() {
+function StartHuddleButton() {
+  const { isLoading, isEnabled } = useFeature("huddle");
   const track = useTrack();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (!isEnabled) {
+    return null;
+  }
+
+  // send a custom event, in this case using the "Object/Action" terminology
+  // by using the `track` function from `useTrack` and send along
+  // some custom attributes along.
   return (
-    <div>
-      <button onClick={() => track("Huddle Started", { huddleType: "voice" })}>
-        Start voice huddle!
-      </button>
-    </div>
+    <Button onClick={() => track("Huddle Started", {type: "voice"})}>
+      Start voice huddle!
+    </Button>
   );
 }
 ```
 
-### Add additional hooks (optional)
+### Add additional hooks
 
-There are additional hooks that can be implemented at your discretion:
+There are additional hooks available:&#x20;
 
-* [`useFlag()`](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/react-sdk/README.md#useflag): Returns `isEnabled` and `isLoading` indicating if a feature flag is enabled for the current context or whether flags are still being loaded.
-* [`useFlags()`](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/react-sdk/README.md#useflags): Returns all enabled feature flags as an object.
-* [`useUpdateContext()`](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/react-sdk/README.md#useupdatecontext): Returns functions `updateCompany`, `updateUser`, and `updateOtherContext` to let you update the context that’s used to determine if a feature flag is enabled.
 * [`useRequestFeedback()`](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/react-sdk/README.md#userequestfeedback): Returns a function that lets you open a dialog to ask for feedback on a specific feature.
 * [`useSendFeedback()`](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/react-sdk/README.md#usesendfeedback): Returns a function that lets you send feedback to Bucket.
 
