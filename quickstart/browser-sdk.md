@@ -71,9 +71,9 @@ It's also possible to implement a simple HTML `<script>` tag:&#x20;
 </button>
 ```
 
-See [example/browser.html](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/browser-sdk/example/browser.html) for a full working example
+See the [example](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/browser-sdk/example/browser.html) on Github for a full working example.
 
-Note: If using the Browser SDK through a simple `<script>` tag, `BucketClient` will become available  under `BucketBrowserSDK.`
+_Note: If using the Browser SDK through a simple `<script>` tag, `BucketClient` will become available  under `BucketBrowserSDK.`_
 
 ```typescript
 const bucketClient = new BucketBrowserSDK.BucketClient(...)
