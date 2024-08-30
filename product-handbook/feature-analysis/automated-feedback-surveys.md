@@ -1,12 +1,12 @@
 # Automated feedback surveys
 
-### What are automated feedback surveys?
+## What are automated feedback surveys?
 
-They're no-code feedback surveys that collect in-app user feedback right after a user uses a feature.
+Automated feedback surveys are no-code surveys that collect in-app user feedback right after a user uses a feature.
 
-### Getting started
+## Getting started
 
-* Select the [feature](../introduction/concepts/feature/) that you would like to start collecting feedback for
+* Select the [feature](../../introduction/concepts/feature/) that you would like to start collecting feedback for
 * Go to `Settings` and click on `Enable Feedback surveys`
 * Enter a question in the `Prompt question` input. \
   For example: `How did you like the new Huddle feature?`
@@ -14,7 +14,7 @@ They're no-code feedback surveys that collect in-app user feedback right after a
 
 <div align="left">
 
-<figure><img src="../.gitbook/assets/CleanShot 2024-06-11 at 8 .25.53@2x.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Enabling Feedback Surveys-min.png" alt=""><figcaption></figcaption></figure>
 
 </div>
 
@@ -25,9 +25,7 @@ They're no-code feedback surveys that collect in-app user feedback right after a
     \
     Make sure that you’ve enabled feedback surveys and clicked the `Save` button _before_ testing.
 
-![](https://files.readme.io/8264245-Test\_Live\_Satisfaction.png)
-
-### Configuration
+## Configuration
 
 * Define the `Prompt question`
   * The question specified here will be displayed as a question to the user in the feedback widget.
@@ -75,25 +73,25 @@ The default value is 1 week.&#x20;
 
 Bucket will never ask a user for feedback about the same feature more than once, regardless of the `Minimum time between asking for feedback` configuration.
 
-### Default feedback widget behavior
+## Default feedback widget behavior
 
 In the default state, the widget will appear in the bottom right corner of your app.
 
-![](../.gitbook/assets/8bf8a6e-Frame\_201.png)
+![](../../.gitbook/assets/8bf8a6e-Frame\_201.png)
 
 Once a user interacts with the widget by providing a CSAT score, the widget will expand to give them the option to add feedback.
 
-![](../.gitbook/assets/03642c5-dwFrame\_201.png)
+![](../../.gitbook/assets/03642c5-dwFrame\_201.png)
 
 After a user leaves a comment and clicks `Send feedback`, the widget will display a confirmation message and automatically close.
 
-![](../.gitbook/assets/be124cd-dwdwFrame\_201.png)
+![](../../.gitbook/assets/be124cd-dwdwFrame\_201.png)
 
 The feedback widget will automatically close if a user doesn't interact with it.\
 \
 The remaining time is visualized by the circle around the `x` button. When the circle is empty, the widget will disappear.
 
-### Customizing the feedback widget
+## Customizing the feedback widget
 
 The behavior, language, positioning, content, and design of the feedback widget are fully customizable. This lets you integrate the feedback surveys with your app while following existing UI and design guidelines.\
 \
@@ -103,7 +101,7 @@ You can find the complete developer documentation [on GitHub](https://github.com
 
 Here's a glimpse of how you can tailor the feedback widget to your needs.
 
-#### Positioning
+### Positioning
 
 The feedback widget can be configured to be placed and behave in three different ways:
 
@@ -115,7 +113,7 @@ The feedback widget can be configured to be placed and behave in three different
 
 Find additional positioning details in the [developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/tracking-sdk/FEEDBACK.md#positioning-and-behavior).&#x20;
 
-#### Language
+### Language
 
 You can customize the language of the feedback widget statically at page load or dynamically during runtime.\
 \
@@ -123,19 +121,19 @@ You can supply your translations by passing an object to the options to either o
 
 Find additional details about languages and translation in the [developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/tracking-sdk/FEEDBACK.md#internationalization-i18n).
 
-#### Custom styling
+### Custom styling
 
 The styling can be fully customized by applying custom CSS properties to your page in the CSS `:root` scope.&#x20;
 
 More information can be found in the [developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/tracking-sdk/FEEDBACK.md#custom-styling) and [example stylesheet](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/tracking-sdk/dev/index.css).
 
-#### Using your UI
+### Using your UI
 
 You can replace the existing UI with your own and intercept the standard feedback survey event to trigger your own or collect feedback manually and pass it along to Bucket.
 
 Check out the[ developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/tracking-sdk/FEEDBACK.md#using-your-own-ui-to-collect-feedback) for the full rundown.
 
-#### Overriding global configurations
+### Overriding global configurations
 
 The Bucket SDK feedback widget is configured with the following defaults:
 
@@ -147,7 +145,7 @@ These settings can be overwritten when initializing the Bucket SDK.
 
 The [developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/tracking-sdk/FEEDBACK.md#global-feedback-configuration) explains how.&#x20;
 
-### Technical overview
+## Technical overview
 
 When the[ Bucket Browser Tracking SDK](https://github.com/bucketco/bucket-tracking-sdk) is installed in your web application, browsers using your application will automatically open and maintain a connection to Bucket’s servers through a real-time server-sent events connection.
 

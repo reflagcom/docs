@@ -22,27 +22,33 @@
 
 ## Quickstart
 
-* [Supported languages](quickstart/supported-languages.md)
-* [React SDK](quickstart/react-sdk.md)
-* [Browser SDK](quickstart/browser-sdk.md)
-* [Node.js SDK](quickstart/node.js-sdk.md)
+* [Getting started](quickstart/getting-started.md)
+* [Supported languages/frameworks](quickstart/supported-languages-frameworks/README.md)
+  * [React SDK](quickstart/supported-languages-frameworks/react-sdk.md)
+  * [Browser SDK](quickstart/supported-languages-frameworks/browser-sdk.md)
+  * [Node.js SDK](quickstart/supported-languages-frameworks/node.js-sdk.md)
+  * [Next.js](quickstart/supported-languages-frameworks/next.js.md)
 
 ## Product Handbook
 
-* [Create your first Release](product-handbook/create-your-first-release.md)
+* [Product overview](product-handbook/product-overview.md)
 * [Create your first feature](product-handbook/create-your-first-feature.md)
-* [Create your first feature flag](product-handbook/create-your-first-feature-flag.md)
-* [Create your first app](product-handbook/create-your-first-app.md)
-* [STARS Framework](product-handbook/stars-framework.md)
-* [Automated feedback surveys](product-handbook/automated-feedback-surveys.md)
-* [Environments](product-handbook/environments.md)
+* [Feature targeting rules](product-handbook/feature-targeting-rules/README.md)
+  * [Creating segments](product-handbook/feature-targeting-rules/creating-segments.md)
+  * [Environments](product-handbook/feature-targeting-rules/environments.md)
+* [Feature usage configuration](product-handbook/feature-usage-configuration.md)
+* [Feature analysis](product-handbook/feature-analysis/README.md)
+  * [STARS Framework](product-handbook/feature-analysis/stars-framework.md)
+  * [Automated feedback surveys](product-handbook/feature-analysis/automated-feedback-surveys.md)
+* [Permissions management](product-handbook/permissions-management.md)
+* [Creating and managing apps](product-handbook/creating-and-managing-apps.md)
 * [Data export](product-handbook/data-export.md)
 
 ## Integrations
 
+* [Slack](integrations/slack.md)
 * [AWS S3](integrations/aws-s3.md)
 * [Segment](integrations/segment.md)
-* [Slack](integrations/slack.md)
 
 ## API
 

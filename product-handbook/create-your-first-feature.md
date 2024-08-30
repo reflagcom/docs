@@ -1,87 +1,89 @@
 # Create your first feature
 
-### What's a feature?
+## What's a feature?
 
-A feature feature is an entity that tracks events or company attribute changes over time. It also defines an adoption threshold and a target segment.
+A feature is an entity that Bucket uses to roll out features, analyze adoption and satisfaction, and manage permissions.  A feature is used to create and manage feature flags, targeting rules,  engagement metrics, automatically collect feedback, and turn feature permissions on/off.
 
-### Getting started
+## Getting started
 
-* Navigate to Features and click the `New feature` button
-* Give the feature a name
+* Navigate to `Features` and click the `New feature` button
+* Give your feature a name
+* If you haven't already, set up a Bucket SDK for your language and framework. Find the [supported languages here.](../quickstart/supported-languages-frameworks/)
 
-### Select a feature view
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-Feature views let you group and organize features, customize Slack reporting, and save column configurations. You can create as many feature views as you need.\
-\
-Bucket includes two default feature views: All features and Key features.
+## Get your feature key
 
-### Enable Live Satisfaction
+A `feature key` is automatically generated when you name the feature. You'll use this key to refer to the feature in your code.
 
-Enable [Live Satisfaction](automated-feedback-surveys.md) to collect in-app user feedback on a feature after the user surpasses the minimum number of interactions.&#x20;
+You can change the `feature key` while creating the feature, but you cannot change it after it has been created.
 
-You can also customize the prompt when creating a new feature.
+The `feature key` allows you to determine if a feature is enabled for specific customers and to track customers' usage of the feature.
 
-<figure><img src="../.gitbook/assets/Track new feature V2-min.png" alt=""><figcaption></figcaption></figure>
+### Example
 
-### Choose the source
+If you're using React and have created a feature called `Huddle`, it will look like the following:
 
-You can select either Event or Company attributes.
+```tsx
+import { useFeature } from "@bucketco/react-sdk";
 
-#### **Events**
+function StartHuddleButton() {
+  const { isLoading, isEnabled, track } = useFeature("huddle");
 
-Events track user interactions. For example, this could include clicking a button or changing a value. You can choose from the list of previously recorded events or specify another value that you expect will be tracked in the future.
+  if (isLoading) {
+    return <Loading />;
+  }
 
-You can add attribute filters to restrict which events are taken into consideration. Only events that match the attribute filters will track activity for the feature.&#x20;
+  if (!isEnabled) {
+    return null;
+  }
 
-**Selecting multiple events**
+  return <Button onClick={() => track()} />;
+}
+```
 
-The `OR` operator lets you specify multiple events with the feature. If any specified events are triggered, they will be logged and aggregated under the feature.
+The `track` function will generate a `huddle` event. This is automatically sent to Bucket whenever a user uses the features.&#x20;
 
-#### **Company attributes**
+## Modify event tracking
 
-Company attributes let you track workspace features using user-defined company attributes.
+By default, Bucket will look for events with the `feature key` to track usage.
 
-Company attributes are permanent properties of the company. They change only when you explicitly track a different value. For example, this could include changes to a company's name, logo, plan, or number of seats.&#x20;
+You can change this to another `event`. To send a different event, you will expose a more generic `track` function:
 
-**Operators**&#x20;
+```tsx
+import { useFeature } from "@bucketco/react-sdk";
 
-* Any
-  * `Is`
-  * `Is not`
-  * `Has any value`
-  * `Has no value`
-* Text
-  * `Contains`
-  * `Does not contain`
-* List
-  * `Is any of`
-  * `Is not any of`
-* Number
-  * `Less than`
-  * `Greater than`
-* Boolean
-  * `Is true`
-  * `Is false`
-* Date
-  * `Less than X days ago`
-  * `More than X days ago`
+function StartHuddleButton() {
+  const { isLoading, isEnabled } = useFeature("huddle");
+  const track = useTrack();
 
-**Selecting multiple company attributes**&#x20;
+  if (isLoading) {
+    return <Loading />;
+  }
 
-The `AND` operator lets you set more granular filters by requiring multiple conditions to be met. Companies need to meet all attribute conditions to trigger the feature.
+  if (!isEnabled) {
+    return null;
+  }
 
-### Select a target segment
+  // send a custom event, in this case using the "Object/Action" terminology
+  // by using the `track` function from `useTrack` and send along
+  // some custom attributes along.
+  return (
+    <Button onClick={() => track("Huddle Started", {type: "voice"})}>
+      Start voice huddle!
+    </Button>
+  );
+}
+```
 
-Choose the [segment](../introduction/concepts/segment.md) of companies that the feature will be rolled out to.&#x20;
+It's also possible to use `company` attributes to indicate feature usage instead of events. See the [usage configuration documentation](feature-usage-configuration.md) to learn how to customize usage tracking. &#x20;
 
-All companies is the default value.&#x20;
+See the [supported languages/frameworks documentation](../quickstart/supported-languages-frameworks/) to learn how to quickly get started with a Bucket SDK or API
 
-**Example**
+## Next steps
 
-Only companies on the Business Plan should have access to the Huddles feature. You would select the Business Plan segment to ensure only companies within that segment have access.
+* Dive into [Targeting](feature-targeting-rules/) to roll out features gradually or to [certain segments](feature-targeting-rules/creating-segments.md) or [environments](feature-targeting-rules/environments.md)
+* Customize your [usage tracking](feature-usage-configuration.md) configuration to integrate with existing tracking solutions
+* Learn about [analysis](feature-analysis/) to discover how the [STARS framework](feature-analysis/stars-framework.md) and [automated feedback surveys](feature-analysis/automated-feedback-surveys.md) let you evaluate feature adoption and satisfaction
+* [Manage features](permissions-management.md) from the Bucket UI or with an API
 
-### Start tracking the feature
-
-Set up a Bucket SDK for your language and framework. Find the [supported languages here.](../quickstart/supported-languages.md)
-
-Then, go to [Releases](create-your-first-release.md) and select the `Choose a feature` dropdown.&#x20;

@@ -14,19 +14,21 @@ layout:
 
 # Introduction
 
-### What's Bucket?
+## What is Bucket?
 
 Bucket helps product teams release and evaluate features.&#x20;
 
-Bucket combines feature flagging and post-release evaluation in a repeatable workflow.&#x20;
+Bucket combines feature flagging and post-release analysis in a repeatable workflow.&#x20;
 
-The evaluation data consists of engagement metrics and qualitative fedeback, which is collected and aggregated automatically.
+The evaluation data consists of engagement metrics and qualitative feedback, which is collected and aggregated at the company level, automatically.
 
-### How does it work?
+## How does it work?
 
-Bucket's feature flags enable you to safely and gradually roll out features to customers using our [SDK](quickstart/supported-languages.md) or [HTTP API](api/http-api.md).
+Bucket's feature flags enable you to safely and gradually roll out features to customers using our [SDKs](quickstart/supported-languages-frameworks/) or [HTTP API](api/http-api.md).
 
-For the feature evaluation, Bucket relies on events for tracking feature interactions and asking customers for feedback.&#x20;
+Bucket then uses features to aggregate events that track interactions and collect customer feedback.&#x20;
 
-Events are abstracted into a [feature](introduction/concepts/feature/). Each feature comes with a [STARS](introduction/concepts/feature/stars.md) funnel. Feature interactions can be used to prompt in-app CSAT feature surveys to end-users at just the right time. This feature is called [Live Satisfaction](product-handbook/automated-feedback-surveys.md).
+Events are abstracted into a [feature](introduction/concepts/feature/). Each feature comes with a [STARS](introduction/concepts/feature/stars.md) funnel. Feature interactions can prompt in-app [automated feedback surveys](product-handbook/feature-analysis/automated-feedback-surveys.md) to end-users after a meaningful number of interactions.
+
+[Feature permissions](product-handbook/permissions-management.md) are managed at the company level through toggles in the Bucket UI or through an API. &#x20;
 
