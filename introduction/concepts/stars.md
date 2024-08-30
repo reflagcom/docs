@@ -30,7 +30,7 @@ Thus far, every user in the funnel has only moved onwards - you cannot _untry_ a
 
 ### Satisfied
 
-In the **Satisfied** step, [we ask](live-satisfaction.md) the Retained accounts how satisfied they are with the feature. Collecting feature satisfaction is done with the scoring framework [CSAT](https://en.wikipedia.org/wiki/Customer\_success). With CSAT, the customer provides a score between 1-5. 1 being very dissatisfied and 5 being very satisfied.
+In the **Satisfied** step, [we ask](automated-feedback-surveys.md) the Retained accounts how satisfied they are with the feature. Collecting feature satisfaction is done with the scoring framework [CSAT](https://bucket.co/glossary/csat). With CSAT, the customer provides a score between 1-5. 1 being very dissatisfied and 5 being very satisfied.
 
 Until a user provides feedback, the Satisfied metric will be empty. Once a user provides feedback, their rating will be stored permanently, even if they drop off from **Retained**. However, the **Satisfied** bar displayed at the top of the page will only count those currently in **Retained**.
 

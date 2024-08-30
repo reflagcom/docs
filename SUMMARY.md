@@ -4,13 +4,12 @@
 
 * [Introduction](README.md)
 * [Concepts](introduction/concepts/README.md)
-  * [App](introduction/concepts/app/README.md)
-    * [Environment](introduction/concepts/app/environment.md)
-  * [Feature flag](introduction/concepts/feature-flag.md)
-  * [Feature](introduction/concepts/feature/README.md)
-    * [STARS](introduction/concepts/feature/stars.md)
-    * [Frequency](introduction/concepts/feature/frequency.md)
-    * [Live Satisfaction](introduction/concepts/feature/live-satisfaction.md)
+  * [App](introduction/concepts/app.md)
+  * [Environment](introduction/concepts/environment.md)
+  * [Feature](introduction/concepts/feature.md)
+  * [STARS](introduction/concepts/stars.md)
+  * [Automated feedback surveys](introduction/concepts/automated-feedback-surveys.md)
+  * [Frequency](introduction/concepts/frequency.md)
   * [Company](introduction/concepts/company/README.md)
     * [Attribute](introduction/concepts/company/attribute.md)
     * [Associating users and companies](introduction/concepts/company/associating-users-and-companies.md)
@@ -19,6 +18,7 @@
     * [Attribute](introduction/concepts/user/attribute.md)
   * [Event](introduction/concepts/event/README.md)
     * [Attribute](introduction/concepts/event/attribute.md)
+  * [\[Archived\] Feature](introduction/concepts/archived-feature.md)
 
 ## Quickstart
 

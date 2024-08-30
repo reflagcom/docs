@@ -28,7 +28,7 @@ Bucket's feature flags enable you to safely and gradually roll out features to c
 
 Bucket then uses features to aggregate events that track interactions and collect customer feedback.&#x20;
 
-Events are abstracted into a [feature](introduction/concepts/feature/). Each feature comes with a [STARS](introduction/concepts/feature/stars.md) funnel. Feature interactions can prompt in-app [automated feedback surveys](product-handbook/feature-analysis/automated-feedback-surveys.md) to end-users after a meaningful number of interactions.
+Events are abstracted into a [feature](introduction/concepts/archived-feature.md). Each feature comes with a [STARS](introduction/concepts/stars.md) funnel. Feature interactions can prompt in-app [automated feedback surveys](product-handbook/feature-analysis/automated-feedback-surveys.md) to end-users after a meaningful number of interactions.
 
 [Feature permissions](product-handbook/permissions-management.md) are managed at the company level through toggles in the Bucket UI or through an API. &#x20;
 

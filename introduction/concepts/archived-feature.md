@@ -1,4 +1,8 @@
-# Feature
+---
+hidden: true
+---
+
+# \[Archived] Feature
 
 A feature is an abstraction on events that also includes things like the feature's target segment. It's nicer and less prone to work with than raw events.&#x20;
 
