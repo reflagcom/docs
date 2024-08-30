@@ -18,7 +18,6 @@
     * [Attribute](introduction/concepts/user/attribute.md)
   * [Event](introduction/concepts/event/README.md)
     * [Attribute](introduction/concepts/event/attribute.md)
-  * [\[Archived\] Feature](introduction/concepts/archived-feature.md)
 
 ## Quickstart
 

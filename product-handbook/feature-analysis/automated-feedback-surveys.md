@@ -6,7 +6,7 @@ Automated feedback surveys are no-code surveys that collect in-app user feedback
 
 ## Getting started
 
-* Select the [feature](../../introduction/concepts/archived-feature.md) that you would like to start collecting feedback for
+* Select the [feature](../../introduction/concepts/feature.md) that you would like to start collecting feedback for
 * Go to `Settings` and click on `Enable Feedback surveys`
 * Enter a question in the `Prompt question` input. \
   For example: `How did you like the new Huddle feature?`
