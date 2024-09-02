@@ -2,7 +2,9 @@
 
 Bucket's segment integration is for customers who already use Segment for event tracking and want to use Segment for gathering adoption metrics in Bucket
 
-Info: To use Bucket feature flagging and feedback capabilities, you need to install a [Bucket SDK](../quickstart/supported-languages-frameworks/).
+{% hint style="info" %}
+[Feature flagging](../product-handbook/feature-targeting-rules/) and [automated feedback surveys](../product-handbook/feature-analysis/automated-feedback-surveys.md)  requires installing a [Bucket SDK](../quickstart/supported-languages-frameworks/) in addition to setting up the Segment integration
+{% endhint %}
 
 ## Set up server tracking
 
@@ -19,10 +21,6 @@ Note: There's also a "Bucket Web (Actions)" integration which is no longer recom
 * Copy your Bucket publishable key from the `Environments` page in `Settings` and add it to the `API Key` settings field in the destination.
 * Enable the destination.
 * Check the `Tracking` page in Bucket to ensure the data arrives. Data should start flowing immediately.
-
-{% hint style="info" %}
-[Automated feedback surveys](../product-handbook/feature-analysis/automated-feedback-surveys.md) won't be automatically enabled when using a cloud destination as browser scripting is required for gathering customer feedback in your app UI.
-{% endhint %}
 
 ## Tracking page views
 
