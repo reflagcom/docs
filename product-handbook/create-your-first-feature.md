@@ -10,7 +10,7 @@ A feature is an entity that Bucket uses to roll out features, analyze adoption a
 * Give your feature a name
 * If you haven't already, set up a Bucket SDK for your language and framework. Find the [supported languages here.](../quickstart/supported-languages-frameworks/)
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Get your feature key
 
