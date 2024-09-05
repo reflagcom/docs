@@ -28,15 +28,15 @@ const company = {
   plan: "enterprise",
 };
 
-const bucketClient = new BucketClient(publishableKey, { user, company });
+const bucketClient = new BucketClient({publishableKey, user, company });
 
 // This will pull down features and prepare for automated feedback surveys
 await bucketClient.initialize();
 
-// After initialization, `getFeatures` returns instantly
-const { huddle } = bucketClient.getFeatures();
+// After initialization, `getFeature` returns instantly
+const { isEnabled, track } = bucketClient.getFeature('huddle');
 
-if (huddle) {
+if (isEnabled) {
   // show feature
 }
 
@@ -46,12 +46,15 @@ if (huddle) {
 bucketClient.track("huddle");
 ```
 
+See [the docs](https://github.com/bucketco/bucket-javascript-sdk/tree/main/packages/browser-sdk#bucket-browser-sdk) for the difference between `getFeature` and `getFeatures`.
+
 It's also possible to implement a simple HTML `<script>` tag:
 
 ```javascript
 <script src="https://cdn.jsdelivr.net/npm/@bucketco/browser-sdk@1"></script>
 <script>
-  const bucket = new BucketBrowserSDK.BucketClient("123", {
+  const bucket = new BucketBrowserSDK.BucketClient({
+    publishableKey,
     user: { id: "42" },
     company: { id: "1" },
   });
@@ -59,7 +62,10 @@ It's also possible to implement a simple HTML `<script>` tag:
   bucket.initialize().then(() => {
     console.log("Bucket initialized");
     document.getElementById("loading").style.display = "none";
-    document.getElementById("start-huddle").style.display = "block";
+    const {isEnabled} bucketClient.getFeature('huddle')
+    if (isEnabled) {
+      document.getElementById("start-huddle").style.display = "block";
+    }
   });
 </script>
 <span id="loading">Loading...</span>
@@ -84,4 +90,4 @@ const bucketClient = new BucketBrowserSDK.BucketClient(...)
 
 ## Complete developer documentation <a href="#complete-developer-documentation" id="complete-developer-documentation"></a>
 
-You can find the [full documentation on GitHub](https://github.com/bucketco/bucket-javascript-sdk/tree/main/packages/browser-sdk).
+You can find the [full documentation on GitHub](https://github.com/bucketco/bucket-javascript-sdk/tree/main/packages/browser-sdk#bucket-browser-sdk).
