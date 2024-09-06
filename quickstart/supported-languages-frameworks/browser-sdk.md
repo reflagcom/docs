@@ -15,7 +15,7 @@ You can find the[ full developer documentation on GitHub](https://github.com/buc
 The package should be imported and initialized as follows:
 
 ```javascript
-import bucket from "@bucketco/browser-sdk";
+import { BucketClient } from "@bucketco/browser-sdk";
 
 // Set user and company
 const user = {
@@ -28,7 +28,7 @@ const company = {
   plan: "enterprise",
 };
 
-const bucketClient = new BucketClient({publishableKey, user, company });
+const bucketClient = new BucketClient({ publishableKey, user, company });
 
 // This will pull down features and prepare for automated feedback surveys
 await bucketClient.initialize();
