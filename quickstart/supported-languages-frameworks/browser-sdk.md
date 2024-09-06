@@ -51,7 +51,7 @@ See [the docs](https://github.com/bucketco/bucket-javascript-sdk/tree/main/packa
 It's also possible to implement a simple HTML `<script>` tag:
 
 ```javascript
-<script src="https://cdn.jsdelivr.net/npm/@bucketco/browser-sdk@1"></script>
+<script src="https://cdn.jsdelivr.net/npm/@bucketco/browser-sdk@2"></script>
 <script>
   const bucket = new BucketBrowserSDK.BucketClient({
     publishableKey,
