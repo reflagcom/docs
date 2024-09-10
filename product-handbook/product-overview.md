@@ -2,9 +2,15 @@
 
 ## Features
 
-The [Feature](create-your-first-feature.md) tab of Bucket is where you roll out features, analyze adoption and satisfaction, and manage permissions.  This includes creating and managing feature flags, setting targeting rules,  tracking engagement metrics, and automatically collecting feedback.
+The Feature tab of Bucket is where you create and manage your features.
 
 <figure><img src="../.gitbook/assets/Feature Tab-min.png" alt=""><figcaption></figcaption></figure>
+
+## Feature page
+
+[Feature](create-your-first-feature.md) pages are where you create and manage feature flags, set targeting rules, track engagement metrics, and automatically collect feedback for individual features.&#x20;
+
+<figure><img src="../.gitbook/assets/Feature-targeting-rules-v2-min.png" alt=""><figcaption></figcaption></figure>
 
 ## Companies
 
