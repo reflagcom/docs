@@ -47,7 +47,7 @@ Once a feature configuration has been successfully fetched, it's stored in `loca
 {% endhint %}
 
 ```jsx
-import { BucketProvider } from "@bucketco/react-sdk"
+import { BucketProvider } from "@bucketco/react-sdk";
 
 <BucketProvider
   publishableKey="{YOUR_PUBLISHABLE_KEY}"
