@@ -27,6 +27,7 @@
   * [Browser SDK](quickstart/supported-languages-frameworks/browser-sdk.md)
   * [Node.js SDK](quickstart/supported-languages-frameworks/node.js-sdk.md)
   * [Next.js](quickstart/supported-languages-frameworks/next.js.md)
+  * [Ruby/Rails/Stimulus](quickstart/supported-languages-frameworks/ruby-rails-stimulus.md)
 
 ## Product Handbook
 
