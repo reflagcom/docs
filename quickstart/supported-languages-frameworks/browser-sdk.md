@@ -4,11 +4,15 @@
 
 The Browser SDK is a basic client-side JavaScript library that allows you to integrate Bucket with your app.
 
-If you're using a higher-level library or framework, instead see the [supported languages](./).
+If you're using a higher-level library or framework, see the [supported languages](./).&#x20;
+
+{% hint style="info" %}
+See our [OpenFeature Browser Provider](httphttps://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/openfeature-browser-provider/README.md) for integration with OpenFeature.
+{% endhint %}
 
 ## Getting started <a href="#getting-started" id="getting-started"></a>
 
-You can find the[ full developer documentation on GitHub](https://github.com/bucketco/bucket-javascript-sdk/tree/main/packages/browser-sdk).
+You can find the[ full developer documentation on GitHub](https://github.com/bucketco/bucket-javascript-sdk/tree/main/packages/browser-sdk).&#x20;
 
 ## Install the SDK <a href="#install-the-sdk" id="install-the-sdk"></a>
 
