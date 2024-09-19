@@ -16,9 +16,11 @@ layout:
 
 ## What is Bucket?
 
-Bucket helps product teams release and evaluate features.&#x20;
+Bucket is feature flagging and comes with real-time qualitative feedback and adoption metrics out of the box.&#x20;
 
-Bucket combines feature flagging, real-time qualitative feedback and built in adoption metrics in a repeatable workflow.&#x20;
+You get all of it by using a single feature key.
+
+Bucket enables product teams to rollout features and swiftly iterate based on feedback.
 
 ## How does it work?
 

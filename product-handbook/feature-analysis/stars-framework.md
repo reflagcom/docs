@@ -76,4 +76,43 @@ However, the Satisfied progress bar displayed at the top of the Bucket interface
 
 <figure><img src="../../.gitbook/assets/Satisfaction feedback-min.png" alt=""><figcaption></figcaption></figure>
 
-\
+## STARS states on Bucket
+
+In the Bucket product, you will encounter both STARS _steps_ and _states_.
+
+### STARS steps
+
+STARS steps are those outlined above: Segment, Tried, Adopted, Retained, and Satisfied.&#x20;
+
+You will encounter STARS steps in the Analyze tab of a [Feature](../create-your-first-feature.md).
+
+### STARS states
+
+A STARS state reflects where a company is in the funnel right now.&#x20;
+
+A company can be in multiple STARS steps but will only belong to a _single_ STARS state.&#x20;
+
+The STARS states are:
+
+#### Never
+
+The company has either:
+
+* Never had access to the feature
+* Never tried the feature
+
+#### Tried
+
+A company has [tried](stars-framework.md#tried) a feature.&#x20;
+
+#### Retained
+
+A company has [Adopted](stars-framework.md#adopted) a feature (based on your adoption strategy criteria) and currently meets the retention condition.
+
+#### Churned
+
+A company has Adopted a feature (based on your adoption strategy criteria) but no longer meets the retention condition and has churned from the feature.
+
+<figure><img src="../../.gitbook/assets/STARS states.png" alt=""><figcaption></figcaption></figure>
+
+You will encounter STARS states when using filters to create [company segments](../feature-targeting-rules/creating-segments.md) in the Companies tab.
