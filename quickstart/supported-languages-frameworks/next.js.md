@@ -141,10 +141,16 @@ Use `@bucketco/react-sdk` with Next.js client-side rendering like so:
 // layout.tsx
 import { BucketProvider } from "@bucketco/react-sdk";
 
+import { useUser } from "./auth";
+
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const { user } = useUser()
+
   return (
     <BucketProvider
       publishableKey={process.env.NEXT_PUBLIC_BUCKET_PUBLISHABLE_KEY ?? ""}
+      user={{user: { id: user.id }}}
+      company={{company: { id: user.companyId }}}
     >
       {children}
     </BucketProvider>
