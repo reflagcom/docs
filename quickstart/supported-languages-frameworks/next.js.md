@@ -149,8 +149,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <BucketProvider
       publishableKey={process.env.NEXT_PUBLIC_BUCKET_PUBLISHABLE_KEY ?? ""}
-      user={{user: { id: user.id }}}
-      company={{company: { id: user.companyId }}}
+      user={{ id: user.id }}
+      company={{ id: user.companyId }}
     >
       {children}
     </BucketProvider>
