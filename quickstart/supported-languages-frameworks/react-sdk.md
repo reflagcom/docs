@@ -85,7 +85,7 @@ This example checks if a user should be shown the `Start huddle` button by check
 `useTrack()` lets you send custom events to Bucket whenever a user uses a feature:
 
 ```jsx
-import { useFeature } from "@bucketco/react-sdk";
+import { useFeature, useTrack } from "@bucketco/react-sdk";
 
 function StartHuddleButton() {
   const { isLoading, isEnabled } = useFeature("huddle");
