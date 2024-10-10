@@ -32,7 +32,6 @@
 ## Product Handbook
 
 * [Product overview](product-handbook/product-overview.md)
-* [Linear integration](product-handbook/linear-integration.md)
 * [Create your first feature](product-handbook/create-your-first-feature.md)
 * [Feature targeting rules](product-handbook/feature-targeting-rules/README.md)
   * [Creating segments](product-handbook/feature-targeting-rules/creating-segments.md)
@@ -50,6 +49,7 @@
 * [Slack](integrations/slack.md)
 * [AWS S3](integrations/aws-s3.md)
 * [Segment](integrations/segment.md)
+* [Linear](integrations/linear.md)
 
 ## API
 
