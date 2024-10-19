@@ -43,22 +43,47 @@ declare module "@bucketco/react-sdk" {
 Add the `BucketProvider` context provider to your application. This will initialize the Bucket SDK to fetch feature configuration and listen for [automated feedback survey](../../product-handbook/feature-analysis/automated-feedback-surveys.md) events.
 
 {% hint style="info" %}
-Once a feature configuration has been successfully fetched, it's stored in `localStorage` and will be used as a fallback for up to 30 days if the client cannot connect to Bucket's servers.
+Once a features has been successfully fetched, they are stored in `localStorage` and will be used as a fallback for up to 30 days if the client cannot connect to Bucket's servers.
 {% endhint %}
 
-```jsx
+```tsx
 import { BucketProvider } from "@bucketco/react-sdk";
 
 <BucketProvider
   publishableKey="{YOUR_PUBLISHABLE_KEY}"
-  company={ id: "acme_inc" }
-  user={ id: "john doe" }
+  company={{ id: "acme_inc" }}
+  user={{ id: "john doe" }}
   loadingComponent={<Loading />}
   fallbackFeatures={["huddle"]}
 >
-{/* children here are shown when loading finishes or immediately if no `loadingComponent` is given */}
-</BucketProvider>
+  {/* children here are shown when loading finishes or immediately if no `loadingComponent` is given */}
+</BucketProvider>;
 ```
+
+* `publishableKey` is used to connect the provider to an _environment_ on Bucket. Find your `publishableKey` under `Activity` on [https://app.bucket.co](https://app.bucket.co/).
+*   `company`, `user` and `otherContext` make up the _context_ that is used to determine if a feature is enabled or not. `company` and `user` contexts are automatically transmitted to Bucket servers so the Bucket app can show you which companies have access to which features etc.
+
+    If you specify `company` and/or `user` they must have at least the `id` property plus anything additional you want to be able to evaluate feature targeting against. See "Managing Bucket context" below.
+* `fallbackFeatures` is a list of strings which specify which features to consider enabled if the SDK is unable to fetch features.
+*   `loadingComponent` lets you specify an React component to be rendered instead of the children while the Bucket provider is initializing. If you want more control over loading screens, `useFeature()` returns `isLoading` which you can use to customize the loading experience:
+
+    ```tsx
+    function LoadingBucket({ children }) {
+      const { isLoading } = useFeature("myFeature")
+      if (isLoading) {
+        return <Spinner />
+      }
+
+      return children
+    }
+
+    //-- Initialize the Bucket provider
+    <BucketProvider publishableKey="{YOUR_PUBLISHABLE_KEY}">
+      <LoadingBucket>
+      {/* children here are shown when loading finishes */}
+      </LoadingBucket>
+    </BucketProvider>
+    ```
 
 ## Implement feature targeting <a href="#implement-feature-targeting" id="implement-feature-targeting"></a>
 
