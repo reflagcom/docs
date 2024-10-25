@@ -16,11 +16,19 @@ layout:
 
 ## What is Bucket?
 
-Bucket is feature flagging and comes with real-time qualitative feedback and adoption metrics out of the box.&#x20;
+Bucket is feature flagging that’s purpose-built for B2B.\
+\
+B2B deserves feature flags designed specifically for their use case. We don't do A/B experimentation or B2C features.&#x20;
 
-You get all of it by using a single feature key.
+Bucket is focused on what you need to build and release better features in B2B SaaS, all in a beautifully crafted UI.
 
-Bucket enables product teams to rollout features and swiftly iterate based on feedback.
+That includes:
+
+* [Feature flags](product-handbook/create-your-first-feature.md) for B2B. All the features you need and a simple implementation.
+* Feature entitlements that let you grant companies access by flipping a switch.
+* [Feature adoption metrics](product-handbook/feature-analysis/stars-framework.md) analyzed using a proven and B2B-optimized framework.
+* [Automated surveys](product-handbook/feature-analysis/automated-feedback-surveys.md) that collect feature feedback at the right time.
+* Feature data that synced to your CRM and/or data warehouse.
 
 ## How does it work?
 
