@@ -2,7 +2,7 @@
 
 ## Features
 
-The Feature tab of Bucket is where you create and manage your features.
+The Features tab of Bucket is where you create and manage your features.
 
 <figure><img src="../.gitbook/assets/Feature Tab-min.png" alt=""><figcaption></figcaption></figure>
 
@@ -28,11 +28,11 @@ The Feedback tab shows you CSAT scores and qualitative feedback from [automated 
 
 <figure><img src="../.gitbook/assets/Feedback Tab V2-min.png" alt=""><figcaption></figcaption></figure>
 
-## Tracking
+## Debugger
 
-The Tracking tab shows you a log of recent events as well as a list of all the distinct events being tracked in Bucket.
+The Debugger tab shows you a log of recent events as well as a list of all the distinct events being tracked in Bucket.
 
-<figure><img src="../.gitbook/assets/Tracking Tab-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Debugger-min.png" alt=""><figcaption></figcaption></figure>
 
 ## Settings
 
