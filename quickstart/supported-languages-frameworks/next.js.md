@@ -113,7 +113,7 @@ export default function Page({
 {% endtab %}
 {% endtabs %}
 
-### Vercel's @vecel/flags SDK
+### Vercel's @vercel/flags SDK
 
 The [experimental @vercel/flags SDK](https://vercel.com/docs/workflow-collaboration/feature-flags/feature-flags-pattern) is a Next.js oriented interface for server-side feature flags. It's straight forward to use with the Bucket Node.js SDK:
 
@@ -174,3 +174,5 @@ function StartHuddle() {
   );
 }
 ```
+
+For more details, please see the [React SDK documentation](react-sdk.md)
