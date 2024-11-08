@@ -20,15 +20,15 @@
   * [Event](introduction/concepts/event/README.md)
     * [Attribute](introduction/concepts/event/attribute.md)
 
-## Supported languages/frameworks
+## Supported languages
 
-* [Overview](supported-languages-frameworks/overview.md)
-* [React SDK](supported-languages-frameworks/react-sdk.md)
-* [Browser SDK](supported-languages-frameworks/browser-sdk.md)
-* [Node.js SDK](supported-languages-frameworks/node.js-sdk.md)
-* [Next.js](supported-languages-frameworks/next.js.md)
-* [Ruby/Rails/Stimulus](supported-languages-frameworks/ruby-rails-stimulus.md)
-* [Other languages](supported-languages-frameworks/other-languages.md)
+* [Overview](supported-languages/overview.md)
+* [React SDK](supported-languages/react-sdk.md)
+* [Browser SDK](supported-languages/browser-sdk.md)
+* [Node.js SDK](supported-languages/node.js-sdk.md)
+* [Next.js](supported-languages/next.js.md)
+* [Ruby/Rails/Stimulus](supported-languages/ruby-rails-stimulus.md)
+* [Other languages](supported-languages/other-languages.md)
 
 ## Product Handbook
 

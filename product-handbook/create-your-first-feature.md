@@ -8,7 +8,7 @@ A feature is an entity that Bucket uses to roll out features, analyze adoption a
 
 * Navigate to `Features` and click the `New feature` button
 * Give your feature a name
-* If you haven't already, set up a Bucket SDK for your language and framework. Find the [supported languages here.](../supported-languages-frameworks/overview.md)
+* If you haven't already, set up a Bucket SDK for your language and framework. Find the [supported languages here.](../supported-languages/overview.md)
 
 <figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
@@ -78,7 +78,7 @@ function StartHuddleButton() {
 
 It's also possible to use `company` attributes to indicate feature usage instead of events. See the [usage configuration documentation](feature-usage-configuration.md) to learn how to customize usage tracking. &#x20;
 
-See the [supported languages/frameworks documentation](../supported-languages-frameworks/overview.md) to learn how to quickly get started with a Bucket SDK or API
+See the [supported languages/frameworks documentation](../supported-languages/overview.md) to learn how to quickly get started with a Bucket SDK or API
 
 ## Next steps
 
