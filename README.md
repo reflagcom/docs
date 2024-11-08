@@ -32,7 +32,7 @@ That includes:
 
 ## How does it work?
 
-Bucket's feature targeting enable you to safely and gradually roll out features to customers by implementing our [SDKs](quickstart/supported-languages-frameworks/) in your application or through our [HTTP API](api/http-api.md).
+Bucket's feature targeting enables you to safely and gradually roll out features to customers by implementing our [SDKs](broken-reference) in your application or through our [HTTP API](api/http-api.md).
 
 Each feature comes with [targeting rules](product-handbook/feature-targeting-rules/) and a [STARS](introduction/concepts/stars.md) funnel. Additionally, feature interactions can prompt in-app [automated feedback surveys](product-handbook/feature-analysis/automated-feedback-surveys.md) to end-users after a meaningful number of interactions.
 

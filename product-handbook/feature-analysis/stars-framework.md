@@ -103,7 +103,7 @@ The company has either:
 
 #### Tried
 
-A company has [tried](stars-framework.md#tried) a feature.&#x20;
+A company has [Tried](stars-framework.md#tried) a feature.&#x20;
 
 #### Retained
 

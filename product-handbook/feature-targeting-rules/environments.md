@@ -15,7 +15,7 @@ All environments except `Production` can be edited or deleted at any time.
 * When you create your account, there are three default environments: `Production`, `Staging`, and `Development`.&#x20;
 * Go to `Settings`
 * Under `App: [Your App Name]`, click `Environments`
-* Fetch your unique `publishable keys`  and/or `secret keys` to implement with an [SDK or HTTP API](../../quickstart/supported-languages-frameworks/).
+* Fetch your unique `publishable keys`  and/or `secret keys` to implement with an [SDK or HTTP API](../../supported-languages-frameworks/overview.md).
   * This key is essential for integrating your applications with our platform. It ensures that events and data are attributed to the correct environment.
 
 <figure><img src="../../.gitbook/assets/Environments Page V2-min.png" alt=""><figcaption></figcaption></figure>
@@ -54,7 +54,7 @@ There are three levels of settings in Bucket:
 
 * `Organization`: _C_ontains the organization-wide settings
 * `App: [Your App Name]`: Contains the application-wide settings
-* `Environment: [Name]`: Contain environment-specific settings for the current applicatio.
+* `Environment: [Name]`: Contain environment-specific settings for the current application.
 
 ### Application-wide functionalities
 
@@ -67,7 +67,7 @@ The following entities and configuration options are application-wide and not de
 
 ### Production environment-based functionalities
 
-There are environment-specific functionalities that are only allowed in the `Production` environment . These are:
+There are environment-specific functionalities that are only allowed in the `Production` environment. These are:
 
 * `Slack`: Reporting settings in [Features](../create-your-first-feature.md) and [Feature views](https://bucket.co/glossary/feature-views) can be configured from any environment, but are also reflected in the `Production` environment
 * Some configuration sections are disabled if the selected environment is not `Production`.

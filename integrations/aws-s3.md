@@ -1,6 +1,6 @@
 # AWS S3
 
-To configure an [automatic data](../product-handbook/data-export.md#scheduled-export) export to an Amazon S3 bucket, follow the steps below.
+To configure an [automatic data export](../product-handbook/data-export.md#scheduled-export) to an Amazon S3 bucket, follow the steps below.
 
 ## Implementation steps
 

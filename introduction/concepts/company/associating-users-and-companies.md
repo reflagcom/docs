@@ -4,7 +4,7 @@ Events sent to Bucket are sent by individual users. To associate these events wi
 
 If a user's events aren't associated with a company, they will not be included in Bucket (which is primarily based on company-level activity).
 
-If you're using our SDK, make sure to call `company` after calling `user` : [Bucket SDK Documentation](../../../quickstart/supported-languages-frameworks/)
+If you're using our SDK, make sure to call `company` after calling `user` : [Bucket SDK Documentation](../../../supported-languages-frameworks/overview.md)
 
 If you're using Segment, make sure to call `group` after calling `identify`: [Segment Group Spec Documentation](https://segment.com/docs/connections/spec/group/)
 

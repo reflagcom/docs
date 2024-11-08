@@ -3,6 +3,7 @@
 ## Introduction
 
 * [Introduction](README.md)
+* [Getting started](introduction/getting-started.md)
 * [Concepts](introduction/concepts/README.md)
   * [App](introduction/concepts/app.md)
   * [Environment](introduction/concepts/environment.md)
@@ -19,15 +20,15 @@
   * [Event](introduction/concepts/event/README.md)
     * [Attribute](introduction/concepts/event/attribute.md)
 
-## Quickstart
+## Supported languages/frameworks
 
-* [Getting started](quickstart/getting-started.md)
-* [Supported languages/frameworks](quickstart/supported-languages-frameworks/README.md)
-  * [React SDK](quickstart/supported-languages-frameworks/react-sdk.md)
-  * [Browser SDK](quickstart/supported-languages-frameworks/browser-sdk.md)
-  * [Node.js SDK](quickstart/supported-languages-frameworks/node.js-sdk.md)
-  * [Next.js](quickstart/supported-languages-frameworks/next.js.md)
-  * [Ruby/Rails/Stimulus](quickstart/supported-languages-frameworks/ruby-rails-stimulus.md)
+* [Overview](supported-languages-frameworks/overview.md)
+* [React SDK](supported-languages-frameworks/react-sdk.md)
+* [Browser SDK](supported-languages-frameworks/browser-sdk.md)
+* [Node.js SDK](supported-languages-frameworks/node.js-sdk.md)
+* [Next.js](supported-languages-frameworks/next.js.md)
+* [Ruby/Rails/Stimulus](supported-languages-frameworks/ruby-rails-stimulus.md)
+* [Other languages](supported-languages-frameworks/other-languages.md)
 
 ## Product Handbook
 
