@@ -40,7 +40,7 @@ declare module "@bucketco/react-sdk" {
 
 ## Add the context provider <a href="#add-the-context-provider" id="add-the-context-provider"></a>
 
-Add the `BucketProvider` context provider to your application. This will initialize the Bucket SDK to fetch feature configuration and listen for [automated feedback survey](../../product-handbook/feature-analysis/automated-feedback-surveys.md) events.
+Add the `BucketProvider` context provider to your application. This will initialize the Bucket SDK to fetch feature configuration and listen for [automated feedback survey](../product-handbook/feature-feedback/automated-feedback-surveys.md) events.
 
 {% hint style="info" %}
 Once a features has been successfully fetched, they are stored in `localStorage` and will be used as a fallback for up to 30 days if the client cannot connect to Bucket's servers.
@@ -103,7 +103,7 @@ function StartHuddleButton() {
 }
 ```
 
-This example checks if a user should be shown the `Start huddle` button by checking the `isEnabled` boolean _and_ then sends an event once the Huddle starts to let Bucket automatically track usage and [collect feedback](../../product-handbook/feature-analysis/automated-feedback-surveys.md).
+This example checks if a user should be shown the `Start huddle` button by checking the `isEnabled` boolean _and_ then sends an event once the Huddle starts to let Bucket automatically track usage and [collect feedback](../product-handbook/feature-feedback/automated-feedback-surveys.md).
 
 ## Custom event tracking <a href="#custom-event-tracking" id="custom-event-tracking"></a>
 

@@ -17,14 +17,14 @@ You can find the[ full developer documentation on GitHub](https://github.com/buc
 Install the SDK using `yarn` or `npm`.
 
 ```typescript
-yarn add -s @bucketco/node-sdk 
+yarn add @bucketco/node-sdk 
 //or 
 npm install -s @bucketco/node-sdk.
 ```
 
 ## Basic usage
 
-Get started by getting a secret key from the [Environment settings](../../product-handbook/feature-targeting-rules/environments.md) in Bucket.
+Get started by getting a secret key from the [Environment settings](../product-handbook/managing-apps/environments.md) in Bucket.
 
 {% hint style="danger" %}
 Secret keys are meant for use in server-side SDKs **only**.
@@ -35,19 +35,10 @@ Secret keys allow users to obtain sensitive information. They should not be used
 ```typescript
 import { BucketClient } from "@bucketco/node-sdk";
 
-// Create a new instance of the client with the secret key. Additional options
-// are available, such as supplying a logger, fallback features and
-// other custom properties.
-//
-// Fallback features are used in the situation when the server-side
-// features are not yet loaded or there are issues retrieving them.
-// See "Initialization Options" below for more information.
-//
-// We recommend that only one global instance of `client` should be created
-// to avoid multiple round-trips to our servers.
+// Create a new instance of the client with the secret key
+// or set the BUCKET_SECRET_KEY environemnt variable
 const client = new BucketClient({
   secretKey: "sec_prod_xxxxxxxxxxxxxxxxxxxxx",
-  fallbackFeatures: ["huddle", "voice-huddle"],
 });
 
 // Initialize the client and begin fetching feature targeting definitions.
