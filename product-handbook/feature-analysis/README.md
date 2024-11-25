@@ -18,5 +18,5 @@ This is very useful for asking for feedback after a user interaction.
 
 A static feedback button is useful for providing the user with a constant option to provide feedback on a product area whenever the user stumbles into issues or confusion.
 
-[Learn how to use the feedback button](give-feedback-button.md)
+[Learn how to use the feedback button](../feature-feedback/give-feedback-button.md)
 

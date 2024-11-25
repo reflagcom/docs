@@ -1,6 +1,6 @@
 # Managing apps
 
-Learn about [apps](../../introduction/data-model/app.md) here.
+Learn about [apps](../introduction/concepts/app.md) here.
 
 ### Modifying or deleting an app
 
@@ -9,7 +9,7 @@ Learn about [apps](../../introduction/data-model/app.md) here.
 * You can modify the `App name`
 * You can delete the app by clicking the `Delete app` button
 
-<figure><img src="../../.gitbook/assets/Creating and managing apps-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Creating and managing apps-min.png" alt=""><figcaption></figcaption></figure>
 
 ### Creating a new app
 

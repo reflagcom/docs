@@ -12,9 +12,9 @@ Data exports are only available on Pro and Enterprise plans. Automatic data expo
 
 * Navigate to `Settings`
 * Under `Environment: [Environment Name]`, select `Data export`. &#x20;
-* Under `Manual export`, select the [historical data aggregation](warehouse.md#historical-data) of your choice
+* Under `Manual export`, select the [historical data aggregation](data-export.md#historical-data) of your choice
 * Click the `Download export` button to get your CSV
-* If you have access to [automatic exports](warehouse.md#automatic-export), turn the `Enable automatic export` toggle to `ON` and follow the instructions below.&#x20;
+* If you have access to [automatic exports](data-export.md#automatic-export), turn the `Enable automatic export` toggle to `ON` and follow the instructions below.&#x20;
 
 ## Historical data
 
@@ -79,7 +79,7 @@ The company model contains information about company usage of all your features/
 | First Used         | `string` \| `null` | UTC Date (ISO-8601)                                              | Company first feature usage                                                    |
 | Last Used          | `string` \| `null` | UTC Date (ISO-8601)                                              | The company's latest feature usage                                             |
 | STARS State Label  | `string`\| `null`  | One of the:`"never"` \| `"tried"` \| `"retained"` \| `"churned"` | Human readable value for the STARS step                                        |
-| STARS State        | `number`           | One of the: `1` \| `2` \| `3`\| `4`                              | The company [STARS state](feature-adoption/stars-framework.md) for the feature |
+| STARS State        | `number`           | One of the: `1` \| `2` \| `3`\| `4`                              | The company [STARS state](feature-analysis/stars-framework.md) for the feature |
 | Frequency Label    | `string`           |                                                                  | Human readable label for the frequency value                                   |
 | Frequency          | `number`           | One of: `0` \| `1` \| `2` \| `3`                                 | Company feature usage frequency. Higher means more frequent                    |
 | Satisfaction Label | `string`           |                                                                  | Human readable label for the satisfaction score                                |

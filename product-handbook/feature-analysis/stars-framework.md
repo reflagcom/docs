@@ -68,7 +68,7 @@ So far, every company in the funnel has moved to the next step (you can’t un-t
 
 In the Satisfied step, we ask the Retained accounts how satisfied they are with the feature.&#x20;
 
-Collecting feature satisfaction is done using a CSAT scoring framework through [automated feedback surveys](../feature-feedback/automated-feedback-surveys.md). The user provides a score between 1-5 with 1 being very dissatisfied and 5 being very satisfied.
+Collecting feature satisfaction is done using a CSAT scoring framework through [automated feedback surveys](automated-feedback-surveys.md). The user provides a score between 1-5 with 1 being very dissatisfied and 5 being very satisfied.
 
 The Satisfied step will remain empty until a user provides feedback. Once a user from a company gives feedback, their rating and comments will be logged and permanently stored even if the company drops off from Retained.&#x20;
 
@@ -115,4 +115,4 @@ A company has Adopted a feature (based on your adoption strategy criteria) but n
 
 <figure><img src="../../.gitbook/assets/STARS states.png" alt=""><figcaption></figcaption></figure>
 
-You will encounter STARS states when using filters to create [company segments](../creating-segments.md) in the Companies tab.
+You will encounter STARS states when using filters to create [company segments](../feature-targeting-rules/creating-segments.md) in the Companies tab.

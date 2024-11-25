@@ -24,7 +24,7 @@ npm install -s @bucketco/node-sdk.
 
 ## Basic usage
 
-Get started by getting a secret key from the [Environment settings](../product-handbook/managing-apps/environments.md) in Bucket.
+Get started by getting a secret key from the [Environment settings](../product-handbook/feature-targeting-rules/environments.md) in Bucket.
 
 {% hint style="danger" %}
 Secret keys are meant for use in server-side SDKs **only**.

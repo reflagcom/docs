@@ -12,7 +12,7 @@ You'll find the feature targeting configuration under the `Targeting` tab in eac
 
 ## Getting started <a href="#get-started" id="get-started"></a>
 
-* Create your [feature](create-your-first-feature.md)
+* Create your [feature](../create-your-first-feature.md)
 * Select the `Targeting` tab
 
 ## Set targeting rules
@@ -53,7 +53,7 @@ Here are examples of targeting conditions:
 * Give access to companies who already have access to the Huddle feature: `Feature targeting: Feature [Huddle] is enabled`
 * Enable feature for a single company but only when managing a particular event: `Company attribute: Company ID IS [42] AND Other context: eventID IS [641]`
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-08-15 at 13.57.46.png" alt=""><figcaption><p>There are 5 different types of conditions to chose from</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2024-08-15 at 13.57.46.png" alt=""><figcaption><p>There are 5 different types of conditions to chose from</p></figcaption></figure>
 
 ## Setting multiple targeting rules <a href="#setting-multiple-targeting-rules" id="setting-multiple-targeting-rules"></a>
 
@@ -69,9 +69,9 @@ If _**any**_ rules match, the feature will be enabled for a given company or use
 
 Another way to say this is that there’s an `OR` between the rules and an `AND` between the conditions.&#x20;
 
-The rules you create will be different between [environments](feature-targeting-rules.md#environments).
+The rules you create will be different between [environments](./#environments).
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-08-14 at 19.25.06 (1).png" alt=""><figcaption><p>An example targeting configuration with two rules. In the first rule there are two conditions and one condition in the second rule. If any of the rules match and if all the conditions in a given rules match, the company/user will be targeted.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2024-08-14 at 19.25.06 (1).png" alt=""><figcaption><p>An example targeting configuration with two rules. In the first rule there are two conditions and one condition in the second rule. If any of the rules match and if all the conditions in a given rules match, the company/user will be targeted.</p></figcaption></figure>
 
 ## Specify rollout percentage
 
@@ -105,7 +105,7 @@ In the Staging environment, roll out the feature to 100% of companies in the `In
 
 After the initial QA testing in the Staging environment, you roll out the feature flag to 30% of companies within the `Beta customers` segment in the Production environment.
 
-<figure><img src="../.gitbook/assets/Feature-targeting-rules-v2-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Feature-targeting-rules-v2-min.png" alt=""><figcaption></figcaption></figure>
 
 ## Rolling back feature targeting changes
 

@@ -80,8 +80,8 @@ Some settings are `Production environment`-only and are disabled when a non-`Pro
 
 All other settings and functionalities are environment-specific. Anything that requires data to be sent from the clients is inherently environment-specific. This includes:
 
-* [Targeting rules](../feature-targeting-rules.md)
-* [Automate feedback surveys](../feature-feedback/automated-feedback-surveys.md)
+* [Targeting rules](./)
+* [Automate feedback surveys](../feature-analysis/automated-feedback-surveys.md)
 * [Feedback](../product-overview.md#feedback)
 * [Tracking](../product-overview.md#tracking)
-* [Data export](../warehouse.md)
+* [Data export](../data-export.md)

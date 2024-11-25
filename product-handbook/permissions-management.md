@@ -8,7 +8,7 @@ You can gate access to features based on customer subscription with Bucket. You 
 
 ### Dynamic feature gating
 
-Segments are a powerful way to do dynamically gate feature access. For example, if you're in B2B SaaS, you can create a [segment](../introduction/data-model/segment.md) per subscription.
+Segments are a powerful way to do dynamically gate feature access. For example, if you're in B2B SaaS, you can create a [segment](../introduction/concepts/segment.md) per subscription.
 
 Let's say you have three subscriptions plans:
 
@@ -16,7 +16,7 @@ Let's say you have three subscriptions plans:
 * Business
 * Enterprise
 
-You can tell Bucket which plan any company is on by including this information as a [company attribute](../introduction/data-model/company/attribute.md)
+You can tell Bucket which plan any company is on by including this information as a [company attribute](../introduction/concepts/company/attribute.md)
 
 ```typescript
 bucketClient.updateCompany(companyId, {

@@ -44,7 +44,7 @@ Daily reports shows the companies that have adopted the feature in the past 24 h
 
 ### User feedback
 
-Sends an immediate notification when a user leaves feedback on a feature through an [automated feedback survey](../product-handbook/feature-feedback/automated-feedback-surveys.md).&#x20;
+Sends an immediate notification when a user leaves feedback on a feature through an [automated feedback survey](../product-handbook/feature-analysis/automated-feedback-surveys.md).&#x20;
 
 Notifications include the user’s name, company, CSAT score, and feedback (if provided).&#x20;
 

@@ -4,7 +4,7 @@
 
 Segments are reusable lists of companies created based off one of more of the following:
 
-* [Company attributes](../introduction/data-model/company/attribute.md)&#x20;
+* [Company attributes](../../introduction/concepts/company/attribute.md)&#x20;
 * Feature access
 * Feature metrics
 * Feature feedback
@@ -41,7 +41,7 @@ There are 4 types of conditions:
   * `in Segment`
   * `not in Segment`
 
-<figure><img src="../.gitbook/assets/Company segment filters-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Company segment filters-min.png" alt=""><figcaption></figcaption></figure>
 
 ### **Operators**
 
@@ -76,4 +76,4 @@ There are 4 types of conditions:
 
 After adding any applicable conditions, you can save the segment. You can create as many segments as you need.
 
-<figure><img src="../.gitbook/assets/Saving New Segment-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Saving New Segment-min.png" alt=""><figcaption></figcaption></figure>
