@@ -4,7 +4,7 @@ Bucket tracks feature adoption through events or [company attributes](../introdu
 
 ### Events or attributes
 
-[Events](../introduction/concepts/event/) are great for tracking feature interactions and when frequency of interactions is important. For example, sending a chat messaging is best tracked with events.
+[Events](../introduction/concepts/event/) are great for tracking feature interactions and when the frequency of interactions is important. For example, sending a chat message is best tracked with events.
 
 [Company attributes](../introduction/concepts/company/attribute.md) are great for tracking state changes. For example, has the company installed any integrations or not is best tracked with company attributes.
 
@@ -39,13 +39,13 @@ function StartHuddleButton() {
 
 To use a custom event to track adoption instead of the `feature key`, you can simply call `track("my-custom-event")` to generate it. See the developer documentation for the appropriate Bucket SDK for the details.
 
-If you use Segment, you can use our [Segment integration](../integrations/segment.md) as destination.
+If you use Segment, you can use our [Segment integration](../integrations/segment.md) as the destination.
 
 Go to feature settings under Adoption to select the adoption event(s).
 
 ### Adoption strategy
 
-Bucket use the [STARS framework](feature-analysis/stars-framework.md) to measure feature adoption. The STARS framework differentiates between companies having simply tried a feature versus having truly adopted it.
+Bucket uses the [STARS framework](feature-analysis/stars-framework.md) to measure feature adoption. The STARS framework differentiates between companies having simply tried a feature versus having truly adopted it.
 
 To configure the adoption threshold for your feature, go to the feature settings under Adoption.
 
@@ -54,7 +54,7 @@ You can choose between two adoption strategies:
 * Frequency (events on multiple days)
 * Count (events count threshold)
 
-<figure><img src="../.gitbook/assets/Feature usage configuration-v2-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Adoption strategy-min.png" alt="Feature adoption strategy settings"><figcaption></figcaption></figure>
 
 ### Track adoption in the UI
 
@@ -64,5 +64,5 @@ Here you can see any STARS metric over time and set targets.
 
 You can also create segments based on STARS states.
 
-<figure><img src="../.gitbook/assets/CleanShot 2024-11-22 at 8 .31.17@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Track adoption in the UI-min.png" alt="Analyze tab with feature adoption metrics"><figcaption></figcaption></figure>
 

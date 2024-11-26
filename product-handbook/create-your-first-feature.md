@@ -10,7 +10,7 @@ A feature is an entity that Bucket uses to roll out features, manage access, tra
 * Give your feature a name, and you'll get a `feature key`. You can't change the feature key after creation. The `feature key` is like a `flag key` that can _also_ be used for adoption and feedback.
 * If you haven't already, set up a Bucket SDK for your language and framework. Find the [supported languages here.](../supported-languages/overview.md)
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt="Creating a new feature in Bucket"><figcaption></figcaption></figure>
 
 ### Code example
 

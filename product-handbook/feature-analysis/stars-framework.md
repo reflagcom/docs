@@ -16,7 +16,7 @@ STARS stands for:&#x20;
 * **R**etained&#x20;
 * **S**atisfied
 
-<figure><img src="../../.gitbook/assets/STARS Feature Funnel-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/What is the STARS Framework_-min.png" alt="The STARS feature adoption framework"><figcaption></figcaption></figure>
 
 ## Segment
 
@@ -42,7 +42,7 @@ The default Adoption strategy is `Frequency`. `Frequency` refers to how many sep
 
 &#x20;The default `Frequency`values are: Sent an event on at least `5 days` within `4 weeks`.
 
-<figure><img src="../../.gitbook/assets/STARS Configuration-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Adopted-min.png" alt="Adoption strategy for feature adoption"><figcaption></figcaption></figure>
 
 The `Adoption percentage` figure shown in Bucket is the percentage of companies in the segment that have moved to Adopted.
 
@@ -74,7 +74,7 @@ The Satisfied step will remain empty until a user provides feedback. Once a user
 
 However, the Satisfied progress bar displayed at the top of the Bucket interface only counts those currently in Retained.
 
-<figure><img src="../../.gitbook/assets/Satisfaction feedback-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Satisified-min.png" alt="Feedback and satisfaction"><figcaption></figcaption></figure>
 
 ## STARS states on Bucket
 
@@ -113,6 +113,6 @@ A company has [Adopted](stars-framework.md#adopted) a feature (based on your ado
 
 A company has Adopted a feature (based on your adoption strategy criteria) but no longer meets the retention condition and has churned from the feature.
 
-<figure><img src="../../.gitbook/assets/STARS states.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/STARS states.png" alt="Company filters"><figcaption></figcaption></figure>
 
 You will encounter STARS states when using filters to create [company segments](../feature-targeting-rules/creating-segments.md) in the Companies tab.

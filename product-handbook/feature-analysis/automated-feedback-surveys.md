@@ -10,7 +10,7 @@ Automated feedback surveys are no-code surveys that collect in-app user feedback
   For example: `How did you like the new Huddle feature?`
 * Click the `Save` button to save your settings
 
-<div align="left"><figure><img src="../../.gitbook/assets/Enabling Feedback Surveys-min.png" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="../../.gitbook/assets/Automated feedback surveys settings-min.png" alt="Automated feedback survey settings"><figcaption></figcaption></figure></div>
 
 * Test your feedback widget.
   * The `Try out` button allows you to test the feedback widget.\

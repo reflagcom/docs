@@ -1,7 +1,5 @@
 # Warehouse
 
-
-
 Bucket allows you to export company usage data in a CSV file to use in other tools or databases.  This can be done either manually or automatically, depending on your plan.
 
 {% hint style="info" %}
@@ -51,7 +49,7 @@ After clicking `Save`, Bucket will validate that the supplied details are correc
 
 If there is an error (such as misconfigured credentials, missing privileges, or misspelled names), an error message will appear.&#x20;
 
-Bucket will run the data export the following day or next Monday depending on the selected cadence.
+Bucket will run the data export the following day or the next Monday depending on the selected cadence.
 
 Bucket records the status of the operation and displays it below the toggle. The status will show:
 

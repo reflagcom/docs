@@ -53,7 +53,7 @@ Here are examples of targeting conditions:
 * Give access to companies who already have access to the Huddle feature: `Feature targeting: Feature [Huddle] is enabled`
 * Enable feature for a single company but only when managing a particular event: `Company attribute: Company ID IS [42] AND Other context: eventID IS [641]`
 
-<figure><img src="../../.gitbook/assets/Screenshot 2024-08-15 at 13.57.46.png" alt=""><figcaption><p>There are 5 different types of conditions to chose from</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/There are 5 different types of conditions to chose from-min.png" alt="Bucket feature flag targeting rules"><figcaption><p>There are 5 different types of conditions to chose from</p></figcaption></figure>
 
 ## Setting multiple targeting rules <a href="#setting-multiple-targeting-rules" id="setting-multiple-targeting-rules"></a>
 
@@ -71,7 +71,7 @@ Another way to say this is that there’s an `OR` between the rules and an `AND`
 
 The rules you create will be different between [environments](./#environments).
 
-<figure><img src="../../.gitbook/assets/Screenshot 2024-08-14 at 19.25.06 (1).png" alt=""><figcaption><p>An example targeting configuration with two rules. In the first rule there are two conditions and one condition in the second rule. If any of the rules match and if all the conditions in a given rules match, the company/user will be targeted.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/An example targeting configuration with two rules.-min.png" alt="An example targeting configuration with two rules. "><figcaption><p>An example targeting configuration with two rules. In the first rule there are two conditions and one condition in the second rule. If any of the rules match and if all the conditions in a given rules match, the company/user will be targeted.</p></figcaption></figure>
 
 ## Specify rollout percentage
 
@@ -105,7 +105,7 @@ In the Staging environment, roll out the feature to 100% of companies in the `In
 
 After the initial QA testing in the Staging environment, you roll out the feature flag to 30% of companies within the `Beta customers` segment in the Production environment.
 
-<figure><img src="../../.gitbook/assets/Feature-targeting-rules-v2-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Feature targeting rules example-min.png" alt="Feature targeting example"><figcaption></figcaption></figure>
 
 ## Rolling back feature targeting changes
 
