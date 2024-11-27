@@ -21,7 +21,7 @@ Bucket is feature flagging that’s purpose-built for B2B. Bucket helps you to b
 That includes the following use cases:
 
 * [Feature flags](product-handbook/create-your-first-feature.md) for B2B. All the features you need and a simple implementation.
-* [Feature entitlements](product-handbook/permissions-management.md) that let you grant companies access by flipping a switch.
+* [Feature entitlements](product-handbook/feature-entitlements/) that let you grant companies access by flipping a switch.
 * [Feature adoption metrics](product-handbook/feature-analysis/stars-framework.md) using a proven and B2B-optimized framework.
 * [Feature feedback](product-handbook/feature-analysis/) using surveys or feedback buttons.
 * [Feature data export](product-handbook/data-export.md) that is synced to your CRM and/or data warehouse.
