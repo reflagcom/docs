@@ -20,25 +20,28 @@ Bucket's feature flagging is purpose-built for B2B with native support for gatin
 
 #### Step 1: Initialize Bucket
 
-Choose [an SDK](broken-reference) and follow the standard setup process. It should only take a few minutes. \
+Choose [an SDK](broken-reference) to get started, if you haven't already. \
 \
-Ensure you've identified the user and made Bucket aware of which company the user is part of:&#x20;
+Bucket needs to know who the authenticated user is and which company they belong to. We attched attributes metadata, like what subscription plan the company is currently on.
 
 ```tsx
+// identify user
 bucket.user(userId1356, {
     name: “Rasmus Makwarth”,
 });
+
+// associate user with company
 bucket.company(companyId51, {
     name: “Acme Inc.”,
     plan: “business”,
 });
 ```
 
-{% hint style="info" %}
-You can do this at a sign-in event, via a nightly job, or use `updateCompany()` only when the attribute value changes.
-{% endhint %}
-
 Bucket now understands that Rasmus works for Acme Inc. and Acme Inc. is on the Business subscription plan.
+
+{% hint style="info" %}
+You can send company attributes as part of the user sign in event, via a nightly job, or use `updateCompany()`  when the attribute value changes.
+{% endhint %}
 
 #### Step 2: Group companies by plan
 
@@ -48,7 +51,7 @@ We do this using segments. Segments let you group company accounts based on vari
 
 In Bucket, segments are automatically aggregated at the company level. This means creating a segment for "Business" plan customers is as simple as:&#x20;
 
-`Company attribute` **plan** `equals` **business**
+Company attribute **"plan**" equals **"business**"
 
 <figure><img src="../../.gitbook/assets/CleanShot 2024-11-27 at 10 .47.14@2x.png" alt=""><figcaption></figcaption></figure>
 
@@ -94,7 +97,7 @@ Every time a company enters either of these segments, they’ll automatically ge
 
 If you need to grant individual companies access to a feature when they don't have the required subscription plan, you can add them manually.
 
-Simply add a new rule and use the `any of` operator.
+Simply add a new rule and use the "any of" operator.
 
 <figure><img src="../../.gitbook/assets/CleanShot 2024-11-27 at 10 .46.36@2x.png" alt=""><figcaption></figcaption></figure>
 
