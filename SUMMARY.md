@@ -44,6 +44,7 @@
 * [Managing apps](product-handbook/creating-and-managing-apps.md)
   * [Environments](product-handbook/feature-targeting-rules/environments.md)
 * [Warehouse](product-handbook/data-export.md)
+* [Data residency](product-handbook/data-residency.md)
 
 ## Integrations
 
