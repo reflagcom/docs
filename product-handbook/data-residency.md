@@ -8,7 +8,7 @@ Here's how you can change the host in some of our SDKs:
 ```ts
 // Browser SDK + Node SDK
 const bucketClient = new BucketClient({
-    publishableKey: "...",
+    publishableKey: "{YOUR_PUBLISHABLE_KEY}",
     host: "https://front-eu.bucket.co",
     ...
 });
