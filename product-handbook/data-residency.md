@@ -4,7 +4,7 @@ When you sign up with Bucket you are automatically using our global infrastructu
 
 By default our SDKs connect to `front.bucket.co`. This points to our globally distributed edge servers and requests to this domain will be served generally by a server closest to the user. However if you're using the EU data residency you must change the `host` to `front-eu.bucket.co` when configuring the SDK, to make sure the requests always land on one of our EU servers.
 
-Here's how you can change the host in some of our SDKs:
+Here's how you can set the host in our Browser SDK and Node SDK:
 ```ts
 // Browser SDK + Node SDK
 const bucketClient = new BucketClient({
