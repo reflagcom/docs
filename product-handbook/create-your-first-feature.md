@@ -40,7 +40,7 @@ You can now use `isEnabled` to gate access to the feature.&#x20;
 
 ### Next steps
 
-* Learn how to manage who has access, modify the [Targeting rules](feature-targeting-rules/) in the UI.
+* Learn how to manage who has access, modify the [Targeting rules](feature-rollouts/feature-targeting-rules.md) in the UI.
 * Learn how to [track adoption](feature-usage-configuration.md) of the feature.
 * Learn how to get [qualitative feedback](feature-analysis/) on the feature.
 

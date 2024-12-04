@@ -32,7 +32,9 @@
 
 * [Product overview](product-handbook/product-overview.md)
 * [Create your first feature](product-handbook/create-your-first-feature.md)
-* [Feature targeting rules](product-handbook/feature-targeting-rules/README.md)
+* [Feature rollouts](product-handbook/feature-rollouts/README.md)
+  * [Release stages](product-handbook/feature-rollouts/release-stages.md)
+  * [Feature targeting rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
 * [Feature adoption](product-handbook/feature-usage-configuration.md)
   * [STARS Framework](product-handbook/feature-analysis/stars-framework.md)
 * [Feature feedback](product-handbook/feature-analysis/README.md)
@@ -41,6 +43,7 @@
 * [Feature entitlements](product-handbook/feature-entitlements/README.md)
   * [Simple role-based entitlements](product-handbook/feature-entitlements/simple-role-based-entitlements.md)
 * [Creating segments](product-handbook/feature-targeting-rules/creating-segments.md)
+* [Feature views](product-handbook/feature-views.md)
 * [Managing apps](product-handbook/creating-and-managing-apps.md)
   * [Environments](product-handbook/feature-targeting-rules/environments.md)
 * [Warehouse](product-handbook/data-export.md)

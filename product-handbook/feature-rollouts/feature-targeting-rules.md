@@ -15,11 +15,31 @@ You'll find the feature targeting configuration under the `Targeting` tab in eac
 * Create your [feature](../create-your-first-feature.md)
 * Select the `Targeting` tab
 
-## Set targeting rules
+## Targeting rules
 
-Each targeting rule has a set of conditions. You can create as many rules with as many conditions as you’d like.&#x20;
+Bucket's targeting UI has been designed to cover the most common use cases in B2B companies.&#x20;
+
+The default targeting criteria are:
+
+* Company segments
+* Companies
+* Users
+
+The default targeting criteria lets you add segments, companies, and users without additional configuration.
+
+<figure><img src="../../.gitbook/assets/Feature targeting rules UI-min.png" alt="Feature targeting rules UI in Bucket"><figcaption></figcaption></figure>
+
+## Advanced targeting rules
+
+You can also create advanced targeting rules with the "+ Add Rule" button.
+
+Advanced rules let you specify rollout percentages and create targeting rules using company attributes, user attributes, feature targeting, or other contexts.
+
+<figure><img src="../../.gitbook/assets/Advanced targeting rules-min.png" alt="Advanced targeting rules"><figcaption></figcaption></figure>
 
 ### Conditions
+
+Each targeting rule has a set of conditions. You can create as many rules with as many conditions as you’d like.&#x20;
 
 There are 5 types of conditions:
 
@@ -32,7 +52,7 @@ There are 5 types of conditions:
   * `Email`
   * `Any user-defined custom attributes`
 * `Segment`&#x20;
-  * Target existing segments created in the [Companies](creating-segments.md) tab that don’t use `First seen`, `Last seen`, or `Feature metrics` filters.
+  * Target existing segments created in the [Companies](../feature-targeting-rules/creating-segments.md) tab that don’t use `First seen`, `Last seen`, or `Feature metrics` filters.
   * You can include or exclude companies that are part of a segment.
 * `Feature targeting`&#x20;
   * Re-use targeting rules from another feature. You can choose to include or exclude companies that are targeted by another feature.&#x20;
@@ -69,7 +89,7 @@ If _**any**_ rules match, the feature will be enabled for a given company or use
 
 Another way to say this is that there’s an `OR` between the rules and an `AND` between the conditions.&#x20;
 
-The rules you create will be different between [environments](./#environments).
+The rules you create will be different between [environments](feature-targeting-rules.md#environments).
 
 <figure><img src="../../.gitbook/assets/An example targeting configuration with two rules.-min.png" alt="An example targeting configuration with two rules. "><figcaption><p>An example targeting configuration with two rules. In the first rule there are two conditions and one condition in the second rule. If any of the rules match and if all the conditions in a given rules match, the company/user will be targeted.</p></figcaption></figure>
 
