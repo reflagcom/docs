@@ -28,19 +28,14 @@ Slack notifications are managed at the feature level.
 
 ## Types of Slack reports
 
-There are three types of Slack notifications:
+There are two types of Slack notifications:
 
 * Weekly reports
-* Daily reports
 * User feedback&#x20;
 
 ### Weekly reports
 
 Weekly reports contain a summary containing the STARS funnel and a graph showing its progression over the past weeks.
-
-### Daily reports
-
-Daily reports shows the companies that have adopted the feature in the past 24 hours.
 
 ### User feedback
 
