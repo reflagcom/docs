@@ -4,7 +4,7 @@ In B2B SaaS, a typical use case is to manage feature access based on the custome
 
 This is how Bucket is used to manage feature entitlements.
 
-### Why use flags for this use case?
+## Why use flags for this use case?
 
 There are multiple ways to control feature access: You can hard-code it, use a dedicated billing service, or use feature flags.
 
@@ -16,13 +16,13 @@ However, not all flagging services are the same. Most are focused on end-users r
 
 Bucket's feature flagging is purpose-built for B2B with native support for gating features at the company subscription level.
 
-### Gate a feature based on subscription plan
+## Gate a feature based on subscription plan
 
-#### Step 1: Initialize Bucket
+### Step 1: Initialize Bucket
 
 Choose [an SDK](broken-reference) to get started, if you haven't already. \
 \
-Bucket needs to know who the authenticated user is and which company they belong to. We attched attributes metadata, like what subscription plan the company is currently on.
+Bucket needs to know who the authenticated user is and which company they belong to. We attached attribute metadata, such as the company's subscription plan.
 
 ```tsx
 // identify user
@@ -40,10 +40,10 @@ bucket.company(companyId51, {
 Bucket now understands that Rasmus works for Acme Inc. and Acme Inc. is on the Business subscription plan.
 
 {% hint style="info" %}
-You can send company attributes as part of the user sign in event, via a nightly job, or use `updateCompany()`  when the attribute value changes.
+You can send company attributes as part of the user sign-in event, via a nightly job, or use `updateCompany()`  when the attribute value changes.
 {% endhint %}
 
-#### Step 2: Group companies by plan
+### Step 2: Group companies by plan
 
 Next, we need to group companies on the "Business" subscription plan.&#x20;
 
@@ -61,7 +61,7 @@ You can do this for all plans. For example:
 * Business
 * Enterprise
 
-#### Step 3: Gate the feature
+### Step 3: Gate the feature
 
 Let’s say you have an export feature that's only available to customers on the "Business" or "Enterprise" plans. To gate this feature with Bucket, you create a new feature called “Export to CSV”. A feature can be as small as a button or as big as a product area.
 
@@ -93,7 +93,7 @@ That’s it!&#x20;
 
 Every time a company enters either of these segments, they’ll automatically get access to the "Export to CSV" feature. Similarly, if they downgrade, they lose access.
 
-### Grant individual companies access
+## Grant individual companies access
 
 If you need to grant individual companies access to a feature when they don't have the required subscription plan, you can add them manually.
 
@@ -101,7 +101,7 @@ Simply add a new rule and use the "any of" operator.
 
 <figure><img src="../../.gitbook/assets/CleanShot 2024-11-27 at 10 .46.36@2x.png" alt=""><figcaption></figcaption></figure>
 
-### How to handle usage-based gating
+## How to handle usage-based gating
 
 {% hint style="info" %}
 This use case isn't natively supported by Bucket yet, but Bucket is flexible enough to handle it in some cases.
@@ -109,7 +109,7 @@ This use case isn't natively supported by Bucket yet, but Bucket is flexible eno
 
 If your features are restricted by plan _and_ usage, like only allowing 10,000 API requests/mo on the Business plan, you can do the following:
 
-#### Step 1: Let Bucket know of the current usage&#x20;
+### Step 1: Let Bucket know of the current usage&#x20;
 
 Send usage metrics to Bucket using company attributes.&#x20;
 
@@ -121,7 +121,7 @@ bucket.companyUpdate(companyId51, {
 });
 ```
 
-#### Step 2: Gate using usage attribute
+### Step 2: Gate using usage attribute
 
 Then, add this custom attribute metric to your targeting rules.
 

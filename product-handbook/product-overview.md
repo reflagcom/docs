@@ -18,7 +18,7 @@ The Companies tab lists all of the companies that use your application. \
 \
 A company is a group entity for end users. Bucket auto-aggregates at the company level (also known as a group level in group analytics terminology) rather than the user level.
 
-This is where you can create [segments](feature-targeting-rules/creating-segments.md) and [feature views](https://bucket.co/glossary/feature-views).
+This is where you can create [segments](feature-targeting-rules/creating-segments.md) and [feature views](feature-views.md).
 
 <figure><img src="../.gitbook/assets/Companies-min.png" alt="Company page"><figcaption></figcaption></figure>
 
@@ -36,6 +36,6 @@ The Debugger tab shows you a log of recent events as well as a list of all the d
 
 ## Settings
 
-The Settings tab is where you manage users, billing, [feature views](https://bucket.co/glossary/feature-views), [company segments](feature-targeting-rules/creating-segments.md), [environments](feature-targeting-rules/environments.md), [data exports](data-export.md), and more.
+The Settings tab is where you manage users, billing, [feature views](feature-views.md), [company segments](feature-targeting-rules/creating-segments.md), [environments](feature-targeting-rules/environments.md), [data exports](data-export.md), and more.
 
 <figure><img src="../.gitbook/assets/Settings-min.png" alt="Global settings page"><figcaption></figcaption></figure>

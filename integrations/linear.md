@@ -1,4 +1,4 @@
-# Linear integration
+# Linear
 
 Whether your team is using [Linear](https://linear.app) or another task tracking tool, we recommend adding a "Create Bucket Feature"  task to project templates in your issue tracking system to help teams start feature flagging new features. This way, when you start a new project, part of the initial work will be setting up a feature in Bucket. Here's an example for Linear:
 
@@ -6,7 +6,7 @@ Whether your team is using [Linear](https://linear.app) or another task tracking
 
 You can link directly to the "New feature" page by hitting "New feature" in your Bucket project and then copying the URL.
 
-Further information:
+Additional information:
 
 * [Create project templates in Linear.app](https://linear.app/docs/project-templates#create-templates). Remember to configure your new template to be the _default_ template for new projects.
-* In Jira Software, you can use Automation to automatically [create an issue when a new Epic is created](https://www.atlassian.com/agile/tutorials/how-to-auto-create-subtasks-with-jira-software-automation).
+* In Jira, you can use Automation to automatically [create an issue when a new Epic is created](https://www.atlassian.com/agile/tutorials/how-to-auto-create-subtasks-with-jira-software-automation).

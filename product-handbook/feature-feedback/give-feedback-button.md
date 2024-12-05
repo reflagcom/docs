@@ -1,7 +1,7 @@
 ---
 description: >-
   Adding a "Give feedback" button using the Bucket Browser or Bucket React SDKs
-  take only a few lines of code.
+  takes only a few lines of code.
 ---
 
 # Give feedback button
