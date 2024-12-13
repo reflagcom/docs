@@ -87,7 +87,7 @@ Companies in the segment **Business** or **Enterprise**
 
 Here’s what that looks like in the Bucket UI:
 
-<figure><img src="../../.gitbook/assets/CleanShot 2024-11-27 at 10 .45.59@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Feature targeting rules example v2-min.png" alt=""><figcaption></figcaption></figure>
 
 That’s it!&#x20;
 
@@ -97,14 +97,14 @@ Every time a company enters either of these segments, they’ll automatically ge
 
 If you need to grant individual companies access to a feature when they don't have the required subscription plan, you can add them manually.
 
-Simply add a new rule and use the "any of" operator.
+Simply click the "+ Add" button beside the "Companies" label and select the companies you'd like to add from the searchable dropdown.
 
-<figure><img src="../../.gitbook/assets/CleanShot 2024-11-27 at 10 .46.36@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/company example v2-min.png" alt=""><figcaption></figcaption></figure>
 
 ## How to handle usage-based gating
 
 {% hint style="info" %}
-This use case isn't natively supported by Bucket yet, but Bucket is flexible enough to handle it in some cases.
+This use case isn't yet natively supported by Bucket, but Bucket is flexible enough to handle it in some cases.
 {% endhint %}
 
 If your features are restricted by plan _and_ usage, like only allowing 10,000 API requests/mo on the Business plan, you can do the following:
@@ -125,5 +125,4 @@ bucket.companyUpdate(companyId51, {
 
 Then, add this custom attribute metric to your targeting rules.
 
-<figure><img src="../../.gitbook/assets/CleanShot 2024-11-27 at 10 .50.48@2x.png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../../.gitbook/assets/usage attribute example-min.png" alt=""><figcaption></figcaption></figure>
