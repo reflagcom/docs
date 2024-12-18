@@ -25,6 +25,7 @@
 * [Browser SDK](supported-languages/browser-sdk.md)
 * [Node.js SDK](supported-languages/node.js-sdk.md)
 * [Next.js](supported-languages/next.js.md)
+* [OpenFeature](supported-languages/openfeature.md)
 * [Ruby/Rails/Stimulus](supported-languages/ruby-rails-stimulus.md)
 * [Other languages](supported-languages/other-languages.md)
 
