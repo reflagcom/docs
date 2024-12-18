@@ -5,7 +5,7 @@
 The Node.js SDK  is an open-source server-side Typescript/JavaScript library that allows you to integrate Bucket with your app. &#x20;
 
 {% hint style="info" %}
-See our [OpenFeature Node.js Provider](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/openfeature-node-provider/README.md) for integration with OpenFeature.
+See our [OpenFeature Node.js Provider](openfeature.md#getting-started) for integration with OpenFeature.
 {% endhint %}
 
 ## Getting started

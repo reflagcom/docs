@@ -7,7 +7,7 @@ The Browser SDK is a basic client-side JavaScript library that allows you to int
 If you're using a higher-level library or framework, see the [supported languages](overview.md).&#x20;
 
 {% hint style="info" %}
-See our [OpenFeature Browser Provider](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/openfeature-browser-provider/README.md) for integration with OpenFeature.
+See our [OpenFeature Browser Provider](openfeature.md#getting-started) for integration with OpenFeature.
 {% endhint %}
 
 ## Getting started <a href="#getting-started" id="getting-started"></a>
