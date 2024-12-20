@@ -14,7 +14,7 @@ layout:
 
 # Overview
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><a href="react-sdk.md"><strong>React</strong></a></td><td>Feature flagging and evaluation for React</td><td></td></tr><tr><td><a href="browser-sdk.md"><strong>Browser</strong></a></td><td>Client-side feature flagging and evaluation</td><td></td></tr><tr><td><a href="node.js-sdk.md"><strong>Node.js</strong></a></td><td>Server-side feature flagging and evaluation</td><td></td></tr><tr><td><a href="next.js.md"><strong>Next.js</strong></a></td><td>Feature flagging and evaluation for Next.js</td><td></td></tr><tr><td><a href="../api/http-api.md"><strong>HTTP API</strong></a></td><td>Don't use these languages or frameworks? Use our API</td><td></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><a href="react-sdk.md"><strong>React</strong></a></td><td>Feature flagging and evaluation for React</td><td></td></tr><tr><td><a href="browser-sdk.md"><strong>Browser</strong></a></td><td>Client-side feature flagging and evaluation</td><td></td></tr><tr><td><a href="node.js-sdk.md"><strong>Node.js</strong></a></td><td>Server-side feature flagging and evaluation</td><td></td></tr><tr><td><a href="next.js.md"><strong>Next.js</strong></a></td><td>Feature flagging and evaluation for Next.js</td><td></td></tr><tr><td><a href="../api/http-api.md"><strong>HTTP API</strong></a></td><td>Don't use these languages or frameworks? Use our API</td><td></td></tr><tr><td><a href="openfeature.md"><strong>OpenFeature</strong></a></td><td>Bucket supports OpenFeature.</td><td></td></tr></tbody></table>
 
 ### Community support 💜 &#x20;
 
