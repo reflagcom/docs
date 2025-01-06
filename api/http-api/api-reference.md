@@ -14,10 +14,8 @@ layout:
 
 # API Reference
 
-
-
-{% swagger src="../../.gitbook/assets/openAPI (13).yaml" path="/features" method="get" %}
-[openAPI (13).yaml](<../../.gitbook/assets/openAPI (13).yaml>)
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features" method="get" %}
+https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
 #### Rules schema
@@ -69,38 +67,34 @@ layout:
 {% endtab %}
 {% endtabs %}
 
-
-
-{% swagger src="../../.gitbook/assets/openAPI (15).yaml" path="/features/enabled" method="get" %}
-[openAPI (15).yaml](<../../.gitbook/assets/openAPI (15).yaml>)
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features/enabled" method="get" %}
+https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="../../.gitbook/assets/openAPI (14).yaml" path="/features/evaluated" method="get" %}
-[openAPI (14).yaml](<../../.gitbook/assets/openAPI (14).yaml>)
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features/evaluated" method="get" %}
+https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="../../.gitbook/assets/openAPI (13).yaml" path="/features/events" method="post" %}
-[openAPI (13).yaml](<../../.gitbook/assets/openAPI (13).yaml>)
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features/events" method="post" %}
+https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-
-
-{% swagger src="../../.gitbook/assets/openAPI (13).yaml" path="/user" method="post" %}
-[openAPI (13).yaml](<../../.gitbook/assets/openAPI (13).yaml>)
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/user" method="post" %}
+https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="../../.gitbook/assets/openAPI (13).yaml" path="/company" method="post" %}
-[openAPI (13).yaml](<../../.gitbook/assets/openAPI (13).yaml>)
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/company" method="post" %}
+https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="../../.gitbook/assets/openAPI (13).yaml" path="/event" method="post" %}
-[openAPI (13).yaml](<../../.gitbook/assets/openAPI (13).yaml>)
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/event" method="post" %}
+https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="../../.gitbook/assets/openAPI (13).yaml" path="/feedback" method="post" %}
-[openAPI (13).yaml](<../../.gitbook/assets/openAPI (13).yaml>)
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/feedback" method="post" %}
+https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="../../.gitbook/assets/openAPI (13).yaml" path="/bulk" method="post" %}
-[openAPI (13).yaml](<../../.gitbook/assets/openAPI (13).yaml>)
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/bulk" method="post" %}
+https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
