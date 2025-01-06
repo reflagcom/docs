@@ -14,7 +14,7 @@ layout:
 
 # API Reference
 
-{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features" method="get" %}
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features" method="get" expanded="true" %}
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
@@ -67,34 +67,34 @@ https://staging.front.bucket.co/openapi.yaml
 {% endtab %}
 {% endtabs %}
 
-{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features/enabled" method="get" %}
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features/enabled" method="get" expanded="true" %}
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features/evaluated" method="get" %}
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features/evaluated" method="get" expanded="true" %}
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features/events" method="post" %}
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features/events" method="post" expanded="true" %}
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/user" method="post" %}
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/user" method="post" expanded="true" %}
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/company" method="post" %}
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/company" method="post" expanded="true" %}
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/event" method="post" %}
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/event" method="post" expanded="true" %}
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/feedback" method="post" %}
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/feedback" method="post" expanded="true" %}
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
-{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/bulk" method="post" %}
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/bulk" method="post" expanded="true" %}
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
