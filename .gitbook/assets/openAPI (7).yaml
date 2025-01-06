@@ -1,0 +1,970 @@
+openapi: 3.1.0
+info:
+  title: Bucket Public API
+  version: 1.0.0
+
+servers:
+  - url: https://front.bucket.co
+    description: Globaly distributed API
+  - url: https://front-eu.bucket.co
+    description: API to be accessed by customers using EU data residency
+
+security:
+  - publishableKey: []
+  - publishableKeyInQuery: []
+  - secretKey: []
+
+paths:
+  /features:
+    get:
+      summary: Features
+      security:
+        - secretKey: []
+      description: >
+        Use this endpoint to get the list of all features with their targeting rules.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessResponse"
+                  - type: object
+                    properties:
+                      features:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/FeatureWithTargeting"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /features/enabled:
+    get:
+      summary: Features enabled
+      security:
+        - publishableKey: []
+        - publishableKeyInQuery: []
+        - secretKey: []
+      description: >
+        Use this endpoint to get the list of enabled features for the user.
+        The response will contain the list of features that are enabled for the user.
+      parameters:
+        - in: query
+          name: context
+          schema:
+            $ref: "#/components/schemas/flagEvaluationContext"
+        - in: query
+          name: key
+          schema:
+            $ref: "#/components/schemas/featureKey"
+      x-codeSamples:
+        - lang: python
+          label: python
+          source: |
+            import requests
+            from urllib.parse import urlencode, quote
+
+            # Function to flatten a deep object using dot notation (no array handling)
+            def flatten_object(obj, prefix=''):
+                flattened = {}
+                for key, value in obj.items():
+                    new_key = f"{prefix}.{quote(key)}" if prefix else quote(key)
+
+                    if isinstance(value, dict):
+                        flattened.update(flatten_object(value, new_key))
+                    else:
+                        flattened[new_key] = quote(str(value))
+
+                return flattened
+
+            # Function to encode query parameters from a deep object
+            def encode_query_params(deep_object):
+                flattened = flatten_object(deep_object)
+                return urlencode(flattened)
+
+            # Example parameters
+            params = {
+                "context": {
+                    "user": {
+                        "id": "u2956",
+                        "role": "developer",
+                    },
+                    "company": {
+                        "id": "c123",
+                        "name": "Example Inc",
+                        "country": "US",
+                    },
+                },
+            }
+
+            # Construct the URL with encoded query parameters
+            base_url = "https://front.bucket.co/features/enabled"
+            query_string = encode_query_params(params)
+            url = f"{base_url}?{query_string}"
+
+            # Perform the GET request using requests
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer <your_public_key>",
+            }
+
+            response = requests.get(url, headers=headers)
+
+            # Parse and print the response
+            if response.ok:
+                data = response.json()
+                print(data)
+            else:
+                print(f"Error: {response.status_code} - {response.text}")
+
+        - lang: bash
+          label: curl
+          source: |
+            curl -X GET "http://front.bucket.co/features/enabled?context.user.id=u25309&context.company.id=c123"
+        - lang: javascript
+          label: JavaScript
+          source: |
+            function flattenObject(obj, prefix = '') {
+              return Object.keys(obj).reduce((acc, key) => {
+                const value = obj[key];
+                const newKey = prefix ? `${prefix}.${encodeURIComponent(key)}` : encodeURIComponent(key);
+
+                if (typeof value === 'object' && value !== null) {
+                  Object.assign(acc, flattenObject(value, newKey));
+                } else {
+                  acc[newKey] = encodeURIComponent(value);
+                }
+
+                return acc;
+              }, {});
+            }
+
+            function encodeQueryParams(deepObject) {
+              const flattened = flattenObject(deepObject);
+              return Object.keys(flattened)
+                .map(key => `${key}=${flattened[key]}`)
+                .join('&');
+            }
+
+            const params = {
+              context: {
+                user: {
+                  id: 'u2956',
+                  role: 'developer',
+                },
+                company: {
+                  id: 'c123',
+                  name: 'Example Inc',
+                  country: 'US',
+                },
+              },
+            };
+
+            // Perform the GET request using fetch
+            const res = await fetch(`https://front.bucket.co/features/enabled?${encodeQueryParams(params)}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer <your_public_key>`,
+              },
+            });
+            const data = await res.json();
+            console.log(data);
+
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessResponse"
+                  - type: object
+                    properties:
+                      features:
+                        $ref: "#/components/schemas/FeaturesMap"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    
+  /features/evaluated:
+    get:
+      summary: Features evaluated
+      security:
+        - publishableKey: []
+        - publishableKeyInQuery: []
+        - secretKey: []
+      description: >
+        Use this endpoint to get the list of all features evaluated for the user.
+      parameters:
+        - in: query
+          name: context
+          schema:
+            $ref: "#/components/schemas/flagEvaluationContext"
+        - in: query
+          name: key
+          schema:
+            $ref: "#/components/schemas/featureKey"
+      x-codeSamples:
+        - lang: python
+          label: python
+          source: |
+            import requests
+            from urllib.parse import urlencode, quote
+
+            # Function to flatten a deep object using dot notation (no array handling)
+            def flatten_object(obj, prefix=''):
+                flattened = {}
+                for key, value in obj.items():
+                    new_key = f"{prefix}.{quote(key)}" if prefix else quote(key)
+
+                    if isinstance(value, dict):
+                        flattened.update(flatten_object(value, new_key))
+                    else:
+                        flattened[new_key] = quote(str(value))
+
+                return flattened
+
+            # Function to encode query parameters from a deep object
+            def encode_query_params(deep_object):
+                flattened = flatten_object(deep_object)
+                return urlencode(flattened)
+
+            # Example parameters
+            params = {
+                "context": {
+                    "user": {
+                        "id": "u2956",
+                        "role": "developer",
+                    },
+                    "company": {
+                        "id": "c123",
+                        "name": "Example Inc",
+                        "country": "US",
+                    },
+                },
+            }
+
+            # Construct the URL with encoded query parameters
+            base_url = "https://front.bucket.co/features/evaluated"
+            query_string = encode_query_params(params)
+            url = f"{base_url}?{query_string}"
+
+            # Perform the GET request using requests
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer <your_public_key>",
+            }
+
+            response = requests.get(url, headers=headers)
+
+            # Parse and print the response
+            if response.ok:
+                data = response.json()
+                print(data)
+            else:
+                print(f"Error: {response.status_code} - {response.text}")
+
+        - lang: bash
+          label: curl
+          source: |
+            curl -X GET "http://front.bucket.co/features/enabled?context.user.id=u25309&context.company.id=c123"
+        - lang: javascript
+          label: JavaScript
+          source: |
+            function flattenObject(obj, prefix = '') {
+              return Object.keys(obj).reduce((acc, key) => {
+                const value = obj[key];
+                const newKey = prefix ? `${prefix}.${encodeURIComponent(key)}` : encodeURIComponent(key);
+
+                if (typeof value === 'object' && value !== null) {
+                  Object.assign(acc, flattenObject(value, newKey));
+                } else {
+                  acc[newKey] = encodeURIComponent(value);
+                }
+
+                return acc;
+              }, {});
+            }
+
+            function encodeQueryParams(deepObject) {
+              const flattened = flattenObject(deepObject);
+              return Object.keys(flattened)
+                .map(key => `${key}=${flattened[key]}`)
+                .join('&');
+            }
+
+            const params = {
+              context: {
+                user: {
+                  id: 'u2956',
+                  role: 'developer',
+                },
+                company: {
+                  id: 'c123',
+                  name: 'Example Inc',
+                  country: 'US',
+                },
+              },
+            };
+
+            // Perform the GET request using fetch
+            const res = await fetch(`https://front.bucket.co/features/evaluated?${encodeQueryParams(params)}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer <your_public_key>`,
+              },
+            });
+            const data = await res.json();
+            console.log(data);
+
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessResponse"
+                  - type: object
+                    properties:
+                      features:
+                        $ref: "#/components/schemas/FeaturesMap"
+                      remoteContextUsed:
+                        type: boolean
+                        description: Indicates if the remote context was used 
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /features/events:
+    post:
+      summary: Features events
+      security:
+        - publishableKey: []
+        - secretKey: []
+      description: >
+        Use this endpoint to send feature events to Bucket.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/FeatureEvent"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /user:
+    post:
+      summary: User
+      security:
+        - publishableKey: []
+        - publishableKeyInQuery: []
+        - secretKey: []
+      description: >
+        Use this endpoint when you want to send user attributes to Bucket.
+        If the user does not exist, it will be created.
+        This endpoint is also used whenever you construct bucket client in any of the SDKs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /company:
+    post:
+      summary: Company
+      security:
+        - publishableKey: []
+        - publishableKeyInQuery: []
+        - secretKey: []
+      description: >
+        Use this endpoint when you want to send company attributes to Bucket.
+        If the company does not exist, it will be created.
+        You can also use this endpoint to assign user to a company by including the user ID.
+        This endpoint is also used whenever you construct bucket client in any of the SDKs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Company"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /event:
+    post:
+      summary: Event
+      security:
+        - publishableKey: []
+        - publishableKeyInQuery: []
+        - secretKey: []
+      description: >
+        Use this endpoint when you want to send a tracking events to Bucket.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Event"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /feedback:
+    post:
+      summary: Feedback
+      security:
+        - publishableKey: []
+        - publishableKeyInQuery: []
+        - secretKey: []
+      description: >
+        Use this endpoint when you want to send feedback events to Bucket.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Feedback"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /bulk:
+    post:
+      security:
+        - publishableKey: []
+        - publishableKeyInQuery: []
+        - secretKey: []
+      summary: Bulk
+      description: >
+        Use this endpoint when you want to send multiple events to Bucket.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Bulk"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  securitySchemes:
+    publishableKey:
+      type: http
+      scheme: bearer
+      description: |
+        Set the `Authorization` header to:
+        ```http
+        Authorization: Bearer <public_key>
+        ```
+    secretKey:
+      type: http
+      scheme: bearer
+      description: |
+        Set the `Authorization` header to:
+        ```http
+        Authorization: Bearer <private_key>
+        ```
+    publishableKeyInQuery:
+      type: apiKey
+      in: query
+      name: publishableKey
+      description: |
+        Some comment
+
+  schemas:
+    # Responses
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the request was successful
+          enum: [true]
+      required:
+        - success
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the request was successful
+          enum: [false]
+          default: false
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              enum:
+                - "UNKNOWN_ERROR"
+                - "INVALID_API_KEY"
+                - "FEEDBACK_PROMPTING_DISABLED"
+                - "BODY_VALIDATION_FAILED"
+                - "QUERY_VALIDATION_FAILED"
+                - "SEGMENT_AUTH_REQUIRED"
+                - "SEGMENT_MESSAGE_TYPE_NOT_SUPPORTED"
+                - "SEGMENT_MESSAGE_VALIDATION_FAILED"
+                - "FEATURE_NOT_FOUND"
+                - "WRONG_REGION"
+              description: The error code
+            message:
+              type: string
+              description: The error message
+            validationErrors:
+              type: array
+              items:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message
+          
+      required:
+        - error
+        - success
+      additionalProperties: false
+
+    # Common types
+    attributes:
+      title: attributes
+      type: object
+      description: |
+        Object consisting of key value pairs
+        Example: 
+        ```json
+        {
+          "id": "u25129",
+          "domain": "acmeinc.com",
+          "plan": "enterprise",
+          "monthly_spend": 99,
+          "createdAt": "2024-01-01T10:00:00Z"
+        }
+        ```
+
+    flagEvaluationContext:
+      type: object
+      description: |
+        Context object has to be flattened and delimited by dots and provided as query parameters.
+        Example:
+        ```
+        context.company.id=42&context.user.id=99
+        ```
+      properties:
+        user:
+          $ref: "#/components/schemas/attributes"
+        company:
+          $ref: "#/components/schemas/attributes"
+
+    timestamp:
+      type: string
+      format: date-time
+      description: |
+        Number (milliseconds since epoch) or an ISO-8601 datetime string
+        Example: `"2021-01-01T13:37:00.000Z"`
+        Defaults to current time if not provided
+
+    userId:
+      type: string
+      minLength: 1
+      description: Identifier of the user
+
+    companyId:
+      type: string
+      minLength: 1
+      description: Identifier of the company
+
+    featureKey:
+      type: string
+      minLength: 1
+      maxLength: 255
+      description: |
+        Feature key - unique identifier of the feature which you can find in app.bucket.co
+        Example: `"new-order-created"`
+
+    targetingVersion:
+      type: number
+      description: The version of the targeting rules. Every time when targeting rules are updated the version is incremented.
+      minimum: 0
+
+    # Schemas from here on are generated from zod schemas
+    User:
+      title: User
+      type: object
+      properties:
+        userId:
+          $ref: "#/components/schemas/userId"
+        attributes:
+          $ref: "#/components/schemas/attributes"
+        timestamp:
+          $ref: "#/components/schemas/timestamp"
+      required:
+        - userId
+      additionalProperties: false
+
+    Company:
+      title: Company
+      type: object
+      properties:
+        userId:
+          $ref: "#/components/schemas/userId"
+        companyId:
+          $ref: "#/components/schemas/companyId"
+        attributes:
+          $ref: "#/components/schemas/attributes"
+        timestamp:
+          $ref: "#/components/schemas/timestamp"
+      required:
+        - companyId
+      additionalProperties: false
+
+    Event:
+      title: Event
+      type: object
+      properties:
+        userId:
+          $ref: "#/components/schemas/userId"
+        event:
+          type: string
+          minLength: 1
+          description: The name of the event
+        attributes:
+          $ref: "#/components/schemas/attributes"
+        companyId:
+          $ref: "#/components/schemas/companyId"
+        timestamp:
+          $ref: "#/components/schemas/timestamp"
+      required:
+        - userId
+        - event
+
+    Feedback:
+      title: Feedback
+      type: object
+      properties:
+        feedbackId:
+          type: string
+          minLength: 1
+          description: Use only when updating existing feedback
+        userId:
+          $ref: "#/components/schemas/userId"
+        companyId:
+          $ref: "#/components/schemas/companyId"
+        promptId:
+          type: string
+          minLength: 10
+          maxLength: 40
+          description: Identifier of the prompt which initiated the feedback
+        featureId:
+          type: string
+          minLength: 1
+          maxLength: 14
+          description: Identifier of the feature for which the feedback is given
+        key:
+          $ref: "#/components/schemas/featureKey"
+        question:
+          type: string
+          minLength: 1
+          maxLength: 256
+          description: In case the feedback is initiated by a prompt this will be the question which was asked
+        promptedQuestion:
+          type: string
+          minLength: 1
+          maxLength: 256
+          description: In case the feedback is initiated by a prompt this will be the question which was asked
+        source:
+          type: string
+          enum:
+            - "api"
+            - "manual"
+            - "prompt"
+            - "sdk"
+            - "widget"
+          description: The source of the feedback
+        score:
+          type: number
+          minimum: 0
+          maximum: 5
+          description: The score of the feedback
+        comment:
+          type: string
+          minLength: 1
+          maxLength: 4000
+          description: The user's input
+        timestamp:
+          $ref: "#/components/schemas/timestamp"
+      required:
+        - userId
+
+    BulkItem:
+      allOf:
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - "user"
+                - "company"
+                - "event"
+                - "feedback"
+          required:
+            - type
+        - oneOf:
+          - $ref: "#/components/schemas/User"
+          - $ref: "#/components/schemas/Company"
+          - $ref: "#/components/schemas/Event"
+          - $ref: "#/components/schemas/Feedback"
+          - $ref: "#/components/schemas/FeatureEvent"
+      discriminator:
+        propertyName: type
+        mapping:
+          user: "#/components/schemas/User"
+          company: "#/components/schemas/Company"
+          event: "#/components/schemas/Event"
+          feedback: "#/components/schemas/Feedback"
+          feature-flag-event: "#/components/schemas/FeatureEvent"
+
+    Bulk:
+      title: Bulk
+      type: array
+      items:
+        $ref: "#/components/schemas/BulkItem"
+
+    FeaturesMap:
+      type: object
+      additionalProperties:
+        $ref: "#/components/schemas/EvaluatedFeature"
+
+    EvaluatedFeature:
+      type: object
+      properties:
+        key:
+          $ref: "#/components/schemas/featureKey"
+        targetingVersion:
+          $ref: "#/components/schemas/targetingVersion"
+        isEnabled:
+          type: boolean
+
+    FilterGroup:
+      type: object
+      properties:
+        operator:
+          type: string
+          enum:
+            - "and"
+            - "or"
+        filters:
+          type: array
+          items:
+            $ref: "#/components/schemas/Filter"
+      additionalProperties: false
+
+    FilterNegation:
+      type: object
+      properties:
+        filter:
+          $ref: "#/components/schemas/Filter"
+
+    ContextFilter:
+      type: object
+      properties:
+        operator:
+          type: string
+          enum:
+            - "IS"
+            - "IS_NOT"
+            - "ANY_OF"
+            - "NOT_ANY_OF"
+            - "CONTAINS"
+            - "NOT_CONTAINS"
+            - "GT"
+            - "LT"
+            - "AFTER"
+            - "BEFORE"
+            - "SET"
+            - "NOT_SET"
+            - "IS_TRUE"
+            - "IS_FALSE"
+        field:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+
+    RolloutPercentageFilter:
+      type: object
+      properties:
+        partialRolloutAttribute:
+          type: string
+          enum:
+            - "company.id"
+        partialRolloutThreshold:
+          type: number
+    
+    FilterConstant:
+      type: object
+      properties:
+        value:
+          type: boolean
+
+    Filter:
+      allOf:
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - "context"
+                - "rolloutPercentage"
+                - "group"
+                - "negation"
+                - "constant"
+        - oneOf:
+          - $ref: "#/components/schemas/FilterGroup"
+          - $ref: "#/components/schemas/FilterNegation"
+          - $ref: "#/components/schemas/ContextFilter"
+          - $ref: "#/components/schemas/RolloutPercentageFilter"
+          - $ref: "#/components/schemas/FilterConstant"
+      discriminator:
+        propertyName: type
+        mapping:
+          context: "#/components/schemas/ContextFilter"
+          rolloutPercentage: "#/components/schemas/RolloutPercentageFilter"
+          group: "#/components/schemas/FilterGroup"
+          negation: "#/components/schemas/FilterNegation"
+          constant: "#/components/schemas/FilterConstant"
+
+    Rule:
+      type: object
+      properties:
+        filter:
+          $ref: "#/components/schemas/Filter"
+
+    Targeting:
+      type: object
+      properties:
+        version:
+          $ref: "#/components/schemas/targetingVersion"
+        rules:
+          type: array
+          items:
+            $ref: "#/components/schemas/TargetingRule"
+          description: The list of targeting rules. See the schema for Rules
+    
+    FeatureWithTargeting:
+      type: object
+      properties:
+        key:
+          $ref: "#/components/schemas/featureKey"
+        targeting:
+          $ref: "#/components/schemas/Targeting"
+      additionalProperties: false
+
+    FeatureEvent:
+      title: Feature Event
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "evaluate"
+            - "check"
+        key:
+          $ref: "#/components/schemas/featureKey"
+        targetingVersion:
+          $ref: "#/components/schemas/targetingVersion"
+        evalContext:
+          $ref: "#/components/schemas/flagEvaluationContext"
+        evalResult:
+          type: boolean
+          description: The result of the evaluation
+        evalRuleResults:
+          type: array
+          items:
+            type: boolean
+          description: The results of evaluation for each of the rules
+        evalMissingFields:
+          type: array
+          items:
+            type: string
+          description: The fields that were missing in the context for successful evaluation

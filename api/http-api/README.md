@@ -170,7 +170,7 @@ You can associate a user with a company by providing the `userId`. This is impor
 
 In other words, if a user isn't associated with a company, their events will not be included.&#x20;
 
-The [`Tracking`](../product-handbook/product-overview.md#tracking) tab will let you know if you have unassociated events.
+The [`Tracking`](../../product-handbook/product-overview.md#tracking) tab will let you know if you have unassociated events.
 
 You can send attributes to be associated with a company. In addition to traditional event-based user tracking, you can track feature usage based on attributes.&#x20;
 
