@@ -1,46 +1,37 @@
 # Slack
 
-## What is the Slack integration?
+With the Slack integration, you can get notifications whenever a feature's access and/or stage changes and whenever an end-user submit feature feedback. You can also get a feature view report.
 
-The Slack integration lets you receive weekly and daily reports on features as well as real-time customer feedback submitted through automated feedback surveys. They’re a great way to keep up with feature adoption and satisfaction progression.&#x20;
+## Authenticate with Slack
 
-## Getting started
+Authentication happens at the environment level. Once you've authenticated, all environments, apps and features can be connected to Slack.
 
-* Go to `Settings`
-* Under `Organization`, select `Slack`
-* Click the `Connect to Slack` button
-* Follow the instructions to connect your Slack account
+* Go to **Settings**
+* Select **Slack** under Environment.
 
-## Slack and Features
+<figure><img src="../.gitbook/assets/CleanShot 2025-01-07 at 1 .22.27@2x.png" alt=""><figcaption><p>Click "Connect to Slack" to authenticate</p></figcaption></figure>
 
-Slack notifications are managed at the feature level.
+## Choose default Slack channel
 
-* [Create a feature](../product-handbook/create-your-first-feature.md)&#x20;
-* Click the `Settings` navigation toggle
-* Choose Slack channel from the `Slack channel` dropdown
-* Toggle on (or off):
-  * [`Weekly report`](slack.md#feature-reports)
-  * [`Daily report`](slack.md#feature-reports)
-  * [`Notify on user feedback`](slack.md#user-feedback)
-* Click `Save`
+You can set a default Slack channel for an app. This means that all features within the app will all inherit the default channel unless you overwrite it.
 
-<figure><img src="../.gitbook/assets/Slack Settings under Features-min.png" alt=""><figcaption></figcaption></figure>
+* Go to Settings
+* Select **Slack** under **Environment: Production**
 
-## Types of Slack reports
+Note: Slack notifications are only supported in the Production [environment](../introduction/concepts/environment.md).
 
-There are two types of Slack notifications:
+<figure><img src="../.gitbook/assets/CleanShot 2025-01-07 at 12 .39.12@2x (1).png" alt=""><figcaption><p>Choose default Slack channel for this app's production environment</p></figcaption></figure>
 
-* Weekly reports
-* User feedback&#x20;
 
-### Weekly reports
 
-Weekly reports contain a summary containing the STARS funnel and a graph showing its progression over the past weeks.
+## Available Slack notifications
 
-### User feedback
+<table><thead><tr><th width="557">What</th><th>When</th></tr></thead><tbody><tr><td>Feature access or state changes</td><td>Real-time</td></tr><tr><td>Feature feedback submissions</td><td>Real-time</td></tr><tr><td>Feature view report</td><td>Weekly</td></tr></tbody></table>
 
-Sends an immediate notification when a user leaves feedback on a feature through an [automated feedback survey](../product-handbook/feature-analysis/automated-feedback-surveys.md).&#x20;
 
-Notifications include the user’s name, company, CSAT score, and feedback (if provided).&#x20;
 
-<figure><img src="../.gitbook/assets/Slack with User Feedback.png" alt=""><figcaption></figcaption></figure>
+### Examples
+
+<figure><img src="../.gitbook/assets/CleanShot 2025-01-07 at 1 .19.36@2x.png" alt=""><figcaption><p>Feature access and stage was changed and a comment was attached</p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/CleanShot 2025-01-07 at 1 .21.09@2x.png" alt=""><figcaption><p>New feature feedback</p></figcaption></figure>
