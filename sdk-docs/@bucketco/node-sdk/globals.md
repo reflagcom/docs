@@ -1,16 +1,18 @@
-## BoundBucketClient
+## Classes
+
+### BoundBucketClient
 
 A client bound with a specific user, company, and other context.
 
-### Constructors
+#### Constructors
 
-#### new BoundBucketClient()
+##### new BoundBucketClient()
 
 ```ts
 new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracking): BoundBucketClient
 ```
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -47,15 +49,15 @@ new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracki
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 [`BoundBucketClient`](globals.md#boundbucketclient)
 
-### Accessors
+#### Accessors
 
-#### company
+##### company
 
-##### Get Signature
+###### Get Signature
 
 ```ts
 get company(): undefined | {
@@ -77,9 +79,9 @@ The company or `undefined` if it is not set.
 
 ***
 
-#### otherContext
+##### otherContext
 
-##### Get Signature
+###### Get Signature
 
 ```ts
 get otherContext(): undefined | Record<string, any>
@@ -95,9 +97,9 @@ The "other" context or `undefined` if it is not set.
 
 ***
 
-#### user
+##### user
 
-##### Get Signature
+###### Get Signature
 
 ```ts
 get user(): undefined | {
@@ -119,9 +121,9 @@ Gets the user associated with the client.
 
 The user or `undefined` if it is not set.
 
-### Methods
+#### Methods
 
-#### bindClient()
+##### bindClient()
 
 ```ts
 bindClient(context: Context & {
@@ -132,7 +134,7 @@ bindClient(context: Context & {
 Create a new client bound with the additional context.
 Note: This performs a shallow merge for user/company/other individually.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -163,7 +165,7 @@ User/company/other context to bind to the client object
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 [`BoundBucketClient`](globals.md#boundbucketclient)
 
@@ -171,7 +173,7 @@ new client bound with the additional context
 
 ***
 
-#### flush()
+##### flush()
 
 ```ts
 flush(): Promise<void>
@@ -179,13 +181,13 @@ flush(): Promise<void>
 
 Flushes the batch buffer.
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
 ***
 
-#### getFeature()
+##### getFeature()
 
 ```ts
 getFeature(key: string): Feature
@@ -194,7 +196,7 @@ getFeature(key: string): Feature
 Get a specific feature for the user/company/other context bound to this client.
 Using the `isEnabled` property sends a `check` event to Bucket.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -219,7 +221,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Feature`
 
@@ -227,7 +229,7 @@ Features for the given user/company and whether each one is enabled or not
 
 ***
 
-#### getFeatureRemote()
+##### getFeatureRemote()
 
 ```ts
 getFeatureRemote(key: string): Promise<Feature>
@@ -235,7 +237,7 @@ getFeatureRemote(key: string): Promise<Feature>
 
 Get remotely evaluated feature for the user/company/other context bound to this client.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -260,7 +262,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`Feature`\>
 
@@ -268,7 +270,7 @@ Feature for the given user/company and key and whether it's enabled or not
 
 ***
 
-#### getFeatures()
+##### getFeatures()
 
 ```ts
 getFeatures(): Record<string, Feature>
@@ -277,7 +279,7 @@ getFeatures(): Record<string, Feature>
 Get features for the user/company/other context bound to this client.
 Meant for use in serialization of features for transferring to the client-side/browser.
 
-##### Returns
+###### Returns
 
 `Record`\<`string`, `Feature`\>
 
@@ -285,7 +287,7 @@ Features for the given user/company and whether each one is enabled or not
 
 ***
 
-#### getFeaturesRemote()
+##### getFeaturesRemote()
 
 ```ts
 getFeaturesRemote(): Promise<Record<string, Feature>>
@@ -293,7 +295,7 @@ getFeaturesRemote(): Promise<Record<string, Feature>>
 
 Get remotely evaluated feature for the user/company/other context bound to this client.
 
-##### Returns
+###### Returns
 
 `Promise`\<`Record`\<`string`, `Feature`\>\>
 
@@ -301,7 +303,7 @@ Features for the given user/company and whether each one is enabled or not
 
 ***
 
-#### track()
+##### track()
 
 ```ts
 track(event: string, opts?: TrackOptions & {
@@ -311,7 +313,7 @@ track(event: string, opts?: TrackOptions & {
 
 Track an event in Bucket.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -359,23 +361,23 @@ The event to track.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
-##### Throws
+###### Throws
 
 An error if the event is invalid or the options are invalid.
 
 ***
 
-## BucketClient
+### BucketClient
 
 The SDK client.
 
-### Constructors
+#### Constructors
 
-#### new BucketClient()
+##### new BucketClient()
 
 ```ts
 new BucketClient(options: ClientOptions): BucketClient
@@ -384,7 +386,7 @@ new BucketClient(options: ClientOptions): BucketClient
 Creates a new SDK client.
 See README for configuration options.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -415,19 +417,19 @@ The options for the client or an existing client to clone.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 [`BucketClient`](globals.md#bucketclient)
 
-##### Throws
+###### Throws
 
 An error if the options are invalid.
 
-### Accessors
+#### Accessors
 
-#### featureOverrides
+##### featureOverrides
 
-##### Set Signature
+###### Set Signature
 
 ```ts
 set featureOverrides(overrides: FeatureOverridesFn): void
@@ -464,9 +466,9 @@ set featureOverrides(overrides: FeatureOverridesFn): void
 
 ***
 
-#### logger
+##### logger
 
-##### Get Signature
+###### Get Signature
 
 ```ts
 get logger(): undefined | Logger
@@ -480,9 +482,9 @@ Gets the logger associated with the client.
 
 The logger or `undefined` if it is not set.
 
-### Methods
+#### Methods
 
-#### bindClient()
+##### bindClient()
 
 ```ts
 bindClient(__namedParameters: ContextWithTracking): BoundBucketClient
@@ -492,7 +494,7 @@ Returns a new BoundBucketClient with the user/company/otherContext
 set to be used in subsequent calls.
 For example, for evaluating feature targeting or tracking events.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -517,24 +519,24 @@ For example, for evaluating feature targeting or tracking events.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 [`BoundBucketClient`](globals.md#boundbucketclient)
 
 A new client bound with the arguments given.
 
-##### Throws
+###### Throws
 
 An error if the user/company is given but their ID is not a string.
 
-##### Remarks
+###### Remarks
 
 The `updateUser` / `updateCompany` methods will automatically be called when
 the user/company is set respectively.
 
 ***
 
-#### flush()
+##### flush()
 
 ```ts
 flush(): Promise<void>
@@ -542,18 +544,18 @@ flush(): Promise<void>
 
 Flushes the batch buffer.
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
-##### Remarks
+###### Remarks
 
 It is recommended to call this method when the application is shutting down to ensure all events are sent
 before the process exits.
 
 ***
 
-#### getFeature()
+##### getFeature()
 
 ```ts
 getFeature(__namedParameters: ContextWithTracking, key: string): Feature
@@ -562,7 +564,7 @@ getFeature(__namedParameters: ContextWithTracking, key: string): Feature
 Gets the evaluated feature for the current context which includes the user, company, and custom context.
 Using the `isEnabled` property sends a `check` event to Bucket.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -599,19 +601,19 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Feature`
 
 The evaluated features.
 
-##### Remarks
+###### Remarks
 
 Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
 
 ***
 
-#### getFeatureRemote()
+##### getFeatureRemote()
 
 ```ts
 getFeatureRemote(
@@ -624,7 +626,7 @@ additionalContext?: Context): Promise<Feature>
 Gets evaluated feature with the usage of remote context.
 This method triggers a network request every time it's called.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -685,7 +687,7 @@ This method triggers a network request every time it's called.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`Feature`\>
 
@@ -693,7 +695,7 @@ evaluated feature
 
 ***
 
-#### getFeatures()
+##### getFeatures()
 
 ```ts
 getFeatures(__namedParameters: ContextWithTracking): Record<string, Feature>
@@ -701,7 +703,7 @@ getFeatures(__namedParameters: ContextWithTracking): Record<string, Feature>
 
 Gets the evaluated feature for the current context which includes the user, company, and custom context.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -726,19 +728,19 @@ Gets the evaluated feature for the current context which includes the user, comp
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Record`\<`string`, `Feature`\>
 
 The evaluated features.
 
-##### Remarks
+###### Remarks
 
 Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
 
 ***
 
-#### getFeaturesRemote()
+##### getFeaturesRemote()
 
 ```ts
 getFeaturesRemote(
@@ -750,7 +752,7 @@ additionalContext?: Context): Promise<Record<string, Feature>>
 Gets evaluated features with the usage of remote context.
 This method triggers a network request every time it's called.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -799,7 +801,7 @@ This method triggers a network request every time it's called.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`Record`\<`string`, `Feature`\>\>
 
@@ -807,7 +809,7 @@ evaluated features
 
 ***
 
-#### initialize()
+##### initialize()
 
 ```ts
 initialize(): Promise<void>
@@ -815,20 +817,20 @@ initialize(): Promise<void>
 
 Initializes the client by caching the features definitions.
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
 void
 
-##### Remarks
+###### Remarks
 
 Call this method before calling `getFeatures` to ensure the feature definitions are cached.
 The client will ignore subsequent calls to this method.
 
 ***
 
-#### track()
+##### track()
 
 ```ts
 track(
@@ -841,7 +843,7 @@ track(
 
 Tracks an event in Bucket.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -906,21 +908,21 @@ The options.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
-##### Throws
+###### Throws
 
 An error if the user is not set or the event is invalid or the options are invalid.
 
-##### Remarks
+###### Remarks
 
 If the company is set, the event will be associated with the company.
 
 ***
 
-#### updateCompany()
+##### updateCompany()
 
 ```ts
 updateCompany(companyId: IdType, opts?: TrackOptions & {
@@ -930,7 +932,7 @@ updateCompany(companyId: IdType, opts?: TrackOptions & {
 
 Updates the associated company in Bucket.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -967,22 +969,22 @@ Updates the associated company in Bucket.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
-##### Throws
+###### Throws
 
 An error if the company is not set or the options are invalid.
 
-##### Remarks
+###### Remarks
 
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
 
 ***
 
-#### updateUser()
+##### updateUser()
 
 ```ts
 updateUser(userId: IdType, opts?: TrackOptions): Promise<void>
@@ -990,7 +992,7 @@ updateUser(userId: IdType, opts?: TrackOptions): Promise<void>
 
 Updates the associated user in Bucket.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -1027,43 +1029,43 @@ Updates the associated user in Bucket.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
-##### Throws
+###### Throws
 
 An error if the company is not set or the options are invalid.
 
-##### Remarks
+###### Remarks
 
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
 
-***
+## Interfaces
 
-## Features
+### Features
 
 Describes a collection of evaluated features.
 
-### Remarks
+#### Remarks
 
 You should extend the Features interface to define the available features.
 
 ***
 
-## HttpClient
+### HttpClient
 
 Defines the interface for an HTTP client.
 
-### Remarks
+#### Remarks
 
 This interface is used to abstract the HTTP client implementation from the SDK.
 Define your own implementation of this interface to use a different HTTP client.
 
-### Methods
+#### Methods
 
-#### get()
+##### get()
 
 ```ts
 get<TResponse>(url: string, headers: Record<string, string>): Promise<HttpClientResponse<TResponse>>
@@ -1071,7 +1073,7 @@ get<TResponse>(url: string, headers: Record<string, string>): Promise<HttpClient
 
 Sends a GET request to the specified URL.
 
-##### Type Parameters
+###### Type Parameters
 
 <table>
 <thead>
@@ -1090,7 +1092,7 @@ Sends a GET request to the specified URL.
 </tbody>
 </table>
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -1138,7 +1140,7 @@ The headers to include in the request.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`HttpClientResponse`\<`TResponse`\>\>
 
@@ -1146,7 +1148,7 @@ The response from the server.
 
 ***
 
-#### post()
+##### post()
 
 ```ts
 post<TBody, TResponse>(
@@ -1157,7 +1159,7 @@ body: TBody): Promise<HttpClientResponse<TResponse>>
 
 Sends a POST request to the specified URL.
 
-##### Type Parameters
+###### Type Parameters
 
 <table>
 <thead>
@@ -1183,7 +1185,7 @@ Sends a POST request to the specified URL.
 </tbody>
 </table>
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -1248,7 +1250,7 @@ The body of the request.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`HttpClientResponse`\<`TResponse`\>\>
 
@@ -1256,11 +1258,11 @@ The response from the server.
 
 ***
 
-## Logger
+### Logger
 
 Logger interface for logging messages
 
-### Properties
+#### Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
@@ -1271,11 +1273,11 @@ Logger interface for logging messages
 
 ***
 
-## RawFeature
+### RawFeature
 
 Describes a feature
 
-### Properties
+#### Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
@@ -1284,9 +1286,9 @@ Describes a feature
 | `missingContextFields?` | `string`[] | The missing fields in the evaluation context (optional). |
 | `targetingVersion?` | `number` | The version of the targeting used to evaluate if the feature is enabled (optional). |
 
-***
+## Type Aliases
 
-## Attributes
+### Attributes
 
 ```ts
 type Attributes: Record<string, any>;
@@ -1296,7 +1298,7 @@ Describes the attributes of a user, company or event.
 
 ***
 
-## ClientOptions
+### ClientOptions
 
 ```ts
 type ClientOptions: {
@@ -1316,7 +1318,7 @@ type ClientOptions: {
 
 Defines the options for the SDK client.
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1532,7 +1534,7 @@ The secret key used to authenticate with the Bucket API.
 
 ***
 
-## Context
+### Context
 
 ```ts
 type Context: {
@@ -1552,7 +1554,7 @@ type Context: {
 Describes the current user context, company context, and other context.
 This is used to determine if feature targeting matches and to track events.
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1711,7 +1713,7 @@ The user context. If no `id` key is set, the whole object is ignored.
 
 ***
 
-## FeatureOverrides
+### FeatureOverrides
 
 ```ts
 type FeatureOverrides: Partial<Record<keyof TypedFeatures, boolean>>;
@@ -1721,7 +1723,7 @@ Describes the feature overrides.
 
 ***
 
-## TrackingMeta
+### TrackingMeta
 
 ```ts
 type TrackingMeta: {
@@ -1731,7 +1733,7 @@ type TrackingMeta: {
 
 Describes the meta context associated with tracking.
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
