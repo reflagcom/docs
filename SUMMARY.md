@@ -23,7 +23,7 @@
 * [Overview](supported-languages/overview.md)
 * [React SDK](supported-languages/react-sdk.md)
 * [Browser SDK](supported-languages/browser-sdk.md)
-  * [Reference](sdk-docs/@bucketco/browser-sdk/globals.md)
+  * [Reference](sdk-docs/%40bucketco/browser-sdk/globals.md)
 * [Node.js SDK](supported-languages/node.js-sdk.md)
 * [Next.js](supported-languages/next.js.md)
 * [Community support](supported-languages/community-support/README.md)
