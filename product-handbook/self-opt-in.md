@@ -2,7 +2,7 @@
 
 Creating a page where users can opt into certain features is straight forward with Bucket and the Bucket React SDK.
 
-The basic concept is to set an attribute on the user/company, for example `optin-<featureKey> = true` then use that attribute to control who has access to the feature by setting the access rules such that users/companies with the attribute `optin-<featureKey>=true` will have access to the feature.
+The basic concept is to set an attribute on the user/company which denotes that the user has self opted into a specific feature, for example `optin-<featureKey> = true.` Updating an attribute is very simple from the SDK. Then use that attribute to control who has access to the feature by updating the feature access rules such that users/companies with the attribute `optin-<featureKey>=true` will have access to the feature.
 
 ## Step by step guide
 
@@ -39,7 +39,7 @@ function FeatureOptIn({
           setSendingUpdate(true);
           updateUser({
             [`optin-${featureKey}`]: isEnabled ? "false" : "true",
-          })?.then(() => {
+          }).then(() => {
             setSendingUpdate(false);
           });
         }}
