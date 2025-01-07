@@ -1,6 +1,6 @@
 ## BucketClient
 
-BucketClient serves as an http client
+BucketClient lets you interact with the Bucket API.
 
 ### Constructors
 

@@ -1,49 +1,36 @@
-# Bucket
+## Packages
 
-Bucket is B2B feature flagging with a built-in feedback loop that lets you roll out features based on customer satisfaction.
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-[Learn more and get started](https://bucket.co/)
+[@bucketco/browser-sdk](@bucketco/browser-sdk/README.md)
 
-## SDKs
+</td>
+<td>
 
-### React SDK
+&hyphen;
 
-Client side React SDK
+</td>
+</tr>
+<tr>
+<td>
 
-[Read the docs](_media/README.md)
+[@bucketco/node-sdk](@bucketco/node-sdk/README.md)
 
-### Browser SDK
+</td>
+<td>
 
-Browser SDK for use in non-React web applications
+&hyphen;
 
-[Read the docs](_media/README-1.md) 
-
-### Node.js SDK
-
-Node.js SDK for use on the server side.
-
-[Read the docs](_media/README-2.md)
-
-## OpenFeature Browser Provider
-
-Use Bucket with OpenFeature in the browser through the Bucket OpenFeature Browser Provider
-
-[Read the docs](_media/README-3.md)
-
-## OpenFeature Node.js Provider
-
-Use the Bucket with OpenFeature on the server in Node.js through the Bucket OpenFeature Node.js Provider
-
-[Read the docs](_media/README-4.md)
-
-## Development
-
-### Versioning
-
-1. Create a new branch locally
-2. Run `yarn run version`
-3. Push and PR
-
-### Publishing
-
-The [Github Action](_media/publish.yml) will automatically publish any versioned packages when merging to `main`
+</td>
+</tr>
+</tbody>
+</table>
