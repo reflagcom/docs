@@ -31,6 +31,13 @@
   * [Ruby/Rails/Stimulus](supported-languages/community-support/ruby-rails-stimulus.md)
 * [Other languages](supported-languages/other-languages.md)
 
+## Integrations
+
+* [Slack](integrations/slack.md)
+* [AWS S3](integrations/aws-s3.md)
+* [Segment](integrations/segment.md)
+* [Linear](integrations/linear.md)
+
 ## Product Handbook
 
 * [Product overview](product-handbook/product-overview.md)
@@ -52,13 +59,6 @@
 * [Warehouse](product-handbook/data-export.md)
 * [Beta feature self opt-in](product-handbook/self-opt-in.md)
 * [Data residency](product-handbook/data-residency.md)
-
-## Integrations
-
-* [Slack](integrations/slack.md)
-* [AWS S3](integrations/aws-s3.md)
-* [Segment](integrations/segment.md)
-* [Linear](integrations/linear.md)
 
 ## API
 
