@@ -15,13 +15,15 @@ pagination:
 
 # @bucketco/browser-sdk
 
-## BucketClient
+## Classes
+
+### BucketClient
 
 BucketClient lets you interact with the Bucket API.
 
-### Constructors
+#### Constructors
 
-#### new BucketClient()
+##### new BucketClient()
 
 ```ts
 new BucketClient(opts: InitOptions): BucketClient
@@ -29,7 +31,7 @@ new BucketClient(opts: InitOptions): BucketClient
 
 Create a new BucketClient instance.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -54,13 +56,13 @@ Create a new BucketClient instance.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 [`BucketClient`](globals.md#bucketclient)
 
-### Methods
+#### Methods
 
-#### feedback()
+##### feedback()
 
 ```ts
 feedback(payload: Feedback): Promise<undefined | Response>
@@ -68,7 +70,7 @@ feedback(payload: Feedback): Promise<undefined | Response>
 
 Submit user feedback to Bucket. Must include either `score` or `comment`, or both.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -93,13 +95,13 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`undefined` \| `Response`\>
 
 ***
 
-#### getFeature()
+##### getFeature()
 
 ```ts
 getFeature(key: string): Feature
@@ -107,7 +109,7 @@ getFeature(key: string): Feature
 
 Return a feature. Accessing `isEnabled` will automatically send a `check` event.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -132,7 +134,7 @@ Return a feature. Accessing `isEnabled` will automatically send a `check` event.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 [`Feature`](globals.md#feature)
 
@@ -140,7 +142,7 @@ A feature
 
 ***
 
-#### getFeatures()
+##### getFeatures()
 
 ```ts
 getFeatures(): RawFeatures
@@ -149,7 +151,7 @@ getFeatures(): RawFeatures
 Returns a map of enabled features.
 Accessing a feature will *not* send a check event
 
-##### Returns
+###### Returns
 
 [`RawFeatures`](globals.md#rawfeatures)
 
@@ -157,7 +159,7 @@ Map of features
 
 ***
 
-#### initialize()
+##### initialize()
 
 ```ts
 initialize(): Promise<void>
@@ -167,13 +169,13 @@ Initialize the Bucket SDK.
 
 Must be called before calling other SDK methods.
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
 ***
 
-#### onFeaturesUpdated()
+##### onFeaturesUpdated()
 
 ```ts
 onFeaturesUpdated(cb: () => void): () => void
@@ -184,7 +186,7 @@ Features are not guaranteed to have actually changed when the callback is called
 
 Calling `client.stop()` will remove all listeners added here.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -209,7 +211,7 @@ Calling `client.stop()` will remove all listeners added here.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Function`
 
@@ -219,7 +221,7 @@ Calling `client.stop()` will remove all listeners added here.
 
 ***
 
-#### requestFeedback()
+##### requestFeedback()
 
 ```ts
 requestFeedback(options: RequestFeedbackData): void
@@ -229,7 +231,7 @@ Display the Bucket feedback form UI programmatically.
 
 This can be used to collect feedback from users in Bucket in cases where Automated Feedback Surveys isn't appropriate.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -254,19 +256,19 @@ This can be used to collect feedback from users in Bucket in cases where Automat
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `void`
 
 ***
 
-#### sendCheckEvent()
+##### sendCheckEvent()
 
 ```ts
 sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 ```
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -291,13 +293,13 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`boolean`\>
 
 ***
 
-#### stop()
+##### stop()
 
 ```ts
 stop(): Promise<void>
@@ -308,13 +310,13 @@ This will stop any automated feedback surveys.
 It will also stop the features client, including removing
 any onFeaturesUpdated listeners.
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
 ***
 
-#### track()
+##### track()
 
 ```ts
 track(eventName: string, attributes?: null | Record<string, any>): Promise<undefined | Response>
@@ -322,7 +324,7 @@ track(eventName: string, attributes?: null | Record<string, any>): Promise<undef
 
 Track an event in Bucket.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -370,13 +372,13 @@ Any attributes you want to attach to the event
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`undefined` \| `Response`\>
 
 ***
 
-#### updateCompany()
+##### updateCompany()
 
 ```ts
 updateCompany(company: {}): Promise<void>
@@ -386,7 +388,7 @@ Update the company context.
 Performs a shallow merge with the existing company context.
 Attempting to update the company ID will log a warning and be ignored.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -411,13 +413,13 @@ Attempting to update the company ID will log a warning and be ignored.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
 ***
 
-#### updateOtherContext()
+##### updateOtherContext()
 
 ```ts
 updateOtherContext(otherContext: {}): Promise<void>
@@ -427,7 +429,7 @@ Update the company context.
 Performs a shallow merge with the existing company context.
 Updates to the company ID will be ignored.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -452,13 +454,13 @@ Updates to the company ID will be ignored.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
 ***
 
-#### updateUser()
+##### updateUser()
 
 ```ts
 updateUser(user: {}): Promise<void>
@@ -468,7 +470,7 @@ Update the user context.
 Performs a shallow merge with the existing user context.
 Attempting to update the user ID will log a warning and be ignored.
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -493,15 +495,15 @@ Attempting to update the user ID will log a warning and be ignored.
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `Promise`\<`void`\>
 
-***
+## Interfaces
 
-## BucketContext
+### BucketContext
 
-### Properties
+#### Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
@@ -511,11 +513,11 @@ Attempting to update the user ID will log a warning and be ignored.
 
 ***
 
-## CheckEvent
+### CheckEvent
 
 Event representing checking the feature flag evaluation result
 
-### Properties
+#### Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
@@ -525,16 +527,16 @@ Event representing checking the feature flag evaluation result
 
 ***
 
-## CompanyContext
+### CompanyContext
 
 Context is a set of key-value pairs.
 Id should always be present so that it can be referenced to an existing company.
 
-### Indexable
+#### Indexable
 
  \[`key`: `string`\]: `undefined` \| `string` \| `number`
 
-### Properties
+#### Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
@@ -543,9 +545,9 @@ Id should always be present so that it can be referenced to an existing company.
 
 ***
 
-## Feature
+### Feature
 
-### Properties
+#### Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
@@ -555,9 +557,9 @@ Id should always be present so that it can be referenced to an existing company.
 
 ***
 
-## FeedbackScoreSubmission
+### FeedbackScoreSubmission
 
-### Properties
+#### Properties
 
 | Property | Type |
 | ------ | ------ |
@@ -567,9 +569,9 @@ Id should always be present so that it can be referenced to an existing company.
 
 ***
 
-## FeedbackSubmission
+### FeedbackSubmission
 
-### Properties
+#### Properties
 
 | Property | Type |
 | ------ | ------ |
@@ -580,11 +582,11 @@ Id should always be present so that it can be referenced to an existing company.
 
 ***
 
-## InitOptions
+### InitOptions
 
 BucketClient initialization options.
 
-### Properties
+#### Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
@@ -604,17 +606,17 @@ BucketClient initialization options.
 
 ***
 
-## Logger
+### Logger
 
-### Methods
+#### Methods
 
-#### debug()
+##### debug()
 
 ```ts
 debug(message: string, ...args: any[]): void
 ```
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -651,19 +653,19 @@ debug(message: string, ...args: any[]): void
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `void`
 
 ***
 
-#### error()
+##### error()
 
 ```ts
 error(message: string, ...args: any[]): void
 ```
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -700,19 +702,19 @@ error(message: string, ...args: any[]): void
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `void`
 
 ***
 
-#### info()
+##### info()
 
 ```ts
 info(message: string, ...args: any[]): void
 ```
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -749,19 +751,19 @@ info(message: string, ...args: any[]): void
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `void`
 
 ***
 
-#### warn()
+##### warn()
 
 ```ts
 warn(message: string, ...args: any[]): void
 ```
 
-##### Parameters
+###### Parameters
 
 <table>
 <thead>
@@ -798,15 +800,15 @@ warn(message: string, ...args: any[]): void
 </tbody>
 </table>
 
-##### Returns
+###### Returns
 
 `void`
 
 ***
 
-## OnScoreSubmitResult
+### OnScoreSubmitResult
 
-### Properties
+#### Properties
 
 | Property | Type |
 | ------ | ------ |
@@ -814,13 +816,13 @@ warn(message: string, ...args: any[]): void
 
 ***
 
-## UserContext
+### UserContext
 
-### Indexable
+#### Indexable
 
  \[`key`: `string`\]: `undefined` \| `string` \| `number`
 
-### Properties
+#### Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
@@ -828,9 +830,9 @@ warn(message: string, ...args: any[]): void
 | `id` | `undefined` \| `string` \| `number` | User id |
 | `name?` | `string` | User name |
 
-***
+## Type Aliases
 
-## FeaturesOptions
+### FeaturesOptions
 
 ```ts
 type FeaturesOptions: {
@@ -842,7 +844,7 @@ type FeaturesOptions: {
 };
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -945,7 +947,7 @@ Timeout in miliseconds
 
 ***
 
-## Feedback
+### Feedback
 
 ```ts
 type Feedback: UnassignedFeedback & {
@@ -954,7 +956,7 @@ type Feedback: UnassignedFeedback & {
 };
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1004,7 +1006,7 @@ User ID from your own application.
 
 ***
 
-## FeedbackOptions
+### FeedbackOptions
 
 ```ts
 type FeedbackOptions: {
@@ -1019,7 +1021,7 @@ type FeedbackOptions: {
 };
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1162,7 +1164,7 @@ Undefined translation keys fall back to english defaults.
 
 ***
 
-## FeedbackPlacement
+### FeedbackPlacement
 
 ```ts
 type FeedbackPlacement: "bottom-right" | "bottom-left" | "top-right" | "top-left";
@@ -1170,7 +1172,7 @@ type FeedbackPlacement: "bottom-right" | "bottom-left" | "top-right" | "top-left
 
 ***
 
-## FeedbackPosition
+### FeedbackPosition
 
 ```ts
 type FeedbackPosition: {
@@ -1187,7 +1189,7 @@ type FeedbackPosition: {
 
 ***
 
-## FeedbackPrompt
+### FeedbackPrompt
 
 ```ts
 type FeedbackPrompt: {
@@ -1199,7 +1201,7 @@ type FeedbackPrompt: {
 };
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1300,13 +1302,13 @@ Feedback prompt will not be shown after this time
 
 ***
 
-## FeedbackPromptHandler()
+### FeedbackPromptHandler()
 
 ```ts
 type FeedbackPromptHandler: (prompt: FeedbackPrompt, handlers: FeedbackPromptHandlerCallbacks) => void;
 ```
 
-### Parameters
+#### Parameters
 
 <table>
 <thead>
@@ -1343,13 +1345,13 @@ type FeedbackPromptHandler: (prompt: FeedbackPrompt, handlers: FeedbackPromptHan
 </tbody>
 </table>
 
-### Returns
+#### Returns
 
 `void`
 
 ***
 
-## FeedbackPromptHandlerCallbacks
+### FeedbackPromptHandlerCallbacks
 
 ```ts
 type FeedbackPromptHandlerCallbacks: {
@@ -1358,7 +1360,7 @@ type FeedbackPromptHandlerCallbacks: {
 };
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1397,7 +1399,7 @@ type FeedbackPromptHandlerCallbacks: {
 
 ***
 
-## FeedbackPromptHandlerOpenFeedbackFormOptions
+### FeedbackPromptHandlerOpenFeedbackFormOptions
 
 ```ts
 type FeedbackPromptHandlerOpenFeedbackFormOptions: Omit<RequestFeedbackOptions, 
@@ -1411,7 +1413,7 @@ type FeedbackPromptHandlerOpenFeedbackFormOptions: Omit<RequestFeedbackOptions,
 
 ***
 
-## FeedbackPromptReply
+### FeedbackPromptReply
 
 ```ts
 type FeedbackPromptReply: {
@@ -1422,7 +1424,7 @@ type FeedbackPromptReply: {
 };
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1485,7 +1487,7 @@ type FeedbackPromptReply: {
 
 ***
 
-## FeedbackPromptReplyHandler()
+### FeedbackPromptReplyHandler()
 
 ```ts
 type FeedbackPromptReplyHandler: <T>(reply: T) => T extends null ? Promise<void> : Promise<{
@@ -1493,7 +1495,7 @@ type FeedbackPromptReplyHandler: <T>(reply: T) => T extends null ? Promise<void>
 }>;
 ```
 
-### Type Parameters
+#### Type Parameters
 
 <table>
 <thead>
@@ -1512,7 +1514,7 @@ type FeedbackPromptReplyHandler: <T>(reply: T) => T extends null ? Promise<void>
 </tbody>
 </table>
 
-### Parameters
+#### Parameters
 
 <table>
 <thead>
@@ -1537,7 +1539,7 @@ type FeedbackPromptReplyHandler: <T>(reply: T) => T extends null ? Promise<void>
 </tbody>
 </table>
 
-### Returns
+#### Returns
 
 `T` *extends* `null` ? `Promise`\<`void`\> : `Promise`\<\{
   `feedbackId`: `string`;
@@ -1545,7 +1547,7 @@ type FeedbackPromptReplyHandler: <T>(reply: T) => T extends null ? Promise<void>
 
 ***
 
-## FeedbackTranslations
+### FeedbackTranslations
 
 ```ts
 type FeedbackTranslations: {
@@ -1567,7 +1569,7 @@ type FeedbackTranslations: {
 You can use this to override text values in the feedback form
 with desired language translation
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1726,7 +1728,7 @@ with desired language translation
 
 ***
 
-## Offset
+### Offset
 
 ```ts
 type Offset: {
@@ -1735,7 +1737,7 @@ type Offset: {
 };
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1785,7 +1787,7 @@ Offset from the nearest vertical screen edge after placement is resolved
 
 ***
 
-## RawFeature
+### RawFeature
 
 ```ts
 type RawFeature: {
@@ -1795,7 +1797,7 @@ type RawFeature: {
 };
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1862,7 +1864,7 @@ Version of targeting rules
 
 ***
 
-## RawFeatures
+### RawFeatures
 
 ```ts
 type RawFeatures: Record<string, RawFeature | undefined>;
@@ -1870,7 +1872,7 @@ type RawFeatures: Record<string, RawFeature | undefined>;
 
 ***
 
-## RequestFeedbackData
+### RequestFeedbackData
 
 ```ts
 type RequestFeedbackData: Omit<OpenFeedbackFormOptions, "key" | "onSubmit"> & {
@@ -1879,7 +1881,7 @@ type RequestFeedbackData: Omit<OpenFeedbackFormOptions, "key" | "onSubmit"> & {
  } & FeatureIdentifier;
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1933,7 +1935,7 @@ copy of the feedback in your own application or CRM.
 
 ***
 
-## RequestFeedbackOptions
+### RequestFeedbackOptions
 
 ```ts
 type RequestFeedbackOptions: RequestFeedbackData & {
@@ -1941,7 +1943,7 @@ type RequestFeedbackOptions: RequestFeedbackData & {
 };
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -1974,7 +1976,7 @@ User ID from your own application.
 
 ***
 
-## UnassignedFeedback
+### UnassignedFeedback
 
 ```ts
 type UnassignedFeedback: {
@@ -1988,7 +1990,7 @@ type UnassignedFeedback: {
  } & FeatureIdentifier;
 ```
 
-### Type declaration
+#### Type declaration
 
 <table>
 <thead>
@@ -2131,9 +2133,9 @@ Source of the feedback, depending on how the user was asked
 </tbody>
 </table>
 
-***
+## Variables
 
-## DEFAULT\_TRANSLATIONS
+### DEFAULT\_TRANSLATIONS
 
 ```ts
 const DEFAULT_TRANSLATIONS: FeedbackTranslations;
@@ -2163,7 +2165,7 @@ export const DEFAULT_TRANSLATIONS: FeedbackTranslations = {
 
 ***
 
-## feedbackContainerId
+### feedbackContainerId
 
 ```ts
 const feedbackContainerId: "bucket-feedback-dialog-container" = "bucket-feedback-dialog-container";
@@ -2173,7 +2175,7 @@ ID of HTML DIV element which contains the feedback dialog
 
 ***
 
-## propagatedEvents
+### propagatedEvents
 
 ```ts
 const propagatedEvents: string[];
