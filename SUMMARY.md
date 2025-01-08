@@ -62,5 +62,5 @@
 
 ## API
 
-* [HTTP API](api/http-api/README.md)
-  * [API Reference](api/http-api/api-reference.md)
+* [Introduction](api/http-api/README.md)
+* [API Reference](api/http-api/api-reference.md)
