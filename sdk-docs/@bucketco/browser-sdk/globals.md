@@ -97,8 +97,6 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 
 `Promise`\<`undefined` \| `Response`\>
 
-***
-
 ##### getFeature()
 
 ```ts
@@ -138,8 +136,6 @@ Return a feature. Accessing `isEnabled` will automatically send a `check` event.
 
 A feature
 
-***
-
 ##### getFeatures()
 
 ```ts
@@ -155,8 +151,6 @@ Accessing a feature will *not* send a check event
 
 Map of features
 
-***
-
 ##### initialize()
 
 ```ts
@@ -170,8 +164,6 @@ Must be called before calling other SDK methods.
 ###### Returns
 
 `Promise`\<`void`\>
-
-***
 
 ##### onFeaturesUpdated()
 
@@ -217,8 +209,6 @@ Calling `client.stop()` will remove all listeners added here.
 
 `void`
 
-***
-
 ##### requestFeedback()
 
 ```ts
@@ -258,8 +248,6 @@ This can be used to collect feedback from users in Bucket in cases where Automat
 
 `void`
 
-***
-
 ##### sendCheckEvent()
 
 ```ts
@@ -295,8 +283,6 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 
 `Promise`\<`boolean`\>
 
-***
-
 ##### stop()
 
 ```ts
@@ -311,8 +297,6 @@ any onFeaturesUpdated listeners.
 ###### Returns
 
 `Promise`\<`void`\>
-
-***
 
 ##### track()
 
@@ -374,8 +358,6 @@ Any attributes you want to attach to the event
 
 `Promise`\<`undefined` \| `Response`\>
 
-***
-
 ##### updateCompany()
 
 ```ts
@@ -415,8 +397,6 @@ Attempting to update the company ID will log a warning and be ignored.
 
 `Promise`\<`void`\>
 
-***
-
 ##### updateOtherContext()
 
 ```ts
@@ -455,8 +435,6 @@ Updates to the company ID will be ignored.
 ###### Returns
 
 `Promise`\<`void`\>
-
-***
 
 ##### updateUser()
 
@@ -509,8 +487,6 @@ Attempting to update the user ID will log a warning and be ignored.
 | `otherContext?` | `Record`\<`string`, `undefined` \| `string` \| `number`\> | Context which is not related to a user or a company |
 | `user?` | [`UserContext`](globals.md#usercontext) | User related context |
 
-***
-
 ### CheckEvent
 
 Event representing checking the feature flag evaluation result
@@ -522,8 +498,6 @@ Event representing checking the feature flag evaluation result
 | `key` | `string` | Feature key |
 | `value` | `boolean` | Result of feature flag evaluation |
 | `version?` | `number` | Version of targeting rules |
-
-***
 
 ### CompanyContext
 
@@ -541,8 +515,6 @@ Id should always be present so that it can be referenced to an existing company.
 | `id` | `undefined` \| `string` \| `number` | Company id |
 | `name?` | `string` | Company name |
 
-***
-
 ### Feature
 
 #### Properties
@@ -552,8 +524,6 @@ Id should always be present so that it can be referenced to an existing company.
 | `isEnabled` | `boolean` | Result of feature flag evaluation |
 | `requestFeedback` | (`options`: `Omit`\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `void` | - |
 | `track` | () => `Promise`\<`undefined` \| `Response`\> | Function to send analytics events for this feature |
-
-***
 
 ### FeedbackScoreSubmission
 
@@ -565,8 +535,6 @@ Id should always be present so that it can be referenced to an existing company.
 | `question` | `string` |
 | `score` | `number` |
 
-***
-
 ### FeedbackSubmission
 
 #### Properties
@@ -577,256 +545,6 @@ Id should always be present so that it can be referenced to an existing company.
 | `feedbackId?` | `string` |
 | `question` | `string` |
 | `score` | `number` |
-
-***
-
-### InitOptions
-
-BucketClient initialization options.
-
-#### Properties
-
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| `apiBaseUrl?` | `string` | Base URL of Bucket servers. You can override this to use your mocked server. |
-| `company?` | [`CompanyContext`](globals.md#companycontext) | Company related context. If you provide `id` Bucket will enrich the evaluation context with company attributes on Bucket servers. |
-| `enableTracking?` | `boolean` | - |
-| `features?` | [`FeaturesOptions`](globals.md#featuresoptions) | Feature flag specific configuration |
-| `feedback?` | [`FeedbackOptions`](globals.md#feedbackoptions) | AutoFeedback specific configuration |
-| ~~`host?`~~ | `string` | **Deprecated** Use `apiBaseUrl` instead. |
-| `logger?` | [`Logger`](globals.md#logger-2) | You can provide a logger to see the logs of the network calls. This is undefined by default. For debugging purposes you can just set the browser console to this property: `options.logger = window.console;` |
-| `otherContext?` | `Record`\<`string`, `any`\> | Context not related to users or companies |
-| `publishableKey` | `string` | Publishable key for authentication |
-| `sdkVersion?` | `string` | Version of the SDK |
-| `sseBaseUrl?` | `string` | Base URL of Bucket servers for SSE connections used by AutoFeedback. |
-| ~~`sseHost?`~~ | `string` | **Deprecated** Use `sseBaseUrl` instead. |
-| `user?` | [`UserContext`](globals.md#usercontext) | User related context. If you provide `id` Bucket will enrich the evaluation context with user attributes on Bucket servers. |
-
-***
-
-### Logger
-
-#### Methods
-
-##### debug()
-
-```ts
-debug(message: string, ...args: any[]): void
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`message`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-<tr>
-<td>
-
-...`args`
-
-</td>
-<td>
-
-`any`[]
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`void`
-
-***
-
-##### error()
-
-```ts
-error(message: string, ...args: any[]): void
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`message`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-<tr>
-<td>
-
-...`args`
-
-</td>
-<td>
-
-`any`[]
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`void`
-
-***
-
-##### info()
-
-```ts
-info(message: string, ...args: any[]): void
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`message`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-<tr>
-<td>
-
-...`args`
-
-</td>
-<td>
-
-`any`[]
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`void`
-
-***
-
-##### warn()
-
-```ts
-warn(message: string, ...args: any[]): void
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`message`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-<tr>
-<td>
-
-...`args`
-
-</td>
-<td>
-
-`any`[]
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`void`
-
-***
-
-### OnScoreSubmitResult
-
-#### Properties
-
-| Property | Type |
-| ------ | ------ |
-| `feedbackId` | `string` |
-
-***
-
-### UserContext
-
-#### Indexable
-
- \[`key`: `string`\]: `undefined` \| `string` \| `number`
-
-#### Properties
-
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| `email?` | `string` | User email |
-| `id` | `undefined` \| `string` \| `number` | User id |
-| `name?` | `string` | User name |
 
 ## Variables
 
@@ -858,8 +576,6 @@ export const DEFAULT_TRANSLATIONS: FeedbackTranslations = {
 };
 ```
 
-***
-
 ### feedbackContainerId
 
 ```ts
@@ -867,8 +583,6 @@ const feedbackContainerId: "bucket-feedback-dialog-container" = "bucket-feedback
 ```
 
 ID of HTML DIV element which contains the feedback dialog
-
-***
 
 ### propagatedEvents
 
