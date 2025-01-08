@@ -13,6 +13,8 @@ pagination:
   visible: true
 ---
 
+# Browser SDK Reference
+
 ## Classes
 
 ### BucketClient
@@ -515,7 +517,7 @@ Id should always be present so that it can be referenced to an existing company.
 | `id` | `undefined` \| `string` \| `number` | Company id |
 | `name?` | `string` | Company name |
 
-### **Feature**
+### Feature
 
 #### Properties
 
