@@ -1,3 +1,18 @@
+---
+layout:
+  visible: true
+title:
+  visible: true
+description:
+  visible: false
+tableOfContents:
+  visible: true
+outline:
+  visible: true
+pagination:
+  visible: true
+---
+
 # Bucket Node.js SDK
 
 Node.js, JavaScriptS/Typescript feature flag and tracking client for [Bucket.co](https://bucket.co).

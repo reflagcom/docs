@@ -1,3 +1,18 @@
+---
+layout:
+  visible: true
+title:
+  visible: true
+description:
+  visible: false
+tableOfContents:
+  visible: true
+outline:
+  visible: true
+pagination:
+  visible: true
+---
+
 # Bucket Browser SDK
 
 Basic client for Bucket.co. If you're using React, you'll be better off with the Bucket React SDK.
