@@ -23,12 +23,12 @@
 * [Overview](supported-languages/overview.md)
 * [React SDK](supported-languages/react-sdk.md)
 * [Browser SDK](supported-languages/browser-sdk.md)
-  * [Reference](sdk-docs/%40bucketco/browser-sdk/globals.md)
+  * [Reference](sdk-docs/@bucketco/browser-sdk/globals.md)
 * [Node.js SDK](supported-languages/node.js-sdk.md)
 * [Next.js](supported-languages/next.js.md)
+* [OpenFeature](supported-languages/openfeature.md)
 * [Community support](supported-languages/community-support/README.md)
   * [Ruby/Rails/Stimulus](supported-languages/community-support/ruby-rails-stimulus.md)
-* [OpenFeature](supported-languages/openfeature.md)
 * [Other languages](supported-languages/other-languages.md)
 
 ## Product Handbook
