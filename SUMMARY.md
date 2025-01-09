@@ -26,6 +26,8 @@
   * [Introduction](sdk-docs/@bucketco/browser-sdk/README.md)
   * [Reference](sdk-docs/@bucketco/browser-sdk/globals.md)
 * [Node.js SDK](supported-languages/node.js-sdk.md)
+  * [Introduction](sdk-docs/%40bucketco/node-sdk/README.md)
+  * [Reference](sdk-docs/%40bucketco/node-sdk/globals.md)
 * [Next.js](supported-languages/next.js.md)
 * [OpenFeature](supported-languages/openfeature.md)
 * [Community support](supported-languages/community-support/README.md)
