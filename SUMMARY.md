@@ -23,8 +23,8 @@
 * [Overview](supported-languages/overview.md)
 * [React SDK](supported-languages/react-sdk.md)
 * [Browser SDK](supported-languages/browser-sdk.md)
-  * [Introduction](sdk-docs/%40bucketco/browser-sdk/README.md)
-  * [Reference](sdk-docs/%40bucketco/browser-sdk/globals.md)
+  * [Introduction](sdk-docs/@bucketco/browser-sdk/README.md)
+  * [Reference](sdk-docs/@bucketco/browser-sdk/globals.md)
 * [Node.js SDK](supported-languages/node.js-sdk.md)
 * [Next.js](supported-languages/next.js.md)
 * [OpenFeature](supported-languages/openfeature.md)
@@ -34,6 +34,7 @@
 
 ## Integrations
 
+* [PostHog](integrations/posthog.md)
 * [Slack](integrations/slack.md)
 * [AWS S3](integrations/aws-s3.md)
 * [Segment](integrations/segment.md)
