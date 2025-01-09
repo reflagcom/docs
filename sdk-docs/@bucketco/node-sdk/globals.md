@@ -143,7 +143,7 @@ The user or `undefined` if it is not set.
 ##### bindClient()
 
 ```ts
-bindClient(context: Context & {
+bindClient(__namedParameters: Context & {
   enableTracking: boolean;
  }): BoundBucketClient
 ```
@@ -158,24 +158,18 @@ Note: This performs a shallow merge for user/company/other individually.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`context`
+`__namedParameters`
 
 </td>
 <td>
 
-[`Context`](globals.md#context-2) & \{ `enableTracking`: `boolean`; \}
-
-</td>
-<td>
-
-User/company/other context to bind to the client object
+[`Context`](globals.md#context) & \{ `enableTracking`: `boolean`; \}
 
 </td>
 </tr>
@@ -697,7 +691,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-[`Context`](globals.md#context-2)
+[`Context`](globals.md#context)
 
 </td>
 </tr>
@@ -811,7 +805,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-[`Context`](globals.md#context-2)
+[`Context`](globals.md#context)
 
 </td>
 </tr>
@@ -1425,7 +1419,7 @@ The features to "enable" as fallbacks when the API is unavailable (optional).
 </td>
 <td>
 
-`string` \| (`context`: [`Context`](globals.md#context-2)) => `Partial`\<`Record`\<keyof `TypedFeatures`, `boolean`\>\>
+`string` \| (`context`: [`Context`](globals.md#context)) => `Partial`\<`Record`\<keyof `TypedFeatures`, `boolean`\>\>
 
 </td>
 <td>
