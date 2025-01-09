@@ -50,3 +50,5 @@ We can forward all features or pick certain features and send access state to Po
 Which will look like this on PostHog:
 
 <figure><img src="../.gitbook/assets/CleanShot 2025-01-09 at 9 .44.28@2x.png" alt=""><figcaption></figcaption></figure>
+
+You may want to add the property to the user's group as well.
