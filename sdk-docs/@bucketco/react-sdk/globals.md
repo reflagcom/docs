@@ -17,14 +17,18 @@ pagination:
 
 ## Interfaces
 
+<a id="features"></a>
+
 ### Features
 
 ## Type Aliases
 
+<a id="bucketprops"></a>
+
 ### BucketProps
 
 ```ts
-type BucketProps: BucketContext & {
+type BucketProps = BucketContext & {
   apiBaseUrl: string;
   children: ReactNode;
   debug: boolean;
@@ -129,7 +133,7 @@ type BucketProps: BucketContext & {
 </td>
 <td>
 
-`Omit`\<[`FeaturesOptions`](../browser-sdk/index/README.md#featuresoptions), `"fallbackFeatures"`\> & \{
+`Omit`\<[`FeaturesOptions`](../browser-sdk/globals.md#featuresoptions), `"fallbackFeatures"`\> & \{
   `fallbackFeatures`: [`FeatureKey`](globals.md#featurekey)[];
  \}
 
@@ -148,7 +152,7 @@ type BucketProps: BucketContext & {
 </td>
 <td>
 
-[`FeedbackOptions`](../browser-sdk/index/README.md#feedbackoptions)
+[`FeedbackOptions`](../browser-sdk/globals.md#feedbackoptions)
 
 </td>
 <td>
@@ -201,7 +205,7 @@ Use `apiBaseUrl` instead.
 </td>
 <td>
 
-(...`args`: `ConstructorParameters`\<*typeof* [`BucketClient`](../browser-sdk/index/README.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/index/README.md#bucketclient)
+(...`args`: `ConstructorParameters`\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
 
 </td>
 <td>
@@ -266,23 +270,19 @@ Use `sseBaseUrl` instead.
 </tbody>
 </table>
 
-#### Defined in
-
-[index.tsx:48](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L48)
-
 ***
+
+<a id="featurekey"></a>
 
 ### FeatureKey
 
 ```ts
-type FeatureKey: keyof keyof Features extends never ? Record<string, boolean> : Features;
+type FeatureKey = keyof keyof Features extends never ? Record<string, boolean> : Features;
 ```
 
-#### Defined in
-
-[index.tsx:29](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L29)
-
 ## Functions
+
+<a id="bucketprovider"></a>
 
 ### BucketProvider()
 
@@ -319,21 +319,21 @@ function BucketProvider(__namedParameters: BucketProps): Element
 
 `Element`
 
-#### Defined in
-
-[index.tsx:78](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L78)
-
 ***
+
+<a id="usefeature"></a>
 
 ### useFeature()
 
 ```ts
-function useFeature(key: string): {
+function useFeature(key: string): 
+  | {
   isEnabled: boolean;
   isLoading: true;
   requestFeedback: (opts: Omit<RequestFeedbackData, "featureId" | "featureKey">) => undefined | void;
   track: () => undefined | Promise<undefined | Response>;
- } | {
+ }
+  | {
   isLoading: false;
   requestFeedback: (opts: Omit<RequestFeedbackData, "featureId" | "featureKey">) => undefined | void;
   track: () => undefined | Promise<undefined | Response>;
@@ -379,23 +379,22 @@ function HuddleButton() {
 
 #### Returns
 
-\{
+  \| \{
   `isEnabled`: `boolean`;
   `isLoading`: `true`;
-  `requestFeedback`: (`opts`: `Omit`\<[`RequestFeedbackData`](../browser-sdk/index/README.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
+  `requestFeedback`: (`opts`: `Omit`\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
   `track`: () => `undefined` \| `Promise`\<`undefined` \| `Response`\>;
- \} \| \{
+ \}
+  \| \{
   `isLoading`: `false`;
-  `requestFeedback`: (`opts`: `Omit`\<[`RequestFeedbackData`](../browser-sdk/index/README.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
+  `requestFeedback`: (`opts`: `Omit`\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
   `track`: () => `undefined` \| `Promise`\<`undefined` \| `Response`\>;
   get `isEnabled`: `boolean`;
  \}
 
-#### Defined in
-
-[index.tsx:178](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L178)
-
 ***
+
+<a id="userequestfeedback"></a>
 
 ### useRequestFeedback()
 
@@ -406,7 +405,7 @@ function useRequestFeedback(): (options: RequestFeedbackData) => undefined | voi
 Returns a function to open up the feedback form
 Note: When calling `useRequestFeedback`, user/company must already be set.
 
-See [link](../browser-sdk/documents/FEEDBACK.md) for more information
+See [link](../../documents/FEEDBACK.md) for more information
 
 ```ts
 const requestFeedback = useRequestFeedback();
@@ -438,7 +437,7 @@ bucket.requestFeedback({
 </td>
 <td>
 
-[`RequestFeedbackData`](../browser-sdk/index/README.md#requestfeedbackdata)
+[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -449,11 +448,9 @@ bucket.requestFeedback({
 
 `undefined` \| `void`
 
-#### Defined in
-
-[index.tsx:249](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L249)
-
 ***
+
+<a id="usesendfeedback"></a>
 
 ### useSendFeedback()
 
@@ -464,7 +461,7 @@ function useSendFeedback(): (opts: UnassignedFeedback) => undefined | Promise<un
 Returns a function to manually send feedback collected from a user.
 Note: When calling `useSendFeedback`, user/company must already be set.
 
-See [link](../browser-sdk/documents/FEEDBACK.md) for more information
+See [link](../../documents/FEEDBACK.md) for more information
 
 ```ts
 const sendFeedback = useSendFeedback();
@@ -498,7 +495,7 @@ sendFeedback({
 </td>
 <td>
 
-[`UnassignedFeedback`](../browser-sdk/index/README.md#unassignedfeedback)
+[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
 
 </td>
 </tr>
@@ -509,11 +506,9 @@ sendFeedback({
 
 `undefined` \| `Promise`\<`undefined` \| `Response`\>
 
-#### Defined in
-
-[index.tsx:270](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L270)
-
 ***
+
+<a id="usetrack"></a>
 
 ### useTrack()
 
@@ -574,11 +569,9 @@ track("Started Huddle", { button: "cta" });
 
 `undefined` \| `Promise`\<`undefined` \| `Response`\>
 
-#### Defined in
-
-[index.tsx:229](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L229)
-
 ***
+
+<a id="useupdatecompany"></a>
 
 ### useUpdateCompany()
 
@@ -630,11 +623,9 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Features updated")
 
 `undefined` \| `Promise`\<`void`\>
 
-#### Defined in
-
-[index.tsx:307](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L307)
-
 ***
+
+<a id="useupdateothercontext"></a>
 
 ### useUpdateOtherContext()
 
@@ -687,11 +678,9 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 
 `undefined` \| `Promise`\<`void`\>
 
-#### Defined in
-
-[index.tsx:326](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L326)
-
 ***
+
+<a id="useupdateuser"></a>
 
 ### useUpdateUser()
 
@@ -743,7 +732,3 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Features updated"))
 ##### Returns
 
 `undefined` \| `Promise`\<`void`\>
-
-#### Defined in
-
-[index.tsx:288](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L288)

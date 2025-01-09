@@ -13,15 +13,19 @@ pagination:
   visible: true
 ---
 
-# index
+# @bucketco/browser-sdk
 
 ## Classes
+
+<a id="bucketclient"></a>
 
 ### BucketClient
 
 BucketClient lets you interact with the Bucket API.
 
 #### Constructors
+
+<a id="constructors-1"></a>
 
 ##### new BucketClient()
 
@@ -49,7 +53,7 @@ Create a new BucketClient instance.
 </td>
 <td>
 
-[`InitOptions`](README.md#initoptions)
+[`InitOptions`](globals.md#initoptions)
 
 </td>
 </tr>
@@ -58,13 +62,11 @@ Create a new BucketClient instance.
 
 ###### Returns
 
-[`BucketClient`](README.md#bucketclient)
-
-###### Defined in
-
-[client.ts:211](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L211)
+[`BucketClient`](globals.md#bucketclient)
 
 #### Methods
+
+<a id="feedback-2"></a>
 
 ##### feedback()
 
@@ -92,7 +94,7 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 </td>
 <td>
 
-[`Feedback`](README.md#feedback-6)
+[`Feedback`](globals.md#feedback-6)
 
 </td>
 </tr>
@@ -103,11 +105,9 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 
 `Promise`\<`undefined` \| `Response`\>
 
-###### Defined in
-
-[client.ts:410](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L410)
-
 ***
+
+<a id="getfeature-2"></a>
 
 ##### getFeature()
 
@@ -144,15 +144,13 @@ Return a feature. Accessing `isEnabled` will automatically send a `check` event.
 
 ###### Returns
 
-[`Feature`](README.md#feature)
+[`Feature`](globals.md#feature)
 
 A feature
 
-###### Defined in
-
-[client.ts:512](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L512)
-
 ***
+
+<a id="getfeatures-2"></a>
 
 ##### getFeatures()
 
@@ -165,15 +163,13 @@ Accessing a feature will *not* send a check event
 
 ###### Returns
 
-[`RawFeatures`](README.md#rawfeatures)
+[`RawFeatures`](globals.md#rawfeatures)
 
 Map of features
 
-###### Defined in
-
-[client.ts:504](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L504)
-
 ***
+
+<a id="initialize-2"></a>
 
 ##### initialize()
 
@@ -189,11 +185,9 @@ Must be called before calling other SDK methods.
 
 `Promise`\<`void`\>
 
-###### Defined in
-
-[client.ts:279](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L279)
-
 ***
+
+<a id="onfeaturesupdated-2"></a>
 
 ##### onFeaturesUpdated()
 
@@ -245,11 +239,9 @@ this will be called when the features are updated.
 
 `void`
 
-###### Defined in
-
-[client.ts:372](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L372)
-
 ***
+
+<a id="requestfeedback-2"></a>
 
 ##### requestFeedback()
 
@@ -279,7 +271,7 @@ This can be used to collect feedback from users in Bucket in cases where Automat
 </td>
 <td>
 
-[`RequestFeedbackData`](README.md#requestfeedbackdata)
+[`RequestFeedbackData`](globals.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -290,11 +282,9 @@ This can be used to collect feedback from users in Bucket in cases where Automat
 
 `void`
 
-###### Defined in
-
-[client.ts:432](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L432)
-
 ***
+
+<a id="sendcheckevent-2"></a>
 
 ##### sendCheckEvent()
 
@@ -320,7 +310,7 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 </td>
 <td>
 
-[`CheckEvent`](README.md#checkevent-2)
+[`CheckEvent`](globals.md#checkevent-2)
 
 </td>
 </tr>
@@ -331,11 +321,9 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 
 `Promise`\<`boolean`\>
 
-###### Defined in
-
-[client.ts:543](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L543)
-
 ***
+
+<a id="stop-2"></a>
 
 ##### stop()
 
@@ -352,11 +340,9 @@ any onFeaturesUpdated listeners.
 
 `Promise`\<`void`\>
 
-###### Defined in
-
-[client.ts:554](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L554)
-
 ***
+
+<a id="track-2"></a>
 
 ##### track()
 
@@ -418,11 +404,9 @@ Any attributes you want to attach to the event
 
 `Promise`\<`undefined` \| `Response`\>
 
-###### Defined in
-
-[client.ts:382](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L382)
-
 ***
+
+<a id="updatecompany-2"></a>
 
 ##### updateCompany()
 
@@ -463,11 +447,9 @@ Attempting to update the company ID will log a warning and be ignored.
 
 `Promise`\<`void`\>
 
-###### Defined in
-
-[client.ts:333](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L333)
-
 ***
+
+<a id="updateothercontext-2"></a>
 
 ##### updateOtherContext()
 
@@ -508,11 +490,9 @@ Updates to the company ID will be ignored.
 
 `Promise`\<`void`\>
 
-###### Defined in
-
-[client.ts:354](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L354)
-
 ***
+
+<a id="updateuser-2"></a>
 
 ##### updateUser()
 
@@ -553,11 +533,9 @@ Attempting to update the user ID will log a warning and be ignored.
 
 `Promise`\<`void`\>
 
-###### Defined in
-
-[client.ts:309](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L309)
-
 ## Interfaces
+
+<a id="bucketcontext"></a>
 
 ### BucketContext
 
@@ -565,11 +543,13 @@ Attempting to update the user ID will log a warning and be ignored.
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-| `company?` | [`CompanyContext`](README.md#companycontext) | Company related context |
-| `otherContext?` | `Record`\<`string`, `undefined` \| `string` \| `number`\> | Context which is not related to a user or a company |
-| `user?` | [`UserContext`](README.md#usercontext) | User related context |
+| <a id="company-3"></a> `company?` | [`CompanyContext`](globals.md#companycontext) | Company related context |
+| <a id="othercontext-3"></a> `otherContext?` | `Record`\<`string`, `undefined` \| `string` \| `number`\> | Context which is not related to a user or a company |
+| <a id="user-3"></a> `user?` | [`UserContext`](globals.md#usercontext) | User related context |
 
 ***
+
+<a id="checkevent-2"></a>
 
 ### CheckEvent
 
@@ -579,11 +559,13 @@ Event representing checking the feature flag evaluation result
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-| `key` | `string` | Feature key |
-| `value` | `boolean` | Result of feature flag evaluation |
-| `version?` | `number` | Version of targeting rules |
+| <a id="key-9"></a> `key` | `string` | Feature key |
+| <a id="value-1"></a> `value` | `boolean` | Result of feature flag evaluation |
+| <a id="version-1"></a> `version?` | `number` | Version of targeting rules |
 
 ***
+
+<a id="companycontext"></a>
 
 ### CompanyContext
 
@@ -592,16 +574,20 @@ Id should always be present so that it can be referenced to an existing company.
 
 #### Indexable
 
- \[`key`: `string`\]: `undefined` \| `string` \| `number`
+```ts
+[key: string]: undefined | string | number
+```
 
 #### Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-| `id` | `undefined` \| `string` \| `number` | Company id |
-| `name?` | `string` | Company name |
+| <a id="id-1"></a> `id` | `undefined` \| `string` \| `number` | Company id |
+| <a id="name-1"></a> `name?` | `string` | Company name |
 
 ***
+
+<a id="feature"></a>
 
 ### Feature
 
@@ -609,11 +595,13 @@ Id should always be present so that it can be referenced to an existing company.
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-| `isEnabled` | `boolean` | Result of feature flag evaluation |
-| `requestFeedback` | (`options`: `Omit`\<[`RequestFeedbackData`](README.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `void` | - |
-| `track` | () => `Promise`\<`undefined` \| `Response`\> | Function to send analytics events for this feature |
+| <a id="isenabled-1"></a> `isEnabled` | `boolean` | Result of feature flag evaluation |
+| <a id="requestfeedback-5"></a> `requestFeedback` | (`options`: `Omit`\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `void` | - |
+| <a id="track-5"></a> `track` | () => `Promise`\<`undefined` \| `Response`\> | Function to send analytics events for this feature |
 
 ***
+
+<a id="feedbackscoresubmission"></a>
 
 ### FeedbackScoreSubmission
 
@@ -621,11 +609,13 @@ Id should always be present so that it can be referenced to an existing company.
 
 | Property | Type |
 | ------ | ------ |
-| `feedbackId?` | `string` |
-| `question` | `string` |
-| `score` | `number` |
+| <a id="feedbackid-1"></a> `feedbackId?` | `string` |
+| <a id="question-1"></a> `question` | `string` |
+| <a id="score-1"></a> `score` | `number` |
 
 ***
+
+<a id="feedbacksubmission"></a>
 
 ### FeedbackSubmission
 
@@ -633,12 +623,14 @@ Id should always be present so that it can be referenced to an existing company.
 
 | Property | Type |
 | ------ | ------ |
-| `comment` | `string` |
-| `feedbackId?` | `string` |
-| `question` | `string` |
-| `score` | `number` |
+| <a id="comment-1"></a> `comment` | `string` |
+| <a id="feedbackid-3"></a> `feedbackId?` | `string` |
+| <a id="question-3"></a> `question` | `string` |
+| <a id="score-3"></a> `score` | `number` |
 
 ***
+
+<a id="initoptions"></a>
 
 ### InitOptions
 
@@ -648,25 +640,29 @@ BucketClient initialization options.
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-| `apiBaseUrl?` | `string` | Base URL of Bucket servers. You can override this to use your mocked server. |
-| `company?` | [`CompanyContext`](README.md#companycontext) | Company related context. If you provide `id` Bucket will enrich the evaluation context with company attributes on Bucket servers. |
-| `enableTracking?` | `boolean` | - |
-| `features?` | [`FeaturesOptions`](README.md#featuresoptions) | Feature flag specific configuration |
-| `feedback?` | [`FeedbackOptions`](README.md#feedbackoptions) | AutoFeedback specific configuration |
-| ~~`host?`~~ | `string` | **Deprecated** Use `apiBaseUrl` instead. |
-| `logger?` | [`Logger`](README.md#logger-2) | You can provide a logger to see the logs of the network calls. This is undefined by default. For debugging purposes you can just set the browser console to this property: `options.logger = window.console;` |
-| `otherContext?` | `Record`\<`string`, `any`\> | Context not related to users or companies |
-| `publishableKey` | `string` | Publishable key for authentication |
-| `sdkVersion?` | `string` | Version of the SDK |
-| `sseBaseUrl?` | `string` | Base URL of Bucket servers for SSE connections used by AutoFeedback. |
-| ~~`sseHost?`~~ | `string` | **Deprecated** Use `sseBaseUrl` instead. |
-| `user?` | [`UserContext`](README.md#usercontext) | User related context. If you provide `id` Bucket will enrich the evaluation context with user attributes on Bucket servers. |
+| <a id="apibaseurl-1"></a> `apiBaseUrl?` | `string` | Base URL of Bucket servers. You can override this to use your mocked server. |
+| <a id="company-5"></a> `company?` | [`CompanyContext`](globals.md#companycontext) | Company related context. If you provide `id` Bucket will enrich the evaluation context with company attributes on Bucket servers. |
+| <a id="enabletracking-1"></a> `enableTracking?` | `boolean` | - |
+| <a id="features-1"></a> `features?` | [`FeaturesOptions`](globals.md#featuresoptions) | Feature flag specific configuration |
+| <a id="feedback-5"></a> `feedback?` | [`FeedbackOptions`](globals.md#feedbackoptions) | AutoFeedback specific configuration |
+| <a id="host-1"></a> ~~`host?`~~ | `string` | **Deprecated** Use `apiBaseUrl` instead. |
+| <a id="logger-1"></a> `logger?` | [`Logger`](globals.md#logger-2) | You can provide a logger to see the logs of the network calls. This is undefined by default. For debugging purposes you can just set the browser console to this property: `options.logger = window.console;` |
+| <a id="othercontext-5"></a> `otherContext?` | `Record`\<`string`, `any`\> | Context not related to users or companies |
+| <a id="publishablekey-1"></a> `publishableKey` | `string` | Publishable key for authentication |
+| <a id="sdkversion-1"></a> `sdkVersion?` | `string` | Version of the SDK |
+| <a id="ssebaseurl-1"></a> `sseBaseUrl?` | `string` | Base URL of Bucket servers for SSE connections used by AutoFeedback. |
+| <a id="ssehost-1"></a> ~~`sseHost?`~~ | `string` | **Deprecated** Use `sseBaseUrl` instead. |
+| <a id="user-5"></a> `user?` | [`UserContext`](globals.md#usercontext) | User related context. If you provide `id` Bucket will enrich the evaluation context with user attributes on Bucket servers. |
 
 ***
+
+<a id="logger-2"></a>
 
 ### Logger
 
 #### Methods
+
+<a id="debug-2"></a>
 
 ##### debug()
 
@@ -715,11 +711,9 @@ debug(message: string, ...args: any[]): void
 
 `void`
 
-###### Defined in
-
-[logger.ts:2](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/logger.ts#L2)
-
 ***
+
+<a id="error-2"></a>
 
 ##### error()
 
@@ -768,11 +762,9 @@ error(message: string, ...args: any[]): void
 
 `void`
 
-###### Defined in
-
-[logger.ts:5](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/logger.ts#L5)
-
 ***
+
+<a id="info-2"></a>
 
 ##### info()
 
@@ -821,11 +813,9 @@ info(message: string, ...args: any[]): void
 
 `void`
 
-###### Defined in
-
-[logger.ts:3](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/logger.ts#L3)
-
 ***
+
+<a id="warn-2"></a>
 
 ##### warn()
 
@@ -874,11 +864,9 @@ warn(message: string, ...args: any[]): void
 
 `void`
 
-###### Defined in
-
-[logger.ts:4](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/logger.ts#L4)
-
 ***
+
+<a id="onscoresubmitresult"></a>
 
 ### OnScoreSubmitResult
 
@@ -886,9 +874,11 @@ warn(message: string, ...args: any[]): void
 
 | Property | Type |
 | ------ | ------ |
-| `feedbackId` | `string` |
+| <a id="feedbackid-5"></a> `feedbackId` | `string` |
 
 ***
+
+<a id="openfeedbackformoptions"></a>
 
 ### OpenFeedbackFormOptions
 
@@ -896,40 +886,48 @@ warn(message: string, ...args: any[]): void
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-| `key` | `string` | - |
-| `onClose?` | () => `void` | - |
-| `onDismiss?` | () => `void` | - |
-| `onScoreSubmit?` | (`data`: [`FeedbackScoreSubmission`](README.md#feedbackscoresubmission)) => `Promise`\<[`OnScoreSubmitResult`](README.md#onscoresubmitresult)\> | - |
-| `onSubmit` | (`data`: [`FeedbackSubmission`](README.md#feedbacksubmission)) => `void` \| `Promise`\<`void`\> | - |
-| `openWithCommentVisible?` | `boolean` | Open the form with both the score and comment fields visible. Defaults to `false` |
-| `position?` | [`FeedbackPosition`](README.md#feedbackposition) | Control the placement and behavior of the feedback form. |
-| `title?` | `string` | - |
-| `translations?` | `Partial`\<[`FeedbackTranslations`](README.md#feedbacktranslations)\> | Add your own custom translations for the feedback form. Undefined translation keys fall back to english defaults. |
+| <a id="key-12"></a> `key` | `string` | - |
+| <a id="onclose-1"></a> `onClose?` | () => `void` | - |
+| <a id="ondismiss-1"></a> `onDismiss?` | () => `void` | - |
+| <a id="onscoresubmit-1"></a> `onScoreSubmit?` | (`data`: [`FeedbackScoreSubmission`](globals.md#feedbackscoresubmission)) => `Promise`\<[`OnScoreSubmitResult`](globals.md#onscoresubmitresult)\> | - |
+| <a id="onsubmit-1"></a> `onSubmit` | (`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => `void` \| `Promise`\<`void`\> | - |
+| <a id="openwithcommentvisible-1"></a> `openWithCommentVisible?` | `boolean` | Open the form with both the score and comment fields visible. Defaults to `false` |
+| <a id="position-1"></a> `position?` | [`FeedbackPosition`](globals.md#feedbackposition) | Control the placement and behavior of the feedback form. |
+| <a id="title-1"></a> `title?` | `string` | - |
+| <a id="translations-1"></a> `translations?` | `Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\> | Add your own custom translations for the feedback form. Undefined translation keys fall back to english defaults. |
 
 ***
+
+<a id="usercontext"></a>
 
 ### UserContext
 
 #### Indexable
 
- \[`key`: `string`\]: `undefined` \| `string` \| `number`
+```ts
+[key: string]: undefined | string | number
+```
 
 #### Properties
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-| `email?` | `string` | User email |
-| `id` | `undefined` \| `string` \| `number` | User id |
-| `name?` | `string` | User name |
+| <a id="email-1"></a> `email?` | `string` | User email |
+| <a id="id-3"></a> `id` | `undefined` \| `string` \| `number` | User id |
+| <a id="name-3"></a> `name?` | `string` | User name |
 
 ## Type Aliases
+
+<a id="featureidentifier"></a>
 
 ### FeatureIdentifier
 
 ```ts
-type FeatureIdentifier: {
+type FeatureIdentifier = 
+  | {
   featureId: string;
- } | {
+ }
+  | {
   featureKey: string;
 };
 ```
@@ -1006,16 +1004,14 @@ Bucket feature key.
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/feedback.ts:72](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L72)
-
 ***
+
+<a id="featuresoptions"></a>
 
 ### FeaturesOptions
 
 ```ts
-type FeaturesOptions: {
+type FeaturesOptions = {
   expireTimeMs: number;
   fallbackFeatures: string[];
   staleTimeMs: number;
@@ -1038,7 +1034,7 @@ type FeaturesOptions: {
 <tr>
 <td>
 
-`expireTimeMs`?
+<a id="expiretimems-2"></a> `expireTimeMs`?
 
 </td>
 <td>
@@ -1055,7 +1051,7 @@ type FeaturesOptions: {
 <tr>
 <td>
 
-`fallbackFeatures`?
+<a id="fallbackfeatures-2"></a> `fallbackFeatures`?
 
 </td>
 <td>
@@ -1073,7 +1069,7 @@ if SDK fails to fetch features from Bucket servers.
 <tr>
 <td>
 
-`staleTimeMs`?
+<a id="staletimems-2"></a> `staleTimeMs`?
 
 </td>
 <td>
@@ -1090,7 +1086,7 @@ if SDK fails to fetch features from Bucket servers.
 <tr>
 <td>
 
-`staleWhileRevalidate`?
+<a id="stalewhilerevalidate-2"></a> `staleWhileRevalidate`?
 
 </td>
 <td>
@@ -1108,7 +1104,7 @@ but refetching
 <tr>
 <td>
 
-`timeoutMs`?
+<a id="timeoutms-2"></a> `timeoutMs`?
 
 </td>
 <td>
@@ -1125,16 +1121,14 @@ Timeout in miliseconds
 </tbody>
 </table>
 
-#### Defined in
-
-[feature/features.ts:33](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feature/features.ts#L33)
-
 ***
+
+<a id="feedback-6"></a>
 
 ### Feedback
 
 ```ts
-type Feedback: UnassignedFeedback & {
+type Feedback = UnassignedFeedback & {
   companyId: string;
   userId: string;
 };
@@ -1188,16 +1182,14 @@ User ID from your own application.
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/feedback.ts:161](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L161)
-
 ***
+
+<a id="feedbackoptions"></a>
 
 ### FeedbackOptions
 
 ```ts
-type FeedbackOptions: {
+type FeedbackOptions = {
   autoFeedbackHandler: FeedbackPromptHandler;
   enableAutoFeedback: boolean;
   enableLiveSatisfaction: boolean;
@@ -1223,12 +1215,12 @@ type FeedbackOptions: {
 <tr>
 <td>
 
-`autoFeedbackHandler`?
+<a id="autofeedbackhandler-2"></a> `autoFeedbackHandler`?
 
 </td>
 <td>
 
-[`FeedbackPromptHandler`](README.md#feedbackprompthandler)
+[`FeedbackPromptHandler`](globals.md#feedbackprompthandler)
 
 </td>
 <td>
@@ -1240,7 +1232,7 @@ type FeedbackOptions: {
 <tr>
 <td>
 
-`enableAutoFeedback`?
+<a id="enableautofeedback-2"></a> `enableAutoFeedback`?
 
 </td>
 <td>
@@ -1257,7 +1249,7 @@ Enables automatic feedback prompting if it's set up in Bucket
 <tr>
 <td>
 
-`enableLiveSatisfaction`?
+<a id="enablelivesatisfaction-2"></a> `enableLiveSatisfaction`?
 
 </td>
 <td>
@@ -1276,12 +1268,12 @@ Use `enableAutoFeedback` instead
 <tr>
 <td>
 
-`liveSatisfactionHandler`?
+<a id="livesatisfactionhandler-2"></a> `liveSatisfactionHandler`?
 
 </td>
 <td>
 
-[`FeedbackPromptHandler`](README.md#feedbackprompthandler)
+[`FeedbackPromptHandler`](globals.md#feedbackprompthandler)
 
 </td>
 <td>
@@ -1295,14 +1287,14 @@ Use `autoFeedbackHandler` instead
 <tr>
 <td>
 
-`ui`?
+<a id="ui-2"></a> `ui`?
 
 </td>
 <td>
 
 \{
-  `position`: [`FeedbackPosition`](README.md#feedbackposition);
-  `translations`: `Partial`\<[`FeedbackTranslations`](README.md#feedbacktranslations)\>;
+  `position`: [`FeedbackPosition`](globals.md#feedbackposition);
+  `translations`: `Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>;
  \}
 
 </td>
@@ -1320,7 +1312,7 @@ With these options you can override the look of the feedback prompt
 </td>
 <td>
 
-[`FeedbackPosition`](README.md#feedbackposition)
+[`FeedbackPosition`](globals.md#feedbackposition)
 
 </td>
 <td>
@@ -1337,7 +1329,7 @@ Control the placement and behavior of the feedback form.
 </td>
 <td>
 
-`Partial`\<[`FeedbackTranslations`](README.md#feedbacktranslations)\>
+`Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
 
 </td>
 <td>
@@ -1350,49 +1342,46 @@ Undefined translation keys fall back to english defaults.
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/feedback.ts:22](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L22)
-
 ***
+
+<a id="feedbackplacement"></a>
 
 ### FeedbackPlacement
 
 ```ts
-type FeedbackPlacement: "bottom-right" | "bottom-left" | "top-right" | "top-left";
+type FeedbackPlacement = "bottom-right" | "bottom-left" | "top-right" | "top-left";
 ```
 
-#### Defined in
-
-[feedback/ui/types.ts:3](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/types.ts#L3)
-
 ***
+
+<a id="feedbackposition"></a>
 
 ### FeedbackPosition
 
 ```ts
-type FeedbackPosition: {
+type FeedbackPosition = 
+  | {
   type: "MODAL";
- } | {
+ }
+  | {
   offset: Offset;
   placement: FeedbackPlacement;
   type: "DIALOG";
- } | {
+ }
+  | {
   anchor: HTMLElement | null;
   type: "POPOVER";
 };
 ```
 
-#### Defined in
-
-[feedback/ui/types.ts:20](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/types.ts#L20)
-
 ***
+
+<a id="feedbackprompt"></a>
 
 ### FeedbackPrompt
 
 ```ts
-type FeedbackPrompt: {
+type FeedbackPrompt = {
   featureId: string;
   promptId: string;
   question: string;
@@ -1415,7 +1404,7 @@ type FeedbackPrompt: {
 <tr>
 <td>
 
-`featureId`
+<a id="featureid-2"></a> `featureId`
 
 </td>
 <td>
@@ -1432,7 +1421,7 @@ Feature ID from Bucket
 <tr>
 <td>
 
-`promptId`
+<a id="promptid-2"></a> `promptId`
 
 </td>
 <td>
@@ -1449,7 +1438,7 @@ Id of the prompt
 <tr>
 <td>
 
-`question`
+<a id="question-6"></a> `question`
 
 </td>
 <td>
@@ -1466,7 +1455,7 @@ Specific question user was asked
 <tr>
 <td>
 
-`showAfter`
+<a id="showafter-2"></a> `showAfter`
 
 </td>
 <td>
@@ -1483,7 +1472,7 @@ Feedback prompt should appear only after this time
 <tr>
 <td>
 
-`showBefore`
+<a id="showbefore-2"></a> `showBefore`
 
 </td>
 <td>
@@ -1500,16 +1489,14 @@ Feedback prompt will not be shown after this time
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/feedback.ts:173](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L173)
-
 ***
+
+<a id="feedbackprompthandler"></a>
 
 ### FeedbackPromptHandler()
 
 ```ts
-type FeedbackPromptHandler: (prompt: FeedbackPrompt, handlers: FeedbackPromptHandlerCallbacks) => void;
+type FeedbackPromptHandler = (prompt: FeedbackPrompt, handlers: FeedbackPromptHandlerCallbacks) => void;
 ```
 
 #### Parameters
@@ -1530,7 +1517,7 @@ type FeedbackPromptHandler: (prompt: FeedbackPrompt, handlers: FeedbackPromptHan
 </td>
 <td>
 
-[`FeedbackPrompt`](README.md#feedbackprompt)
+[`FeedbackPrompt`](globals.md#feedbackprompt)
 
 </td>
 </tr>
@@ -1542,7 +1529,7 @@ type FeedbackPromptHandler: (prompt: FeedbackPrompt, handlers: FeedbackPromptHan
 </td>
 <td>
 
-[`FeedbackPromptHandlerCallbacks`](README.md#feedbackprompthandlercallbacks)
+[`FeedbackPromptHandlerCallbacks`](globals.md#feedbackprompthandlercallbacks)
 
 </td>
 </tr>
@@ -1553,16 +1540,14 @@ type FeedbackPromptHandler: (prompt: FeedbackPrompt, handlers: FeedbackPromptHan
 
 `void`
 
-#### Defined in
-
-[feedback/feedback.ts:223](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L223)
-
 ***
+
+<a id="feedbackprompthandlercallbacks"></a>
 
 ### FeedbackPromptHandlerCallbacks
 
 ```ts
-type FeedbackPromptHandlerCallbacks: {
+type FeedbackPromptHandlerCallbacks = {
   openFeedbackForm: (options: FeedbackPromptHandlerOpenFeedbackFormOptions) => void;
   reply: FeedbackPromptReplyHandler;
 };
@@ -1581,40 +1566,38 @@ type FeedbackPromptHandlerCallbacks: {
 <tr>
 <td>
 
-`openFeedbackForm`
+<a id="openfeedbackform-2"></a> `openFeedbackForm`
 
 </td>
 <td>
 
-(`options`: [`FeedbackPromptHandlerOpenFeedbackFormOptions`](README.md#feedbackprompthandleropenfeedbackformoptions)) => `void`
+(`options`: [`FeedbackPromptHandlerOpenFeedbackFormOptions`](globals.md#feedbackprompthandleropenfeedbackformoptions)) => `void`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`reply`
+<a id="reply-2"></a> `reply`
 
 </td>
 <td>
 
-[`FeedbackPromptReplyHandler`](README.md#feedbackpromptreplyhandler)
+[`FeedbackPromptReplyHandler`](globals.md#feedbackpromptreplyhandler)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/feedback.ts:216](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L216)
-
 ***
+
+<a id="feedbackprompthandleropenfeedbackformoptions"></a>
 
 ### FeedbackPromptHandlerOpenFeedbackFormOptions
 
 ```ts
-type FeedbackPromptHandlerOpenFeedbackFormOptions: Omit<RequestFeedbackOptions, 
+type FeedbackPromptHandlerOpenFeedbackFormOptions = Omit<RequestFeedbackOptions, 
   | "featureId"
   | "featureKey"
   | "userId"
@@ -1623,16 +1606,14 @@ type FeedbackPromptHandlerOpenFeedbackFormOptions: Omit<RequestFeedbackOptions,
 | "onDismiss">;
 ```
 
-#### Defined in
-
-[feedback/feedback.ts:211](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L211)
-
 ***
+
+<a id="feedbackpromptreply"></a>
 
 ### FeedbackPromptReply
 
 ```ts
-type FeedbackPromptReply: {
+type FeedbackPromptReply = {
   comment: string;
   companyId: string;
   question: string;
@@ -1653,7 +1634,7 @@ type FeedbackPromptReply: {
 <tr>
 <td>
 
-`comment`?
+<a id="comment-4"></a> `comment`?
 
 </td>
 <td>
@@ -1665,7 +1646,7 @@ type FeedbackPromptReply: {
 <tr>
 <td>
 
-`companyId`?
+<a id="companyid-2"></a> `companyId`?
 
 </td>
 <td>
@@ -1677,7 +1658,7 @@ type FeedbackPromptReply: {
 <tr>
 <td>
 
-`question`
+<a id="question-9"></a> `question`
 
 </td>
 <td>
@@ -1689,7 +1670,7 @@ type FeedbackPromptReply: {
 <tr>
 <td>
 
-`score`?
+<a id="score-6"></a> `score`?
 
 </td>
 <td>
@@ -1701,16 +1682,14 @@ type FeedbackPromptReply: {
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/feedback.ts:200](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L200)
-
 ***
+
+<a id="feedbackpromptreplyhandler"></a>
 
 ### FeedbackPromptReplyHandler()
 
 ```ts
-type FeedbackPromptReplyHandler: <T>(reply: T) => T extends null ? Promise<void> : Promise<{
+type FeedbackPromptReplyHandler = <T>(reply: T) => T extends null ? Promise<void> : Promise<{
   feedbackId: string;
 }>;
 ```
@@ -1727,7 +1706,7 @@ type FeedbackPromptReplyHandler: <T>(reply: T) => T extends null ? Promise<void>
 <tr>
 <td>
 
-`T` *extends* [`FeedbackPromptReply`](README.md#feedbackpromptreply) \| `null`
+`T` *extends* [`FeedbackPromptReply`](globals.md#feedbackpromptreply) \| `null`
 
 </td>
 </tr>
@@ -1765,16 +1744,14 @@ type FeedbackPromptReplyHandler: <T>(reply: T) => T extends null ? Promise<void>
   `feedbackId`: `string`;
  \}\>
 
-#### Defined in
-
-[feedback/feedback.ts:207](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L207)
-
 ***
+
+<a id="feedbacktranslations"></a>
 
 ### FeedbackTranslations
 
 ```ts
-type FeedbackTranslations: {
+type FeedbackTranslations = {
   DefaultQuestionLabel: string;
   QuestionPlaceholder: string;
   ScoreDissatisfiedLabel: string;
@@ -1806,7 +1783,7 @@ with desired language translation
 <tr>
 <td>
 
-`DefaultQuestionLabel`
+<a id="defaultquestionlabel-2"></a> `DefaultQuestionLabel`
 
 </td>
 <td>
@@ -1818,7 +1795,7 @@ with desired language translation
 <tr>
 <td>
 
-`QuestionPlaceholder`
+<a id="questionplaceholder-2"></a> `QuestionPlaceholder`
 
 </td>
 <td>
@@ -1830,7 +1807,7 @@ with desired language translation
 <tr>
 <td>
 
-`ScoreDissatisfiedLabel`
+<a id="scoredissatisfiedlabel-2"></a> `ScoreDissatisfiedLabel`
 
 </td>
 <td>
@@ -1842,7 +1819,7 @@ with desired language translation
 <tr>
 <td>
 
-`ScoreNeutralLabel`
+<a id="scoreneutrallabel-2"></a> `ScoreNeutralLabel`
 
 </td>
 <td>
@@ -1854,7 +1831,7 @@ with desired language translation
 <tr>
 <td>
 
-`ScoreSatisfiedLabel`
+<a id="scoresatisfiedlabel-2"></a> `ScoreSatisfiedLabel`
 
 </td>
 <td>
@@ -1866,7 +1843,7 @@ with desired language translation
 <tr>
 <td>
 
-`ScoreStatusDescription`
+<a id="scorestatusdescription-2"></a> `ScoreStatusDescription`
 
 </td>
 <td>
@@ -1878,7 +1855,7 @@ with desired language translation
 <tr>
 <td>
 
-`ScoreStatusLoading`
+<a id="scorestatusloading-2"></a> `ScoreStatusLoading`
 
 </td>
 <td>
@@ -1890,7 +1867,7 @@ with desired language translation
 <tr>
 <td>
 
-`ScoreStatusReceived`
+<a id="scorestatusreceived-2"></a> `ScoreStatusReceived`
 
 </td>
 <td>
@@ -1902,7 +1879,7 @@ with desired language translation
 <tr>
 <td>
 
-`ScoreVeryDissatisfiedLabel`
+<a id="scoreverydissatisfiedlabel-2"></a> `ScoreVeryDissatisfiedLabel`
 
 </td>
 <td>
@@ -1914,7 +1891,7 @@ with desired language translation
 <tr>
 <td>
 
-`ScoreVerySatisfiedLabel`
+<a id="scoreverysatisfiedlabel-2"></a> `ScoreVerySatisfiedLabel`
 
 </td>
 <td>
@@ -1926,7 +1903,7 @@ with desired language translation
 <tr>
 <td>
 
-`SendButton`
+<a id="sendbutton-2"></a> `SendButton`
 
 </td>
 <td>
@@ -1938,7 +1915,7 @@ with desired language translation
 <tr>
 <td>
 
-`SuccessMessage`
+<a id="successmessage-2"></a> `SuccessMessage`
 
 </td>
 <td>
@@ -1950,16 +1927,14 @@ with desired language translation
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/ui/types.ts:75](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/types.ts#L75)
-
 ***
+
+<a id="offset"></a>
 
 ### Offset
 
 ```ts
-type Offset: {
+type Offset = {
   x: string | number;
   y: string | number;
 };
@@ -1979,7 +1954,7 @@ type Offset: {
 <tr>
 <td>
 
-`x`?
+<a id="x-2"></a> `x`?
 
 </td>
 <td>
@@ -1996,7 +1971,7 @@ Offset from the nearest horizontal screen edge after placement is resolved
 <tr>
 <td>
 
-`y`?
+<a id="y-2"></a> `y`?
 
 </td>
 <td>
@@ -2013,16 +1988,14 @@ Offset from the nearest vertical screen edge after placement is resolved
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/ui/types.ts:9](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/types.ts#L9)
-
 ***
+
+<a id="rawfeature"></a>
 
 ### RawFeature
 
 ```ts
-type RawFeature: {
+type RawFeature = {
   isEnabled: boolean;
   key: string;
   targetingVersion: number;
@@ -2043,7 +2016,7 @@ type RawFeature: {
 <tr>
 <td>
 
-`isEnabled`
+<a id="isenabled-4"></a> `isEnabled`
 
 </td>
 <td>
@@ -2060,7 +2033,7 @@ Result of feature flag evaluation
 <tr>
 <td>
 
-`key`
+<a id="key-16"></a> `key`
 
 </td>
 <td>
@@ -2077,7 +2050,7 @@ Feature key
 <tr>
 <td>
 
-`targetingVersion`?
+<a id="targetingversion-2"></a> `targetingVersion`?
 
 </td>
 <td>
@@ -2094,28 +2067,24 @@ Version of targeting rules
 </tbody>
 </table>
 
-#### Defined in
-
-[feature/features.ts:12](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feature/features.ts#L12)
-
 ***
+
+<a id="rawfeatures"></a>
 
 ### RawFeatures
 
 ```ts
-type RawFeatures: Record<string, RawFeature | undefined>;
+type RawFeatures = Record<string, RawFeature | undefined>;
 ```
 
-#### Defined in
-
-[feature/features.ts:31](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feature/features.ts#L31)
-
 ***
+
+<a id="requestfeedbackdata"></a>
 
 ### RequestFeedbackData
 
 ```ts
-type RequestFeedbackData: Omit<OpenFeedbackFormOptions, "key" | "onSubmit"> & {
+type RequestFeedbackData = Omit<OpenFeedbackFormOptions, "key" | "onSubmit"> & {
   companyId: string;
   onAfterSubmit: (data: FeedbackSubmission) => void;
  } & FeatureIdentifier;
@@ -2157,7 +2126,7 @@ Company ID from your own application.
 </td>
 <td>
 
-(`data`: [`FeedbackSubmission`](README.md#feedbacksubmission)) => `void`
+(`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => `void`
 
 </td>
 <td>
@@ -2173,16 +2142,14 @@ copy of the feedback in your own application or CRM.
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/feedback.ts:88](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L88)
-
 ***
+
+<a id="requestfeedbackoptions"></a>
 
 ### RequestFeedbackOptions
 
 ```ts
-type RequestFeedbackOptions: RequestFeedbackData & {
+type RequestFeedbackOptions = RequestFeedbackData & {
   userId: string;
 };
 ```
@@ -2218,16 +2185,14 @@ User ID from your own application.
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/feedback.ts:107](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L107)
-
 ***
+
+<a id="unassignedfeedback"></a>
 
 ### UnassignedFeedback
 
 ```ts
-type UnassignedFeedback: {
+type UnassignedFeedback = {
   comment: string;
   feedbackId: string;
   promptedQuestion: string;
@@ -2381,11 +2346,9 @@ Source of the feedback, depending on how the user was asked
 </tbody>
 </table>
 
-#### Defined in
-
-[feedback/feedback.ts:114](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L114)
-
 ## Variables
+
+<a id="default_translations"></a>
 
 ### DEFAULT\_TRANSLATIONS
 
@@ -2415,11 +2378,9 @@ export const DEFAULT_TRANSLATIONS: FeedbackTranslations = {
 };
 ```
 
-#### Defined in
-
-[feedback/ui/config/defaultTranslations.tsx:6](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/config/defaultTranslations.tsx#L6)
-
 ***
+
+<a id="feedbackcontainerid"></a>
 
 ### feedbackContainerId
 
@@ -2429,11 +2390,9 @@ const feedbackContainerId: "bucket-feedback-dialog-container" = "bucket-feedback
 
 ID of HTML DIV element which contains the feedback dialog
 
-#### Defined in
-
-[feedback/ui/constants.ts:4](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/constants.ts#L4)
-
 ***
+
+<a id="propagatedevents"></a>
 
 ### propagatedEvents
 
@@ -2444,7 +2403,3 @@ const propagatedEvents: string[];
 These events will be propagated to the feedback dialog
 
 see https://developer.mozilla.org/en-US/docs/Web/API/Element#events
-
-#### Defined in
-
-[feedback/ui/constants.ts:11](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/constants.ts#L11)
