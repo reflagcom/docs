@@ -13,7 +13,7 @@ pagination:
   visible: true
 ---
 
-# @bucketco/browser-sdk
+# index
 
 ## Classes
 
@@ -49,7 +49,7 @@ Create a new BucketClient instance.
 </td>
 <td>
 
-[`InitOptions`](globals.md#initoptions)
+[`InitOptions`](README.md#initoptions)
 
 </td>
 </tr>
@@ -58,7 +58,7 @@ Create a new BucketClient instance.
 
 ###### Returns
 
-[`BucketClient`](globals.md#bucketclient)
+[`BucketClient`](README.md#bucketclient)
 
 #### Methods
 
@@ -88,7 +88,7 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 </td>
 <td>
 
-[`Feedback`](globals.md#feedback-6)
+[`Feedback`](README.md#feedback-6)
 
 </td>
 </tr>
@@ -136,7 +136,7 @@ Return a feature. Accessing `isEnabled` will automatically send a `check` event.
 
 ###### Returns
 
-[`Feature`](globals.md#feature)
+[`Feature`](README.md#feature)
 
 A feature
 
@@ -153,7 +153,7 @@ Accessing a feature will *not* send a check event
 
 ###### Returns
 
-[`RawFeatures`](globals.md#rawfeatures)
+[`RawFeatures`](README.md#rawfeatures)
 
 Map of features
 
@@ -255,7 +255,7 @@ This can be used to collect feedback from users in Bucket in cases where Automat
 </td>
 <td>
 
-[`RequestFeedbackData`](globals.md#requestfeedbackdata)
+[`RequestFeedbackData`](README.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -292,7 +292,7 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 </td>
 <td>
 
-[`CheckEvent`](globals.md#checkevent-2)
+[`CheckEvent`](README.md#checkevent-2)
 
 </td>
 </tr>
@@ -513,9 +513,9 @@ Attempting to update the user ID will log a warning and be ignored.
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-| `company?` | [`CompanyContext`](globals.md#companycontext) | Company related context |
+| `company?` | [`CompanyContext`](README.md#companycontext) | Company related context |
 | `otherContext?` | `Record`\<`string`, `undefined` \| `string` \| `number`\> | Context which is not related to a user or a company |
-| `user?` | [`UserContext`](globals.md#usercontext) | User related context |
+| `user?` | [`UserContext`](README.md#usercontext) | User related context |
 
 ***
 
@@ -558,7 +558,7 @@ Id should always be present so that it can be referenced to an existing company.
 | Property | Type | Description |
 | ------ | ------ | ------ |
 | `isEnabled` | `boolean` | Result of feature flag evaluation |
-| `requestFeedback` | (`options`: `Omit`\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `void` | - |
+| `requestFeedback` | (`options`: `Omit`\<[`RequestFeedbackData`](README.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `void` | - |
 | `track` | () => `Promise`\<`undefined` \| `Response`\> | Function to send analytics events for this feature |
 
 ***
@@ -597,18 +597,18 @@ BucketClient initialization options.
 | Property | Type | Description |
 | ------ | ------ | ------ |
 | `apiBaseUrl?` | `string` | Base URL of Bucket servers. You can override this to use your mocked server. |
-| `company?` | [`CompanyContext`](globals.md#companycontext) | Company related context. If you provide `id` Bucket will enrich the evaluation context with company attributes on Bucket servers. |
+| `company?` | [`CompanyContext`](README.md#companycontext) | Company related context. If you provide `id` Bucket will enrich the evaluation context with company attributes on Bucket servers. |
 | `enableTracking?` | `boolean` | - |
-| `features?` | [`FeaturesOptions`](globals.md#featuresoptions) | Feature flag specific configuration |
-| `feedback?` | [`FeedbackOptions`](globals.md#feedbackoptions) | AutoFeedback specific configuration |
+| `features?` | [`FeaturesOptions`](README.md#featuresoptions) | Feature flag specific configuration |
+| `feedback?` | [`FeedbackOptions`](README.md#feedbackoptions) | AutoFeedback specific configuration |
 | ~~`host?`~~ | `string` | **Deprecated** Use `apiBaseUrl` instead. |
-| `logger?` | [`Logger`](globals.md#logger-2) | You can provide a logger to see the logs of the network calls. This is undefined by default. For debugging purposes you can just set the browser console to this property: `options.logger = window.console;` |
+| `logger?` | [`Logger`](README.md#logger-2) | You can provide a logger to see the logs of the network calls. This is undefined by default. For debugging purposes you can just set the browser console to this property: `options.logger = window.console;` |
 | `otherContext?` | `Record`\<`string`, `any`\> | Context not related to users or companies |
 | `publishableKey` | `string` | Publishable key for authentication |
 | `sdkVersion?` | `string` | Version of the SDK |
 | `sseBaseUrl?` | `string` | Base URL of Bucket servers for SSE connections used by AutoFeedback. |
 | ~~`sseHost?`~~ | `string` | **Deprecated** Use `sseBaseUrl` instead. |
-| `user?` | [`UserContext`](globals.md#usercontext) | User related context. If you provide `id` Bucket will enrich the evaluation context with user attributes on Bucket servers. |
+| `user?` | [`UserContext`](README.md#usercontext) | User related context. If you provide `id` Bucket will enrich the evaluation context with user attributes on Bucket servers. |
 
 ***
 
@@ -831,12 +831,12 @@ warn(message: string, ...args: any[]): void
 | `key` | `string` | - |
 | `onClose?` | () => `void` | - |
 | `onDismiss?` | () => `void` | - |
-| `onScoreSubmit?` | (`data`: [`FeedbackScoreSubmission`](globals.md#feedbackscoresubmission)) => `Promise`\<[`OnScoreSubmitResult`](globals.md#onscoresubmitresult)\> | - |
-| `onSubmit` | (`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => `void` \| `Promise`\<`void`\> | - |
+| `onScoreSubmit?` | (`data`: [`FeedbackScoreSubmission`](README.md#feedbackscoresubmission)) => `Promise`\<[`OnScoreSubmitResult`](README.md#onscoresubmitresult)\> | - |
+| `onSubmit` | (`data`: [`FeedbackSubmission`](README.md#feedbacksubmission)) => `void` \| `Promise`\<`void`\> | - |
 | `openWithCommentVisible?` | `boolean` | Open the form with both the score and comment fields visible. Defaults to `false` |
-| `position?` | [`FeedbackPosition`](globals.md#feedbackposition) | Control the placement and behavior of the feedback form. |
+| `position?` | [`FeedbackPosition`](README.md#feedbackposition) | Control the placement and behavior of the feedback form. |
 | `title?` | `string` | - |
-| `translations?` | `Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\> | Add your own custom translations for the feedback form. Undefined translation keys fall back to english defaults. |
+| `translations?` | `Partial`\<[`FeedbackTranslations`](README.md#feedbacktranslations)\> | Add your own custom translations for the feedback form. Undefined translation keys fall back to english defaults. |
 
 ***
 
@@ -1148,7 +1148,7 @@ type FeedbackOptions: {
 </td>
 <td>
 
-[`FeedbackPromptHandler`](globals.md#feedbackprompthandler)
+[`FeedbackPromptHandler`](README.md#feedbackprompthandler)
 
 </td>
 <td>
@@ -1201,7 +1201,7 @@ Use `enableAutoFeedback` instead
 </td>
 <td>
 
-[`FeedbackPromptHandler`](globals.md#feedbackprompthandler)
+[`FeedbackPromptHandler`](README.md#feedbackprompthandler)
 
 </td>
 <td>
@@ -1221,8 +1221,8 @@ Use `autoFeedbackHandler` instead
 <td>
 
 \{
-  `position`: [`FeedbackPosition`](globals.md#feedbackposition);
-  `translations`: `Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>;
+  `position`: [`FeedbackPosition`](README.md#feedbackposition);
+  `translations`: `Partial`\<[`FeedbackTranslations`](README.md#feedbacktranslations)\>;
  \}
 
 </td>
@@ -1240,7 +1240,7 @@ With these options you can override the look of the feedback prompt
 </td>
 <td>
 
-[`FeedbackPosition`](globals.md#feedbackposition)
+[`FeedbackPosition`](README.md#feedbackposition)
 
 </td>
 <td>
@@ -1257,7 +1257,7 @@ Control the placement and behavior of the feedback form.
 </td>
 <td>
 
-`Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
+`Partial`\<[`FeedbackTranslations`](README.md#feedbacktranslations)\>
 
 </td>
 <td>
@@ -1434,7 +1434,7 @@ type FeedbackPromptHandler: (prompt: FeedbackPrompt, handlers: FeedbackPromptHan
 </td>
 <td>
 
-[`FeedbackPrompt`](globals.md#feedbackprompt)
+[`FeedbackPrompt`](README.md#feedbackprompt)
 
 </td>
 </tr>
@@ -1446,7 +1446,7 @@ type FeedbackPromptHandler: (prompt: FeedbackPrompt, handlers: FeedbackPromptHan
 </td>
 <td>
 
-[`FeedbackPromptHandlerCallbacks`](globals.md#feedbackprompthandlercallbacks)
+[`FeedbackPromptHandlerCallbacks`](README.md#feedbackprompthandlercallbacks)
 
 </td>
 </tr>
@@ -1486,7 +1486,7 @@ type FeedbackPromptHandlerCallbacks: {
 </td>
 <td>
 
-(`options`: [`FeedbackPromptHandlerOpenFeedbackFormOptions`](globals.md#feedbackprompthandleropenfeedbackformoptions)) => `void`
+(`options`: [`FeedbackPromptHandlerOpenFeedbackFormOptions`](README.md#feedbackprompthandleropenfeedbackformoptions)) => `void`
 
 </td>
 </tr>
@@ -1498,7 +1498,7 @@ type FeedbackPromptHandlerCallbacks: {
 </td>
 <td>
 
-[`FeedbackPromptReplyHandler`](globals.md#feedbackpromptreplyhandler)
+[`FeedbackPromptReplyHandler`](README.md#feedbackpromptreplyhandler)
 
 </td>
 </tr>
@@ -1615,7 +1615,7 @@ type FeedbackPromptReplyHandler: <T>(reply: T) => T extends null ? Promise<void>
 <tr>
 <td>
 
-`T` *extends* [`FeedbackPromptReply`](globals.md#feedbackpromptreply) \| `null`
+`T` *extends* [`FeedbackPromptReply`](README.md#feedbackpromptreply) \| `null`
 
 </td>
 </tr>
@@ -2025,7 +2025,7 @@ Company ID from your own application.
 </td>
 <td>
 
-(`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => `void`
+(`data`: [`FeedbackSubmission`](README.md#feedbacksubmission)) => `void`
 
 </td>
 <td>

@@ -68,7 +68,7 @@ bucketClient.requestFeedback({ featureKey: "huddle" });
 
 B. Script tag (client-side directly in html)
 
-See [example/browser.html](../../_media/browser.html) for a working example:
+See [example/browser.html](https://github.com/bucketco/bucket-javascript-sdk/tree/main/packages/browser-sdk/example/browser.html) for a working example:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@bucketco/browser-sdk@2"></script>
@@ -205,7 +205,7 @@ Note: To get started with automatic feedback collection, make sure you've set `u
 Automated feedback surveys work even if you're not using the SDK to send events to Bucket.
 It works because the Bucket Browser SDK maintains a live connection to Bucket's servers and can automatically show a feedback prompt whenever the Bucket servers determines that an event should trigger a prompt - regardless of how this event is sent to Bucket.
 
-You can find all the options to make changes to the default behavior in the [Bucket feedback documentation](../../_media/FEEDBACK.md).
+You can find all the options to make changes to the default behavior in the [Bucket feedback documentation](documents/FEEDBACK.md).
 
 #### Bucket feedback UI
 
@@ -213,7 +213,7 @@ Bucket can assist you with collecting your user's feedback by offering a pre-bui
 
 ![image](https://github.com/bucketco/bucket-javascript-sdk/assets/34348/c387bac1-f2e2-4efd-9dda-5030d76f9532)
 
-[Read the Bucket feedback UI documentation](../../_media/FEEDBACK.md)
+[Read the Bucket feedback UI documentation](documents/FEEDBACK.md)
 
 #### Bucket feedback SDK
 
