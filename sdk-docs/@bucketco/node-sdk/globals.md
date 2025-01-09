@@ -72,7 +72,7 @@ new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracki
 
 ###### Defined in
 
-[client.ts:990](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L990)
+[client.ts:990](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L990)
 
 #### Accessors
 
@@ -100,7 +100,7 @@ The company or `undefined` if it is not set.
 
 ###### Defined in
 
-[client.ts:1025](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1025)
+[client.ts:1025](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L1025)
 
 ***
 
@@ -122,7 +122,7 @@ The "other" context or `undefined` if it is not set.
 
 ###### Defined in
 
-[client.ts:1007](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1007)
+[client.ts:1007](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L1007)
 
 ***
 
@@ -152,7 +152,7 @@ The user or `undefined` if it is not set.
 
 ###### Defined in
 
-[client.ts:1016](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1016)
+[client.ts:1016](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L1016)
 
 #### Methods
 
@@ -200,7 +200,7 @@ new client bound with the additional context
 
 ###### Defined in
 
-[client.ts:1121](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1121)
+[client.ts:1121](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L1121)
 
 ***
 
@@ -218,7 +218,7 @@ Flushes the batch buffer.
 
 ###### Defined in
 
-[client.ts:1142](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1142)
+[client.ts:1142](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L1142)
 
 ***
 
@@ -264,7 +264,7 @@ Features for the given user/company and whether each one is enabled or not
 
 ###### Defined in
 
-[client.ts:1045](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1045)
+[client.ts:1045](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L1045)
 
 ***
 
@@ -309,7 +309,7 @@ Feature for the given user/company and key and whether it's enabled or not
 
 ###### Defined in
 
-[client.ts:1065](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1065)
+[client.ts:1065](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L1065)
 
 ***
 
@@ -330,7 +330,7 @@ Features for the given user/company and whether each one is enabled or not
 
 ###### Defined in
 
-[client.ts:1035](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1035)
+[client.ts:1035](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L1035)
 
 ***
 
@@ -350,7 +350,7 @@ Features for the given user/company and whether each one is enabled or not
 
 ###### Defined in
 
-[client.ts:1054](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1054)
+[client.ts:1054](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L1054)
 
 ***
 
@@ -422,7 +422,7 @@ An error if the event is invalid or the options are invalid.
 
 ###### Defined in
 
-[client.ts:1086](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1086)
+[client.ts:1086](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L1086)
 
 ***
 
@@ -482,7 +482,7 @@ An error if the options are invalid.
 
 ###### Defined in
 
-[client.ts:119](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L119)
+[client.ts:119](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L119)
 
 #### Accessors
 
@@ -525,7 +525,7 @@ set featureOverrides(overrides: FeatureOverridesFn): void
 
 ###### Defined in
 
-[client.ts:234](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L234)
+[client.ts:234](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L234)
 
 ***
 
@@ -547,7 +547,7 @@ The logger or `undefined` if it is not set.
 
 ###### Defined in
 
-[client.ts:230](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L230)
+[client.ts:230](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L230)
 
 #### Methods
 
@@ -603,7 +603,7 @@ the user/company is set respectively.
 
 ###### Defined in
 
-[client.ts:249](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L249)
+[client.ts:249](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L249)
 
 ***
 
@@ -626,7 +626,7 @@ before the process exits.
 
 ###### Defined in
 
-[client.ts:408](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L408)
+[client.ts:408](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L408)
 
 ***
 
@@ -688,7 +688,7 @@ Call `initialize` before calling this method to ensure the feature definitions a
 
 ###### Defined in
 
-[client.ts:442](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L442)
+[client.ts:442](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L442)
 
 ***
 
@@ -774,7 +774,7 @@ evaluated feature
 
 ###### Defined in
 
-[client.ts:489](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L489)
+[client.ts:489](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L489)
 
 ***
 
@@ -823,7 +823,7 @@ Call `initialize` before calling this method to ensure the feature definitions a
 
 ###### Defined in
 
-[client.ts:419](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L419)
+[client.ts:419](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L419)
 
 ***
 
@@ -896,7 +896,7 @@ evaluated features
 
 ###### Defined in
 
-[client.ts:466](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L466)
+[client.ts:466](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L466)
 
 ***
 
@@ -921,7 +921,7 @@ The client will ignore subsequent calls to this method.
 
 ###### Defined in
 
-[client.ts:396](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L396)
+[client.ts:396](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L396)
 
 ***
 
@@ -1017,7 +1017,7 @@ If the company is set, the event will be associated with the company.
 
 ###### Defined in
 
-[client.ts:353](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L353)
+[client.ts:353](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L353)
 
 ***
 
@@ -1083,7 +1083,7 @@ If the user is set, the company will be associated with the user.
 
 ###### Defined in
 
-[client.ts:304](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L304)
+[client.ts:304](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L304)
 
 ***
 
@@ -1147,7 +1147,7 @@ If the user is set, the company will be associated with the user.
 
 ###### Defined in
 
-[client.ts:267](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L267)
+[client.ts:267](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/client.ts#L267)
 
 ## Interfaces
 
@@ -1202,7 +1202,7 @@ Track feature usage in Bucket.
 
 ###### Defined in
 
-[types.ts:100](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L100)
+[types.ts:100](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L100)
 
 ***
 
@@ -1310,7 +1310,7 @@ The response from the server.
 
 ###### Defined in
 
-[types.ts:210](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L210)
+[types.ts:210](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L210)
 
 ***
 
@@ -1424,7 +1424,7 @@ The response from the server.
 
 ###### Defined in
 
-[types.ts:197](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L197)
+[types.ts:197](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L197)
 
 ***
 
@@ -1468,7 +1468,7 @@ Describes the attributes of a user, company or event.
 
 #### Defined in
 
-[types.ts:16](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L16)
+[types.ts:16](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L16)
 
 ***
 
@@ -1594,7 +1594,7 @@ The maximum size of the buffer before it is flushed.
 
 #### Defined in
 
-[types.ts:278](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L278)
+[types.ts:278](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L278)
 
 ***
 
@@ -1834,7 +1834,7 @@ The secret key used to authenticate with the Bucket API.
 
 #### Defined in
 
-[types.ts:304](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L304)
+[types.ts:304](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L304)
 
 ***
 
@@ -2017,7 +2017,7 @@ The user context. If no `id` key is set, the whole object is ignored.
 
 #### Defined in
 
-[types.ts:395](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L395)
+[types.ts:395](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L395)
 
 ***
 
@@ -2031,7 +2031,7 @@ Describes the feature overrides.
 
 #### Defined in
 
-[types.ts:126](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L126)
+[types.ts:126](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L126)
 
 ***
 
@@ -2072,7 +2072,7 @@ type FeatureOverridesFn: (context: Context) => FeatureOverrides;
 
 #### Defined in
 
-[types.ts:127](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L127)
+[types.ts:127](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L127)
 
 ***
 
@@ -2180,7 +2180,7 @@ The status code of the response.
 
 #### Defined in
 
-[types.ts:164](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L164)
+[types.ts:164](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L164)
 
 ***
 
@@ -2192,7 +2192,7 @@ type IdType: string | number;
 
 #### Defined in
 
-[types.ts:433](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L433)
+[types.ts:433](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L433)
 
 ***
 
@@ -2204,7 +2204,7 @@ type LogLevel: typeof LOG_LEVELS[number];
 
 #### Defined in
 
-[types.ts:431](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L431)
+[types.ts:431](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L431)
 
 ***
 
@@ -2251,7 +2251,7 @@ Whether the user or company is active.
 
 #### Defined in
 
-[types.ts:6](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L6)
+[types.ts:6](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L6)
 
 ***
 
@@ -2316,7 +2316,7 @@ The meta context associated with the event.
 
 #### Defined in
 
-[types.ts:379](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L379)
+[types.ts:379](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L379)
 
 ***
 
@@ -2335,7 +2335,7 @@ has not been extended.
 
 #### Defined in
 
-[types.ts:119](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L119)
+[types.ts:119](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L119)
 
 ## Variables
 
@@ -2347,4 +2347,4 @@ const LOG_LEVELS: readonly ["DEBUG", "INFO", "WARN", "ERROR"];
 
 #### Defined in
 
-[types.ts:430](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L430)
+[types.ts:430](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/node-sdk/src/types.ts#L430)

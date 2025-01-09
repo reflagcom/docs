@@ -62,7 +62,7 @@ Create a new BucketClient instance.
 
 ###### Defined in
 
-[client.ts:211](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L211)
+[client.ts:211](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L211)
 
 #### Methods
 
@@ -105,7 +105,7 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 
 ###### Defined in
 
-[client.ts:410](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L410)
+[client.ts:410](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L410)
 
 ***
 
@@ -150,7 +150,7 @@ A feature
 
 ###### Defined in
 
-[client.ts:512](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L512)
+[client.ts:512](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L512)
 
 ***
 
@@ -171,7 +171,7 @@ Map of features
 
 ###### Defined in
 
-[client.ts:504](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L504)
+[client.ts:504](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L504)
 
 ***
 
@@ -191,7 +191,7 @@ Must be called before calling other SDK methods.
 
 ###### Defined in
 
-[client.ts:279](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L279)
+[client.ts:279](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L279)
 
 ***
 
@@ -247,7 +247,7 @@ this will be called when the features are updated.
 
 ###### Defined in
 
-[client.ts:372](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L372)
+[client.ts:372](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L372)
 
 ***
 
@@ -292,7 +292,7 @@ This can be used to collect feedback from users in Bucket in cases where Automat
 
 ###### Defined in
 
-[client.ts:432](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L432)
+[client.ts:432](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L432)
 
 ***
 
@@ -333,7 +333,7 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 
 ###### Defined in
 
-[client.ts:543](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L543)
+[client.ts:543](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L543)
 
 ***
 
@@ -354,7 +354,7 @@ any onFeaturesUpdated listeners.
 
 ###### Defined in
 
-[client.ts:554](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L554)
+[client.ts:554](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L554)
 
 ***
 
@@ -420,7 +420,7 @@ Any attributes you want to attach to the event
 
 ###### Defined in
 
-[client.ts:382](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L382)
+[client.ts:382](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L382)
 
 ***
 
@@ -465,7 +465,7 @@ Attempting to update the company ID will log a warning and be ignored.
 
 ###### Defined in
 
-[client.ts:333](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L333)
+[client.ts:333](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L333)
 
 ***
 
@@ -510,7 +510,7 @@ Updates to the company ID will be ignored.
 
 ###### Defined in
 
-[client.ts:354](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L354)
+[client.ts:354](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L354)
 
 ***
 
@@ -555,7 +555,7 @@ Attempting to update the user ID will log a warning and be ignored.
 
 ###### Defined in
 
-[client.ts:309](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/client.ts#L309)
+[client.ts:309](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/client.ts#L309)
 
 ## Interfaces
 
@@ -717,7 +717,7 @@ debug(message: string, ...args: any[]): void
 
 ###### Defined in
 
-[logger.ts:2](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/logger.ts#L2)
+[logger.ts:2](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/logger.ts#L2)
 
 ***
 
@@ -770,7 +770,7 @@ error(message: string, ...args: any[]): void
 
 ###### Defined in
 
-[logger.ts:5](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/logger.ts#L5)
+[logger.ts:5](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/logger.ts#L5)
 
 ***
 
@@ -823,7 +823,7 @@ info(message: string, ...args: any[]): void
 
 ###### Defined in
 
-[logger.ts:3](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/logger.ts#L3)
+[logger.ts:3](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/logger.ts#L3)
 
 ***
 
@@ -876,7 +876,7 @@ warn(message: string, ...args: any[]): void
 
 ###### Defined in
 
-[logger.ts:4](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/logger.ts#L4)
+[logger.ts:4](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/logger.ts#L4)
 
 ***
 
@@ -1008,7 +1008,7 @@ Bucket feature key.
 
 #### Defined in
 
-[feedback/feedback.ts:72](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L72)
+[feedback/feedback.ts:72](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L72)
 
 ***
 
@@ -1127,7 +1127,7 @@ Timeout in miliseconds
 
 #### Defined in
 
-[feature/features.ts:33](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feature/features.ts#L33)
+[feature/features.ts:33](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feature/features.ts#L33)
 
 ***
 
@@ -1190,7 +1190,7 @@ User ID from your own application.
 
 #### Defined in
 
-[feedback/feedback.ts:161](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L161)
+[feedback/feedback.ts:161](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L161)
 
 ***
 
@@ -1352,7 +1352,7 @@ Undefined translation keys fall back to english defaults.
 
 #### Defined in
 
-[feedback/feedback.ts:22](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L22)
+[feedback/feedback.ts:22](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L22)
 
 ***
 
@@ -1364,7 +1364,7 @@ type FeedbackPlacement: "bottom-right" | "bottom-left" | "top-right" | "top-left
 
 #### Defined in
 
-[feedback/ui/types.ts:3](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/ui/types.ts#L3)
+[feedback/ui/types.ts:3](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/types.ts#L3)
 
 ***
 
@@ -1385,7 +1385,7 @@ type FeedbackPosition: {
 
 #### Defined in
 
-[feedback/ui/types.ts:20](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/ui/types.ts#L20)
+[feedback/ui/types.ts:20](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/types.ts#L20)
 
 ***
 
@@ -1502,7 +1502,7 @@ Feedback prompt will not be shown after this time
 
 #### Defined in
 
-[feedback/feedback.ts:173](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L173)
+[feedback/feedback.ts:173](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L173)
 
 ***
 
@@ -1555,7 +1555,7 @@ type FeedbackPromptHandler: (prompt: FeedbackPrompt, handlers: FeedbackPromptHan
 
 #### Defined in
 
-[feedback/feedback.ts:223](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L223)
+[feedback/feedback.ts:223](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L223)
 
 ***
 
@@ -1607,7 +1607,7 @@ type FeedbackPromptHandlerCallbacks: {
 
 #### Defined in
 
-[feedback/feedback.ts:216](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L216)
+[feedback/feedback.ts:216](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L216)
 
 ***
 
@@ -1625,7 +1625,7 @@ type FeedbackPromptHandlerOpenFeedbackFormOptions: Omit<RequestFeedbackOptions,
 
 #### Defined in
 
-[feedback/feedback.ts:211](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L211)
+[feedback/feedback.ts:211](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L211)
 
 ***
 
@@ -1703,7 +1703,7 @@ type FeedbackPromptReply: {
 
 #### Defined in
 
-[feedback/feedback.ts:200](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L200)
+[feedback/feedback.ts:200](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L200)
 
 ***
 
@@ -1767,7 +1767,7 @@ type FeedbackPromptReplyHandler: <T>(reply: T) => T extends null ? Promise<void>
 
 #### Defined in
 
-[feedback/feedback.ts:207](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L207)
+[feedback/feedback.ts:207](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L207)
 
 ***
 
@@ -1952,7 +1952,7 @@ with desired language translation
 
 #### Defined in
 
-[feedback/ui/types.ts:75](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/ui/types.ts#L75)
+[feedback/ui/types.ts:75](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/types.ts#L75)
 
 ***
 
@@ -2015,7 +2015,7 @@ Offset from the nearest vertical screen edge after placement is resolved
 
 #### Defined in
 
-[feedback/ui/types.ts:9](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/ui/types.ts#L9)
+[feedback/ui/types.ts:9](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/types.ts#L9)
 
 ***
 
@@ -2096,7 +2096,7 @@ Version of targeting rules
 
 #### Defined in
 
-[feature/features.ts:12](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feature/features.ts#L12)
+[feature/features.ts:12](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feature/features.ts#L12)
 
 ***
 
@@ -2108,7 +2108,7 @@ type RawFeatures: Record<string, RawFeature | undefined>;
 
 #### Defined in
 
-[feature/features.ts:31](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feature/features.ts#L31)
+[feature/features.ts:31](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feature/features.ts#L31)
 
 ***
 
@@ -2175,7 +2175,7 @@ copy of the feedback in your own application or CRM.
 
 #### Defined in
 
-[feedback/feedback.ts:88](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L88)
+[feedback/feedback.ts:88](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L88)
 
 ***
 
@@ -2220,7 +2220,7 @@ User ID from your own application.
 
 #### Defined in
 
-[feedback/feedback.ts:107](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L107)
+[feedback/feedback.ts:107](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L107)
 
 ***
 
@@ -2383,7 +2383,7 @@ Source of the feedback, depending on how the user was asked
 
 #### Defined in
 
-[feedback/feedback.ts:114](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/feedback.ts#L114)
+[feedback/feedback.ts:114](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/feedback.ts#L114)
 
 ## Variables
 
@@ -2417,7 +2417,7 @@ export const DEFAULT_TRANSLATIONS: FeedbackTranslations = {
 
 #### Defined in
 
-[feedback/ui/config/defaultTranslations.tsx:6](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/ui/config/defaultTranslations.tsx#L6)
+[feedback/ui/config/defaultTranslations.tsx:6](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/config/defaultTranslations.tsx#L6)
 
 ***
 
@@ -2431,7 +2431,7 @@ ID of HTML DIV element which contains the feedback dialog
 
 #### Defined in
 
-[feedback/ui/constants.ts:4](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/ui/constants.ts#L4)
+[feedback/ui/constants.ts:4](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/constants.ts#L4)
 
 ***
 
@@ -2447,4 +2447,4 @@ see https://developer.mozilla.org/en-US/docs/Web/API/Element#events
 
 #### Defined in
 
-[feedback/ui/constants.ts:11](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/browser-sdk/src/feedback/ui/constants.ts#L11)
+[feedback/ui/constants.ts:11](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/browser-sdk/src/feedback/ui/constants.ts#L11)

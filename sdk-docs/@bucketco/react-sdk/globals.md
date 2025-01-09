@@ -129,7 +129,7 @@ type BucketProps: BucketContext & {
 </td>
 <td>
 
-`Omit`\<`FeaturesOptions`, `"fallbackFeatures"`\> & \{
+`Omit`\<[`FeaturesOptions`](../browser-sdk/index/README.md#featuresoptions), `"fallbackFeatures"`\> & \{
   `fallbackFeatures`: [`FeatureKey`](globals.md#featurekey)[];
  \}
 
@@ -148,7 +148,7 @@ type BucketProps: BucketContext & {
 </td>
 <td>
 
-`FeedbackOptions`
+[`FeedbackOptions`](../browser-sdk/index/README.md#feedbackoptions)
 
 </td>
 <td>
@@ -201,7 +201,7 @@ Use `apiBaseUrl` instead.
 </td>
 <td>
 
-(...`args`: `ConstructorParameters`\<*typeof* `BucketClient`\>) => `BucketClient`
+(...`args`: `ConstructorParameters`\<*typeof* [`BucketClient`](../browser-sdk/index/README.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/index/README.md#bucketclient)
 
 </td>
 <td>
@@ -268,7 +268,7 @@ Use `sseBaseUrl` instead.
 
 #### Defined in
 
-[index.tsx:48](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/react-sdk/src/index.tsx#L48)
+[index.tsx:48](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L48)
 
 ***
 
@@ -280,7 +280,7 @@ type FeatureKey: keyof keyof Features extends never ? Record<string, boolean> : 
 
 #### Defined in
 
-[index.tsx:29](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/react-sdk/src/index.tsx#L29)
+[index.tsx:29](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L29)
 
 ## Functions
 
@@ -321,7 +321,7 @@ function BucketProvider(__namedParameters: BucketProps): Element
 
 #### Defined in
 
-[index.tsx:78](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/react-sdk/src/index.tsx#L78)
+[index.tsx:78](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L78)
 
 ***
 
@@ -382,18 +382,18 @@ function HuddleButton() {
 \{
   `isEnabled`: `boolean`;
   `isLoading`: `true`;
-  `requestFeedback`: (`opts`: `Omit`\<`RequestFeedbackData`, `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
+  `requestFeedback`: (`opts`: `Omit`\<[`RequestFeedbackData`](../browser-sdk/index/README.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
   `track`: () => `undefined` \| `Promise`\<`undefined` \| `Response`\>;
  \} \| \{
   `isLoading`: `false`;
-  `requestFeedback`: (`opts`: `Omit`\<`RequestFeedbackData`, `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
+  `requestFeedback`: (`opts`: `Omit`\<[`RequestFeedbackData`](../browser-sdk/index/README.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
   `track`: () => `undefined` \| `Promise`\<`undefined` \| `Response`\>;
   get `isEnabled`: `boolean`;
  \}
 
 #### Defined in
 
-[index.tsx:178](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/react-sdk/src/index.tsx#L178)
+[index.tsx:178](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L178)
 
 ***
 
@@ -438,7 +438,7 @@ bucket.requestFeedback({
 </td>
 <td>
 
-`RequestFeedbackData`
+[`RequestFeedbackData`](../browser-sdk/index/README.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -451,7 +451,7 @@ bucket.requestFeedback({
 
 #### Defined in
 
-[index.tsx:249](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/react-sdk/src/index.tsx#L249)
+[index.tsx:249](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L249)
 
 ***
 
@@ -498,7 +498,7 @@ sendFeedback({
 </td>
 <td>
 
-`UnassignedFeedback`
+[`UnassignedFeedback`](../browser-sdk/index/README.md#unassignedfeedback)
 
 </td>
 </tr>
@@ -511,7 +511,7 @@ sendFeedback({
 
 #### Defined in
 
-[index.tsx:270](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/react-sdk/src/index.tsx#L270)
+[index.tsx:270](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L270)
 
 ***
 
@@ -576,7 +576,7 @@ track("Started Huddle", { button: "cta" });
 
 #### Defined in
 
-[index.tsx:229](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/react-sdk/src/index.tsx#L229)
+[index.tsx:229](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L229)
 
 ***
 
@@ -632,7 +632,7 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Features updated")
 
 #### Defined in
 
-[index.tsx:307](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/react-sdk/src/index.tsx#L307)
+[index.tsx:307](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L307)
 
 ***
 
@@ -689,7 +689,7 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 
 #### Defined in
 
-[index.tsx:326](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/react-sdk/src/index.tsx#L326)
+[index.tsx:326](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L326)
 
 ***
 
@@ -746,4 +746,4 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Features updated"))
 
 #### Defined in
 
-[index.tsx:288](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/react-sdk/src/index.tsx#L288)
+[index.tsx:288](https://github.com/bucketco/bucket-javascript-sdk/blob/f43d9157bcc39321c511c8de821640b109901748/packages/react-sdk/src/index.tsx#L288)
