@@ -70,6 +70,10 @@ new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracki
 
 [`BoundBucketClient`](globals.md#boundbucketclient)
 
+###### Defined in
+
+[client.ts:990](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L990)
+
 #### Accessors
 
 ##### company
@@ -94,6 +98,10 @@ Gets the company associated with the client.
 
 The company or `undefined` if it is not set.
 
+###### Defined in
+
+[client.ts:1025](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1025)
+
 ***
 
 ##### otherContext
@@ -111,6 +119,10 @@ Gets the "other" context associated with the client.
 `undefined` \| `Record`\<`string`, `any`\>
 
 The "other" context or `undefined` if it is not set.
+
+###### Defined in
+
+[client.ts:1007](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1007)
 
 ***
 
@@ -137,6 +149,10 @@ Gets the user associated with the client.
  \}
 
 The user or `undefined` if it is not set.
+
+###### Defined in
+
+[client.ts:1016](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1016)
 
 #### Methods
 
@@ -182,6 +198,10 @@ Note: This performs a shallow merge for user/company/other individually.
 
 new client bound with the additional context
 
+###### Defined in
+
+[client.ts:1121](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1121)
+
 ***
 
 ##### flush()
@@ -195,6 +215,10 @@ Flushes the batch buffer.
 ###### Returns
 
 `Promise`\<`void`\>
+
+###### Defined in
+
+[client.ts:1142](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1142)
 
 ***
 
@@ -238,6 +262,10 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 
 Features for the given user/company and whether each one is enabled or not
 
+###### Defined in
+
+[client.ts:1045](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1045)
+
 ***
 
 ##### getFeatureRemote()
@@ -279,6 +307,10 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 
 Feature for the given user/company and key and whether it's enabled or not
 
+###### Defined in
+
+[client.ts:1065](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1065)
+
 ***
 
 ##### getFeatures()
@@ -296,6 +328,10 @@ Meant for use in serialization of features for transferring to the client-side/b
 
 Features for the given user/company and whether each one is enabled or not
 
+###### Defined in
+
+[client.ts:1035](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1035)
+
 ***
 
 ##### getFeaturesRemote()
@@ -311,6 +347,10 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 `Promise`\<`Record`\<`string`, [`Feature`](globals.md#feature)\>\>
 
 Features for the given user/company and whether each one is enabled or not
+
+###### Defined in
+
+[client.ts:1054](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1054)
 
 ***
 
@@ -380,6 +420,10 @@ The event to track.
 
 An error if the event is invalid or the options are invalid.
 
+###### Defined in
+
+[client.ts:1086](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L1086)
+
 ***
 
 ### BucketClient
@@ -436,6 +480,10 @@ The options for the client or an existing client to clone.
 
 An error if the options are invalid.
 
+###### Defined in
+
+[client.ts:119](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L119)
+
 #### Accessors
 
 ##### featureOverrides
@@ -475,6 +523,10 @@ set featureOverrides(overrides: FeatureOverridesFn): void
 
 `void`
 
+###### Defined in
+
+[client.ts:234](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L234)
+
 ***
 
 ##### logger
@@ -492,6 +544,10 @@ Gets the logger associated with the client.
 `undefined` \| [`Logger`](globals.md#logger-4)
 
 The logger or `undefined` if it is not set.
+
+###### Defined in
+
+[client.ts:230](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L230)
 
 #### Methods
 
@@ -545,6 +601,10 @@ An error if the user/company is given but their ID is not a string.
 The `updateUser` / `updateCompany` methods will automatically be called when
 the user/company is set respectively.
 
+###### Defined in
+
+[client.ts:249](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L249)
+
 ***
 
 ##### flush()
@@ -563,6 +623,10 @@ Flushes the batch buffer.
 
 It is recommended to call this method when the application is shutting down to ensure all events are sent
 before the process exits.
+
+###### Defined in
+
+[client.ts:408](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L408)
 
 ***
 
@@ -621,6 +685,10 @@ The evaluated features.
 ###### Remarks
 
 Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
+
+###### Defined in
+
+[client.ts:442](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L442)
 
 ***
 
@@ -704,6 +772,10 @@ This method triggers a network request every time it's called.
 
 evaluated feature
 
+###### Defined in
+
+[client.ts:489](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L489)
+
 ***
 
 ##### getFeatures()
@@ -748,6 +820,10 @@ The evaluated features.
 ###### Remarks
 
 Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
+
+###### Defined in
+
+[client.ts:419](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L419)
 
 ***
 
@@ -818,6 +894,10 @@ This method triggers a network request every time it's called.
 
 evaluated features
 
+###### Defined in
+
+[client.ts:466](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L466)
+
 ***
 
 ##### initialize()
@@ -838,6 +918,10 @@ void
 
 Call this method before calling `getFeatures` to ensure the feature definitions are cached.
 The client will ignore subsequent calls to this method.
+
+###### Defined in
+
+[client.ts:396](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L396)
 
 ***
 
@@ -931,6 +1015,10 @@ An error if the user is not set or the event is invalid or the options are inval
 
 If the company is set, the event will be associated with the company.
 
+###### Defined in
+
+[client.ts:353](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L353)
+
 ***
 
 ##### updateCompany()
@@ -993,6 +1081,10 @@ An error if the company is not set or the options are invalid.
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
 
+###### Defined in
+
+[client.ts:304](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L304)
+
 ***
 
 ##### updateUser()
@@ -1053,6 +1145,10 @@ An error if the company is not set or the options are invalid.
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
 
+###### Defined in
+
+[client.ts:267](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/client.ts#L267)
+
 ## Interfaces
 
 ### ContextWithTracking
@@ -1103,6 +1199,10 @@ Track feature usage in Bucket.
 ###### Returns
 
 `Promise`\<`void`\>
+
+###### Defined in
+
+[types.ts:100](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L100)
 
 ***
 
@@ -1207,6 +1307,10 @@ The headers to include in the request.
 `Promise`\<[`HttpClientResponse`](globals.md#httpclientresponsetresponse)\<`TResponse`\>\>
 
 The response from the server.
+
+###### Defined in
+
+[types.ts:210](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L210)
 
 ***
 
@@ -1318,6 +1422,10 @@ The body of the request.
 
 The response from the server.
 
+###### Defined in
+
+[types.ts:197](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L197)
+
 ***
 
 ### Logger
@@ -1357,6 +1465,10 @@ type Attributes: Record<string, any>;
 ```
 
 Describes the attributes of a user, company or event.
+
+#### Defined in
+
+[types.ts:16](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L16)
 
 ***
 
@@ -1479,6 +1591,10 @@ The maximum size of the buffer before it is flushed.
 </tr>
 </tbody>
 </table>
+
+#### Defined in
+
+[types.ts:278](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L278)
 
 ***
 
@@ -1716,6 +1832,10 @@ The secret key used to authenticate with the Bucket API.
 </tbody>
 </table>
 
+#### Defined in
+
+[types.ts:304](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L304)
+
 ***
 
 ### Context
@@ -1895,6 +2015,10 @@ The user context. If no `id` key is set, the whole object is ignored.
 </tbody>
 </table>
 
+#### Defined in
+
+[types.ts:395](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L395)
+
 ***
 
 ### FeatureOverrides
@@ -1904,6 +2028,10 @@ type FeatureOverrides: Partial<Record<keyof TypedFeatures, boolean>>;
 ```
 
 Describes the feature overrides.
+
+#### Defined in
+
+[types.ts:126](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L126)
 
 ***
 
@@ -1941,6 +2069,10 @@ type FeatureOverridesFn: (context: Context) => FeatureOverrides;
 #### Returns
 
 [`FeatureOverrides`](globals.md#featureoverrides-7)
+
+#### Defined in
+
+[types.ts:127](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L127)
 
 ***
 
@@ -2046,6 +2178,10 @@ The status code of the response.
 </tbody>
 </table>
 
+#### Defined in
+
+[types.ts:164](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L164)
+
 ***
 
 ### IdType
@@ -2054,6 +2190,10 @@ The status code of the response.
 type IdType: string | number;
 ```
 
+#### Defined in
+
+[types.ts:433](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L433)
+
 ***
 
 ### LogLevel
@@ -2061,6 +2201,10 @@ type IdType: string | number;
 ```ts
 type LogLevel: typeof LOG_LEVELS[number];
 ```
+
+#### Defined in
+
+[types.ts:431](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L431)
 
 ***
 
@@ -2104,6 +2248,10 @@ Whether the user or company is active.
 </tr>
 </tbody>
 </table>
+
+#### Defined in
+
+[types.ts:6](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L6)
 
 ***
 
@@ -2166,6 +2314,10 @@ The meta context associated with the event.
 </tbody>
 </table>
 
+#### Defined in
+
+[types.ts:379](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L379)
+
 ***
 
 ### TypedFeatures
@@ -2181,6 +2333,10 @@ Describes a collection of evaluated feature.
 This types falls back to a generic Record<string, Feature> if the Features interface
 has not been extended.
 
+#### Defined in
+
+[types.ts:119](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L119)
+
 ## Variables
 
 ### LOG\_LEVELS
@@ -2188,3 +2344,7 @@ has not been extended.
 ```ts
 const LOG_LEVELS: readonly ["DEBUG", "INFO", "WARN", "ERROR"];
 ```
+
+#### Defined in
+
+[types.ts:430](https://github.com/bucketco/bucket-javascript-sdk/blob/8d1c543491583e1d380afde2fed50c03ee9a4ec1/packages/node-sdk/src/types.ts#L430)

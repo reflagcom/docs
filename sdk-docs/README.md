@@ -49,5 +49,17 @@ pagination:
 
 </td>
 </tr>
+<tr>
+<td>
+
+[@bucketco/react-sdk](@bucketco/react-sdk/README.md)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
 </tbody>
 </table>
