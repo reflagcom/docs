@@ -22,10 +22,10 @@
 
 * [Overview](supported-languages/overview.md)
 * [React SDK](supported-languages/react-sdk.md)
-* [Browser SDK](sdk-docs/%40bucketco/browser-sdk/README.md)
-  * [Reference](sdk-docs/%40bucketco/browser-sdk/globals.md)
-* [Node.js SDK](sdk-docs/%40bucketco/node-sdk/README.md)
-  * [Reference](sdk-docs/%40bucketco/node-sdk/globals.md)
+* [Browser SDK](sdk-docs/@bucketco/browser-sdk/README.md)
+  * [Reference](sdk-docs/@bucketco/browser-sdk/globals.md)
+* [Node.js SDK](sdk-docs/@bucketco/node-sdk/README.md)
+  * [Reference](sdk-docs/@bucketco/node-sdk/globals.md)
 * [Next.js](supported-languages/next.js.md)
 * [OpenFeature](supported-languages/openfeature.md)
 * [Community support](supported-languages/community-support/README.md)
@@ -34,12 +34,13 @@
 
 ## Integrations
 
-* [Amplitude](integrations/amplitude.md)
-* [PostHog](integrations/posthog.md)
 * [Slack](integrations/slack.md)
-* [AWS S3](integrations/aws-s3.md)
-* [Segment](integrations/segment.md)
 * [Linear](integrations/linear.md)
+* [Segment](integrations/segment.md)
+* [PostHog](integrations/posthog.md)
+* [Amplitude](integrations/amplitude.md)
+* [Mixpanel](integrations/mixpanel.md)
+* [AWS S3](integrations/aws-s3.md)
 
 ## Product Handbook
 

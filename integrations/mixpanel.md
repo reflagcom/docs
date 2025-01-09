@@ -1,6 +1,6 @@
-# PostHog
+# Mixpanel
 
-With the PostHog integration, you can attach feature access properties to users and groups on PostHog. This will enable you to query analytics based on feature access filters.
+With the Mixpanel integration, you can attach feature access properties to users and groups on Mixpanel. This will enable you to query analytics based on feature access filters.
 
 ### Get available features from Bucket
 
@@ -33,22 +33,20 @@ This will return JSON with all available features for the authenticated user:
 }
 ```
 
-### Add as property on PostHog
+### Add as property on Mixpanel
 
-We can forward all features or pick certain features and send access state to PostHog:
+We can forward all features or pick certain features and send access state to Mixpanel. Here we send an array of features that the user has access to:
 
-<pre class="language-tsx"><code class="lang-tsx"><strong>posthog.identify("u1234", {
-</strong>  name: "Rasmus Makwarth",
-  features: {
-    "export-to-csv": {
-      isEnabled: true,
-    },
-  },
+```javascript
+mixpanel.identify("u1234");
+mixpanel.people.set({
+  $name: "Rasmus Makwarth",
+  $features: ["export-to-csv"],
 });
-</code></pre>
+```
 
-Which will look like this on PostHog:
+Which will look like this on Mixpanel:
 
-<figure><img src="../.gitbook/assets/CleanShot 2025-01-09 at 9 .44.28@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/CleanShot 2025-01-09 at 11 .11.54@2x (1).png" alt=""><figcaption></figcaption></figure>
 
 You may want to add the property to the user's group as well.
