@@ -17,15 +17,11 @@ pagination:
 
 ## Classes
 
-<a id="boundbucketclient"></a>
-
 ### BoundBucketClient
 
 A client bound with a specific user, company, and other context.
 
 #### Constructors
-
-<a id="constructors-1"></a>
 
 ##### new BoundBucketClient()
 
@@ -76,8 +72,6 @@ new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracki
 
 #### Accessors
 
-<a id="company-2"></a>
-
 ##### company
 
 ###### Get Signature
@@ -103,10 +97,6 @@ Gets the company associated with the client.
 
 The company or `undefined` if it is not set.
 
-***
-
-<a id="othercontext-2"></a>
-
 ##### otherContext
 
 ###### Get Signature
@@ -122,10 +112,6 @@ Gets the "other" context associated with the client.
 `undefined` \| `Record`\<`string`, `any`\>
 
 The "other" context or `undefined` if it is not set.
-
-***
-
-<a id="user-2"></a>
 
 ##### user
 
@@ -155,8 +141,6 @@ Gets the user associated with the client.
 The user or `undefined` if it is not set.
 
 #### Methods
-
-<a id="bindclient-2"></a>
 
 ##### bindClient()
 
@@ -200,10 +184,6 @@ Note: This performs a shallow merge for user/company/other individually.
 
 new client bound with the additional context
 
-***
-
-<a id="flush-2"></a>
-
 ##### flush()
 
 ```ts
@@ -215,10 +195,6 @@ Flushes the batch buffer.
 ###### Returns
 
 `Promise`\<`void`\>
-
-***
-
-<a id="getfeature-2"></a>
 
 ##### getFeature()
 
@@ -260,10 +236,6 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 
 Features for the given user/company and whether each one is enabled or not
 
-***
-
-<a id="getfeatureremote-2"></a>
-
 ##### getFeatureRemote()
 
 ```ts
@@ -303,10 +275,6 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 
 Feature for the given user/company and key and whether it's enabled or not
 
-***
-
-<a id="getfeatures-2"></a>
-
 ##### getFeatures()
 
 ```ts
@@ -322,10 +290,6 @@ Meant for use in serialization of features for transferring to the client-side/b
 
 Features for the given user/company and whether each one is enabled or not
 
-***
-
-<a id="getfeaturesremote-2"></a>
-
 ##### getFeaturesRemote()
 
 ```ts
@@ -339,10 +303,6 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 `Promise`\<`Record`\<`string`, [`Feature`](globals.md#feature)\>\>
 
 Features for the given user/company and whether each one is enabled or not
-
-***
-
-<a id="track-2"></a>
 
 ##### track()
 
@@ -412,15 +372,11 @@ An error if the event is invalid or the options are invalid.
 
 ***
 
-<a id="bucketclient"></a>
-
 ### BucketClient
 
 The SDK client.
 
 #### Constructors
-
-<a id="constructors-3"></a>
 
 ##### new BucketClient()
 
@@ -472,8 +428,6 @@ An error if the options are invalid.
 
 #### Accessors
 
-<a id="featureoverrides-2"></a>
-
 ##### featureOverrides
 
 ###### Set Signature
@@ -511,10 +465,6 @@ set featureOverrides(overrides: FeatureOverridesFn): void
 
 `void`
 
-***
-
-<a id="logger-2"></a>
-
 ##### logger
 
 ###### Get Signature
@@ -527,13 +477,11 @@ Gets the logger associated with the client.
 
 ###### Returns
 
-`undefined` \| [`Logger`](globals.md#logger-4)
+`undefined` \| [`Logger`](globals.md#logger)
 
 The logger or `undefined` if it is not set.
 
 #### Methods
-
-<a id="bindclient-6"></a>
 
 ##### bindClient()
 
@@ -585,10 +533,6 @@ An error if the user/company is given but their ID is not a string.
 The `updateUser` / `updateCompany` methods will automatically be called when
 the user/company is set respectively.
 
-***
-
-<a id="flush-6"></a>
-
 ##### flush()
 
 ```ts
@@ -605,10 +549,6 @@ Flushes the batch buffer.
 
 It is recommended to call this method when the application is shutting down to ensure all events are sent
 before the process exits.
-
-***
-
-<a id="getfeature-6"></a>
 
 ##### getFeature()
 
@@ -665,10 +605,6 @@ The evaluated features.
 ###### Remarks
 
 Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
-
-***
-
-<a id="getfeatureremote-6"></a>
 
 ##### getFeatureRemote()
 
@@ -750,10 +686,6 @@ This method triggers a network request every time it's called.
 
 evaluated feature
 
-***
-
-<a id="getfeatures-6"></a>
-
 ##### getFeatures()
 
 ```ts
@@ -796,10 +728,6 @@ The evaluated features.
 ###### Remarks
 
 Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
-
-***
-
-<a id="getfeaturesremote-6"></a>
 
 ##### getFeaturesRemote()
 
@@ -868,10 +796,6 @@ This method triggers a network request every time it's called.
 
 evaluated features
 
-***
-
-<a id="initialize-2"></a>
-
 ##### initialize()
 
 ```ts
@@ -890,10 +814,6 @@ void
 
 Call this method before calling `getFeatures` to ensure the feature definitions are cached.
 The client will ignore subsequent calls to this method.
-
-***
-
-<a id="track-6"></a>
 
 ##### track()
 
@@ -985,10 +905,6 @@ An error if the user is not set or the event is invalid or the options are inval
 
 If the company is set, the event will be associated with the company.
 
-***
-
-<a id="updatecompany-2"></a>
-
 ##### updateCompany()
 
 ```ts
@@ -1048,10 +964,6 @@ An error if the company is not set or the options are invalid.
 
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
-
-***
-
-<a id="updateuser-2"></a>
 
 ##### updateUser()
 
@@ -1113,8 +1025,6 @@ If the user is set, the company will be associated with the user.
 
 ## Interfaces
 
-<a id="contextwithtracking"></a>
-
 ### ContextWithTracking
 
 A context with tracking option.
@@ -1125,21 +1035,173 @@ A context with tracking option.
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="company-5"></a> `company?` | \{ `[k: string]`: `any`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \} | The company context. If no `id` key is set, the whole object is ignored. |
-| `company.id` | `undefined` \| `string` \| `number` | - |
-| `company.name?` | `string` | - |
-| <a id="enabletracking-1"></a> `enableTracking?` | `boolean` | Enable tracking for the context. If set to `false`, tracking will be disabled for the context. Default is `true`. |
-| <a id="other-1"></a> `other?` | `Record`\<`string`, `any`\> | The other context. This is used for any additional context that is not related to user or company. |
-| <a id="user-5"></a> `user?` | \{ `[k: string]`: `any`; `email`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \} | The user context. If no `id` key is set, the whole object is ignored. |
-| `user.email?` | `string` | - |
-| `user.id` | `undefined` \| `string` \| `number` | - |
-| `user.name?` | `string` | - |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="company-1"></a> `company?`
+
+</td>
+<td>
+
+\{ `[k: string]`: `any`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
+
+</td>
+<td>
+
+The company context. If no `id` key is set, the whole object is ignored.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`company.id`
+
+</td>
+<td>
+
+`undefined` \| `string` \| `number`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+`company.name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="enabletracking"></a> `enableTracking?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Enable tracking for the context.
+If set to `false`, tracking will be disabled for the context. Default is `true`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="other"></a> `other?`
+
+</td>
+<td>
+
+`Record`\<`string`, `any`\>
+
+</td>
+<td>
+
+The other context. This is used for any additional context that is not related to user or company.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user-1"></a> `user?`
+
+</td>
+<td>
+
+\{ `[k: string]`: `any`; `email`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
+
+</td>
+<td>
+
+The user context. If no `id` key is set, the whole object is ignored.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`user.email?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+`user.id`
+
+</td>
+<td>
+
+`undefined` \| `string` \| `number`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+`user.name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="feature"></a>
 
 ### Feature
 
@@ -1147,14 +1209,53 @@ Describes a feature
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="isenabled-1"></a> `isEnabled` | `boolean` | If the feature is enabled. |
-| <a id="key-9"></a> `key` | `string` | The key of the feature. |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="isenabled"></a> `isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+If the feature is enabled.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the feature.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Methods
-
-<a id="track-10"></a>
 
 ##### track()
 
@@ -1170,8 +1271,6 @@ Track feature usage in Bucket.
 
 ***
 
-<a id="features"></a>
-
 ### Features
 
 Describes a collection of evaluated features.
@@ -1181,8 +1280,6 @@ Describes a collection of evaluated features.
 You should extend the Features interface to define the available features.
 
 ***
-
-<a id="httpclient"></a>
 
 ### HttpClient
 
@@ -1194,8 +1291,6 @@ This interface is used to abstract the HTTP client implementation from the SDK.
 Define your own implementation of this interface to use a different HTTP client.
 
 #### Methods
-
-<a id="get-1"></a>
 
 ##### get()
 
@@ -1277,10 +1372,6 @@ The headers to include in the request.
 `Promise`\<[`HttpClientResponse`](globals.md#httpclientresponsetresponse)\<`TResponse`\>\>
 
 The response from the server.
-
-***
-
-<a id="post-1"></a>
 
 ##### post()
 
@@ -1392,24 +1483,93 @@ The response from the server.
 
 ***
 
-<a id="logger-4"></a>
-
 ### Logger
 
 Logger interface for logging messages
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="debug-1"></a> `debug` | (`message`: `string`, `data`?: `any`) => `void` | Log a debug messages |
-| <a id="error-1"></a> `error` | (`message`: `string`, `data`?: `any`) => `void` | Log an error messages |
-| <a id="info-1"></a> `info` | (`message`: `string`, `data`?: `any`) => `void` | Log an info messages |
-| <a id="warn-1"></a> `warn` | (`message`: `string`, `data`?: `any`) => `void` | Log a warning messages |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="debug"></a> `debug`
+
+</td>
+<td>
+
+(`message`: `string`, `data`?: `any`) => `void`
+
+</td>
+<td>
+
+Log a debug messages
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="error"></a> `error`
+
+</td>
+<td>
+
+(`message`: `string`, `data`?: `any`) => `void`
+
+</td>
+<td>
+
+Log an error messages
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="info"></a> `info`
+
+</td>
+<td>
+
+(`message`: `string`, `data`?: `any`) => `void`
+
+</td>
+<td>
+
+Log an info messages
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="warn"></a> `warn`
+
+</td>
+<td>
+
+(`message`: `string`, `data`?: `any`) => `void`
+
+</td>
+<td>
+
+Log a warning messages
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="rawfeature"></a>
 
 ### RawFeature
 
@@ -1417,16 +1577,87 @@ Describes a feature
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="isenabled-3"></a> `isEnabled` | `boolean` | If the feature is enabled. |
-| <a id="key-11"></a> `key` | `string` | The key of the feature. |
-| <a id="missingcontextfields-1"></a> `missingContextFields?` | `string`[] | The missing fields in the evaluation context (optional). |
-| <a id="targetingversion-1"></a> `targetingVersion?` | `number` | The version of the targeting used to evaluate if the feature is enabled (optional). |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="isenabled-1"></a> `isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+If the feature is enabled.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key-1"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the feature.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="missingcontextfields"></a> `missingContextFields?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+The missing fields in the evaluation context (optional).
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="targetingversion"></a> `targetingVersion?`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The version of the targeting used to evaluate if the feature is enabled (optional).
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Type Aliases
-
-<a id="attributes"></a>
 
 ### Attributes
 
@@ -1437,8 +1668,6 @@ type Attributes = Record<string, any>;
 Describes the attributes of a user, company or event.
 
 ***
-
-<a id="batchbufferoptionst"></a>
 
 ### BatchBufferOptions\<T\>
 
@@ -1492,7 +1721,7 @@ The type of items in the buffer.
 <tr>
 <td>
 
-<a id="flushhandler-2"></a> `flushHandler`
+<a id="flushhandler"></a> `flushHandler`
 
 </td>
 <td>
@@ -1509,7 +1738,7 @@ A function that handles flushing the items in the buffer.
 <tr>
 <td>
 
-<a id="intervalms-2"></a> `intervalMs`?
+<a id="intervalms"></a> `intervalMs`?
 
 </td>
 <td>
@@ -1526,12 +1755,12 @@ The interval in milliseconds at which the buffer is flushed.
 <tr>
 <td>
 
-<a id="logger-7"></a> `logger`?
+<a id="logger-2"></a> `logger`?
 
 </td>
 <td>
 
-[`Logger`](globals.md#logger-4)
+[`Logger`](globals.md#logger)
 
 </td>
 <td>
@@ -1543,7 +1772,7 @@ The logger to use for logging (optional).
 <tr>
 <td>
 
-<a id="maxsize-2"></a> `maxSize`?
+<a id="maxsize"></a> `maxSize`?
 
 </td>
 <td>
@@ -1561,8 +1790,6 @@ The maximum size of the buffer before it is flushed.
 </table>
 
 ***
-
-<a id="clientoptions"></a>
 
 ### ClientOptions
 
@@ -1599,7 +1826,7 @@ Defines the options for the SDK client.
 <tr>
 <td>
 
-<a id="apibaseurl-2"></a> `apiBaseUrl`?
+<a id="apibaseurl"></a> `apiBaseUrl`?
 
 </td>
 <td>
@@ -1616,7 +1843,7 @@ The host to send requests to (optional).
 <tr>
 <td>
 
-<a id="batchoptions-2"></a> `batchOptions`?
+<a id="batchoptions"></a> `batchOptions`?
 
 </td>
 <td>
@@ -1634,7 +1861,7 @@ If not provided, the default options are used.
 <tr>
 <td>
 
-<a id="configfile-2"></a> `configFile`?
+<a id="configfile"></a> `configFile`?
 
 </td>
 <td>
@@ -1653,7 +1880,7 @@ set through the environment variable BUCKET_CONFIG_FILE.
 <tr>
 <td>
 
-<a id="fallbackfeatures-2"></a> `fallbackFeatures`?
+<a id="fallbackfeatures"></a> `fallbackFeatures`?
 
 </td>
 <td>
@@ -1670,7 +1897,7 @@ The features to "enable" as fallbacks when the API is unavailable (optional).
 <tr>
 <td>
 
-<a id="featureoverrides-6"></a> `featureOverrides`?
+<a id="featureoverrides-1"></a> `featureOverrides`?
 
 </td>
 <td>
@@ -1695,7 +1922,7 @@ Defaults to "bucketFeatures.json".
 <tr>
 <td>
 
-<a id="host-2"></a> `host`?
+<a id="host"></a> `host`?
 
 </td>
 <td>
@@ -1714,7 +1941,7 @@ Use `apiBaseUrl` instead.
 <tr>
 <td>
 
-<a id="httpclient-3"></a> `httpClient`?
+<a id="httpclient-1"></a> `httpClient`?
 
 </td>
 <td>
@@ -1731,12 +1958,12 @@ The HTTP client to use for sending requests (optional). Default is the built-in 
 <tr>
 <td>
 
-<a id="logger-10"></a> `logger`?
+<a id="logger-3"></a> `logger`?
 
 </td>
 <td>
 
-[`Logger`](globals.md#logger-4)
+[`Logger`](globals.md#logger)
 
 </td>
 <td>
@@ -1748,12 +1975,12 @@ The logger to use for logging (optional). Default is info level logging to conso
 <tr>
 <td>
 
-<a id="loglevel-2"></a> `logLevel`?
+<a id="loglevel"></a> `logLevel`?
 
 </td>
 <td>
 
-[`LogLevel`](globals.md#loglevel-3)
+[`LogLevel`](globals.md#loglevel)
 
 </td>
 <td>
@@ -1765,7 +1992,7 @@ Use the console logger, but set a log level. Ineffective if a custom logger is p
 <tr>
 <td>
 
-<a id="offline-2"></a> `offline`?
+<a id="offline"></a> `offline`?
 
 </td>
 <td>
@@ -1783,7 +2010,7 @@ This is useful for testing or development.
 <tr>
 <td>
 
-<a id="secretkey-2"></a> `secretKey`?
+<a id="secretkey"></a> `secretKey`?
 
 </td>
 <td>
@@ -1801,8 +2028,6 @@ The secret key used to authenticate with the Bucket API.
 </table>
 
 ***
-
-<a id="context"></a>
 
 ### Context
 
@@ -1838,7 +2063,7 @@ This is used to determine if feature targeting matches and to track events.
 <tr>
 <td>
 
-<a id="company-8"></a> `company`?
+<a id="company-2"></a> `company`?
 
 </td>
 <td>
@@ -1892,7 +2117,7 @@ The company context. If no `id` key is set, the whole object is ignored.
 <tr>
 <td>
 
-<a id="other-4"></a> `other`?
+<a id="other-1"></a> `other`?
 
 </td>
 <td>
@@ -1909,7 +2134,7 @@ The other context. This is used for any additional context that is not related t
 <tr>
 <td>
 
-<a id="user-8"></a> `user`?
+<a id="user-2"></a> `user`?
 
 </td>
 <td>
@@ -1983,8 +2208,6 @@ The user context. If no `id` key is set, the whole object is ignored.
 
 ***
 
-<a id="featureoverrides-7"></a>
-
 ### FeatureOverrides
 
 ```ts
@@ -1994,8 +2217,6 @@ type FeatureOverrides = Partial<Record<keyof TypedFeatures, boolean>>;
 Describes the feature overrides.
 
 ***
-
-<a id="featureoverridesfn"></a>
 
 ### FeatureOverridesFn()
 
@@ -2030,11 +2251,9 @@ type FeatureOverridesFn = (context: Context) => FeatureOverrides;
 
 #### Returns
 
-[`FeatureOverrides`](globals.md#featureoverrides-7)
+[`FeatureOverrides`](globals.md#featureoverrides)
 
 ***
-
-<a id="httpclientresponsetresponse"></a>
 
 ### HttpClientResponse\<TResponse\>
 
@@ -2087,7 +2306,7 @@ The type of the response body.
 <tr>
 <td>
 
-<a id="body-4"></a> `body`
+<a id="body"></a> `body`
 
 </td>
 <td>
@@ -2104,7 +2323,7 @@ The body of the response if available.
 <tr>
 <td>
 
-<a id="ok-2"></a> `ok`
+<a id="ok"></a> `ok`
 
 </td>
 <td>
@@ -2121,7 +2340,7 @@ Indicates that the request succeeded.
 <tr>
 <td>
 
-<a id="status-2"></a> `status`
+<a id="status"></a> `status`
 
 </td>
 <td>
@@ -2140,8 +2359,6 @@ The status code of the response.
 
 ***
 
-<a id="idtype"></a>
-
 ### IdType
 
 ```ts
@@ -2150,8 +2367,6 @@ type IdType = string | number;
 
 ***
 
-<a id="loglevel-3"></a>
-
 ### LogLevel
 
 ```ts
@@ -2159,8 +2374,6 @@ type LogLevel = typeof LOG_LEVELS[number];
 ```
 
 ***
-
-<a id="trackingmeta"></a>
 
 ### TrackingMeta
 
@@ -2186,7 +2399,7 @@ Describes the meta context associated with tracking.
 <tr>
 <td>
 
-<a id="active-2"></a> `active`?
+<a id="active"></a> `active`?
 
 </td>
 <td>
@@ -2204,8 +2417,6 @@ Whether the user or company is active.
 </table>
 
 ***
-
-<a id="trackoptions"></a>
 
 ### TrackOptions
 
@@ -2232,7 +2443,7 @@ Defines the options for tracking of entities.
 <tr>
 <td>
 
-<a id="attributes-3"></a> `attributes`?
+<a id="attributes-1"></a> `attributes`?
 
 </td>
 <td>
@@ -2249,7 +2460,7 @@ The attributes associated with the event.
 <tr>
 <td>
 
-<a id="meta-2"></a> `meta`?
+<a id="meta"></a> `meta`?
 
 </td>
 <td>
@@ -2268,8 +2479,6 @@ The meta context associated with the event.
 
 ***
 
-<a id="typedfeatures"></a>
-
 ### TypedFeatures
 
 ```ts
@@ -2284,8 +2493,6 @@ This types falls back to a generic Record<string, Feature> if the Features inter
 has not been extended.
 
 ## Variables
-
-<a id="log_levels"></a>
 
 ### LOG\_LEVELS
 

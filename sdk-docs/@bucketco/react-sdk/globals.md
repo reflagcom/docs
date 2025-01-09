@@ -17,13 +17,9 @@ pagination:
 
 ## Interfaces
 
-<a id="features"></a>
-
 ### Features
 
 ## Type Aliases
-
-<a id="bucketprops"></a>
 
 ### BucketProps
 
@@ -272,8 +268,6 @@ Use `sseBaseUrl` instead.
 
 ***
 
-<a id="featurekey"></a>
-
 ### FeatureKey
 
 ```ts
@@ -281,8 +275,6 @@ type FeatureKey = keyof keyof Features extends never ? Record<string, boolean> :
 ```
 
 ## Functions
-
-<a id="bucketprovider"></a>
 
 ### BucketProvider()
 
@@ -320,8 +312,6 @@ function BucketProvider(__namedParameters: BucketProps): Element
 `Element`
 
 ***
-
-<a id="usefeature"></a>
 
 ### useFeature()
 
@@ -394,8 +384,6 @@ function HuddleButton() {
 
 ***
 
-<a id="userequestfeedback"></a>
-
 ### useRequestFeedback()
 
 ```ts
@@ -449,8 +437,6 @@ bucket.requestFeedback({
 `undefined` \| `void`
 
 ***
-
-<a id="usesendfeedback"></a>
 
 ### useSendFeedback()
 
@@ -507,8 +493,6 @@ sendFeedback({
 `undefined` \| `Promise`\<`undefined` \| `Response`\>
 
 ***
-
-<a id="usetrack"></a>
 
 ### useTrack()
 
@@ -571,8 +555,6 @@ track("Started Huddle", { button: "cta" });
 
 ***
 
-<a id="useupdatecompany"></a>
-
 ### useUpdateCompany()
 
 ```ts
@@ -624,8 +606,6 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Features updated")
 `undefined` \| `Promise`\<`void`\>
 
 ***
-
-<a id="useupdateothercontext"></a>
 
 ### useUpdateOtherContext()
 
@@ -679,8 +659,6 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 `undefined` \| `Promise`\<`void`\>
 
 ***
-
-<a id="useupdateuser"></a>
 
 ### useUpdateUser()
 

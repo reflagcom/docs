@@ -17,15 +17,11 @@ pagination:
 
 ## Classes
 
-<a id="bucketclient"></a>
-
 ### BucketClient
 
 BucketClient lets you interact with the Bucket API.
 
 #### Constructors
-
-<a id="constructors-1"></a>
 
 ##### new BucketClient()
 
@@ -66,8 +62,6 @@ Create a new BucketClient instance.
 
 #### Methods
 
-<a id="feedback-2"></a>
-
 ##### feedback()
 
 ```ts
@@ -94,7 +88,7 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 </td>
 <td>
 
-[`Feedback`](globals.md#feedback-6)
+[`Feedback`](globals.md#feedback)
 
 </td>
 </tr>
@@ -104,10 +98,6 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 ###### Returns
 
 `Promise`\<`undefined` \| `Response`\>
-
-***
-
-<a id="getfeature-2"></a>
 
 ##### getFeature()
 
@@ -148,10 +138,6 @@ Return a feature. Accessing `isEnabled` will automatically send a `check` event.
 
 A feature
 
-***
-
-<a id="getfeatures-2"></a>
-
 ##### getFeatures()
 
 ```ts
@@ -167,10 +153,6 @@ Accessing a feature will *not* send a check event
 
 Map of features
 
-***
-
-<a id="initialize-2"></a>
-
 ##### initialize()
 
 ```ts
@@ -184,10 +166,6 @@ Must be called before calling other SDK methods.
 ###### Returns
 
 `Promise`\<`void`\>
-
-***
-
-<a id="onfeaturesupdated-2"></a>
 
 ##### onFeaturesUpdated()
 
@@ -239,10 +217,6 @@ this will be called when the features are updated.
 
 `void`
 
-***
-
-<a id="requestfeedback-2"></a>
-
 ##### requestFeedback()
 
 ```ts
@@ -282,10 +256,6 @@ This can be used to collect feedback from users in Bucket in cases where Automat
 
 `void`
 
-***
-
-<a id="sendcheckevent-2"></a>
-
 ##### sendCheckEvent()
 
 ```ts
@@ -310,7 +280,7 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 </td>
 <td>
 
-[`CheckEvent`](globals.md#checkevent-2)
+[`CheckEvent`](globals.md#checkevent)
 
 </td>
 </tr>
@@ -320,10 +290,6 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 ###### Returns
 
 `Promise`\<`boolean`\>
-
-***
-
-<a id="stop-2"></a>
 
 ##### stop()
 
@@ -339,10 +305,6 @@ any onFeaturesUpdated listeners.
 ###### Returns
 
 `Promise`\<`void`\>
-
-***
-
-<a id="track-2"></a>
 
 ##### track()
 
@@ -404,10 +366,6 @@ Any attributes you want to attach to the event
 
 `Promise`\<`undefined` \| `Response`\>
 
-***
-
-<a id="updatecompany-2"></a>
-
 ##### updateCompany()
 
 ```ts
@@ -447,10 +405,6 @@ Attempting to update the company ID will log a warning and be ignored.
 
 `Promise`\<`void`\>
 
-***
-
-<a id="updateothercontext-2"></a>
-
 ##### updateOtherContext()
 
 ```ts
@@ -489,10 +443,6 @@ Updates to the company ID will be ignored.
 ###### Returns
 
 `Promise`\<`void`\>
-
-***
-
-<a id="updateuser-2"></a>
 
 ##### updateUser()
 
@@ -535,21 +485,74 @@ Attempting to update the user ID will log a warning and be ignored.
 
 ## Interfaces
 
-<a id="bucketcontext"></a>
-
 ### BucketContext
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="company-3"></a> `company?` | [`CompanyContext`](globals.md#companycontext) | Company related context |
-| <a id="othercontext-3"></a> `otherContext?` | `Record`\<`string`, `undefined` \| `string` \| `number`\> | Context which is not related to a user or a company |
-| <a id="user-3"></a> `user?` | [`UserContext`](globals.md#usercontext) | User related context |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="company"></a> `company?`
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+Company related context
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="othercontext"></a> `otherContext?`
+
+</td>
+<td>
+
+`Record`\<`string`, `undefined` \| `string` \| `number`\>
+
+</td>
+<td>
+
+Context which is not related to a user or a company
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user"></a> `user?`
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+User related context
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="checkevent-2"></a>
 
 ### CheckEvent
 
@@ -557,15 +560,70 @@ Event representing checking the feature flag evaluation result
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="key-9"></a> `key` | `string` | Feature key |
-| <a id="value-1"></a> `value` | `boolean` | Result of feature flag evaluation |
-| <a id="version-1"></a> `version?` | `number` | Version of targeting rules |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="key"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Feature key
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="value"></a> `value`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Result of feature flag evaluation
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="version"></a> `version?`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Version of targeting rules
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="companycontext"></a>
 
 ### CompanyContext
 
@@ -580,57 +638,240 @@ Id should always be present so that it can be referenced to an existing company.
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="id-1"></a> `id` | `undefined` \| `string` \| `number` | Company id |
-| <a id="name-1"></a> `name?` | `string` | Company name |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="id"></a> `id`
+
+</td>
+<td>
+
+`undefined` \| `string` \| `number`
+
+</td>
+<td>
+
+Company id
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Company name
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="feature"></a>
 
 ### Feature
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="isenabled-1"></a> `isEnabled` | `boolean` | Result of feature flag evaluation |
-| <a id="requestfeedback-5"></a> `requestFeedback` | (`options`: `Omit`\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `void` | - |
-| <a id="track-5"></a> `track` | () => `Promise`\<`undefined` \| `Response`\> | Function to send analytics events for this feature |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="isenabled"></a> `isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Result of feature flag evaluation
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="requestfeedback-1"></a> `requestFeedback`
+
+</td>
+<td>
+
+(`options`: `Omit`\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `void`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="track-1"></a> `track`
+
+</td>
+<td>
+
+() => `Promise`\<`undefined` \| `Response`\>
+
+</td>
+<td>
+
+Function to send analytics events for this feature
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="feedbackscoresubmission"></a>
 
 ### FeedbackScoreSubmission
 
 #### Properties
 
-| Property | Type |
-| ------ | ------ |
-| <a id="feedbackid-1"></a> `feedbackId?` | `string` |
-| <a id="question-1"></a> `question` | `string` |
-| <a id="score-1"></a> `score` | `number` |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="feedbackid"></a> `feedbackId?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="question"></a> `question`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="score"></a> `score`
+
+</td>
+<td>
+
+`number`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="feedbacksubmission"></a>
 
 ### FeedbackSubmission
 
 #### Properties
 
-| Property | Type |
-| ------ | ------ |
-| <a id="comment-1"></a> `comment` | `string` |
-| <a id="feedbackid-3"></a> `feedbackId?` | `string` |
-| <a id="question-3"></a> `question` | `string` |
-| <a id="score-3"></a> `score` | `number` |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="comment"></a> `comment`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="feedbackid-1"></a> `feedbackId?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="question-1"></a> `question`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="score-1"></a> `score`
+
+</td>
+<td>
+
+`number`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="initoptions"></a>
 
 ### InitOptions
 
@@ -638,31 +879,253 @@ BucketClient initialization options.
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="apibaseurl-1"></a> `apiBaseUrl?` | `string` | Base URL of Bucket servers. You can override this to use your mocked server. |
-| <a id="company-5"></a> `company?` | [`CompanyContext`](globals.md#companycontext) | Company related context. If you provide `id` Bucket will enrich the evaluation context with company attributes on Bucket servers. |
-| <a id="enabletracking-1"></a> `enableTracking?` | `boolean` | - |
-| <a id="features-1"></a> `features?` | [`FeaturesOptions`](globals.md#featuresoptions) | Feature flag specific configuration |
-| <a id="feedback-5"></a> `feedback?` | [`FeedbackOptions`](globals.md#feedbackoptions) | AutoFeedback specific configuration |
-| <a id="host-1"></a> ~~`host?`~~ | `string` | **Deprecated** Use `apiBaseUrl` instead. |
-| <a id="logger-1"></a> `logger?` | [`Logger`](globals.md#logger-2) | You can provide a logger to see the logs of the network calls. This is undefined by default. For debugging purposes you can just set the browser console to this property: `options.logger = window.console;` |
-| <a id="othercontext-5"></a> `otherContext?` | `Record`\<`string`, `any`\> | Context not related to users or companies |
-| <a id="publishablekey-1"></a> `publishableKey` | `string` | Publishable key for authentication |
-| <a id="sdkversion-1"></a> `sdkVersion?` | `string` | Version of the SDK |
-| <a id="ssebaseurl-1"></a> `sseBaseUrl?` | `string` | Base URL of Bucket servers for SSE connections used by AutoFeedback. |
-| <a id="ssehost-1"></a> ~~`sseHost?`~~ | `string` | **Deprecated** Use `sseBaseUrl` instead. |
-| <a id="user-5"></a> `user?` | [`UserContext`](globals.md#usercontext) | User related context. If you provide `id` Bucket will enrich the evaluation context with user attributes on Bucket servers. |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="apibaseurl"></a> `apiBaseUrl?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Bucket servers. You can override this to use your mocked server.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="company-1"></a> `company?`
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+Company related context. If you provide `id` Bucket will enrich the evaluation context with company attributes on Bucket servers.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="enabletracking"></a> `enableTracking?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="features"></a> `features?`
+
+</td>
+<td>
+
+[`FeaturesOptions`](globals.md#featuresoptions)
+
+</td>
+<td>
+
+Feature flag specific configuration
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="feedback-1"></a> `feedback?`
+
+</td>
+<td>
+
+[`FeedbackOptions`](globals.md#feedbackoptions)
+
+</td>
+<td>
+
+AutoFeedback specific configuration
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="host"></a> ~~`host?`~~
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+**Deprecated**
+
+Use `apiBaseUrl` instead.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="logger"></a> `logger?`
+
+</td>
+<td>
+
+[`Logger`](globals.md#logger)
+
+</td>
+<td>
+
+You can provide a logger to see the logs of the network calls.
+This is undefined by default.
+For debugging purposes you can just set the browser console to this property:
+```javascript
+options.logger = window.console;
+```
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="othercontext-1"></a> `otherContext?`
+
+</td>
+<td>
+
+`Record`\<`string`, `any`\>
+
+</td>
+<td>
+
+Context not related to users or companies
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="publishablekey"></a> `publishableKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Publishable key for authentication
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="sdkversion"></a> `sdkVersion?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Version of the SDK
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ssebaseurl"></a> `sseBaseUrl?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Bucket servers for SSE connections used by AutoFeedback.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ssehost"></a> ~~`sseHost?`~~
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+**Deprecated**
+
+Use `sseBaseUrl` instead.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user-1"></a> `user?`
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+User related context. If you provide `id` Bucket will enrich the evaluation context with user attributes on Bucket servers.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="logger-2"></a>
 
 ### Logger
 
 #### Methods
-
-<a id="debug-2"></a>
 
 ##### debug()
 
@@ -711,10 +1174,6 @@ debug(message: string, ...args: any[]): void
 
 `void`
 
-***
-
-<a id="error-2"></a>
-
 ##### error()
 
 ```ts
@@ -762,10 +1221,6 @@ error(message: string, ...args: any[]): void
 
 `void`
 
-***
-
-<a id="info-2"></a>
-
 ##### info()
 
 ```ts
@@ -812,10 +1267,6 @@ info(message: string, ...args: any[]): void
 ###### Returns
 
 `void`
-
-***
-
-<a id="warn-2"></a>
 
 ##### warn()
 
@@ -866,39 +1317,207 @@ warn(message: string, ...args: any[]): void
 
 ***
 
-<a id="onscoresubmitresult"></a>
-
 ### OnScoreSubmitResult
 
 #### Properties
 
-| Property | Type |
-| ------ | ------ |
-| <a id="feedbackid-5"></a> `feedbackId` | `string` |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="feedbackid-2"></a> `feedbackId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="openfeedbackformoptions"></a>
 
 ### OpenFeedbackFormOptions
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="key-12"></a> `key` | `string` | - |
-| <a id="onclose-1"></a> `onClose?` | () => `void` | - |
-| <a id="ondismiss-1"></a> `onDismiss?` | () => `void` | - |
-| <a id="onscoresubmit-1"></a> `onScoreSubmit?` | (`data`: [`FeedbackScoreSubmission`](globals.md#feedbackscoresubmission)) => `Promise`\<[`OnScoreSubmitResult`](globals.md#onscoresubmitresult)\> | - |
-| <a id="onsubmit-1"></a> `onSubmit` | (`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => `void` \| `Promise`\<`void`\> | - |
-| <a id="openwithcommentvisible-1"></a> `openWithCommentVisible?` | `boolean` | Open the form with both the score and comment fields visible. Defaults to `false` |
-| <a id="position-1"></a> `position?` | [`FeedbackPosition`](globals.md#feedbackposition) | Control the placement and behavior of the feedback form. |
-| <a id="title-1"></a> `title?` | `string` | - |
-| <a id="translations-1"></a> `translations?` | `Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\> | Add your own custom translations for the feedback form. Undefined translation keys fall back to english defaults. |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="key-1"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="onclose"></a> `onClose?`
+
+</td>
+<td>
+
+() => `void`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ondismiss"></a> `onDismiss?`
+
+</td>
+<td>
+
+() => `void`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="onscoresubmit"></a> `onScoreSubmit?`
+
+</td>
+<td>
+
+(`data`: [`FeedbackScoreSubmission`](globals.md#feedbackscoresubmission)) => `Promise`\<[`OnScoreSubmitResult`](globals.md#onscoresubmitresult)\>
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="onsubmit"></a> `onSubmit`
+
+</td>
+<td>
+
+(`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => `void` \| `Promise`\<`void`\>
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="openwithcommentvisible"></a> `openWithCommentVisible?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Open the form with both the score and comment fields visible.
+Defaults to `false`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="position"></a> `position?`
+
+</td>
+<td>
+
+[`FeedbackPosition`](globals.md#feedbackposition)
+
+</td>
+<td>
+
+Control the placement and behavior of the feedback form.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="title"></a> `title?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="translations"></a> `translations?`
+
+</td>
+<td>
+
+`Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
+
+</td>
+<td>
+
+Add your own custom translations for the feedback form.
+Undefined translation keys fall back to english defaults.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
-
-<a id="usercontext"></a>
 
 ### UserContext
 
@@ -910,15 +1529,70 @@ warn(message: string, ...args: any[]): void
 
 #### Properties
 
-| Property | Type | Description |
-| ------ | ------ | ------ |
-| <a id="email-1"></a> `email?` | `string` | User email |
-| <a id="id-3"></a> `id` | `undefined` \| `string` \| `number` | User id |
-| <a id="name-3"></a> `name?` | `string` | User name |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="email"></a> `email?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User email
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="id-1"></a> `id`
+
+</td>
+<td>
+
+`undefined` \| `string` \| `number`
+
+</td>
+<td>
+
+User id
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-1"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User name
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Type Aliases
-
-<a id="featureidentifier"></a>
 
 ### FeatureIdentifier
 
@@ -1006,8 +1680,6 @@ Bucket feature key.
 
 ***
 
-<a id="featuresoptions"></a>
-
 ### FeaturesOptions
 
 ```ts
@@ -1034,7 +1706,7 @@ type FeaturesOptions = {
 <tr>
 <td>
 
-<a id="expiretimems-2"></a> `expireTimeMs`?
+<a id="expiretimems"></a> `expireTimeMs`?
 
 </td>
 <td>
@@ -1051,7 +1723,7 @@ type FeaturesOptions = {
 <tr>
 <td>
 
-<a id="fallbackfeatures-2"></a> `fallbackFeatures`?
+<a id="fallbackfeatures"></a> `fallbackFeatures`?
 
 </td>
 <td>
@@ -1069,7 +1741,7 @@ if SDK fails to fetch features from Bucket servers.
 <tr>
 <td>
 
-<a id="staletimems-2"></a> `staleTimeMs`?
+<a id="staletimems"></a> `staleTimeMs`?
 
 </td>
 <td>
@@ -1086,7 +1758,7 @@ if SDK fails to fetch features from Bucket servers.
 <tr>
 <td>
 
-<a id="stalewhilerevalidate-2"></a> `staleWhileRevalidate`?
+<a id="stalewhilerevalidate"></a> `staleWhileRevalidate`?
 
 </td>
 <td>
@@ -1104,7 +1776,7 @@ but refetching
 <tr>
 <td>
 
-<a id="timeoutms-2"></a> `timeoutMs`?
+<a id="timeoutms"></a> `timeoutMs`?
 
 </td>
 <td>
@@ -1122,8 +1794,6 @@ Timeout in miliseconds
 </table>
 
 ***
-
-<a id="feedback-6"></a>
 
 ### Feedback
 
@@ -1184,8 +1854,6 @@ User ID from your own application.
 
 ***
 
-<a id="feedbackoptions"></a>
-
 ### FeedbackOptions
 
 ```ts
@@ -1215,7 +1883,7 @@ type FeedbackOptions = {
 <tr>
 <td>
 
-<a id="autofeedbackhandler-2"></a> `autoFeedbackHandler`?
+<a id="autofeedbackhandler"></a> `autoFeedbackHandler`?
 
 </td>
 <td>
@@ -1232,7 +1900,7 @@ type FeedbackOptions = {
 <tr>
 <td>
 
-<a id="enableautofeedback-2"></a> `enableAutoFeedback`?
+<a id="enableautofeedback"></a> `enableAutoFeedback`?
 
 </td>
 <td>
@@ -1249,7 +1917,7 @@ Enables automatic feedback prompting if it's set up in Bucket
 <tr>
 <td>
 
-<a id="enablelivesatisfaction-2"></a> `enableLiveSatisfaction`?
+<a id="enablelivesatisfaction"></a> `enableLiveSatisfaction`?
 
 </td>
 <td>
@@ -1268,7 +1936,7 @@ Use `enableAutoFeedback` instead
 <tr>
 <td>
 
-<a id="livesatisfactionhandler-2"></a> `liveSatisfactionHandler`?
+<a id="livesatisfactionhandler"></a> `liveSatisfactionHandler`?
 
 </td>
 <td>
@@ -1287,7 +1955,7 @@ Use `autoFeedbackHandler` instead
 <tr>
 <td>
 
-<a id="ui-2"></a> `ui`?
+<a id="ui"></a> `ui`?
 
 </td>
 <td>
@@ -1344,8 +2012,6 @@ Undefined translation keys fall back to english defaults.
 
 ***
 
-<a id="feedbackplacement"></a>
-
 ### FeedbackPlacement
 
 ```ts
@@ -1353,8 +2019,6 @@ type FeedbackPlacement = "bottom-right" | "bottom-left" | "top-right" | "top-lef
 ```
 
 ***
-
-<a id="feedbackposition"></a>
 
 ### FeedbackPosition
 
@@ -1375,8 +2039,6 @@ type FeedbackPosition =
 ```
 
 ***
-
-<a id="feedbackprompt"></a>
 
 ### FeedbackPrompt
 
@@ -1404,7 +2066,7 @@ type FeedbackPrompt = {
 <tr>
 <td>
 
-<a id="featureid-2"></a> `featureId`
+<a id="featureid"></a> `featureId`
 
 </td>
 <td>
@@ -1421,7 +2083,7 @@ Feature ID from Bucket
 <tr>
 <td>
 
-<a id="promptid-2"></a> `promptId`
+<a id="promptid"></a> `promptId`
 
 </td>
 <td>
@@ -1438,7 +2100,7 @@ Id of the prompt
 <tr>
 <td>
 
-<a id="question-6"></a> `question`
+<a id="question-2"></a> `question`
 
 </td>
 <td>
@@ -1455,7 +2117,7 @@ Specific question user was asked
 <tr>
 <td>
 
-<a id="showafter-2"></a> `showAfter`
+<a id="showafter"></a> `showAfter`
 
 </td>
 <td>
@@ -1472,7 +2134,7 @@ Feedback prompt should appear only after this time
 <tr>
 <td>
 
-<a id="showbefore-2"></a> `showBefore`
+<a id="showbefore"></a> `showBefore`
 
 </td>
 <td>
@@ -1490,8 +2152,6 @@ Feedback prompt will not be shown after this time
 </table>
 
 ***
-
-<a id="feedbackprompthandler"></a>
 
 ### FeedbackPromptHandler()
 
@@ -1542,8 +2202,6 @@ type FeedbackPromptHandler = (prompt: FeedbackPrompt, handlers: FeedbackPromptHa
 
 ***
 
-<a id="feedbackprompthandlercallbacks"></a>
-
 ### FeedbackPromptHandlerCallbacks
 
 ```ts
@@ -1566,7 +2224,7 @@ type FeedbackPromptHandlerCallbacks = {
 <tr>
 <td>
 
-<a id="openfeedbackform-2"></a> `openFeedbackForm`
+<a id="openfeedbackform"></a> `openFeedbackForm`
 
 </td>
 <td>
@@ -1578,7 +2236,7 @@ type FeedbackPromptHandlerCallbacks = {
 <tr>
 <td>
 
-<a id="reply-2"></a> `reply`
+<a id="reply"></a> `reply`
 
 </td>
 <td>
@@ -1591,8 +2249,6 @@ type FeedbackPromptHandlerCallbacks = {
 </table>
 
 ***
-
-<a id="feedbackprompthandleropenfeedbackformoptions"></a>
 
 ### FeedbackPromptHandlerOpenFeedbackFormOptions
 
@@ -1607,8 +2263,6 @@ type FeedbackPromptHandlerOpenFeedbackFormOptions = Omit<RequestFeedbackOptions,
 ```
 
 ***
-
-<a id="feedbackpromptreply"></a>
 
 ### FeedbackPromptReply
 
@@ -1634,7 +2288,7 @@ type FeedbackPromptReply = {
 <tr>
 <td>
 
-<a id="comment-4"></a> `comment`?
+<a id="comment-1"></a> `comment`?
 
 </td>
 <td>
@@ -1646,7 +2300,7 @@ type FeedbackPromptReply = {
 <tr>
 <td>
 
-<a id="companyid-2"></a> `companyId`?
+<a id="companyid"></a> `companyId`?
 
 </td>
 <td>
@@ -1658,7 +2312,7 @@ type FeedbackPromptReply = {
 <tr>
 <td>
 
-<a id="question-9"></a> `question`
+<a id="question-3"></a> `question`
 
 </td>
 <td>
@@ -1670,7 +2324,7 @@ type FeedbackPromptReply = {
 <tr>
 <td>
 
-<a id="score-6"></a> `score`?
+<a id="score-2"></a> `score`?
 
 </td>
 <td>
@@ -1683,8 +2337,6 @@ type FeedbackPromptReply = {
 </table>
 
 ***
-
-<a id="feedbackpromptreplyhandler"></a>
 
 ### FeedbackPromptReplyHandler()
 
@@ -1746,8 +2398,6 @@ type FeedbackPromptReplyHandler = <T>(reply: T) => T extends null ? Promise<void
 
 ***
 
-<a id="feedbacktranslations"></a>
-
 ### FeedbackTranslations
 
 ```ts
@@ -1783,7 +2433,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="defaultquestionlabel-2"></a> `DefaultQuestionLabel`
+<a id="defaultquestionlabel"></a> `DefaultQuestionLabel`
 
 </td>
 <td>
@@ -1795,7 +2445,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="questionplaceholder-2"></a> `QuestionPlaceholder`
+<a id="questionplaceholder"></a> `QuestionPlaceholder`
 
 </td>
 <td>
@@ -1807,7 +2457,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="scoredissatisfiedlabel-2"></a> `ScoreDissatisfiedLabel`
+<a id="scoredissatisfiedlabel"></a> `ScoreDissatisfiedLabel`
 
 </td>
 <td>
@@ -1819,7 +2469,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="scoreneutrallabel-2"></a> `ScoreNeutralLabel`
+<a id="scoreneutrallabel"></a> `ScoreNeutralLabel`
 
 </td>
 <td>
@@ -1831,7 +2481,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="scoresatisfiedlabel-2"></a> `ScoreSatisfiedLabel`
+<a id="scoresatisfiedlabel"></a> `ScoreSatisfiedLabel`
 
 </td>
 <td>
@@ -1843,7 +2493,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="scorestatusdescription-2"></a> `ScoreStatusDescription`
+<a id="scorestatusdescription"></a> `ScoreStatusDescription`
 
 </td>
 <td>
@@ -1855,7 +2505,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="scorestatusloading-2"></a> `ScoreStatusLoading`
+<a id="scorestatusloading"></a> `ScoreStatusLoading`
 
 </td>
 <td>
@@ -1867,7 +2517,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="scorestatusreceived-2"></a> `ScoreStatusReceived`
+<a id="scorestatusreceived"></a> `ScoreStatusReceived`
 
 </td>
 <td>
@@ -1879,7 +2529,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="scoreverydissatisfiedlabel-2"></a> `ScoreVeryDissatisfiedLabel`
+<a id="scoreverydissatisfiedlabel"></a> `ScoreVeryDissatisfiedLabel`
 
 </td>
 <td>
@@ -1891,7 +2541,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="scoreverysatisfiedlabel-2"></a> `ScoreVerySatisfiedLabel`
+<a id="scoreverysatisfiedlabel"></a> `ScoreVerySatisfiedLabel`
 
 </td>
 <td>
@@ -1903,7 +2553,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="sendbutton-2"></a> `SendButton`
+<a id="sendbutton"></a> `SendButton`
 
 </td>
 <td>
@@ -1915,7 +2565,7 @@ with desired language translation
 <tr>
 <td>
 
-<a id="successmessage-2"></a> `SuccessMessage`
+<a id="successmessage"></a> `SuccessMessage`
 
 </td>
 <td>
@@ -1928,8 +2578,6 @@ with desired language translation
 </table>
 
 ***
-
-<a id="offset"></a>
 
 ### Offset
 
@@ -1954,7 +2602,7 @@ type Offset = {
 <tr>
 <td>
 
-<a id="x-2"></a> `x`?
+<a id="x"></a> `x`?
 
 </td>
 <td>
@@ -1971,7 +2619,7 @@ Offset from the nearest horizontal screen edge after placement is resolved
 <tr>
 <td>
 
-<a id="y-2"></a> `y`?
+<a id="y"></a> `y`?
 
 </td>
 <td>
@@ -1989,8 +2637,6 @@ Offset from the nearest vertical screen edge after placement is resolved
 </table>
 
 ***
-
-<a id="rawfeature"></a>
 
 ### RawFeature
 
@@ -2016,7 +2662,7 @@ type RawFeature = {
 <tr>
 <td>
 
-<a id="isenabled-4"></a> `isEnabled`
+<a id="isenabled-1"></a> `isEnabled`
 
 </td>
 <td>
@@ -2033,7 +2679,7 @@ Result of feature flag evaluation
 <tr>
 <td>
 
-<a id="key-16"></a> `key`
+<a id="key-2"></a> `key`
 
 </td>
 <td>
@@ -2050,7 +2696,7 @@ Feature key
 <tr>
 <td>
 
-<a id="targetingversion-2"></a> `targetingVersion`?
+<a id="targetingversion"></a> `targetingVersion`?
 
 </td>
 <td>
@@ -2069,8 +2715,6 @@ Version of targeting rules
 
 ***
 
-<a id="rawfeatures"></a>
-
 ### RawFeatures
 
 ```ts
@@ -2078,8 +2722,6 @@ type RawFeatures = Record<string, RawFeature | undefined>;
 ```
 
 ***
-
-<a id="requestfeedbackdata"></a>
 
 ### RequestFeedbackData
 
@@ -2144,8 +2786,6 @@ copy of the feedback in your own application or CRM.
 
 ***
 
-<a id="requestfeedbackoptions"></a>
-
 ### RequestFeedbackOptions
 
 ```ts
@@ -2186,8 +2826,6 @@ User ID from your own application.
 </table>
 
 ***
-
-<a id="unassignedfeedback"></a>
 
 ### UnassignedFeedback
 
@@ -2348,8 +2986,6 @@ Source of the feedback, depending on how the user was asked
 
 ## Variables
 
-<a id="default_translations"></a>
-
 ### DEFAULT\_TRANSLATIONS
 
 ```ts
@@ -2380,8 +3016,6 @@ export const DEFAULT_TRANSLATIONS: FeedbackTranslations = {
 
 ***
 
-<a id="feedbackcontainerid"></a>
-
 ### feedbackContainerId
 
 ```ts
@@ -2391,8 +3025,6 @@ const feedbackContainerId: "bucket-feedback-dialog-container" = "bucket-feedback
 ID of HTML DIV element which contains the feedback dialog
 
 ***
-
-<a id="propagatedevents"></a>
 
 ### propagatedEvents
 
