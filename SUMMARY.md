@@ -21,7 +21,8 @@
 ## Supported languages
 
 * [Overview](supported-languages/overview.md)
-* [React SDK](supported-languages/react-sdk.md)
+* [React SDK](sdk-docs/%40bucketco/react-sdk/README.md)
+  * [Reference](sdk-docs/%40bucketco/react-sdk/globals.md)
 * [Browser SDK](sdk-docs/%40bucketco/browser-sdk/README.md)
   * [Feedback](sdk-docs/%40bucketco/browser-sdk/documents/FEEDBACK.md)
   * [Reference](sdk-docs/%40bucketco/browser-sdk/index/README.md)
