@@ -59,7 +59,7 @@ new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracki
 </td>
 <td>
 
-`ContextWithTracking`
+[`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
 </tr>
@@ -234,7 +234,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 
 ###### Returns
 
-`Feature`
+[`Feature`](globals.md#feature)
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -275,7 +275,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 
 ###### Returns
 
-`Promise`\<`Feature`\>
+`Promise`\<[`Feature`](globals.md#feature)\>
 
 Feature for the given user/company and key and whether it's enabled or not
 
@@ -292,7 +292,7 @@ Meant for use in serialization of features for transferring to the client-side/b
 
 ###### Returns
 
-`Record`\<`string`, `Feature`\>
+`Record`\<`string`, [`Feature`](globals.md#feature)\>
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -308,7 +308,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 
 ###### Returns
 
-`Promise`\<`Record`\<`string`, `Feature`\>\>
+`Promise`\<`Record`\<`string`, [`Feature`](globals.md#feature)\>\>
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -360,7 +360,7 @@ The event to track.
 </td>
 <td>
 
-`TrackOptions` & \{ `companyId`: `string`; \}
+[`TrackOptions`](globals.md#trackoptions) & \{ `companyId`: `string`; \}
 
 </td>
 <td>
@@ -464,7 +464,7 @@ set featureOverrides(overrides: FeatureOverridesFn): void
 </td>
 <td>
 
-`FeatureOverridesFn`
+[`FeatureOverridesFn`](globals.md#featureoverridesfn)
 
 </td>
 </tr>
@@ -523,7 +523,7 @@ For example, for evaluating feature targeting or tracking events.
 </td>
 <td>
 
-`ContextWithTracking`
+[`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
 </tr>
@@ -593,7 +593,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 </td>
 <td>
 
-`ContextWithTracking`
+[`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
 </tr>
@@ -614,7 +614,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 
 ###### Returns
 
-`Feature`
+[`Feature`](globals.md#feature)
 
 The evaluated features.
 
@@ -667,7 +667,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-`IdType`
+[`IdType`](globals.md#idtype)
 
 </td>
 </tr>
@@ -679,7 +679,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-`IdType`
+[`IdType`](globals.md#idtype)
 
 </td>
 </tr>
@@ -700,7 +700,7 @@ This method triggers a network request every time it's called.
 
 ###### Returns
 
-`Promise`\<`Feature`\>
+`Promise`\<[`Feature`](globals.md#feature)\>
 
 evaluated feature
 
@@ -732,7 +732,7 @@ Gets the evaluated feature for the current context which includes the user, comp
 </td>
 <td>
 
-`ContextWithTracking`
+[`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
 </tr>
@@ -741,7 +741,7 @@ Gets the evaluated feature for the current context which includes the user, comp
 
 ###### Returns
 
-`Record`\<`string`, `Feature`\>
+`Record`\<`string`, [`Feature`](globals.md#feature)\>
 
 The evaluated features.
 
@@ -781,7 +781,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-`IdType`
+[`IdType`](globals.md#idtype)
 
 </td>
 </tr>
@@ -793,7 +793,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-`IdType`
+[`IdType`](globals.md#idtype)
 
 </td>
 </tr>
@@ -814,7 +814,7 @@ This method triggers a network request every time it's called.
 
 ###### Returns
 
-`Promise`\<`Record`\<`string`, `Feature`\>\>
+`Promise`\<`Record`\<`string`, [`Feature`](globals.md#feature)\>\>
 
 evaluated features
 
@@ -873,7 +873,7 @@ Tracks an event in Bucket.
 </td>
 <td>
 
-`IdType`
+[`IdType`](globals.md#idtype)
 
 </td>
 <td>
@@ -907,7 +907,7 @@ The event to track.
 </td>
 <td>
 
-`TrackOptions` & \{ `companyId`: `IdType`; \}
+[`TrackOptions`](globals.md#trackoptions) & \{ `companyId`: [`IdType`](globals.md#idtype); \}
 
 </td>
 <td>
@@ -961,7 +961,7 @@ Updates the associated company in Bucket.
 </td>
 <td>
 
-`IdType`
+[`IdType`](globals.md#idtype)
 
 </td>
 </tr>
@@ -973,7 +973,7 @@ Updates the associated company in Bucket.
 </td>
 <td>
 
-`TrackOptions` & \{ `userId`: `IdType`; \}
+[`TrackOptions`](globals.md#trackoptions) & \{ `userId`: [`IdType`](globals.md#idtype); \}
 
 </td>
 </tr>
@@ -1021,7 +1021,7 @@ Updates the associated user in Bucket.
 </td>
 <td>
 
-`IdType`
+[`IdType`](globals.md#idtype)
 
 </td>
 </tr>
@@ -1033,7 +1033,7 @@ Updates the associated user in Bucket.
 </td>
 <td>
 
-`TrackOptions`
+[`TrackOptions`](globals.md#trackoptions)
 
 </td>
 </tr>
@@ -1054,6 +1054,57 @@ The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
 
 ## Interfaces
+
+### ContextWithTracking
+
+A context with tracking option.
+
+#### Extends
+
+- [`Context`](globals.md#context)
+
+#### Properties
+
+| Property | Type | Description |
+| ------ | ------ | ------ |
+| `company?` | \{ `[k: string]`: `any`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \} | The company context. If no `id` key is set, the whole object is ignored. |
+| `company.id` | `undefined` \| `string` \| `number` | - |
+| `company.name?` | `string` | - |
+| `enableTracking?` | `boolean` | Enable tracking for the context. If set to `false`, tracking will be disabled for the context. Default is `true`. |
+| `other?` | `Record`\<`string`, `any`\> | The other context. This is used for any additional context that is not related to user or company. |
+| `user?` | \{ `[k: string]`: `any`; `email`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \} | The user context. If no `id` key is set, the whole object is ignored. |
+| `user.email?` | `string` | - |
+| `user.id` | `undefined` \| `string` \| `number` | - |
+| `user.name?` | `string` | - |
+
+***
+
+### Feature
+
+Describes a feature
+
+#### Properties
+
+| Property | Type | Description |
+| ------ | ------ | ------ |
+| `isEnabled` | `boolean` | If the feature is enabled. |
+| `key` | `string` | The key of the feature. |
+
+#### Methods
+
+##### track()
+
+```ts
+track(): Promise<void>
+```
+
+Track feature usage in Bucket.
+
+###### Returns
+
+`Promise`\<`void`\>
+
+***
 
 ### Features
 
@@ -1153,7 +1204,7 @@ The headers to include in the request.
 
 ###### Returns
 
-`Promise`\<`HttpClientResponse`\<`TResponse`\>\>
+`Promise`\<[`HttpClientResponse`](globals.md#httpclientresponsetresponse)\<`TResponse`\>\>
 
 The response from the server.
 
@@ -1263,7 +1314,7 @@ The body of the request.
 
 ###### Returns
 
-`Promise`\<`HttpClientResponse`\<`TResponse`\>\>
+`Promise`\<[`HttpClientResponse`](globals.md#httpclientresponsetresponse)\<`TResponse`\>\>
 
 The response from the server.
 
@@ -1306,6 +1357,128 @@ type Attributes: Record<string, any>;
 ```
 
 Describes the attributes of a user, company or event.
+
+***
+
+### BatchBufferOptions\<T\>
+
+```ts
+type BatchBufferOptions<T>: {
+  flushHandler: (items: T[]) => Promise<void>;
+  intervalMs: number;
+  logger: Logger;
+  maxSize: number;
+};
+```
+
+Options for configuring the BatchBuffer.
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`T`
+
+</td>
+<td>
+
+The type of items in the buffer.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`flushHandler`
+
+</td>
+<td>
+
+(`items`: `T`[]) => `Promise`\<`void`\>
+
+</td>
+<td>
+
+A function that handles flushing the items in the buffer.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`intervalMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The interval in milliseconds at which the buffer is flushed.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`logger`?
+
+</td>
+<td>
+
+[`Logger`](globals.md#logger-4)
+
+</td>
+<td>
+
+The logger to use for logging (optional).
+
+</td>
+</tr>
+<tr>
+<td>
+
+`maxSize`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The maximum size of the buffer before it is flushed.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1365,7 +1538,7 @@ The host to send requests to (optional).
 </td>
 <td>
 
-`Omit`\<`BatchBufferOptions`\<`any`\>, `"flushHandler"` \| `"logger"`\>
+`Omit`\<[`BatchBufferOptions`](globals.md#batchbufferoptionst)\<`any`\>, `"flushHandler"` \| `"logger"`\>
 
 </td>
 <td>
@@ -1402,7 +1575,7 @@ set through the environment variable BUCKET_CONFIG_FILE.
 </td>
 <td>
 
-keyof `TypedFeatures`[]
+keyof [`TypedFeatures`](globals.md#typedfeatures)[]
 
 </td>
 <td>
@@ -1419,7 +1592,7 @@ The features to "enable" as fallbacks when the API is unavailable (optional).
 </td>
 <td>
 
-`string` \| (`context`: [`Context`](globals.md#context)) => `Partial`\<`Record`\<keyof `TypedFeatures`, `boolean`\>\>
+`string` \| (`context`: [`Context`](globals.md#context)) => `Partial`\<`Record`\<keyof [`TypedFeatures`](globals.md#typedfeatures), `boolean`\>\>
 
 </td>
 <td>
@@ -1496,7 +1669,7 @@ The logger to use for logging (optional). Default is info level logging to conso
 </td>
 <td>
 
-`LogLevel`
+[`LogLevel`](globals.md#loglevel-3)
 
 </td>
 <td>
@@ -1734,6 +1907,163 @@ Describes the feature overrides.
 
 ***
 
+### FeatureOverridesFn()
+
+```ts
+type FeatureOverridesFn: (context: Context) => FeatureOverrides;
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`context`
+
+</td>
+<td>
+
+[`Context`](globals.md#context)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`FeatureOverrides`](globals.md#featureoverrides-7)
+
+***
+
+### HttpClientResponse\<TResponse\>
+
+```ts
+type HttpClientResponse<TResponse>: {
+  body: TResponse | undefined;
+  ok: boolean;
+  status: number;
+};
+```
+
+Describes the response of a HTTP client.
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TResponse`
+
+</td>
+<td>
+
+The type of the response body.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`body`
+
+</td>
+<td>
+
+`TResponse` \| `undefined`
+
+</td>
+<td>
+
+The body of the response if available.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ok`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Indicates that the request succeeded.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`status`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The status code of the response.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### IdType
+
+```ts
+type IdType: string | number;
+```
+
+***
+
+### LogLevel
+
+```ts
+type LogLevel: typeof LOG_LEVELS[number];
+```
+
+***
+
 ### TrackingMeta
 
 ```ts
@@ -1774,3 +2104,87 @@ Whether the user or company is active.
 </tr>
 </tbody>
 </table>
+
+***
+
+### TrackOptions
+
+```ts
+type TrackOptions: {
+  attributes: Attributes;
+  meta: TrackingMeta;
+};
+```
+
+Defines the options for tracking of entities.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`attributes`?
+
+</td>
+<td>
+
+[`Attributes`](globals.md#attributes)
+
+</td>
+<td>
+
+The attributes associated with the event.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`meta`?
+
+</td>
+<td>
+
+[`TrackingMeta`](globals.md#trackingmeta)
+
+</td>
+<td>
+
+The meta context associated with the event.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### TypedFeatures
+
+```ts
+type TypedFeatures: keyof Features extends never ? Record<string, Feature> : Record<keyof Features, Feature>;
+```
+
+Describes a collection of evaluated feature.
+
+#### Remarks
+
+This types falls back to a generic Record<string, Feature> if the Features interface
+has not been extended.
+
+## Variables
+
+### LOG\_LEVELS
+
+```ts
+const LOG_LEVELS: readonly ["DEBUG", "INFO", "WARN", "ERROR"];
+```
