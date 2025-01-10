@@ -605,6 +605,7 @@ of the company update.
 ```ts
 const updateCompany = useUpdateCompany();
 updateCompany({ plan: "enterprise" }).then(() => console.log("Features updated"));
+```
 
 #### Returns
 
@@ -661,6 +662,7 @@ of the update to the "other" context.
 const updateOtherContext = useUpdateOtherContext();
 updateOtherContext({ workspaceId: newWorkspaceId })
   .then(() => console.log("Features updated"));
+```
 
 #### Returns
 
