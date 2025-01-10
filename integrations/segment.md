@@ -1,9 +1,9 @@
 # Segment
 
-Bucket's segment integration is for customers who already use Segment for event tracking and want to use Segment for gathering adoption metrics in Bucket
+Bucket's segment integration is for customers who already use Segment for event tracking and want to use Segment to gather adoption metrics in Bucket.
 
 {% hint style="info" %}
-[Feature flagging](../product-handbook/feature-rollouts/feature-targeting-rules.md) and [automated feedback surveys](../product-handbook/feature-analysis/automated-feedback-surveys.md)  requires installing a [Bucket SDK](../supported-languages/overview.md) in addition to setting up the Segment integration
+[Feature flagging](../product-handbook/feature-rollouts/feature-targeting-rules.md) and [automated feedback surveys](../product-handbook/feature-analysis/automated-feedback-surveys.md)  require installing a [Bucket SDK](../supported-languages/overview.md) in addition to setting up the Segment integration
 {% endhint %}
 
 ## Set up server tracking

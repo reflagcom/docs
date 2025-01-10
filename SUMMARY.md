@@ -21,13 +21,13 @@
 ## Supported languages
 
 * [Overview](supported-languages/overview.md)
-* [React SDK](sdk-docs/%40bucketco/react-sdk/README.md)
-  * [Reference](sdk-docs/%40bucketco/react-sdk/globals.md)
-* [Browser SDK](sdk-docs/%40bucketco/browser-sdk/README.md)
+* [React SDK](sdk-docs/@bucketco/react-sdk/README.md)
+  * [Reference](sdk-docs/@bucketco/react-sdk/globals.md)
+* [Browser SDK](sdk-docs/@bucketco/browser-sdk/README.md)
   * [Feedback](sdk-docs/documents/FEEDBACK.md)
-  * [Reference](sdk-docs/%40bucketco/browser-sdk/globals.md)
-* [Node.js SDK](sdk-docs/%40bucketco/node-sdk/README.md)
-  * [Reference](sdk-docs/%40bucketco/node-sdk/globals.md)
+  * [Reference](sdk-docs/@bucketco/browser-sdk/globals.md)
+* [Node.js SDK](sdk-docs/@bucketco/node-sdk/README.md)
+  * [Reference](sdk-docs/@bucketco/node-sdk/globals.md)
 * [Next.js](supported-languages/next.js.md)
 * [OpenFeature](supported-languages/openfeature.md)
 * [Community support](supported-languages/community-support/README.md)
@@ -36,6 +36,7 @@
 
 ## Integrations
 
+* [Overview](integrations/overview.md)
 * [Slack](integrations/slack.md)
 * [Linear](integrations/linear.md)
 * [Segment](integrations/segment.md)
