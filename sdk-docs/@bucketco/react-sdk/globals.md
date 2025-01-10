@@ -129,7 +129,7 @@ type BucketProps = BucketContext & {
 </td>
 <td>
 
-`Omit`\<[`FeaturesOptions`](../browser-sdk/globals.md#featuresoptions), `"fallbackFeatures"`\> & \{
+[`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`FeaturesOptions`](../browser-sdk/globals.md#featuresoptions), `"fallbackFeatures"`\> & \{
   `fallbackFeatures`: [`FeatureKey`](globals.md#featurekey)[];
  \}
 
@@ -201,7 +201,7 @@ Use `apiBaseUrl` instead.
 </td>
 <td>
 
-(...`args`: `ConstructorParameters`\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
+(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
 
 </td>
 <td>
@@ -321,12 +321,20 @@ function useFeature(key: string):
   isEnabled: boolean;
   isLoading: true;
   requestFeedback: (opts: Omit<RequestFeedbackData, "featureId" | "featureKey">) => undefined | void;
-  track: () => undefined | Promise<undefined | Response>;
+  track: () => 
+     | undefined
+     | Promise<
+     | undefined
+     | Response>;
  }
   | {
   isLoading: false;
   requestFeedback: (opts: Omit<RequestFeedbackData, "featureId" | "featureKey">) => undefined | void;
-  track: () => undefined | Promise<undefined | Response>;
+  track: () => 
+     | undefined
+     | Promise<
+     | undefined
+     | Response>;
   get isEnabled: boolean;
 }
 ```
@@ -372,13 +380,21 @@ function HuddleButton() {
   \| \{
   `isEnabled`: `boolean`;
   `isLoading`: `true`;
-  `requestFeedback`: (`opts`: `Omit`\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
-  `track`: () => `undefined` \| `Promise`\<`undefined` \| `Response`\>;
+  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
+  `track`: () => 
+     \| `undefined`
+     \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+     \| `undefined`
+     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
  \}
   \| \{
   `isLoading`: `false`;
-  `requestFeedback`: (`opts`: `Omit`\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
-  `track`: () => `undefined` \| `Promise`\<`undefined` \| `Response`\>;
+  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
+  `track`: () => 
+     \| `undefined`
+     \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+     \| `undefined`
+     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
   get `isEnabled`: `boolean`;
  \}
 
@@ -441,7 +457,11 @@ bucket.requestFeedback({
 ### useSendFeedback()
 
 ```ts
-function useSendFeedback(): (opts: UnassignedFeedback) => undefined | Promise<undefined | Response>
+function useSendFeedback(): (opts: UnassignedFeedback) => 
+  | undefined
+  | Promise<
+  | undefined
+| Response>
 ```
 
 Returns a function to manually send feedback collected from a user.
@@ -490,14 +510,23 @@ sendFeedback({
 
 ##### Returns
 
-`undefined` \| `Promise`\<`undefined` \| `Response`\>
+  \| `undefined`
+  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 ***
 
 ### useTrack()
 
 ```ts
-function useTrack(): (eventName: string, attributes?: null | Record<string, any>) => undefined | Promise<undefined | Response>
+function useTrack(): (eventName: string, attributes?: 
+  | null
+  | Record<string, any>) => 
+  | undefined
+  | Promise<
+  | undefined
+| Response>
 ```
 
 Returns a function to send an event when a user performs an action
@@ -542,7 +571,7 @@ track("Started Huddle", { button: "cta" });
 </td>
 <td>
 
-`null` \| `Record`\<`string`, `any`\>
+ \| `null` \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
 </td>
 </tr>
@@ -551,14 +580,19 @@ track("Started Huddle", { button: "cta" });
 
 ##### Returns
 
-`undefined` \| `Promise`\<`undefined` \| `Response`\>
+  \| `undefined`
+  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 ***
 
 ### useUpdateCompany()
 
 ```ts
-function useUpdateCompany(): (opts: {}) => undefined | Promise<void>
+function useUpdateCompany(): (opts: {}) => 
+  | undefined
+| Promise<void>
 ```
 
 Returns a function to update the current company's information.
@@ -603,14 +637,17 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Features updated")
 
 ##### Returns
 
-`undefined` \| `Promise`\<`void`\>
+  \| `undefined`
+  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
 ### useUpdateOtherContext()
 
 ```ts
-function useUpdateOtherContext(): (opts: {}) => undefined | Promise<void>
+function useUpdateOtherContext(): (opts: {}) => 
+  | undefined
+| Promise<void>
 ```
 
 Returns a function to update the "other" context information.
@@ -656,14 +693,17 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 
 ##### Returns
 
-`undefined` \| `Promise`\<`void`\>
+  \| `undefined`
+  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
 ### useUpdateUser()
 
 ```ts
-function useUpdateUser(): (opts: {}) => undefined | Promise<void>
+function useUpdateUser(): (opts: {}) => 
+  | undefined
+| Promise<void>
 ```
 
 Returns a function to update the current user's information.
@@ -709,4 +749,5 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Features updated"))
 
 ##### Returns
 
-`undefined` \| `Promise`\<`void`\>
+  \| `undefined`
+  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>

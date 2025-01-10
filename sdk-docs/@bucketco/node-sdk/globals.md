@@ -102,14 +102,17 @@ The company or `undefined` if it is not set.
 ###### Get Signature
 
 ```ts
-get otherContext(): undefined | Record<string, any>
+get otherContext(): 
+  | undefined
+| Record<string, any>
 ```
 
 Gets the "other" context associated with the client.
 
 ###### Returns
 
-`undefined` \| `Record`\<`string`, `any`\>
+  \| `undefined`
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
 The "other" context or `undefined` if it is not set.
 
@@ -194,7 +197,7 @@ Flushes the batch buffer.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ##### getFeature()
 
@@ -271,7 +274,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 
 ###### Returns
 
-`Promise`\<[`Feature`](globals.md#feature)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#feature)\>
 
 Feature for the given user/company and key and whether it's enabled or not
 
@@ -286,7 +289,7 @@ Meant for use in serialization of features for transferring to the client-side/b
 
 ###### Returns
 
-`Record`\<`string`, [`Feature`](globals.md#feature)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -300,7 +303,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 
 ###### Returns
 
-`Promise`\<`Record`\<`string`, [`Feature`](globals.md#feature)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>\>
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -364,7 +367,7 @@ The event to track.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ###### Throws
 
@@ -543,7 +546,7 @@ Flushes the batch buffer.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ###### Remarks
 
@@ -682,7 +685,7 @@ This method triggers a network request every time it's called.
 
 ###### Returns
 
-`Promise`\<[`Feature`](globals.md#feature)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#feature)\>
 
 evaluated feature
 
@@ -721,7 +724,7 @@ Gets the evaluated feature for the current context which includes the user, comp
 
 ###### Returns
 
-`Record`\<`string`, [`Feature`](globals.md#feature)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>
 
 The evaluated features.
 
@@ -792,7 +795,7 @@ This method triggers a network request every time it's called.
 
 ###### Returns
 
-`Promise`\<`Record`\<`string`, [`Feature`](globals.md#feature)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>\>
 
 evaluated features
 
@@ -806,7 +809,7 @@ Initializes the client by caching the features definitions.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 void
 
@@ -895,7 +898,7 @@ The options.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ###### Throws
 
@@ -954,7 +957,7 @@ Updates the associated company in Bucket.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ###### Throws
 
@@ -1012,7 +1015,7 @@ Updates the associated user in Bucket.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ###### Throws
 
@@ -1121,7 +1124,7 @@ If set to `false`, tracking will be disabled for the context. Default is `true`.
 </td>
 <td>
 
-`Record`\<`string`, `any`\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
 </td>
 <td>
@@ -1267,7 +1270,7 @@ Track feature usage in Bucket.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
@@ -1355,7 +1358,7 @@ The URL to send the request to.
 </td>
 <td>
 
-`Record`\<`string`, `string`\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `string`\>
 
 </td>
 <td>
@@ -1369,7 +1372,7 @@ The headers to include in the request.
 
 ###### Returns
 
-`Promise`\<[`HttpClientResponse`](globals.md#httpclientresponsetresponse)\<`TResponse`\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`HttpClientResponse`](globals.md#httpclientresponsetresponse)\<`TResponse`\>\>
 
 The response from the server.
 
@@ -1446,7 +1449,7 @@ The URL to send the request to.
 </td>
 <td>
 
-`Record`\<`string`, `string`\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `string`\>
 
 </td>
 <td>
@@ -1477,7 +1480,7 @@ The body of the request.
 
 ###### Returns
 
-`Promise`\<[`HttpClientResponse`](globals.md#httpclientresponsetresponse)\<`TResponse`\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`HttpClientResponse`](globals.md#httpclientresponsetresponse)\<`TResponse`\>\>
 
 The response from the server.
 
@@ -1726,7 +1729,7 @@ The type of items in the buffer.
 </td>
 <td>
 
-(`items`: `T`[]) => `Promise`\<`void`\>
+(`items`: `T`[]) => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 </td>
 <td>
@@ -1848,7 +1851,7 @@ The host to send requests to (optional).
 </td>
 <td>
 
-`Omit`\<[`BatchBufferOptions`](globals.md#batchbufferoptionst)\<`any`\>, `"flushHandler"` \| `"logger"`\>
+[`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`BatchBufferOptions`](globals.md#batchbufferoptionst)\<`any`\>, `"flushHandler"` \| `"logger"`\>
 
 </td>
 <td>
@@ -1903,7 +1906,7 @@ The features to "enable" as fallbacks when the API is unavailable (optional).
 <td>
 
   \| `string`
-  \| (`context`: [`Context`](globals.md#context)) => `Partial`\<`Record`\<keyof [`TypedFeatures`](globals.md#typedfeatures), `boolean`\>\>
+  \| (`context`: [`Context`](globals.md#context)) => [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<keyof [`TypedFeatures`](globals.md#typedfeatures), `boolean`\>\>
 
 </td>
 <td>
@@ -2122,7 +2125,7 @@ The company context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-`Record`\<`string`, `any`\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
 </td>
 <td>

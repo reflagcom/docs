@@ -65,7 +65,9 @@ Create a new BucketClient instance.
 ##### feedback()
 
 ```ts
-feedback(payload: Feedback): Promise<undefined | Response>
+feedback(payload: Feedback): Promise<
+  | undefined
+| Response>
 ```
 
 Submit user feedback to Bucket. Must include either `score` or `comment`, or both.
@@ -97,7 +99,9 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 
 ###### Returns
 
-`Promise`\<`undefined` \| `Response`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 ##### getFeature()
 
@@ -165,7 +169,7 @@ Must be called before calling other SDK methods.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ##### onFeaturesUpdated()
 
@@ -289,7 +293,7 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 
 ###### Returns
 
-`Promise`\<`boolean`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`boolean`\>
 
 ##### stop()
 
@@ -304,12 +308,16 @@ any onFeaturesUpdated listeners.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ##### track()
 
 ```ts
-track(eventName: string, attributes?: null | Record<string, any>): Promise<undefined | Response>
+track(eventName: string, attributes?: 
+  | null
+  | Record<string, any>): Promise<
+  | undefined
+| Response>
 ```
 
 Track an event in Bucket.
@@ -350,7 +358,7 @@ The name of the event
 </td>
 <td>
 
-`null` \| `Record`\<`string`, `any`\>
+ \| `null` \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
 </td>
 <td>
@@ -364,7 +372,9 @@ Any attributes you want to attach to the event
 
 ###### Returns
 
-`Promise`\<`undefined` \| `Response`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 ##### updateCompany()
 
@@ -403,7 +413,7 @@ Attempting to update the company ID will log a warning and be ignored.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ##### updateOtherContext()
 
@@ -442,7 +452,7 @@ Updates to the company ID will be ignored.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ##### updateUser()
 
@@ -481,7 +491,7 @@ Attempting to update the user ID will log a warning and be ignored.
 
 ###### Returns
 
-`Promise`\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ## Interfaces
 
@@ -523,7 +533,7 @@ Company related context
 </td>
 <td>
 
-`Record`\<`string`, `undefined` \| `string` \| `number`\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
 
 </td>
 <td>
@@ -724,7 +734,7 @@ Result of feature flag evaluation
 </td>
 <td>
 
-(`options`: `Omit`\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `void`
+(`options`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `void`
 
 </td>
 <td>
@@ -741,7 +751,7 @@ Result of feature flag evaluation
 </td>
 <td>
 
-() => `Promise`\<`undefined` \| `Response`\>
+() => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\< \| `undefined` \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 </td>
 <td>
@@ -1022,7 +1032,7 @@ options.logger = window.console;
 </td>
 <td>
 
-`Record`\<`string`, `any`\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
 </td>
 <td>
@@ -1418,7 +1428,7 @@ warn(message: string, ...args: any[]): void
 </td>
 <td>
 
-(`data`: [`FeedbackScoreSubmission`](globals.md#feedbackscoresubmission)) => `Promise`\<[`OnScoreSubmitResult`](globals.md#onscoresubmitresult)\>
+(`data`: [`FeedbackScoreSubmission`](globals.md#feedbackscoresubmission)) => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`OnScoreSubmitResult`](globals.md#onscoresubmitresult)\>
 
 </td>
 <td>
@@ -1435,7 +1445,7 @@ warn(message: string, ...args: any[]): void
 </td>
 <td>
 
-(`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => `void` \| `Promise`\<`void`\>
+(`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => \| `void` \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 </td>
 <td>
@@ -1504,7 +1514,7 @@ Control the placement and behavior of the feedback form.
 </td>
 <td>
 
-`Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
+[`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
 
 </td>
 <td>
@@ -1962,7 +1972,7 @@ Use `autoFeedbackHandler` instead
 
 \{
   `position`: [`FeedbackPosition`](globals.md#feedbackposition);
-  `translations`: `Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>;
+  `translations`: [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>;
  \}
 
 </td>
@@ -1997,7 +2007,7 @@ Control the placement and behavior of the feedback form.
 </td>
 <td>
 
-`Partial`\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
+[`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
 
 </td>
 <td>
@@ -2033,7 +2043,8 @@ type FeedbackPosition =
   type: "DIALOG";
  }
   | {
-  anchor: HTMLElement | null;
+  anchor:   | HTMLElement
+     | null;
   type: "POPOVER";
 };
 ```
@@ -2122,7 +2133,7 @@ Specific question user was asked
 </td>
 <td>
 
-`Date`
+[`Date`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
 </td>
 <td>
@@ -2139,7 +2150,7 @@ Feedback prompt should appear only after this time
 </td>
 <td>
 
-`Date`
+[`Date`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
 </td>
 <td>
@@ -2392,7 +2403,7 @@ type FeedbackPromptReplyHandler = <T>(reply: T) => T extends null ? Promise<void
 
 #### Returns
 
-`T` *extends* `null` ? `Promise`\<`void`\> : `Promise`\<\{
+`T` *extends* `null` ? [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\> : [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\{
   `feedbackId`: `string`;
  \}\>
 
@@ -3034,4 +3045,6 @@ const propagatedEvents: string[];
 
 These events will be propagated to the feedback dialog
 
-see https://developer.mozilla.org/en-US/docs/Web/API/Element#events
+#### See
+
+[https://developer.mozilla.org/en-US/docs/Web/API/Element#events](https://developer.mozilla.org/en-US/docs/Web/API/Element#events)
