@@ -39,6 +39,7 @@
 * [Overview](integrations/overview.md)
 * [Slack](integrations/slack.md)
 * [Linear](integrations/linear.md)
+* [Datadog](integrations/datadog.md)
 * [Segment](integrations/segment.md)
 * [PostHog](integrations/posthog.md)
 * [Amplitude](integrations/amplitude.md)
