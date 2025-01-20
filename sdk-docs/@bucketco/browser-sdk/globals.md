@@ -173,6 +173,41 @@ Return a feature. Accessing `isEnabled` will automatically send a `check` event.
 
 A feature
 
+##### getFeatureOverride()
+
+```ts
+getFeatureOverride(key: string): null | boolean
+```
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`null` \| `boolean`
+
 ##### getFeatures()
 
 ```ts
@@ -181,6 +216,8 @@ getFeatures(): RawFeatures
 
 Returns a map of enabled features.
 Accessing a feature will *not* send a check event
+and `isEnabled` does not take any feature overrides
+into account.
 
 ###### Returns
 
@@ -325,6 +362,53 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 ###### Returns
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`boolean`\>
+
+##### setFeatureOverride()
+
+```ts
+setFeatureOverride(key: string, isEnabled: null | boolean): void
+```
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`isEnabled`
+
+</td>
+<td>
+
+`null` \| `boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`
 
 ##### stop()
 
@@ -1827,7 +1911,7 @@ but refetching
 </td>
 <td>
 
-Timeout in miliseconds
+Timeout in milliseconds
 
 </td>
 </tr>
@@ -2683,10 +2767,8 @@ Offset from the nearest vertical screen edge after placement is resolved
 ### RawFeature
 
 ```ts
-type RawFeature = {
-  isEnabled: boolean;
-  key: string;
-  targetingVersion: number;
+type RawFeature = FetchedFeature & {
+  isEnabledOverride: boolean | null;
 };
 ```
 
@@ -2704,51 +2786,17 @@ type RawFeature = {
 <tr>
 <td>
 
-<a id="isenabled-1"></a> `isEnabled`
+`isEnabledOverride`
 
 </td>
 <td>
 
-`boolean`
+`boolean` \| `null`
 
 </td>
 <td>
 
-Result of feature flag evaluation
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key-2"></a> `key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Feature key
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="targetingversion"></a> `targetingVersion`?
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-Version of targeting rules
+If not null, the result is being overridden locally
 
 </td>
 </tr>
@@ -2760,7 +2808,7 @@ Version of targeting rules
 ### RawFeatures
 
 ```ts
-type RawFeatures = Record<string, RawFeature | undefined>;
+type RawFeatures = Record<string, RawFeature>;
 ```
 
 ***
