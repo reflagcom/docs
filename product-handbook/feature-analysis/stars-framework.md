@@ -20,7 +20,7 @@ STARS stands for:&#x20;
 
 ## Segment
 
-Segment is used to set the initial size of the funnel. Since certain features are only relevant to certain companies, Segment determines the specific segment of companies that will be the target audience.&#x20;
+Segment is used to set the initial size of the funnel. Since certain features are only relevant to certain companies, Segment determines the specific segment of companies that will be given access to a feature.&#x20;
 
 This step is completed before a feature is released.
 

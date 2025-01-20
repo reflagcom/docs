@@ -37,7 +37,6 @@
 ## Integrations
 
 * [Overview](integrations/overview.md)
-* [Slack](integrations/slack.md)
 * [Linear](integrations/linear.md)
 * [Datadog](integrations/datadog.md)
 * [Segment](integrations/segment.md)
@@ -45,6 +44,7 @@
 * [Amplitude](integrations/amplitude.md)
 * [Mixpanel](integrations/mixpanel.md)
 * [AWS S3](integrations/aws-s3.md)
+* [Slack](integrations/slack.md)
 
 ## Product Handbook
 
@@ -52,7 +52,7 @@
 * [Create your first feature](product-handbook/create-your-first-feature.md)
 * [Feature rollouts](product-handbook/feature-rollouts/README.md)
   * [Release stages](product-handbook/feature-rollouts/release-stages.md)
-  * [Feature targeting rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
+  * [Feature access rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
 * [Feature adoption](product-handbook/feature-usage-configuration.md)
   * [STARS Framework](product-handbook/feature-analysis/stars-framework.md)
 * [Feature feedback](product-handbook/feature-analysis/README.md)
@@ -70,5 +70,7 @@
 
 ## API
 
-* [Introduction](api/http-api/README.md)
-* [API Reference](api/http-api/api-reference.md)
+## API
+
+* [Introduction](api-1/http-api.md)
+* [API Reference](api-1/api-reference.md)

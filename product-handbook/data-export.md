@@ -1,6 +1,6 @@
 # Warehouse
 
-Bucket allows you to export company usage data in a CSV file to use in other tools or databases.  This can be done either manually or automatically, depending on your plan.
+Bucket allows you to export company adoption data in a CSV file to use in other tools or databases.  This can be done either manually or automatically, depending on your plan.
 
 {% hint style="info" %}
 Data exports are only available on Pro and Enterprise plans. Automatic data exports are only available on the Enterprise plan.&#x20;
@@ -63,7 +63,7 @@ Bucket records the status of the operation and displays it below the toggle. The
 
 ## Company data model
 
-The company model contains information about company usage of all your features/
+The company model contains information about company adoption of all your features.
 
 | Column             | Data type          | Format                                                           | Description                                                                    |
 | ------------------ | ------------------ | ---------------------------------------------------------------- | ------------------------------------------------------------------------------ |

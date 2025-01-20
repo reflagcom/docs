@@ -60,7 +60,7 @@ You can choose between two adoption strategies:
 
 Once you've configured your adoption criteria (event or company attribute) and your adoption strategy, you can track feature adoption progress on the Analyze tab.
 
-Here you can see any STARS metric over time and set targets.
+Here you can see any STARS metric over time and set goals.
 
 You can also create segments based on STARS states.
 

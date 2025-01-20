@@ -9,7 +9,7 @@ Segments are reusable lists of companies created based off one of more of the fo
 * Feature metrics
 * Feature feedback
 
-Company segments can be used as targeting rule for managing feature access.
+Company segments can be used as access rule for managing feature access.
 
 ## Getting started <a href="#get-started" id="get-started"></a>
 
@@ -28,7 +28,7 @@ There are 4 types of conditions:
   * `Company ID`
   * `Company name`
   * `any custom attributes`
-* `Feature targeting`&#x20;
+* `Feature access`&#x20;
   * `isEnabled`
 * `Feature metric`&#x20;
   * `STARS`
@@ -65,7 +65,7 @@ There are 4 types of conditions:
 * Date
   * `Less than X days ago`
   * `More than X days ago`
-* Feature targeting
+* Feature access
   * `Is enabled`
   * `Is not enabled`
 * Segment

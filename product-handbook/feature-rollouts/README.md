@@ -8,13 +8,13 @@ This is how to use Bucket to safely roll out [new features](../create-your-first
 
 ## Gradually roll out your feature
 
-To roll out a feature in Bucket, you can use release stages or manually set targeting rules.
+To roll out a feature in Bucket, you can use release stages or manually set access rules.
 
-## Setting targeting rules
+## Setting access rules
 
-[Targeting rules](feature-targeting-rules.md) on Bucket are designed to simplify the rollout process in B2B companies.
+[Access rules](feature-targeting-rules.md) on Bucket are designed to simplify the rollout process in B2B companies.
 
-The default targeting criteria are:
+The default access criteria are:
 
 * Company segments
 * Companies
@@ -22,13 +22,13 @@ The default targeting criteria are:
 
 These criteria let you add segments, companies, or users without additional configuration.
 
-If you'd like to specify a [rollout percentage](feature-targeting-rules.md#specify-rollout-percentage) or create [advanced targeting rules](feature-targeting-rules.md#advanced-targeting-rules) using company attributes, user attributes, feature targeting, or other contexts, you can add additional targeting rules with the "+ Add Rule" button.
+If you'd like to specify a [rollout percentage](feature-targeting-rules.md#specify-rollout-percentage) or create [advanced access rules](feature-targeting-rules.md#advanced-targeting-rules) using company attributes, user attributes, feature access, or other contexts, you can add additional access rules with the "+ Add Rule" button.
 
 <figure><img src="../../.gitbook/assets/Setting targeting rules-min.png" alt="Setting targeting rules in Bucket"><figcaption></figcaption></figure>
 
 ## Using release stages
 
-[Release stages](release-stages.md) let you easily signal features' rollout progress to your team and, optionally, set targeting rules for each stage of the rollout process.&#x20;
+[Release stages](release-stages.md) let you easily signal features' rollout progress to your team and, optionally, set access rules for each stage of the rollout process.&#x20;
 
 Release stages are designed to support the common use case of taking a feature from development to internal testing to a beta testing phase, then finally released to everyone.
 
@@ -36,19 +36,19 @@ New apps come with 4 default release stages: In development, Internal, Beta, and
 
 ### **Configure release stages**
 
-Release stages come with a set of [default targeting rules](release-stages.md#default-settings).&#x20;
+Release stages come with a set of [default access rules](release-stages.md#default-settings).&#x20;
 
 {% hint style="info" %}
-The Beta stage _**doesn't**_ include any default targeting rules. This makes it simple to select the relevant beta customers for each feature.
+The Beta stage _**doesn't**_ include any default access rules. This makes it simple to select the relevant beta customers for each feature.
 {% endhint %}
 
-Targeting rules can be easily configured under the [App Settings](https://app.bucket.co/envs/current/settings/app-stages).  You can update the rules to include No one, Everyone, or only specific segments, companies, or users.
+Access rules can be easily configured under the [App Settings](https://app.bucket.co/envs/current/settings/app-stages).  You can update the rules to include No one, Everyone, or only specific segments, companies, or users.
 
 You are also able to select a roll-out percentage for any chosen segments.&#x20;
 
-You can use release stages purely to signal a feature's rollout progress to the rest of the team without setting any default targeting rules.
+You can use release stages purely to signal a feature's rollout progress to the rest of the team without setting any default access rules.
 
-Simply remove the default targeting rules and set the targeting rules to "Some" with no specified segments, companies, or users for your desired environments. This will give you empty [targeting rules](feature-targeting-rules.md) that can be manually defined for each feature.
+Simply remove the default access rules and set the access rules to "Some" with no specified segments, companies, or users for your desired environments. This will give you empty [access rules](feature-targeting-rules.md) that can be manually defined for each feature.
 
 <figure><img src="../../.gitbook/assets/Global settings - Manual Targeting-min.png" alt="Manual targeting rules with Release Stages in Bucket"><figcaption></figcaption></figure>
 
@@ -60,7 +60,7 @@ When you create a new feature, it is placed in the "In development" stage by def
 
 #### **Internal**
 
-The "Internal" stage signals that a feature is ready for internal QA testing.&#x20;
+The "Internal" stage signals a feature is ready for internal QA testing.&#x20;
 
 #### **Beta**
 

@@ -81,7 +81,7 @@ if(isEnabled) {
 
 With the feature code in, you can now manage access to this feature via the Bucket UI.&#x20;
 
-In this case, we’ll set the feature targeting access rules to be:&#x20;
+In this case, we’ll set the feature access rules to be:&#x20;
 
 Companies in the segment **Business** or **Enterprise**
 
@@ -113,7 +113,7 @@ If your features are restricted by plan _and_ usage, like only allowing 10,000 A
 
 Send usage metrics to Bucket using company attributes.&#x20;
 
-For example, you can send the company's current usage metric to Bucket at an hourly or daily interval.
+For example, you can send the company's current usage metrics to Bucket at an hourly or daily interval.
 
 ```tsx
 bucket.companyUpdate(companyId51, {
@@ -123,6 +123,6 @@ bucket.companyUpdate(companyId51, {
 
 ### Step 2: Gate using usage attribute
 
-Then, add this custom attribute metric to your targeting rules.
+Then, add this custom attribute metric to your access rules.
 
 <figure><img src="../../.gitbook/assets/usage attribute example-min.png" alt=""><figcaption></figcaption></figure>

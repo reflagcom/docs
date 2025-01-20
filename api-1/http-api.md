@@ -1,4 +1,4 @@
-# HTTP API
+# Introduction
 
 ## What is the HTTP API?
 
@@ -28,13 +28,13 @@ Use `https://front-eu.bucket.co` if you want to avoid your requests being served
 
 ## API Endpoints
 
-<table><thead><tr><th width="266">Endpoint</th><th width="149" data-type="checkbox">Publishable Key</th><th width="121" data-type="checkbox">Secret key</th><th>Description</th></tr></thead><tbody><tr><td><code>GET /features</code></td><td>false</td><td>true</td><td>Retrieve <em>all</em> features with their respective targeting rules</td></tr><tr><td><code>GET /features/enabled</code></td><td>true</td><td>true</td><td>Retrieve features that are enabled for the provided user/company</td></tr><tr><td><code>POST /features/events</code></td><td>true</td><td>true</td><td>Send events related to feature targeting</td></tr><tr><td><code>POST /user</code></td><td>true</td><td>true</td><td>Update user in Bucket</td></tr><tr><td><code>POST /company</code></td><td>true</td><td>true</td><td>Update company in Bucket</td></tr><tr><td><code>POST /event</code></td><td>true</td><td>true</td><td>Send events related to feature usage or user actions</td></tr><tr><td><code>POST /bulk</code></td><td>true</td><td>true</td><td>Send multiple calls in bulk.</td></tr></tbody></table>
+<table><thead><tr><th width="266">Endpoint</th><th width="149" data-type="checkbox">Publishable Key</th><th width="121" data-type="checkbox">Secret key</th><th>Description</th></tr></thead><tbody><tr><td><code>GET /features</code></td><td>false</td><td>true</td><td>Retrieve <em>all</em> features with their respective access rules</td></tr><tr><td><code>GET /features/enabled</code></td><td>true</td><td>true</td><td>Retrieve features that are enabled for the provided user/company</td></tr><tr><td><code>POST /features/events</code></td><td>true</td><td>true</td><td>Send events related to feature access</td></tr><tr><td><code>POST /user</code></td><td>true</td><td>true</td><td>Update user in Bucket</td></tr><tr><td><code>POST /company</code></td><td>true</td><td>true</td><td>Update company in Bucket</td></tr><tr><td><code>POST /event</code></td><td>true</td><td>true</td><td>Send events related to feature usage or user actions</td></tr><tr><td><code>POST /bulk</code></td><td>true</td><td>true</td><td>Send multiple calls in bulk.</td></tr></tbody></table>
 
 Note: For POST requests, the API only accepts JSON. The Content-Type header must be set to `application/json`.
 
 ### `GET /features`
 
-This endpoint lets you get the full list of features along with their targeting rules. The endpoint is useful for backend SDKs to pull the targeting rules and evaluate them locally to determine which features should be enabled for a giver user/company instead of using the `features/enabled` endpoint for each user/company.
+This endpoint lets you get the full list of features along with their access rules. The endpoint is useful for backend SDKs to pull the access rules and evaluate them locally to determine which features should be enabled for a giver user/company instead of using the `features/enabled` endpoint for each user/company.
 
 ```http
 GET /features
@@ -104,7 +104,7 @@ The context must be flattened and provided as query parameters.
 
 #### Second Example
 
-This is a more realistic example of `context` that lets you write advanced feature targeting rules.
+This is a more realistic example of `context` that lets you write advanced feature access rules.
 
 {% hint style="danger" %}
 Note: The Bucket UI uses the attributes provided in the `company` endpoint to determine which companies have which features enabled. Ensure any `company` attributes used in the `context` are also provided through the `company` endpoint.&#x20;
@@ -112,7 +112,7 @@ Note: The Bucket UI uses the attributes provided in the `company` endpoint to de
 
 ### `POST /features/events`
 
-The `/features/events` endpoint is used to send "evaluate" and "check" events. These events are used for various purposes in the Bucket UI. An evaluation event should be emitted when a targeting rule is evaluated. This happens automatically for the `/features/enabled` endpoint. A "check" event should be generated whenever code checks for whether a specific feature is enabled.
+The `/features/events` endpoint is used to send "evaluate" and "check" events. These events are used for various purposes in the Bucket UI. An evaluation event should be emitted when an access rule is evaluated. This happens automatically for the `/features/enabled` endpoint. A "check" event should be generated whenever code checks for whether a specific feature is enabled.
 
 <pre class="language-http"><code class="lang-http"><strong>POST https://front.bucket.co/features/events?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjWy
 </strong><strong>{
@@ -170,7 +170,7 @@ You can associate a user with a company by providing the `userId`. This is impor
 
 In other words, if a user isn't associated with a company, their events will not be included.&#x20;
 
-The [`Tracking`](../../product-handbook/product-overview.md#tracking) tab will let you know if you have unassociated events.
+The [`Tracking`](../product-handbook/product-overview.md#tracking) tab will let you know if you have unassociated events.
 
 You can send attributes to be associated with a company. In addition to traditional event-based user tracking, you can track feature usage based on attributes.&#x20;
 
