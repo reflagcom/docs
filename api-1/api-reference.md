@@ -75,6 +75,10 @@ https://staging.front.bucket.co/openapi.yaml
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
 
+{% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/features/events" method="post" expanded="true" %}
+https://staging.front.bucket.co/openapi.yaml
+{% endswagger %}
+
 {% swagger src="https://staging.front.bucket.co/openapi.yaml" path="/user" method="post" expanded="true" %}
 https://staging.front.bucket.co/openapi.yaml
 {% endswagger %}
