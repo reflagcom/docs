@@ -70,7 +70,5 @@
 
 ## API
 
-## API
-
 * [Introduction](api-1/http-api.md)
 * [API Reference](api-1/api-reference.md)

@@ -125,4 +125,5 @@ bucket.companyUpdate(companyId51, {
 
 Then, add this custom attribute metric to your access rules.
 
-<figure><img src="../../.gitbook/assets/usage attribute example-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2025-01-23 at 2 .10.23@2x.png" alt=""><figcaption></figcaption></figure>
+
