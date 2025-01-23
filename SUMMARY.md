@@ -67,6 +67,7 @@
 * [Warehouse](product-handbook/data-export.md)
 * [Beta feature self opt-in](product-handbook/self-opt-in.md)
 * [Data residency](product-handbook/data-residency.md)
+* [Exclude internal usage](product-handbook/exclude-internal-usage.md)
 
 ## API
 
