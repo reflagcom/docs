@@ -26,9 +26,11 @@ pagination:
 ```ts
 type BucketProps = BucketContext & {
   apiBaseUrl: string;
+  appBaseUrl: string;
   children: ReactNode;
   debug: boolean;
   enableTracking: boolean;
+  featureList: Readonly<string[]>;
   featureOptions: Omit<FeaturesOptions, "fallbackFeatures"> & {
      fallbackFeatures: FeatureKey[];
     };
@@ -39,6 +41,7 @@ type BucketProps = BucketContext & {
   publishableKey: string;
   sseBaseUrl: string;
   sseHost: string;
+  toolbar: ToolbarOptions;
 };
 ```
 
@@ -57,6 +60,23 @@ type BucketProps = BucketContext & {
 <td>
 
 `apiBaseUrl`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+`appBaseUrl`?
 
 </td>
 <td>
@@ -113,6 +133,23 @@ type BucketProps = BucketContext & {
 <td>
 
 `boolean`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+`featureList`?
+
+</td>
+<td>
+
+[`Readonly`](https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype)\<`string`[]\>
 
 </td>
 <td>
@@ -260,6 +297,23 @@ Use `apiBaseUrl` instead.
 **Deprecated**
 
 Use `sseBaseUrl` instead.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`toolbar`?
+
+</td>
+<td>
+
+[`ToolbarOptions`](../browser-sdk/globals.md#toolbaroptions)
+
+</td>
+<td>
+
+&hyphen;
 
 </td>
 </tr>
