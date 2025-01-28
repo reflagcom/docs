@@ -166,7 +166,7 @@ type BucketProps = BucketContext & {
 </td>
 <td>
 
-[`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`FeaturesOptions`](../browser-sdk/globals.md#featuresoptions), `"fallbackFeatures"`\> & \{
+[`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<`FeaturesOptions`, `"fallbackFeatures"`\> & \{
   `fallbackFeatures`: [`FeatureKey`](globals.md#featurekey)[];
  \}
 
@@ -185,7 +185,7 @@ type BucketProps = BucketContext & {
 </td>
 <td>
 
-[`FeedbackOptions`](../browser-sdk/globals.md#feedbackoptions)
+`FeedbackOptions`
 
 </td>
 <td>
@@ -238,7 +238,7 @@ Use `apiBaseUrl` instead.
 </td>
 <td>
 
-(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
+(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* `BucketClient`\>) => `BucketClient`
 
 </td>
 <td>
@@ -308,7 +308,7 @@ Use `sseBaseUrl` instead.
 </td>
 <td>
 
-[`ToolbarOptions`](../browser-sdk/globals.md#toolbaroptions)
+`ToolbarOptions`
 
 </td>
 <td>
@@ -434,7 +434,7 @@ function HuddleButton() {
   \| \{
   `isEnabled`: `boolean`;
   `isLoading`: `true`;
-  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
+  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<`RequestFeedbackData`, `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
   `track`: () => 
      \| `undefined`
      \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
@@ -443,7 +443,7 @@ function HuddleButton() {
  \}
   \| \{
   `isLoading`: `false`;
-  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
+  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<`RequestFeedbackData`, `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
   `track`: () => 
      \| `undefined`
      \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
@@ -495,7 +495,7 @@ bucket.requestFeedback({
 </td>
 <td>
 
-[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
+`RequestFeedbackData`
 
 </td>
 </tr>
@@ -555,7 +555,7 @@ sendFeedback({
 </td>
 <td>
 
-[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
+`UnassignedFeedback`
 
 </td>
 </tr>

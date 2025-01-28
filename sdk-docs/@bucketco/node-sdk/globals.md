@@ -80,7 +80,8 @@ new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracki
 get company(): 
   | undefined
   | {
-[k: string]: any;   id: undefined | string | number;
+[k: string]: any;   avatar: string;
+  id: undefined | string | number;
   name: string;
 }
 ```
@@ -91,7 +92,8 @@ Gets the company associated with the client.
 
   \| `undefined`
   \| \{
-`[k: string]`: `any`;   `id`: `undefined` \| `string` \| `number`;
+`[k: string]`: `any`;   `avatar`: `string`;
+  `id`: `undefined` \| `string` \| `number`;
   `name`: `string`;
  \}
 
@@ -124,7 +126,8 @@ The "other" context or `undefined` if it is not set.
 get user(): 
   | undefined
   | {
-[k: string]: any;   email: string;
+[k: string]: any;   avatar: string;
+  email: string;
   id: undefined | string | number;
   name: string;
 }
@@ -136,7 +139,8 @@ Gets the user associated with the client.
 
   \| `undefined`
   \| \{
-`[k: string]`: `any`;   `email`: `string`;
+`[k: string]`: `any`;   `avatar`: `string`;
+  `email`: `string`;
   `id`: `undefined` \| `string` \| `number`;
   `name`: `string`;
  \}
@@ -1055,12 +1059,29 @@ A context with tracking option.
 </td>
 <td>
 
-\{ `[k: string]`: `any`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
+\{ `[k: string]`: `any`; `avatar`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
 
 </td>
 <td>
 
 The company context. If no `id` key is set, the whole object is ignored.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`company.avatar?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The avatar URL of the company.
 
 </td>
 </tr>
@@ -1077,7 +1098,7 @@ The company context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-&hyphen;
+The identifier of the company.
 
 </td>
 </tr>
@@ -1094,7 +1115,7 @@ The company context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-&hyphen;
+The name of the company.
 
 </td>
 </tr>
@@ -1141,12 +1162,29 @@ The other context. This is used for any additional context that is not related t
 </td>
 <td>
 
-\{ `[k: string]`: `any`; `email`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
+\{ `[k: string]`: `any`; `avatar`: `string`; `email`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
 
 </td>
 <td>
 
 The user context. If no `id` key is set, the whole object is ignored.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`user.avatar?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The avatar URL of the user.
 
 </td>
 </tr>
@@ -1163,7 +1201,7 @@ The user context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-&hyphen;
+The email of the user.
 
 </td>
 </tr>
@@ -1180,7 +1218,7 @@ The user context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-&hyphen;
+The identifier of the user.
 
 </td>
 </tr>
@@ -1197,7 +1235,7 @@ The user context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-&hyphen;
+The name of the user.
 
 </td>
 </tr>
@@ -2037,12 +2075,14 @@ The secret key used to authenticate with the Bucket API.
 ```ts
 type Context = {
   company: {
-   [k: string]: any;   id: string | number | undefined;
+   [k: string]: any;   avatar: string;
+     id: string | number | undefined;
      name: string;
     };
   other: Record<string, any>;
   user: {
-   [k: string]: any;   email: string;
+   [k: string]: any;   avatar: string;
+     email: string;
      id: string | number | undefined;
      name: string;
     };
@@ -2072,7 +2112,8 @@ This is used to determine if feature targeting matches and to track events.
 <td>
 
 \{
-`[k: string]`: `any`;   `id`: `string` \| `number` \| `undefined`;
+`[k: string]`: `any`;   `avatar`: `string`;
+  `id`: `string` \| `number` \| `undefined`;
   `name`: `string`;
  \}
 
@@ -2080,6 +2121,23 @@ This is used to determine if feature targeting matches and to track events.
 <td>
 
 The company context. If no `id` key is set, the whole object is ignored.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`company.avatar`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The avatar URL of the company.
 
 </td>
 </tr>
@@ -2096,7 +2154,7 @@ The company context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-&hyphen;
+The identifier of the company.
 
 </td>
 </tr>
@@ -2113,7 +2171,7 @@ The company context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-&hyphen;
+The name of the company.
 
 </td>
 </tr>
@@ -2143,7 +2201,8 @@ The other context. This is used for any additional context that is not related t
 <td>
 
 \{
-`[k: string]`: `any`;   `email`: `string`;
+`[k: string]`: `any`;   `avatar`: `string`;
+  `email`: `string`;
   `id`: `string` \| `number` \| `undefined`;
   `name`: `string`;
  \}
@@ -2152,6 +2211,23 @@ The other context. This is used for any additional context that is not related t
 <td>
 
 The user context. If no `id` key is set, the whole object is ignored.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`user.avatar`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The avatar URL of the user.
 
 </td>
 </tr>
@@ -2168,7 +2244,7 @@ The user context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-&hyphen;
+The email of the user.
 
 </td>
 </tr>
@@ -2185,7 +2261,7 @@ The user context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-&hyphen;
+The identifier of the user.
 
 </td>
 </tr>
@@ -2202,7 +2278,7 @@ The user context. If no `id` key is set, the whole object is ignored.
 </td>
 <td>
 
-&hyphen;
+The name of the user.
 
 </td>
 </tr>
