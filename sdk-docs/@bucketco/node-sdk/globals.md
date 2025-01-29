@@ -206,11 +206,30 @@ Flushes the batch buffer.
 ##### getFeature()
 
 ```ts
-getFeature(key: string): Feature
+getFeature<TKey>(key: TKey): Feature
 ```
 
 Get a specific feature for the user/company/other context bound to this client.
 Using the `isEnabled` property sends a `check` event to Bucket.
+
+###### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ###### Parameters
 
@@ -230,7 +249,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 </td>
 <td>
 
-`string`
+`TKey`
 
 </td>
 </tr>
@@ -239,7 +258,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 
 ###### Returns
 
-[`Feature`](globals.md#feature)
+[`Feature`](globals.md#featuretconfig)
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -278,7 +297,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#feature)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#featuretconfig)\>
 
 Feature for the given user/company and key and whether it's enabled or not
 
@@ -293,7 +312,7 @@ Meant for use in serialization of features for transferring to the client-side/b
 
 ###### Returns
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -307,7 +326,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>\>
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -560,11 +579,30 @@ before the process exits.
 ##### getFeature()
 
 ```ts
-getFeature(__namedParameters: ContextWithTracking, key: string): Feature
+getFeature<TKey>(__namedParameters: ContextWithTracking, key: TKey): Feature
 ```
 
 Gets the evaluated feature for the current context which includes the user, company, and custom context.
 Using the `isEnabled` property sends a `check` event to Bucket.
+
+###### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ###### Parameters
 
@@ -596,7 +634,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 </td>
 <td>
 
-`string`
+`TKey`
 
 </td>
 </tr>
@@ -605,7 +643,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 
 ###### Returns
 
-[`Feature`](globals.md#feature)
+[`Feature`](globals.md#featuretconfig)
 
 The evaluated features.
 
@@ -616,8 +654,8 @@ Call `initialize` before calling this method to ensure the feature definitions a
 ##### getFeatureRemote()
 
 ```ts
-getFeatureRemote(
-   key: string, 
+getFeatureRemote<TKey>(
+   key: TKey, 
    userId?: IdType, 
    companyId?: IdType, 
 additionalContext?: Context): Promise<Feature>
@@ -625,6 +663,25 @@ additionalContext?: Context): Promise<Feature>
 
 Gets evaluated feature with the usage of remote context.
 This method triggers a network request every time it's called.
+
+###### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ###### Parameters
 
@@ -644,7 +701,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-`string`
+`TKey`
 
 </td>
 </tr>
@@ -689,7 +746,7 @@ This method triggers a network request every time it's called.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#feature)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#featuretconfig)\>
 
 evaluated feature
 
@@ -728,7 +785,7 @@ Gets the evaluated feature for the current context which includes the user, comp
 
 ###### Returns
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>
 
 The evaluated features.
 
@@ -799,7 +856,7 @@ This method triggers a network request every time it's called.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>\>
 
 evaluated features
 
@@ -1244,9 +1301,34 @@ The name of the user.
 
 ***
 
-### Feature
+### Feature\<TConfig\>
 
 Describes a feature
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+<th>Default type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TConfig` *extends* `FeatureRemoteConfig` \| `never`
+
+</td>
+<td>
+
+`EmptyFeatureRemoteConfig`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Properties
 
@@ -1267,12 +1349,12 @@ Describes a feature
 </td>
 <td>
 
-`any`
+`TConfig` *extends* `never` ? `EmptyFeatureRemoteConfig` : `TConfig`
 
 </td>
 <td>
 
-Optional user-defined configuration if the feature is enabled.
+&hyphen;
 
 </td>
 </tr>
@@ -1631,7 +1713,7 @@ Log a warning messages
 
 ### RawFeature
 
-Describes a feature
+Describes a feature.
 
 #### Properties
 
@@ -1644,6 +1726,23 @@ Describes a feature
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+
+<a id="config-1"></a> `config?`
+
+</td>
+<td>
+
+`RawFeatureRemoteConfig`
+
+</td>
+<td>
+
+The remote configuration value for the feature.
+
+</td>
+</tr>
 <tr>
 <td>
 
@@ -1856,9 +1955,10 @@ type ClientOptions = {
   apiBaseUrl: string;
   batchOptions: Omit<BatchBufferOptions<any>, "flushHandler" | "logger">;
   configFile: string;
-  fallbackFeatures: keyof TypedFeatures[];
+  fallbackFeatures:   | TypedFeatureKey[]
+     | Record<TypedFeatureKey, Exclude<FeatureOverride, false>>;
   featureOverrides:   | string
-     | (context: Context) => Partial<Record<keyof TypedFeatures, boolean>>;
+     | (context: Context) => FeatureOverrides;
   host: string;
   httpClient: HttpClient;
   logger: Logger;
@@ -1943,12 +2043,17 @@ set through the environment variable BUCKET_CONFIG_FILE.
 </td>
 <td>
 
-keyof [`TypedFeatures`](globals.md#typedfeatures)[]
+  \| `TypedFeatureKey`[]
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`TypedFeatureKey`, [`Exclude`](https://www.typescriptlang.org/docs/handbook/utility-types.html#excludeuniontype-excludedmembers)\<`FeatureOverride`, `false`\>\>
 
 </td>
 <td>
 
 The features to "enable" as fallbacks when the API is unavailable (optional).
+Can be an array of feature keys, or a record of feature keys and boolean or object values.
+
+If a record is supplied instead of array, the values of each key are either the
+configuration values or the boolean value `true`.
 
 </td>
 </tr>
@@ -1961,17 +2066,17 @@ The features to "enable" as fallbacks when the API is unavailable (optional).
 <td>
 
   \| `string`
-  \| (`context`: [`Context`](globals.md#context)) => [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<keyof [`TypedFeatures`](globals.md#typedfeatures), `boolean`\>\>
+  \| (`context`: [`Context`](globals.md#context)) => [`FeatureOverrides`](globals.md#featureoverrides)
 
 </td>
 <td>
 
 If a filename is specified, feature targeting results be overridden with
 the values from this file. The file should be a JSON object with feature
-keys as keys and boolean values as values.
+keys as keys, and boolean or object as values.
 
 If a function is specified, the function will be called with the context
-and should return a record of feature keys and boolean values.
+and should return a record of feature keys and boolean or object values.
 
 Defaults to "bucketFeatures.json".
 
@@ -2307,7 +2412,7 @@ The name of the user.
 ### FeatureOverrides
 
 ```ts
-type FeatureOverrides = Partial<Record<keyof TypedFeatures, boolean>>;
+type FeatureOverrides = Partial<keyof Features extends never ? Record<string, FeatureOverride> : { [FeatureKey in keyof Features]: Features[FeatureKey] extends FullFeatureOverride ? Features[FeatureKey] : Exclude<FeatureOverride, "config"> }>;
 ```
 
 Describes the feature overrides.
@@ -2578,7 +2683,7 @@ The meta context associated with the event.
 ### TypedFeatures
 
 ```ts
-type TypedFeatures = keyof Features extends never ? Record<string, Feature> : Record<keyof Features, Feature>;
+type TypedFeatures = keyof Features extends never ? Record<string, Feature> : { [FeatureKey in keyof Features]: Features[FeatureKey] extends FullFeatureOverride ? Feature<Features[FeatureKey]["config"]> : Feature };
 ```
 
 Describes a collection of evaluated feature.
