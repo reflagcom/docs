@@ -32,7 +32,8 @@ type BucketProps = BucketContext & {
   enableTracking: boolean;
   featureList: Readonly<string[]>;
   featureOptions: Omit<FeaturesOptions, "fallbackFeatures"> & {
-     fallbackFeatures: FeatureKey[];
+     fallbackFeatures:   | FeatureKey[]
+        | Record<FeatureKey, any>;
     };
   feedback: FeedbackOptions;
   host: string;
@@ -166,8 +167,9 @@ type BucketProps = BucketContext & {
 </td>
 <td>
 
-[`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<`FeaturesOptions`, `"fallbackFeatures"`\> & \{
-  `fallbackFeatures`: [`FeatureKey`](globals.md#featurekey)[];
+[`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`FeaturesOptions`](../browser-sdk/globals.md#featuresoptions), `"fallbackFeatures"`\> & \{
+  `fallbackFeatures`:   \| [`FeatureKey`](globals.md#featurekey)[]
+     \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<[`FeatureKey`](globals.md#featurekey), `any`\>;
  \}
 
 </td>
@@ -185,7 +187,7 @@ type BucketProps = BucketContext & {
 </td>
 <td>
 
-`FeedbackOptions`
+[`FeedbackOptions`](../browser-sdk/globals.md#feedbackoptions)
 
 </td>
 <td>
@@ -238,7 +240,7 @@ Use `apiBaseUrl` instead.
 </td>
 <td>
 
-(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* `BucketClient`\>) => `BucketClient`
+(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
 
 </td>
 <td>
@@ -308,7 +310,7 @@ Use `sseBaseUrl` instead.
 </td>
 <td>
 
-`ToolbarOptions`
+[`ToolbarOptions`](../browser-sdk/globals.md#toolbaroptions)
 
 </td>
 <td>
@@ -322,10 +324,37 @@ Use `sseBaseUrl` instead.
 
 ***
 
+### FeatureConfig\<TKey\>
+
+```ts
+type FeatureConfig<TKey> = MaterializedFeatures[TKey] extends boolean ? never : MaterializedFeatures[TKey];
+```
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* [`FeatureKey`](globals.md#featurekey)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### FeatureKey
 
 ```ts
-type FeatureKey = keyof keyof Features extends never ? Record<string, boolean> : Features;
+type FeatureKey = keyof MaterializedFeatures;
 ```
 
 ## Functions
@@ -370,39 +399,37 @@ function BucketProvider(__namedParameters: BucketProps): Element
 ### useFeature()
 
 ```ts
-function useFeature(key: string): 
-  | {
-  isEnabled: boolean;
-  isLoading: true;
-  requestFeedback: (opts: Omit<RequestFeedbackData, "featureId" | "featureKey">) => undefined | void;
-  track: () => 
-     | undefined
-     | Promise<
-     | undefined
-     | Response>;
- }
-  | {
-  isLoading: false;
-  requestFeedback: (opts: Omit<RequestFeedbackData, "featureId" | "featureKey">) => undefined | void;
-  track: () => 
-     | undefined
-     | Promise<
-     | undefined
-     | Response>;
-  get isEnabled: boolean;
-}
+function useFeature<TKey>(key: TKey): Feature<TKey>
 ```
 
 Returns the state of a given feature for the current context, e.g.
 
 ```ts
 function HuddleButton() {
-  const {isEnabled, track} = useFeature("huddle");
+  const {isEnabled, config: { payload }, track} = useFeature("huddle");
   if (isEnabled) {
-   return <button onClick={() => track()}>Start Huddle</button>;
-  }
+   return <button onClick={() => track()}>{payload?.buttonTitle ?? "Start Huddle"}</button>;
 }
 ```
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Parameters
 
@@ -422,7 +449,7 @@ function HuddleButton() {
 </td>
 <td>
 
-`string`
+`TKey`
 
 </td>
 </tr>
@@ -431,26 +458,7 @@ function HuddleButton() {
 
 #### Returns
 
-  \| \{
-  `isEnabled`: `boolean`;
-  `isLoading`: `true`;
-  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<`RequestFeedbackData`, `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
-  `track`: () => 
-     \| `undefined`
-     \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-     \| `undefined`
-     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
- \}
-  \| \{
-  `isLoading`: `false`;
-  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<`RequestFeedbackData`, `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
-  `track`: () => 
-     \| `undefined`
-     \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-     \| `undefined`
-     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
-  get `isEnabled`: `boolean`;
- \}
+`Feature`\<`TKey`\>
 
 ***
 
@@ -495,7 +503,7 @@ bucket.requestFeedback({
 </td>
 <td>
 
-`RequestFeedbackData`
+[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -555,7 +563,7 @@ sendFeedback({
 </td>
 <td>
 
-`UnassignedFeedback`
+[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
 
 </td>
 </tr>

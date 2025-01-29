@@ -1262,6 +1262,23 @@ Describes a feature
 <tr>
 <td>
 
+<a id="config"></a> `config`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+Optional user-defined configuration if the feature is enabled.
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="isenabled"></a> `isEnabled`
 
 </td>

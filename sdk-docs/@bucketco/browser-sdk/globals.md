@@ -110,6 +110,7 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -124,6 +125,11 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 [`Feedback`](globals.md#feedback)
 
 </td>
+<td>
+
+The feedback details to submit.
+
+</td>
 </tr>
 </tbody>
 </table>
@@ -133,6 +139,8 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
   \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+
+The server response.
 
 ##### getConfig()
 
@@ -152,7 +160,7 @@ Get the current configuration.
 getFeature(key: string): Feature
 ```
 
-Return a feature. Accessing `isEnabled` will automatically send a `check` event.
+Return a feature. Accessing `isEnabled` or `config` will automatically send a `check` event.
 
 ###### Parameters
 
@@ -183,7 +191,7 @@ Return a feature. Accessing `isEnabled` will automatically send a `check` event.
 
 [`Feature`](globals.md#feature)
 
-A feature
+A feature.
 
 ##### getFeatureOverride()
 
@@ -235,7 +243,7 @@ into account.
 
 [`RawFeatures`](globals.md#rawfeatures)
 
-Map of features
+Map of features.
 
 ##### initialize()
 
@@ -286,7 +294,7 @@ Calling `client.stop()` will remove all listeners added here.
 </td>
 <td>
 
-this will be called when the features are updated.
+The callback to call when the update completes.
 
 </td>
 </tr>
@@ -473,7 +481,7 @@ Track an event in Bucket.
 </td>
 <td>
 
-The name of the event
+The name of the event.
 
 </td>
 </tr>
@@ -490,7 +498,7 @@ The name of the event
 </td>
 <td>
 
-Any attributes you want to attach to the event
+Any attributes you want to attach to the event.
 
 </td>
 </tr>
@@ -520,6 +528,7 @@ Attempting to update the company ID will log a warning and be ignored.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -532,6 +541,11 @@ Attempting to update the company ID will log a warning and be ignored.
 <td>
 
 \{\}
+
+</td>
+<td>
+
+The company details.
 
 </td>
 </tr>
@@ -559,6 +573,7 @@ Updates to the company ID will be ignored.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -571,6 +586,11 @@ Updates to the company ID will be ignored.
 <td>
 
 \{\}
+
+</td>
+<td>
+
+Additional context.
 
 </td>
 </tr>
@@ -825,7 +845,7 @@ Company name
 
 ### Feature
 
-Represents a feature.
+A feature.
 
 #### Properties
 
@@ -841,6 +861,23 @@ Represents a feature.
 <tr>
 <td>
 
+<a id="config"></a> `config`
+
+</td>
+<td>
+
+`FeatureRemoteConfig`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="isenabled"></a> `isEnabled`
 
 </td>
@@ -851,7 +888,7 @@ Represents a feature.
 </td>
 <td>
 
-Result of feature flag evaluation
+Result of feature flag evaluation.
 
 </td>
 </tr>
@@ -885,7 +922,7 @@ Function to request feedback for this feature.
 </td>
 <td>
 
-Function to send analytics events for this feature
+Function to send analytics events for this feature.
 
 </td>
 </tr>
@@ -1752,12 +1789,26 @@ User name
 
 ## Type Aliases
 
+### FallbackFeatureOverride
+
+```ts
+type FallbackFeatureOverride = 
+  | {
+  key: string;
+  payload: any;
+ }
+  | true;
+```
+
+***
+
 ### FeaturesOptions
 
 ```ts
 type FeaturesOptions = {
   expireTimeMs: number;
-  fallbackFeatures: string[];
+  fallbackFeatures:   | string[]
+     | Record<string, FallbackFeatureOverride>;
   staleTimeMs: number;
   staleWhileRevalidate: boolean;
   timeoutMs: number;
@@ -1800,13 +1851,16 @@ If set, features will be cached between page loads for this duration
 </td>
 <td>
 
-`string`[]
+  \| `string`[]
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FallbackFeatureOverride`](globals.md#fallbackfeatureoverride)\>
 
 </td>
 <td>
 
 Feature keys for which `isEnabled` should fallback to true
-if SDK fails to fetch features from Bucket servers.
+if SDK fails to fetch features from Bucket servers. If a record
+is supplied instead of array, the values of each key represent the
+configuration values and `isEnabled` is assume `true`.
 
 </td>
 </tr>
