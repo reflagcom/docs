@@ -729,6 +729,8 @@ Company name
 
 ### Feature
 
+Represents a feature.
+
 #### Properties
 
 <table>
@@ -770,7 +772,7 @@ Result of feature flag evaluation
 </td>
 <td>
 
-&hyphen;
+Function to request feedback for this feature.
 
 </td>
 </tr>
@@ -959,7 +961,8 @@ Base URL of Bucket servers. You can override this to use your mocked server.
 </td>
 <td>
 
-Company related context. If you provide `id` Bucket will enrich the evaluation context with company attributes on Bucket servers.
+Company related context. If you provide `id` Bucket will enrich the evaluation context with
+company attributes on Bucket servers.
 
 </td>
 </tr>
@@ -976,7 +979,7 @@ Company related context. If you provide `id` Bucket will enrich the evaluation c
 </td>
 <td>
 
-&hyphen;
+Whether to enable tracking. Defaults to `true`.
 
 </td>
 </tr>
@@ -1155,7 +1158,8 @@ Use `sseBaseUrl` instead.
 </td>
 <td>
 
-User related context. If you provide `id` Bucket will enrich the evaluation context with user attributes on Bucket servers.
+User related context. If you provide `id` Bucket will enrich the evaluation context with
+user attributes on Bucket servers.
 
 </td>
 </tr>
