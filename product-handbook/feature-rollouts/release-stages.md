@@ -16,7 +16,7 @@ Release stages act as signals of the progression of a feature release to your te
 
 You can also configure default access rules for each release stage that will be automatically applied when you change the stage. You have complete flexibility to add [custom release stage access rules](release-stages.md#customizing-release-stage-targeting-rules).
 
-<figure><img src="../../.gitbook/assets/How to use release stages-min (1).png" alt="How to use release stages in Bucket"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Setting targeting rules v3-min.png" alt="How to use release stages in Bucket"><figcaption></figcaption></figure>
 
 ## Default settings
 

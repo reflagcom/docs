@@ -16,7 +16,7 @@ STARS stands for:&#x20;
 * **R**etained&#x20;
 * **S**atisfied
 
-<figure><img src="../../.gitbook/assets/What is the STARS Framework_-min.png" alt="The STARS feature adoption framework"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/What is the STARS Framework v3-min.png" alt="The STARS feature adoption framework"><figcaption></figcaption></figure>
 
 ## Segment
 

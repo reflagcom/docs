@@ -24,7 +24,7 @@ These criteria let you add segments, companies, or users without additional conf
 
 If you'd like to specify a [rollout percentage](feature-targeting-rules.md#specify-rollout-percentage) or create [advanced access rules](feature-targeting-rules.md#advanced-targeting-rules) using company attributes, user attributes, feature access, or other contexts, you can add additional access rules with the "+ Add Rule" button.
 
-<figure><img src="../../.gitbook/assets/Setting targeting rules-min.png" alt="Setting targeting rules in Bucket"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Setting targeting rules v3-min.png" alt="Setting targeting rules in Bucket"><figcaption></figcaption></figure>
 
 ## Using release stages
 
@@ -66,7 +66,7 @@ The "Internal" stage signals a feature is ready for internal QA testing.&#x20;
 
 After internal QA testing is complete, a feature can be moved to the "Beta" stage. This stage signals that a feature is ready to be tested by a limited segment of users.
 
-<figure><img src="../../.gitbook/assets/Release Stage Beta Targeting Rules-min.png" alt="Targeting rules in the Bucket UI"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Release Stage Beta Targeting Rules v3-min.png" alt="Targeting rules in the Bucket UI"><figcaption></figcaption></figure>
 
 #### **General availability**
 

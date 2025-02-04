@@ -15,7 +15,7 @@
   * [Segment](introduction/concepts/segment.md)
   * [User](introduction/concepts/user/README.md)
     * [Attribute](introduction/concepts/user/attribute.md)
-  * [Event](introduction/concepts/event/README.md)
+  * [Track event](introduction/concepts/event/README.md)
     * [Attribute](introduction/concepts/event/attribute.md)
 
 ## Supported languages

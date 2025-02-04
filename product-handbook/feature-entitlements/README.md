@@ -87,7 +87,7 @@ Companies in the segment **Business** or **Enterprise**
 
 Here’s what that looks like in the Bucket UI:
 
-<figure><img src="../../.gitbook/assets/Feature targeting rules example v2-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Feature targeting rules example v3-min.png" alt=""><figcaption></figcaption></figure>
 
 That’s it!&#x20;
 
@@ -99,7 +99,7 @@ If you need to grant individual companies access to a feature when they don't ha
 
 Simply click the "+ Add" button beside the "Companies" label and select the companies you'd like to add from the searchable dropdown.
 
-<figure><img src="../../.gitbook/assets/company example v2-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/company example v3-min.png" alt=""><figcaption></figcaption></figure>
 
 ## How to handle usage-based gating
 
@@ -124,6 +124,8 @@ bucket.companyUpdate(companyId51, {
 ### Step 2: Gate using usage attribute
 
 Then, add this custom attribute metric to your access rules.
+
+<figure><img src="../../.gitbook/assets/usage attribute example v3.png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/CleanShot 2025-01-23 at 2 .10.23@2x.png" alt=""><figcaption></figcaption></figure>
 

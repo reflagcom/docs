@@ -1,6 +1,6 @@
-# Event
+# Track event
 
-An event is a way to track feature adoption or launch feedback surveys on Bucket. In most cases, you don't need to create custom events as you'll just use the [feature key](../../data-model/feature/feature-key.md) instead.
+A track event is a way to track feature adoption or launch feedback surveys on Bucket. In most cases, you don't need to create custom track events as you'll just use the [feature key](../../data-model/feature/feature-key.md) instead.
 
 ```tsx
 track("custom event name");

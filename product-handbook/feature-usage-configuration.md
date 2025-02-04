@@ -54,7 +54,7 @@ You can choose between two adoption strategies:
 * Frequency (events on multiple days)
 * Count (events count threshold)
 
-<figure><img src="../.gitbook/assets/Adoption strategy-min.png" alt="Feature adoption strategy settings"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Adoption strategy V2-min.png" alt="Feature adoption strategy settings"><figcaption></figcaption></figure>
 
 ### Track adoption in the UI
 
@@ -64,5 +64,5 @@ Here you can see any STARS metric over time and set goals.
 
 You can also create segments based on STARS states.
 
-<figure><img src="../.gitbook/assets/Track adoption in the UI-min.png" alt="Analyze tab with feature adoption metrics"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Track adoption in the UI v3-min.png" alt="Analyze tab with feature adoption metrics"><figcaption></figcaption></figure>
 

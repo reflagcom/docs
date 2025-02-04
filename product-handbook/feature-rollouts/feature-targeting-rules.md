@@ -27,7 +27,7 @@ The default access criteria are:
 
 The default access criteria let you add segments, companies, and users without additional configuration.
 
-<figure><img src="../../.gitbook/assets/Feature targeting rules UI-min.png" alt="Feature targeting rules UI in Bucket"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Feature targeting rules UI v3-min.png" alt="Feature targeting rules UI in Bucket"><figcaption></figcaption></figure>
 
 ## Advanced access rules
 
@@ -35,7 +35,7 @@ You can also create advanced access rules with the "+ Add Rule" button.
 
 Advanced rules let you specify rollout percentages and create access rules using company attributes, user attributes, feature access, or other contexts.
 
-<figure><img src="../../.gitbook/assets/Advanced targeting rules-min.png" alt="Advanced targeting rules"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Advanced targeting rules v3-min.png" alt="Advanced targeting rules"><figcaption></figcaption></figure>
 
 ### Conditions
 
