@@ -80,8 +80,7 @@ new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracki
 get company(): 
   | undefined
   | {
-[k: string]: any;   avatar: string;
-  id: undefined | string | number;
+[k: string]: any;   id: undefined | string | number;
   name: string;
 }
 ```
@@ -92,8 +91,7 @@ Gets the company associated with the client.
 
   \| `undefined`
   \| \{
-`[k: string]`: `any`;   `avatar`: `string`;
-  `id`: `undefined` \| `string` \| `number`;
+`[k: string]`: `any`;   `id`: `undefined` \| `string` \| `number`;
   `name`: `string`;
  \}
 
@@ -126,8 +124,7 @@ The "other" context or `undefined` if it is not set.
 get user(): 
   | undefined
   | {
-[k: string]: any;   avatar: string;
-  email: string;
+[k: string]: any;   email: string;
   id: undefined | string | number;
   name: string;
 }
@@ -139,8 +136,7 @@ Gets the user associated with the client.
 
   \| `undefined`
   \| \{
-`[k: string]`: `any`;   `avatar`: `string`;
-  `email`: `string`;
+`[k: string]`: `any`;   `email`: `string`;
   `id`: `undefined` \| `string` \| `number`;
   `name`: `string`;
  \}
@@ -206,30 +202,11 @@ Flushes the batch buffer.
 ##### getFeature()
 
 ```ts
-getFeature<TKey>(key: TKey): Feature
+getFeature(key: string): Feature
 ```
 
 Get a specific feature for the user/company/other context bound to this client.
 Using the `isEnabled` property sends a `check` event to Bucket.
-
-###### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
 
 ###### Parameters
 
@@ -249,7 +226,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 </td>
 <td>
 
-`TKey`
+`string`
 
 </td>
 </tr>
@@ -258,7 +235,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 
 ###### Returns
 
-[`Feature`](globals.md#featuretconfig)
+[`Feature`](globals.md#feature)
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -297,7 +274,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#featuretconfig)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#feature)\>
 
 Feature for the given user/company and key and whether it's enabled or not
 
@@ -312,7 +289,7 @@ Meant for use in serialization of features for transferring to the client-side/b
 
 ###### Returns
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -326,7 +303,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>\>
 
 Features for the given user/company and whether each one is enabled or not
 
@@ -579,30 +556,11 @@ before the process exits.
 ##### getFeature()
 
 ```ts
-getFeature<TKey>(__namedParameters: ContextWithTracking, key: TKey): Feature
+getFeature(__namedParameters: ContextWithTracking, key: string): Feature
 ```
 
 Gets the evaluated feature for the current context which includes the user, company, and custom context.
 Using the `isEnabled` property sends a `check` event to Bucket.
-
-###### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
 
 ###### Parameters
 
@@ -634,7 +592,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 </td>
 <td>
 
-`TKey`
+`string`
 
 </td>
 </tr>
@@ -643,7 +601,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 
 ###### Returns
 
-[`Feature`](globals.md#featuretconfig)
+[`Feature`](globals.md#feature)
 
 The evaluated features.
 
@@ -654,8 +612,8 @@ Call `initialize` before calling this method to ensure the feature definitions a
 ##### getFeatureRemote()
 
 ```ts
-getFeatureRemote<TKey>(
-   key: TKey, 
+getFeatureRemote(
+   key: string, 
    userId?: IdType, 
    companyId?: IdType, 
 additionalContext?: Context): Promise<Feature>
@@ -663,25 +621,6 @@ additionalContext?: Context): Promise<Feature>
 
 Gets evaluated feature with the usage of remote context.
 This method triggers a network request every time it's called.
-
-###### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
 
 ###### Parameters
 
@@ -701,7 +640,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-`TKey`
+`string`
 
 </td>
 </tr>
@@ -746,7 +685,7 @@ This method triggers a network request every time it's called.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#featuretconfig)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#feature)\>
 
 evaluated feature
 
@@ -785,7 +724,7 @@ Gets the evaluated feature for the current context which includes the user, comp
 
 ###### Returns
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>
 
 The evaluated features.
 
@@ -856,7 +795,7 @@ This method triggers a network request every time it's called.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#feature)\>\>
 
 evaluated features
 
@@ -1116,29 +1055,12 @@ A context with tracking option.
 </td>
 <td>
 
-\{ `[k: string]`: `any`; `avatar`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
+\{ `[k: string]`: `any`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
 
 </td>
 <td>
 
 The company context. If no `id` key is set, the whole object is ignored.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`company.avatar?`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The avatar URL of the company.
 
 </td>
 </tr>
@@ -1155,7 +1077,7 @@ The avatar URL of the company.
 </td>
 <td>
 
-The identifier of the company.
+&hyphen;
 
 </td>
 </tr>
@@ -1172,7 +1094,7 @@ The identifier of the company.
 </td>
 <td>
 
-The name of the company.
+&hyphen;
 
 </td>
 </tr>
@@ -1219,29 +1141,12 @@ The other context. This is used for any additional context that is not related t
 </td>
 <td>
 
-\{ `[k: string]`: `any`; `avatar`: `string`; `email`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
+\{ `[k: string]`: `any`; `email`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
 
 </td>
 <td>
 
 The user context. If no `id` key is set, the whole object is ignored.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`user.avatar?`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The avatar URL of the user.
 
 </td>
 </tr>
@@ -1258,7 +1163,7 @@ The avatar URL of the user.
 </td>
 <td>
 
-The email of the user.
+&hyphen;
 
 </td>
 </tr>
@@ -1275,7 +1180,7 @@ The email of the user.
 </td>
 <td>
 
-The identifier of the user.
+&hyphen;
 
 </td>
 </tr>
@@ -1292,7 +1197,7 @@ The identifier of the user.
 </td>
 <td>
 
-The name of the user.
+&hyphen;
 
 </td>
 </tr>
@@ -1301,34 +1206,9 @@ The name of the user.
 
 ***
 
-### Feature\<TConfig\>
+### Feature
 
 Describes a feature
-
-#### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-<th>Default type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TConfig` *extends* `FeatureRemoteConfig` \| `never`
-
-</td>
-<td>
-
-`EmptyFeatureRemoteConfig`
-
-</td>
-</tr>
-</tbody>
-</table>
 
 #### Properties
 
@@ -1341,23 +1221,6 @@ Describes a feature
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>
-
-<a id="config"></a> `config`
-
-</td>
-<td>
-
-`TConfig` *extends* `never` ? `EmptyFeatureRemoteConfig` : `TConfig`
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
 <tr>
 <td>
 
@@ -1713,7 +1576,7 @@ Log a warning messages
 
 ### RawFeature
 
-Describes a feature.
+Describes a feature
 
 #### Properties
 
@@ -1726,23 +1589,6 @@ Describes a feature.
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>
-
-<a id="config-1"></a> `config?`
-
-</td>
-<td>
-
-`RawFeatureRemoteConfig`
-
-</td>
-<td>
-
-The remote configuration value for the feature.
-
-</td>
-</tr>
 <tr>
 <td>
 
@@ -1955,10 +1801,9 @@ type ClientOptions = {
   apiBaseUrl: string;
   batchOptions: Omit<BatchBufferOptions<any>, "flushHandler" | "logger">;
   configFile: string;
-  fallbackFeatures:   | TypedFeatureKey[]
-     | Record<TypedFeatureKey, Exclude<FeatureOverride, false>>;
+  fallbackFeatures: keyof TypedFeatures[];
   featureOverrides:   | string
-     | (context: Context) => FeatureOverrides;
+     | (context: Context) => Partial<Record<keyof TypedFeatures, boolean>>;
   host: string;
   httpClient: HttpClient;
   logger: Logger;
@@ -2043,17 +1888,12 @@ set through the environment variable BUCKET_CONFIG_FILE.
 </td>
 <td>
 
-  \| `TypedFeatureKey`[]
-  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`TypedFeatureKey`, [`Exclude`](https://www.typescriptlang.org/docs/handbook/utility-types.html#excludeuniontype-excludedmembers)\<`FeatureOverride`, `false`\>\>
+keyof [`TypedFeatures`](globals.md#typedfeatures)[]
 
 </td>
 <td>
 
 The features to "enable" as fallbacks when the API is unavailable (optional).
-Can be an array of feature keys, or a record of feature keys and boolean or object values.
-
-If a record is supplied instead of array, the values of each key are either the
-configuration values or the boolean value `true`.
 
 </td>
 </tr>
@@ -2066,17 +1906,17 @@ configuration values or the boolean value `true`.
 <td>
 
   \| `string`
-  \| (`context`: [`Context`](globals.md#context)) => [`FeatureOverrides`](globals.md#featureoverrides)
+  \| (`context`: [`Context`](globals.md#context)) => [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<keyof [`TypedFeatures`](globals.md#typedfeatures), `boolean`\>\>
 
 </td>
 <td>
 
 If a filename is specified, feature targeting results be overridden with
 the values from this file. The file should be a JSON object with feature
-keys as keys, and boolean or object as values.
+keys as keys and boolean values as values.
 
 If a function is specified, the function will be called with the context
-and should return a record of feature keys and boolean or object values.
+and should return a record of feature keys and boolean values.
 
 Defaults to "bucketFeatures.json".
 
@@ -2197,14 +2037,12 @@ The secret key used to authenticate with the Bucket API.
 ```ts
 type Context = {
   company: {
-   [k: string]: any;   avatar: string;
-     id: string | number | undefined;
+   [k: string]: any;   id: string | number | undefined;
      name: string;
     };
   other: Record<string, any>;
   user: {
-   [k: string]: any;   avatar: string;
-     email: string;
+   [k: string]: any;   email: string;
      id: string | number | undefined;
      name: string;
     };
@@ -2234,8 +2072,7 @@ This is used to determine if feature targeting matches and to track events.
 <td>
 
 \{
-`[k: string]`: `any`;   `avatar`: `string`;
-  `id`: `string` \| `number` \| `undefined`;
+`[k: string]`: `any`;   `id`: `string` \| `number` \| `undefined`;
   `name`: `string`;
  \}
 
@@ -2243,23 +2080,6 @@ This is used to determine if feature targeting matches and to track events.
 <td>
 
 The company context. If no `id` key is set, the whole object is ignored.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`company.avatar`?
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The avatar URL of the company.
 
 </td>
 </tr>
@@ -2276,7 +2096,7 @@ The avatar URL of the company.
 </td>
 <td>
 
-The identifier of the company.
+&hyphen;
 
 </td>
 </tr>
@@ -2293,7 +2113,7 @@ The identifier of the company.
 </td>
 <td>
 
-The name of the company.
+&hyphen;
 
 </td>
 </tr>
@@ -2323,8 +2143,7 @@ The other context. This is used for any additional context that is not related t
 <td>
 
 \{
-`[k: string]`: `any`;   `avatar`: `string`;
-  `email`: `string`;
+`[k: string]`: `any`;   `email`: `string`;
   `id`: `string` \| `number` \| `undefined`;
   `name`: `string`;
  \}
@@ -2333,23 +2152,6 @@ The other context. This is used for any additional context that is not related t
 <td>
 
 The user context. If no `id` key is set, the whole object is ignored.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`user.avatar`?
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The avatar URL of the user.
 
 </td>
 </tr>
@@ -2366,7 +2168,7 @@ The avatar URL of the user.
 </td>
 <td>
 
-The email of the user.
+&hyphen;
 
 </td>
 </tr>
@@ -2383,7 +2185,7 @@ The email of the user.
 </td>
 <td>
 
-The identifier of the user.
+&hyphen;
 
 </td>
 </tr>
@@ -2400,7 +2202,7 @@ The identifier of the user.
 </td>
 <td>
 
-The name of the user.
+&hyphen;
 
 </td>
 </tr>
@@ -2412,7 +2214,7 @@ The name of the user.
 ### FeatureOverrides
 
 ```ts
-type FeatureOverrides = Partial<keyof Features extends never ? Record<string, FeatureOverride> : { [FeatureKey in keyof Features]: Features[FeatureKey] extends FullFeatureOverride ? Features[FeatureKey] : Exclude<FeatureOverride, "config"> }>;
+type FeatureOverrides = Partial<Record<keyof TypedFeatures, boolean>>;
 ```
 
 Describes the feature overrides.
@@ -2683,7 +2485,7 @@ The meta context associated with the event.
 ### TypedFeatures
 
 ```ts
-type TypedFeatures = keyof Features extends never ? Record<string, Feature> : { [FeatureKey in keyof Features]: Features[FeatureKey] extends FullFeatureOverride ? Feature<Features[FeatureKey]["config"]> : Feature };
+type TypedFeatures = keyof Features extends never ? Record<string, Feature> : Record<keyof Features, Feature>;
 ```
 
 Describes a collection of evaluated feature.

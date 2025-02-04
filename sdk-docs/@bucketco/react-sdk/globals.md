@@ -26,14 +26,11 @@ pagination:
 ```ts
 type BucketProps = BucketContext & {
   apiBaseUrl: string;
-  appBaseUrl: string;
   children: ReactNode;
   debug: boolean;
   enableTracking: boolean;
-  featureList: Readonly<string[]>;
   featureOptions: Omit<FeaturesOptions, "fallbackFeatures"> & {
-     fallbackFeatures:   | FeatureKey[]
-        | Record<FeatureKey, any>;
+     fallbackFeatures: FeatureKey[];
     };
   feedback: FeedbackOptions;
   host: string;
@@ -42,7 +39,6 @@ type BucketProps = BucketContext & {
   publishableKey: string;
   sseBaseUrl: string;
   sseHost: string;
-  toolbar: ToolbarOptions;
 };
 ```
 
@@ -61,23 +57,6 @@ type BucketProps = BucketContext & {
 <td>
 
 `apiBaseUrl`?
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-`appBaseUrl`?
 
 </td>
 <td>
@@ -145,31 +124,13 @@ type BucketProps = BucketContext & {
 <tr>
 <td>
 
-`featureList`?
-
-</td>
-<td>
-
-[`Readonly`](https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype)\<`string`[]\>
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
 `featureOptions`?
 
 </td>
 <td>
 
 [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`FeaturesOptions`](../browser-sdk/globals.md#featuresoptions), `"fallbackFeatures"`\> & \{
-  `fallbackFeatures`:   \| [`FeatureKey`](globals.md#featurekey)[]
-     \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<[`FeatureKey`](globals.md#featurekey), `any`\>;
+  `fallbackFeatures`: [`FeatureKey`](globals.md#featurekey)[];
  \}
 
 </td>
@@ -302,50 +263,6 @@ Use `sseBaseUrl` instead.
 
 </td>
 </tr>
-<tr>
-<td>
-
-`toolbar`?
-
-</td>
-<td>
-
-[`ToolbarOptions`](../browser-sdk/globals.md#toolbaroptions)
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### FeatureConfig\<TKey\>
-
-```ts
-type FeatureConfig<TKey> = MaterializedFeatures[TKey] extends boolean ? never : MaterializedFeatures[TKey];
-```
-
-#### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* [`FeatureKey`](globals.md#featurekey)
-
-</td>
-</tr>
 </tbody>
 </table>
 
@@ -354,7 +271,7 @@ type FeatureConfig<TKey> = MaterializedFeatures[TKey] extends boolean ? never : 
 ### FeatureKey
 
 ```ts
-type FeatureKey = keyof MaterializedFeatures;
+type FeatureKey = keyof keyof Features extends never ? Record<string, boolean> : Features;
 ```
 
 ## Functions
@@ -399,37 +316,39 @@ function BucketProvider(__namedParameters: BucketProps): Element
 ### useFeature()
 
 ```ts
-function useFeature<TKey>(key: TKey): Feature<TKey>
+function useFeature(key: string): 
+  | {
+  isEnabled: boolean;
+  isLoading: true;
+  requestFeedback: (opts: Omit<RequestFeedbackData, "featureId" | "featureKey">) => undefined | void;
+  track: () => 
+     | undefined
+     | Promise<
+     | undefined
+     | Response>;
+ }
+  | {
+  isLoading: false;
+  requestFeedback: (opts: Omit<RequestFeedbackData, "featureId" | "featureKey">) => undefined | void;
+  track: () => 
+     | undefined
+     | Promise<
+     | undefined
+     | Response>;
+  get isEnabled: boolean;
+}
 ```
 
 Returns the state of a given feature for the current context, e.g.
 
 ```ts
 function HuddleButton() {
-  const {isEnabled, config: { payload }, track} = useFeature("huddle");
+  const {isEnabled, track} = useFeature("huddle");
   if (isEnabled) {
-   return <button onClick={() => track()}>{payload?.buttonTitle ?? "Start Huddle"}</button>;
+   return <button onClick={() => track()}>Start Huddle</button>;
+  }
 }
 ```
-
-#### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
 
 #### Parameters
 
@@ -449,7 +368,7 @@ function HuddleButton() {
 </td>
 <td>
 
-`TKey`
+`string`
 
 </td>
 </tr>
@@ -458,7 +377,26 @@ function HuddleButton() {
 
 #### Returns
 
-`Feature`\<`TKey`\>
+  \| \{
+  `isEnabled`: `boolean`;
+  `isLoading`: `true`;
+  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
+  `track`: () => 
+     \| `undefined`
+     \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+     \| `undefined`
+     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
+ \}
+  \| \{
+  `isLoading`: `false`;
+  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
+  `track`: () => 
+     \| `undefined`
+     \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+     \| `undefined`
+     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
+  get `isEnabled`: `boolean`;
+ \}
 
 ***
 
