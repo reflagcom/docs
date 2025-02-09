@@ -26,8 +26,12 @@ A client bound with a specific user, company, and other context.
 ##### new BoundBucketClient()
 
 ```ts
-new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracking): BoundBucketClient
+new BoundBucketClient(client: BucketClient, options: ContextWithTracking): BoundBucketClient
 ```
+
+**`Internal`**
+
+(Internal) Creates a new BoundBucketClient. Use `bindClient` to create a new client bound with a specific context.
 
 ###### Parameters
 
@@ -36,6 +40,7 @@ new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracki
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -50,16 +55,26 @@ new BoundBucketClient(client: BucketClient, __namedParameters: ContextWithTracki
 [`BucketClient`](globals.md#bucketclient)
 
 </td>
+<td>
+
+The `BucketClient` to use.
+
+</td>
 </tr>
 <tr>
 <td>
 
-`__namedParameters`
+`options`
 
 </td>
 <td>
 
 [`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+<td>
+
+The options for the client.
 
 </td>
 </tr>
@@ -152,9 +167,7 @@ The user or `undefined` if it is not set.
 ##### bindClient()
 
 ```ts
-bindClient(__namedParameters: Context & {
-  enableTracking: boolean;
- }): BoundBucketClient
+bindClient(context: ContextWithTracking): BoundBucketClient
 ```
 
 Create a new client bound with the additional context.
@@ -167,18 +180,24 @@ Note: This performs a shallow merge for user/company/other individually.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`__namedParameters`
+`context`
 
 </td>
 <td>
 
-[`Context`](globals.md#context) & \{ `enableTracking`: `boolean`; \}
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+<td>
+
+The context to bind the client to.
 
 </td>
 </tr>
@@ -219,6 +238,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -231,6 +251,11 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 <td>
 
 `string`
+
+</td>
+<td>
+
+The key of the feature to get.
 
 </td>
 </tr>
@@ -258,6 +283,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -270,6 +296,11 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 <td>
 
 `string`
+
+</td>
+<td>
+
+The key of the feature to get.
 
 </td>
 </tr>
@@ -314,7 +345,7 @@ Features for the given user/company and whether each one is enabled or not
 ##### track()
 
 ```ts
-track(event: string, opts?: TrackOptions & {
+track(event: string, options?: TrackOptions & {
   companyId: string;
 }): Promise<void>
 ```
@@ -352,7 +383,7 @@ The event to track.
 <tr>
 <td>
 
-`opts`?
+`options`?
 
 </td>
 <td>
@@ -362,7 +393,7 @@ The event to track.
 </td>
 <td>
 
-&hyphen;
+The options for the event.
 
 </td>
 </tr>
@@ -382,6 +413,19 @@ An error if the event is invalid or the options are invalid.
 ### BucketClient
 
 The SDK client.
+
+#### Remarks
+
+This is the main class for interacting with Bucket.
+It is used to update user and company contexts, track events, and evaluate feature flags.
+
+#### Example
+
+```ts
+const client = new BucketClient({
+  secretKey: "your-secret-key",
+});
+```
 
 #### Constructors
 
@@ -443,6 +487,13 @@ An error if the options are invalid.
 set featureOverrides(overrides: FeatureOverridesFn): void
 ```
 
+Sets the feature overrides.
+
+###### Remarks
+
+The feature overrides are used to override the feature definitions.
+This is useful for testing or development.
+
 ###### Parameters
 
 <table>
@@ -450,6 +501,7 @@ set featureOverrides(overrides: FeatureOverridesFn): void
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -462,6 +514,11 @@ set featureOverrides(overrides: FeatureOverridesFn): void
 <td>
 
 [`FeatureOverridesFn`](globals.md#featureoverridesfn)
+
+</td>
+<td>
+
+The feature overrides.
 
 </td>
 </tr>
@@ -493,7 +550,7 @@ The logger or `undefined` if it is not set.
 ##### bindClient()
 
 ```ts
-bindClient(__namedParameters: ContextWithTracking): BoundBucketClient
+bindClient(context: ContextWithTracking): BoundBucketClient
 ```
 
 Returns a new BoundBucketClient with the user/company/otherContext
@@ -507,18 +564,24 @@ For example, for evaluating feature targeting or tracking events.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`__namedParameters`
+`context`
 
 </td>
 <td>
 
 [`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+<td>
+
+The context to bind the client to.
 
 </td>
 </tr>
@@ -573,6 +636,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -587,6 +651,11 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 [`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
+<td>
+
+&hyphen;
+
+</td>
 </tr>
 <tr>
 <td>
@@ -599,6 +668,11 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 `string`
 
 </td>
+<td>
+
+The key of the feature to get.
+
+</td>
 </tr>
 </tbody>
 </table>
@@ -607,7 +681,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 
 [`Feature`](globals.md#feature)
 
-The evaluated features.
+The evaluated feature.
 
 ###### Remarks
 
@@ -633,6 +707,7 @@ This method triggers a network request every time it's called.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -647,6 +722,11 @@ This method triggers a network request every time it's called.
 `string`
 
 </td>
+<td>
+
+The key of the feature to get.
+
+</td>
 </tr>
 <tr>
 <td>
@@ -657,6 +737,11 @@ This method triggers a network request every time it's called.
 <td>
 
 [`IdType`](globals.md#idtype)
+
+</td>
+<td>
+
+The userId of the user to get the feature for.
 
 </td>
 </tr>
@@ -671,6 +756,11 @@ This method triggers a network request every time it's called.
 [`IdType`](globals.md#idtype)
 
 </td>
+<td>
+
+The companyId of the company to get the feature for.
+
+</td>
 </tr>
 <tr>
 <td>
@@ -681,6 +771,11 @@ This method triggers a network request every time it's called.
 <td>
 
 [`Context`](globals.md#context)
+
+</td>
+<td>
+
+The additional context to get the feature for.
 
 </td>
 </tr>
@@ -696,10 +791,10 @@ evaluated feature
 ##### getFeatures()
 
 ```ts
-getFeatures(__namedParameters: ContextWithTracking): Record<string, Feature>
+getFeatures(options: ContextWithTracking): Record<string, Feature>
 ```
 
-Gets the evaluated feature for the current context which includes the user, company, and custom context.
+Gets the evaluated features for the current context which includes the user, company, and custom context.
 
 ###### Parameters
 
@@ -708,18 +803,24 @@ Gets the evaluated feature for the current context which includes the user, comp
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`__namedParameters`
+`options`
 
 </td>
 <td>
 
 [`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+<td>
+
+The options for the context.
 
 </td>
 </tr>
@@ -755,6 +856,7 @@ This method triggers a network request every time it's called.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -769,6 +871,11 @@ This method triggers a network request every time it's called.
 [`IdType`](globals.md#idtype)
 
 </td>
+<td>
+
+The userId of the user to get the features for.
+
+</td>
 </tr>
 <tr>
 <td>
@@ -781,6 +888,11 @@ This method triggers a network request every time it's called.
 [`IdType`](globals.md#idtype)
 
 </td>
+<td>
+
+The companyId of the company to get the features for.
+
+</td>
 </tr>
 <tr>
 <td>
@@ -791,6 +903,11 @@ This method triggers a network request every time it's called.
 <td>
 
 [`Context`](globals.md#context)
+
+</td>
+<td>
+
+The additional context to get the features for.
 
 </td>
 </tr>
@@ -815,8 +932,6 @@ Initializes the client by caching the features definitions.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-void
-
 ###### Remarks
 
 Call this method before calling `getFeatures` to ensure the feature definitions are cached.
@@ -828,7 +943,7 @@ The client will ignore subsequent calls to this method.
 track(
    userId: IdType, 
    event: string, 
-   opts?: TrackOptions & {
+   options?: TrackOptions & {
   companyId: IdType;
 }): Promise<void>
 ```
@@ -883,7 +998,7 @@ The event to track.
 <tr>
 <td>
 
-`opts`?
+`options`?
 
 </td>
 <td>
@@ -893,7 +1008,7 @@ The event to track.
 </td>
 <td>
 
-The options.
+&hyphen;
 
 </td>
 </tr>
@@ -915,7 +1030,7 @@ If the company is set, the event will be associated with the company.
 ##### updateCompany()
 
 ```ts
-updateCompany(companyId: IdType, opts?: TrackOptions & {
+updateCompany(companyId: IdType, options?: TrackOptions & {
   userId: IdType;
 }): Promise<void>
 ```
@@ -929,6 +1044,7 @@ Updates the associated company in Bucket.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -943,16 +1059,26 @@ Updates the associated company in Bucket.
 [`IdType`](globals.md#idtype)
 
 </td>
+<td>
+
+The companyId of the company to update.
+
+</td>
 </tr>
 <tr>
 <td>
 
-`opts`?
+`options`?
 
 </td>
 <td>
 
 [`TrackOptions`](globals.md#trackoptions) & \{ `userId`: [`IdType`](globals.md#idtype); \}
+
+</td>
+<td>
+
+The options for the company.
 
 </td>
 </tr>
@@ -975,7 +1101,7 @@ If the user is set, the company will be associated with the user.
 ##### updateUser()
 
 ```ts
-updateUser(userId: IdType, opts?: TrackOptions): Promise<void>
+updateUser(userId: IdType, options?: TrackOptions): Promise<void>
 ```
 
 Updates the associated user in Bucket.
@@ -987,6 +1113,7 @@ Updates the associated user in Bucket.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1001,16 +1128,26 @@ Updates the associated user in Bucket.
 [`IdType`](globals.md#idtype)
 
 </td>
+<td>
+
+The userId of the user to update.
+
+</td>
 </tr>
 <tr>
 <td>
 
-`opts`?
+`options`?
 
 </td>
 <td>
 
 [`TrackOptions`](globals.md#trackoptions)
+
+</td>
+<td>
+
+The options for the user.
 
 </td>
 </tr>
@@ -1134,6 +1271,24 @@ The name of the company.
 
 Enable tracking for the context.
 If set to `false`, tracking will be disabled for the context. Default is `true`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="meta"></a> `meta?`
+
+</td>
+<td>
+
+[`TrackingMeta`](globals.md#trackingmeta)
+
+</td>
+<td>
+
+The meta context used to update the user or company when syncing is required during
+feature retrieval.
 
 </td>
 </tr>
@@ -2539,7 +2694,7 @@ The attributes associated with the event.
 <tr>
 <td>
 
-<a id="meta"></a> `meta`?
+<a id="meta-1"></a> `meta`?
 
 </td>
 <td>
