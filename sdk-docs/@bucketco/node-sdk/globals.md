@@ -620,6 +620,8 @@ Flushes the batch buffer.
 It is recommended to call this method when the application is shutting down to ensure all events are sent
 before the process exits.
 
+This method is automatically called when the process exits if `batchOptions.flushOnExit` is `true` in the options (default).
+
 ##### getFeature()
 
 ```ts
@@ -1870,6 +1872,7 @@ Describes the attributes of a user, company or event.
 ```ts
 type BatchBufferOptions<T> = {
   flushHandler: (items: T[]) => Promise<void>;
+  flushOnExit: boolean;
   intervalMs: number;
   logger: Logger;
   maxSize: number;
@@ -1928,6 +1931,23 @@ The type of items in the buffer.
 <td>
 
 A function that handles flushing the items in the buffer.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flushonexit"></a> `flushOnExit`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether to flush the buffer on exit.
 
 </td>
 </tr>
