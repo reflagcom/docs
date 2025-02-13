@@ -225,6 +225,7 @@ POST https://front.bucket.co/event?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjW
 | ---------- | -------- | -------- |
 | event      | Required | String   |
 | userId     | Required | String   |
+| companyId  | Optional | String   |
 | attributes | Optional | Object   |
 | timestamp  | Optional | ISO 8601 |
 
