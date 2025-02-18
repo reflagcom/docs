@@ -21,13 +21,13 @@
 ## Supported languages
 
 * [Overview](supported-languages/overview.md)
-* [React SDK](sdk-docs/@bucketco/react-sdk/README.md)
-  * [Reference](sdk-docs/@bucketco/react-sdk/globals.md)
-* [Browser SDK](sdk-docs/@bucketco/browser-sdk/README.md)
-  * [Feedback](sdk-docs/documents/FEEDBACK.md)
-  * [Reference](sdk-docs/@bucketco/browser-sdk/globals.md)
-* [Node.js SDK](sdk-docs/@bucketco/node-sdk/README.md)
-  * [Reference](sdk-docs/@bucketco/node-sdk/globals.md)
+* [React SDK](sdk/@bucketco/react-sdk/README.md)
+  * [Reference](sdk/@bucketco/react-sdk/globals.md)
+* [Browser SDK](sdk/@bucketco/browser-sdk/README.md)
+  * [Feedback](sdk/documents/FEEDBACK.md)
+  * [Reference](sdk/@bucketco/browser-sdk/globals.md)
+* [Node.js SDK](sdk/@bucketco/node-sdk/README.md)
+  * [Reference](sdk/@bucketco/node-sdk/globals.md)
 * [Next.js](supported-languages/next.js.md)
 * [OpenFeature](supported-languages/openfeature.md)
 * [Community support](supported-languages/community-support/README.md)
@@ -71,5 +71,5 @@
 
 ## API
 
-* [Introduction](api-1/http-api.md)
-* [API Reference](api-1/api-reference.md)
+* [Introduction](api/http-api.md)
+* [API Reference](api/api-reference.md)
