@@ -4,7 +4,7 @@ With the Datadog integration, you can enrich your RUM data with feature flag dat
 
 ### Get available features from Bucket
 
-In this example, we're using the [Browser SDK](../sdk-docs/@bucketco/browser-sdk/):
+In this example, we're using the [Browser SDK](../sdk/@bucketco/browser-sdk/):
 
 ```javascript
 //init
