@@ -4,7 +4,7 @@ With the Mixpanel integration, you can attach feature access properties to users
 
 ### Get available features from Bucket
 
-In this example, we're using the [Browser SDK](broken-reference):
+In this example, we're using the [@bucketco/browser-sdk](../sdk/@bucketco/browser-sdk/):
 
 ```javascript
 //init
