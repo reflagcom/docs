@@ -1,6 +1,10 @@
+---
+description: Integrate Slack to get notified about new feature changes and feedback
+---
+
 # Slack
 
-With the Slack integration, you can get notifications whenever a feature's access and/or stage changes and whenever an end-user submit feature feedback. You can also get a feature view report.
+With the integration for Slack, you can get notifications whenever a feature's access and/or stage changes and whenever an end-user submit feature feedback. You can also get a feature view report.
 
 ## Authenticate with Slack
 
