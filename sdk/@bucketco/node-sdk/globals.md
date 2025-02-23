@@ -1838,6 +1838,23 @@ The missing fields in the evaluation context (optional).
 <tr>
 <td>
 
+<a id="ruleevaluationresults"></a> `ruleEvaluationResults?`
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+<td>
+
+The rule results of the evaluation (optional).
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="targetingversion"></a> `targetingVersion?`
 
 </td>
