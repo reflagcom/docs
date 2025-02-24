@@ -28,7 +28,65 @@ Use `https://front-eu.bucket.co` if you want to avoid your requests being served
 
 ## API Endpoints
 
-<table><thead><tr><th width="266">Endpoint</th><th width="149" data-type="checkbox">Publishable Key</th><th width="121" data-type="checkbox">Secret key</th><th>Description</th></tr></thead><tbody><tr><td><code>GET /features</code></td><td>false</td><td>true</td><td>Retrieve <em>all</em> features with their respective access rules</td></tr><tr><td><code>GET /features/enabled</code></td><td>true</td><td>true</td><td>Retrieve features that are enabled for the provided user/company</td></tr><tr><td><code>POST /features/events</code></td><td>true</td><td>true</td><td>Send events related to feature access</td></tr><tr><td><code>POST /user</code></td><td>true</td><td>true</td><td>Update user in Bucket</td></tr><tr><td><code>POST /company</code></td><td>true</td><td>true</td><td>Update company in Bucket</td></tr><tr><td><code>POST /event</code></td><td>true</td><td>true</td><td>Send events related to feature usage or user actions</td></tr><tr><td><code>POST /bulk</code></td><td>true</td><td>true</td><td>Send multiple calls in bulk.</td></tr></tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th width="266">Endpoint</th>
+      <th width="149" data-type="checkbox">Publishable Key</th>
+      <th width="121" data-type="checkbox">Secret key</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>GET /features</code></td>
+      <td>false</td>
+      <td>true</td>
+      <td>Retrieve <em>all</em> features with their respective access rules</td>
+    </tr>
+    <tr>
+      <td><code>GET /features/evaluated</code></td>
+      <td>true</td>
+      <td>true</td>
+      <td>Retrieve features that are evaluated for the provided user/company</td>
+    </tr>
+    <tr>
+      <td><code>GET /features/enabled</code></td>
+      <td>true</td>
+      <td>true</td>
+      <td>Retrieve features that are enabled for the provided user/company</td>
+    </tr>
+    <tr>
+      <td><code>POST /features/events</code></td>
+      <td>true</td>
+      <td>true</td><td>Send events related to feature access</td>
+    </tr>
+    <tr>
+      <td><code>POST /user</code></td>
+      <td>true</td>
+      <td>true</td>
+      <td>Update user in Bucket</td>
+    </tr>
+    <tr>
+      <td><code>POST /company</code></td>
+      <td>true</td>
+      <td>true</td>
+      <td>Update company in Bucket</td>
+    </tr>
+    <tr>
+      <td><code>POST /event</code></td>
+      <td>true</td>
+      <td>true</td>
+      <td>Send events related to feature usage or user actions</td>
+    </tr>
+    <tr>
+      <td><code>POST /bulk</code></td>
+      <td>true</td>
+      <td>true</td>
+      <td>Send multiple calls in bulk.</td>
+    </tr>
+  </tbody>
+</table>
 
 Note: For POST requests, the API only accepts JSON. The Content-Type header must be set to `application/json`.
 
@@ -73,14 +131,15 @@ Authorization: Bearer <secretKey>
   ]
 }
 ```
+See [API reference](./api-reference.md#features).
 
-### `GET /features/enabled`
+### `GET /features/evaluated`
 
-The `features/enabled` endpoint lets you get a list of features that are enabled for a specific _user/company_.&#x20;
+The `features/evaluated` endpoint lets you get a list of features that are evaluated for a specific _user/company_.&#x20;
 
 #### Example
 
-The `feature/enabled` HTTP endpoint is a `GET` request to ensure that the request can be completed without a `CORS Preflight` request to reduce latency.
+The `feature/evaluated` HTTP endpoint is a `GET` request to ensure that the request can be completed without a `CORS Preflight` request to reduce latency.
 
 The context must be flattened and provided as query parameters.
 
@@ -110,6 +169,13 @@ This is a more realistic example of `context` that lets you write advanced featu
 Note: The Bucket UI uses the attributes provided in the `company` endpoint to determine which companies have which features enabled. Ensure any `company` attributes used in the `context` are also provided through the `company` endpoint.&#x20;
 {% endhint %}
 
+See [API reference](./api-reference.md#features-evaluated).
+
+### `GET /features/enabled`
+The `features/enabled` endpoints is identical to `features/evaluated` but lists only the features which are evaluated as `true`.
+
+See [API reference](./api-reference.md#features-enabled).
+
 ### `POST /features/events`
 
 The `/features/events` endpoint is used to send "evaluate" and "check" events. These events are used for various purposes in the Bucket UI. An evaluation event should be emitted when an access rule is evaluated. This happens automatically for the `/features/enabled` endpoint. A "check" event should be generated whenever code checks for whether a specific feature is enabled.
@@ -131,6 +197,8 @@ The `/features/events` endpoint is used to send "evaluate" and "check" events. T
   "success": true,
 }
 </code></pre>
+
+See [API reference](./api-reference.md#features-events).
 
 ### `POST /user`
 
@@ -159,6 +227,8 @@ You can pass along attributes that will be set for the given user.  User attribu
 | userId     | Required | String   |
 | attributes | Optional | Object   |
 | timestamp  | Optional | ISO 8601 |
+
+See [API reference](./api-reference.md#user).
 
 ### `POST /company`
 
@@ -202,6 +272,8 @@ POST https://front.bucket.co/company?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHL
 | timestamp  | Optional | ISO 8601 String |
 | userId     | Optional | String          |
 
+See [API reference](./api-reference.md#company).
+
 ### `POST /event`
 
 Events are used to track user interactions within your application. We recommend tracking a handful of key features and features being currently worked on.
@@ -229,7 +301,9 @@ POST https://front.bucket.co/event?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjW
 | attributes | Optional | Object   |
 | timestamp  | Optional | ISO 8601 |
 
-## Feedback
+See [API reference](./api-reference.md#event).
+
+### `POST Feedback`
 
 You can submit qualitative feedback related to a specific feature to pair your quantitative metrics with qualitative insights.&#x20;
 
@@ -257,6 +331,8 @@ POST https://front.bucket.co/feedback?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NH
 | comment   | Optional | String       |
 
 Note: You can find the `featureId` in under "Settings" for a given feature.
+
+See [API reference](./api-reference.md#feedback).
 
 ## Responses
 
