@@ -52,7 +52,7 @@
 * [Create your first feature](product-handbook/create-your-first-feature.md)
 * [Feature rollouts](product-handbook/feature-rollouts/README.md)
   * [Release stages](product-handbook/feature-rollouts/release-stages.md)
-  * [Feature access rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
+  * [Access rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
   * [Remote config](product-handbook/feature-rollouts/remote-config.md)
 * [Feature adoption](product-handbook/feature-usage-configuration.md)
   * [STARS Framework](product-handbook/feature-analysis/stars-framework.md)

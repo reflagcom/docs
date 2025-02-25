@@ -1,5 +1,9 @@
 # Remote config
 
+{% hint style="info" %}
+This feature is currently in Beta
+{% endhint %}
+
 ## What is remote config?
 
 Remote config serves as a dynamic and flexible approach to managing feature behavior in relation to the targeted audience. A feature's remote config consists of a set of **config values**. Each config value is a **key** — **payload** pair where the keys are unique and the values are JSON values. Both are supplied by the user. Additionally, config values have **environment-specific targeting rules** used by Bucket to match them against [feature access requests](feature-targeting-rules.md).
