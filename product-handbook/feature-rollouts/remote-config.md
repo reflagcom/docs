@@ -33,10 +33,6 @@ We recommend that you chose simple text values for config value keys. Try to avo
 
 ## Matching algorithm&#x20;
 
-The true power of remote config lies in its ability to apply matching rules that are evaluated based on context supplied by the caller. When a feature access is evaluated, these rules determine which config value should be returned, ensuring that users experience the appropriate value according to predefined criteria. This mechanism allows for a tailored experience, enabling distinct feature sets or behaviors across different user segments or operational environments.
-
-The rules are matched against the same context provided when checking for feature access. But there are important differences that need to be taken into consideration:
-
 * **`Other context`** is not taken into account when evaluating config value targeting rules,
 * Rules are not evaluated in the order of their appearance, but in order of their **specificity**:
   * The rule that matches the user explicitly is selected first,
@@ -44,7 +40,6 @@ The rules are matched against the same context provided when checking for featur
   * The first rule that matches the company as part of a segment is selected,
   * Finally, if no rule is matched, the default one is used.,
 * Users, companies and segments can appear only once in targeting rules for each environment. This means that you cannot configure two distinct config values in the same environment to target the same entity explicitly,
-* When no users, companies or segments are selected, the value is considered **disabled** and won't match any context. This is in contrast with **access rules**, where it would match everything,
 * Finally, "_percentage rollout_" ability is not supported.
 
 {% hint style="info" %}
