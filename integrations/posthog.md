@@ -1,3 +1,7 @@
+---
+description: How Bucket integrates with PostHog
+---
+
 # PostHog
 
 With the PostHog integration, you can attach feature access properties to users and groups on PostHog. This will enable you to query analytics based on feature access filters.

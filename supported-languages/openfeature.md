@@ -1,3 +1,7 @@
+---
+description: Bucket provides OpenFeature integration for use in browser (Web) and Node.js
+---
+
 # OpenFeature
 
 ## What is OpenFeature? <a href="#what-is-the-react-sdk" id="what-is-the-react-sdk"></a>

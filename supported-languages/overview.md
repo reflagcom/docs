@@ -1,9 +1,10 @@
 ---
+description: Bucket SDKs for React, Node.js, Next.js, and more. Supports OpenFeature.
 layout:
   title:
     visible: true
   description:
-    visible: false
+    visible: true
   tableOfContents:
     visible: true
   outline:

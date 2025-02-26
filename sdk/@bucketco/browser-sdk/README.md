@@ -1,23 +1,33 @@
 ---
-layout:
-  visible: true
 title:
   visible: true
-description:
-  visible: false
 tableOfContents:
   visible: true
 outline:
   visible: true
 pagination:
   visible: true
+description: Basic client for Bucket.co
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
-# Bucket Browser SDK
+# Browser SDK
 
-Basic client for Bucket.co. If you're using React, you'll be better off with the Bucket React SDK.
+{% hint style="info" %}
+If you're using React, you'll be better off with the [Bucket React SDK](../react-sdk/).
+{% endhint %}
 
-Bucket supports feature toggling, tracking feature usage, [collecting feedback](#qualitative-feedback) on features, and [remotely configuring features](#remote-config-beta).
+Bucket supports feature toggling, tracking feature usage, [collecting feedback](./#qualitative-feedback) on features, and [remotely configuring features](./#remote-config-beta).
 
 ## Install
 
@@ -131,15 +141,13 @@ type Configuration = {
 
 Bucket determines which features are active for a given user/company. The user/company is given in the BucketClient constructor.
 
-If you supply `user` or `company` objects, they must include at least the `id` property otherwise they will be ignored in their entirety.
-In addition to the `id`, you must also supply anything additional that you want to be able to evaluate feature targeting rules against.
+If you supply `user` or `company` objects, they must include at least the `id` property otherwise they will be ignored in their entirety. In addition to the `id`, you must also supply anything additional that you want to be able to evaluate feature targeting rules against.
 
-Attributes cannot be nested (multiple levels) and must be either strings, integers or booleans.
-Some attributes are special and used in Bucket UI:
+Attributes cannot be nested (multiple levels) and must be either strings, integers or booleans. Some attributes are special and used in Bucket UI:
 
-- `name` -- display name for `user`/`company`,
-- `email` -- is accepted for `user`s and will be highlighted in the Bucket UI if available,
-- `avatar` -- can be provided for both `user` and `company` and should be an URL to an image.
+* `name` -- display name for `user`/`company`,
+* `email` -- is accepted for `user`s and will be highlighted in the Bucket UI if available,
+* `avatar` -- can be provided for both `user` and `company` and should be an URL to an image.
 
 ```ts
 const bucketClient = new BucketClient({
@@ -183,19 +191,15 @@ const features = bucketClient.getFeatures();
 // }
 ```
 
-`getFeatures()` is meant to be more low-level than `getFeature()` and it typically used
-by down-stream clients, like the React SDK.
+`getFeatures()` is meant to be more low-level than `getFeature()` and it typically used by down-stream clients, like the React SDK.
 
-Note that accessing `isEnabled` on the object returned by `getFeatures` does not automatically
-generate a `check` event, contrary to the `isEnabled` property on the object returned by `getFeature`.
+Note that accessing `isEnabled` on the object returned by `getFeatures` does not automatically generate a `check` event, contrary to the `isEnabled` property on the object returned by `getFeature`.
 
 ### Remote config (beta)
 
 Remote config is a dynamic and flexible approach to configuring feature behavior outside of your app – without needing to re-deploy it.
 
-Similar to `isEnabled`, each feature has a `config` property. This configuration is managed from within Bucket.
-It is managed similar to the way access to features is managed, but instead of the binary `isEnabled` you can have
-multiple configuration values which are given to different user/companies.
+Similar to `isEnabled`, each feature has a `config` property. This configuration is managed from within Bucket. It is managed similar to the way access to features is managed, but instead of the binary `isEnabled` you can have multiple configuration values which are given to different user/companies.
 
 ```ts
 const features = bucketClient.getFeatures();
@@ -213,14 +217,11 @@ const features = bucketClient.getFeatures();
 
 `key` is mandatory for a config, but if a feature has no config or no config value was matched against the context, the `key` will be `undefined`. Make sure to check against this case when trying to use the configuration in your application. `payload` is an optional JSON value for arbitrary configuration needs.
 
-Just as `isEnabled`, accessing `config` on the object returned by `getFeatures` does not automatically
-generate a `check` event, contrary to the `config` property on the object returned by `getFeature`.
+Just as `isEnabled`, accessing `config` on the object returned by `getFeatures` does not automatically generate a `check` event, contrary to the `config` property on the object returned by `getFeature`.
 
 ### Tracking feature usage
 
-The `track` function lets you send events to Bucket to denote feature usage.
-By default Bucket expects event names to align with the feature keys, but
-you can customize it as you wish.
+The `track` function lets you send events to Bucket to denote feature usage. By default Bucket expects event names to align with the feature keys, but you can customize it as you wish.
 
 ```ts
 bucketClient.track("huddle", { voiceHuddle: true });
@@ -228,8 +229,7 @@ bucketClient.track("huddle", { voiceHuddle: true });
 
 ### Updating user/company/other context
 
-Attributes given for the user/company/other context in the BucketClient constructor can be updated for use in feature targeting evaluation with the `updateUser()`, `updateCompany()` and `updateOtherContext()` methods.
-They return a promise which resolves once the features have been re-evaluated follow the update of the attributes.
+Attributes given for the user/company/other context in the BucketClient constructor can be updated for use in feature targeting evaluation with the `updateUser()`, `updateCompany()` and `updateOtherContext()` methods. They return a promise which resolves once the features have been re-evaluated follow the update of the attributes.
 
 The following shows how to let users self-opt-in for a new feature. The feature must have the rule `voiceHuddleOptIn IS true` set in the Bucket UI.
 
@@ -240,9 +240,6 @@ const { isEnabled } = bucketClient.getFeature("voiceHuddle");
 // re-evaluated.
 await bucketClient.updateUser({ voiceHuddleOptIn: (!isEnabled).toString() });
 ```
-
-{% hint style="info" %}
-{% endhint %}
 
 ### Qualitative feedback
 
@@ -256,8 +253,7 @@ The Bucket Browser SDK comes with automated feedback collection mode enabled by 
 To get started with automatic feedback collection, make sure you've set `user` in the `BucketClient` constructor.
 {% endhint %}
 
-Automated feedback surveys work even if you're not using the SDK to send events to Bucket.
-It works because the Bucket Browser SDK maintains a live connection to Bucket's servers and can automatically show a feedback prompt whenever the Bucket servers determines that an event should trigger a prompt - regardless of how this event is sent to Bucket.
+Automated feedback surveys work even if you're not using the SDK to send events to Bucket. It works because the Bucket Browser SDK maintains a live connection to Bucket's servers and can automatically show a feedback prompt whenever the Bucket servers determines that an event should trigger a prompt - regardless of how this event is sent to Bucket.
 
 You can find all the options to make changes to the default behavior in the [Bucket feedback documentation](../../documents/FEEDBACK.md).
 
@@ -291,12 +287,12 @@ See details in [Feedback HTTP API](https://docs.bucket.co/reference/http-trackin
 
 Event listeners allow for capturing various events occurring in the `BucketClient`. This is useful to build integrations with other system or for various debugging purposes. There are 5 kinds of events:
 
-- `configCheck`: Your code used a feature config
-- `enabledCheck`: Your code checked whether a specific feature should be enabled
-- `featuresUpdated`: Features were updated. Either because they were loaded as part of initialization or because the user/company updated
-- `user`: User information updated (similar to the `identify` call used in tracking terminology)
-- `company`: Company information updated (sometimes to the `group` call used in tracking terminology)
-- `track`: Track event occurred.
+* `configCheck`: Your code used a feature config
+* `enabledCheck`: Your code checked whether a specific feature should be enabled
+* `featuresUpdated`: Features were updated. Either because they were loaded as part of initialization or because the user/company updated
+* `user`: User information updated (similar to the `identify` call used in tracking terminology)
+* `company`: Company information updated (sometimes to the `group` call used in tracking terminology)
+* `track`: Track event occurred.
 
 Use the `on()` method to add an event listener to respond to certain events. See the API reference for details on each hook.
 
@@ -334,8 +330,8 @@ The Bucket Browser SDK uses a couple of cookies to support automated feedback su
 
 The two cookies are:
 
-- `bucket-prompt-${userId}`: store the last automated feedback prompt message ID received to avoid repeating surveys
-- `bucket-token-${userId}`: caching a token used to connect to Bucket's live messaging infrastructure that is used to deliver automated feedback surveys in real time.
+* `bucket-prompt-${userId}`: store the last automated feedback prompt message ID received to avoid repeating surveys
+* `bucket-token-${userId}`: caching a token used to connect to Bucket's live messaging infrastructure that is used to deliver automated feedback surveys in real time.
 
 ### TypeScript
 
@@ -347,7 +343,7 @@ If you are running with strict Content Security Policies active on your website,
 
 | Directive   | Values                                                             | Reason                                                                                                                                   |
 | ----------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| connect-src | [https://front.bucket.co](https://front.bucket.co)                 | Basic functionality`                                                                                                                     |
+| connect-src | [https://front.bucket.co](https://front.bucket.co)                 | Basic functionality\`                                                                                                                    |
 | connect-src | [https://livemessaging.bucket.co](https://livemessaging.bucket.co) | Server sent events for use in automated feedback surveys, which allows for automatically collecting feedback when a user used a feature. |
 | style-src   | 'unsafe-inline'                                                    | The feedback UI is styled with inline styles. Not having this directive results unstyled HTML elements.                                  |
 
@@ -359,5 +355,4 @@ If you are including the Bucket tracking SDK with a `<script>`-tag from `jsdeliv
 
 ## License
 
-> MIT License
-> Copyright (c) 2025 Bucket ApS
+> MIT License Copyright (c) 2025 Bucket ApS

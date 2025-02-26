@@ -1,3 +1,7 @@
+---
+description: Getting started with Bucket
+---
+
 # Getting started
 
 Let's get started with Bucket. We'll do the following:

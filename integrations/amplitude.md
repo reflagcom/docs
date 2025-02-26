@@ -1,3 +1,7 @@
+---
+description: How Bucket integrates with Amplitude
+---
+
 # Amplitude
 
 With the Amplitude integration, you can attach feature access properties to users and groups on Amplitude. This will enable you to query analytics based on feature access filters.

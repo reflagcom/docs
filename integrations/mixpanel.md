@@ -1,3 +1,7 @@
+---
+description: How Bucket integrates with Mixpanel
+---
+
 # Mixpanel
 
 With the Mixpanel integration, you can attach feature access properties to users and groups on Mixpanel. This will enable you to query analytics based on feature access filters.

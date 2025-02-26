@@ -1,12 +1,16 @@
+---
+description: Introduction to Bucket API
+---
+
 # Introduction
 
 ## What is the HTTP API?
 
-Our front-facing API is a simple JSON HTTP API that can be used from browsers and backend services.&#x20;
+Our front-facing API is a simple JSON HTTP API that can be used from browsers and backend services.
 
 ## Authentication
 
-Authentication happens by way of either a _publishable key_ or a _secret key_.  Publishable keys and secret keys are unique for each Bucket environment. You can find the keys in the `Settings`  tab under `Environments`.
+Authentication happens by way of either a _publishable key_ or a _secret key_. Publishable keys and secret keys are unique for each Bucket environment. You can find the keys in the `Settings` tab under `Environments`.
 
 Publishable keys are meant to be used in clients where your code is public in some form, for example browser or mobile applications. The secret key should stay secret and only be used on your backend services.
 
@@ -24,69 +28,11 @@ The HTTP API resides at: `https://front.bucket.co/`
 
 Request to the front-facing API are automatically routed to a datacenter near you and should thus have a relative low latency regardless of where your customers are. Get in touch if you have many customers who are experiencing >100ms latency and we'd be happy to look into setting up a point of presence closer to you.
 
-Use `https://front-eu.bucket.co` if you want to avoid your requests being served by a non-EU server due to regulatory concerns.&#x20;
+Use `https://front-eu.bucket.co` if you want to avoid your requests being served by a non-EU server due to regulatory concerns.
 
 ## API Endpoints
 
-<table>
-  <thead>
-    <tr>
-      <th width="266">Endpoint</th>
-      <th width="149" data-type="checkbox">Publishable Key</th>
-      <th width="121" data-type="checkbox">Secret key</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>GET /features</code></td>
-      <td>false</td>
-      <td>true</td>
-      <td>Retrieve <em>all</em> features with their respective access rules</td>
-    </tr>
-    <tr>
-      <td><code>GET /features/evaluated</code></td>
-      <td>true</td>
-      <td>true</td>
-      <td>Retrieve features that are evaluated for the provided user/company</td>
-    </tr>
-    <tr>
-      <td><code>GET /features/enabled</code></td>
-      <td>true</td>
-      <td>true</td>
-      <td>Retrieve features that are enabled for the provided user/company</td>
-    </tr>
-    <tr>
-      <td><code>POST /features/events</code></td>
-      <td>true</td>
-      <td>true</td><td>Send events related to feature access</td>
-    </tr>
-    <tr>
-      <td><code>POST /user</code></td>
-      <td>true</td>
-      <td>true</td>
-      <td>Update user in Bucket</td>
-    </tr>
-    <tr>
-      <td><code>POST /company</code></td>
-      <td>true</td>
-      <td>true</td>
-      <td>Update company in Bucket</td>
-    </tr>
-    <tr>
-      <td><code>POST /event</code></td>
-      <td>true</td>
-      <td>true</td>
-      <td>Send events related to feature usage or user actions</td>
-    </tr>
-    <tr>
-      <td><code>POST /bulk</code></td>
-      <td>true</td>
-      <td>true</td>
-      <td>Send multiple calls in bulk.</td>
-    </tr>
-  </tbody>
-</table>
+<table><thead><tr><th width="266">Endpoint</th><th width="149" data-type="checkbox">Publishable Key</th><th width="121" data-type="checkbox">Secret key</th><th>Description</th></tr></thead><tbody><tr><td><code>GET /features</code></td><td>false</td><td>true</td><td>Retrieve <em>all</em> features with their respective access rules</td></tr><tr><td><code>GET /features/evaluated</code></td><td>true</td><td>true</td><td>Retrieve features that are evaluated for the provided user/company</td></tr><tr><td><code>GET /features/enabled</code></td><td>true</td><td>true</td><td>Retrieve features that are enabled for the provided user/company</td></tr><tr><td><code>POST /features/events</code></td><td>true</td><td>true</td><td>Send events related to feature access</td></tr><tr><td><code>POST /user</code></td><td>true</td><td>true</td><td>Update user in Bucket</td></tr><tr><td><code>POST /company</code></td><td>true</td><td>true</td><td>Update company in Bucket</td></tr><tr><td><code>POST /event</code></td><td>true</td><td>true</td><td>Send events related to feature usage or user actions</td></tr><tr><td><code>POST /bulk</code></td><td>true</td><td>true</td><td>Send multiple calls in bulk.</td></tr></tbody></table>
 
 Note: For POST requests, the API only accepts JSON. The Content-Type header must be set to `application/json`.
 
@@ -131,11 +77,12 @@ Authorization: Bearer <secretKey>
   ]
 }
 ```
-See [API reference](./api-reference.md#features).
+
+See [API reference](api-reference.md#features).
 
 ### `GET /features/evaluated`
 
-The `features/evaluated` endpoint lets you get a list of features that are evaluated for a specific _user/company_.&#x20;
+The `features/evaluated` endpoint lets you get a list of features that are evaluated for a specific _user/company_.
 
 #### Example
 
@@ -145,7 +92,7 @@ The context must be flattened and provided as query parameters.
 
 #### Example
 
-&#x20;`context.company.id=42&context.user.id=99`
+`context.company.id=42&context.user.id=99`
 
 <pre class="language-http"><code class="lang-http"><strong>GET https://front.bucket.co/features/enabled?context.company.id=42&#x26;context.user.id=99&#x26;publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjWy
 </strong>
@@ -166,15 +113,16 @@ The context must be flattened and provided as query parameters.
 This is a more realistic example of `context` that lets you write advanced feature access rules.
 
 {% hint style="danger" %}
-Note: The Bucket UI uses the attributes provided in the `company` endpoint to determine which companies have which features enabled. Ensure any `company` attributes used in the `context` are also provided through the `company` endpoint.&#x20;
+Note: The Bucket UI uses the attributes provided in the `company` endpoint to determine which companies have which features enabled. Ensure any `company` attributes used in the `context` are also provided through the `company` endpoint.
 {% endhint %}
 
-See [API reference](./api-reference.md#features-evaluated).
+See [API reference](api-reference.md#features-evaluated).
 
 ### `GET /features/enabled`
+
 The `features/enabled` endpoints is identical to `features/evaluated` but lists only the features which are evaluated as `true`.
 
-See [API reference](./api-reference.md#features-enabled).
+See [API reference](api-reference.md#features-enabled).
 
 ### `POST /features/events`
 
@@ -198,15 +146,15 @@ The `/features/events` endpoint is used to send "evaluate" and "check" events. T
 }
 </code></pre>
 
-See [API reference](./api-reference.md#features-events).
+See [API reference](api-reference.md#features-events).
 
 ### `POST /user`
 
-The `user` endpoint is used to track individual users in your application. This method will create a user if it doesn't exist already. For existing users, it will update it.&#x20;
+The `user` endpoint is used to track individual users in your application. This method will create a user if it doesn't exist already. For existing users, it will update it.
 
 `userId` should use a unique identifier that won't change, like a database ID.
 
-You can pass along attributes that will be set for the given user.  User attributes are not useful in Bucket at this time.
+You can pass along attributes that will be set for the given user. User attributes are not useful in Bucket at this time.
 
 #### Example
 
@@ -228,21 +176,21 @@ You can pass along attributes that will be set for the given user.  User attribu
 | attributes | Optional | Object   |
 | timestamp  | Optional | ISO 8601 |
 
-See [API reference](./api-reference.md#user).
+See [API reference](api-reference.md#user).
 
 ### `POST /company`
 
-The `Company` method is used to track companies (organizations) in your B2B application.&#x20;
+The `Company` method is used to track companies (organizations) in your B2B application.
 
 `companyId` should use a unique identifier that won't change, like a database ID.
 
-You can associate a user with a company by providing the `userId`. This is important as features in Bucket look at company-level data.&#x20;
+You can associate a user with a company by providing the `userId`. This is important as features in Bucket look at company-level data.
 
-In other words, if a user isn't associated with a company, their events will not be included.&#x20;
+In other words, if a user isn't associated with a company, their events will not be included.
 
 The [`Tracking`](../product-handbook/product-overview.md#tracking) tab will let you know if you have unassociated events.
 
-You can send attributes to be associated with a company. In addition to traditional event-based user tracking, you can track feature usage based on attributes.&#x20;
+You can send attributes to be associated with a company. In addition to traditional event-based user tracking, you can track feature usage based on attributes.
 
 #### Example
 
@@ -272,7 +220,7 @@ POST https://front.bucket.co/company?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHL
 | timestamp  | Optional | ISO 8601 String |
 | userId     | Optional | String          |
 
-See [API reference](./api-reference.md#company).
+See [API reference](api-reference.md#company).
 
 ### `POST /event`
 
@@ -301,11 +249,11 @@ POST https://front.bucket.co/event?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjW
 | attributes | Optional | Object   |
 | timestamp  | Optional | ISO 8601 |
 
-See [API reference](./api-reference.md#event).
+See [API reference](api-reference.md#event).
 
 ### `POST Feedback`
 
-You can submit qualitative feedback related to a specific feature to pair your quantitative metrics with qualitative insights.&#x20;
+You can submit qualitative feedback related to a specific feature to pair your quantitative metrics with qualitative insights.
 
 You can collect a 1-5 satisfaction score, qualitative feedback, or both.
 
@@ -332,11 +280,11 @@ POST https://front.bucket.co/feedback?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NH
 
 Note: You can find the `featureId` in under "Settings" for a given feature.
 
-See [API reference](./api-reference.md#feedback).
+See [API reference](api-reference.md#feedback).
 
 ## Responses
 
-The API will return a `200` status code when calls are successful and a `400` if there are errors, including an invalid request body.&#x20;
+The API will return a `200` status code when calls are successful and a `400` if there are errors, including an invalid request body.
 
 The response body will contain detailed information on the invalid request which can be used to debug. If you receive a 400 response code, there's no point in retrying without first debugging.
 

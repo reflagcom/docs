@@ -1,3 +1,7 @@
+---
+description: How Bucket integrates with Datadog
+---
+
 # Datadog
 
 With the Datadog integration, you can enrich your RUM data with feature flag data. This will enable you to catch regressisions on new feature releases.

@@ -1,3 +1,7 @@
+---
+description: How Bucket integrates with Linear
+---
+
 # Linear
 
 Whether your team is using [Linear](https://linear.app) or another task tracking tool, we recommend adding a "Create Bucket Feature"  task to project templates in your issue tracking system to help teams start feature flagging new features.&#x20;

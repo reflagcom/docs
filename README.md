@@ -1,9 +1,10 @@
 ---
+description: Welcome to Bucket, a feature flag management tool purpose-built for B2B SaaS
 layout:
   title:
     visible: true
   description:
-    visible: false
+    visible: true
   tableOfContents:
     visible: true
   outline:

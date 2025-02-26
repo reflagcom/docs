@@ -1,3 +1,7 @@
+---
+description: How Bucket integrates with Segment
+---
+
 # Segment
 
 Bucket's segment integration is for customers who already use Segment for event tracking and want to use those events for tracking feature adoption metrics on Bucket.

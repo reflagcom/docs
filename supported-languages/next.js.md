@@ -1,6 +1,10 @@
+---
+description: Next.js client for Bucket.co
+---
+
 # Next.js
 
-Using Bucket with Next.js is straightforward.  You can use the [@bucketco/node-sdk](broken-reference) on the server or [@bucketco/react-sdk](../sdk/@bucketco/react-sdk/) in the browser. Handling feature targeting server-side is often advantageous because it removes the need for additional handling of loading states. &#x20;
+Using Bucket with Next.js is straightforward. You can use the [@bucketco/node-sdk](broken-reference/) on the server or [@bucketco/react-sdk](../sdk/@bucketco/react-sdk/) in the browser. Handling feature targeting server-side is often advantageous because it removes the need for additional handling of loading states.
 
 ## Server-side Rendering (SSR)
 

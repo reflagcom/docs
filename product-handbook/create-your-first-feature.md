@@ -1,3 +1,7 @@
+---
+description: Getting started with Bucket by creating your first feature
+---
+
 # Create your first feature
 
 ## What's a feature?

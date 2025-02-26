@@ -1,3 +1,7 @@
+---
+description: How Bucket integrates with AWS S3
+---
+
 # AWS S3
 
 To configure an [automatic data export](../product-handbook/data-export.md#scheduled-export) to an Amazon S3 bucket, follow the steps below.
