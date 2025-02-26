@@ -199,6 +199,8 @@ A feature.
 getFeatureOverride(key: string): null | boolean
 ```
 
+**`Internal`**
+
 ###### Parameters
 
 <table>
@@ -436,46 +438,13 @@ This can be used to collect feedback from users in Bucket in cases where Automat
 
 `void`
 
-##### sendCheckEvent()
-
-```ts
-sendCheckEvent(checkEvent: CheckEvent): Promise<any>
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`checkEvent`
-
-</td>
-<td>
-
-[`CheckEvent`](globals.md#checkevent)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`any`\>
-
 ##### setFeatureOverride()
 
 ```ts
 setFeatureOverride(key: string, isEnabled: null | boolean): void
 ```
+
+**`Internal`**
 
 ###### Parameters
 
