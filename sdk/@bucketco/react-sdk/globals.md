@@ -24,23 +24,15 @@ pagination:
 ### BucketProps
 
 ```ts
-type BucketProps = BucketContext & {
-  apiBaseUrl: string;
+type BucketProps = BucketContext & InitOptions & {
   children: ReactNode;
   debug: boolean;
-  enableTracking: boolean;
-  featureOptions: Omit<FeaturesOptions, "fallbackFeatures"> & {
-     fallbackFeatures: FeatureKey[];
-    };
-  feedback: FeedbackOptions;
-  host: string;
   loadingComponent: ReactNode;
   newBucketClient: (...args: ConstructorParameters<typeof BucketClient>) => BucketClient;
-  publishableKey: string;
-  sseBaseUrl: string;
-  sseHost: string;
 };
 ```
+
+Props for the BucketProvider.
 
 #### Type declaration
 
@@ -56,23 +48,6 @@ type BucketProps = BucketContext & {
 <tr>
 <td>
 
-`apiBaseUrl`?
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
 `children`?
 
 </td>
@@ -83,7 +58,7 @@ type BucketProps = BucketContext & {
 </td>
 <td>
 
-&hyphen;
+Children to be rendered.
 
 </td>
 </tr>
@@ -100,79 +75,7 @@ type BucketProps = BucketContext & {
 </td>
 <td>
 
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-`enableTracking`?
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-`featureOptions`?
-
-</td>
-<td>
-
-[`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`FeaturesOptions`](../browser-sdk/globals.md#featuresoptions), `"fallbackFeatures"`\> & \{
-  `fallbackFeatures`: [`FeatureKey`](globals.md#featurekey)[];
- \}
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-`feedback`?
-
-</td>
-<td>
-
-[`FeedbackOptions`](../browser-sdk/globals.md#feedbackoptions)
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-`host`?
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-**Deprecated**
-
-Use `apiBaseUrl` instead.
+Whether to enable debug mode (optional).
 
 </td>
 </tr>
@@ -189,7 +92,7 @@ Use `apiBaseUrl` instead.
 </td>
 <td>
 
-&hyphen;
+Loading component to be rendered while features are loading.
 
 </td>
 </tr>
@@ -206,60 +109,125 @@ Use `apiBaseUrl` instead.
 </td>
 <td>
 
-&hyphen;
+**`Internal`**
+
+New BucketClient constructor.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### Feature\<TKey\>
+
+```ts
+type Feature<TKey> = {
+  config: MaterializedFeatures[TKey] extends boolean ? EmptyConfig : 
+     | {
+     key: string;
+     payload: MaterializedFeatures[TKey];
+    }
+     | EmptyConfig;
+  isEnabled: boolean;
+  isLoading: boolean;
+  requestFeedback: (opts: RequestFeedbackOptions) => void;
+  track: () => void;
+};
+```
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* [`FeatureKey`](globals.md#featurekey)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config"></a> `config`
+
+</td>
+<td>
+
+`MaterializedFeatures`\[`TKey`\] *extends* `boolean` ? `EmptyConfig` : 
+  \| \{
+  `key`: `string`;
+  `payload`: `MaterializedFeatures`\[`TKey`\];
+ \}
+  \| `EmptyConfig`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`publishableKey`
+<a id="isenabled"></a> `isEnabled`
 
 </td>
 <td>
 
-`string`
-
-</td>
-<td>
-
-&hyphen;
+`boolean`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`sseBaseUrl`?
+<a id="isloading"></a> `isLoading`
 
 </td>
 <td>
 
-`string`
-
-</td>
-<td>
-
-&hyphen;
+`boolean`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`sseHost`?
+<a id="requestfeedback"></a> `requestFeedback`
 
 </td>
 <td>
 
-`string`
+(`opts`: `RequestFeedbackOptions`) => `void`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="track"></a> `track`
 
 </td>
 <td>
 
-**Deprecated**
-
-Use `sseBaseUrl` instead.
+() => `void`
 
 </td>
 </tr>
@@ -271,7 +239,7 @@ Use `sseBaseUrl` instead.
 ### FeatureKey
 
 ```ts
-type FeatureKey = keyof keyof Features extends never ? Record<string, boolean> : Features;
+type FeatureKey = keyof MaterializedFeatures;
 ```
 
 ## Functions
@@ -281,6 +249,8 @@ type FeatureKey = keyof keyof Features extends never ? Record<string, boolean> :
 ```ts
 function BucketProvider(__namedParameters: BucketProps): Element
 ```
+
+Provider for the BucketClient.
 
 #### Parameters
 
@@ -313,42 +283,63 @@ function BucketProvider(__namedParameters: BucketProps): Element
 
 ***
 
+### useClient()
+
+```ts
+function useClient(): undefined | BucketClient
+```
+
+Returns the current `BucketClient` used by the `BucketProvider`.
+
+This is useful if you need to access the `BucketClient` outside of the `BucketProvider`.
+
+```ts
+const client = useClient();
+client.on("configCheck", () => {
+  console.log("configCheck hook called");
+});
+```
+
+#### Returns
+
+`undefined` \| [`BucketClient`](../browser-sdk/globals.md#bucketclient)
+
+***
+
 ### useFeature()
 
 ```ts
-function useFeature(key: string): 
-  | {
-  isEnabled: boolean;
-  isLoading: true;
-  requestFeedback: (opts: Omit<RequestFeedbackData, "featureId" | "featureKey">) => undefined | void;
-  track: () => 
-     | undefined
-     | Promise<
-     | undefined
-     | Response>;
- }
-  | {
-  isLoading: false;
-  requestFeedback: (opts: Omit<RequestFeedbackData, "featureId" | "featureKey">) => undefined | void;
-  track: () => 
-     | undefined
-     | Promise<
-     | undefined
-     | Response>;
-  get isEnabled: boolean;
-}
+function useFeature<TKey>(key: TKey): Feature<typeof key>
 ```
 
 Returns the state of a given feature for the current context, e.g.
 
 ```ts
 function HuddleButton() {
-  const {isEnabled, track} = useFeature("huddle");
+  const {isEnabled, config: { payload }, track} = useFeature("huddle");
   if (isEnabled) {
-   return <button onClick={() => track()}>Start Huddle</button>;
-  }
+   return <button onClick={() => track()}>{payload?.buttonTitle ?? "Start Huddle"}</button>;
 }
 ```
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Parameters
 
@@ -368,7 +359,7 @@ function HuddleButton() {
 </td>
 <td>
 
-`string`
+`TKey`
 
 </td>
 </tr>
@@ -377,26 +368,7 @@ function HuddleButton() {
 
 #### Returns
 
-  \| \{
-  `isEnabled`: `boolean`;
-  `isLoading`: `true`;
-  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
-  `track`: () => 
-     \| `undefined`
-     \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-     \| `undefined`
-     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
- \}
-  \| \{
-  `isLoading`: `false`;
-  `requestFeedback`: (`opts`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `undefined` \| `void`;
-  `track`: () => 
-     \| `undefined`
-     \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-     \| `undefined`
-     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
-  get `isEnabled`: `boolean`;
- \}
+[`Feature`](globals.md#featuretkey)\<*typeof* `key`\>
 
 ***
 
@@ -414,7 +386,7 @@ See [link](../../documents/FEEDBACK.md) for more information
 ```ts
 const requestFeedback = useRequestFeedback();
 bucket.requestFeedback({
-  featureId: "bucket-feature-id",
+  featureKey: "file-uploads",
   title: "How satisfied are you with file uploads?",
 });
 ```
@@ -472,7 +444,7 @@ See [link](../../documents/FEEDBACK.md) for more information
 ```ts
 const sendFeedback = useSendFeedback();
 sendFeedback({
-  featureId: "fe2323223";;
+  featureKey: "huddle";
   question: "How did you like the new huddle feature?";
   score: 5;
   comment: "I loved it!";

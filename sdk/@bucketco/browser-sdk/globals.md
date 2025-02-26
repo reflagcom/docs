@@ -84,7 +84,7 @@ Create a new BucketClient instance.
 </td>
 <td>
 
-[`Logger`](globals.md#logger)
+[`Logger`](globals.md#logger-1)
 
 </td>
 </tr>
@@ -110,6 +110,7 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -121,7 +122,12 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
 </td>
 <td>
 
-[`Feedback`](globals.md#feedback)
+[`Feedback`](globals.md#feedback-1)
+
+</td>
+<td>
+
+The feedback details to submit.
 
 </td>
 </tr>
@@ -134,13 +140,27 @@ Submit user feedback to Bucket. Must include either `score` or `comment`, or bot
   \| `undefined`
   \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
+The server response.
+
+##### getConfig()
+
+```ts
+getConfig(): Config
+```
+
+Get the current configuration.
+
+###### Returns
+
+`Config`
+
 ##### getFeature()
 
 ```ts
 getFeature(key: string): Feature
 ```
 
-Return a feature. Accessing `isEnabled` will automatically send a `check` event.
+Return a feature. Accessing `isEnabled` or `config` will automatically send a `check` event.
 
 ###### Parameters
 
@@ -171,7 +191,42 @@ Return a feature. Accessing `isEnabled` will automatically send a `check` event.
 
 [`Feature`](globals.md#feature)
 
-A feature
+A feature.
+
+##### getFeatureOverride()
+
+```ts
+getFeatureOverride(key: string): null | boolean
+```
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`null` \| `boolean`
 
 ##### getFeatures()
 
@@ -181,12 +236,14 @@ getFeatures(): RawFeatures
 
 Returns a map of enabled features.
 Accessing a feature will *not* send a check event
+and `isEnabled` does not take any feature overrides
+into account.
 
 ###### Returns
 
 [`RawFeatures`](globals.md#rawfeatures)
 
-Map of features
+Map of features.
 
 ##### initialize()
 
@@ -202,16 +259,32 @@ Must be called before calling other SDK methods.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### onFeaturesUpdated()
+##### off()
 
 ```ts
-onFeaturesUpdated(cb: () => void): () => void
+off<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): void
 ```
 
-Register a callback to be called when the features are updated.
-Features are not guaranteed to have actually changed when the callback is called.
+Remove a hook from the client.
 
-Calling `client.stop()` will remove all listeners added here.
+###### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`THookType` *extends* keyof `HookArgs`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ###### Parameters
 
@@ -220,24 +293,30 @@ Calling `client.stop()` will remove all listeners added here.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`cb`
+`type`
 
 </td>
 <td>
 
-() => `void`
+`THookType`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`handler`
 
 </td>
 <td>
 
-this will be called when the features are updated.
+(`args0`: `HookArgs`\[`THookType`\]) => `void`
 
 </td>
 </tr>
@@ -246,7 +325,73 @@ this will be called when the features are updated.
 
 ###### Returns
 
-`Function`
+`void`
+
+A function to remove the hook.
+
+##### on()
+
+```ts
+on<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): void
+```
+
+Add a hook to the client.
+
+###### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`THookType` *extends* keyof `HookArgs`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`type`
+
+</td>
+<td>
+
+`THookType`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`handler`
+
+</td>
+<td>
+
+(`args0`: `HookArgs`\[`THookType`\]) => `void`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ###### Returns
 
@@ -294,7 +439,7 @@ This can be used to collect feedback from users in Bucket in cases where Automat
 ##### sendCheckEvent()
 
 ```ts
-sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
+sendCheckEvent(checkEvent: CheckEvent): Promise<any>
 ```
 
 ###### Parameters
@@ -324,7 +469,54 @@ sendCheckEvent(checkEvent: CheckEvent): Promise<boolean>
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`boolean`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`any`\>
+
+##### setFeatureOverride()
+
+```ts
+setFeatureOverride(key: string, isEnabled: null | boolean): void
+```
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`isEnabled`
+
+</td>
+<td>
+
+`null` \| `boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`
 
 ##### stop()
 
@@ -377,7 +569,7 @@ Track an event in Bucket.
 </td>
 <td>
 
-The name of the event
+The name of the event.
 
 </td>
 </tr>
@@ -394,7 +586,7 @@ The name of the event
 </td>
 <td>
 
-Any attributes you want to attach to the event
+Any attributes you want to attach to the event.
 
 </td>
 </tr>
@@ -424,6 +616,7 @@ Attempting to update the company ID will log a warning and be ignored.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -436,6 +629,11 @@ Attempting to update the company ID will log a warning and be ignored.
 <td>
 
 \{\}
+
+</td>
+<td>
+
+The company details.
 
 </td>
 </tr>
@@ -463,6 +661,7 @@ Updates to the company ID will be ignored.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -475,6 +674,11 @@ Updates to the company ID will be ignored.
 <td>
 
 \{\}
+
+</td>
+<td>
+
+Additional context.
 
 </td>
 </tr>
@@ -613,6 +817,23 @@ Event representing checking the feature flag evaluation result
 <tr>
 <td>
 
+<a id="action"></a> `action`
+
+</td>
+<td>
+
+`"check-is-enabled"` \| `"check-config"`
+
+</td>
+<td>
+
+Action to perform.
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="key"></a> `key`
 
 </td>
@@ -623,7 +844,41 @@ Event representing checking the feature flag evaluation result
 </td>
 <td>
 
-Feature key
+Feature key.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="missingcontextfields"></a> `missingContextFields?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+Missing context fields.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ruleevaluationresults"></a> `ruleEvaluationResults?`
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+<td>
+
+Rule evaluation results.
 
 </td>
 </tr>
@@ -635,12 +890,12 @@ Feature key
 </td>
 <td>
 
-`boolean`
+`any`
 
 </td>
 <td>
 
-Result of feature flag evaluation
+Result of feature flag or configuration evaluation.
 
 </td>
 </tr>
@@ -657,7 +912,7 @@ Result of feature flag evaluation
 </td>
 <td>
 
-Version of targeting rules
+Version of targeting rules.
 
 </td>
 </tr>
@@ -745,6 +1000,23 @@ Represents a feature.
 <tr>
 <td>
 
+<a id="config"></a> `config`
+
+</td>
+<td>
+
+`FeatureRemoteConfig`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="isenabled"></a> `isEnabled`
 
 </td>
@@ -755,7 +1027,7 @@ Represents a feature.
 </td>
 <td>
 
-Result of feature flag evaluation
+Result of feature flag evaluation.
 
 </td>
 </tr>
@@ -789,7 +1061,7 @@ Function to request feedback for this feature.
 </td>
 <td>
 
-Function to send analytics events for this feature
+Function to send analytics events for this feature.
 
 </td>
 </tr>
@@ -908,258 +1180,6 @@ Function to send analytics events for this feature
 <td>
 
 `number`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### InitOptions
-
-BucketClient initialization options.
-
-#### Properties
-
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="apibaseurl"></a> `apiBaseUrl?`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Base URL of Bucket servers. You can override this to use your mocked server.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="company-1"></a> `company?`
-
-</td>
-<td>
-
-[`CompanyContext`](globals.md#companycontext)
-
-</td>
-<td>
-
-Company related context. If you provide `id` Bucket will enrich the evaluation context with
-company attributes on Bucket servers.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="enabletracking"></a> `enableTracking?`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-Whether to enable tracking. Defaults to `true`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="features"></a> `features?`
-
-</td>
-<td>
-
-[`FeaturesOptions`](globals.md#featuresoptions)
-
-</td>
-<td>
-
-Feature flag specific configuration
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="feedback-1"></a> `feedback?`
-
-</td>
-<td>
-
-[`FeedbackOptions`](globals.md#feedbackoptions)
-
-</td>
-<td>
-
-AutoFeedback specific configuration
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="host"></a> ~~`host?`~~
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-**Deprecated**
-
-Use `apiBaseUrl` instead.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="logger-1"></a> `logger?`
-
-</td>
-<td>
-
-[`Logger`](globals.md#logger)
-
-</td>
-<td>
-
-You can provide a logger to see the logs of the network calls.
-This is undefined by default.
-For debugging purposes you can just set the browser console to this property:
-```javascript
-options.logger = window.console;
-```
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="othercontext-1"></a> `otherContext?`
-
-</td>
-<td>
-
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
-
-</td>
-<td>
-
-Context not related to users or companies
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="publishablekey"></a> `publishableKey`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Publishable key for authentication
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="sdkversion"></a> `sdkVersion?`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Version of the SDK
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="ssebaseurl"></a> `sseBaseUrl?`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Base URL of Bucket servers for SSE connections used by AutoFeedback.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="ssehost"></a> ~~`sseHost?`~~
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-**Deprecated**
-
-Use `sseBaseUrl` instead.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="user-1"></a> `user?`
-
-</td>
-<td>
-
-[`UserContext`](globals.md#usercontext)
-
-</td>
-<td>
-
-User related context. If you provide `id` Bucket will enrich the evaluation context with
-user attributes on Bucket servers.
 
 </td>
 </tr>
@@ -1515,7 +1535,7 @@ Defaults to `false`
 </td>
 <td>
 
-[`FeedbackPosition`](globals.md#feedbackposition)
+`Position`
 
 </td>
 <td>
@@ -1639,204 +1659,16 @@ User name
 
 ## Type Aliases
 
-### FeatureIdentifier
+### FallbackFeatureOverride
 
 ```ts
-type FeatureIdentifier = 
+type FallbackFeatureOverride = 
   | {
-  featureId: string;
+  key: string;
+  payload: any;
  }
-  | {
-  featureKey: string;
-};
+  | true;
 ```
-
-#### Type declaration
-
-\{
-  `featureId`: `string`;
- \}
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`featureId`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Bucket feature ID.
-
-**Deprecated**
-
-use `feedbackId` instead.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-\{
-  `featureKey`: `string`;
- \}
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`featureKey`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Bucket feature key.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### FeaturesOptions
-
-```ts
-type FeaturesOptions = {
-  expireTimeMs: number;
-  fallbackFeatures: string[];
-  staleTimeMs: number;
-  staleWhileRevalidate: boolean;
-  timeoutMs: number;
-};
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="expiretimems"></a> `expireTimeMs`?
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="fallbackfeatures"></a> `fallbackFeatures`?
-
-</td>
-<td>
-
-`string`[]
-
-</td>
-<td>
-
-Feature keys for which `isEnabled` should fallback to true
-if SDK fails to fetch features from Bucket servers.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="staletimems"></a> `staleTimeMs`?
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="stalewhilerevalidate"></a> `staleWhileRevalidate`?
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-If set to true client will return cached value when its stale
-but refetching
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="timeoutms"></a> `timeoutMs`?
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-Timeout in miliseconds
-
-</td>
-</tr>
-</tbody>
-</table>
 
 ***
 
@@ -1905,10 +1737,8 @@ User ID from your own application.
 type FeedbackOptions = {
   autoFeedbackHandler: FeedbackPromptHandler;
   enableAutoFeedback: boolean;
-  enableLiveSatisfaction: boolean;
-  liveSatisfactionHandler: FeedbackPromptHandler;
   ui: {
-     position: FeedbackPosition;
+     position: Position;
      translations: Partial<FeedbackTranslations>;
     };
 };
@@ -1962,51 +1792,13 @@ Enables automatic feedback prompting if it's set up in Bucket
 <tr>
 <td>
 
-<a id="enablelivesatisfaction"></a> `enableLiveSatisfaction`?
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-**Deprecated**
-
-Use `enableAutoFeedback` instead
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="livesatisfactionhandler"></a> `liveSatisfactionHandler`?
-
-</td>
-<td>
-
-[`FeedbackPromptHandler`](globals.md#feedbackprompthandler)
-
-</td>
-<td>
-
-**Deprecated**
-
-Use `autoFeedbackHandler` instead
-
-</td>
-</tr>
-<tr>
-<td>
-
 <a id="ui"></a> `ui`?
 
 </td>
 <td>
 
 \{
-  `position`: [`FeedbackPosition`](globals.md#feedbackposition);
+  `position`: `Position`;
   `translations`: [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>;
  \}
 
@@ -2025,7 +1817,7 @@ With these options you can override the look of the feedback prompt
 </td>
 <td>
 
-[`FeedbackPosition`](globals.md#feedbackposition)
+`Position`
 
 </td>
 <td>
@@ -2054,35 +1846,6 @@ Undefined translation keys fall back to english defaults.
 </tr>
 </tbody>
 </table>
-
-***
-
-### FeedbackPlacement
-
-```ts
-type FeedbackPlacement = "bottom-right" | "bottom-left" | "top-right" | "top-left";
-```
-
-***
-
-### FeedbackPosition
-
-```ts
-type FeedbackPosition = 
-  | {
-  type: "MODAL";
- }
-  | {
-  offset: Offset;
-  placement: FeedbackPlacement;
-  type: "DIALOG";
- }
-  | {
-  anchor:   | HTMLElement
-     | null;
-  type: "POPOVER";
-};
-```
 
 ***
 
@@ -2625,14 +2388,32 @@ with desired language translation
 
 ***
 
-### Offset
+### InitOptions
 
 ```ts
-type Offset = {
-  x: string | number;
-  y: string | number;
+type InitOptions = {
+  apiBaseUrl: string;
+  appBaseUrl: string;
+  company: CompanyContext;
+  enableTracking: boolean;
+  expireTimeMs: number;
+  fallbackFeatures:   | string[]
+     | Record<string, FallbackFeatureOverride>;
+  feedback: FeedbackOptions;
+  logger: Logger;
+  otherContext: Record<string, any>;
+  publishableKey: string;
+  sdkVersion: string;
+  sseBaseUrl: string;
+  staleTimeMs: number;
+  staleWhileRevalidate: boolean;
+  timeoutMs: number;
+  toolbar: ToolbarOptions;
+  user: UserContext;
 };
 ```
+
+BucketClient initialization options.
 
 #### Type declaration
 
@@ -2648,34 +2429,300 @@ type Offset = {
 <tr>
 <td>
 
-<a id="x"></a> `x`?
+<a id="apibaseurl"></a> `apiBaseUrl`?
 
 </td>
 <td>
 
-`string` \| `number`
+`string`
 
 </td>
 <td>
 
-Offset from the nearest horizontal screen edge after placement is resolved
+Base URL of Bucket servers. You can override this to use your mocked server.
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="y"></a> `y`?
+<a id="appbaseurl"></a> `appBaseUrl`?
 
 </td>
 <td>
 
-`string` \| `number`
+`string`
 
 </td>
 <td>
 
-Offset from the nearest vertical screen edge after placement is resolved
+Base URL of the Bucket web app. Links open ín this app by default.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="company-1"></a> `company`?
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+Company related context. If you provide `id` Bucket will enrich the evaluation context with
+company attributes on Bucket servers.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="enabletracking"></a> `enableTracking`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether to enable tracking. Defaults to `true`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="expiretimems"></a> `expireTimeMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+If set, features will be cached between page loads for this duration
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="fallbackfeatures"></a> `fallbackFeatures`?
+
+</td>
+<td>
+
+  \| `string`[]
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FallbackFeatureOverride`](globals.md#fallbackfeatureoverride)\>
+
+</td>
+<td>
+
+Feature keys for which `isEnabled` should fallback to true
+if SDK fails to fetch features from Bucket servers. If a record
+is supplied instead of array, the values of each key represent the
+configuration values and `isEnabled` is assume `true`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="feedback-2"></a> `feedback`?
+
+</td>
+<td>
+
+[`FeedbackOptions`](globals.md#feedbackoptions)
+
+</td>
+<td>
+
+AutoFeedback specific configuration
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="logger-2"></a> `logger`?
+
+</td>
+<td>
+
+[`Logger`](globals.md#logger-1)
+
+</td>
+<td>
+
+You can provide a logger to see the logs of the network calls.
+This is undefined by default.
+For debugging purposes you can just set the browser console to this property:
+```javascript
+options.logger = window.console;
+```
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="othercontext-1"></a> `otherContext`?
+
+</td>
+<td>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
+
+</td>
+<td>
+
+Context not related to users or companies
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="publishablekey"></a> `publishableKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Publishable key for authentication
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="sdkversion"></a> `sdkVersion`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Version of the SDK
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ssebaseurl"></a> `sseBaseUrl`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Bucket servers for SSE connections used by AutoFeedback.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="staletimems"></a> `staleTimeMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Stale features will be returned if staleWhileRevalidate is true if no new features can be fetched
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="stalewhilerevalidate"></a> `staleWhileRevalidate`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+If set to true stale features will be returned while refetching features
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="timeoutms"></a> `timeoutMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Timeout in milliseconds when fetching features
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="toolbar"></a> `toolbar`?
+
+</td>
+<td>
+
+[`ToolbarOptions`](globals.md#toolbaroptions)
+
+</td>
+<td>
+
+Toolbar configuration
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user-1"></a> `user`?
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+User related context. If you provide `id` Bucket will enrich the evaluation context with
+user attributes on Bucket servers.
 
 </td>
 </tr>
@@ -2687,10 +2734,8 @@ Offset from the nearest vertical screen edge after placement is resolved
 ### RawFeature
 
 ```ts
-type RawFeature = {
-  isEnabled: boolean;
-  key: string;
-  targetingVersion: number;
+type RawFeature = FetchedFeature & {
+  isEnabledOverride: boolean | null;
 };
 ```
 
@@ -2708,51 +2753,17 @@ type RawFeature = {
 <tr>
 <td>
 
-<a id="isenabled-1"></a> `isEnabled`
+`isEnabledOverride`
 
 </td>
 <td>
 
-`boolean`
+`boolean` \| `null`
 
 </td>
 <td>
 
-Result of feature flag evaluation
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key-2"></a> `key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Feature key
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="targetingversion"></a> `targetingVersion`?
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-Version of targeting rules
+If not null, the result is being overridden locally
 
 </td>
 </tr>
@@ -2764,7 +2775,7 @@ Version of targeting rules
 ### RawFeatures
 
 ```ts
-type RawFeatures = Record<string, RawFeature | undefined>;
+type RawFeatures = Record<string, RawFeature>;
 ```
 
 ***
@@ -2774,8 +2785,9 @@ type RawFeatures = Record<string, RawFeature | undefined>;
 ```ts
 type RequestFeedbackData = Omit<OpenFeedbackFormOptions, "key" | "onSubmit"> & {
   companyId: string;
+  featureKey: string;
   onAfterSubmit: (data: FeedbackSubmission) => void;
- } & FeatureIdentifier;
+};
 ```
 
 #### Type declaration
@@ -2803,6 +2815,23 @@ type RequestFeedbackData = Omit<OpenFeedbackFormOptions, "key" | "onSubmit"> & {
 <td>
 
 Company ID from your own application.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`featureKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Bucket feature key.
 
 </td>
 </tr>
@@ -2873,18 +2902,34 @@ User ID from your own application.
 
 ***
 
+### ToolbarOptions
+
+```ts
+type ToolbarOptions = 
+  | boolean
+  | {
+  position: ToolbarPosition;
+  show: boolean;
+};
+```
+
+Toolbar options.
+
+***
+
 ### UnassignedFeedback
 
 ```ts
 type UnassignedFeedback = {
   comment: string;
+  featureKey: string;
   feedbackId: string;
   promptedQuestion: string;
   promptId: string;
   question: string;
   score: number;
   source: "prompt" | "sdk" | "widget";
- } & FeatureIdentifier;
+};
 ```
 
 #### Type declaration
@@ -2901,7 +2946,7 @@ type UnassignedFeedback = {
 <tr>
 <td>
 
-`comment`?
+<a id="comment-2"></a> `comment`?
 
 </td>
 <td>
@@ -2918,7 +2963,24 @@ User supplied comment about your feature.
 <tr>
 <td>
 
-`feedbackId`?
+<a id="featurekey"></a> `featureKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Bucket feature key.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="feedbackid-3"></a> `feedbackId`?
 
 </td>
 <td>
@@ -2935,7 +2997,7 @@ Bucket feedback ID
 <tr>
 <td>
 
-`promptedQuestion`?
+<a id="promptedquestion"></a> `promptedQuestion`?
 
 </td>
 <td>
@@ -2953,7 +3015,7 @@ This only needs to be populated if the feedback was submitted through the automa
 <tr>
 <td>
 
-`promptId`?
+<a id="promptid-1"></a> `promptId`?
 
 </td>
 <td>
@@ -2976,7 +3038,7 @@ feedback.
 <tr>
 <td>
 
-`question`?
+<a id="question-4"></a> `question`?
 
 </td>
 <td>
@@ -2993,7 +3055,7 @@ The question that was presented to the user.
 <tr>
 <td>
 
-`score`?
+<a id="score-3"></a> `score`?
 
 </td>
 <td>
@@ -3010,7 +3072,7 @@ Customer satisfaction score.
 <tr>
 <td>
 
-`source`?
+<a id="source"></a> `source`?
 
 </td>
 <td>
@@ -3040,7 +3102,6 @@ const DEFAULT_TRANSLATIONS: FeedbackTranslations;
 
 ```tsx
 import { FeedbackTranslations } from "../types";
-
 /**
  * {@includeCode ./defaultTranslations.tsx}
  */
