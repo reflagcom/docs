@@ -17,7 +17,265 @@ pagination:
 
 ## Interfaces
 
+### CheckEvent
+
+Event representing checking the feature flag evaluation result
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="action"></a> `action`
+
+</td>
+<td>
+
+`"check-is-enabled"` \| `"check-config"`
+
+</td>
+<td>
+
+Action to perform.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Feature key.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="missingcontextfields"></a> `missingContextFields?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+Missing context fields.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ruleevaluationresults"></a> `ruleEvaluationResults?`
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+<td>
+
+Rule evaluation results.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="value"></a> `value`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+Result of feature flag or configuration evaluation.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="version"></a> `version?`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Version of targeting rules.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### CompanyContext
+
+Context is a set of key-value pairs.
+Id should always be present so that it can be referenced to an existing company.
+
+#### Indexable
+
+```ts
+[key: string]: undefined | string | number
+```
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="id"></a> `id`
+
+</td>
+<td>
+
+`undefined` \| `string` \| `number`
+
+</td>
+<td>
+
+Company id
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Company name
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### Features
+
+***
+
+### UserContext
+
+#### Indexable
+
+```ts
+[key: string]: undefined | string | number
+```
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="email"></a> `email?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User email
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="id-1"></a> `id`
+
+</td>
+<td>
+
+`undefined` \| `string` \| `number`
+
+</td>
+<td>
+
+User id
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-1"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User name
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Type Aliases
 
@@ -104,7 +362,7 @@ Loading component to be rendered while features are loading.
 </td>
 <td>
 
-(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* `BucketClient`\>) => `BucketClient`
+(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
 
 </td>
 <td>
@@ -242,6 +500,90 @@ type Feature<TKey> = {
 type FeatureKey = keyof MaterializedFeatures;
 ```
 
+***
+
+### RawFeatures
+
+```ts
+type RawFeatures = Record<string, RawFeature>;
+```
+
+***
+
+### TrackEvent
+
+```ts
+type TrackEvent = {
+  attributes:   | Record<string, any>
+     | null;
+  company: CompanyContext;
+  eventName: string;
+  user: UserContext;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="attributes"></a> `attributes`?
+
+</td>
+<td>
+
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
+  \| `null`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="company"></a> `company`?
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="eventname"></a> `eventName`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user"></a> `user`
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+</tr>
+</tbody>
+</table>
+
 ## Functions
 
 ### BucketProvider()
@@ -295,14 +637,16 @@ This is useful if you need to access the `BucketClient` outside of the `BucketPr
 
 ```ts
 const client = useClient();
-client.on("configCheck", () => {
-  console.log("configCheck hook called");
-});
+useEffect(() => {
+  return client?.on("enabledCheck", () => {
+    console.log("enabledCheck hook called");
+  });
+}, [client]);
 ```
 
 #### Returns
 
-`undefined` \| `BucketClient`
+`undefined` \| [`BucketClient`](../browser-sdk/globals.md#bucketclient)
 
 ***
 
@@ -413,7 +757,7 @@ bucket.requestFeedback({
 </td>
 <td>
 
-`RequestFeedbackData`
+[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -473,7 +817,7 @@ sendFeedback({
 </td>
 <td>
 
-`UnassignedFeedback`
+[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
 
 </td>
 </tr>

@@ -334,7 +334,7 @@ A function to remove the hook.
 ##### on()
 
 ```ts
-on<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): void
+on<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): () => void
 ```
 
 Add a hook to the client.
@@ -394,6 +394,12 @@ Add a hook to the client.
 </tr>
 </tbody>
 </table>
+
+###### Returns
+
+`Function`
+
+A function to remove the hook.
 
 ###### Returns
 
@@ -2883,6 +2889,82 @@ type ToolbarOptions =
 ```
 
 Toolbar options.
+
+***
+
+### TrackEvent
+
+```ts
+type TrackEvent = {
+  attributes:   | Record<string, any>
+     | null;
+  company: CompanyContext;
+  eventName: string;
+  user: UserContext;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="attributes"></a> `attributes`?
+
+</td>
+<td>
+
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
+  \| `null`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="company-2"></a> `company`?
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="eventname"></a> `eventName`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user-2"></a> `user`
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
