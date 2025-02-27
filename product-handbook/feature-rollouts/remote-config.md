@@ -1,3 +1,7 @@
+---
+description: Learn more about remote config in Bucket
+---
+
 # Remote config
 
 {% hint style="info" %}

@@ -1,3 +1,7 @@
+---
+description: Learn more about apps in Bucket
+---
+
 # Managing apps
 
 Learn about [apps](../introduction/concepts/app.md) here.

@@ -1,3 +1,7 @@
+---
+description: Learn more about the STARS Framework
+---
+
 # STARS Framework
 
 ## What is the STARS Framework?

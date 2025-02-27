@@ -1,3 +1,7 @@
+---
+description: Learn more about feature rollouts in Bucket
+---
+
 # Feature rollouts
 
 You release features gradually to de-risk rollouts. It's better that only a few beta accounts encounter bugs rather than the entire user base.&#x20;

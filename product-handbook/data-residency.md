@@ -1,3 +1,7 @@
+---
+description: Bucket on data residency
+---
+
 # Data residency
 
 When you sign up with Bucket you automatically use our global infrastructure to guarantee low latency from your users' clients to our servers.&#x20;

@@ -1,4 +1,8 @@
-# Feature access rules
+---
+description: Learn more about access rules in Bucket
+---
+
+# Access rules
 
 ## What are access rules?
 

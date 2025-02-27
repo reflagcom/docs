@@ -1,3 +1,7 @@
+---
+description: Learn more about feature feedback in Bucket
+---
+
 # Feature feedback
 
 When you release a new feature, it's very useful to collect early qualitative feedback in order to fix issues faster. Making fixes right after releases is much faster and less risky than coming back to the feature after a long time. Also, the customers are happier with fast resolution. &#x20;

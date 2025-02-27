@@ -1,3 +1,7 @@
+---
+description: Learn more about automated feedback surveys in Bucket
+---
+
 # Automated feedback surveys
 
 Automated feedback surveys are no-code surveys that collect in-app user feedback right after a user interacts with a feature.

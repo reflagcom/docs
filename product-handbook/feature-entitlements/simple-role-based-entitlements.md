@@ -1,3 +1,7 @@
+---
+description: Learn more about simple role-based entitlements in Bucket
+---
+
 # Simple role-based entitlements
 
 If you need to enforce feature access at the company subscription level _**and**_ user role level (user permissions), you can combine your user role and permission services with Bucket.

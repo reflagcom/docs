@@ -1,3 +1,7 @@
+---
+description: Learn more about feature entitlements in Bucket
+---
+
 # Feature entitlements
 
 In B2B SaaS, a typical use case is to manage feature access based on the customer’s subscription level. This means enforcing feature access at the company level, not the user level.&#x20;

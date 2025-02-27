@@ -1,3 +1,7 @@
+---
+description: Learn more about release stages in Bucket
+---
+
 # Release stages
 
 ## What are release stages?
@@ -36,7 +40,7 @@ The default release stages come with the following default access rules:
 
 | Environment     | Access Rules                            |
 | --------------- | --------------------------------------- |
-| Development[^2] | Everyone                                |
+| Development[^1] | Everyone                                |
 | Staging         | Everyone                                |
 | Production      | email contains "@yourcompanydomain.com" |
 
@@ -48,7 +52,7 @@ If you don't have a domain set for your organization (for example, you are using
 
 | Environment     | Access Rules                            |
 | --------------- | --------------------------------------- |
-| Development[^3] | Everyone                                |
+| Development[^1] | Everyone                                |
 | Staging         | Everyone                                |
 | Production      | email contains "@yourcompanydomain.com" |
 
@@ -56,7 +60,7 @@ If you don't have a domain set for your organization (for example, you are using
 
 | Environment     | Access Rules |
 | --------------- | ------------ |
-| Development[^4] | Everyone     |
+| Development[^1] | Everyone     |
 | Staging         | Everyone     |
 | Production      | Everyone     |
 
@@ -82,9 +86,3 @@ If you modify a release stage’s access rules, the updated rules are only appli
 
 
 [^1]: 
-
-[^2]: 
-
-[^3]: 
-
-[^4]: 

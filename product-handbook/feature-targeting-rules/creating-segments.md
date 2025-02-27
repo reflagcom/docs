@@ -1,3 +1,7 @@
+---
+description: Learn more about segments in Bucket
+---
+
 # Creating segments
 
 ## What's a segment?

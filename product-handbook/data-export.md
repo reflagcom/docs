@@ -1,3 +1,7 @@
+---
+description: Learn more about data warehouse in Bucket
+---
+
 # Warehouse
 
 Bucket allows you to export company adoption data in a CSV file to use in other tools or databases.  This can be done either manually or automatically, depending on your plan.

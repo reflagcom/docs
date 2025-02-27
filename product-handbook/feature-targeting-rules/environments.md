@@ -1,3 +1,7 @@
+---
+description: Learn more about environments in Bucket
+---
+
 # Environments
 
 What are environments?

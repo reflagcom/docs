@@ -1,3 +1,7 @@
+---
+description: Learn more about feature views in Bucket
+---
+
 # Feature views
 
 ## What are feature views?
