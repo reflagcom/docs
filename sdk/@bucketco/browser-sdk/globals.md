@@ -2370,6 +2370,7 @@ type InitOptions = {
   apiBaseUrl: string;
   appBaseUrl: string;
   company: CompanyContext;
+  credentials: "include" | "same-origin" | "omit";
   enableTracking: boolean;
   expireTimeMs: number;
   fallbackFeatures:   | string[]
@@ -2450,6 +2451,25 @@ Base URL of the Bucket web app. Links open ín this app by default.
 
 Company related context. If you provide `id` Bucket will enrich the evaluation context with
 company attributes on Bucket servers.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="credentials"></a> `credentials`?
+
+</td>
+<td>
+
+`"include"` \| `"same-origin"` \| `"omit"`
+
+</td>
+<td>
+
+When proxying requests, you may want to include credentials like cookies
+so you can authorize the request in the proxy.
+This option controls the `credentials` option of the fetch API.
 
 </td>
 </tr>
