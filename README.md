@@ -23,7 +23,7 @@ That includes the following use cases:
 
 * [Feature flags](product-handbook/create-your-first-feature.md) that's purpose-built for B2B SaaS,
 * [Feature entitlements](product-handbook/feature-entitlements/) that let you grant companies access by flipping a switch,
-* [Feature remote config](product-handbook/feature-rollouts/remote-config.md) that lets you manage feature configuration with ease in one place,
+* [Feature remote config](product-handbook/remote-config.md) that lets you manage feature configuration with ease in one place,
 * [Feature adoption metrics](product-handbook/feature-analysis/stars-framework.md) using a proven and B2B-optimized framework,
 * [Feature feedback](product-handbook/feature-analysis/) using surveys or feedback buttons,
 * [Feature data export](product-handbook/data-export.md) that is synced to your CRM and/or data warehouse.
