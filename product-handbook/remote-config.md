@@ -21,9 +21,9 @@ This is what remote config looks like in React:
 {% code fullWidth="false" %}
 ```tsx
 function AISummarizerRemotelyConfigured({copy}: {copy: string}) {
-  const { config } = useFeature('my-ai-feature');
+  const { config: { payload } } = useFeature('my-ai-feature');
 
-  return <AISummarizer model={config.model} provider={config.provider} />
+  return <AISummarizer model={payload.model} provider={payload.provider} />
 }
 ```
 {% endcode %}
