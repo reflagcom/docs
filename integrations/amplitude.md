@@ -8,7 +8,7 @@ With the Amplitude integration, you can attach feature access properties to user
 
 ### Get available features from Bucket
 
-In this example, we're using the [Browser SDK](broken-reference):
+In this example, we're using the [Browser SDK](../sdk/@bucketco/browser-sdk/):
 
 ```javascript
 //init
