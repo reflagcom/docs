@@ -117,12 +117,12 @@ export default function Page({
 {% endtab %}
 {% endtabs %}
 
-### Vercel's @vercel/flags SDK
+### Flags SDK by Vercel
 
-The [experimental @vercel/flags SDK](https://vercel.com/docs/workflow-collaboration/feature-flags/feature-flags-pattern) is a Next.js oriented interface for server-side feature flags. It's straight forward to use with the Bucket Node.js SDK:
+[Flags SDK by Vercel](https://flags-sdk.dev/) is a Next.js oriented interface for server-side feature flags. It's straight forward to use with the Bucket Node.js SDK:
 
 ```typescript
-import { unstable_flag as flag } from '@vercel/flags/next';
+import { flag } from '@vercel/flags/next';
 import { getFeature } from "@/app/bucket";
  
 export const huddles = flag({
