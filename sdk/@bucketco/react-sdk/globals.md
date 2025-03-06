@@ -638,8 +638,8 @@ This is useful if you need to access the `BucketClient` outside of the `BucketPr
 ```ts
 const client = useClient();
 useEffect(() => {
-  return client?.on("enabledCheck", () => {
-    console.log("enabledCheck hook called");
+  return client?.on("check", () => {
+    console.log("check hook called");
   });
 }, [client]);
 ```

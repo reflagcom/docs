@@ -267,7 +267,7 @@ Must be called before calling other SDK methods.
 off<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): void
 ```
 
-Remove a hook from the client.
+Remove an event listener
 
 ###### Type Parameters
 
@@ -295,6 +295,7 @@ Remove a hook from the client.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -309,6 +310,11 @@ Remove a hook from the client.
 `THookType`
 
 </td>
+<td>
+
+Type of event to remove.
+
+</td>
 </tr>
 <tr>
 <td>
@@ -319,6 +325,11 @@ Remove a hook from the client.
 <td>
 
 (`args0`: `HookArgs`\[`THookType`\]) => `void`
+
+</td>
+<td>
+
+The same function that was passed to `on`.
 
 </td>
 </tr>
@@ -329,15 +340,13 @@ Remove a hook from the client.
 
 `void`
 
-A function to remove the hook.
-
 ##### on()
 
 ```ts
 on<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): () => void
 ```
 
-Add a hook to the client.
+Add an event listener
 
 ###### Type Parameters
 
@@ -365,6 +374,7 @@ Add a hook to the client.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -379,6 +389,11 @@ Add a hook to the client.
 `THookType`
 
 </td>
+<td>
+
+Type of events to listen for
+
+</td>
 </tr>
 <tr>
 <td>
@@ -389,6 +404,11 @@ Add a hook to the client.
 <td>
 
 (`args0`: `HookArgs`\[`THookType`\]) => `void`
+
+</td>
+<td>
+
+The function to call when the event is triggered.
 
 </td>
 </tr>

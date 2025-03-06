@@ -424,7 +424,7 @@ function LoggingWrapper({ children }: { children: ReactNode }) {
   const client = useClient();
 
   useEffect(() => {
-    client.on("enabledCheck", (evt) => {
+    client.on("check", (evt) => {
       console.log(`The feature ${evt.key} is ${evt.value} for user.`);
     });
   }, [client]);
