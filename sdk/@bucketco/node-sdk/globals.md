@@ -2636,7 +2636,14 @@ type EmptyFeatureRemoteConfig = {
 ### FeatureOverride
 
 ```ts
-type FeatureOverride = FullFeatureOverride | boolean;
+type FeatureOverride = 
+  | FeatureType & {
+  config: {
+     key: string;
+    };
+  isEnabled: boolean;
+ }
+  | boolean;
 ```
 
 ***
@@ -2644,7 +2651,7 @@ type FeatureOverride = FullFeatureOverride | boolean;
 ### FeatureOverrides
 
 ```ts
-type FeatureOverrides = Partial<keyof Features extends never ? Record<string, FeatureOverride> : { [FeatureKey in keyof Features]: Features[FeatureKey] extends FullFeatureOverride ? Features[FeatureKey] : Exclude<FeatureOverride, "config"> }>;
+type FeatureOverrides = Partial<keyof Features extends never ? Record<string, FeatureOverride> : { [FeatureKey in keyof Features]: Features[FeatureKey] extends FeatureOverride ? Features[FeatureKey] : Exclude<FeatureOverride, "config"> }>;
 ```
 
 Describes the feature overrides.
@@ -2758,15 +2765,13 @@ The optional user-supplied payload data.
 
 ***
 
-### FullFeatureOverride
+### FeatureType
 
 ```ts
-type FullFeatureOverride = {
+type FeatureType = {
   config: {
-     key: string;
      payload: any;
     };
-  isEnabled: boolean;
 };
 ```
 
@@ -2789,21 +2794,8 @@ type FullFeatureOverride = {
 <td>
 
 \{
-  `key`: `string`;
   `payload`: `any`;
  \}
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.key`
-
-</td>
-<td>
-
-`string`
 
 </td>
 </tr>
@@ -2816,18 +2808,6 @@ type FullFeatureOverride = {
 <td>
 
 `any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabled-2"></a> `isEnabled`
-
-</td>
-<td>
-
-`boolean`
 
 </td>
 </tr>
@@ -3186,7 +3166,7 @@ type TypedFeatureKey = keyof TypedFeatures;
 ### TypedFeatures
 
 ```ts
-type TypedFeatures = keyof Features extends never ? Record<string, Feature> : { [FeatureKey in keyof Features]: Features[FeatureKey] extends FullFeatureOverride ? Feature<Features[FeatureKey]["config"]> : Feature };
+type TypedFeatures = keyof Features extends never ? Record<string, Feature> : { [FeatureKey in keyof Features]: Features[FeatureKey] extends FeatureType ? Feature<Features[FeatureKey]["config"]> : Feature };
 ```
 
 Describes a collection of evaluated feature.

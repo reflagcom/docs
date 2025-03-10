@@ -200,6 +200,157 @@ Company name
 
 ***
 
+### Feature\<TConfig\>
+
+Describes a feature
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+<th>Default type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TConfig` *extends* [`FeatureType`](globals.md#featuretype)\[`"config"`\] \| `undefined`
+
+</td>
+<td>
+
+[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config"></a> `config`
+
+</td>
+<td>
+
+`TConfig` *extends* `undefined` ? [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) : `TConfig` & \{ `key`: `string`; \}
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabled"></a> `isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+If the feature is enabled.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isloading"></a> `isLoading`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+If the feature is loading.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key-1"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the feature.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="requestfeedback"></a> `requestFeedback`
+
+</td>
+<td>
+
+(`opts`: [`RequestFeedbackOptions`](globals.md#requestfeedbackoptions)) => `void`
+
+</td>
+<td>
+
+Request feedback from the user.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Methods
+
+##### track()
+
+```ts
+track(): 
+  | undefined
+  | Promise<
+  | undefined
+| Response>
+```
+
+Track feature usage in Bucket.
+
+###### Returns
+
+  \| `undefined`
+  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+
+***
+
 ### Features
 
 ***
@@ -378,10 +529,10 @@ New BucketClient constructor.
 
 ***
 
-### EmptyConfig
+### EmptyFeatureRemoteConfig
 
 ```ts
-type EmptyConfig = {
+type EmptyFeatureRemoteConfig = {
   key: undefined;
   payload: undefined;
 };
@@ -400,7 +551,7 @@ type EmptyConfig = {
 <tr>
 <td>
 
-<a id="key-1"></a> `key`
+<a id="key-2"></a> `key`
 
 </td>
 <td>
@@ -426,41 +577,93 @@ type EmptyConfig = {
 
 ***
 
-### Feature\<TKey\>
+### FeatureKey
 
 ```ts
-type Feature<TKey> = {
-  config: MaterializedFeatures[TKey] extends boolean ? EmptyConfig : 
-     | {
-     key: string;
-     payload: MaterializedFeatures[TKey];
-    }
-     | EmptyConfig;
-  isEnabled: boolean;
-  isLoading: boolean;
-  requestFeedback: (opts: RequestFeedbackOptions) => void;
-  track: () => void;
-};
+type FeatureKey = keyof TypedFeatures;
 ```
 
-#### Type Parameters
+***
+
+### FeatureRemoteConfig
+
+```ts
+type FeatureRemoteConfig = 
+  | {
+  key: string;
+  payload: any;
+ }
+  | EmptyFeatureRemoteConfig;
+```
+
+A remotely managed configuration value for a feature.
+
+#### Type declaration
+
+\{
+  `key`: `string`;
+  `payload`: `any`;
+ \}
 
 <table>
 <thead>
 <tr>
-<th>Type Parameter</th>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`TKey` *extends* [`FeatureKey`](globals.md#featurekey)
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
 
 </td>
 </tr>
 </tbody>
 </table>
+
+[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
+
+***
+
+### FeatureType
+
+```ts
+type FeatureType = {
+  config: {
+     payload: any;
+    };
+};
+```
 
 #### Type declaration
 
@@ -475,86 +678,31 @@ type Feature<TKey> = {
 <tr>
 <td>
 
-<a id="config"></a> `config`
+<a id="config-1"></a> `config`?
 
 </td>
 <td>
 
-[`MaterializedFeatures`](globals.md#materializedfeatures)\[`TKey`\] *extends* `boolean` ? [`EmptyConfig`](globals.md#emptyconfig) : 
-  \| \{
-  `key`: `string`;
-  `payload`: [`MaterializedFeatures`](globals.md#materializedfeatures)\[`TKey`\];
+\{
+  `payload`: `any`;
  \}
-  \| [`EmptyConfig`](globals.md#emptyconfig)
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="isenabled"></a> `isEnabled`
+`config.payload`
 
 </td>
 <td>
 
-`boolean`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isloading"></a> `isLoading`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="requestfeedback"></a> `requestFeedback`
-
-</td>
-<td>
-
-(`opts`: [`RequestFeedbackOptions`](globals.md#requestfeedbackoptions)) => `void`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="track"></a> `track`
-
-</td>
-<td>
-
-() => `void`
+`any`
 
 </td>
 </tr>
 </tbody>
 </table>
-
-***
-
-### FeatureKey
-
-```ts
-type FeatureKey = keyof MaterializedFeatures;
-```
-
-***
-
-### MaterializedFeatures
-
-```ts
-type MaterializedFeatures = keyof Features extends never ? Record<string, any> : Features;
-```
 
 ***
 
@@ -648,6 +796,21 @@ type TrackEvent = {
 </tbody>
 </table>
 
+***
+
+### TypedFeatures
+
+```ts
+type TypedFeatures = keyof Features extends never ? Record<string, Feature> : { [TypedFeatureKey in keyof Features]: Features[TypedFeatureKey] extends FeatureType ? Feature<Features[TypedFeatureKey]["config"]> : Feature };
+```
+
+Describes a collection of evaluated feature.
+
+#### Remarks
+
+This types falls back to a generic Record<string, Feature> if the Features interface
+has not been extended.
+
 ## Functions
 
 ### BucketProvider()
@@ -717,7 +880,7 @@ useEffect(() => {
 ### useFeature()
 
 ```ts
-function useFeature<TKey>(key: TKey): Feature<typeof key>
+function useFeature<TKey>(key: TKey): TypedFeatures[TKey]
 ```
 
 Returns the state of a given feature for the current context, e.g.
@@ -776,7 +939,7 @@ function HuddleButton() {
 
 #### Returns
 
-[`Feature`](globals.md#featuretkey)\<*typeof* `key`\>
+[`TypedFeatures`](globals.md#typedfeatures)\[`TKey`\]
 
 ***
 
