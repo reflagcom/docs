@@ -822,7 +822,7 @@ Event representing checking the feature flag evaluation result
 </td>
 <td>
 
-Action to perform.
+`check-is-enabled` means `isEnabled` was checked, `check-config` means `config` was checked.
 
 </td>
 </tr>
@@ -880,17 +880,19 @@ Rule evaluation results.
 <tr>
 <td>
 
-<a id="value"></a> `value`
+<a id="value"></a> `value?`
 
 </td>
 <td>
 
-`any`
+ \| `boolean` \| \{ `key`: `string`; `payload`: `any`; \}
 
 </td>
 <td>
 
 Result of feature flag or configuration evaluation.
+If `action` is `check-is-enabled`, this is the result of the feature flag evaluation and `value` is a boolean.
+If `action` is `check-config`, this is the result of the configuration evaluation.
 
 </td>
 </tr>
