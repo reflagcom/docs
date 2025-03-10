@@ -378,6 +378,54 @@ New BucketClient constructor.
 
 ***
 
+### EmptyConfig
+
+```ts
+type EmptyConfig = {
+  key: undefined;
+  payload: undefined;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="key-1"></a> `key`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="payload"></a> `payload`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### Feature\<TKey\>
 
 ```ts
@@ -432,12 +480,12 @@ type Feature<TKey> = {
 </td>
 <td>
 
-`MaterializedFeatures`\[`TKey`\] *extends* `boolean` ? `EmptyConfig` : 
+[`MaterializedFeatures`](globals.md#materializedfeatures)\[`TKey`\] *extends* `boolean` ? [`EmptyConfig`](globals.md#emptyconfig) : 
   \| \{
   `key`: `string`;
-  `payload`: `MaterializedFeatures`\[`TKey`\];
+  `payload`: [`MaterializedFeatures`](globals.md#materializedfeatures)\[`TKey`\];
  \}
-  \| `EmptyConfig`
+  \| [`EmptyConfig`](globals.md#emptyconfig)
 
 </td>
 </tr>
@@ -473,7 +521,7 @@ type Feature<TKey> = {
 </td>
 <td>
 
-(`opts`: `RequestFeedbackOptions`) => `void`
+(`opts`: [`RequestFeedbackOptions`](globals.md#requestfeedbackoptions)) => `void`
 
 </td>
 </tr>
@@ -502,10 +550,26 @@ type FeatureKey = keyof MaterializedFeatures;
 
 ***
 
+### MaterializedFeatures
+
+```ts
+type MaterializedFeatures = keyof Features extends never ? Record<string, any> : Features;
+```
+
+***
+
 ### RawFeatures
 
 ```ts
 type RawFeatures = Record<string, RawFeature>;
+```
+
+***
+
+### RequestFeedbackOptions
+
+```ts
+type RequestFeedbackOptions = Omit<RequestFeedbackData, "featureKey" | "featureId">;
 ```
 
 ***

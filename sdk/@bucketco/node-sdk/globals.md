@@ -1016,7 +1016,6 @@ Tracks an event in Bucket.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1031,11 +1030,6 @@ Tracks an event in Bucket.
 [`IdType`](globals.md#idtype)
 
 </td>
-<td>
-
-The userId of the user who performed the event
-
-</td>
 </tr>
 <tr>
 <td>
@@ -1048,11 +1042,6 @@ The userId of the user who performed the event
 `string`
 
 </td>
-<td>
-
-The event to track.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -1063,11 +1052,6 @@ The event to track.
 <td>
 
 [`TrackOptions`](globals.md#trackoptions) & \{ `companyId`: [`IdType`](globals.md#idtype); \}
-
-</td>
-<td>
-
-&hyphen;
 
 </td>
 </tr>
@@ -1475,12 +1459,12 @@ Describes a feature
 <tr>
 <td>
 
-`TConfig` *extends* `FeatureRemoteConfig` \| `undefined`
+`TConfig` *extends* [`FeatureRemoteConfig`](globals.md#featureremoteconfig) \| `undefined`
 
 </td>
 <td>
 
-`EmptyFeatureRemoteConfig`
+[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
 
 </td>
 </tr>
@@ -1506,7 +1490,7 @@ Describes a feature
 </td>
 <td>
 
-`TConfig` *extends* `undefined` ? `EmptyFeatureRemoteConfig` : `TConfig`
+`TConfig` *extends* `undefined` ? [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) : `TConfig`
 
 </td>
 <td>
@@ -1891,7 +1875,7 @@ Describes a feature.
 </td>
 <td>
 
-`RawFeatureRemoteConfig`
+[`RawFeatureRemoteConfig`](globals.md#rawfeatureremoteconfig)
 
 </td>
 <td>
@@ -2235,8 +2219,8 @@ set through the environment variable BUCKET_CONFIG_FILE.
 </td>
 <td>
 
-  \| `TypedFeatureKey`[]
-  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`TypedFeatureKey`, [`Exclude`](https://www.typescriptlang.org/docs/handbook/utility-types.html#excludeuniontype-excludedmembers)\<`FeatureOverride`, `false`\>\>
+  \| [`TypedFeatureKey`](globals.md#typedfeaturekey)[]
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<[`TypedFeatureKey`](globals.md#typedfeaturekey), [`Exclude`](https://www.typescriptlang.org/docs/handbook/utility-types.html#excludeuniontype-excludedmembers)\<[`FeatureOverride`](globals.md#featureoverride), `false`\>\>
 
 </td>
 <td>
@@ -2601,6 +2585,62 @@ The name of the user.
 
 ***
 
+### EmptyFeatureRemoteConfig
+
+```ts
+type EmptyFeatureRemoteConfig = {
+  key: undefined;
+  payload: undefined;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="key-2"></a> `key`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="payload"></a> `payload`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### FeatureOverride
+
+```ts
+type FeatureOverride = FullFeatureOverride | boolean;
+```
+
+***
+
 ### FeatureOverrides
 
 ```ts
@@ -2645,6 +2685,154 @@ type FeatureOverridesFn = (context: Context) => FeatureOverrides;
 #### Returns
 
 [`FeatureOverrides`](globals.md#featureoverrides-2)
+
+***
+
+### FeatureRemoteConfig
+
+```ts
+type FeatureRemoteConfig = 
+  | {
+  key: string;
+  payload: any;
+ }
+  | EmptyFeatureRemoteConfig;
+```
+
+A remotely managed configuration value for a feature.
+
+#### Type declaration
+
+\{
+  `key`: `string`;
+  `payload`: `any`;
+ \}
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
+
+***
+
+### FullFeatureOverride
+
+```ts
+type FullFeatureOverride = {
+  config: {
+     key: string;
+     payload: any;
+    };
+  isEnabled: boolean;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config-2"></a> `config`?
+
+</td>
+<td>
+
+\{
+  `key`: `string`;
+  `payload`: `any`;
+ \}
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabled-2"></a> `isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -2768,6 +2956,121 @@ type LogLevel = typeof LOG_LEVELS[number];
 
 ***
 
+### RawFeatureRemoteConfig
+
+```ts
+type RawFeatureRemoteConfig = {
+  key: string;
+  missingContextFields: string[];
+  payload: any;
+  ruleEvaluationResults: boolean[];
+  targetingVersion: number;
+};
+```
+
+A remotely managed configuration value for a feature.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="key-3"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="missingcontextfields-1"></a> `missingContextFields`?
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+The missing fields in the evaluation context (optional).
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="payload-1"></a> `payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ruleevaluationresults-1"></a> `ruleEvaluationResults`?
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+<td>
+
+The rule results of the evaluation (optional).
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="targetingversion-1"></a> `targetingVersion`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The version of the targeting rules used to select the config value.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### TrackingMeta
 
 ```ts
@@ -2869,6 +3172,14 @@ The meta context associated with the event.
 </tr>
 </tbody>
 </table>
+
+***
+
+### TypedFeatureKey
+
+```ts
+type TypedFeatureKey = keyof TypedFeatures;
+```
 
 ***
 

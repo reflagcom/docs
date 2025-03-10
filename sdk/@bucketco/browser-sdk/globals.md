@@ -152,7 +152,7 @@ Get the current configuration.
 
 ###### Returns
 
-`Config`
+[`Config`](globals.md#config)
 
 ##### getFeature()
 
@@ -281,7 +281,7 @@ Remove an event listener
 <tr>
 <td>
 
-`THookType` *extends* keyof `HookArgs`
+`THookType` *extends* keyof [`HookArgs`](globals.md#hookargs)
 
 </td>
 </tr>
@@ -324,7 +324,7 @@ Type of event to remove.
 </td>
 <td>
 
-(`args0`: `HookArgs`\[`THookType`\]) => `void`
+(`args0`: [`HookArgs`](globals.md#hookargs)\[`THookType`\]) => `void`
 
 </td>
 <td>
@@ -339,6 +339,8 @@ The same function that was passed to `on`.
 ###### Returns
 
 `void`
+
+A function to remove the hook.
 
 ##### on()
 
@@ -360,7 +362,7 @@ Add an event listener
 <tr>
 <td>
 
-`THookType` *extends* keyof `HookArgs`
+`THookType` *extends* keyof [`HookArgs`](globals.md#hookargs)
 
 </td>
 </tr>
@@ -403,7 +405,7 @@ Type of events to listen for
 </td>
 <td>
 
-(`args0`: `HookArgs`\[`THookType`\]) => `void`
+(`args0`: [`HookArgs`](globals.md#hookargs)\[`THookType`\]) => `void`
 
 </td>
 <td>
@@ -975,6 +977,94 @@ Company name
 
 ***
 
+### Config
+
+BucketClient configuration.
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="apibaseurl"></a> `apiBaseUrl`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Bucket servers.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="appbaseurl"></a> `appBaseUrl`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of the Bucket web app.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="enabletracking"></a> `enableTracking`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether to enable tracking.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ssebaseurl"></a> `sseBaseUrl`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Bucket servers for SSE connections used by AutoFeedback.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### Feature
 
 Represents a feature.
@@ -993,12 +1083,12 @@ Represents a feature.
 <tr>
 <td>
 
-<a id="config"></a> `config`
+<a id="config-1"></a> `config`
 
 </td>
 <td>
 
-`FeatureRemoteConfig`
+[`FeatureRemoteConfig`](globals.md#featureremoteconfig)
 
 </td>
 <td>
@@ -1173,6 +1263,147 @@ Function to send analytics events for this feature.
 <td>
 
 `number`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### HookArgs
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="check"></a> `check`
+
+</td>
+<td>
+
+[`CheckEvent`](globals.md#checkevent)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="company-1"></a> `company`
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="configcheck"></a> ~~`configCheck`~~
+
+</td>
+<td>
+
+[`CheckEvent`](globals.md#checkevent)
+
+</td>
+<td>
+
+Deprecated: Use `check` instead.
+
+**Deprecated**
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="enabledcheck"></a> ~~`enabledCheck`~~
+
+</td>
+<td>
+
+[`CheckEvent`](globals.md#checkevent)
+
+</td>
+<td>
+
+Deprecated: Use `check` instead.
+
+**Deprecated**
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="featuresupdated"></a> `featuresUpdated`
+
+</td>
+<td>
+
+[`RawFeatures`](globals.md#rawfeatures)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="track-2"></a> `track`
+
+</td>
+<td>
+
+[`TrackEvent`](globals.md#trackevent)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user-1"></a> `user`
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+&hyphen;
 
 </td>
 </tr>
@@ -1528,7 +1759,7 @@ Defaults to `false`
 </td>
 <td>
 
-`Position`
+[`Position`](globals.md#position-1)
 
 </td>
 <td>
@@ -1569,6 +1800,47 @@ Control the placement and behavior of the feedback form.
 
 Add your own custom translations for the feedback form.
 Undefined translation keys fall back to english defaults.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### ToolbarPosition
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="offset"></a> `offset?`
+
+</td>
+<td>
+
+[`Offset`](globals.md#offset-1)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="placement"></a> `placement`
+
+</td>
+<td>
+
+[`DialogPlacement`](globals.md#dialogplacement)
 
 </td>
 </tr>
@@ -1652,6 +1924,14 @@ User name
 
 ## Type Aliases
 
+### DialogPlacement
+
+```ts
+type DialogPlacement = "bottom-right" | "bottom-left" | "top-right" | "top-left";
+```
+
+***
+
 ### FallbackFeatureOverride
 
 ```ts
@@ -1662,6 +1942,117 @@ type FallbackFeatureOverride =
  }
   | true;
 ```
+
+***
+
+### FeatureRemoteConfig
+
+```ts
+type FeatureRemoteConfig = 
+  | {
+  key: string;
+  payload: any;
+ }
+  | {
+  key: undefined;
+  payload: undefined;
+};
+```
+
+A remotely managed configuration value for a feature.
+
+#### Type declaration
+
+\{
+  `key`: `string`;
+  `payload`: `any`;
+ \}
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+\{
+  `key`: `undefined`;
+  `payload`: `undefined`;
+ \}
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1791,7 +2182,7 @@ Enables automatic feedback prompting if it's set up in Bucket
 <td>
 
 \{
-  `position`: `Position`;
+  `position`: [`Position`](globals.md#position-1);
   `translations`: [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>;
  \}
 
@@ -1810,7 +2201,7 @@ With these options you can override the look of the feedback prompt
 </td>
 <td>
 
-`Position`
+[`Position`](globals.md#position-1)
 
 </td>
 <td>
@@ -2381,6 +2772,237 @@ with desired language translation
 
 ***
 
+### FetchedFeature
+
+```ts
+type FetchedFeature = {
+  config: {
+     key: string;
+     missingContextFields: string[];
+     payload: any;
+     ruleEvaluationResults: boolean[];
+     version: number;
+    };
+  isEnabled: boolean;
+  key: string;
+  missingContextFields: string[];
+  ruleEvaluationResults: boolean[];
+  targetingVersion: number;
+};
+```
+
+A feature fetched from the server.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config-2"></a> `config`?
+
+</td>
+<td>
+
+\{
+  `key`: `string`;
+  `missingContextFields`: `string`[];
+  `payload`: `any`;
+  `ruleEvaluationResults`: `boolean`[];
+  `version`: `number`;
+ \}
+
+</td>
+<td>
+
+Optional user-defined dynamic configuration.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.missingContextFields`?
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+The missing context fields.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.payload`?
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.ruleEvaluationResults`?
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+<td>
+
+The rule evaluation results.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.version`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The version of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabled-1"></a> `isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Result of feature flag evaluation.
+Note: does not take local overrides into account.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key-2"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Feature key.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="missingcontextfields-1"></a> `missingContextFields`?
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+Missing context fields.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ruleevaluationresults-1"></a> `ruleEvaluationResults`?
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+<td>
+
+Rule evaluation results.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="targetingversion"></a> `targetingVersion`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Version of targeting rules.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### InitOptions
 
 ```ts
@@ -2423,7 +3045,7 @@ BucketClient initialization options.
 <tr>
 <td>
 
-<a id="apibaseurl"></a> `apiBaseUrl`?
+<a id="apibaseurl-1"></a> `apiBaseUrl`?
 
 </td>
 <td>
@@ -2440,7 +3062,7 @@ Base URL of Bucket servers. You can override this to use your mocked server.
 <tr>
 <td>
 
-<a id="appbaseurl"></a> `appBaseUrl`?
+<a id="appbaseurl-1"></a> `appBaseUrl`?
 
 </td>
 <td>
@@ -2457,7 +3079,7 @@ Base URL of the Bucket web app. Links open ín this app by default.
 <tr>
 <td>
 
-<a id="company-1"></a> `company`?
+<a id="company-2"></a> `company`?
 
 </td>
 <td>
@@ -2494,7 +3116,7 @@ This option controls the `credentials` option of the fetch API.
 <tr>
 <td>
 
-<a id="enabletracking"></a> `enableTracking`?
+<a id="enabletracking-1"></a> `enableTracking`?
 
 </td>
 <td>
@@ -2639,7 +3261,7 @@ Version of the SDK
 <tr>
 <td>
 
-<a id="ssebaseurl"></a> `sseBaseUrl`?
+<a id="ssebaseurl-1"></a> `sseBaseUrl`?
 
 </td>
 <td>
@@ -2724,7 +3346,7 @@ Toolbar configuration
 <tr>
 <td>
 
-<a id="user-1"></a> `user`?
+<a id="user-2"></a> `user`?
 
 </td>
 <td>
@@ -2741,6 +3363,95 @@ user attributes on Bucket servers.
 </tr>
 </tbody>
 </table>
+
+***
+
+### Offset
+
+```ts
+type Offset = {
+  x: string | number;
+  y: string | number;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="x"></a> `x`?
+
+</td>
+<td>
+
+`string` \| `number`
+
+</td>
+<td>
+
+Offset from the nearest horizontal screen edge after placement is resolved
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="y"></a> `y`?
+
+</td>
+<td>
+
+`string` \| `number`
+
+</td>
+<td>
+
+Offset from the nearest vertical screen edge after placement is resolved
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### PopoverPlacement
+
+```ts
+type PopoverPlacement = Placement;
+```
+
+***
+
+### Position
+
+```ts
+type Position = 
+  | {
+  type: "MODAL";
+ }
+  | {
+  offset: Offset;
+  placement: DialogPlacement;
+  type: "DIALOG";
+ }
+  | {
+  anchor:   | HTMLElement
+     | null;
+  placement: PopoverPlacement;
+  type: "POPOVER";
+};
+```
 
 ***
 
@@ -2968,7 +3679,7 @@ type TrackEvent = {
 <tr>
 <td>
 
-<a id="company-2"></a> `company`?
+<a id="company-3"></a> `company`?
 
 </td>
 <td>
@@ -2992,7 +3703,7 @@ type TrackEvent = {
 <tr>
 <td>
 
-<a id="user-2"></a> `user`
+<a id="user-3"></a> `user`
 
 </td>
 <td>
