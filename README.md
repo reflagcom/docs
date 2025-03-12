@@ -1,10 +1,9 @@
 ---
-description: Welcome to Bucket, a feature flag management tool purpose-built for B2B SaaS
 layout:
   title:
     visible: true
   description:
-    visible: true
+    visible: false
   tableOfContents:
     visible: true
   outline:
@@ -30,4 +29,4 @@ That includes the following use cases:
 
 ## How does it work?
 
-Creating a feature on Bucket gives you a [feature key](introduction/data-model/feature/feature-key.md). Think of the feature key as a flag key that also supports configs, tracking feature adoption and for gathering feedback.
+Creating a feature on Bucket gives you a [feature key](introduction/concepts/feature.md#feature-key). You can think of the feature key as a flag key that _also_ supports feature adoption and feature feedback.

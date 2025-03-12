@@ -1,16 +1,12 @@
----
-description: Learn more about feature adoption in Bucket
----
-
 # Feature adoption
 
-Bucket tracks feature adoption through events or [company attributes](../introduction/concepts/company/attribute.md). The `feature key` doubles as the default event for a feature.
+Bucket tracks feature adoption through [events](../introduction/concepts/event.md) or [company attributes](../introduction/concepts/company.md#attributes). The `feature key` doubles as the default event for a feature.
 
 ### Events or attributes
 
-[Events](../introduction/concepts/event/) are great for tracking feature interactions and when the frequency of interactions is important. For example, sending a chat message is best tracked with events.
+Events are great for tracking feature interactions and when the frequency of interactions is important. For example, sending a chat message is best tracked with events.
 
-[Company attributes](../introduction/concepts/company/attribute.md) are great for tracking state changes. For example, has the company installed any integrations or not is best tracked with company attributes.
+Company attributes are great for tracking state changes. For example, has the company installed any integrations or not is best tracked with company attributes.
 
 ### Code example
 

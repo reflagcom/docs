@@ -1,7 +1,3 @@
----
-description: Learn more about feature entitlements in Bucket
----
-
 # Feature entitlements
 
 In B2B SaaS, a typical use case is to manage feature access based on the customer’s subscription level. This means enforcing feature access at the company level, not the user level.&#x20;
@@ -69,7 +65,7 @@ You can do this for all plans. For example:
 
 Let’s say you have an export feature that's only available to customers on the "Business" or "Enterprise" plans. To gate this feature with Bucket, you create a new feature called “Export to CSV”. A feature can be as small as a button or as big as a product area.
 
-Each feature comes with a [feature key](../../introduction/data-model/feature/feature-key.md), like `export-to-csv`, which you wrap your feature in inside your codebase.&#x20;
+Each feature comes with a [feature key](../../introduction/concepts/feature.md#feature-key), like `export-to-csv`, which you wrap your feature in inside your codebase.&#x20;
 
 In React, it’d look like this:
 
