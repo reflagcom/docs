@@ -1,3 +1,7 @@
+---
+description: Learn more about feature adoption in Bucket
+---
+
 # Feature adoption
 
 Bucket tracks feature adoption through [events](../introduction/concepts/event.md) or [company attributes](../introduction/concepts/company.md#attributes). The `feature key` doubles as the default event for a feature.

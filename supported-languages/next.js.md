@@ -1,5 +1,5 @@
 ---
-description: Next.js client for Bucket.co
+description: Next.js client for Bucket
 ---
 
 # Next.js

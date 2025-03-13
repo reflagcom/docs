@@ -1,23 +1,29 @@
 ---
-layout:
-  visible: true
 title:
   visible: true
-description:
-  visible: false
 tableOfContents:
   visible: true
 outline:
   visible: true
 pagination:
   visible: true
+description: React client side library for Bucket
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
-# Bucket React SDK
+# React SDK
 
-React client side library for [Bucket.co](https://bucket.co)
-
-Bucket supports feature toggling, tracking feature usage, [requesting feedback](#userequestfeedback) on features, and [remotely configuring features](#remote-config-beta).
+Bucket supports feature toggling, tracking feature usage, [requesting feedback](./#userequestfeedback) on features, and [remotely configuring features](./#remote-config-beta).
 
 The Bucket React SDK comes with a [built-in toolbar](https://docs.bucket.co/supported-languages/browser-sdk#toolbar) which appears on `localhost` by default.
 
@@ -33,8 +39,7 @@ npm i @bucketco/react-sdk
 
 ### 1. Define Features (optional)
 
-To get type safe feature definitions, extend the definition of the `Features` interface and define which features you have.
-See the example below for the details.
+To get type safe feature definitions, extend the definition of the `Features` interface and define which features you have. See the example below for the details.
 
 If no explicit feature definitions are provided, there will be no types checked feature lookups.
 
@@ -92,23 +97,19 @@ function StartHuddleButton() {
 }
 ```
 
-`useFeature` can help you do much more. See a full example for `useFeature` [see below](#usefeature).
+`useFeature` can help you do much more. See a full example for `useFeature` [see below](./#usefeature).
 
 ## Setting `user` and `company`
 
-Bucket determines which features are active for a given `user`, `company`, or `otherContext`.
-You pass these to the `BucketProvider` as props.
+Bucket determines which features are active for a given `user`, `company`, or `otherContext`. You pass these to the `BucketProvider` as props.
 
-If you supply `user` or `company` objects, they must include at least the `id` property otherwise they will be ignored in their entirety.
-In addition to the `id`, you must also supply anything additional that you want to be able to evaluate feature targeting rules against.
-Attributes which are not properties of the `user` or `company` can be supplied using the `otherContext` prop.
+If you supply `user` or `company` objects, they must include at least the `id` property otherwise they will be ignored in their entirety. In addition to the `id`, you must also supply anything additional that you want to be able to evaluate feature targeting rules against. Attributes which are not properties of the `user` or `company` can be supplied using the `otherContext` prop.
 
-Attributes cannot be nested (multiple levels) and must be either strings, numbers or booleans.
-A number of special attributes exist:
+Attributes cannot be nested (multiple levels) and must be either strings, numbers or booleans. A number of special attributes exist:
 
-- `name` -- display name for `user`/`company`,
-- `email` -- the email of the user,
-- `avatar` -- the URL for `user`/`company` avatar image.
+* `name` -- display name for `user`/`company`,
+* `email` -- the email of the user,
+* `avatar` -- the URL for `user`/`company` avatar image.
 
 ```tsx
  <BucketProvider
@@ -125,15 +126,13 @@ A number of special attributes exist:
 
 To retrieve features along with their targeting information, use `useFeature(key: string)` hook (described in a section below).
 
-Note that accessing `isEnabled` on the object returned by `useFeature()` automatically
-generates a `check` event.
+Note that accessing `isEnabled` on the object returned by `useFeature()` automatically generates a `check` event.
 
 ## Remote config (beta)
 
 Remote config is a dynamic and flexible approach to configuring feature behavior outside of your app – without needing to re-deploy it.
 
-Similar to `isEnabled`, each feature accessed using the `useFeature()` hook, has a `config` property. This configuration is managed from within Bucket. It is managed similar to the way access to features is managed, but instead of the
-binary `isEnabled` you can have multiple configuration values which are given to different user/companies.
+Similar to `isEnabled`, each feature accessed using the `useFeature()` hook, has a `config` property. This configuration is managed from within Bucket. It is managed similar to the way access to features is managed, but instead of the binary `isEnabled` you can have multiple configuration values which are given to different user/companies.
 
 ### Get started with Remote config
 
@@ -168,67 +167,64 @@ const {
 
 `key` is mandatory for a config, but if a feature has no config or no config value was matched against the context, the `key` will be `undefined`. Make sure to check against this case when trying to use the configuration in your application. `payload` is an optional JSON value for arbitrary configuration needs.
 
-Note that, similar to `isEnabled`, accessing `config` on the object returned by `useFeature()` automatically
-generates a `check` event.
+Note that, similar to `isEnabled`, accessing `config` on the object returned by `useFeature()` automatically generates a `check` event.
 
 ## `<BucketProvider>` component
 
 The `<BucketProvider>` initializes the Bucket SDK, fetches features and starts listening for automated feedback survey events. The component can be configured using a number of props:
 
-- `publishableKey` is used to connect the provider to an _environment_ on Bucket. Find your `publishableKey` under [environment settings](https://app.bucket.co/envs/current/settings/app-environments) in Bucket,
-- `company`, `user` and `otherContext` make up the _context_ that is used to determine if a feature is enabled or not. `company` and `user` contexts are automatically transmitted to Bucket servers so the Bucket app can show you which companies have access to which features etc.
-  > [!Note]
-  > If you specify `company` and/or `user` they must have at least the `id` property, otherwise they will be ignored in their entirety. You should also supply anything additional you want to be able to evaluate feature targeting against,
-- `fallbackFeatures`: A list of strings which specify which features to consider enabled if the SDK is unable to fetch features. Can be provided in two formats:
+* `publishableKey` is used to connect the provider to an _environment_ on Bucket. Find your `publishableKey` under [environment settings](https://app.bucket.co/envs/current/settings/app-environments) in Bucket,
+*   `company`, `user` and `otherContext` make up the _context_ that is used to determine if a feature is enabled or not. `company` and `user` contexts are automatically transmitted to Bucket servers so the Bucket app can show you which companies have access to which features etc.
 
-  ```ts
-  // Simple array of feature keys
-  fallbackFeatures={["feature1", "feature2"]}
+    > \[!Note] If you specify `company` and/or `user` they must have at least the `id` property, otherwise they will be ignored in their entirety. You should also supply anything additional you want to be able to evaluate feature targeting against,
+*   `fallbackFeatures`: A list of strings which specify which features to consider enabled if the SDK is unable to fetch features. Can be provided in two formats:
 
-  // Or with configuration overrides
-  fallbackFeatures: {
-      "feature1": true,  // just enable the feature
-      "feature2": {      // enable with configuration
-        key: "variant-a",
-        payload: {
-          limit: 100,
-          mode: "test"
+    ```ts
+    // Simple array of feature keys
+    fallbackFeatures={["feature1", "feature2"]}
+
+    // Or with configuration overrides
+    fallbackFeatures: {
+        "feature1": true,  // just enable the feature
+        "feature2": {      // enable with configuration
+          key: "variant-a",
+          payload: {
+            limit: 100,
+            mode: "test"
+          }
         }
+    }
+    ```
+* `timeoutMs`: Timeout in milliseconds when fetching features from the server,
+* `staleWhileRevalidate`: If set to `true`, stale features will be returned while refetching features in the background,
+* `expireTimeMs`: If set, features will be cached between page loads for this duration (in milliseconds),
+* `staleTimeMs`: Maximum time (in milliseconds) that stale features will be returned if `staleWhileRevalidate` is true and new features cannot be fetched.
+*   `loadingComponent` lets you specify an React component to be rendered instead of the children while the Bucket provider is initializing. If you want more control over loading screens, `useFeature()` returns `isLoading` which you can use to customize the loading experience:
+
+    ```tsx
+    function LoadingBucket({ children }) {
+      const { isLoading } = useFeature("myFeature")
+      if (isLoading) {
+        return <Spinner />
       }
-  }
-  ```
 
-- `timeoutMs`: Timeout in milliseconds when fetching features from the server,
-- `staleWhileRevalidate`: If set to `true`, stale features will be returned while refetching features in the background,
-- `expireTimeMs`: If set, features will be cached between page loads for this duration (in milliseconds),
-- `staleTimeMs`: Maximum time (in milliseconds) that stale features will be returned if `staleWhileRevalidate` is true and new features cannot be fetched.
-- `loadingComponent` lets you specify an React component to be rendered instead of the children while the Bucket provider is initializing. If you want more control over loading screens, `useFeature()` returns `isLoading` which you can use to customize the loading experience:
-
-  ```tsx
-  function LoadingBucket({ children }) {
-    const { isLoading } = useFeature("myFeature")
-    if (isLoading) {
-      return <Spinner />
+      return children
     }
 
-    return children
-  }
-
-  //-- Initialize the Bucket provider
-  <BucketProvider publishableKey={YOUR_PUBLISHABLE_KEY} /*...*/>
-    <LoadingBucket>
-    {/* children here are shown when loading finishes */}
-    </LoadingBucket>
-  <BucketProvider>
-  ```
-
-- `enableTracking`: Set to `false` to stop sending tracking events and user/company updates to Bucket. Useful when you're impersonating a user (defaults to `true`),
-- `apiBaseUrl`: Optional base URL for the Bucket API. Use this to override the default API endpoint,
-- `appBaseUrl`: Optional base URL for the Bucket application. Use this to override the default app URL,
-- `sseBaseUrl`: Optional base URL for Server-Sent Events. Use this to override the default SSE endpoint,
-- `debug`: Set to `true` to enable debug logging to the console,
-- `toolbar`: Optional [configuration](https://docs.bucket.co/supported-languages/browser-sdk/globals#toolbaroptions) for the Bucket toolbar,
-- `feedback`: Optional configuration for feedback collection
+    //-- Initialize the Bucket provider
+    <BucketProvider publishableKey={YOUR_PUBLISHABLE_KEY} /*...*/>
+      <LoadingBucket>
+      {/* children here are shown when loading finishes */}
+      </LoadingBucket>
+    <BucketProvider>
+    ```
+* `enableTracking`: Set to `false` to stop sending tracking events and user/company updates to Bucket. Useful when you're impersonating a user (defaults to `true`),
+* `apiBaseUrl`: Optional base URL for the Bucket API. Use this to override the default API endpoint,
+* `appBaseUrl`: Optional base URL for the Bucket application. Use this to override the default app URL,
+* `sseBaseUrl`: Optional base URL for Server-Sent Events. Use this to override the default SSE endpoint,
+* `debug`: Set to `true` to enable debug logging to the console,
+* `toolbar`: Optional [configuration](https://docs.bucket.co/supported-languages/browser-sdk/globals#toolbaroptions) for the Bucket toolbar,
+* `feedback`: Optional configuration for feedback collection
 
 ## Hooks
 
@@ -283,8 +279,7 @@ function StartHuddleButton() {
 
 ### `useTrack()`
 
-`useTrack()` lets you send custom events to Bucket. Use this whenever a user _uses_ a feature. Create [features](https://docs.bucket.co/introduction/concepts/feature) in Bucket based off of these events to analyze feature usage.
-Returns a function to send custom events to Bucket. Use this whenever a user _uses_ a feature. These events can be used to analyze feature usage and create new features in Bucket.
+`useTrack()` lets you send custom events to Bucket. Use this whenever a user _uses_ a feature. Create [features](https://docs.bucket.co/introduction/concepts/feature) in Bucket based off of these events to analyze feature usage. Returns a function to send custom events to Bucket. Use this whenever a user _uses_ a feature. These events can be used to analyze feature usage and create new features in Bucket.
 
 ```tsx
 import { useTrack } from "@bucketco/react-sdk";
@@ -302,11 +297,9 @@ function StartHuddle() {
 
 Returns a function that lets you open up a dialog to ask for feedback on a specific feature. This is useful for collecting targeted feedback about specific features.
 
-`useRequestFeedback()` returns a function that lets you open up a dialog to ask for feedback on a specific feature.
-See [Automated Feedback Surveys](https://docs.bucket.co/product-handbook/live-satisfaction) for how to do this automatically, without code.
+`useRequestFeedback()` returns a function that lets you open up a dialog to ask for feedback on a specific feature. See [Automated Feedback Surveys](https://docs.bucket.co/product-handbook/live-satisfaction) for how to do this automatically, without code.
 
-When using the `useRequestFeedback` you must pass the feature key to `requestFeedback`.
-The example below shows how to use `position` to ensure the popover appears next to the "Give feedback!" button.
+When using the `useRequestFeedback` you must pass the feature key to `requestFeedback`. The example below shows how to use `position` to ensure the popover appears next to the "Give feedback!" button.
 
 ```tsx
 import { useRequestFeedback } from "@bucketco/react-sdk";
@@ -416,8 +409,7 @@ Note: To change the `user.id` or `company.id`, you need to update the props pass
 
 ### `useClient()`
 
-Returns the `BucketClient` used by the `BucketProvider`. The client offers more functionality that
-is not directly accessible thorough the other hooks.
+Returns the `BucketClient` used by the `BucketProvider`. The client offers more functionality that is not directly accessible thorough the other hooks.
 
 ```tsx
 import { useClient } from "@bucketco/react-sdk";

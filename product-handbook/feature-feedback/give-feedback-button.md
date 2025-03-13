@@ -1,14 +1,12 @@
 ---
-description: >-
-  Adding a "Give feedback" button using the Bucket Browser or Bucket React SDKs
-  takes only a few lines of code.
+description: Adding a feedback button using Bucket SDKs in a few lines of code.
 ---
 
 # Give feedback button
 
 Collecting feedback through a "Give feedback" button is a great way to collect feedback from users.
 
-Here's a brief example using the Bucket React SDK:
+Here's a brief example using the [Bucket React SDK](../../sdk/@bucketco/react-sdk/):
 
 ```tsx
 import { useFeature } from "@bucketco/react-sdk";

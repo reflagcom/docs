@@ -6,7 +6,7 @@ description: >-
 
 # Changelog
 
-## Add in Bulk
+## Add in bulk
 
 `2025-03-13`
 
