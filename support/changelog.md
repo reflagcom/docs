@@ -6,6 +6,12 @@ description: >-
 
 # Changelog
 
+## Add in Bulk
+
+`2025-03-13`
+
+For Pro customers, we just released bulk actions. Select multiple customers and give them access to features in bulk.
+
 ## Event listeners
 
 `2025-03-06`
