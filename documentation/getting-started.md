@@ -78,4 +78,4 @@ Bucket is purpose-built for B2B SaaS products. There's more.
 
 * Need some help? [Chat with us](mailto:hello@bucket.co)
 * Do you prefer a video call? [Talk to a founder](https://bucket.co/contact)
-* Latest product updates? [See Changelog](https://bucket.co/changelog)
+* Latest product updates? [See Changelog](../support/changelog.md)

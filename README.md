@@ -43,6 +43,8 @@ Connect Bucket with your tools.
 
 {% include ".gitbook/includes/integrations.md" %}
 
+
+
 ## Key features
 
 * [Feature flags](product-handbook/create-your-first-feature.md) that's purpose-built for B2B SaaS
@@ -56,4 +58,4 @@ Connect Bucket with your tools.
 
 * Need some help? [Chat with us](mailto:hello@bucket.co)
 * Do you prefer a video call? [Talk to a founder](https://bucket.co/contact)
-* Latest product updates? [See Changelog](https://bucket.co/changelog)
+* Latest product updates? [See Changelog](support/changelog.md)
