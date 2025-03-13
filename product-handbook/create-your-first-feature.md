@@ -1,5 +1,6 @@
 ---
 description: Getting started with Bucket by adding your first feature flag
+icon: flag
 ---
 
 # Add your first feature flag

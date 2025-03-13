@@ -1,5 +1,6 @@
 ---
 description: How to create a beta feature self opt-in page in React with Bucket
+icon: browser
 ---
 
 # Create a beta feature opt-in page

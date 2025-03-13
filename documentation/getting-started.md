@@ -1,5 +1,6 @@
 ---
 description: Getting started with Bucket
+icon: bolt
 ---
 
 # Getting started
@@ -10,7 +11,7 @@ Let's get started with Bucket. We'll do the following:
 2. Set up a [Bucket SDK](https://docs.bucket.co/supported-languages/overview) for your language and framework or use our [HTTP API](https://docs.bucket.co/api/http-api)
 3. Set [access rules](https://docs.bucket.co/product-handbook/feature-rollouts/feature-targeting-rules) to roll out features gradually to [certain segments](https://docs.bucket.co/product-handbook/creating-segments) and/or [environments](https://docs.bucket.co/product-handbook/creating-and-managing-apps/environments)
 
-Let's go!
+Let's go.
 
 ## 0. Prerequisites
 

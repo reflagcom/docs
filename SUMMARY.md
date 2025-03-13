@@ -1,9 +1,9 @@
 # Table of contents
 
-## Introduction
+## Documentation
 
 * [Introduction](README.md)
-* [Getting started](introduction/getting-started.md)
+* [Getting started](documentation/getting-started.md)
 
 ## Supported languages
 

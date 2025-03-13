@@ -1,32 +1,59 @@
 ---
+description: Welcome to Bucket, the feature flags to go fast.
 layout:
   title:
     visible: true
   description:
-    visible: false
+    visible: true
   tableOfContents:
     visible: true
   outline:
-    visible: true
+    visible: false
   pagination:
     visible: true
 ---
 
 # Introduction
 
-## What is Bucket?
+{% content-ref url="documentation/getting-started.md" %}
+[getting-started.md](documentation/getting-started.md)
+{% endcontent-ref %}
 
-Bucket is feature flagging purpose-built for B2B SaaS. It helps you build and release better features in B2B SaaS, all in a beautifully crafted UI.
+{% content-ref url="product-handbook/create-your-first-feature.md" %}
+[create-your-first-feature.md](product-handbook/create-your-first-feature.md)
+{% endcontent-ref %}
 
-That includes the following use cases:
+{% content-ref url="guides/release-beta-features.md" %}
+[release-beta-features.md](guides/release-beta-features.md)
+{% endcontent-ref %}
 
-* [Feature flags](product-handbook/create-your-first-feature.md) that's purpose-built for B2B SaaS,
-* [Feature entitlements](product-handbook/feature-entitlements/) that let you grant companies access by flipping a switch,
-* [Feature remote config](product-handbook/remote-config.md) that lets you manage feature configuration with ease in one place,
-* [Feature adoption metrics](product-handbook/feature-analysis/stars-framework.md) using a proven and B2B-optimized framework,
-* [Feature feedback](product-handbook/feature-analysis/) using surveys or feedback buttons,
-* [Feature data export](product-handbook/data-export.md) that is synced to your CRM and/or data warehouse.
+{% content-ref url="product-handbook/self-opt-in.md" %}
+[self-opt-in.md](product-handbook/self-opt-in.md)
+{% endcontent-ref %}
 
-## How does it work?
+## SDKs
 
-Creating a feature on Bucket gives you a [feature key](introduction/concepts/feature.md#feature-key). You can think of the feature key as a flag key that _also_ supports feature adoption and feature feedback.
+Add Bucket to your application in minutes with our SDKs.
+
+{% include ".gitbook/includes/languages.md" %}
+
+## Integrations
+
+Connect Bucket with your tools.
+
+{% include ".gitbook/includes/integrations.md" %}
+
+## Key features
+
+* [Feature flags](product-handbook/create-your-first-feature.md) that's purpose-built for B2B SaaS
+* [Feature entitlements](product-handbook/feature-entitlements/) that let you grant companies access by flipping a switch
+* [Feature remote config](product-handbook/remote-config.md) that lets you manage feature configuration with ease in one place
+* [Feature adoption metrics](product-handbook/feature-analysis/stars-framework.md) using a proven and B2B-optimized framework
+* [Feature feedback](product-handbook/feature-analysis/) using surveys or feedback buttons
+* [Feature data export](product-handbook/data-export.md) that is synced to your CRM and/or data warehouse
+
+## Support
+
+* Need some help? [Chat with us](mailto:hello@bucket.co)
+* Do you prefer a video call? [Talk to a founder](https://bucket.co/contact)
+* Latest product updates? [See Changelog](https://bucket.co/changelog)

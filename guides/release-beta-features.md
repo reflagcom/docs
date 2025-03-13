@@ -1,5 +1,6 @@
 ---
 description: How to release beta features to your React app with Bucket
+icon: unlock
 ---
 
 # Release beta features
