@@ -2,7 +2,7 @@
 description: How to create a beta feature self opt-in page in React with Bucket
 ---
 
-# Beta feature self opt-in
+# Create a beta feature opt-in page
 
 Creating a page where users can opt into certain beta/experimental features is straight forward with Bucket and the Bucket React SDK.
 
@@ -59,4 +59,4 @@ The React component above uses [remote attributes](https://bucket.co/changelog/i
 
 ### Next steps
 
-* Learn how to manage who has access, modify the [Targeting rules](feature-rollouts/feature-targeting-rules.md) in the UI.
+* Learn how to manage who has access, modify the [Targeting rules](../product-handbook/feature-rollouts/feature-targeting-rules.md) in the UI.

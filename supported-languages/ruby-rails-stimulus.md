@@ -1,8 +1,9 @@
 ---
 description: How to use Bucket with Rails and Stimulus
+hidden: true
 ---
 
-# Ruby/Rails/Stimulus
+# Ruby SDK
 
 How to use Bucket with Rails (+ Stimulus). Created by [mikker](https://gist.github.com/mikker) on [GitHub](https://gist.github.com/mikker/c435fc6bfcbdf67b60cd12ff96a45ee5).
 

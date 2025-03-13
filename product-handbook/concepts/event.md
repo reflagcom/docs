@@ -2,7 +2,7 @@
 
 ### Definition
 
-A track event in Bucket is sent by the client when an user interacts with a feature within your application. Bucket uses these events to [track feature adoption](feature.md#metrics) or launch [feedback surveys](../../product-handbook/feature-analysis/automated-feedback-surveys.md). In most cases, you don't need to create custom track events as you'll just use the [feature key](feature.md#feature-key) instead.
+A track event in Bucket is sent by the client when an user interacts with a feature within your application. Bucket uses these events to [track feature adoption](feature.md#metrics) or launch [feedback surveys](../feature-analysis/automated-feedback-surveys.md). In most cases, you don't need to create custom track events as you'll just use the [feature key](feature.md#feature-key) instead.
 
 ### Attributes
 
@@ -25,5 +25,5 @@ Do not include PII data when sending in event attributes. It is recommended that
 
 ### Next steps
 
-* Learn about [feedback](feedback.md) and setting up [automatic feedback surveys](../../product-handbook/feature-analysis/automated-feedback-surveys.md) within Bucket UI,
-* Learn how to [create an event-based feature](../../product-handbook/create-your-first-feature.md) using user attributes within Bucket UI.
+* Learn about [feedback](feedback.md) and setting up [automatic feedback surveys](../feature-analysis/automated-feedback-surveys.md) within Bucket UI,
+* Learn how to [create an event-based feature](../../guides/create-your-first-feature.md) using user attributes within Bucket UI.

@@ -8,7 +8,7 @@ You release features gradually to de-risk rollouts. It's better that only a few 
 
 Ideally, you first test internally and then roll out a limited release to beta customers. Once you've caught the major bugs or points of confusion, you release the feature to general availability.&#x20;
 
-This is how to use Bucket to safely roll out [new features](../create-your-first-feature.md).
+This is how to use Bucket to safely roll out [new features](../../guides/create-your-first-feature.md).
 
 ## Gradually roll out your feature
 

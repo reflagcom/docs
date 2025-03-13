@@ -4,7 +4,7 @@
 
 Segments are reusable lists of companies created based off one of more of the following:
 
-* [Company attributes](../../introduction/concepts/company.md#attributes)&#x20;
+* [Company attributes](../concepts/company.md#attributes)&#x20;
 * Feature access
 * Feature metrics
 * Feature feedback

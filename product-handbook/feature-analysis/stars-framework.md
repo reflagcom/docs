@@ -88,7 +88,7 @@ In the Bucket product, you will encounter both STARS _steps_ and _states_.
 
 STARS steps are those outlined above: Segment, Tried, Adopted, Retained, and Satisfied.&#x20;
 
-You will encounter STARS steps in the Analyze tab of a [Feature](../create-your-first-feature.md).
+You will encounter STARS steps in the Analyze tab of a [Feature](../../guides/create-your-first-feature.md).
 
 ### STARS states
 

@@ -1,8 +1,8 @@
 ---
-description: Getting started with Bucket by creating your first feature
+description: Getting started with Bucket by adding your first feature flag
 ---
 
-# Create your first feature
+# Add your first feature flag
 
 ## What's a feature?
 
@@ -44,8 +44,8 @@ You can now use `isEnabled` to gate access to the feature.&#x20;
 
 ### Next steps
 
-* Learn how to manage who has access and modify the [access rules](feature-rollouts/feature-targeting-rules.md) in the UI,
-* Learn how to set up [remote feature config](remote-config.md),
-* Learn how to [track adoption](feature-usage-configuration.md) of the feature,
-* Learn how to get [qualitative feedback](feature-analysis/) on the feature.
+* Learn how to manage who has access and modify the [access rules](../product-handbook/feature-rollouts/feature-targeting-rules.md) in the UI,
+* Learn how to set up [remote feature config](../product-handbook/remote-config.md),
+* Learn how to [track adoption](../product-handbook/feature-usage-configuration.md) of the feature,
+* Learn how to get [qualitative feedback](../product-handbook/feature-analysis/) on the feature.
 
