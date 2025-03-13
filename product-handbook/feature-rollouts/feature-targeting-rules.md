@@ -16,7 +16,7 @@ You'll find the feature access configuration under the `Access` tab in each feat
 
 ## Getting started <a href="#get-started" id="get-started"></a>
 
-* Create your [feature](../../guides/create-your-first-feature.md)
+* Create your [feature](../create-your-first-feature.md)
 * Select the `Access` tab
 
 ## Access rules

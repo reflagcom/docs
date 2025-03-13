@@ -35,4 +35,4 @@ Feature metrics are used within the Bucket UI in various places but can also ser
 ### Next steps
 
 * Learn about [feature views](feature-view.md), [track](event.md) and [feature events](feature-events.md),
-* Learn how to [create your first feature](../../guides/create-your-first-feature.md) within Bucket UI.
+* Learn how to [create your first feature](../../product-handbook/create-your-first-feature.md) within Bucket UI.

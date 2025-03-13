@@ -59,4 +59,4 @@ The React component above uses [remote attributes](https://bucket.co/changelog/i
 
 ### Next steps
 
-* Learn how to manage who has access, modify the [Targeting rules](../product-handbook/feature-rollouts/feature-targeting-rules.md) in the UI.
+* Learn how to manage who has access, modify the [Targeting rules](feature-rollouts/feature-targeting-rules.md) in the UI.

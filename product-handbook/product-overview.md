@@ -8,7 +8,7 @@ The Features tab of Bucket is where you create and manage your features.
 
 ## Feature page
 
-[Feature](../guides/create-your-first-feature.md) pages are where you create and manage feature flags, set access rules, track engagement metrics, and automatically collect feedback for individual features.&#x20;
+[Feature](create-your-first-feature.md) pages are where you create and manage feature flags, set access rules, track engagement metrics, and automatically collect feedback for individual features.&#x20;
 
 <figure><img src="../.gitbook/assets/Features Page V2-min.png" alt="Feature page with rollout targeting rules"><figcaption></figcaption></figure>
 
@@ -24,7 +24,7 @@ This is where you can create [segments](feature-targeting-rules/creating-segment
 
 ## Feedback
 
-The Feedback tab shows you CSAT scores and qualitative feedback from [automated feedback surveys](feature-analysis/automated-feedback-surveys.md).  You can filter by [STARS](feature-analysis/stars-framework.md) step, satisfaction score, [feature](../guides/create-your-first-feature.md), or [company](feature-targeting-rules/creating-segments.md).
+The Feedback tab shows you CSAT scores and qualitative feedback from [automated feedback surveys](feature-analysis/automated-feedback-surveys.md).  You can filter by [STARS](feature-analysis/stars-framework.md) step, satisfaction score, [feature](create-your-first-feature.md), or [company](feature-targeting-rules/creating-segments.md).
 
 <figure><img src="../.gitbook/assets/Feedback-min.png" alt="Feedback tab with feature feedback and CSAT scores"><figcaption></figcaption></figure>
 

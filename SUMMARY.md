@@ -17,7 +17,7 @@
   * [Reference](sdk/@bucketco/node-sdk/globals.md)
 * [Next.js](supported-languages/next.js.md)
 * [OpenFeature](supported-languages/openfeature.md)
-* [Ruby SDK](supported-languages/ruby-rails-stimulus.md)
+* [Ruby SDK](supported-languages/community-support/ruby-rails-stimulus.md)
 
 ## API
 
@@ -39,20 +39,20 @@
 ## Product Handbook
 
 * [Product overview](product-handbook/product-overview.md)
-* [Data model](product-handbook/concepts/README.md)
-  * [App](product-handbook/concepts/app.md)
-  * [Environment](product-handbook/concepts/environment.md)
-  * [Feature](product-handbook/concepts/feature.md)
-  * [Feature view](product-handbook/concepts/feature-view.md)
-  * [Company](product-handbook/concepts/company.md)
-  * [Segment](product-handbook/concepts/segment.md)
-  * [User](product-handbook/concepts/user.md)
-  * [Track event](product-handbook/concepts/event.md)
-  * [Feature events](product-handbook/concepts/feature-events.md)
-  * [Feedback](product-handbook/concepts/feedback.md)
-  * [Release stage](product-handbook/concepts/release-stage.md)
-  * [Targeting rules](product-handbook/concepts/targeting-rules.md)
-  * [Filter](product-handbook/concepts/filter.md)
+* [Data model](introduction/concepts/README.md)
+  * [App](introduction/concepts/app.md)
+  * [Environment](introduction/concepts/environment.md)
+  * [Feature](introduction/concepts/feature.md)
+  * [Feature view](introduction/concepts/feature-view.md)
+  * [Company](introduction/concepts/company.md)
+  * [Segment](introduction/concepts/segment.md)
+  * [User](introduction/concepts/user.md)
+  * [Track event](introduction/concepts/event.md)
+  * [Feature events](introduction/concepts/feature-events.md)
+  * [Feedback](introduction/concepts/feedback.md)
+  * [Release stage](introduction/concepts/release-stage.md)
+  * [Targeting rules](introduction/concepts/targeting-rules.md)
+  * [Filter](introduction/concepts/filter.md)
 * [Feature rollouts](product-handbook/feature-rollouts/README.md)
   * [Access rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
 * [Remote config](product-handbook/remote-config.md)
@@ -73,5 +73,10 @@
 
 ## Guides
 
-* [Add your first feature flag](guides/create-your-first-feature.md)
-* [Create a beta feature opt-in page](guides/self-opt-in.md)
+* [Add your first feature flag](product-handbook/create-your-first-feature.md)
+* [Release beta features](guides/release-beta-features.md)
+* [Create a beta feature opt-in page](product-handbook/self-opt-in.md)
+
+## Support
+
+* [Get support](support/get-support.md)

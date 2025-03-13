@@ -101,7 +101,7 @@ The image above exemplifies a feature called "_AI Transcripts_" which serves fiv
 
 ## Start using remote config
 
-First, [create your first feature](../guides/create-your-first-feature.md), if you haven't yet. Then, open your feature and click on the "_Remote config_" tab at the top.
+First, [create your first feature](create-your-first-feature.md), if you haven't yet. Then, open your feature and click on the "_Remote config_" tab at the top.
 
 <figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption><p>Click "Create config value" to start</p></figcaption></figure>
 

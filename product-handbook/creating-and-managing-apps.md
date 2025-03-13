@@ -4,7 +4,7 @@ description: Learn more about apps in Bucket
 
 # Managing apps
 
-Learn about [apps](concepts/app.md) here.
+Learn about [apps](../introduction/concepts/app.md) here.
 
 ### Modifying or deleting an app
 

@@ -73,7 +73,7 @@ The following entities and configuration options are application-wide and not de
 
 There are environment-specific functionalities that are only allowed in the `Production` environment. These are:
 
-* `Slack`: Reporting settings in [Features](../../guides/create-your-first-feature.md) and [Feature views](https://bucket.co/glossary/feature-views) can be configured from any environment, but are also reflected in the `Production` environment
+* `Slack`: Reporting settings in [Features](../create-your-first-feature.md) and [Feature views](https://bucket.co/glossary/feature-views) can be configured from any environment, but are also reflected in the `Production` environment
 * Some configuration sections are disabled if the selected environment is not `Production`.
 
 {% hint style="info" %}

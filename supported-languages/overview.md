@@ -25,7 +25,7 @@ These SDKs are crafted and maintained by the Bucket team.
 
 The following SDKs are community-led.
 
-* [Ruby on Rails](ruby-rails-stimulus.md) by [mikker](https://gist.github.com/mikker)
+* [Ruby on Rails](community-support/ruby-rails-stimulus.md) by [mikker](https://gist.github.com/mikker)
 
 For non-supported languages, you can use our [HTTP API](../api/http-api.md).
 
