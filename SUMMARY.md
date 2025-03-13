@@ -79,4 +79,5 @@
 
 ## Support
 
+* [Changelog](support/changelog.md)
 * [Get support](support/get-support.md)

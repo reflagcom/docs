@@ -24,7 +24,7 @@ Now let's create your first feature.
 1. Click `New feature` in the sidebar.
 2. Give your feature a name, and we'll suggest a `feature key` (Fig. 1).&#x20;
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption><p>Fig. 1: Create a new feature on bucket.co</p></figcaption></figure>
+<div data-full-width="false"><figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption><p>Fig. 1: Create a new feature on bucket.co</p></figcaption></figure></div>
 
 Now, let's set up a Bucket SDK for your language and framework.
 
