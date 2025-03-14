@@ -28,7 +28,19 @@ pagination:
 <tr>
 <td>
 
-[FEEDBACK](documents/FEEDBACK.md)
+[browser-sdk/FEEDBACK](documents/browser-sdk/FEEDBACK.md)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+[cli/README](documents/cli/README.md)
 
 </td>
 <td>

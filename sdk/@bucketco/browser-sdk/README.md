@@ -259,7 +259,7 @@ To get started with automatic feedback collection, make sure you've set `user` i
 Automated feedback surveys work even if you're not using the SDK to send events to Bucket.
 It works because the Bucket Browser SDK maintains a live connection to Bucket's servers and can automatically show a feedback prompt whenever the Bucket servers determines that an event should trigger a prompt - regardless of how this event is sent to Bucket.
 
-You can find all the options to make changes to the default behavior in the [Bucket feedback documentation](../../documents/FEEDBACK.md).
+You can find all the options to make changes to the default behavior in the [Bucket feedback documentation](../../documents/browser-sdk/FEEDBACK.md).
 
 ### Bucket feedback UI
 
@@ -267,7 +267,7 @@ Bucket can assist you with collecting your user's feedback by offering a pre-bui
 
 ![image](https://github.com/bucketco/bucket-javascript-sdk/assets/34348/c387bac1-f2e2-4efd-9dda-5030d76f9532)
 
-[Read the Bucket feedback UI documentation](../../documents/FEEDBACK.md)
+[Read the Bucket feedback UI documentation](../../documents/browser-sdk/FEEDBACK.md)
 
 ### Bucket feedback SDK
 

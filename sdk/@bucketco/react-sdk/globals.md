@@ -954,7 +954,7 @@ function useRequestFeedback(): (options: RequestFeedbackData) => undefined | voi
 Returns a function to open up the feedback form
 Note: When calling `useRequestFeedback`, user/company must already be set.
 
-See [link](../../documents/FEEDBACK.md) for more information
+See [link](../../documents/browser-sdk/FEEDBACK.md) for more information
 
 ```ts
 const requestFeedback = useRequestFeedback();
@@ -1012,7 +1012,7 @@ function useSendFeedback(): (opts: UnassignedFeedback) =>
 Returns a function to manually send feedback collected from a user.
 Note: When calling `useSendFeedback`, user/company must already be set.
 
-See [link](../../documents/FEEDBACK.md) for more information
+See [link](../../documents/browser-sdk/FEEDBACK.md) for more information
 
 ```ts
 const sendFeedback = useSendFeedback();
