@@ -1,29 +1,23 @@
 ---
+layout:
+  visible: true
 title:
   visible: true
+description:
+  visible: false
 tableOfContents:
   visible: true
 outline:
   visible: true
 pagination:
   visible: true
-description: How to use Bucket from your terminal
-layout:
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
 ---
 
-# CLI
+# Bucket CLI
 
-The CLI allows you to manage apps, features, authentication, and generate TypeScript types for your Bucket features. With this tool, you can streamline your feature flagging workflow directly from your terminal.
+Command-line interface for interacting with Bucket services. The CLI allows you to manage apps,
+features, authentication, and generate TypeScript types for your Bucket features. With this tool,
+you can streamline your feature flagging workflow directly from your terminal.
 
 ## Usage
 
@@ -37,7 +31,7 @@ npm install --save-dev @bucketco/cli
 yarn add --dev @bucketco/cli
 ```
 
-Then running the `new` command from your project's root directory,\
+Then running the `new` command from your project's root directory,
 initializing the CLI, creating a feature, and generating the types all at once:
 
 ```bash
@@ -65,7 +59,7 @@ npx bucket features types
 
 ## Configuration
 
-The CLI creates a `bucket.config.json` file in your project directory when you run `bucket init`.\
+The CLI creates a `bucket.config.json` file in your project directory when you run `bucket init`.
 This file contains all the necessary settings for your Bucket integration.
 
 ### Configuration File Structure
@@ -101,7 +95,7 @@ You can override these settings using command-line options for individual comman
 
 ### `bucket init`
 
-Initialize a new Bucket configuration in your project.\
+Initialize a new Bucket configuration in your project.
 This creates a `bucket.config.json` file with your settings and prompts for any required information not provided via options.
 
 ```bash
@@ -110,13 +104,13 @@ bucket init [--overwrite]
 
 Options:
 
-* `--overwrite`: Overwrite existing configuration file if one exists
-* `--app-id <id>`: Set the application ID
-* `--key-format <format>`: Set the key format for features
+- `--overwrite`: Overwrite existing configuration file if one exists
+- `--app-id <id>`: Set the application ID
+- `--key-format <format>`: Set the key format for features
 
 ### `bucket new [featureName]`
 
-All-in-one command to get started quickly. This command combines `init`, feature creation,\
+All-in-one command to get started quickly. This command combines `init`, feature creation,
 and type generation in a single step. Use this for the fastest way to get up and running with Bucket.
 
 ```bash
@@ -125,11 +119,11 @@ bucket new "My Feature" [--key my-feature] [--app-id ap123456789] [--key-format 
 
 Options:
 
-* `--key`: Specific key for the feature
-* `--app-id`: App ID to use
-* `--key-format`: Format for feature keys (custom, snake, camel, etc.)
-* `--out`: Path to generate TypeScript types
-* `--format`: Format of the generated types (react or node)
+- `--key`: Specific key for the feature
+- `--app-id`: App ID to use
+- `--key-format`: Format for feature keys (custom, snake, camel, etc.)
+- `--out`: Path to generate TypeScript types
+- `--format`: Format of the generated types (react or node)
 
 If you prefer more control over each step, you can use the individual commands (`init`, `features create`, `features types`) instead.
 
@@ -155,7 +149,7 @@ Manage your Bucket features with the following subcommands.
 
 #### `bucket features create [featureName]`
 
-Create a new feature in your Bucket app.\
+Create a new feature in your Bucket app.
 The command guides you through the feature creation process with interactive prompts if options are not provided.
 
 ```bash
@@ -164,13 +158,13 @@ bucket features create "My Feature" [--key my-feature] [--app-id ap123456789] [-
 
 Options:
 
-* `--key`: Specific key for the feature
-* `--app-id`: App ID to use
-* `--key-format`: Format for feature keys
+- `--key`: Specific key for the feature
+- `--app-id`: App ID to use
+- `--key-format`: Format for feature keys
 
 #### `bucket features list`
 
-List all features for the current app.\
+List all features for the current app.
 This helps you visualize what features are available and their current configurations.
 
 ```bash
@@ -179,11 +173,11 @@ bucket features list [--app-id ap123456789]
 
 Options:
 
-* `--app-id`: App ID to use
+- `--app-id`: App ID to use
 
 #### `bucket features types`
 
-Generate TypeScript types for your features.\
+Generate TypeScript types for your features.
 This ensures type safety when using Bucket features in your TypeScript/JavaScript applications.
 
 ```bash
@@ -192,9 +186,9 @@ bucket features types [--app-id ap123456789] [--out gen/features.ts] [--format r
 
 Options:
 
-* `--app-id`: App ID to use
-* `--out`: Path to generate TypeScript types
-* `--format`: Format of the generated types (react or node)
+- `--app-id`: App ID to use
+- `--out`: Path to generate TypeScript types
+- `--format`: Format of the generated types (react or node)
 
 ### `bucket apps`
 
@@ -204,10 +198,10 @@ Commands for managing Bucket apps.
 
 These options can be used with any command:
 
-* `--debug`: Enable debug mode for verbose output
-* `--base-url <url>`: Set the base URL for Bucket API
-* `--api-url <url>`: Set the API URL directly (overrides base URL)
-* `--help`: Display help information for a command
+- `--debug`: Enable debug mode for verbose output
+- `--base-url <url>`: Set the base URL for Bucket API
+- `--api-url <url>`: Set the API URL directly (overrides base URL)
+- `--help`: Display help information for a command
 
 ## Development
 
@@ -225,9 +219,9 @@ yarn format
 
 ## Requirements
 
-* Node.js >=18.0.0
+- Node.js >=18.0.0
 
 ## License
 
-> MIT License\
+> MIT License
 > Copyright (c) 2025 Bucket ApS
