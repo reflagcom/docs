@@ -6,6 +6,18 @@ description: >-
 
 # Changelog
 
+## CLI
+
+`2025-03-17`
+
+Create new features from the command line and maintain type safety while building. When creating a new feature, the [CLI](../sdk/documents/cli/) updates your local types to make sure they match types defined in Bucket.
+
+Start now:
+
+```bash
+npm i @bucketco/cli
+```
+
 ## Add in bulk
 
 `2025-03-13`
