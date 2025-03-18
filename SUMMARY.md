@@ -11,7 +11,7 @@
 * [React SDK](sdk/@bucketco/react-sdk/README.md)
   * [Reference](sdk/@bucketco/react-sdk/globals.md)
 * [Browser SDK](sdk/@bucketco/browser-sdk/README.md)
-  * [Feedback](supported-languages/browser-sdk/feedback.md)
+  * [Feedback](sdk/documents/browser-sdk/FEEDBACK.md)
   * [Reference](sdk/@bucketco/browser-sdk/globals.md)
 * [Node.js SDK](sdk/@bucketco/node-sdk/README.md)
   * [Reference](sdk/@bucketco/node-sdk/globals.md)
