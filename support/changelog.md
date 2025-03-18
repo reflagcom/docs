@@ -6,6 +6,12 @@ description: >-
 
 # Changelog
 
+## Toolbar
+
+`2025-03-18`
+
+Toggle features on and off when building locally.
+
 ## CLI
 
 `2025-03-17`
