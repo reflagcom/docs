@@ -6,6 +6,12 @@ description: >-
 
 # Changelog
 
+## Event log
+
+`2025-03-19`
+
+The Event log shows the data your apps send to Bucket. Filter them by type and get detailed context for quick debugging.
+
 ## Toolbar
 
 `2025-03-18`
@@ -59,12 +65,6 @@ Mark features as secret so you can use them on your backend and ensure that the 
 `2025-02-12`
 
 When browsing companies or users, we now display company logos and user pics, rather than randomly generated avatars.
-
-## Improved Event Log
-
-`2025-02-06`
-
-The Event Log shows the data your apps send and helps you see if everything is set up correctly.
 
 ## Improved feature tabs
 
