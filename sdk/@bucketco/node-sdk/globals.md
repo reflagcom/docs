@@ -1459,7 +1459,7 @@ Describes a feature
 <tr>
 <td>
 
-`TConfig` *extends* [`FeatureType`](globals.md#featuretype)\[`"config"`\] \| `undefined`
+`TConfig` *extends* [`FeatureType`](globals.md#featuretype)\[`"config"`\]
 
 </td>
 <td>
@@ -1490,7 +1490,7 @@ Describes a feature
 </td>
 <td>
 
-`TConfig` *extends* `undefined` ? [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) : `TConfig` & \{ `key`: `string`; \}
+ \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| \{ `key`: `string`; \} & `TConfig`
 
 </td>
 <td>
