@@ -6,6 +6,14 @@ description: >-
 
 # Changelog
 
+## Automated stale flag clean up
+
+`2025-03-20`
+
+Bucket for GitHub automatically cleans up feature flags once features have been rolled out.
+
+[Get early access ->](https://bucket.co/early-access)
+
 ## Event log
 
 `2025-03-19`
