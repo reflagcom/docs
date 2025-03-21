@@ -4,46 +4,39 @@ description: How Bucket integrates with Datadog
 
 # Datadog
 
-With the Datadog integration, you can enrich your RUM data with feature flag data. This will enable you to catch regressisions on new feature releases.
+With the Datadog integration, you can enrich your RUM data with feature flag data. This will enable you to catch regressions on new feature releases.
 
 ### Get available features from Bucket
 
-In this example, we're using the [Browser SDK](../sdk/@bucketco/browser-sdk/):
+In this example, we're using the [React SDK](../sdk/@bucketco/react-sdk/):
 
 ```javascript
-//init
-const bucket = new BucketBrowserSDK.BucketClient({
-    publishableKey: "pub_prod_5eS0G5hX4ZOpwoAw1CKTeP",
-    user: { 
-        id: "u1234", 
-        name: "Rasmus Makwarth" 
-    },
-});
+import { datadogRum } from "@datadog/browser-rum";
+import { useClient } from "@bucketco/react-sdk";
 
-//get features
-const features = bucket.getFeatures();
-```
-
-This will return JSON with all available features for the authenticated user:
-
-```json
-"features": {
-    "export-to-csv": {
-        "isEnabled": true,
-        "key": "export-to-csv",
-        "targetingVersion": 2
-    },
-    ...
+// Component to enhnance datadog RUM with flag checks
+function DatadogIntegration() {
+  const client = useClient();
+  useEffect(() => {
+    return client?.on("check", (check) => {
+      datadogRum.addFeatureFlagEvaluation(check.key, check.value);
+    });
+  }, [client]);
+  return null;
 }
 ```
 
-### Add as RUM context on Datadog
-
-We can forward all features or pick certain features and send access state to Datadog ([documentation](https://docs.datadoghq.com/real_user_monitoring/guide/setup-feature-flag-data-collection/?tab=browser#custom-feature-flag-management)):
+Add the component inside the BucketProvider:
 
 ```tsx
-datadogRum.addFeatureFlagEvaluation("export-to-csv", true);
-//etc. 
+function App() {
+  return (
+    <BucketProvider>
+      <DatadogIntegration /> // Add the component inside the <BucketProvider>
+      {children}
+    </BucketProvider>
+  )
+}
 ```
 
 Which will look like this on Datadog:
