@@ -1,6 +1,6 @@
-<img width="1200" alt="bucket-docs-og" src="https://412612722-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/organizations%2FDu9vflR1aVGOJElT6Sip%2Fsites%2Fsite_RVvaB%2Fsocialpreview%2FoaAncFA4GjpEXHjoLIZW%2FDocs%20OG.jpg?alt=media&token=78e0426b-1efa-43d0-8a72-0e453dc9cf83" />
+<img width="1200" alt="bucket-docs-og" src="https://docs.bucket.co/~gitbook/image?url=https%3A%2F%2F412612722-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Forganizations%252FDu9vflR1aVGOJElT6Sip%252Fsites%252Fsite_RVvaB%252Fsocialpreview%252FQMZvELgHSV06HcHke0HB%252FOG%2520-%2520Docs.jpg%3Falt%3Dmedia%26token%3Dd3b36bf6-20da-475c-84c9-9ae887b7a15d&width=1200&height=630&sign=6f89fdbf&sv=2" />
 
-<br> Welcome to Bucket, a feature flag provider for B2B SaaS companies. 
+<br> Welcome to Bucket, a feature flag provider crafted for SaaS companies. 
 
 Bucket is built to work at the company/organization level right out of the box, is quickly set up, and gives you feature adoption metrics and customer feedback in a beautifully crafted UI.
 
