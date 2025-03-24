@@ -25,16 +25,13 @@ Install using `yarn` or `npm` with:
 
 > `yarn add -s @bucketco/node-sdk` or `npm install -s @bucketco/node-sdk`.
 
-Other supported languages/frameworks are in the
-[Supported languages](https://docs.bucket.co/quickstart/supported-languages)
-documentation pages.
+Other supported languages/frameworks are in the [Supported languages](https://docs.bucket.co/quickstart/supported-languages) documentation pages.
 
-You can also [use the HTTP API directly](https://docs.bucket.co/reference/http-tracking-api)
+You can also [use the HTTP API directly](https://docs.bucket.co/api/http-api)
 
 ## Basic usage
 
-To get started you need to obtain your secret key from the
-[environment settings](https://app.bucket.co/envs/current/settings/app-environments)
+To get started you need to obtain your secret key from the [environment settings](https://app.bucket.co/envs/current/settings/app-environments)
 in Bucket.
 
 {% hint style="danger" %}
@@ -156,8 +153,8 @@ It's recommended to call `flush()` before your application shuts down to ensure 
 
 ### Rate Limiting
 
-The SDK includes automatic rate limiting for feature events to prevent overwhelming the API. Rate limiting is applied per
-unique combination of feature key and context. The rate limiter window size is configurable:
+The SDK includes automatic rate limiting for feature events to prevent overwhelming the API.
+Rate limiting is applied per unique combination of feature key and context. The rate limiter window size is configurable:
 
 ```typescript
 const client = new BucketClient({
