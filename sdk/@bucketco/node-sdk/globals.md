@@ -2633,6 +2633,85 @@ type EmptyFeatureRemoteConfig = {
 
 ***
 
+### FeatureConfigVariant
+
+```ts
+type FeatureConfigVariant = {
+  filter: RuleFilter;
+  key: string;
+  payload: any;
+};
+```
+
+Describes a remote feature config variant.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="filter"></a> `filter`
+
+</td>
+<td>
+
+`RuleFilter`
+
+</td>
+<td>
+
+The filter for the variant.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key-3"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the variant.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="payload-1"></a> `payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### FeatureOverride
 
 ```ts
@@ -2964,7 +3043,7 @@ A remotely managed configuration value for a feature.
 <tr>
 <td>
 
-<a id="key-3"></a> `key`
+<a id="key-4"></a> `key`
 
 </td>
 <td>
@@ -2998,7 +3077,7 @@ The missing fields in the evaluation context (optional).
 <tr>
 <td>
 
-<a id="payload-1"></a> `payload`
+<a id="payload-2"></a> `payload`
 
 </td>
 <td>
