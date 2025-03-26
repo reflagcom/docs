@@ -496,6 +496,65 @@ The options for the client or an existing client to clone.
 
 An error if the options are invalid.
 
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Modifier</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="httpclient"></a> `httpClient`
+
+</td>
+<td>
+
+`public`
+
+</td>
+<td>
+
+[`HttpClient`](globals.md#httpclient-1)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="logger"></a> `logger`
+
+</td>
+<td>
+
+`readonly`
+
+</td>
+<td>
+
+[`Logger`](globals.md#logger-1)
+
+</td>
+<td>
+
+Gets the logger associated with the client.
+
+</td>
+</tr>
+</tbody>
+</table>
+
 #### Accessors
 
 ##### featureOverrides
@@ -547,22 +606,6 @@ The feature overrides.
 ###### Returns
 
 `void`
-
-##### logger
-
-###### Get Signature
-
-```ts
-get logger(): undefined | Logger
-```
-
-Gets the logger associated with the client.
-
-###### Returns
-
-`undefined` \| [`Logger`](globals.md#logger-1)
-
-The logger or `undefined` if it is not set.
 
 #### Methods
 
@@ -726,6 +769,21 @@ The evaluated feature.
 ###### Remarks
 
 Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
+
+##### getFeatureDefinitions()
+
+```ts
+getFeatureDefinitions(): Promise<FeatureDefinition[]>
+```
+
+Gets the feature definitions, including all config values.
+To evaluate which features are enabled for a given user/company, use `getFeatures`.
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FeatureDefinition`](globals.md#featuredefinition)[]\>
+
+The features definitions.
 
 ##### getFeatureRemote()
 
@@ -2338,12 +2396,12 @@ Use `apiBaseUrl` instead.
 <tr>
 <td>
 
-<a id="httpclient-1"></a> `httpClient`?
+<a id="httpclient-2"></a> `httpClient`?
 
 </td>
 <td>
 
-[`HttpClient`](globals.md#httpclient)
+[`HttpClient`](globals.md#httpclient-1)
 
 </td>
 <td>
@@ -2770,6 +2828,189 @@ The optional user-supplied payload data.
 
 ***
 
+### FeatureDefinition
+
+```ts
+type FeatureDefinition = {
+  config: {
+     variants: FeatureConfigVariant[];
+     version: number;
+    };
+  description: string | null;
+  flag: {
+     rules: {
+        filter: RuleFilter;
+       }[];
+     version: number;
+    };
+  key: string;
+};
+```
+
+Describes a feature definition.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config-2"></a> `config`?
+
+</td>
+<td>
+
+\{
+  `variants`: [`FeatureConfigVariant`](globals.md#featureconfigvariant)[];
+  `version`: `number`;
+ \}
+
+</td>
+<td>
+
+The remote configuration for the feature.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.variants`
+
+</td>
+<td>
+
+[`FeatureConfigVariant`](globals.md#featureconfigvariant)[]
+
+</td>
+<td>
+
+The variants of the remote configuration.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.version`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The version of the remote configuration.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="description"></a> `description`
+
+</td>
+<td>
+
+`string` \| `null`
+
+</td>
+<td>
+
+Description of the feature.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flag"></a> `flag`
+
+</td>
+<td>
+
+\{
+  `rules`: \{
+     `filter`: `RuleFilter`;
+    \}[];
+  `version`: `number`;
+ \}
+
+</td>
+<td>
+
+The targeting rules for the feature.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`flag.rules`
+
+</td>
+<td>
+
+\{
+  `filter`: `RuleFilter`;
+ \}[]
+
+</td>
+<td>
+
+The targeting rules.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`flag.version`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The version of the targeting rules.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key-4"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the feature.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### FeatureOverride
 
 ```ts
@@ -2925,7 +3166,7 @@ type FeatureType = {
 <tr>
 <td>
 
-<a id="config-2"></a> `config`?
+<a id="config-3"></a> `config`?
 
 </td>
 <td>
@@ -3101,7 +3342,7 @@ A remotely managed configuration value for a feature.
 <tr>
 <td>
 
-<a id="key-4"></a> `key`
+<a id="key-5"></a> `key`
 
 </td>
 <td>
