@@ -1576,7 +1576,10 @@ Define your own implementation of this interface to use a different HTTP client.
 ##### get()
 
 ```ts
-get<TResponse>(url: string, headers: Record<string, string>): Promise<HttpClientResponse<TResponse>>
+get<TResponse>(
+   url: string, 
+   headers: Record<string, string>, 
+timeoutMs: number): Promise<HttpClientResponse<TResponse>>
 ```
 
 Sends a GET request to the specified URL.
@@ -1642,6 +1645,23 @@ The URL to send the request to.
 <td>
 
 The headers to include in the request.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`timeoutMs`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+&hyphen;
 
 </td>
 </tr>
@@ -2135,6 +2155,8 @@ type ClientOptions = {
      | Record<TypedFeatureKey, Exclude<FeatureOverride, false>>;
   featureOverrides:   | string
      | (context: Context) => FeatureOverrides;
+  featuresFetchRetries: number;
+  fetchTimeoutMs: number;
   host: string;
   httpClient: HttpClient;
   logger: Logger;
@@ -2255,6 +2277,42 @@ If a function is specified, the function will be called with the context
 and should return a record of feature keys and boolean or object values.
 
 Defaults to "bucketFeatures.json".
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="featuresfetchretries"></a> `featuresFetchRetries`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Number of times to retry fetching feature definitions (optional).
+Default is 3 times.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="fetchtimeoutms"></a> `fetchTimeoutMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The timeout in milliseconds for fetching feature targeting data (optional).
+Default is 10000 ms.
 
 </td>
 </tr>
