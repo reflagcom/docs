@@ -24,6 +24,7 @@
 * [API Introduction](api/http-api.md)
 * [API Reference](api/api-reference.md)
 * [CLI](sdk/documents/cli/README.md)
+* [MCP](api/mcp.md)
 
 ## Integrations
 
