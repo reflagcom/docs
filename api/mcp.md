@@ -1,3 +1,9 @@
+---
+description: >-
+  Model Context Protocol lets you connect your Large Language Model (LLM) to
+  external data. Follow this guide to connect you LLM to your Bucket data
+---
+
 # MCP
 
 {% hint style="warning" %}
