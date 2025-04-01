@@ -17,9 +17,31 @@ Let's go.
 
 First off, you need to sign up for [Bucket](https://app.bucket.co/signup).
 
+**Pro tip**: Install [Bucket CLI](../sdk/documents/cli/) to add feature flags from the command line. Run the following command:
+
+```bash
+# npm
+npm install --save-dev @bucketco/cli
+
+# yarn
+yarn add --dev @bucketco/cli
+```
+
 ## 1. Create your first feature&#x20;
 
 Now let's create your first feature.
+
+Navigate to your project's root directory, then running the `new` command to initialize the CLI, create a feature, and generate the types all at once:
+
+```bash
+# npm
+npx bucket new
+
+# yarn
+yarn bucket new
+```
+
+You can use the [Bucket Dashboard](https://app.bucket.co/), too:
 
 1. Click `New feature` in the sidebar.
 2. Give your feature a name, and we'll suggest a `feature key` (Fig. 1).&#x20;
@@ -54,7 +76,7 @@ See the respective SDK documentation for example for other SDKs.
 
 ## 3. Set access rules
 
-Head back over to your dashboard, select your feature and the `Access` tab (Fig. 2).
+Head back over to [your dashboard](https://app.bucket.co/), select your feature and the `Access` tab (Fig. 2).
 
 <figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption><p>Fig. 2: Access rules on bucket.co</p></figcaption></figure>
 
