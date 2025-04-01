@@ -1,36 +1,50 @@
 ---
 description: >-
   Model Context Protocol lets you connect your Large Language Model (LLM) to
-  external data. Follow this guide to connect you LLM to your Bucket data
+  external data. Follow this guide to connect you LLM to your Bucket data.
 ---
 
 # MCP
 
 {% hint style="warning" %}
-The MCP server is still in development
+The MCP server is still under development.
 {% endhint %}
 
-To get started follow these few steps:\
+To get started, follow these steps:
 
+{% stepper %}
+{% step %}
+### Install the [CLI](../sdk/documents/cli/) that comes with the MCP server
 
-1.  Install the [CLI](../sdk/documents/cli/) which comes with the MCP server:\
+```bash
+$ npm install --save-dev @bucketco/cli
+$ npx bucket init
+```
+{% endstep %}
 
+{% step %}
+### Start the MCP
 
-    ```
-    $ npm install --save-dev @bucketco/cli
-    $ npx bucket init
-    ```
-2. Start the MCP by running `npx bucket mcp` .
-3.  Add the MCP server to e.g. Cursor,\
+```bash
+npx bucket mcp
+```
+{% endstep %}
 
+{% step %}
+### Add the MCP server to Cursor
 
-    ```json
-    {
-        "mcpServers": {
-          "Bucket feature flag MCP": {
-            "url": "http://localhost:8050/sse"
-          }
-        }
+```json
+{
+    "mcpServers": {
+      "Bucket feature flag MCP": {
+        "url": "http://localhost:8050/sse"
       }
-    ```
-4. That's it!
+    }
+  }
+```
+{% endstep %}
+
+{% step %}
+### That's it!
+{% endstep %}
+{% endstepper %}
