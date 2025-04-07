@@ -1,7 +1,7 @@
 ---
 description: >-
   Model Context Protocol lets you connect your Large Language Model (LLM) to
-  external data. Follow this guide to connect you LLM to your Bucket data.
+  external data. Follow this guide to connect your LLM to your Bucket data.
 ---
 
 # MCP
@@ -31,7 +31,7 @@ npx bucket mcp
 {% endstep %}
 
 {% step %}
-### Add the MCP server to Cursor
+### Add the MCP server to your IDE
 
 ```json
 {
