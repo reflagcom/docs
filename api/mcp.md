@@ -14,7 +14,7 @@ To get started, follow these steps:
 
 {% stepper %}
 {% step %}
-### Install the [CLI](../sdk/documents/cli/) that comes with the MCP server
+### Install the [CLI](../sdk/documents/cli/)
 
 ```bash
 npm install --save-dev @bucketco/cli
@@ -23,7 +23,7 @@ npx bucket init
 {% endstep %}
 
 {% step %}
-### Start the MCP
+### Start the MCP server
 
 ```bash
 npx bucket mcp
