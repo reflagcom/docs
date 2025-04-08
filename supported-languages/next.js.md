@@ -119,7 +119,7 @@ export default function Page({
 
 ### Flags SDK by Vercel
 
-[Flags SDK by Vercel](https://flags-sdk.dev/) is a Next.js oriented interface for server-side feature flags. It's straight forward to use with the Bucket Node.js SDK:
+[Flags SDK by Vercel](https://flags-sdk.dev/) is a Next.js oriented interface for server-side feature flags. It's straightforward to use with the Bucket Node.js SDK:
 
 ```typescript
 import { flag } from '@vercel/flags/next';
