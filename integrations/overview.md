@@ -17,19 +17,17 @@ layout:
 
 # Overview
 
-Integrations on Bucket enable you to:
+## All integrations
 
-1. **Export feature data to other tools, so you can:**
-   * Query analytics based on feature access filters in [PostHog](posthog.md), [Amplitude](amplitude.md), or [Mixpanel](mixpanel.md).
-   * Catch regressions on new feature releases in [Datadog](datadog.md).
-   * Use [Segment](segment.md) events for tracking feature adoption metrics on Bucket.
-   * Export feature data for CS, Marketing, and Sales tools, via [Amazon S3](aws-s3.md).
-2. **Discuss feature feedback on** [**Slack**](slack.md) **or get notified about new feature changes.**
-3. **Build your own integrations with 3rd party tools, using:**
-   * [Event listeners](../sdk/@bucketco/browser-sdk/#event-listeners)
-   * [HTTP API](../api/http-api.md)
-
-#### All integrations
+These integrations are crafted and maintained by the Bucket team.
 
 {% include "../.gitbook/includes/integrations.md" %}
 
+## **Build your own**
+
+To build your own integrations with Bucket, you can use:
+
+* [Event listeners](../sdk/@bucketco/browser-sdk/#event-listeners)
+* [HTTP API](../api/http-api.md)
+
+**To request support for more integrations,** [**please fill out this form**](https://share-eu1.hsforms.com/14DktM5t6T229b5Bg8KPDBg2b6w1x) **— Thanks!**&#x20;
