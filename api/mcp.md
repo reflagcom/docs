@@ -6,10 +6,6 @@ description: >-
 
 # MCP
 
-{% hint style="warning" %}
-The MCP server is still under development.
-{% endhint %}
-
 To get started, follow these steps:
 
 {% stepper %}
