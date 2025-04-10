@@ -25,7 +25,7 @@ npx bucket init
 {% endstep %}
 
 {% step %}
-### Start the Bucket MCP
+### Start the Bucket MCP server
 
 Start the MCP server using the CLI inside your project directory:
 
