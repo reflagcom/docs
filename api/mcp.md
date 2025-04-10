@@ -8,7 +8,7 @@ description: >-
 
 {% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F6wSC8SR2SupI4hONkYqp%2Fuploads%2F3ldWF5ngJR7yUMAysZKa%2Fcursor-mcp-demo_h264.mp4?alt=media&token=8e77c2e5-24fd-4451-85ee-5120008626c7" %}
 
-## Get started with the Bucket MCP
+## Get started with Bucket MCP
 
 The Model Context Protocol (MCP) is an open protocol that provides a standardized way to connect AI models to different data sources and tools. In the context of Bucket, MCP enables your development environment to understand your feature flags, their states, and their relationships within your codebase. This creates a seamless bridge between your feature management workflow and AI-powered development tools.&#x20;
 
