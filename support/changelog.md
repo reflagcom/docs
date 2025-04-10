@@ -6,13 +6,19 @@ description: >-
 
 # Changelog
 
+## MCP
+
+`2025-04-09`
+
+[Bucket MCP](../api/mcp.md) enables you to flag features, manage company data, and control feature access from your AI code editor.
+
 ## Automated stale flag clean up
 
 `2025-03-20`
 
 Bucket for GitHub automatically cleans up feature flags once features have been rolled out.
 
-[Get early access ->](https://bucket.co/early-access)
+[Get early access](https://bucket.co/early-access)
 
 ## Event log
 
@@ -48,7 +54,7 @@ For Pro customers, we just released bulk actions. Select multiple customers and 
 
 `2025-03-06`
 
-Integrate Bucket through event listeners in the Bucket SDKs.
+Integrate Bucket through [event listeners](changelog.md#event-listeners) in the Bucket SDKs.
 
 ## Beta Remote Config
 
