@@ -1,5 +1,7 @@
 ---
-description: How Bucket integrates with Amplitude
+description: >-
+  How Bucket integrates with Amplitude to query analytics based on feature
+  access filters
 ---
 
 # Amplitude

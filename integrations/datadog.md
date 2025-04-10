@@ -1,5 +1,7 @@
 ---
-description: How Bucket integrates with Datadog
+description: >-
+  How Bucket integrates with Datadog to catch regressions on new feature
+  releases
 ---
 
 # Datadog

@@ -29,13 +29,13 @@
 ## Integrations
 
 * [Overview](integrations/overview.md)
-* [Linear](integrations/linear.md)
-* [Datadog](integrations/datadog.md)
-* [Segment](integrations/segment.md)
-* [PostHog](integrations/posthog.md)
 * [Amplitude](integrations/amplitude.md)
-* [Mixpanel](integrations/mixpanel.md)
 * [AWS S3](integrations/aws-s3.md)
+* [Datadog](integrations/datadog.md)
+* [Linear](integrations/linear.md)
+* [Mixpanel](integrations/mixpanel.md)
+* [PostHog](integrations/posthog.md)
+* [Segment](integrations/segment.md)
 * [Slack](integrations/slack.md)
 
 ## Product Handbook

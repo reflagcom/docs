@@ -1,5 +1,7 @@
 ---
-description: How Bucket integrates with Mixpanel
+description: >-
+  How Bucket integrates with Mixpanel to query analytics based on feature access
+  filters
 ---
 
 # Mixpanel

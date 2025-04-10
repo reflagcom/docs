@@ -1,5 +1,5 @@
 ---
-description: How Bucket integrates with AWS S3
+description: Export feature data for CS, Marketing, and Sales tools, via Amazon AWS S3
 ---
 
 # AWS S3

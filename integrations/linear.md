@@ -1,5 +1,5 @@
 ---
-description: How Bucket integrates with Linear
+description: Create feature flags from Linear
 ---
 
 # Linear

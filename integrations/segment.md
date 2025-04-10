@@ -1,5 +1,5 @@
 ---
-description: How Bucket integrates with Segment
+description: Use Segment events for tracking feature adoption metrics on Bucket
 ---
 
 # Segment

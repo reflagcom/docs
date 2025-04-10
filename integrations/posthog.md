@@ -1,5 +1,7 @@
 ---
-description: How Bucket integrates with PostHog
+description: >-
+  How Bucket integrates with PostHog to query analytics based on feature access
+  filters
 ---
 
 # PostHog
