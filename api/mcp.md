@@ -37,7 +37,7 @@ npx bucket mcp
 {% step %}
 ### Connect your editor
 
-Use this [quick install link for Visual Studio Code](vscode:mcp/install?%7B%22name%22%3A%22Bucket%22%2C%22url%22%3A%22http%3A%2F%2Flocalhost%3A8050%2Fsse%22%7D) to add the MCP directly to your VS Code user settings.
+Use this [quick install link for Visual Studio Code](vscode:mcp/install?%7B%22name%22%3A%22Bucket%22%2C%22type%22%3A%22sse%22%2C%22url%22%3A%22http%3A%2F%2Flocalhost%3A8050%2Fsse%22%7D) to add the MCP directly to your VS Code user settings.
 
 To install the MCP in Cursor or another editor, see [#manual-setup](mcp.md#manual-setup "mention") below.
 {% endstep %}
@@ -70,6 +70,10 @@ Below you can find the manual setup steps for some popular editors. [More MCP co
 4. Save, go back to Cursor, and start prompting!
 
 ### [Visual Studio Code](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
+
+{% hint style="info" %}
+You must enable the [Copilot agent mode](https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode) to use MCP in Visual Studio Code Copilot chat.
+{% endhint %}
 
 1. Open VS Code.
 2. Open the command palette, typically `CMD + SHIFT + P` or `CTRL + SHIFT + P`.
