@@ -11,7 +11,7 @@ Bucket integrates with Linear to streamline your workflow:
 
 ## Connecting to your Linear organization
 
-To connect Bucket with your Linear account, navigate to the [Integrations ](https://app.bucket.co/envs/current/settings/org-integrations)section for your organization, and use the "_Connect to Line&#x61;_&#x72;" button to initiate the authorization process.
+To connect Bucket with your Linear account, navigate to the [Integrations](https://app.bucket.co/envs/current/settings/org-integrations) section for your organization, and use the "_Connect to Line&#x61;_&#x72;" button to initiate the authorization process.
 
 <figure><img src="../.gitbook/assets/image (11).png" alt="" width="225"><figcaption><p>Integrations section in your organization</p></figcaption></figure>
 
