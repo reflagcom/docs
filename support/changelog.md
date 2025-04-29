@@ -6,6 +6,12 @@ description: >-
 
 # Changelog
 
+## Slack notifications
+
+`2025-04-29`
+
+Get the latest feature changes and customer feedback in [Slack](../integrations/slack.md).
+
 ## MCP
 
 `2025-04-09`
