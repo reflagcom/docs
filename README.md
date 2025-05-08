@@ -1,13 +1,13 @@
 ---
-description: >-
-  Feature flags to ship the right things faster. Flag without friction. Get
-  feedback. Track adoption.
 icon: bolt
 ---
 
 # Getting started
 
-Let's get started with Bucket. We'll do the following:
+**Welcome!** Bucket is feature flags that helps you ship the right features faster.&#x20;
+
+Let's get started. We'll do the following:\
+
 
 1. Create your [first feature](https://docs.bucket.co/product-handbook/create-your-first-feature).
 2. Set up a [Bucket SDK](https://docs.bucket.co/supported-languages/overview) for your language and framework or use our [HTTP API](https://docs.bucket.co/api/http-api)
@@ -15,42 +15,34 @@ Let's get started with Bucket. We'll do the following:
 4. Get [feedback](introduction/concepts/feedback.md) to fix customer issues.
 5. Track [feature adoption](product-handbook/feature-usage-configuration.md).
 
-Let's go.
+
 
 ## Prerequisites
 
-First off, you need to sign up for [Bucket](https://app.bucket.co/signup).
-
-**Pro tip**: Install [Bucket CLI](sdk/documents/cli/) to add feature flags from the command line. Run the following command:
+First off, you need to create an account. Do so in the [Bucket UI](https://app.bucket.co) or use the [CLI](sdk/documents/cli/):
 
 ```bash
-# npm
-npm install --save-dev @bucketco/cli
-
-# yarn
-yarn add --dev @bucketco/cli
+npm i @bucketco/cli -D && npx bucket new
 ```
 
 ## 1. Create your first feature&#x20;
 
-Now let's create your first feature. With the CLI:
+Now let's create your first feature. Use the [CLI](sdk/documents/cli/), [Bucket UI](https://app.bucket.co) or our [MCP](api/mcp.md) within your editor.
+
+CLI:
 
 ```bash
-# npm
 npx bucket new
-
-# yarn
-yarn bucket new
 ```
 
-Or use the [Bucket UI](https://app.bucket.co):
+Bucket UI:
 
 1. Click `New feature` in the sidebar.
-2. Give your feature a name, and we'll suggest a `feature key` (Fig. 1).&#x20;
+2. Give your feature a name, and we'll suggest a `feature key` .
 
-<div data-full-width="false"><figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption><p>Fig. 1: Create a new feature on bucket.co</p></figcaption></figure></div>
+<div data-full-width="false"><figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure></div>
 
-Now, let's set up a Bucket SDK for your language and framework.
+Next, let's set up a Bucket SDK for your language and framework.
 
 ## 2. Install the Bucket SDK
 
@@ -76,9 +68,9 @@ You can now use `isEnabled` to gate access to the feature.&#x20;
 
 ## 3. Set access rules
 
-Head back over to [your dashboard](https://app.bucket.co/), select your feature and the `Access` tab (Fig. 2).
+Head back over to [your dashboard](https://app.bucket.co/), select your feature and the `Access` tab.
 
-<figure><img src=".gitbook/assets/image (9).png" alt=""><figcaption><p>Fig. 2: Access rules on bucket.co</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 From here, you can define segments, companies, and users that will access your feature.
 
