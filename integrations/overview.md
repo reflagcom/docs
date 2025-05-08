@@ -1,7 +1,5 @@
 ---
-description: >-
-  Sync feature releases, access, adoption, and feedback to Linear, PostHog,
-  Segment and more.
+description: Integrate Bucket with your stack
 layout:
   title:
     visible: true

@@ -29,4 +29,4 @@ The following SDKs are community-led.
 
 For non-supported languages, you can use the [HTTP API](../api/http-api.md).
 
-**To request support for more languages,** [**please fill out this form**](https://share-eu1.hsforms.com/14DktM5t6T229b5Bg8KPDBg2b6w1x) **— Thanks!**&#x20;
+To request support for more languages, [please fill out this form](https://share-eu1.hsforms.com/14DktM5t6T229b5Bg8KPDBg2b6w1x).&#x20;
