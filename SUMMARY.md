@@ -2,8 +2,7 @@
 
 ## Documentation
 
-* [Introduction](README.md)
-* [Getting started](documentation/getting-started.md)
+* [Getting started](README.md)
 
 ## Supported languages
 
@@ -81,5 +80,8 @@
 
 ## Support
 
-* [Changelog](support/changelog.md)
 * [Get support](support/get-support.md)
+
+***
+
+* [Changelog](https://bucket.co/changelog)

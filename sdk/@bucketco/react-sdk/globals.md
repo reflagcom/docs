@@ -1,19 +1,26 @@
 ---
-layout:
-  visible: true
 title:
   visible: true
-description:
-  visible: false
 tableOfContents:
   visible: true
 outline:
   visible: true
 pagination:
   visible: true
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
-# @bucketco/react-sdk
+# Reference
 
 ## Interfaces
 
@@ -23,127 +30,20 @@ Event representing checking the feature flag evaluation result
 
 #### Properties
 
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="action"></a> `action`
-
-</td>
-<td>
-
-`"check-is-enabled"` \| `"check-config"`
-
-</td>
-<td>
-
-`check-is-enabled` means `isEnabled` was checked, `check-config` means `config` was checked.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key"></a> `key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Feature key.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="missingcontextfields"></a> `missingContextFields?`
-
-</td>
-<td>
-
-`string`[]
-
-</td>
-<td>
-
-Missing context fields.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="ruleevaluationresults"></a> `ruleEvaluationResults?`
-
-</td>
-<td>
-
-`boolean`[]
-
-</td>
-<td>
-
-Rule evaluation results.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="value"></a> `value?`
-
-</td>
-<td>
-
- \| `boolean` \| \{ `key`: `string`; `payload`: `any`; \}
-
-</td>
-<td>
-
-Result of feature flag or configuration evaluation.
-If `action` is `check-is-enabled`, this is the result of the feature flag evaluation and `value` is a boolean.
-If `action` is `check-config`, this is the result of the configuration evaluation.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="version"></a> `version?`
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-Version of targeting rules.
-
-</td>
-</tr>
-</tbody>
-</table>
+| Property                 | Type                                                   | Description                                                                                                                                                                                                                                                                                                               |
+| ------------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `action`                 | `"check-is-enabled"` \| `"check-config"`               | `check-is-enabled` means `isEnabled` was checked, `check-config` means `config` was checked.                                                                                                                                                                                                                              |
+| `key`                    | `string`                                               | Feature key.                                                                                                                                                                                                                                                                                                              |
+| `missingContextFields?`  | `string`\[]                                            | Missing context fields.                                                                                                                                                                                                                                                                                                   |
+| `ruleEvaluationResults?` | `boolean`\[]                                           | Rule evaluation results.                                                                                                                                                                                                                                                                                                  |
+| `value?`                 | \| `boolean` \| { `key`: `string`; `payload`: `any`; } | <p>Result of feature flag or configuration evaluation.<br>If <code>action</code> is <code>check-is-enabled</code>, this is the result of the feature flag evaluation and <code>value</code> is a boolean.<br>If <code>action</code> is <code>check-config</code>, this is the result of the configuration evaluation.</p> |
+| `version?`               | `number`                                               | Version of targeting rules.                                                                                                                                                                                                                                                                                               |
 
 ***
 
 ### CompanyContext
 
-Context is a set of key-value pairs.
+Context is a set of key-value pairs.\
 Id should always be present so that it can be referenced to an existing company.
 
 #### Indexable
@@ -154,185 +54,36 @@ Id should always be present so that it can be referenced to an existing company.
 
 #### Properties
 
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="id"></a> `id`
-
-</td>
-<td>
-
-`undefined` \| `string` \| `number`
-
-</td>
-<td>
-
-Company id
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="name"></a> `name?`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Company name
-
-</td>
-</tr>
-</tbody>
-</table>
+| Property | Type                                | Description  |
+| -------- | ----------------------------------- | ------------ |
+| `id`     | `undefined` \| `string` \| `number` | Company id   |
+| `name?`  | `string`                            | Company name |
 
 ***
 
-### Feature\<TConfig\>
+### Feature\<TConfig>
 
 Describes a feature
 
 #### Type Parameters
 
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-<th>Default type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TConfig` *extends* [`FeatureType`](globals.md#featuretype)\[`"config"`\]
-
-</td>
-<td>
-
-[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
-
-</td>
-</tr>
-</tbody>
-</table>
+| Type Parameter                                                           | Default type                                                      |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| `TConfig` _extends_ [`FeatureType`](globals.md#featuretype)\[`"config"`] | [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) |
 
 #### Properties
 
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config"></a> `config`
-
-</td>
-<td>
-
- \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| \{ `key`: `string`; \} & `TConfig`
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabled"></a> `isEnabled`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-If the feature is enabled.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isloading"></a> `isLoading`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-If the feature is loading.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key-1"></a> `key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the feature.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="requestfeedback"></a> `requestFeedback`
-
-</td>
-<td>
-
-(`opts`: [`RequestFeedbackOptions`](globals.md#requestfeedbackoptions)) => `void`
-
-</td>
-<td>
-
-Request feedback from the user.
-
-</td>
-</tr>
-</tbody>
-</table>
+| Property          | Type                                                                                                     | Description                     |
+| ----------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| `config`          | \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| { `key`: `string`; } & `TConfig` | ‐                               |
+| `isEnabled`       | `boolean`                                                                                                | If the feature is enabled.      |
+| `isLoading`       | `boolean`                                                                                                | If the feature is loading.      |
+| `key`             | `string`                                                                                                 | The key of the feature.         |
+| `requestFeedback` | (`opts`: [`RequestFeedbackOptions`](globals.md#requestfeedbackoptions)) => `void`                        | Request feedback from the user. |
 
 #### Methods
 
-##### track()
+**track()**
 
 ```ts
 track(): 
@@ -344,12 +95,12 @@ track():
 
 Track feature usage in Bucket.
 
-###### Returns
+**Returns**
 
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-  \| `undefined`
-  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+\| `undefined`\
+\| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<\
+\| `undefined`\
+\| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)>
 
 ***
 
@@ -367,68 +118,11 @@ Track feature usage in Bucket.
 
 #### Properties
 
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="email"></a> `email?`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-User email
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="id-1"></a> `id`
-
-</td>
-<td>
-
-`undefined` \| `string` \| `number`
-
-</td>
-<td>
-
-User id
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="name-1"></a> `name?`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-User name
-
-</td>
-</tr>
-</tbody>
-</table>
+| Property | Type                                | Description |
+| -------- | ----------------------------------- | ----------- |
+| `email?` | `string`                            | User email  |
+| `id`     | `undefined` \| `string` \| `number` | User id     |
+| `name?`  | `string`                            | User name   |
 
 ## Type Aliases
 
@@ -447,87 +141,12 @@ Props for the BucketProvider.
 
 #### Type declaration
 
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`children`?
-
-</td>
-<td>
-
-`ReactNode`
-
-</td>
-<td>
-
-Children to be rendered.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`debug`?
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-Whether to enable debug mode (optional).
-
-</td>
-</tr>
-<tr>
-<td>
-
-`loadingComponent`?
-
-</td>
-<td>
-
-`ReactNode`
-
-</td>
-<td>
-
-Loading component to be rendered while features are loading.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`newBucketClient`?
-
-</td>
-<td>
-
-(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
-
-</td>
-<td>
-
-**`Internal`**
-
-New BucketClient constructor.
-
-</td>
-</tr>
-</tbody>
-</table>
+| Name                | Type                                                                                                                                                                                                                                                             | Description                                                                       |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `children`?         | `ReactNode`                                                                                                                                                                                                                                                      | Children to be rendered.                                                          |
+| `debug`?            | `boolean`                                                                                                                                                                                                                                                        | Whether to enable debug mode (optional).                                          |
+| `loadingComponent`? | `ReactNode`                                                                                                                                                                                                                                                      | Loading component to be rendered while features are loading.                      |
+| `newBucketClient`?  | (...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)<_typeof_ [`BucketClient`](../browser-sdk/globals.md#bucketclient)>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient) | <p><strong><code>Internal</code></strong></p><p>New BucketClient constructor.</p> |
 
 ***
 
@@ -542,40 +161,10 @@ type EmptyFeatureRemoteConfig = {
 
 #### Type declaration
 
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="key-2"></a> `key`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="payload"></a> `payload`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-</tbody>
-</table>
+| Name      | Type        |
+| --------- | ----------- |
+| `key`     | `undefined` |
+| `payload` | `undefined` |
 
 ***
 
@@ -602,56 +191,13 @@ A remotely managed configuration value for a feature.
 
 #### Type declaration
 
-\{
-  `key`: `string`;
-  `payload`: `any`;
- \}
+{`key`: `string`;`payload`: `any`;\
+}
 
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the matched configuration value.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
-
-</td>
-</tr>
-</tbody>
-</table>
+| Name      | Type     | Description                                 |
+| --------- | -------- | ------------------------------------------- |
+| `key`     | `string` | The key of the matched configuration value. |
+| `payload` | `any`    | The optional user-supplied payload data.    |
 
 [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
 
@@ -669,42 +215,10 @@ type FeatureType = {
 
 #### Type declaration
 
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config-1"></a> `config`?
-
-</td>
-<td>
-
-\{
-  `payload`: `any`;
- \}
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
+| Name             | Type                                                 |
+| ---------------- | ---------------------------------------------------- |
+| `config`?        | <p>{<code>payload</code>: <code>any</code>;<br>}</p> |
+| `config.payload` | `any`                                                |
 
 ***
 
@@ -738,65 +252,12 @@ type TrackEvent = {
 
 #### Type declaration
 
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="attributes"></a> `attributes`?
-
-</td>
-<td>
-
-  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
-  \| `null`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="company"></a> `company`?
-
-</td>
-<td>
-
-[`CompanyContext`](globals.md#companycontext)
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="eventname"></a> `eventName`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="user"></a> `user`
-
-</td>
-<td>
-
-[`UserContext`](globals.md#usercontext)
-
-</td>
-</tr>
-</tbody>
-</table>
+| Name          | Type                                                                                                                                                                                          |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `attributes`? | <p>| <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type"><code>Record</code></a>&#x3C;<code>string</code>, <code>any</code>><br>| <code>null</code></p> |
+| `company`?    | [`CompanyContext`](globals.md#companycontext)                                                                                                                                                 |
+| `eventName`   | `string`                                                                                                                                                                                      |
+| `user`        | [`UserContext`](globals.md#usercontext)                                                                                                                                                       |
 
 ***
 
@@ -810,7 +271,7 @@ Describes a collection of evaluated feature.
 
 #### Remarks
 
-This types falls back to a generic Record<string, Feature> if the Features interface
+This types falls back to a generic Record\<string, Feature> if the Features interface\
 has not been extended.
 
 ## Functions
@@ -825,28 +286,9 @@ Provider for the BucketClient.
 
 #### Parameters
 
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`__namedParameters`
-
-</td>
-<td>
-
-[`BucketProps`](globals.md#bucketprops)
-
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter           | Type                                    |
+| ------------------- | --------------------------------------- |
+| `__namedParameters` | [`BucketProps`](globals.md#bucketprops) |
 
 #### Returns
 
@@ -875,7 +317,7 @@ useEffect(() => {
 
 #### Returns
 
-`undefined` \| [`BucketClient`](../browser-sdk/globals.md#bucketclient)
+`undefined` | [`BucketClient`](../browser-sdk/globals.md#bucketclient)
 
 ***
 
@@ -897,51 +339,19 @@ function HuddleButton() {
 
 #### Type Parameters
 
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
+| Type Parameter            |
+| ------------------------- |
+| `TKey` _extends_ `string` |
 
 #### Parameters
 
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`TKey`
-
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter | Type   |
+| --------- | ------ |
+| `key`     | `TKey` |
 
 #### Returns
 
-[`TypedFeatures`](globals.md#typedfeatures)\[`TKey`\]
+[`TypedFeatures`](globals.md#typedfeatures)\[`TKey`]
 
 ***
 
@@ -951,7 +361,7 @@ function HuddleButton() {
 function useRequestFeedback(): (options: RequestFeedbackData) => undefined | void
 ```
 
-Returns a function to open up the feedback form
+Returns a function to open up the feedback form\
 Note: When calling `useRequestFeedback`, user/company must already be set.
 
 See [link](../../documents/browser-sdk/FEEDBACK.md) for more information
@@ -968,34 +378,15 @@ bucket.requestFeedback({
 
 `Function`
 
-##### Parameters
+**Parameters**
 
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
+| Parameter | Type                                                                   |
+| --------- | ---------------------------------------------------------------------- |
+| `options` | [`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata) |
 
-`options`
+**Returns**
 
-</td>
-<td>
-
-[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-##### Returns
-
-`undefined` \| `void`
+`undefined` | `void`
 
 ***
 
@@ -1009,7 +400,7 @@ function useSendFeedback(): (opts: UnassignedFeedback) =>
 | Response>
 ```
 
-Returns a function to manually send feedback collected from a user.
+Returns a function to manually send feedback collected from a user.\
 Note: When calling `useSendFeedback`, user/company must already be set.
 
 See [link](../../documents/browser-sdk/FEEDBACK.md) for more information
@@ -1028,37 +419,18 @@ sendFeedback({
 
 `Function`
 
-##### Parameters
+**Parameters**
 
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
+| Parameter | Type                                                                 |
+| --------- | -------------------------------------------------------------------- |
+| `opts`    | [`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback) |
 
-`opts`
+**Returns**
 
-</td>
-<td>
-
-[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-##### Returns
-
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-  \| `undefined`
-  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+\| `undefined`\
+\| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<\
+\| `undefined`\
+\| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)>
 
 ***
 
@@ -1074,7 +446,7 @@ function useTrack(): (eventName: string, attributes?:
 | Response>
 ```
 
-Returns a function to send an event when a user performs an action
+Returns a function to send an event when a user performs an action\
 Note: When calling `useTrack`, user/company must already be set.
 
 ```ts
@@ -1086,49 +458,19 @@ track("Started Huddle", { button: "cta" });
 
 `Function`
 
-##### Parameters
+**Parameters**
 
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
+| Parameter     | Type                                                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `eventName`   | `string`                                                                                                                  |
+| `attributes`? | \| `null` \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)<`string`, `any`> |
 
-`eventName`
+**Returns**
 
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`attributes`?
-
-</td>
-<td>
-
- \| `null` \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
-
-</td>
-</tr>
-</tbody>
-</table>
-
-##### Returns
-
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-  \| `undefined`
-  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+\| `undefined`\
+\| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<\
+\| `undefined`\
+\| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)>
 
 ***
 
@@ -1140,11 +482,11 @@ function useUpdateCompany(): (opts: {}) =>
 | Promise<void>
 ```
 
-Returns a function to update the current company's information.
+Returns a function to update the current company's information.\
 For example, if the company changed plan or opted into a beta-feature.
 
-The method returned is a function which returns a promise that
-resolves when after the features have been updated as a result
+The method returned is a function which returns a promise that\
+resolves when after the features have been updated as a result\
 of the company update.
 
 ```ts
@@ -1156,35 +498,16 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Features updated")
 
 `Function`
 
-##### Parameters
+**Parameters**
 
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
+| Parameter | Type |
+| --------- | ---- |
+| `opts`    | {}   |
 
-`opts`
+**Returns**
 
-</td>
-<td>
-
-\{\}
-
-</td>
-</tr>
-</tbody>
-</table>
-
-##### Returns
-
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+\| `undefined`\
+\| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
 
 ***
 
@@ -1196,11 +519,11 @@ function useUpdateOtherContext(): (opts: {}) =>
 | Promise<void>
 ```
 
-Returns a function to update the "other" context information.
+Returns a function to update the "other" context information.\
 For example, if the user changed workspace, you can set the workspace id here.
 
-The method returned is a function which returns a promise that
-resolves when after the features have been updated as a result
+The method returned is a function which returns a promise that\
+resolves when after the features have been updated as a result\
 of the update to the "other" context.
 
 ```ts
@@ -1213,35 +536,16 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 
 `Function`
 
-##### Parameters
+**Parameters**
 
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
+| Parameter | Type |
+| --------- | ---- |
+| `opts`    | {}   |
 
-`opts`
+**Returns**
 
-</td>
-<td>
-
-\{\}
-
-</td>
-</tr>
-</tbody>
-</table>
-
-##### Returns
-
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+\| `undefined`\
+\| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
 
 ***
 
@@ -1253,11 +557,11 @@ function useUpdateUser(): (opts: {}) =>
 | Promise<void>
 ```
 
-Returns a function to update the current user's information.
+Returns a function to update the current user's information.\
 For example, if the user changed role or opted into a beta-feature.
 
-The method returned is a function which returns a promise that
-resolves when after the features have been updated as a result
+The method returned is a function which returns a promise that\
+resolves when after the features have been updated as a result\
 of the user update.
 
 ```ts
@@ -1269,32 +573,13 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Features updated"))
 
 `Function`
 
-##### Parameters
+**Parameters**
 
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
+| Parameter | Type |
+| --------- | ---- |
+| `opts`    | {}   |
 
-`opts`
+**Returns**
 
-</td>
-<td>
-
-\{\}
-
-</td>
-</tr>
-</tbody>
-</table>
-
-##### Returns
-
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+\| `undefined`\
+\| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
