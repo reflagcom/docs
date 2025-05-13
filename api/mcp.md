@@ -13,8 +13,6 @@ description: >-
 
 The Model Context Protocol (MCP) is an open protocol that provides a standardized way to connect AI models to different data sources and tools. In the context of Bucket, MCP enables your code editor to understand your feature flags, their states, and their relationships within your codebase. This creates a seamless bridge between your feature management workflow and AI-powered development tools. The MCP server is hosted by Bucket so it's very easy get get started:
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F6wSC8SR2SupI4hONkYqp%2Fuploads%2FxYCKpH0C3aYERZ9AuF2o%2FKapture%202025-05-13%20at%2010.30.41.mp4?alt=media&token=cd1c07aa-cb13-44b9-87d1-0084b05bf0bf" %}
-
 {% stepper %}
 {% step %}
 ### Set up the MCP connection with the [Bucket CLI](../sdk/documents/cli/)
@@ -34,6 +32,8 @@ npx @bucketco/cli mcp
 {% hint style="info" %}
 Make sure your editor/client and [Node.js](https://nodejs.org/en/download) versions are up-to-date.
 {% endhint %}
+
+{% embed url="https://2489416983-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F6wSC8SR2SupI4hONkYqp%2Fuploads%2FAvCYllmE5g5WBDiUSeez%2Fmcp-remote.mp4?alt=media&token=9b5f31bd-d94b-4831-a7d0-85410265dab3" %}
 
 ## Manual setup
 
