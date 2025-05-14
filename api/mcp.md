@@ -11,7 +11,7 @@ description: >-
 
 ## Get started with Bucket Remote MCP
 
-The Model Context Protocol (MCP) is an open protocol that provides a standardized way to connect AI models to different data sources and tools. In the context of Bucket, MCP enables your code editor to understand your feature flags, their states, and their relationships within your codebase. This creates a seamless bridge between your feature management workflow and AI-powered development tools. The MCP server is hosted by Bucket so it's very easy get get started:
+The Model Context Protocol (MCP) is an open protocol that provides a standardized way to connect AI models to different data sources and tools. In the context of Bucket, MCP enables your code editor to understand your feature flags, their states, and their relationships within your codebase. This creates a seamless bridge between your feature management workflow and AI-powered development tools. Bucket hosts the MCP server, making it very easy to get started!
 
 {% stepper %}
 {% step %}
@@ -20,7 +20,7 @@ The Model Context Protocol (MCP) is an open protocol that provides a standardize
 Simply run our one-line command in your project directory and select the options that best suit you.
 
 ```bash
-npx @bucketco/cli mcp
+npx @bucketco/cli@latest mcp
 ```
 {% endstep %}
 
