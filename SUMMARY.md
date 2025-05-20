@@ -36,6 +36,7 @@
 * [PostHog](integrations/posthog.md)
 * [Segment](integrations/segment.md)
 * [Slack](integrations/slack.md)
+* [Vercel](https://flags-sdk.dev/providers/bucket)
 
 ## Product Handbook
 
