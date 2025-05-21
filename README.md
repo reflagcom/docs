@@ -9,11 +9,11 @@ icon: bolt
 Let's get started. We'll do the following:\
 
 
-1. Create your [first feature](https://docs.bucket.co/product-handbook/create-your-first-feature).
-2. Set up a [Bucket SDK](https://docs.bucket.co/supported-languages/overview) for your language and framework or use our [HTTP API](https://docs.bucket.co/api/http-api)
-3. Set feature [access rules](https://docs.bucket.co/product-handbook/feature-rollouts/feature-targeting-rules).
-4. Get [feedback](introduction/concepts/feedback.md) to fix customer issues.
-5. Track [feature adoption](product-handbook/feature-usage-configuration.md).
+1. Create your first feature.
+2. Install the Bucket SDK.
+3. Set feature access rules.
+4. Get feedback to fix customer issues.
+5. Track feature adoption.
 
 
 
