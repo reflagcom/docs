@@ -4,7 +4,7 @@ icon: bolt
 
 # Getting started
 
-**Welcome!** Bucket is feature flags that helps you ship the right features faster.&#x20;
+**Welcome!** Bucket is feature flags that helps you ship quality features faster.&#x20;
 
 Let's get started. We'll do the following:\
 
