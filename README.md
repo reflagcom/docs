@@ -27,20 +27,34 @@ npm i @bucketco/cli -D && npx bucket new
 
 ## 1. Create your first feature&#x20;
 
-Now let's create your first feature. Use the [CLI](sdk/documents/cli/), [Bucket UI](https://app.bucket.co) or our [MCP](api/mcp.md) within your editor.
+Now let's create your first feature.&#x20;
 
-CLI:
-
-```bash
+{% tabs %}
+{% tab title="CLI" %}
+```
 npx bucket new
 ```
 
-Bucket UI:
+See [CLI docs](sdk/documents/cli/).
+{% endtab %}
 
+{% tab title="UI" %}
 1. Click `New feature` in the sidebar.
 2. Give your feature a name, and we'll suggest a `feature key` .
 
 <div data-full-width="false"><figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure></div>
+
+
+{% endtab %}
+
+{% tab title="MCP" %}
+You can create features from your code editor via our [MCP](api/mcp.md).
+{% endtab %}
+
+{% tab title="Linear" %}
+You can create features from within Linear by mentioning the `@bucket` [agent](integrations/linear.md).
+{% endtab %}
+{% endtabs %}
 
 Next, let's set up a Bucket SDK for your language and framework.
 
