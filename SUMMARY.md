@@ -28,15 +28,15 @@
 ## Integrations
 
 * [Overview](integrations/overview.md)
-* [Amplitude](integrations/amplitude.md)
-* [AWS S3](integrations/aws-s3.md)
-* [Datadog](integrations/datadog.md)
+* [Slack](integrations/slack.md)
 * [Linear](integrations/linear.md)
-* [Mixpanel](integrations/mixpanel.md)
+* [Datadog](integrations/datadog.md)
+* [AWS S3](integrations/aws-s3.md)
 * [PostHog](integrations/posthog.md)
 * [Segment](integrations/segment.md)
-* [Slack](integrations/slack.md)
 * [Vercel](https://flags-sdk.dev/providers/bucket)
+* [Amplitude](integrations/amplitude.md)
+* [Mixpanel](integrations/mixpanel.md)
 
 ## Product Handbook
 

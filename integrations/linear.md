@@ -1,56 +1,77 @@
 ---
-description: Integrate Bucket into your Linear workflow
+description: Create features and manage access in Linear
 ---
 
 # Linear
 
-Bucket integrates with Linear to streamline your workflow:
+## Connect to Linear
 
-* Post project updates or comments when there are changes in the [feature access rules](../product-handbook/feature-rollouts/feature-targeting-rules.md)
-* [Add a quick link](linear.md#creating-feature-flags-from-linear) to create feature flags from Linear
+For most integrations, you first need connect Bucket with your Linear account. To do so:
 
-## Connecting to your Linear organization
+1. Navigate to **Settings** > **Organization**
+2. Click "**Connect to Linear**"
+3. For the [Agent](linear.md#agent) integration, **select the app** you want to manage in the dropdown.
 
-To connect Bucket with your Linear account, navigate to the [Integrations](https://app.bucket.co/envs/current/settings/org-integrations) section for your organization, and use the "_Connect to Line&#x61;_&#x72;" button to initiate the authorization process.
 
-<figure><img src="../.gitbook/assets/image (11).png" alt="" width="225"><figcaption><p>Integrations section in your organization</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (17).png" alt="" width="375"><figcaption><p>The Linear integration, when not connected</p></figcaption></figure>
+## Integrations
 
-Follow the steps displayed in Linear when authorizing the Bucket app. If the connection is successful, you will see the integration status updated accordingly:
+<table><thead><tr><th width="218.89453125">Name</th><th>Use case</th></tr></thead><tbody><tr><td><strong>Agent @-mention</strong></td><td>Create features and manage feature access from Linear</td></tr><tr><td><strong>Broadcast</strong></td><td>Share feature access changes to Linear issues or projects</td></tr><tr><td><strong>Project template</strong></td><td>Add default issue to create feature flag in new Linear projects</td></tr></tbody></table>
 
-<figure><img src="../.gitbook/assets/image (13).png" alt="" width="375"><figcaption><p>Linear integration set up</p></figcaption></figure>
+***
 
-## Connect Bucket features to Linear issues or projects
+### Agent @-mention
 
-Once you have connected your Bucket organization to your Linear account, you can start using the integration by associating Bucket features with Linear issues or projects.&#x20;
+The Agent integration enables you to `@bucket` within Linear.&#x20;
 
-To start, navigate to a feature you want to associate, open its "_Settings_" tab, and find the "_Linear_" section:
+<figure><img src="../.gitbook/assets/ezgif-242d06617aea38.gif" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption><p>The dropdown allows searching for issues or projects in Linear</p></figcaption></figure>
+#### Creating features
 
-## Posting change summaries to Linear
+Example: `@bucket create feature flag for this issue`&#x20;
 
-Once you associate a Linear issue or project with a Bucket feature, you can toggle the "_Post a project update when access rules are changed_" option. This default value will be used when changes are made to [targeting rules](../introduction/concepts/targeting-rules.md).
+#### Managing feature access and stage
 
-Finally, each time you update the feature's targeting rules, you will be presented with the confirmation dialog that includes the option to post a summary of the updates to Linear:
+Example: `@bucket release to everyone and bump stage to GA`&#x20;
 
-<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption><p>You can post the summary of the targeting rules changes to Linear</p></figcaption></figure>
+#### Link issue to feature
 
-Once you click "_Confirm_", an update will be posted to Linear — either as a "_Project Update_" when the feature is associated with a project or a "_Comment_" when the feature is associated with an issue.
+Example: `@bucket link to <feature name/key>`
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption><p>A project update posted from Bucket</p></figcaption></figure>
 
-## Creating feature flags from Linear
 
-When you start working on a new feature in Linear, we recommend adding a "_Create feature in Bucket_"  issue to your project to help you start flagging new features.&#x20;
+***
 
-This way, when you start a new project, part of the initial work will be setting up a feature in Bucket. Here's an example for Linear:
+### Broadcast
+
+The broadcast integration posts feature access change to a Linear issue or project.
+
+
+
+<figure><img src="../.gitbook/assets/CleanShot 2025-05-09 at 1 .29.05@2x.png" alt=""><figcaption></figcaption></figure>
+
+Here's how to get started:\
+
+
+1. Make sure you've [connected](linear.md#first-connect-to-linear) to Linear.
+2. In the feature sidebar, select a Linear issue or project.
+3. Whenever you change feature access or stage, you can choose to also send the changes to the chosen Linear issue or project.
+
+When you link a feature with a Linear issue or project, you'll see a link to the feature on the Linear issue or in the project resources.
+
+
+
+***
+
+### Template
+
+When you start working on a new project in Linear, we recommend adding a "Create feature flag" issue.&#x20;
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-10-10 at 14.04.34.png" alt=""><figcaption><p>A Linear project template with an issue included by default to make it easy to get started with features in Bucket</p></figcaption></figure>
 
-You can link directly to the "_New feature_" page by using the [flag.new](https://flag.new) shortcut.
+This way, when you start a new project, part of the initial work will be setting up a feature in Bucket.&#x20;
 
-## Additional information
+By using [Linear project templates](https://linear.app/docs/project-templates#create-templates), you can automate this so that all new projects come with the option to create a Bucket issue.
 
-* [Create project templates in Linear](https://linear.app/docs/project-templates#create-templates) — Remember to configure your new template to be the _default_ template for new projects.
+Pro tip: You can link directly to Bucket's "New feature" modal with the [flag.new](https://flag.new) shortcut.
+
