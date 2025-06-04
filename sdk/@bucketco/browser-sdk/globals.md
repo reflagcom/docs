@@ -193,43 +193,6 @@ Return a feature. Accessing `isEnabled` or `config` will automatically send a `c
 
 A feature.
 
-##### getFeatureOverride()
-
-```ts
-getFeatureOverride(key: string): null | boolean
-```
-
-**`Internal`**
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`null` \| `boolean`
-
 ##### getFeatures()
 
 ```ts
@@ -456,55 +419,6 @@ This can be used to collect feedback from users in Bucket in cases where Automat
 <td>
 
 [`RequestFeedbackData`](globals.md#requestfeedbackdata)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`void`
-
-##### setFeatureOverride()
-
-```ts
-setFeatureOverride(key: string, isEnabled: null | boolean): void
-```
-
-**`Internal`**
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`isEnabled`
-
-</td>
-<td>
-
-`null` \| `boolean`
 
 </td>
 </tr>
@@ -1113,6 +1027,24 @@ Represents a feature.
 <td>
 
 Result of feature flag evaluation.
+Note: Does not take local overrides into account.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabledoverride"></a> `isEnabledOverride`
+
+</td>
+<td>
+
+`null` \| `boolean`
+
+</td>
+<td>
+
+The current override status of isEnabled for the feature.
 
 </td>
 </tr>
@@ -1152,6 +1084,46 @@ Function to send analytics events for this feature.
 </tr>
 </tbody>
 </table>
+
+#### Methods
+
+##### setIsEnabledOverride()
+
+```ts
+setIsEnabledOverride(isEnabled: null | boolean): void
+```
+
+Set the override status for isEnabled for the feature.
+Set to `null` to remove the override.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`isEnabled`
+
+</td>
+<td>
+
+`null` \| `boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`
 
 ***
 
