@@ -32,8 +32,9 @@ Install using `yarn` or `npm` with:
 
 {% tabs %}
 {% tab title="npm" %}
-<pre class="language-sh"><code class="lang-sh"><strong>npm i @bucketco/node-sdk
-</strong></code></pre>
+```sh
+npm i @bucketco/node-sdk
+```
 {% endtab %}
 
 {% tab title="yarn" %}
