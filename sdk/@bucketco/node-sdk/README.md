@@ -28,7 +28,7 @@ Bucket supports feature toggling, tracking feature usage, collecting feedback on
 
 ## Installation
 
-Install using `yarn` or `npm` with:
+Install using your favourite package manager:
 
 {% tabs %}
 {% tab title="npm" %}
