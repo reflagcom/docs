@@ -22,7 +22,7 @@ layout:
 
 # Node.js SDK
 
-Node.js, JavaScript/TypeScript client for [Bucket.co](https://bucket.co).
+Client for Node.js, Bun, Deno and other server-side JavaScript/TypeScript runtimes.
 
 Bucket supports feature toggling, tracking feature usage, collecting feedback on features, and [remotely configuring features](./#remote-config-beta).
 
@@ -30,7 +30,36 @@ Bucket supports feature toggling, tracking feature usage, collecting feedback on
 
 Install using `yarn` or `npm` with:
 
-> `yarn add -s @bucketco/node-sdk` or `npm install -s @bucketco/node-sdk`.
+{% tabs %}
+{% tab title="npm" %}
+<pre class="language-sh"><code class="lang-sh"><strong>npm i @bucketco/node-sdk
+</strong></code></pre>
+{% endtab %}
+
+{% tab title="yarn" %}
+```sh
+yarn add @bucketco/node-sdk
+```
+{% endtab %}
+
+{% tab title="bun" %}
+```sh
+bun add @bucketco/node-sdk
+```
+{% endtab %}
+
+{% tab title="pnpm" %}
+```sh
+pnpm add @bucketco/node-sdk
+```
+{% endtab %}
+
+{% tab title="deno" %}
+```sh
+deno add npm:@bucketco/node-sdk
+```
+{% endtab %}
+{% endtabs %}
 
 Other supported languages/frameworks are in the [Supported languages](https://docs.bucket.co/quickstart/supported-languages) documentation pages.
 
