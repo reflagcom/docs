@@ -21,49 +21,9 @@ Bucket supports feature toggling, tracking feature usage, collecting feedback on
 
 ## Installation
 
-Install using your favourite package manager:
+Install using `yarn` or `npm` with:
 
-{% tabs %}
-{% tab title="npm" %}
-
-```sh
-npm i @bucketco/node-sdk
-```
-
-{% endtab %}
-
-{% tab title="yarn" %}
-
-```sh
-yarn add @bucketco/node-sdk
-```
-
-{% endtab %}
-
-{% tab title="bun" %}
-
-```sh
-bun add @bucketco/node-sdk
-```
-
-{% endtab %}
-
-{% tab title="pnpm" %}
-
-```sh
-pnpm add @bucketco/node-sdk
-```
-
-{% endtab %}
-
-{% tab title="deno" %}
-
-```sh
-deno add npm:@bucketco/node-sdk
-```
-
-{% endtab %}
-{% endtabs %}
+> `yarn add -s @bucketco/node-sdk` or `npm install -s @bucketco/node-sdk`.
 
 Other supported languages/frameworks are in the [Supported languages](https://docs.bucket.co/quickstart/supported-languages) documentation pages.
 
