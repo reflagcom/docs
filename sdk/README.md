@@ -98,5 +98,17 @@ pagination:
 
 </td>
 </tr>
+<tr>
+<td>
+
+[@bucketco/vue-sdk](@bucketco/vue-sdk/README.md)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
 </tbody>
 </table>
