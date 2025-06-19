@@ -9,9 +9,8 @@
 * [Overview](supported-languages/overview.md)
 * [React SDK](sdk/@bucketco/react-sdk/README.md)
   * [Reference](sdk/@bucketco/react-sdk/globals.md)
-* [Vue SDK](sdk/@bucketco/vue-sdk/README.md)
+* [Vue SDK (beta)](sdk/@bucketco/vue-sdk/README.md)
   * [Reference](sdk/@bucketco/vue-sdk/globals.md)
-
 * [Browser SDK](sdk/@bucketco/browser-sdk/README.md)
   * [Feedback](sdk/documents/browser-sdk/FEEDBACK.md)
   * [Reference](sdk/@bucketco/browser-sdk/globals.md)
