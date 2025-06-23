@@ -202,6 +202,127 @@ Company name
 
 ***
 
+### Feature\<TConfig\>
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+<th>Default type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TConfig` *extends* [`FeatureType`](globals.md#featuretype)\[`"config"`\]
+
+</td>
+<td>
+
+[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config"></a> `config`
+
+</td>
+<td>
+
+`Ref`\< \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| \{ `key`: `string`; \} & `TConfig`, \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| \{ `key`: `string`; \} & `TConfig`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabled"></a> `isEnabled`
+
+</td>
+<td>
+
+`Ref`\<`boolean`, `boolean`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isloading"></a> `isLoading`
+
+</td>
+<td>
+
+`Ref`\<`boolean`, `boolean`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key-1"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="requestfeedback"></a> `requestFeedback`
+
+</td>
+<td>
+
+(`opts`: [`RequestFeatureFeedbackOptions`](globals.md#requestfeaturefeedbackoptions)) => `void`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Methods
+
+##### track()
+
+```ts
+track(): 
+  | undefined
+  | Promise<
+  | undefined
+| Response>
+```
+
+###### Returns
+
+  \| `undefined`
+  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+
+***
+
 ### UserContext
 
 #### Indexable
@@ -317,6 +438,105 @@ type BucketProps = BucketContext & InitOptions & {
 <td>
 
 (...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EmptyFeatureRemoteConfig
+
+```ts
+type EmptyFeatureRemoteConfig = {
+  key: undefined;
+  payload: undefined;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="key-2"></a> `key`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="payload"></a> `payload`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### FeatureType
+
+```ts
+type FeatureType = {
+  config: {
+     payload: any;
+    };
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config-1"></a> `config`?
+
+</td>
+<td>
+
+\{
+  `payload`: `any`;
+ \}
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.payload`
+
+</td>
+<td>
+
+`any`
 
 </td>
 </tr>
@@ -482,70 +702,8 @@ The Bucket client.
 ### useFeature()
 
 ```ts
-function useFeature<TKey>(key: TKey): Ref<{
-  config:   | {
-     key: string;
-     payload: any;
-    }
-     | {
-     key: undefined;
-     payload: undefined;
-    };
-  isEnabled: boolean;
-  isLoading: boolean;
-  key: UnwrapRef<TKey>;
-  requestFeedback: (opts: RequestFeatureFeedbackOptions) => void;
-  track: () => Promise<
-     | undefined
-     | Response>;
- }, 
-  | {
-  config: FeatureRemoteConfig;
-  isEnabled: boolean;
-  isLoading: Ref<boolean, boolean>;
-  key: TKey;
-  requestFeedback: (opts: RequestFeatureFeedbackOptions) => void;
-  track: () => Promise<
-     | undefined
-     | Response>;
- }
-  | {
-  config:   | {
-     key: string;
-     payload: any;
-    }
-     | {
-     key: undefined;
-     payload: undefined;
-    };
-  isEnabled: boolean;
-  isLoading: boolean;
-  key: UnwrapRef<TKey>;
-  requestFeedback: (opts: RequestFeatureFeedbackOptions) => void;
-  track: () => Promise<
-     | undefined
-     | Response>;
-}>
+function useFeature(key: string): Feature<any>
 ```
-
-#### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
 
 #### Parameters
 
@@ -565,7 +723,7 @@ function useFeature<TKey>(key: TKey): Ref<{
 </td>
 <td>
 
-`TKey`
+`string`
 
 </td>
 </tr>
@@ -574,50 +732,7 @@ function useFeature<TKey>(key: TKey): Ref<{
 
 #### Returns
 
-`Ref`\<\{
-  `config`:   \| \{
-     `key`: `string`;
-     `payload`: `any`;
-    \}
-     \| \{
-     `key`: `undefined`;
-     `payload`: `undefined`;
-    \};
-  `isEnabled`: `boolean`;
-  `isLoading`: `boolean`;
-  `key`: `UnwrapRef`\<`TKey`\>;
-  `requestFeedback`: (`opts`: [`RequestFeatureFeedbackOptions`](globals.md#requestfeaturefeedbackoptions)) => `void`;
-  `track`: () => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-     \| `undefined`
-     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
- \}, 
-  \| \{
-  `config`: [`FeatureRemoteConfig`](../browser-sdk/globals.md#featureremoteconfig);
-  `isEnabled`: `boolean`;
-  `isLoading`: `Ref`\<`boolean`, `boolean`\>;
-  `key`: `TKey`;
-  `requestFeedback`: (`opts`: [`RequestFeatureFeedbackOptions`](globals.md#requestfeaturefeedbackoptions)) => `void`;
-  `track`: () => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-     \| `undefined`
-     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
- \}
-  \| \{
-  `config`:   \| \{
-     `key`: `string`;
-     `payload`: `any`;
-    \}
-     \| \{
-     `key`: `undefined`;
-     `payload`: `undefined`;
-    \};
-  `isEnabled`: `boolean`;
-  `isLoading`: `boolean`;
-  `key`: `UnwrapRef`\<`TKey`\>;
-  `requestFeedback`: (`opts`: [`RequestFeatureFeedbackOptions`](globals.md#requestfeaturefeedbackoptions)) => `void`;
-  `track`: () => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-     \| `undefined`
-     \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>;
- \}\>
+[`Feature`](globals.md#featuretconfig)\<`any`\>
 
 ***
 
