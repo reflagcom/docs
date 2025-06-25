@@ -436,15 +436,24 @@ The SDK client.
 #### Remarks
 
 This is the main class for interacting with Bucket.
-It is used to update user and company contexts, track events, and evaluate feature flags.
+It is used to evaluate feature flags, update user and company contexts, and track events.
 
 #### Example
 
 ```ts
-const client = new BucketClient({
-  secretKey: "your-secret-key",
+// set the BUCKET_SECRET_KEY environment variable or pass the secret key to the constructor
+const client = new BucketClient();
+
+// evaluate a feature flag
+const isFeatureEnabled = client.getFeature("feature-flag-key", {
+  user: { id: "user-id" },
+  company: { id: "company-id" },
 });
 ```
+
+#### Extended by
+
+- [`EdgeClient`](globals.md#edgeclient)
 
 #### Constructors
 
@@ -521,7 +530,7 @@ An error if the options are invalid.
 </td>
 <td>
 
-[`HttpClient`](globals.md#httpclient-1)
+[`HttpClient`](globals.md#httpclient-2)
 
 </td>
 <td>
@@ -543,7 +552,7 @@ An error if the options are invalid.
 </td>
 <td>
 
-[`Logger`](globals.md#logger-1)
+[`Logger`](globals.md#logger-2)
 
 </td>
 <td>
@@ -706,7 +715,7 @@ afterAll(() => {
 flush(): Promise<void>
 ```
 
-Flushes the batch buffer.
+Flushes and completes any in-flight fetches in the feature cache.
 
 ###### Returns
 
@@ -1302,6 +1311,932 @@ An error if the company is not set or the options are invalid.
 
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
+
+***
+
+### EdgeClient
+
+The EdgeClient is BucketClient pre-configured to be used in edge runtimes, like
+Cloudflare Workers.
+
+#### Example
+
+```ts
+// set the BUCKET_SECRET_KEY environment variable or pass the secret key in the constructor
+const client = new EdgeClient();
+
+// evaluate a feature flag
+const context = {
+  user: { id: "user-id" },
+  company: { id: "company-id" },
+}
+const { isEnabled } = client.getFeature(context, "feature-flag-key");
+
+```
+
+#### Extends
+
+- [`BucketClient`](globals.md#bucketclient)
+
+#### Constructors
+
+##### new EdgeClient()
+
+```ts
+new EdgeClient(options: EdgeClientOptions): EdgeClient
+```
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`EdgeClientOptions`](globals.md#edgeclientoptions)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`EdgeClient`](globals.md#edgeclient)
+
+###### Overrides
+
+[`BucketClient`](globals.md#bucketclient).[`constructor`](globals.md#constructors-1)
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Modifier</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="httpclient-1"></a> `httpClient`
+
+</td>
+<td>
+
+`public`
+
+</td>
+<td>
+
+[`HttpClient`](globals.md#httpclient-2)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="logger-1"></a> `logger`
+
+</td>
+<td>
+
+`readonly`
+
+</td>
+<td>
+
+[`Logger`](globals.md#logger-2)
+
+</td>
+<td>
+
+Gets the logger associated with the client.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Accessors
+
+##### featureOverrides
+
+###### Set Signature
+
+```ts
+set featureOverrides(overrides: 
+  | Partial<Record<string, FeatureOverride>>
+  | FeatureOverridesFn): void
+```
+
+Sets the feature overrides.
+
+###### Remarks
+
+The feature overrides are used to override the feature definitions.
+This is useful for testing or development.
+
+###### Example
+
+```ts
+client.featureOverrides = {
+  "feature-1": true,
+  "feature-2": false,
+};
+```
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`overrides`
+
+</td>
+<td>
+
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FeatureOverride`](globals.md#featureoverride)\>\> \| [`FeatureOverridesFn`](globals.md#featureoverridesfn)
+
+</td>
+<td>
+
+The feature overrides.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`featureOverrides`](globals.md#featureoverrides)
+
+#### Methods
+
+##### bindClient()
+
+```ts
+bindClient(context: ContextWithTracking): BoundBucketClient
+```
+
+Returns a new BoundBucketClient with the user/company/otherContext
+set to be used in subsequent calls.
+For example, for evaluating feature targeting or tracking events.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`context`
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+<td>
+
+The context to bind the client to.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`BoundBucketClient`](globals.md#boundbucketclient)
+
+A new client bound with the arguments given.
+
+###### Throws
+
+An error if the user/company is given but their ID is not a string.
+
+###### Remarks
+
+The `updateUser` / `updateCompany` methods will automatically be called when
+the user/company is set respectively.
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`bindClient`](globals.md#bindclient-1)
+
+##### clearFeatureOverrides()
+
+```ts
+clearFeatureOverrides(): void
+```
+
+Clears the feature overrides.
+
+###### Returns
+
+`void`
+
+###### Remarks
+
+This is useful for testing or development.
+
+###### Example
+
+```ts
+afterAll(() => {
+  client.clearFeatureOverrides();
+});
+```
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`clearFeatureOverrides`](globals.md#clearfeatureoverrides)
+
+##### flush()
+
+```ts
+flush(): Promise<void>
+```
+
+Flushes and completes any in-flight fetches in the feature cache.
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+###### Remarks
+
+It is recommended to call this method when the application is shutting down to ensure all events are sent
+before the process exits.
+
+This method is automatically called when the process exits if `batchOptions.flushOnExit` is `true` in the options (default).
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`flush`](globals.md#flush-1)
+
+##### getFeature()
+
+```ts
+getFeature<TKey>(__namedParameters: ContextWithTracking, key: TKey): Feature
+```
+
+Gets the evaluated feature for the current context which includes the user, company, and custom context.
+Using the `isEnabled` property sends a `check` event to Bucket.
+
+###### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`__namedParameters`
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`TKey`
+
+</td>
+<td>
+
+The key of the feature to get.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Feature`](globals.md#featuretconfig)
+
+The evaluated feature.
+
+###### Remarks
+
+Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`getFeature`](globals.md#getfeature-1)
+
+##### getFeatureDefinitions()
+
+```ts
+getFeatureDefinitions(): Promise<FeatureDefinition[]>
+```
+
+Gets the feature definitions, including all config values.
+To evaluate which features are enabled for a given user/company, use `getFeatures`.
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FeatureDefinition`](globals.md#featuredefinition)[]\>
+
+The features definitions.
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`getFeatureDefinitions`](globals.md#getfeaturedefinitions)
+
+##### getFeatureRemote()
+
+```ts
+getFeatureRemote<TKey>(
+   key: TKey, 
+   userId?: IdType, 
+   companyId?: IdType, 
+additionalContext?: Context): Promise<Feature>
+```
+
+Gets evaluated feature with the usage of remote context.
+This method triggers a network request every time it's called.
+
+###### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`TKey`
+
+</td>
+<td>
+
+The key of the feature to get.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`userId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+<td>
+
+The userId of the user to get the feature for.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`companyId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+<td>
+
+The companyId of the company to get the feature for.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`additionalContext`?
+
+</td>
+<td>
+
+[`Context`](globals.md#context)
+
+</td>
+<td>
+
+The additional context to get the feature for.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#featuretconfig)\>
+
+evaluated feature
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`getFeatureRemote`](globals.md#getfeatureremote-1)
+
+##### getFeatures()
+
+```ts
+getFeatures(options: ContextWithTracking): Record<string, Feature>
+```
+
+Gets the evaluated features for the current context which includes the user, company, and custom context.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+<td>
+
+The options for the context.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>
+
+The evaluated features.
+
+###### Remarks
+
+Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`getFeatures`](globals.md#getfeatures-1)
+
+##### getFeaturesRemote()
+
+```ts
+getFeaturesRemote(
+   userId?: IdType, 
+   companyId?: IdType, 
+additionalContext?: Context): Promise<Record<string, Feature>>
+```
+
+Gets evaluated features with the usage of remote context.
+This method triggers a network request every time it's called.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`userId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+<td>
+
+The userId of the user to get the features for.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`companyId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+<td>
+
+The companyId of the company to get the features for.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`additionalContext`?
+
+</td>
+<td>
+
+[`Context`](globals.md#context)
+
+</td>
+<td>
+
+The additional context to get the features for.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>\>
+
+evaluated features
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`getFeaturesRemote`](globals.md#getfeaturesremote-1)
+
+##### initialize()
+
+```ts
+initialize(): Promise<void>
+```
+
+Initializes the client by caching the features definitions.
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+###### Remarks
+
+Call this method before calling `getFeatures` to ensure the feature definitions are cached.
+The client will ignore subsequent calls to this method.
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`initialize`](globals.md#initialize)
+
+##### track()
+
+```ts
+track(
+   userId: IdType, 
+   event: string, 
+   options?: TrackOptions & {
+  companyId: IdType;
+}): Promise<void>
+```
+
+Tracks an event in Bucket.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`userId`
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`event`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`?
+
+</td>
+<td>
+
+[`TrackOptions`](globals.md#trackoptions) & \{ `companyId`: [`IdType`](globals.md#idtype); \}
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+###### Throws
+
+An error if the user is not set or the event is invalid or the options are invalid.
+
+###### Remarks
+
+If the company is set, the event will be associated with the company.
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`track`](globals.md#track-1)
+
+##### updateCompany()
+
+```ts
+updateCompany(companyId: IdType, options?: TrackOptions & {
+  userId: IdType;
+}): Promise<void>
+```
+
+Updates the associated company in Bucket.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`companyId`
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+<td>
+
+The companyId of the company to update.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`?
+
+</td>
+<td>
+
+[`TrackOptions`](globals.md#trackoptions) & \{ `userId`: [`IdType`](globals.md#idtype); \}
+
+</td>
+<td>
+
+The options for the company.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+###### Throws
+
+An error if the company is not set or the options are invalid.
+
+###### Remarks
+
+The company must be set using `withCompany` before calling this method.
+If the user is set, the company will be associated with the user.
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`updateCompany`](globals.md#updatecompany)
+
+##### updateUser()
+
+```ts
+updateUser(userId: IdType, options?: TrackOptions): Promise<void>
+```
+
+Updates the associated user in Bucket.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`userId`
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+<td>
+
+The userId of the user to update.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`?
+
+</td>
+<td>
+
+[`TrackOptions`](globals.md#trackoptions)
+
+</td>
+<td>
+
+The options for the user.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+###### Throws
+
+An error if the company is not set or the options are invalid.
+
+###### Remarks
+
+The company must be set using `withCompany` before calling this method.
+If the user is set, the company will be associated with the user.
+
+###### Inherited from
+
+[`BucketClient`](globals.md#bucketclient).[`updateUser`](globals.md#updateuser)
 
 ## Interfaces
 
@@ -2196,17 +3131,21 @@ Whether to flush the buffer on exit.
 
 The interval in milliseconds at which the buffer is flushed.
 
+**Remarks**
+
+If `0`, the buffer is flushed only when `maxSize` is reached.
+
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="logger-2"></a> `logger`?
+<a id="logger-3"></a> `logger`?
 
 </td>
 <td>
 
-[`Logger`](globals.md#logger-1)
+[`Logger`](globals.md#logger-2)
 
 </td>
 <td>
@@ -2237,12 +3176,21 @@ The maximum size of the buffer before it is flushed.
 
 ***
 
+### CacheStrategy
+
+```ts
+type CacheStrategy = "periodically-update" | "in-request";
+```
+
+***
+
 ### ClientOptions
 
 ```ts
 type ClientOptions = {
   apiBaseUrl: string;
   batchOptions: Omit<BatchBufferOptions<any>, "flushHandler" | "logger">;
+  cacheStrategy: CacheStrategy;
   configFile: string;
   fallbackFeatures:   | TypedFeatureKey[]
      | Record<TypedFeatureKey, Exclude<FeatureOverride, false>>;
@@ -2310,6 +3258,23 @@ If not provided, the default options are used.
 <tr>
 <td>
 
+<a id="cachestrategy-1"></a> `cacheStrategy`?
+
+</td>
+<td>
+
+[`CacheStrategy`](globals.md#cachestrategy)
+
+</td>
+<td>
+
+The cache strategy to use for the client (optional, defaults to "periodically-update").
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="configfile"></a> `configFile`?
 
 </td>
@@ -2351,13 +3316,13 @@ configuration values or the boolean value `true`.
 <tr>
 <td>
 
-<a id="featureoverrides-1"></a> `featureOverrides`?
+<a id="featureoverrides-2"></a> `featureOverrides`?
 
 </td>
 <td>
 
   \| `string`
-  \| (`context`: [`Context`](globals.md#context)) => [`FeatureOverrides`](globals.md#featureoverrides-2)
+  \| (`context`: [`Context`](globals.md#context)) => [`FeatureOverrides`](globals.md#featureoverrides-3)
 
 </td>
 <td>
@@ -2431,12 +3396,12 @@ Use `apiBaseUrl` instead.
 <tr>
 <td>
 
-<a id="httpclient-2"></a> `httpClient`?
+<a id="httpclient-3"></a> `httpClient`?
 
 </td>
 <td>
 
-[`HttpClient`](globals.md#httpclient-1)
+[`HttpClient`](globals.md#httpclient-2)
 
 </td>
 <td>
@@ -2448,12 +3413,12 @@ The HTTP client to use for sending requests (optional). Default is the built-in 
 <tr>
 <td>
 
-<a id="logger-3"></a> `logger`?
+<a id="logger-4"></a> `logger`?
 
 </td>
 <td>
 
-[`Logger`](globals.md#logger-1)
+[`Logger`](globals.md#logger-2)
 
 </td>
 <td>
@@ -2733,6 +3698,14 @@ The name of the user.
 </tr>
 </tbody>
 </table>
+
+***
+
+### EdgeClientOptions
+
+```ts
+type EdgeClientOptions = Omit<ClientOptions, "cacheStrategy" | "flushIntervalMs" | "batchOptions">;
+```
 
 ***
 
@@ -3104,7 +4077,7 @@ type FeatureOverridesFn = (context: Context) => FeatureOverrides;
 
 #### Returns
 
-[`FeatureOverrides`](globals.md#featureoverrides-2)
+[`FeatureOverrides`](globals.md#featureoverrides-3)
 
 ***
 
