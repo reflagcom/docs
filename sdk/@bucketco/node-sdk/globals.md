@@ -562,7 +562,9 @@ Gets the logger associated with the client.
 ###### Set Signature
 
 ```ts
-set featureOverrides(overrides: FeatureOverridesFn): void
+set featureOverrides(overrides: 
+  | Partial<Record<string, FeatureOverride>>
+  | FeatureOverridesFn): void
 ```
 
 Sets the feature overrides.
@@ -571,6 +573,15 @@ Sets the feature overrides.
 
 The feature overrides are used to override the feature definitions.
 This is useful for testing or development.
+
+###### Example
+
+```ts
+client.featureOverrides = {
+  "feature-1": true,
+  "feature-2": false,
+};
+```
 
 ###### Parameters
 
@@ -591,7 +602,7 @@ This is useful for testing or development.
 </td>
 <td>
 
-[`FeatureOverridesFn`](globals.md#featureoverridesfn)
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FeatureOverride`](globals.md#featureoverride)\>\> \| [`FeatureOverridesFn`](globals.md#featureoverridesfn)
 
 </td>
 <td>
@@ -664,6 +675,30 @@ An error if the user/company is given but their ID is not a string.
 
 The `updateUser` / `updateCompany` methods will automatically be called when
 the user/company is set respectively.
+
+##### clearFeatureOverrides()
+
+```ts
+clearFeatureOverrides(): void
+```
+
+Clears the feature overrides.
+
+###### Returns
+
+`void`
+
+###### Remarks
+
+This is useful for testing or development.
+
+###### Example
+
+```ts
+afterAll(() => {
+  client.clearFeatureOverrides();
+});
+```
 
 ##### flush()
 
