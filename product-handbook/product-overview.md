@@ -36,6 +36,6 @@ The Debugger tab shows you a log of recent events as well as a list of all the d
 
 ## Settings
 
-The Settings tab is where you manage users, billing, [feature views](feature-views.md), [company segments](feature-targeting-rules/creating-segments.md), [environments](feature-targeting-rules/environments.md), [data exports](data-export.md), and more.
+The Settings tab is where you manage billing, [users](team-management.md), [integrations](broken-reference), [feature views](feature-views.md), [company segments](feature-targeting-rules/creating-segments.md), [environments](feature-targeting-rules/environments.md), [data exports](data-export.md), and more.
 
 <figure><img src="../.gitbook/assets/Settings-min.png" alt="Global settings page"><figcaption></figcaption></figure>

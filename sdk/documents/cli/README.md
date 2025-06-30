@@ -1,22 +1,29 @@
 ---
-layout:
-  visible: true
 title:
   visible: true
-description:
-  visible: false
 tableOfContents:
   visible: true
 outline:
   visible: true
 pagination:
   visible: true
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
-# Bucket CLI
+# CLI
 
-Command-line interface for interacting with Bucket services. The CLI allows you to manage apps,
-features, authentication, and generate TypeScript types for your Bucket features. With this tool,
+Command-line interface for interacting with Bucket services. The CLI allows you to manage apps,\
+features, authentication, and generate TypeScript types for your Bucket features. With this tool,\
 you can streamline your feature flagging workflow directly from your terminal.
 
 ## Usage
@@ -31,7 +38,7 @@ npm install --save-dev @bucketco/cli
 yarn add --dev @bucketco/cli
 ```
 
-Then running the `new` command from your project's root directory,
+Then running the `new` command from your project's root directory,\
 initializing the CLI, creating a feature, and generating the types all at once:
 
 ```bash
@@ -59,7 +66,7 @@ npx bucket features types
 
 ## Configuration
 
-The CLI creates a `bucket.config.json` file in your project directory when you run `bucket init`.
+The CLI creates a `bucket.config.json` file in your project directory when you run `bucket init`.\
 This file contains all the necessary settings for your Bucket integration.
 
 ### Configuration File Structure
@@ -95,7 +102,7 @@ You can override these settings using command-line options for individual comman
 
 ### `bucket init`
 
-Initialize a new Bucket configuration in your project.
+Initialize a new Bucket configuration in your project.\
 This creates a `bucket.config.json` file with your settings and prompts for any required information not provided via options.
 
 ```bash
@@ -104,13 +111,13 @@ npx bucket init [--overwrite]
 
 Options:
 
-- `--overwrite`: Overwrite existing configuration file if one exists.
-- `--app-id <id>`: Set the application ID.
-- `--key-format <format>`: Set the key format for features.
+* `--overwrite`: Overwrite existing configuration file if one exists.
+* `--app-id <id>`: Set the application ID.
+* `--key-format <format>`: Set the key format for features.
 
 ### `bucket new [featureName]`
 
-All-in-one command to get started quickly. This command combines `init`, feature creation,
+All-in-one command to get started quickly. This command combines `init`, feature creation,\
 and type generation in a single step. Use this for the fastest way to get up and running with Bucket.
 
 ```bash
@@ -119,11 +126,11 @@ npx bucket new "My Feature" [--app-id ap123456789] [--key my-feature]  [--key-fo
 
 Options:
 
-- `--key`: Specific key for the feature.
-- `--app-id`: App ID to use.
-- `--key-format`: Format for feature keys (custom, snake, camel, etc.).
-- `--out`: Path to generate TypeScript types.
-- `--format`: Format of the generated types (react or node).
+* `--key`: Specific key for the feature.
+* `--app-id`: App ID to use.
+* `--key-format`: Format for feature keys (custom, snake, camel, etc.).
+* `--out`: Path to generate TypeScript types.
+* `--format`: Format of the generated types (react or node).
 
 If you prefer more control over each step, you can use the individual commands (`init`, `features create`, `features types`) instead.
 
@@ -149,7 +156,7 @@ Manage your Bucket features with the following subcommands.
 
 #### `bucket features create [featureName]`
 
-Create a new feature in your Bucket app.
+Create a new feature in your Bucket app.\
 The command guides you through the feature creation process with interactive prompts if options are not provided.
 
 ```bash
@@ -158,13 +165,13 @@ npx bucket features create "My Feature" [--app-id ap123456789] [--key my-feature
 
 Options:
 
-- `--key`: Specific key for the feature.
-- `--app-id`: App ID to use.
-- `--key-format`: Format for feature keys.
+* `--key`: Specific key for the feature.
+* `--app-id`: App ID to use.
+* `--key-format`: Format for feature keys.
 
 #### `bucket features list`
 
-List all features for the current app.
+List all features for the current app.\
 This helps you visualize what features are available and their current configurations.
 
 ```bash
@@ -173,11 +180,11 @@ npx bucket features list [--app-id ap123456789]
 
 Options:
 
-- `--app-id`: App ID to use.
+* `--app-id`: App ID to use.
 
 #### `bucket features types`
 
-Generate TypeScript types for your features.
+Generate TypeScript types for your features.\
 This ensures type safety when using Bucket features in your TypeScript/JavaScript applications.
 
 ```bash
@@ -186,9 +193,9 @@ npx bucket features types [--app-id ap123456789] [--out gen/features.ts] [--form
 
 Options:
 
-- `--app-id`: App ID to use.
-- `--out`: Path to generate TypeScript types.
-- `--format`: Format of the generated types (react or node).
+* `--app-id`: App ID to use.
+* `--out`: Path to generate TypeScript types.
+* `--format`: Format of the generated types (react or node).
 
 ### `bucket companies`
 
@@ -204,19 +211,19 @@ npx bucket companies list [--filter <text>] [--app-id ap123456789]
 
 Options:
 
-- `--filter`: Filter companies by name or ID.
-- `--app-id`: App ID to use.
+* `--filter`: Filter companies by name or ID.
+* `--app-id`: App ID to use.
 
 The command outputs a table with the following columns:
 
-- `id`: Company ID.
-- `name`: Company name (shows "(unnamed)" if not set).
-- `users`: Number of users in the company.
-- `lastSeen`: Date when the company was last active.
+* `id`: Company ID.
+* `name`: Company name (shows "(unnamed)" if not set).
+* `users`: Number of users in the company.
+* `lastSeen`: Date when the company was last active.
 
 ### `bucket companies features access`
 
-Grant or revoke access to specific features for companies, segments, and users.
+Grant or revoke access to specific features for companies, segments, and users.\
 If no feature key is provided, you'll be prompted to select one from a list.
 
 ```bash
@@ -225,16 +232,16 @@ npx bucket companies features access [--app-id ap123456789] [featureKey] [--enab
 
 Arguments:
 
-- `featureKey`: Key of the feature to grant/revoke access to (optional, interactive selection if omitted).
+* `featureKey`: Key of the feature to grant/revoke access to (optional, interactive selection if omitted).
 
 Options:
 
-- `--enable`: Enable the feature for the specified targets.
-- `--disable`: Disable the feature for the specified targets.
-- `--users`: User IDs to target. Can be specified multiple times.
-- `--companies`: Company IDs to target. Can be specified multiple times.
-- `--segments`: Segment IDs to target. Can be specified multiple times.
-- `--app-id`: App ID to use.
+* `--enable`: Enable the feature for the specified targets.
+* `--disable`: Disable the feature for the specified targets.
+* `--users`: User IDs to target. Can be specified multiple times.
+* `--companies`: Company IDs to target. Can be specified multiple times.
+* `--segments`: Segment IDs to target. Can be specified multiple times.
+* `--app-id`: App ID to use.
 
 At least one target (companies, segments, or users) must be specified. You must also specify either `--enable` or `--disable`, but not both.
 
@@ -253,10 +260,10 @@ Commands for managing Bucket apps.
 
 These options can be used with any command:
 
-- `--debug`: Enable debug mode for verbose output.
-- `--base-url <url>`: Set the base URL for Bucket API.
-- `--api-url <url>`: Set the API URL directly (overrides base URL).
-- `--help`: Display help information for a command.
+* `--debug`: Enable debug mode for verbose output.
+* `--base-url <url>`: Set the base URL for Bucket API.
+* `--api-url <url>`: Set the API URL directly (overrides base URL).
+* `--help`: Display help information for a command.
 
 ## AI-Assisted Development
 
@@ -272,10 +279,10 @@ npx bucket rules [--format <cursor|copilot>] [--yes]
 
 Options:
 
-- `--format`: Format to add rules in:
-  - `cursor`: Adds rules to `.cursor/rules/bucket.mdc` for Cursor IDE integration.
-  - `copilot`: Adds rules to `.github/copilot-instructions.md` for GitHub Copilot integration.
-- `--yes`: Skip confirmation prompts and overwrite existing files without asking.
+* `--format`: Format to add rules in:
+  * `cursor`: Adds rules to `.cursor/rules/bucket.mdc` for Cursor IDE integration.
+  * `copilot`: Adds rules to `.github/copilot-instructions.md` for GitHub Copilot integration.
+* `--yes`: Skip confirmation prompts and overwrite existing files without asking.
 
 This command will add rules to your project that provide AI tools with context about how to setup and use Bucket feature flags. For the copilot format, the rules will be added to a dedicated section in the file, allowing you to maintain other copilot instructions alongside Bucket's rules.
 
@@ -295,13 +302,13 @@ npx bucket mcp [--app-id <id>] [--editor <editor>] [--scope <local|global>]
 
 Options:
 
-- `--app-id`: App ID to use for the MCP connection.
-- `--editor`: The editor/client to configure:
-  - `cursor`: [Cursor IDE](https://www.cursor.com/)
-  - `vscode`: [Visual Studio Code](https://code.visualstudio.com/)
-  - `claude`: [Claude Desktop](https://claude.ai/download)
-  - `windsurf`: [Windsurf](https://windsurf.com/editor)
-- `--scope`: Whether to configure settings globally or locally for the project.
+* `--app-id`: App ID to use for the MCP connection.
+* `--editor`: The editor/client to configure:
+  * `cursor`: [Cursor IDE](https://www.cursor.com/)
+  * `vscode`: [Visual Studio Code](https://code.visualstudio.com/)
+  * `claude`: [Claude Desktop](https://claude.ai/download)
+  * `windsurf`: [Windsurf](https://windsurf.com/editor)
+* `--scope`: Whether to configure settings globally or locally for the project.
 
 The command will guide you through:
 
@@ -310,7 +317,7 @@ The command will guide you through:
 3. Deciding between global or project-local configuration.
 4. Setting up the appropriate configuration file for your chosen editor .
 
-_**Note: The setup uses [mcp-remote](https://github.com/geelen/mcp-remote) as a compatibility layer allowing the remote hosted Bucket MCP server to work with all editors/clients that support MCP STDIO servers. If your editor/client supports HTTP Streaming with OAuth you can connect to the Bucket MCP server directly.**_
+_**Note: The setup uses**_ [_**mcp-remote**_](https://github.com/geelen/mcp-remote) _**as a compatibility layer allowing the remote hosted Bucket MCP server to work with all editors/clients that support MCP STDIO servers. If your editor/client supports HTTP Streaming with OAuth you can connect to the Bucket MCP server directly.**_
 
 ## Development
 
@@ -328,9 +335,9 @@ yarn format
 
 ## Requirements
 
-- Node.js >=18.0.0
+* Node.js >=18.0.0
 
 ## License
 
-> MIT License
+> MIT License\
 > Copyright (c) 2025 Bucket ApS
