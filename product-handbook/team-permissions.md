@@ -2,7 +2,7 @@
 description: Invite, remove and manage roles for your team members
 ---
 
-# Team management
+# Team permissions
 
 ## Team management basics
 
@@ -15,7 +15,7 @@ Team member roles can be changed by selecting them from the dropdown. Additional
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Team management page</p></figcaption></figure>
 
-### Supported roles
+## Roles and permissions
 
 {% hint style="info" %}
 Team roles are only available on **Pro** and **Enterprise** plans. In organizations that are not on these plans, the roles are not enforced, and every team member is implicitly an **Admin**.

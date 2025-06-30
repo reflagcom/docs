@@ -74,7 +74,7 @@
 * [Warehouse](product-handbook/data-export.md)
 * [Data residency](product-handbook/data-residency.md)
 * [Exclude internal usage](product-handbook/exclude-internal-usage.md)
-* [Team management](product-handbook/team-management.md)
+* [Team permissions](product-handbook/team-permissions.md)
 
 ## Guides
 
