@@ -18,10 +18,14 @@ Team member roles can be changed by selecting them from the dropdown. Additional
 ## Roles and permissions
 
 {% hint style="info" %}
-Team roles are only available on **Pro** and **Enterprise** plans. In organizations that are not on these plans, the roles are not enforced, and every team member is implicitly an **Admin**.
+Team roles are only available on **Pro** and **Enterprise** plans. In organizations not on these plans, roles are not enforced, and every team member is implicitly an **Admin**.
 {% endhint %}
 
 * **Viewer**: Can view content within your organization, but cannot make any changes.
 * **Writer (except production)**: Can create and update features, feature views, and manage feedback. Can modify non-production targeting for features and remote configs. Cannot alter organization-wide settings and most app settings.
 * **Writer**: Can do everything that **Writer (except production)** can, plus production targeting updates and segment management.
 * **Admin**: Full access to all features and settings, including managing other members' roles and removing users from the organization.
+
+{% hint style="info" %}
+**Note**: All new users invited to the organization will be assigned the **Viewer** role by default, ensuring they have appropriate access without making any changes.
+{% endhint %}
