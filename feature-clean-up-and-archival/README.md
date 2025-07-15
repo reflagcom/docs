@@ -6,9 +6,15 @@ description: >-
 
 # Feature clean-up and archival
 
+## Stale features
+
+After features have been rolled out to everyone, they turn stale after a given period of time. Stale features show up with a little broom next to their name and you also receive a Slack notification if the Slack notification is enabled
+
+<figure><img src="../.gitbook/assets/Screenshot 2025-07-15 at 21.31.16.png" alt=""><figcaption></figcaption></figure>
+
 ## Clean-up guide
 
-Once a feature has been rolled out to everyone, it might be time to start thinking about archiving it. The built in "Clean-up guide" helps you through the steps required to safely archive a feature.
+The built in "Clean-up guide" helps you through the steps required to safely archive a feature.
 
 <figure><img src="../.gitbook/assets/Screenshot 2025-07-10 at 14.04.07.png" alt="" width="563"><figcaption></figcaption></figure>
 
@@ -29,7 +35,7 @@ See the [AI code clean-up](ai-code-clean-up-beta.md) page for more information o
 
 In organization settings, you control requirements for each checks to pass:
 
-* How soon after rollout features should be considered stale
+* Configure how soon after rollout features should be considered stale
 * If GitHub is connected, you'll see which repository will be checked for the presence of flags
 * How long to wait for the last access check
 
