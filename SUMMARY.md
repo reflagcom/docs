@@ -79,8 +79,8 @@
 
 ***
 
-* [Feature clean-up and archival](feature-clean-up-and-archival/README.md)
-  * [AI code clean-up (beta)](feature-clean-up-and-archival/ai-code-clean-up-beta.md)
+* [Feature clean-up and archival (beta)](feature-clean-up-and-archival-beta/README.md)
+  * [AI code clean-up (beta)](feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md)
 
 ## Guides
 
