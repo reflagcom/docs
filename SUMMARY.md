@@ -32,13 +32,14 @@
 * [Overview](integrations/overview.md)
 * [Slack](integrations/slack.md)
 * [Linear](integrations/linear.md)
+* [GitHub](integrations/github.md)
+* [Vercel](https://flags-sdk.dev/providers/bucket)
 * [Datadog](integrations/datadog.md)
-* [AWS S3](integrations/aws-s3.md)
 * [PostHog](integrations/posthog.md)
 * [Segment](integrations/segment.md)
-* [Vercel](https://flags-sdk.dev/providers/bucket)
 * [Amplitude](integrations/amplitude.md)
 * [Mixpanel](integrations/mixpanel.md)
+* [AWS S3](integrations/aws-s3.md)
 
 ## Product Handbook
 
@@ -75,6 +76,11 @@
 * [Data residency](product-handbook/data-residency.md)
 * [Exclude internal usage](product-handbook/exclude-internal-usage.md)
 * [Team permissions](product-handbook/team-permissions.md)
+
+***
+
+* [Feature clean-up and archival](feature-clean-up-and-archival/README.md)
+  * [AI code clean-up (beta)](feature-clean-up-and-archival/ai-code-clean-up-beta.md)
 
 ## Guides
 
