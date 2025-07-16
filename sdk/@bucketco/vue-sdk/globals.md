@@ -437,7 +437,7 @@ type BucketProps = BucketContext & InitOptions & {
 </td>
 <td>
 
-(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
+(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* `BucketClient`\>) => `BucketClient`
 
 </td>
 </tr>
@@ -693,7 +693,7 @@ client at any point in your application.
 
 #### Returns
 
-`Ref`\<[`BucketClient`](../browser-sdk/globals.md#bucketclient), [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>
+`Ref`\<`BucketClient`, `BucketClient`\>
 
 The Bucket client.
 
@@ -790,7 +790,7 @@ A function that requests feedback from the user. The function accepts:
 </td>
 <td>
 
-[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
+`RequestFeedbackData`
 
 </td>
 </tr>
@@ -855,7 +855,7 @@ A function that sends feedback to the Bucket SDK. The function accepts:
 </td>
 <td>
 
-[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
+`UnassignedFeedback`
 
 </td>
 </tr>
