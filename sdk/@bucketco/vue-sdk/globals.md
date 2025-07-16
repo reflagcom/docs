@@ -1,6 +1,10 @@
 ---
+layout:
+  visible: true
 title:
   visible: true
+description:
+  visible: false
 tableOfContents:
   visible: true
 outline:
@@ -9,7 +13,7 @@ pagination:
   visible: true
 ---
 
-# Reference
+# @bucketco/vue-sdk
 
 ## Interfaces
 
@@ -19,20 +23,127 @@ Event representing checking the feature flag evaluation result
 
 #### Properties
 
-| Property                 | Type                                                   | Description                                                                                                                                                                                                                                                                                                               |
-| ------------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `action`                 | `"check-is-enabled"` \| `"check-config"`               | `check-is-enabled` means `isEnabled` was checked, `check-config` means `config` was checked.                                                                                                                                                                                                                              |
-| `key`                    | `string`                                               | Feature key.                                                                                                                                                                                                                                                                                                              |
-| `missingContextFields?`  | `string`\[]                                            | Missing context fields.                                                                                                                                                                                                                                                                                                   |
-| `ruleEvaluationResults?` | `boolean`\[]                                           | Rule evaluation results.                                                                                                                                                                                                                                                                                                  |
-| `value?`                 | \| `boolean` \| { `key`: `string`; `payload`: `any`; } | <p>Result of feature flag or configuration evaluation.<br>If <code>action</code> is <code>check-is-enabled</code>, this is the result of the feature flag evaluation and <code>value</code> is a boolean.<br>If <code>action</code> is <code>check-config</code>, this is the result of the configuration evaluation.</p> |
-| `version?`               | `number`                                               | Version of targeting rules.                                                                                                                                                                                                                                                                                               |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="action"></a> `action`
+
+</td>
+<td>
+
+`"check-is-enabled"` \| `"check-config"`
+
+</td>
+<td>
+
+`check-is-enabled` means `isEnabled` was checked, `check-config` means `config` was checked.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Feature key.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="missingcontextfields"></a> `missingContextFields?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+Missing context fields.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ruleevaluationresults"></a> `ruleEvaluationResults?`
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+<td>
+
+Rule evaluation results.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="value"></a> `value?`
+
+</td>
+<td>
+
+ \| `boolean` \| \{ `key`: `string`; `payload`: `any`; \}
+
+</td>
+<td>
+
+Result of feature flag or configuration evaluation.
+If `action` is `check-is-enabled`, this is the result of the feature flag evaluation and `value` is a boolean.
+If `action` is `check-config`, this is the result of the configuration evaluation.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="version"></a> `version?`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Version of targeting rules.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
 ### CompanyContext
 
-Context is a set of key-value pairs.\
+Context is a set of key-value pairs.
 Id should always be present so that it can be referenced to an existing company.
 
 #### Indexable
@@ -43,34 +154,157 @@ Id should always be present so that it can be referenced to an existing company.
 
 #### Properties
 
-| Property | Type                                | Description  |
-| -------- | ----------------------------------- | ------------ |
-| `id`     | `undefined` \| `string` \| `number` | Company id   |
-| `name?`  | `string`                            | Company name |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="id"></a> `id`
+
+</td>
+<td>
+
+`undefined` \| `string` \| `number`
+
+</td>
+<td>
+
+Company id
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Company name
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### Feature\<TConfig>
+### Feature\<TConfig\>
 
 #### Type Parameters
 
-| Type Parameter                                                           | Default type                                                      |
-| ------------------------------------------------------------------------ | ----------------------------------------------------------------- |
-| `TConfig` _extends_ [`FeatureType`](globals.md#featuretype)\[`"config"`] | [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) |
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+<th>Default type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TConfig` *extends* [`FeatureType`](globals.md#featuretype)\[`"config"`\]
+
+</td>
+<td>
+
+[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Properties
 
-| Property          | Type                                                                                                                                                                                                                       |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `config`          | `Ref`< \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| { `key`: `string`; } & `TConfig`, \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| { `key`: `string`; } & `TConfig`> |
-| `isEnabled`       | `Ref`<`boolean`, `boolean`>                                                                                                                                                                                                |
-| `isLoading`       | `Ref`<`boolean`, `boolean`>                                                                                                                                                                                                |
-| `key`             | `string`                                                                                                                                                                                                                   |
-| `requestFeedback` | (`opts`: [`RequestFeatureFeedbackOptions`](globals.md#requestfeaturefeedbackoptions)) => `void`                                                                                                                            |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config"></a> `config`
+
+</td>
+<td>
+
+`Ref`\< \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| \{ `key`: `string`; \} & `TConfig`, \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| \{ `key`: `string`; \} & `TConfig`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabled"></a> `isEnabled`
+
+</td>
+<td>
+
+`Ref`\<`boolean`, `boolean`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isloading"></a> `isLoading`
+
+</td>
+<td>
+
+`Ref`\<`boolean`, `boolean`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key-1"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="requestfeedback"></a> `requestFeedback`
+
+</td>
+<td>
+
+(`opts`: [`RequestFeatureFeedbackOptions`](globals.md#requestfeaturefeedbackoptions)) => `void`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Methods
 
-**track()**
+##### track()
 
 ```ts
 track(): 
@@ -80,12 +314,12 @@ track():
 | Response>
 ```
 
-**Returns**
+###### Returns
 
-\| `undefined`\
-\| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<\
-\| `undefined`\
-\| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)>
+  \| `undefined`
+  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 ***
 
@@ -99,11 +333,68 @@ track():
 
 #### Properties
 
-| Property | Type                                | Description |
-| -------- | ----------------------------------- | ----------- |
-| `email?` | `string`                            | User email  |
-| `id`     | `undefined` \| `string` \| `number` | User id     |
-| `name?`  | `string`                            | User name   |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="email"></a> `email?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User email
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="id-1"></a> `id`
+
+</td>
+<td>
+
+`undefined` \| `string` \| `number`
+
+</td>
+<td>
+
+User id
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-1"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User name
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Type Aliases
 
@@ -118,10 +409,40 @@ type BucketProps = BucketContext & InitOptions & {
 
 #### Type declaration
 
-| Name               | Type                                                                                                                                                                                                                                                             |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `debug`?           | `boolean`                                                                                                                                                                                                                                                        |
-| `newBucketClient`? | (...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)<_typeof_ [`BucketClient`](../browser-sdk/globals.md#bucketclient)>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient) |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`debug`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`newBucketClient`?
+
+</td>
+<td>
+
+(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -136,10 +457,40 @@ type EmptyFeatureRemoteConfig = {
 
 #### Type declaration
 
-| Name      | Type        |
-| --------- | ----------- |
-| `key`     | `undefined` |
-| `payload` | `undefined` |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="key-2"></a> `key`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="payload"></a> `payload`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -155,10 +506,42 @@ type FeatureType = {
 
 #### Type declaration
 
-| Name             | Type                                                 |
-| ---------------- | ---------------------------------------------------- |
-| `config`?        | <p>{<code>payload</code>: <code>any</code>;<br>}</p> |
-| `config.payload` | `any`                                                |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config-1"></a> `config`?
+
+</td>
+<td>
+
+\{
+  `payload`: `any`;
+ \}
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -192,12 +575,65 @@ type TrackEvent = {
 
 #### Type declaration
 
-| Name          | Type                                                                                                                                                                                          |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `attributes`? | <p>| <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type"><code>Record</code></a>&#x3C;<code>string</code>, <code>any</code>><br>| <code>null</code></p> |
-| `company`?    | [`CompanyContext`](globals.md#companycontext)                                                                                                                                                 |
-| `eventName`   | `string`                                                                                                                                                                                      |
-| `user`        | [`UserContext`](globals.md#usercontext)                                                                                                                                                       |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="attributes"></a> `attributes`?
+
+</td>
+<td>
+
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
+  \| `null`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="company"></a> `company`?
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="eventname"></a> `eventName`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user"></a> `user`
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Variables
 
@@ -219,9 +655,28 @@ default: {
 
 #### Type declaration
 
-| Name        | Type   |
-| ----------- | ------ |
-| `install()` | `void` |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="install"></a> `install()`
+
+</td>
+<td>
+
+`void`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Functions
 
@@ -233,12 +688,12 @@ function useClient(): Ref<BucketClient, BucketClient>
 
 Vue composable for getting the Bucket client.
 
-This composable returns the Bucket client. You can use this to get the Bucket\
+This composable returns the Bucket client. You can use this to get the Bucket
 client at any point in your application.
 
 #### Returns
 
-`Ref`<[`BucketClient`](../browser-sdk/globals.md#bucketclient), [`BucketClient`](../browser-sdk/globals.md#bucketclient)>
+`Ref`\<[`BucketClient`](../browser-sdk/globals.md#bucketclient), [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>
 
 The Bucket client.
 
@@ -252,13 +707,32 @@ function useFeature(key: string): Feature<any>
 
 #### Parameters
 
-| Parameter | Type     |
-| --------- | -------- |
-| `key`     | `string` |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Returns
 
-[`Feature`](globals.md#featuretconfig)<`any`>
+[`Feature`](globals.md#featuretconfig)\<`any`\>
 
 ***
 
@@ -270,12 +744,12 @@ function useIsLoading(): Ref<boolean, boolean>
 
 Vue composable for checking if the Bucket client is loading.
 
-This composable returns a boolean value that indicates whether the Bucket client is loading.\
+This composable returns a boolean value that indicates whether the Bucket client is loading.
 You can use this to check if the Bucket client is loading at any point in your application.
 
 #### Returns
 
-`Ref`<`boolean`, `boolean`>
+`Ref`\<`boolean`, `boolean`\>
 
 ***
 
@@ -287,8 +761,8 @@ function useRequestFeedback(): (options: RequestFeedbackData) => void
 
 Vue composable for requesting user feedback.
 
-This composable returns a function that can be used to trigger the feedback\
-collection flow with the Bucket SDK. You can use this to prompt users for\
+This composable returns a function that can be used to trigger the feedback
+collection flow with the Bucket SDK. You can use this to prompt users for
 feedback at any point in your application.
 
 #### Returns
@@ -296,16 +770,34 @@ feedback at any point in your application.
 `Function`
 
 A function that requests feedback from the user. The function accepts:
+  - `options`: An object containing feedback request options.
 
-* `options`: An object containing feedback request options.
+##### Parameters
 
-**Parameters**
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-| Parameter | Type                                                                   |
-| --------- | ---------------------------------------------------------------------- |
-| `options` | [`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata) |
+`options`
 
-**Returns**
+</td>
+<td>
+
+[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
 
 `void`
 
@@ -335,7 +827,7 @@ function useSendFeedback(): (opts: UnassignedFeedback) => Promise<
 
 Vue composable for sending feedback.
 
-This composable returns a function that can be used to send feedback to the\
+This composable returns a function that can be used to send feedback to the
 Bucket SDK. You can use this to send feedback from your application.
 
 #### Returns
@@ -343,20 +835,38 @@ Bucket SDK. You can use this to send feedback from your application.
 `Function`
 
 A function that sends feedback to the Bucket SDK. The function accepts:
+  - `options`: An object containing feedback options.
 
-* `options`: An object containing feedback options.
+##### Parameters
 
-**Parameters**
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-| Parameter | Type                                                                 |
-| --------- | -------------------------------------------------------------------- |
-| `opts`    | [`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback) |
+`opts`
 
-**Returns**
+</td>
+<td>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<\
-\| `undefined`\
-\| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)>
+[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 #### Example
 
@@ -386,7 +896,7 @@ function useTrack(): (eventName: string, attributes?:
 
 Vue composable for tracking custom events.
 
-This composable returns a function that can be used to track custom events\
+This composable returns a function that can be used to track custom events
 with the Bucket SDK.
 
 #### Returns
@@ -394,22 +904,51 @@ with the Bucket SDK.
 `Function`
 
 A function that tracks an event. The function accepts:
+  - `eventName`: The name of the event to track.
+  - `attributes`: (Optional) Additional attributes to associate with the event.
 
-* `eventName`: The name of the event to track.
-* `attributes`: (Optional) Additional attributes to associate with the event.
+##### Parameters
 
-**Parameters**
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-| Parameter     | Type                                                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `eventName`   | `string`                                                                                                                  |
-| `attributes`? | \| `null` \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)<`string`, `any`> |
+`eventName`
 
-**Returns**
+</td>
+<td>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<\
-\| `undefined`\
-\| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)>
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`attributes`?
+
+</td>
+<td>
+
+ \| `null` \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 #### Example
 
@@ -432,8 +971,8 @@ function useUpdateCompany(): (opts: {}) => Promise<void>
 
 Vue composable for updating the company context.
 
-This composable returns a function that can be used to update the company\
-context with the Bucket SDK. You can use this to update the company context\
+This composable returns a function that can be used to update the company
+context with the Bucket SDK. You can use this to update the company context
 at any point in your application.
 
 #### Returns
@@ -441,18 +980,36 @@ at any point in your application.
 `Function`
 
 A function that updates the company context. The function accepts:
+  - `opts`: An object containing the company context to update.
 
-* `opts`: An object containing the company context to update.
+##### Parameters
 
-**Parameters**
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-| Parameter | Type |
-| --------- | ---- |
-| `opts`    | {}   |
+`opts`
 
-**Returns**
+</td>
+<td>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
+\{\}
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 #### Example
 
@@ -475,8 +1032,8 @@ function useUpdateOtherContext(): (opts: {}) => Promise<void>
 
 Vue composable for updating the other context.
 
-This composable returns a function that can be used to update the other\
-context with the Bucket SDK. You can use this to update the other context\
+This composable returns a function that can be used to update the other
+context with the Bucket SDK. You can use this to update the other context
 at any point in your application.
 
 #### Returns
@@ -484,18 +1041,36 @@ at any point in your application.
 `Function`
 
 A function that updates the other context. The function accepts:
+  - `opts`: An object containing the other context to update.
 
-* `opts`: An object containing the other context to update.
+##### Parameters
 
-**Parameters**
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-| Parameter | Type |
-| --------- | ---- |
-| `opts`    | {}   |
+`opts`
 
-**Returns**
+</td>
+<td>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
+\{\}
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 #### Example
 
@@ -518,8 +1093,8 @@ function useUpdateUser(): (opts: {}) => Promise<void>
 
 Vue composable for updating the user context.
 
-This composable returns a function that can be used to update the user context\
-with the Bucket SDK. You can use this to update the user context at any point\
+This composable returns a function that can be used to update the user context
+with the Bucket SDK. You can use this to update the user context at any point
 in your application.
 
 #### Returns
@@ -527,18 +1102,36 @@ in your application.
 `Function`
 
 A function that updates the user context. The function accepts:
+  - `opts`: An object containing the user context to update.
 
-* `opts`: An object containing the user context to update.
+##### Parameters
 
-**Parameters**
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-| Parameter | Type |
-| --------- | ---- |
-| `opts`    | {}   |
+`opts`
 
-**Returns**
+</td>
+<td>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
+\{\}
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 #### Example
 
