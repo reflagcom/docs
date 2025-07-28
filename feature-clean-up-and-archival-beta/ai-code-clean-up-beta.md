@@ -1,6 +1,6 @@
 # AI code clean-up (beta)
 
-When the GitHub integraiton has been enabled, Bucket can automatically clean up your code after features turn stale. The bucket bot simply submits a pull request to your GitHub repository which removes the flag code once a feature turns stale.
+When the [GitHub integration](../integrations/github.md) has been enabled, Bucket can automatically clean up your code after features turn stale. The bucket bot simply submits a pull request to your GitHub repository which removes the flag code once a feature turns stale.
 
 {% hint style="warning" %}
 This feature **keeps the codepath that grants access (isEnabled == true)** when cleaning up and archiving a feature i.e. releasing it everyone by removing the flagging code.
