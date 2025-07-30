@@ -1,5 +1,7 @@
 ---
-description: Bucket SDKs for React, Node.js, Next.js, and more. Supports OpenFeature.
+description: >-
+  Bucket SDKs for React, Vue.js, Node.js, Next.js, and more. Supports
+  OpenFeature.
 ---
 
 # Overview
