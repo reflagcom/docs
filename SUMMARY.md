@@ -34,7 +34,7 @@
 * [Linear](integrations/linear.md)
 * [GitHub](integrations/github.md)
 * [Vercel](https://flags-sdk.dev/providers/bucket)
-* [GitBook](https://flags-sdk.dev/providers/bucket)
+* [GitBook](https://gitbook.com/docs/publishing-documentation/adaptive-content/enabling-adaptive-content/feature-flags#bucket)
 * [Datadog](integrations/datadog.md)
 * [PostHog](integrations/posthog.md)
 * [Segment](integrations/segment.md)
