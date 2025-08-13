@@ -515,7 +515,7 @@ Loading component to be rendered while features are loading.
 </td>
 <td>
 
-(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* `BucketClient`\>) => `BucketClient`
+(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
 
 </td>
 <td>
@@ -875,7 +875,7 @@ useEffect(() => {
 
 #### Returns
 
-`undefined` \| `BucketClient`
+`undefined` \| [`BucketClient`](../browser-sdk/globals.md#bucketclient)
 
 ***
 
@@ -986,7 +986,7 @@ bucket.requestFeedback({
 </td>
 <td>
 
-`RequestFeedbackData`
+[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -1046,7 +1046,7 @@ sendFeedback({
 </td>
 <td>
 
-`UnassignedFeedback`
+[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
 
 </td>
 </tr>
