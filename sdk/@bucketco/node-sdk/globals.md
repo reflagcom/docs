@@ -817,7 +817,7 @@ Call `initialize` before calling this method to ensure the feature definitions a
 ##### getFeatureDefinitions()
 
 ```ts
-getFeatureDefinitions(): Promise<FeatureDefinition[]>
+getFeatureDefinitions(): FeatureDefinition[]
 ```
 
 Gets the feature definitions, including all config values.
@@ -825,7 +825,7 @@ To evaluate which features are enabled for a given user/company, use `getFeature
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FeatureDefinition`](globals.md#featuredefinition)[]\>
+[`FeatureDefinition`](globals.md#featuredefinition)[]
 
 The features definitions.
 
@@ -1711,7 +1711,7 @@ Call `initialize` before calling this method to ensure the feature definitions a
 ##### getFeatureDefinitions()
 
 ```ts
-getFeatureDefinitions(): Promise<FeatureDefinition[]>
+getFeatureDefinitions(): FeatureDefinition[]
 ```
 
 Gets the feature definitions, including all config values.
@@ -1719,7 +1719,7 @@ To evaluate which features are enabled for a given user/company, use `getFeature
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FeatureDefinition`](globals.md#featuredefinition)[]\>
+[`FeatureDefinition`](globals.md#featuredefinition)[]
 
 The features definitions.
 
