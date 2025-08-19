@@ -69,26 +69,26 @@ Bucket records the status of the operation and displays it below the toggle. The
 
 The company model contains information about company adoption of all your features.
 
-| Column             | Data type          | Format                                                           | Description                                                                    |
-| ------------------ | ------------------ | ---------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Company ID         | `string`           |                                                                  | Company ID from your tracking calls                                            |
-| Company Name       | `string` \| `null` |                                                                  | The company's name, if sent through tracking                                   |
-| Feature Name       | `string`           |                                                                  | Bucket feature name                                                            |
-| Feature ID         | `string`           |                                                                  | Bucket feature ID                                                              |
-| Date               | `string`           | UTC Date (ISO-8601)                                              | The date of data point                                                         |
-| First Seen         | `string`           | UTC Date (ISO-8601)                                              | The company's first tracking date                                              |
-| Last Seen          | `string`           | UTC Date (ISO-8601)                                              | The company's latest tracking date                                             |
-| First Used         | `string` \| `null` | UTC Date (ISO-8601)                                              | Company first feature usage                                                    |
-| Last Used          | `string` \| `null` | UTC Date (ISO-8601)                                              | The company's latest feature usage                                             |
-| STARS State Label  | `string`\| `null`  | One of the:`"never"` \| `"tried"` \| `"retained"` \| `"churned"` | Human readable value for the STARS step                                        |
-| STARS State        | `number`           | One of the: `1` \| `2` \| `3`\| `4`                              | The company [STARS state](feature-analysis/stars-framework.md) for the feature |
-| Frequency Label    | `string`           |                                                                  | Human readable label for the frequency value                                   |
-| Frequency          | `number`           | One of: `0` \| `1` \| `2` \| `3`                                 | Company feature usage frequency. Higher means more frequent                    |
-| Satisfaction Label | `string`           |                                                                  | Human readable label for the satisfaction score                                |
-| Satisfaction       | `number` \| `null` | One of: `1` \| `2` \| `3` \| `4` \| `5`                          | Company feature satisfaction score. Higher is better                           |
-| Feedback Count     | `number`           |                                                                  | Total number of feedbacks recorded                                             |
-| Segment Names      | `string`           | Comma separated list                                             | List of segment names the company is a part of                                 |
-| Segment IDs        | `string`           | Comma separated list                                             | List of segment id's the company is a part of                                  |
+| Column             | Data type          | Format                                                           | Description                                                 |
+| ------------------ | ------------------ | ---------------------------------------------------------------- | ----------------------------------------------------------- |
+| Company ID         | `string`           |                                                                  | Company ID from your tracking calls                         |
+| Company Name       | `string` \| `null` |                                                                  | The company's name, if sent through tracking                |
+| Feature Name       | `string`           |                                                                  | Bucket feature name                                         |
+| Feature ID         | `string`           |                                                                  | Bucket feature ID                                           |
+| Date               | `string`           | UTC Date (ISO-8601)                                              | The date of data point                                      |
+| First Seen         | `string`           | UTC Date (ISO-8601)                                              | The company's first tracking date                           |
+| Last Seen          | `string`           | UTC Date (ISO-8601)                                              | The company's latest tracking date                          |
+| First Used         | `string` \| `null` | UTC Date (ISO-8601)                                              | Company first feature usage                                 |
+| Last Used          | `string` \| `null` | UTC Date (ISO-8601)                                              | The company's latest feature usage                          |
+| STARS State Label  | `string`\| `null`  | One of the:`"never"` \| `"tried"` \| `"retained"` \| `"churned"` | Human readable value for the STARS step                     |
+| STARS State        | `number`           | One of the: `1` \| `2` \| `3`\| `4`                              | The company [STARS state](broken-reference) for the feature |
+| Frequency Label    | `string`           |                                                                  | Human readable label for the frequency value                |
+| Frequency          | `number`           | One of: `0` \| `1` \| `2` \| `3`                                 | Company feature usage frequency. Higher means more frequent |
+| Satisfaction Label | `string`           |                                                                  | Human readable label for the satisfaction score             |
+| Satisfaction       | `number` \| `null` | One of: `1` \| `2` \| `3` \| `4` \| `5`                          | Company feature satisfaction score. Higher is better        |
+| Feedback Count     | `number`           |                                                                  | Total number of feedbacks recorded                          |
+| Segment Names      | `string`           | Comma separated list                                             | List of segment names the company is a part of              |
+| Segment IDs        | `string`           | Comma separated list                                             | List of segment id's the company is a part of               |
 
 ## Articles of interest
 

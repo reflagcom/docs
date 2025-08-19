@@ -30,12 +30,5 @@ Note: Slack notifications are only supported in the Production [environment](../
 
 ## Available Slack notifications
 
-<table><thead><tr><th width="557">What</th><th>When</th></tr></thead><tbody><tr><td>Feature access or state changes</td><td>Real-time</td></tr><tr><td>Feature feedback submissions</td><td>Real-time</td></tr><tr><td>Feature view report</td><td>Weekly</td></tr></tbody></table>
+<table><thead><tr><th width="557">What</th><th>When</th></tr></thead><tbody><tr><td>Feature access or state changes</td><td>Real-time</td></tr><tr><td>Feature archive updates</td><td>Real-time</td></tr><tr><td>Feature feedback submissions</td><td>Real-time</td></tr></tbody></table>
 
-
-
-### Examples
-
-<figure><img src="../.gitbook/assets/CleanShot 2025-01-07 at 1 .19.36@2x.png" alt=""><figcaption><p>Feature access and stage was changed and a comment was attached</p></figcaption></figure>
-
-<figure><img src="../.gitbook/assets/CleanShot 2025-01-07 at 1 .21.09@2x.png" alt=""><figcaption><p>New feature feedback</p></figcaption></figure>

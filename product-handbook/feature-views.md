@@ -22,6 +22,3 @@ You can remove a feature from a view simply by clicking on the X icon.
 
 <figure><img src="../.gitbook/assets/Adding features to a feature view-min.png" alt="Adding a feature to a feature view"><figcaption></figcaption></figure>
 
-## Weekly reporting
-
-Weekly reports contain a summary of the STARS funnel and a graph showing the progression of all the features in the feature view over the past weeks. The report is sent directly to a Slack channel of your choice.

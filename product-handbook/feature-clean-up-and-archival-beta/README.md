@@ -10,19 +10,19 @@ description: >-
 
 After features have been rolled out to everyone, they turn stale after a given period of time. Stale features show up with a little broom next to their name and you also receive a Slack notification if the Slack notification is enabled
 
-<figure><img src="../.gitbook/assets/Screenshot 2025-07-15 at 21.31.16.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-07-15 at 21.31.16.png" alt=""><figcaption></figcaption></figure>
 
 ## Stale features view
 
 The stale features view lets you see all the features that are currently stale as well as what needs to be done before they can be archived
 
-<figure><img src="../.gitbook/assets/Screenshot 2025-07-21 at 20.07.27.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-07-21 at 20.07.27.png" alt=""><figcaption></figcaption></figure>
 
 ## Clean-up guide
 
 Open up a feature and find the built in "Clean-up guide". The "Clean-up guide" helps you through the steps required to safely archive a feature.
 
-<figure><img src="../.gitbook/assets/Screenshot 2025-07-10 at 14.04.07.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-07-10 at 14.04.07.png" alt="" width="563"><figcaption></figcaption></figure>
 
 There are three **checks** that must pass for the feature to be safe to archive:
 
@@ -47,7 +47,7 @@ In organization settings, you control requirements for each checks to pass:
 
 You can also set the default automation settings for newly created features.
 
-<figure><img src="../.gitbook/assets/Screenshot 2025-07-10 at 14.11.01.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-07-10 at 14.11.01.png" alt=""><figcaption></figcaption></figure>
 
 
 

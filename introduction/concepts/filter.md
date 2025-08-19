@@ -7,7 +7,7 @@ A filter, in Bucket, is a mechanism that is used to check if entities such as [u
 Bucket support the following filter types:
 
 * [Company attribute](company.md#attributes) filter, that can be used to check company attributes,
-* Company [feature metrics](feature.md#metrics) filter, which allows checking for feature metrics applied to a given company (for example which [STARS](../../product-handbook/feature-analysis/stars-framework.md) state the company is in for a feature),
+* Company [feature metrics](feature.md#metrics) filter, which allows checking for feature metrics applied to a given company (for example which [STARS](broken-reference) state the company is in for a feature),
 * [User attribute](user.md#attributes) filter, used to check user attributes,
 * [Event attribute](event.md#attributes) filter, used to check event attributes,
 * Company [segment](segment.md) filter, can be used to check a company's membership in a segment,

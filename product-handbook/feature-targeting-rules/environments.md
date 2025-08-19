@@ -73,7 +73,7 @@ The following entities and configuration options are application-wide and not de
 
 There are environment-specific functionalities that are only allowed in the `Production` environment. These are:
 
-* `Slack`: Reporting settings in [Features](../create-your-first-feature.md) and [Feature views](https://bucket.co/glossary/feature-views) can be configured from any environment, but are also reflected in the `Production` environment
+* `Slack`: Reporting settings in [Features](broken-reference) and [Feature views](https://bucket.co/glossary/feature-views) can be configured from any environment, but are also reflected in the `Production` environment
 * Some configuration sections are disabled if the selected environment is not `Production`.
 
 {% hint style="info" %}
@@ -85,7 +85,7 @@ Some settings are `Production environment`-only and are disabled when a non-`Pro
 All other settings and functionalities are environment-specific. Anything that requires data to be sent from the clients is inherently environment-specific. This includes:
 
 * [Access rules](../feature-rollouts/feature-targeting-rules.md)
-* [Automate feedback surveys](../feature-analysis/automated-feedback-surveys.md)
+* [Automate feedback surveys](../launch-monitor/automated-feedback-surveys.md)
 * [Feedback](../product-overview.md#feedback)
 * [Tracking](../product-overview.md#tracking)
 * [Data export](../data-export.md)

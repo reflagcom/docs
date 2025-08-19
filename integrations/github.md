@@ -8,8 +8,8 @@ description: >-
 
 Using the integration for GitHub, Bucket does two things:
 
-* Automatically searches your repository for references to feature flags. This way you can know if a flag was cleaned up from your codebase or whether it's still being used. See  how the clean-up guide uses this in [feature-clean-up-and-archival-beta](../feature-clean-up-and-archival-beta/ "mention").
-* Bucket can automatically clean up your code once a feature has been rolled out to everyone. See [ai-code-clean-up-beta.md](../feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md "mention") for more information.
+* Automatically searches your repository for references to feature flags. This way you can know if a flag was cleaned up from your codebase or whether it's still being used. See  how the clean-up guide uses this in [feature-clean-up-and-archival-beta](../product-handbook/feature-clean-up-and-archival-beta/ "mention").
+* Bucket can automatically clean up your code once a feature has been rolled out to everyone. See [ai-code-clean-up-beta.md](../product-handbook/feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md "mention") for more information.
 
 {% hint style="info" %}
 GitHub integration is available on Pro and Enterprise [plans](https://bucket.co/pricing)

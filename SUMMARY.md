@@ -45,6 +45,21 @@
 ## Product Handbook
 
 * [Product overview](product-handbook/product-overview.md)
+* [Feature rollouts](product-handbook/feature-rollouts/README.md)
+  * [Access rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
+* [Feature clean-up and archival (beta)](product-handbook/feature-clean-up-and-archival-beta/README.md)
+  * [AI code clean-up (beta)](product-handbook/feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md)
+* [Remote config](product-handbook/remote-config.md)
+* [Launch monitor](product-handbook/launch-monitor/README.md)
+  * [Give feedback button](product-handbook/launch-monitor/give-feedback-button.md)
+  * [Automated feedback surveys](product-handbook/launch-monitor/automated-feedback-surveys.md)
+* [Feature entitlements](product-handbook/feature-entitlements/README.md)
+  * [Simple role-based entitlements](product-handbook/feature-entitlements/simple-role-based-entitlements.md)
+* [Creating segments](product-handbook/feature-targeting-rules/creating-segments.md)
+* [Feature views](product-handbook/feature-views.md)
+* [Team permissions](product-handbook/team-permissions.md)
+* [Managing apps](product-handbook/creating-and-managing-apps.md)
+  * [Environments](product-handbook/feature-targeting-rules/environments.md)
 * [Data model](introduction/concepts/README.md)
   * [App](introduction/concepts/app.md)
   * [Environment](introduction/concepts/environment.md)
@@ -59,34 +74,11 @@
   * [Release stage](introduction/concepts/release-stage.md)
   * [Targeting rules](introduction/concepts/targeting-rules.md)
   * [Filter](introduction/concepts/filter.md)
-* [Feature rollouts](product-handbook/feature-rollouts/README.md)
-  * [Access rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
-* [Remote config](product-handbook/remote-config.md)
-* [Feature adoption](product-handbook/feature-usage-configuration.md)
-  * [STARS Framework](product-handbook/feature-analysis/stars-framework.md)
-* [Feature feedback](product-handbook/feature-analysis/README.md)
-  * [Automated feedback surveys](product-handbook/feature-analysis/automated-feedback-surveys.md)
-  * [Give feedback button](product-handbook/feature-feedback/give-feedback-button.md)
-* [Feature entitlements](product-handbook/feature-entitlements/README.md)
-  * [Simple role-based entitlements](product-handbook/feature-entitlements/simple-role-based-entitlements.md)
-* [Creating segments](product-handbook/feature-targeting-rules/creating-segments.md)
-* [Feature views](product-handbook/feature-views.md)
-* [Managing apps](product-handbook/creating-and-managing-apps.md)
-  * [Environments](product-handbook/feature-targeting-rules/environments.md)
 * [Warehouse](product-handbook/data-export.md)
 * [Data residency](product-handbook/data-residency.md)
-* [Exclude internal usage](product-handbook/exclude-internal-usage.md)
-* [Team permissions](product-handbook/team-permissions.md)
-
-***
-
-* [Feature clean-up and archival (beta)](feature-clean-up-and-archival-beta/README.md)
-  * [AI code clean-up (beta)](feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md)
 
 ## Guides
 
-* [Add your first feature flag](product-handbook/create-your-first-feature.md)
-* [Release beta features](guides/release-beta-features.md)
 * [Create a beta feature opt-in page](product-handbook/self-opt-in.md)
 
 ## Support

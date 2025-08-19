@@ -1,16 +1,16 @@
 # AI code clean-up (beta)
 
-When the [GitHub integration](../integrations/github.md) has been enabled, Bucket can automatically clean up your code after features turn stale. The bucket bot simply submits a pull request to your GitHub repository which removes the flag code once a feature turns stale.
+When the [GitHub integration](../../integrations/github.md) has been enabled, Bucket can automatically clean up your code after features turn stale. The bucket bot simply submits a pull request to your GitHub repository which removes the flag code once a feature turns stale.
 
 {% hint style="warning" %}
 This feature **keeps the codepath that grants access (isEnabled == true)** when cleaning up and archiving a feature i.e. releasing it everyone by removing the flagging code.
 {% endhint %}
 
 {% hint style="info" %}
-Note: This works best when using the [React SDK](../sdk/@bucketco/react-sdk/), but stay tuned for improved Node.js support
+Note: This works best when using the [React SDK](../../sdk/@bucketco/react-sdk/), but stay tuned for improved Node.js support
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/Screenshot 2025-07-10 at 14.29.20.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-07-10 at 14.29.20.png" alt=""><figcaption></figcaption></figure>
 
 ## Get started with AI code clean-up
 
@@ -24,21 +24,21 @@ Enable "Auto-create AI Clean-up PRs" under organization-level [Clean-up settings
 
 This will ensure that newly created features have the automation switched on.
 
-<figure><img src="../.gitbook/assets/image (23).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 3. Test it manually
 
 Find a stale feature that is ready for clean-up by looking for the broom icon in the features table.
 
-<figure><img src="../.gitbook/assets/image (27).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (27).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Find the "Clean-up guide" in the feature sidebar, click "Show details" and hit the "Create AI clean-up PR" button to start the process.
 
-<figure><img src="../.gitbook/assets/image (20).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Within a few minutes, you'll have a GitHub Pull Request that removes the feature flag and keeps the enabled codepath, like here:
 
-<figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
 
 Magical! ✨
 

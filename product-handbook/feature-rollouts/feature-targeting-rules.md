@@ -16,7 +16,7 @@ You'll find the feature access configuration under the `Access` tab in each feat
 
 ## Getting started <a href="#get-started" id="get-started"></a>
 
-* Create your [feature](../create-your-first-feature.md)
+* Create your [feature](broken-reference)
 * Select the `Access` tab
 
 ## Access rules
@@ -31,15 +31,13 @@ The default access criteria are:
 
 The default access criteria let you add segments, companies, and users without additional configuration.
 
-<figure><img src="../../.gitbook/assets/Feature targeting rules UI v3-min.png" alt="Feature targeting rules UI in Bucket"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Access.png" alt=""><figcaption></figcaption></figure>
 
 ## Advanced access rules
 
 You can also create advanced access rules with the "+ Add Rule" button.
 
 Advanced rules let you specify rollout percentages and create access rules using company attributes, user attributes, feature access, or other contexts.
-
-<figure><img src="../../.gitbook/assets/Advanced targeting rules v3-min.png" alt="Advanced targeting rules"><figcaption></figcaption></figure>
 
 ### Conditions
 
@@ -117,9 +115,7 @@ The set of companies within the `Beta User` segment with access to `Feature A` a
 
 ## Environments
 
-Apply different access rules to distinct [environments](https://docs.bucket.co/product-handbook/environments). You can switch between environments by clicking the `Edit in [Environment]` button.
-
-The default environment is Production.
+You can switch between environments by clicking the environments in the left sidebar.
 
 ### **Example**
 
