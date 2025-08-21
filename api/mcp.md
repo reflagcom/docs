@@ -37,7 +37,7 @@ Make sure your editor/client and [Node.js](https://nodejs.org/en/download) versi
 
 ## Manual setup
 
-Below are the manual setup steps for some of the popular editors, but there are [more MCP-compatible clients](https://modelcontextprotocol.io/clients). Before you start with the manual setup, you first need the `App ID` from [your app settings page](https://app.bucket.co/envs/current/settings/app-general).
+Below are the manual setup steps for some of the popular editors, but there are [more MCP-compatible clients](https://modelcontextprotocol.io/clients). Before you start with the manual setup, you first need the `App ID` from [your app settings page](https://app.bucket.co/env-current/settings/app-general).
 
 {% hint style="info" %}
 We use [mcp-remote](https://www.npmjs.com/package/mcp-remote) to enable authentication and remote MCP connections in clients that don't yet support it.

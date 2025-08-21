@@ -16,11 +16,11 @@ Note: This works best when using the [React SDK](../../sdk/@bucketco/react-sdk/)
 
 ### 1. Connect with GitHub
 
-Make sure the [GitHub integration](https://app.bucket.co/envs/current/settings/org-integrations) is connected for your organization and a repository have been chosen.
+Make sure the [GitHub integration](https://app.bucket.co/env-current/settings/org-integrations) is connected for your organization and a repository have been chosen.
 
 ### 2. Enable automation
 
-Enable "Auto-create AI Clean-up PRs" under organization-level [Clean-up settings](https://app.bucket.co/envs/current/settings/org-archiving-flow).
+Enable "Auto-create AI Clean-up PRs" under organization-level [Clean-up settings](https://app.bucket.co/env-current/settings/org-archiving-flow).
 
 This will ensure that newly created features have the automation switched on.
 

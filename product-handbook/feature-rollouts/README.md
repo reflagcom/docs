@@ -39,7 +39,7 @@ Release stages are designed to support the common use case of taking a feature f
 New apps come with 4 default release stages: In development, Internal, Beta, and General availability.
 
 {% hint style="info" %}
-Release stages are fully customizable. Go the the [Release stages settings](https://app.bucket.co/envs/current/settings/app-stages) to adopt them to your needs.
+Release stages are fully customizable. Go the the [Release stages settings](https://app.bucket.co/env-current/settings/app-stages) to adopt them to your needs.
 {% endhint %}
 
 #### **In development**

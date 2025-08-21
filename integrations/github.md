@@ -17,7 +17,7 @@ GitHub integration is available on Pro and Enterprise [plans](https://bucket.co/
 
 ## Connect to GitHub
 
-Connecting to GitHub happens at the Organization level. Go to [Organization settings](https://app.bucket.co/envs/current/settings/org-integrations) and:
+Connecting to GitHub happens at the Organization level. Go to [Organization settings](https://app.bucket.co/env-current/settings/org-integrations) and:
 
 1. Click "Connect" for the GitHub integraiton.
 2. You'll be taken to an authentication consent screen.
