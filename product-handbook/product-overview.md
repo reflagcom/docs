@@ -4,23 +4,23 @@
 
 The Features tab of Reflag is where you create and manage your features.
 
-<figure><img src="../.gitbook/assets/Feature view.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2025-09-02 at 17.08.25.png" alt=""><figcaption></figcaption></figure>
 
 ## Feature page
 
 This is where you create and manage feature flags, set access rules, remote config, and monitor your feature launch.&#x20;
 
-<figure><img src="../.gitbook/assets/Features Page V2-min.png" alt="Feature page with rollout targeting rules"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2025-09-02 at 17.10.36.png" alt="Feature page with rollout targeting rules"><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Remote config.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2025-09-02 at 17.11.21.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Monitor (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Monitor (5).png" alt=""><figcaption></figcaption></figure>
 
 ## Companies
 
 The Companies tab lists all of the companies that use your application. You can used advanced filters to filter the companies list and create saved segments.
 
-<figure><img src="../.gitbook/assets/Segments.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2025-09-02 at 17.13.15.png" alt=""><figcaption></figcaption></figure>
 
 ## Event log
 
