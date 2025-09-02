@@ -31,7 +31,7 @@ The default access criteria are:
 
 The default access criteria let you add segments, companies, and users without additional configuration.
 
-<figure><img src="../../.gitbook/assets/Access (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-02 at 17.10.36.png" alt=""><figcaption></figcaption></figure>
 
 ## Advanced access rules
 
