@@ -1,5 +1,5 @@
 ---
-description: Learn more about remote config in Bucket
+description: Learn more about remote config in Reflag
 ---
 
 # Remote config
@@ -8,7 +8,7 @@ description: Learn more about remote config in Bucket
 
 Remote config serves as a dynamic and flexible approach to configuring your features in relation to the targeted audience. A feature's remote config consists of a set of **config values**. Each config value is a **key** — **payload** pair where the keys are unique and the values are JSON values. Both are supplied by you.
 
-Config values have **environment-specific targeting rules** used by Bucket to match them against your users and companies.
+Config values have **environment-specific targeting rules** used by Reflag to match them against your users and companies.
 
 The use of remote config reduces the need for constant code changes, facilitating seamless adjustments to application settings. This capability not only streamlines operational processes but also enhances responsiveness by allowing you to test and modify features on-the-fly.
 
@@ -17,7 +17,7 @@ This is what remote config looks like in React:
 {% code fullWidth="false" %}
 ```tsx
 function AISummarizerRemotelyConfigured({copy}: {copy: string}) {
-  const { config: { payload } } = useFeature('my-ai-feature');
+  const { config: { payload } } = useFlag('my-ai-feature');
 
   return <AISummarizer model={payload.model} provider={payload.provider} />
 }
@@ -35,12 +35,12 @@ Config values, as noted above, consist of:
 * A mandatory unique string **key**, supplied by you. They key is unique per feature. If you just need a string configuration, you can use the key by itself.
 * An optional JSON **payload**, that can be any valid JSON value: `null`, `string`, `number`, `array` or `object`
 * Targeting rules which are environment-specific, allowing you to target different config values to different users/companies in different environments
-* Default setting, which tells Bucket which config value to use as fallback if no targeting set matches the given user/company context
+* Default setting, which tells Reflag which config value to use as fallback if no targeting set matches the given user/company context
 
 {% hint style="danger" %}
 Do not store sensitive data in the key or the payload of the config value even if the feature is marked as **secret.**
 
-Sensitive data, like API keys or passwords should be managed with proper care outside of Bucket
+Sensitive data, like API keys or passwords should be managed with proper care outside of Reflag
 {% endhint %}
 
 The config values are shared across all environments. Any new value that you add in one environment, will automatically be added to other environments but without any targeting rules, effectively making it disabled.
@@ -91,18 +91,18 @@ The **multi-variate feature flag** is the classical example that is directly ena
 
 Remote config is a great tool when used to support [entitlements scenarios](feature-entitlements/). For each feature you create, you can add config values targeting different **companies** or **company segments** with different values. Each config value can then define the restrictions on the feature use.
 
-<figure><img src="../.gitbook/assets/image (1) (2).png" alt=""><figcaption><p>Example of AI model variations by subscription tier</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption><p>Example of AI model variations by subscription tier</p></figcaption></figure>
 
 The image above exemplifies a feature called "_AI Transcripts_" which serves five different categories of customers: "_Not customers_", "_Signed-Up_", "_Trial_", "_Pro_" and "_Enterprise_". Each category is entitled to different feature tier.
 
 ## Start using remote config
 
-First, [create your first feature](broken-reference), if you haven't yet. Then, open your feature and click on the "_Remote config_" tab at the top.
+First, [create your first feature](https://app.reflag.com/), if you haven't yet. Then, open your feature and click on the "_Remote config_" tab at the top.
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption><p>Click "Create config value" to start</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption><p>Click "Create config value" to start</p></figcaption></figure>
 
 Once you have set up your feature and config values, don't forget to configure the targeting rules in other environments as well.
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption><p>The environment picker</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption><p>The environment picker</p></figcaption></figure>
 
 Finally, use [any of our SDKs](../supported-languages/overview.md) to access the feature and its config in your application.

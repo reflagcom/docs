@@ -1,18 +1,18 @@
 ---
-description: Adding a feedback button using Bucket SDKs in a few lines of code.
+description: Adding a feedback button using Reflag SDKs in a few lines of code.
 ---
 
 # Give feedback button
 
 Collecting feedback through a "Give feedback" button is a great way to collect feedback from users.
 
-Here's a brief example using the [Bucket React SDK](../../sdk/@bucketco/react-sdk/):
+Here's a brief example using the [Reflag React SDK](../../supported-languages/react-sdk/):
 
 ```tsx
-import { useFeature } from "@bucketco/react-sdk";
+import { useFlag } from "@reflag/react-sdk";
 
 function StartHuddleButton() {
-  const { isLoading, isEnabled, track, requestFeedback } = useFeature("huddle");
+  const { isLoading, isEnabled, track, requestFeedback } = useFlag("huddle");
 
   if (isLoading) {
     return <Loading />;

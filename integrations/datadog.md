@@ -1,6 +1,6 @@
 ---
 description: >-
-  How Bucket integrates with Datadog to catch regressions on new feature
+  How Reflag integrates with Datadog to catch regressions on new feature
   releases
 ---
 
@@ -8,13 +8,13 @@ description: >-
 
 With the Datadog integration, you can enrich your RUM data with feature flag data. This will enable you to catch regressions on new feature releases.
 
-### Get available features from Bucket
+### Get available features from Reflag
 
-In this example, we're using the [React SDK](../sdk/@bucketco/react-sdk/):
+In this example, we're using the [React SDK](../supported-languages/react-sdk/):
 
 ```javascript
 import { datadogRum } from "@datadog/browser-rum";
-import { useClient } from "@bucketco/react-sdk";
+import { useClient } from "@reflag/react-sdk";
 
 // Component to enhnance datadog RUM with flag checks
 function DatadogIntegration() {
@@ -28,15 +28,15 @@ function DatadogIntegration() {
 }
 ```
 
-Add the component inside the BucketProvider:
+Add the component inside the ReflagProvider:
 
 ```tsx
 function App() {
   return (
-    <BucketProvider>
-      <DatadogIntegration /> // Add the component inside the <BucketProvider>
+    <ReflagProvider>
+      <DatadogIntegration /> // Add the component inside the <ReflagProvider>
       {children}
-    </BucketProvider>
+    </ReflagProvider>
   )
 }
 ```

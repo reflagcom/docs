@@ -1,22 +1,22 @@
 ---
-description: Learn more about feature rollouts in Bucket
+description: Learn more about feature rollouts in Reflag
 ---
 
 # Feature rollouts
 
-You release features gradually to de-risk rollouts. It's better that only a few beta accounts encounter bugs rather than the entire user base.&#x20;
+You release features gradually to de-risk rollouts. It's better that only a few beta accounts encounter bugs rather than the entire user base.
 
-Ideally, you first test internally and then roll out a limited release to beta customers. Once you've caught the major bugs or points of confusion, you release the feature to general availability.&#x20;
+Ideally, you first test internally and then roll out a limited release to beta customers. Once you've caught the major bugs or points of confusion, you release the feature to general availability.
 
-This is how to use Bucket to safely roll out [new features](broken-reference).
+This is how to use Reflag to safely roll out [new features](https://github.com/reflagcom/docs/blob/main/product-handbook/feature-rollouts/broken-reference/README.md).
 
 ## Gradually roll out your feature
 
-To roll out a feature in Bucket, you can set access rules.
+To roll out a feature in Reflag, you can set access rules.
 
 ## Setting access rules
 
-[Access rules](feature-targeting-rules.md) on Bucket are designed to simplify the rollout process in B2B companies.
+[Access rules](feature-targeting-rules.md) on Reflag are designed to simplify the rollout process in B2B companies.
 
 The default access criteria are:
 
@@ -32,23 +32,23 @@ If you'd like to specify a [rollout percentage](feature-targeting-rules.md#speci
 
 ## Using release stages
 
-Release stages let you easily signal features' rollout progress to your team and, optionally, set access rules for each stage of the rollout process.&#x20;
+Release stages let you easily signal features' rollout progress to your team and, optionally, set access rules for each stage of the rollout process.
 
 Release stages are designed to support the common use case of taking a feature from development to internal testing to a beta testing phase, then finally released to everyone.
 
 New apps come with 4 default release stages: In development, Internal, Beta, and General availability.
 
 {% hint style="info" %}
-Release stages are fully customizable. Go the the [Release stages settings](https://app.bucket.co/env-current/settings/app-stages) to adopt them to your needs.
+Release stages are fully customizable. Go the the [Release stages settings](https://app.reflag.com/env-current/settings/app-stages) to adopt them to your needs.
 {% endhint %}
 
 #### **In development**
 
-When you create a new feature, it is placed in the "In development" stage by default. This release stage signals that a feature is currently being built.&#x20;
+When you create a new feature, it is placed in the "In development" stage by default. This release stage signals that a feature is currently being built.
 
 #### **Internal**
 
-The "Internal" stage signals a feature is ready for internal QA testing.&#x20;
+The "Internal" stage signals a feature is ready for internal QA testing.
 
 #### **Beta**
 

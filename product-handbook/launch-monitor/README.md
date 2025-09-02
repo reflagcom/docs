@@ -2,7 +2,7 @@
 
 Use the launch monitor to track exposure and adoption, and to collect end-user feedback.
 
-<figure><img src="../../.gitbook/assets/Monitor (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Monitor (4).png" alt=""><figcaption></figcaption></figure>
 
 ## Exposure
 
@@ -13,10 +13,10 @@ The Exposed chart shows you the distinct count of companies that have been expos
 The Tracked chart shows you the dinstinct count of companies that have interacted with the feature. Interactions are tracked with the `track` method. Here's a code example:
 
 ```typescript
-import { useFeature } from "@bucketco/react-sdk";
+import { useFlag } from "@reflag/react-sdk";
 
 function StartHuddleButton() {
-  const { isLoading, isEnabled, track } = useFeature("huddle");
+  const { isLoading, isEnabled, track } = useFlag("huddle");
 
   if (isLoading) {
     return <Loading />;
@@ -41,13 +41,13 @@ You can collect end-user feedback on new feature releases to catch and fix issue
 
 ### Static feedback button
 
-Here's a brief example using the [Bucket React SDK](../../sdk/@bucketco/react-sdk/) to collect feedback:
+Here's a brief example using the [Reflag React SDK](../../supported-languages/react-sdk/) to collect feedback:
 
 ```tsx
-import { useFeature } from "@bucketco/react-sdk";
+import { useFlag } from "@reflag/react-sdk";
 
 function StartHuddleButton() {
-  const { isLoading, isEnabled, requestFeedback } = useFeature("my-feature");
+  const { isLoading, isEnabled, requestFeedback } = useFlag("my-feature");
 
   if (isLoading) {
     return <Loading />;

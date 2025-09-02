@@ -1,6 +1,6 @@
 ---
 description: >-
-  How Bucket integrates with Amplitude to query analytics based on feature
+  How Reflag integrates with Amplitude to query analytics based on feature
   access filters
 ---
 
@@ -8,13 +8,13 @@ description: >-
 
 With the Amplitude integration, you can attach feature access properties to users and groups on Amplitude. This will enable you to query analytics based on feature access filters.
 
-### Get available features from Bucket
+### Get available features from Reflag
 
-In this example, we're using the [Browser SDK](../sdk/@bucketco/browser-sdk/):
+In this example, we're using the [Browser SDK](../supported-languages/browser-sdk/):
 
 ```javascript
 //init
-const bucket = new BucketBrowserSDK.BucketClient({
+const reflag = new ReflagBrowserSDK.ReflagClient({
     publishableKey: "pub_prod_5eS0G5hX4ZOpwoAw1CKTeP",
     user: { 
         id: "u1234", 
@@ -23,7 +23,7 @@ const bucket = new BucketBrowserSDK.BucketClient({
 });
 
 //get features
-const features = bucket.getFeatures();
+const features = reflag.getFeatures();
 ```
 
 This will return JSON with all available features for the authenticated user:

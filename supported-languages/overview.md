@@ -1,6 +1,6 @@
 ---
 description: >-
-  Bucket SDKs for React, Vue.js, Node.js, Next.js, and more. Supports
+  Reflag SDKs for React, Vue.js, Node.js, Next.js, and more. Supports
   OpenFeature.
 ---
 
@@ -8,15 +8,15 @@ description: >-
 
 ## Official SDKs
 
-These SDKs are crafted and maintained by the Bucket team.
+These SDKs are crafted and maintained by the Reflag team.
 
-{% include "../.gitbook/includes/languages.md" %}
+{% include "../.gitbook/includes/sdks.md" %}
 
 ## Unofficial SDKs
 
 The following SDKs are community-led.
 
-* [Ruby on Rails](community-support/ruby-rails-stimulus.md) by [mikker](https://gist.github.com/mikker)
+* [Ruby on Rails](ruby-rails-stimulus.md) by [mikker](https://gist.github.com/mikker)
 
 For non-supported languages, you can use the [HTTP API](../api/http-api.md).
 

@@ -1,10 +1,10 @@
 ---
-description: Learn more about simple role-based entitlements in Bucket
+description: Learn more about simple role-based entitlements in Reflag
 ---
 
 # Simple role-based entitlements
 
-If you need to enforce feature access at the company subscription level _**and**_ user role level (user permissions), you can combine your user role and permission services with Bucket.
+If you need to enforce feature access at the company subscription level _**and**_ user role level (user permissions), you can combine your user role and permission services with Reflag.
 
 For example, let's say your "Export to CSV" feature is only available to customers on the "Business" or "Enterprise" plans _**and**_ only users with the "admin" role should be allowed to use it.
 
@@ -14,7 +14,7 @@ If you have simple and static user permissions, like "admin" and "member", that 
 
 ### Managing simple role-based user permissions
 
-Let's look at how to handle the simple use case with Bucket.&#x20;
+Let's look at how to handle the simple use case with Reflag.&#x20;
 
 If you zoom out, this is what controlling feature access at the customer subscription level looks like.
 

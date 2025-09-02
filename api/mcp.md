@@ -2,30 +2,30 @@
 description: >-
   Model Context Protocol lets you connect your Large Language Model (LLM) in,
   for example, your code editor to external data. Follow this guide to connect
-  your editor to your Bucket data.
+  your editor to your Reflag data.
 ---
 
 # MCP
 
 {% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F6wSC8SR2SupI4hONkYqp%2Fuploads%2F3ldWF5ngJR7yUMAysZKa%2Fcursor-mcp-demo_h264.mp4?alt=media&token=8e77c2e5-24fd-4451-85ee-5120008626c7" %}
 
-## Get started with Bucket Remote MCP
+## Get started with Reflag Remote MCP
 
-The Model Context Protocol (MCP) is an open protocol that provides a standardized way to connect AI models to different data sources and tools. In the context of Bucket, MCP enables your code editor to understand your feature flags, their states, and their relationships within your codebase. This creates a seamless bridge between your feature management workflow and AI-powered development tools. Bucket hosts the MCP server, making it very easy to get started!
+The Model Context Protocol (MCP) is an open protocol that provides a standardized way to connect AI models to different data sources and tools. In the context of Reflag, MCP enables your code editor to understand your feature flags, their states, and their relationships within your codebase. This creates a seamless bridge between your feature management workflow and AI-powered development tools. Reflag hosts the MCP server, making it very easy to get started!
 
 {% stepper %}
 {% step %}
-### Set up the MCP connection with the [Bucket CLI](../sdk/documents/cli/)
+#### Set up the MCP connection with the [Reflag CLI](cli.md)
 
 Simply run our one-line command in your project directory and select the options that best suit you.
 
 ```bash
-npx @bucketco/cli@latest mcp
+npx @reflag/cli@latest mcp
 ```
 {% endstep %}
 
 {% step %}
-### That's it!
+#### That's it!
 {% endstep %}
 {% endstepper %}
 
@@ -37,7 +37,7 @@ Make sure your editor/client and [Node.js](https://nodejs.org/en/download) versi
 
 ## Manual setup
 
-Below are the manual setup steps for some of the popular editors, but there are [more MCP-compatible clients](https://modelcontextprotocol.io/clients). Before you start with the manual setup, you first need the `App ID` from [your app settings page](https://app.bucket.co/env-current/settings/app-general).
+Below are the manual setup steps for some of the popular editors, but there are [more MCP-compatible clients](https://modelcontextprotocol.io/clients). Before you start with the manual setup, you first need the `App ID` from [your app settings page](https://app.reflag.com/env-current/settings/app-general).
 
 {% hint style="info" %}
 We use [mcp-remote](https://www.npmjs.com/package/mcp-remote) to enable authentication and remote MCP connections in clients that don't yet support it.
@@ -52,11 +52,11 @@ We use [mcp-remote](https://www.npmjs.com/package/mcp-remote) to enable authenti
 ```json
 {
   "mcpServers": {
-    "Bucket": {
+    "Reflag": {
       "command": "npx",
       "args": [
         "mcp-remote@latest",
-        "https://app.bucket.co/api/mcp?appId=<YOUR APP ID>"
+        "https://app.reflag.com/api/mcp?appId=<YOUR APP ID>"
       ]
     }
   }
@@ -79,8 +79,8 @@ You must enable the [Copilot agent mode](https://code.visualstudio.com/docs/copi
 2. Open the command palette, typically `CMD + SHIFT + P` or `CTRL + SHIFT + P`.
 3. Type and select `MCP: Add Server...` .
 4. Select `Command (stdio)` .
-5. Enter `npx mcp-remote@latest https://app.bucket.co/api/mcp?appId=<YOUR APP ID>` as the command, with your `App ID`.
-6. Enter `Bucket` as the server ID.
+5. Enter `npx mcp-remote@latest https://app.reflag.com/api/mcp?appId=<YOUR APP ID>` as the command, with your `App ID`.
+6. Enter `Reflag` as the server ID.
 7. Select either `User Settings` or `Workspace Settings`.
 
 {% hint style="info" %}
@@ -98,11 +98,11 @@ VS Code also supports workspace-specific MCP servers by adding the above configu
 ```json
 {
   "mcpServers": {
-    "Bucket": {
+    "Reflag": {
       "command": "npx",
       "args": [
         "mcp-remote@latest",
-        "https://app.bucket.co/api/mcp?appId=<YOUR APP ID>"
+        "https://app.reflag.com/api/mcp?appId=<YOUR APP ID>"
       ]
     }
   }
@@ -113,4 +113,4 @@ VS Code also supports workspace-specific MCP servers by adding the above configu
 
 ## Additional notes
 
-MCP is in a very early stage of development, and changes are frequent. If something isn't working, please check out the [Model Context Protocol Website](https://modelcontextprotocol.io/), [mcp-remote](https://www.npmjs.com/package/mcp-remote?activeTab=versions), and open an [issue ticket here](https://github.com/bucketco/bucket-javascript-sdk/issues).&#x20;
+MCP is in a very early stage of development, and changes are frequent. If something isn't working, please check out the [Model Context Protocol Website](https://modelcontextprotocol.io/), [mcp-remote](https://www.npmjs.com/package/mcp-remote?activeTab=versions), and open an [issue ticket here](https://github.com/reflagcom/reflag-javascript-sdk/issues).

@@ -6,7 +6,7 @@ description: Invite, remove and manage roles for your team members
 
 ## Team management basics
 
-The Team Management page in your bucket organization provides essential features for overseeing your team:
+The Team Management page in your Reflag organization provides essential features for overseeing your team:
 
 * **Invitations**: Easily copy the secret invite link to allow new members to join your organization. Admins can refresh the invite link as needed.
 * **User listing**: View the complete list of current organization members. The table displays each user's details, including their join date and role.

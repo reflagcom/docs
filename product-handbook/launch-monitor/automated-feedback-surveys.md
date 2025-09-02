@@ -1,5 +1,5 @@
 ---
-description: Learn more about automated feedback surveys in Bucket
+description: Learn more about automated feedback surveys in Reflag
 ---
 
 # Automated feedback surveys
@@ -8,7 +8,7 @@ Automated feedback surveys are no-code surveys that collect in-app user feedback
 
 ## Getting started
 
-* Select the [feature](../../introduction/concepts/feature.md) that you would like to start collecting feedback for
+* Select the [feature](../concepts/feature.md) that you would like to start collecting feedback for
 * Go to `Settings` and click on `Enable Feedback surveys`
 * Enter a question in the `Prompt question` input. \
   For example: `How did you like the new Huddle feature?`
@@ -69,7 +69,7 @@ To configure the maximum number of surveys each user sees during a given period,
 
 The default value is 1 week.&#x20;
 
-Bucket will never ask a user for feedback about the same feature more than once, regardless of the `Minimum time between asking for feedback` configuration.
+Reflag will never ask a user for feedback about the same feature more than once, regardless of the `Minimum time between asking for feedback` configuration.
 
 ## Default feedback widget behavior
 
@@ -93,7 +93,7 @@ The remaining time is visualized by the circle around the `x` button. When the c
 
 The behavior, language, positioning, content, and design of the feedback widget are fully customizable. This lets you integrate the feedback surveys with your app while following existing UI and design guidelines.\
 \
-You can find the complete developer documentation [on GitHub](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md).
+You can find the complete developer documentation [on GitHub](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md).
 
 ![](https://files.readme.io/2506596-Customized_Widgets.png)
 
@@ -109,48 +109,48 @@ The feedback widget can be configured to be placed and behave in three different
 | **Dialog**   | A dialog appears in a specified corner of the viewport without limiting interaction with the rest of the page. It can be dismissed with a close button or will automatically disappear after a period if there is no interaction. |
 | **Pushover** | A popover is anchored relative to a DOM element (typically a button). It can be dismissed by clicking outside the popover or by pressing the dedicated close button.                                                              |
 
-Find additional positioning details in the [developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#positioning-and-behavior).&#x20;
+Find additional positioning details in the [developer documentation](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#positioning-and-behavior).&#x20;
 
 ### Language
 
 You can customize the language of the feedback widget statically at page load or dynamically during runtime.\
 \
-You can supply your translations by passing an object to the options to either or both of the `bucket.init(options)` or `bucket.requestFeedback(options)` calls. These translations replace the English ones used by the feedback widget.&#x20;
+You can supply your translations by passing an object to the options to either or both of the `reflag.init(options)` or `reflag.requestFeedback(options)` calls. These translations replace the English ones used by the feedback widget.&#x20;
 
-Find additional details about languages and translation in the [developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#internationalization-i18n).
+Find additional details about languages and translation in the [developer documentation](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#internationalization-i18n).
 
 ### Custom styling
 
 The styling can be fully customized by applying custom CSS properties to your page in the CSS `:root` scope.&#x20;
 
-More information can be found in the [developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#custom-styling) and [example stylesheet](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/tracking-sdk/dev/index.css).
+More information can be found in the [developer documentation](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#custom-styling) and [example stylesheet](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/tracking-sdk/dev/index.css).
 
 ### Using your UI
 
-You can replace the existing UI with your own and intercept the standard feedback survey event to trigger your own or collect feedback manually and pass it along to Bucket.
+You can replace the existing UI with your own and intercept the standard feedback survey event to trigger your own or collect feedback manually and pass it along to Reflag.
 
-Check out the[ developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#using-your-own-ui-to-collect-feedback) for the full rundown.
+Check out the[ developer documentation](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#using-your-own-ui-to-collect-feedback) for the full rundown.
 
 ### Overriding global configurations
 
-The Bucket SDK feedback widget is configured with the following defaults:
+The Reflag SDK feedback widget is configured with the following defaults:
 
 * Positioning: Lower right-hand corner of the viewport
 * Language: English
 * Theme: Light mode&#x20;
 
-These settings can be overwritten when initializing the Bucket SDK.
+These settings can be overwritten when initializing the Reflag SDK.
 
-The [developer documentation](https://github.com/bucketco/bucket-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#global-feedback-configuration) explains how.&#x20;
+The [developer documentation](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#global-feedback-configuration) explains how.&#x20;
 
 ## Technical overview
 
-When the[ Bucket Browser SDK](https://github.com/bucketco/bucket-javascript-sdk) is installed in your web application, browsers using your application will automatically open and maintain a connection to Bucket’s servers through a real-time server-sent events connection.
+When the [Reflag Browser SDK](https://github.com/reflagcom/reflag-javascript-sdk) is installed in your web application, browsers using your application will automatically open and maintain a connection to Reflag’s servers through a real-time server-sent events connection.
 
-This allows the installed SDK to react to any events that are sent to Bucket, even events you send through other means, for example, from your servers.&#x20;
+This allows the installed SDK to react to any events that are sent to Reflag, even events you send through other means, for example, from your servers.&#x20;
 
-When a user triggers an event tracked by a feature, Bucket may determine the `Min. interactions before triggering` event threshold has been surpassed and prompt the user for feedback. If so, the Bucket service will send a request to the SDK instance.&#x20;
+When a user triggers an event tracked by a feature, Reflag may determine the `Min. interactions before triggering` event threshold has been surpassed and prompt the user for feedback. If so, the Reflag service will send a request to the SDK instance.&#x20;
 
-By default, this request will open up the Bucket feedback widget in the user's browser through the real-time connection.
+By default, this request will open up the Reflag feedback widget in the user's browser through the real-time connection.
 
-The live connection for automated feedback is established once you have initialized the BucketClient
+The live connection for automated feedback is established once you have initialized the ReflagClient

@@ -4,7 +4,7 @@ description: Export feature data for CS, Marketing, and Sales tools, via Amazon 
 
 # AWS S3
 
-To configure an [automatic data export](../product-handbook/data-export.md#scheduled-export) to an Amazon S3 bucket, follow the steps below.
+To configure an automatic data export to an Amazon S3 bucket, follow the steps below.
 
 ## Implementation steps
 
@@ -25,7 +25,7 @@ To configure an [automatic data export](../product-handbook/data-export.md#sched
    \
    In the bucket details pane, create a new folder (optional), and use the `Copy URL` functionality to get the public URL. \
    \
-   This URL will be required when configuring the `Scheduled Data Export` in Bucket.
+   This URL will be required when configuring the `Scheduled Data Export` in Reflag.
 7. Switch to the `Permissions` tab of the S3 bucket details window.&#x20;
 8. Scroll down to the `Bucket policy` section. Normally, if no other policies have been set up, it will be empty.&#x20;
 9. Click on `Edit` and paste the policy below into the editor. \
@@ -39,7 +39,7 @@ To configure an [automatic data export](../product-handbook/data-export.md#sched
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "AllowBucketDotCo",
+            "Sid": "AllowReflagDotCom",
             "Effect": "Allow",
             "Principal": {
                 "AWS": "<user_arn>"
@@ -60,4 +60,4 @@ To configure an [automatic data export](../product-handbook/data-export.md#sched
 }
 ```
 
-Following the steps above should give you the **URL**, **Access Key**, and **Secret Access Key** settings required to configure an [automatic data export](doc:data-export#scheduled-export).
+Following the steps above should give you the **URL**, **Access Key**, and **Secret Access Key** settings required to configure an automatic data export.

@@ -1,5 +1,5 @@
 ---
-description: Learn more about access rules in Bucket
+description: Learn more about access rules in Reflag
 ---
 
 # Access rules
@@ -16,12 +16,12 @@ You'll find the feature access configuration under the `Access` tab in each feat
 
 ## Getting started <a href="#get-started" id="get-started"></a>
 
-* Create your [feature](broken-reference)
+* Create your [feature](https://app.reflag.com/)
 * Select the `Access` tab
 
 ## Access rules
 
-Bucket's access UI has been designed to cover the most common use cases in B2B companies.&#x20;
+Reflag's access UI has been designed to cover the most common use cases in B2B companies.&#x20;
 
 The default access criteria are:
 
@@ -31,7 +31,7 @@ The default access criteria are:
 
 The default access criteria let you add segments, companies, and users without additional configuration.
 
-<figure><img src="../../.gitbook/assets/Access.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Access (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Advanced access rules
 
@@ -54,7 +54,7 @@ There are 5 types of conditions:
   * `Email`
   * `Any user-defined custom attributes`
 * `Segment`&#x20;
-  * Existing segments created in the [Companies](../feature-targeting-rules/creating-segments.md) tab that don’t use `First seen`, `Last seen`, or `Feature metrics` filters.
+  * Existing segments created in the [Companies](../creating-segments.md) tab that don’t use `First seen`, `Last seen`, or `Feature metrics` filters.
   * You can include or exclude companies that are part of a segment.
 * `Feature access`&#x20;
   * Re-use access rules from another feature. You can choose to include or exclude companies that have access to another feature.&#x20;

@@ -1,6 +1,6 @@
 ---
 description: >-
-  Managing feature flag lifecycle on Bucket is straight forward with the
+  Managing feature flag lifecycle on Reflag is straight forward with the
   "clean-up guide",  notifications and automatic clean-up pull requests.
 ---
 
