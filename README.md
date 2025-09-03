@@ -1,20 +1,17 @@
----
-icon: bolt
----
-
 # Getting started
 
-**Welcome!** Let's get started. We'll do the following:\
+**Welcome!** Let's get started. We'll do the following:
+
+1. Create your first feature flag.
+2. Install the Reflag SDK.
+3. Set feature access rules and/or remote configuration.
+4. Monitor your feature launch.
 
 
-1. Create your first feature flag
-2. Install the Reflag SDK
-3. Set feature access rules and/or remote configuration
-4. Monitor your feature launch
 
-## 1. Create your first feature&#x20;
+## 1. Create your first feature
 
-Now let's create your first feature.&#x20;
+Now let's create your first feature.
 
 {% tabs %}
 {% tab title="CLI" %}
@@ -22,7 +19,7 @@ Now let's create your first feature.&#x20;
 npx @reflag/cli new
 ```
 
-See [CLI docs](sdk/documents/cli/README.md).
+See [CLI docs](sdk/documents/cli/).
 {% endtab %}
 
 {% tab title="UI" %}
@@ -41,8 +38,6 @@ You can create features from your code editor via our [MCP](api/mcp.md).
 You can create features from within Linear by mentioning the `@reflag` [agent](integrations/linear.md).
 {% endtab %}
 {% endtabs %}
-
-
 
 Next, let's set up a Reflag SDK for your language and framework.
 
@@ -66,7 +61,7 @@ const MyFeature = () => {
 };
 ```
 
-You can now use `isEnabled` to gate access to the feature.&#x20;
+You can now use `isEnabled` to gate access to the feature.
 
 ## 3. Set access rules
 
@@ -88,7 +83,7 @@ The Exposed chart shows you companies that have been exposed to your feature. Th
 
 ### Track adoption
 
-To track if exposed companies are also interacting with your feature, you can use `track` .&#x20;
+To track if exposed companies are also interacting with your feature, you can use `track` .
 
 See the code example below.
 
