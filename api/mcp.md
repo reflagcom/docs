@@ -15,7 +15,7 @@ The Model Context Protocol (MCP) is an open protocol that provides a standardize
 
 {% stepper %}
 {% step %}
-#### Set up the MCP connection with the [Reflag CLI](cli.md)
+#### Set up the MCP connection with the [Reflag CLI](../sdk/documents/cli/)
 
 Simply run our one-line command in your project directory and select the options that best suit you.
 

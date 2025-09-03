@@ -87,7 +87,3 @@
 ***
 
 * [Changelog](https://reflag.com/changelog)
-
-## Group 1
-
-* [Page 1](group-1/page-1.md)

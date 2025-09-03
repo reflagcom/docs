@@ -1,8 +1,8 @@
 # API Reference
 
-{% openapi src="https://staging.front.reflag.com/openapi.yaml" path="/features" method="get" expanded="true" %}
-[https://staging.front.reflag.com/openapi.yaml](https://staging.front.reflag.com/openapi.yaml)
-{% endopenapi %}
+{% openapi-operation spec="bucket-api" path="/features" method="get" %}
+[OpenAPI bucket-api](https://staging.front.reflag.com/openapi.yaml)
+{% endopenapi-operation %}
 
 #### Rules schema
 
@@ -53,34 +53,34 @@
 {% endtab %}
 {% endtabs %}
 
-{% openapi src="https://staging.front.reflag.com/openapi.yaml" path="/features/enabled" method="get" expanded="true" %}
-[https://staging.front.reflag.com/openapi.yaml](https://staging.front.reflag.com/openapi.yaml)
-{% endopenapi %}
+{% openapi-operation spec="bucket-api" path="/features/enabled" method="get" %}
+[OpenAPI bucket-api](https://staging.front.reflag.com/openapi.yaml)
+{% endopenapi-operation %}
 
-{% openapi src="https://staging.front.reflag.com/openapi.yaml" path="/features/evaluated" method="get" expanded="true" %}
-[https://staging.front.reflag.com/openapi.yaml](https://staging.front.reflag.com/openapi.yaml)
-{% endopenapi %}
+{% openapi-operation spec="bucket-api" path="/features/evaluated" method="get" %}
+[OpenAPI bucket-api](https://staging.front.reflag.com/openapi.yaml)
+{% endopenapi-operation %}
 
-{% openapi src="https://staging.front.reflag.com/openapi.yaml" path="/features/events" method="post" expanded="true" %}
-[https://staging.front.reflag.com/openapi.yaml](https://staging.front.reflag.com/openapi.yaml)
-{% endopenapi %}
+{% openapi-operation spec="bucket-api" path="/features/events" method="post" %}
+[OpenAPI bucket-api](https://staging.front.reflag.com/openapi.yaml)
+{% endopenapi-operation %}
 
-{% openapi src="https://staging.front.reflag.com/openapi.yaml" path="/user" method="post" expanded="true" %}
-[https://staging.front.reflag.com/openapi.yaml](https://staging.front.reflag.com/openapi.yaml)
-{% endopenapi %}
+{% openapi-operation spec="bucket-api" path="/user" method="post" %}
+[OpenAPI bucket-api](https://staging.front.reflag.com/openapi.yaml)
+{% endopenapi-operation %}
 
-{% openapi src="https://staging.front.reflag.com/openapi.yaml" path="/company" method="post" expanded="true" %}
-[https://staging.front.reflag.com/openapi.yaml](https://staging.front.reflag.com/openapi.yaml)
-{% endopenapi %}
+{% openapi-operation spec="bucket-api" path="/company" method="post" %}
+[OpenAPI bucket-api](https://staging.front.reflag.com/openapi.yaml)
+{% endopenapi-operation %}
 
-{% openapi src="https://staging.front.reflag.com/openapi.yaml" path="/event" method="post" expanded="true" %}
-[https://staging.front.reflag.com/openapi.yaml](https://staging.front.reflag.com/openapi.yaml)
-{% endopenapi %}
+{% openapi-operation spec="bucket-api" path="/event" method="post" %}
+[OpenAPI bucket-api](https://staging.front.reflag.com/openapi.yaml)
+{% endopenapi-operation %}
 
-{% openapi src="https://staging.front.reflag.com/openapi.yaml" path="/feedback" method="post" expanded="true" %}
-[https://staging.front.reflag.com/openapi.yaml](https://staging.front.reflag.com/openapi.yaml)
-{% endopenapi %}
+{% openapi-operation spec="bucket-api" path="/feedback" method="post" %}
+[OpenAPI bucket-api](https://staging.front.reflag.com/openapi.yaml)
+{% endopenapi-operation %}
 
-{% openapi src="https://staging.front.reflag.com/openapi.yaml" path="/bulk" method="post" expanded="true" %}
-[https://staging.front.reflag.com/openapi.yaml](https://staging.front.reflag.com/openapi.yaml)
-{% endopenapi %}
+{% openapi-operation spec="bucket-api" path="/bulk" method="post" %}
+[OpenAPI bucket-api](https://staging.front.reflag.com/openapi.yaml)
+{% endopenapi-operation %}
