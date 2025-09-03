@@ -93,7 +93,7 @@ The remaining time is visualized by the circle around the `x` button. When the c
 
 The behavior, language, positioning, content, and design of the feedback widget are fully customizable. This lets you integrate the feedback surveys with your app while following existing UI and design guidelines.\
 \
-You can find the complete developer documentation [on GitHub](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md).
+You can find the complete developer documentation [on GitHub](https://github.com/reflagcom/javascript/blob/main/packages/browser-sdk/FEEDBACK.md).
 
 ![](https://files.readme.io/2506596-Customized_Widgets.png)
 
@@ -109,7 +109,7 @@ The feedback widget can be configured to be placed and behave in three different
 | **Dialog**   | A dialog appears in a specified corner of the viewport without limiting interaction with the rest of the page. It can be dismissed with a close button or will automatically disappear after a period if there is no interaction. |
 | **Pushover** | A popover is anchored relative to a DOM element (typically a button). It can be dismissed by clicking outside the popover or by pressing the dedicated close button.                                                              |
 
-Find additional positioning details in the [developer documentation](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#positioning-and-behavior).&#x20;
+Find additional positioning details in the [developer documentation](https://github.com/reflagcom/javascript/blob/main/packages/browser-sdk/FEEDBACK.md#positioning-and-behavior).&#x20;
 
 ### Language
 
@@ -117,19 +117,19 @@ You can customize the language of the feedback widget statically at page load or
 \
 You can supply your translations by passing an object to the options to either or both of the `reflag.init(options)` or `reflag.requestFeedback(options)` calls. These translations replace the English ones used by the feedback widget.&#x20;
 
-Find additional details about languages and translation in the [developer documentation](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#internationalization-i18n).
+Find additional details about languages and translation in the [developer documentation](https://github.com/reflagcom/javascript/blob/main/packages/browser-sdk/FEEDBACK.md#internationalization-i18n).
 
 ### Custom styling
 
 The styling can be fully customized by applying custom CSS properties to your page in the CSS `:root` scope.&#x20;
 
-More information can be found in the [developer documentation](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#custom-styling) and [example stylesheet](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/tracking-sdk/dev/index.css).
+More information can be found in the [developer documentation](https://github.com/reflagcom/javascript/blob/main/packages/browser-sdk/FEEDBACK.md#custom-styling) and [example stylesheet](https://github.com/reflagcom/javascript/blob/main/packages/tracking-sdk/dev/index.css).
 
 ### Using your UI
 
 You can replace the existing UI with your own and intercept the standard feedback survey event to trigger your own or collect feedback manually and pass it along to Reflag.
 
-Check out the[ developer documentation](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#using-your-own-ui-to-collect-feedback) for the full rundown.
+Check out the[ developer documentation](https://github.com/reflagcom/javascript/blob/main/packages/browser-sdk/FEEDBACK.md#using-your-own-ui-to-collect-feedback) for the full rundown.
 
 ### Overriding global configurations
 
@@ -141,11 +141,11 @@ The Reflag SDK feedback widget is configured with the following defaults:
 
 These settings can be overwritten when initializing the Reflag SDK.
 
-The [developer documentation](https://github.com/reflagcom/reflag-javascript-sdk/blob/main/packages/browser-sdk/FEEDBACK.md#global-feedback-configuration) explains how.&#x20;
+The [developer documentation](https://github.com/reflagcom/javascript/blob/main/packages/browser-sdk/FEEDBACK.md#global-feedback-configuration) explains how.&#x20;
 
 ## Technical overview
 
-When the [Reflag Browser SDK](https://github.com/reflagcom/reflag-javascript-sdk) is installed in your web application, browsers using your application will automatically open and maintain a connection to Reflag’s servers through a real-time server-sent events connection.
+When the [Reflag Browser SDK](https://github.com/reflagcom/javascript) is installed in your web application, browsers using your application will automatically open and maintain a connection to Reflag’s servers through a real-time server-sent events connection.
 
 This allows the installed SDK to react to any events that are sent to Reflag, even events you send through other means, for example, from your servers.&#x20;
 
