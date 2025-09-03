@@ -13,25 +13,25 @@ pagination:
   visible: true
 ---
 
-# @bucketco/node-sdk
+# @reflag/node-sdk
 
 ## Classes
 
-### BoundBucketClient
+### BoundReflagClient
 
 A client bound with a specific user, company, and other context.
 
 #### Constructors
 
-##### new BoundBucketClient()
+##### new BoundReflagClient()
 
 ```ts
-new BoundBucketClient(client: BucketClient, options: ContextWithTracking): BoundBucketClient
+new BoundReflagClient(client: ReflagClient, options: ContextWithTracking): BoundReflagClient
 ```
 
 **`Internal`**
 
-(Internal) Creates a new BoundBucketClient. Use `bindClient` to create a new client bound with a specific context.
+(Internal) Creates a new BoundReflagClient. Use `bindClient` to create a new client bound with a specific context.
 
 ###### Parameters
 
@@ -52,12 +52,12 @@ new BoundBucketClient(client: BucketClient, options: ContextWithTracking): Bound
 </td>
 <td>
 
-[`BucketClient`](globals.md#bucketclient)
+[`ReflagClient`](globals.md#reflagclient)
 
 </td>
 <td>
 
-The `BucketClient` to use.
+The `ReflagClient` to use.
 
 </td>
 </tr>
@@ -83,7 +83,7 @@ The options for the client.
 
 ###### Returns
 
-[`BoundBucketClient`](globals.md#boundbucketclient)
+[`BoundReflagClient`](globals.md#boundreflagclient)
 
 #### Accessors
 
@@ -167,7 +167,7 @@ The user or `undefined` if it is not set.
 ##### bindClient()
 
 ```ts
-bindClient(context: ContextWithTracking): BoundBucketClient
+bindClient(context: ContextWithTracking): BoundReflagClient
 ```
 
 Create a new client bound with the additional context.
@@ -206,7 +206,7 @@ The context to bind the client to.
 
 ###### Returns
 
-[`BoundBucketClient`](globals.md#boundbucketclient)
+[`BoundReflagClient`](globals.md#boundreflagclient)
 
 new client bound with the additional context
 
@@ -222,14 +222,14 @@ Flushes the batch buffer.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### getFeature()
+##### getFlag()
 
 ```ts
-getFeature<TKey>(key: TKey): Feature
+getFlag<TKey>(key: TKey): Flag
 ```
 
-Get a specific feature for the user/company/other context bound to this client.
-Using the `isEnabled` property sends a `check` event to Bucket.
+Get a specific flag for the user/company/other context bound to this client.
+Using the `isEnabled` property sends a `check` event to Reflag.
 
 ###### Type Parameters
 
@@ -274,7 +274,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 </td>
 <td>
 
-The key of the feature to get.
+The key of the flag to get.
 
 </td>
 </tr>
@@ -283,17 +283,17 @@ The key of the feature to get.
 
 ###### Returns
 
-[`Feature`](globals.md#featuretconfig)
+[`Flag`](globals.md#flagtconfig)
 
-Features for the given user/company and whether each one is enabled or not
+Flags for the given user/company and whether each one is enabled or not
 
-##### getFeatureRemote()
+##### getFlagRemote()
 
 ```ts
-getFeatureRemote(key: string): Promise<Feature>
+getFlagRemote(key: string): Promise<Flag>
 ```
 
-Get remotely evaluated feature for the user/company/other context bound to this client.
+Get remotely evaluated flag for the user/company/other context bound to this client.
 
 ###### Parameters
 
@@ -319,7 +319,7 @@ Get remotely evaluated feature for the user/company/other context bound to this 
 </td>
 <td>
 
-The key of the feature to get.
+The key of the flag to get.
 
 </td>
 </tr>
@@ -328,38 +328,38 @@ The key of the feature to get.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#featuretconfig)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Flag`](globals.md#flagtconfig)\>
 
-Feature for the given user/company and key and whether it's enabled or not
+Flag for the given user/company and key and whether it's enabled or not
 
-##### getFeatures()
+##### getFlags()
 
 ```ts
-getFeatures(): Record<string, Feature>
+getFlags(): Record<string, Flag>
 ```
 
-Get features for the user/company/other context bound to this client.
-Meant for use in serialization of features for transferring to the client-side/browser.
+Get flags for the user/company/other context bound to this client.
+Meant for use in serialization of flags for transferring to the client-side/browser.
 
 ###### Returns
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>
 
-Features for the given user/company and whether each one is enabled or not
+Flags for the given user/company and whether each one is enabled or not
 
-##### getFeaturesRemote()
+##### getFlagsRemote()
 
 ```ts
-getFeaturesRemote(): Promise<Record<string, Feature>>
+getFlagsRemote(): Promise<Record<string, Flag>>
 ```
 
-Get remotely evaluated feature for the user/company/other context bound to this client.
+Get remotely evaluated flag for the user/company/other context bound to this client.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>\>
 
-Features for the given user/company and whether each one is enabled or not
+Flags for the given user/company and whether each one is enabled or not
 
 ##### track()
 
@@ -369,7 +369,7 @@ track(event: string, options?: TrackOptions & {
 }): Promise<void>
 ```
 
-Track an event in Bucket.
+Track an event in Reflag.
 
 ###### Parameters
 
@@ -429,42 +429,37 @@ An error if the event is invalid or the options are invalid.
 
 ***
 
-### BucketClient
+### EdgeClient
 
-The SDK client.
-
-#### Remarks
-
-This is the main class for interacting with Bucket.
-It is used to evaluate feature flags, update user and company contexts, and track events.
+The EdgeClient is ReflagClient pre-configured to be used in edge runtimes, like
+Cloudflare Workers.
 
 #### Example
 
 ```ts
-// set the BUCKET_SECRET_KEY environment variable or pass the secret key to the constructor
-const client = new BucketClient();
+// set the REFLAG_SECRET_KEY environment variable or pass the secret key in the constructor
+const client = new EdgeClient();
 
-// evaluate a feature flag
-const isFeatureEnabled = client.getFeature("feature-flag-key", {
+// evaluate a flag
+const context = {
   user: { id: "user-id" },
   company: { id: "company-id" },
-});
+}
+const { isEnabled } = client.getFlag(context, "flag-key");
+
 ```
 
-#### Extended by
+#### Extends
 
-- [`EdgeClient`](globals.md#edgeclient)
+- [`ReflagClient`](globals.md#reflagclient)
 
 #### Constructors
 
-##### new BucketClient()
+##### new EdgeClient()
 
 ```ts
-new BucketClient(options: ClientOptions): BucketClient
+new EdgeClient(options: EdgeClientOptions): EdgeClient
 ```
-
-Creates a new SDK client.
-See README for configuration options.
 
 ###### Parameters
 
@@ -473,7 +468,6 @@ See README for configuration options.
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -485,12 +479,7 @@ See README for configuration options.
 </td>
 <td>
 
-[`ClientOptions`](globals.md#clientoptions)
-
-</td>
-<td>
-
-The options for the client or an existing client to clone.
+[`EdgeClientOptions`](globals.md#edgeclientoptions)
 
 </td>
 </tr>
@@ -499,11 +488,11 @@ The options for the client or an existing client to clone.
 
 ###### Returns
 
-[`BucketClient`](globals.md#bucketclient)
+[`EdgeClient`](globals.md#edgeclient)
 
-###### Throws
+###### Overrides
 
-An error if the options are invalid.
+[`ReflagClient`](globals.md#reflagclient).[`constructor`](globals.md#constructors-2)
 
 #### Properties
 
@@ -566,29 +555,29 @@ Gets the logger associated with the client.
 
 #### Accessors
 
-##### featureOverrides
+##### flagOverrides
 
 ###### Set Signature
 
 ```ts
-set featureOverrides(overrides: 
-  | Partial<Record<string, FeatureOverride>>
-  | FeatureOverridesFn): void
+set flagOverrides(overrides: 
+  | Partial<Record<string, FlagOverride>>
+  | FlagOverridesFn): void
 ```
 
-Sets the feature overrides.
+Sets the flag overrides.
 
 ###### Remarks
 
-The feature overrides are used to override the feature definitions.
+The flag overrides are used to override the flag definitions.
 This is useful for testing or development.
 
 ###### Example
 
 ```ts
-client.featureOverrides = {
-  "feature-1": true,
-  "feature-2": false,
+client.flagOverrides = {
+  "flag-1": true,
+  "flag-2": false,
 };
 ```
 
@@ -611,12 +600,12 @@ client.featureOverrides = {
 </td>
 <td>
 
- \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FeatureOverride`](globals.md#featureoverride)\>\> \| [`FeatureOverridesFn`](globals.md#featureoverridesfn)
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
 
 </td>
 <td>
 
-The feature overrides.
+The flag overrides.
 
 </td>
 </tr>
@@ -627,17 +616,21 @@ The feature overrides.
 
 `void`
 
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`flagOverrides`](globals.md#flagoverrides-1)
+
 #### Methods
 
 ##### bindClient()
 
 ```ts
-bindClient(context: ContextWithTracking): BoundBucketClient
+bindClient(context: ContextWithTracking): BoundReflagClient
 ```
 
-Returns a new BoundBucketClient with the user/company/otherContext
+Returns a new BoundReflagClient with the user/company/otherContext
 set to be used in subsequent calls.
-For example, for evaluating feature targeting or tracking events.
+For example, for evaluating flag targeting or tracking events.
 
 ###### Parameters
 
@@ -672,7 +665,7 @@ The context to bind the client to.
 
 ###### Returns
 
-[`BoundBucketClient`](globals.md#boundbucketclient)
+[`BoundReflagClient`](globals.md#boundreflagclient)
 
 A new client bound with the arguments given.
 
@@ -685,13 +678,17 @@ An error if the user/company is given but their ID is not a string.
 The `updateUser` / `updateCompany` methods will automatically be called when
 the user/company is set respectively.
 
-##### clearFeatureOverrides()
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`bindClient`](globals.md#bindclient-2)
+
+##### clearFlagOverrides()
 
 ```ts
-clearFeatureOverrides(): void
+clearFlagOverrides(): void
 ```
 
-Clears the feature overrides.
+Clears the flag overrides.
 
 ###### Returns
 
@@ -705,9 +702,13 @@ This is useful for testing or development.
 
 ```ts
 afterAll(() => {
-  client.clearFeatureOverrides();
+  client.clearFlagOverrides();
 });
 ```
+
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`clearFlagOverrides`](globals.md#clearflagoverrides-1)
 
 ##### flush()
 
@@ -715,7 +716,7 @@ afterAll(() => {
 flush(): Promise<void>
 ```
 
-Flushes and completes any in-flight fetches in the feature cache.
+Flushes and completes any in-flight fetches in the flag cache.
 
 ###### Returns
 
@@ -728,14 +729,18 @@ before the process exits.
 
 This method is automatically called when the process exits if `batchOptions.flushOnExit` is `true` in the options (default).
 
-##### getFeature()
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`flush`](globals.md#flush-2)
+
+##### getFlag()
 
 ```ts
-getFeature<TKey>(__namedParameters: ContextWithTracking, key: TKey): Feature
+getFlag<TKey>(__namedParameters: ContextWithTracking, key: TKey): Flag
 ```
 
-Gets the evaluated feature for the current context which includes the user, company, and custom context.
-Using the `isEnabled` property sends a `check` event to Bucket.
+Gets the evaluated flag for the current context which includes the user, company, and custom context.
+Using the `isEnabled` property sends a `check` event to Reflag.
 
 ###### Type Parameters
 
@@ -797,7 +802,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 </td>
 <td>
 
-The key of the feature to get.
+The key of the flag to get.
 
 </td>
 </tr>
@@ -806,40 +811,48 @@ The key of the feature to get.
 
 ###### Returns
 
-[`Feature`](globals.md#featuretconfig)
+[`Flag`](globals.md#flagtconfig)
 
-The evaluated feature.
+The evaluated flag.
 
 ###### Remarks
 
-Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
+Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
 
-##### getFeatureDefinitions()
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlag`](globals.md#getflag-2)
+
+##### getFlagDefinitions()
 
 ```ts
-getFeatureDefinitions(): FeatureDefinition[]
+getFlagDefinitions(): FlagDefinition[]
 ```
 
-Gets the feature definitions, including all config values.
-To evaluate which features are enabled for a given user/company, use `getFeatures`.
+Gets the flag definitions, including all config values.
+To evaluate which flags are enabled for a given user/company, use `getFlags`.
 
 ###### Returns
 
-[`FeatureDefinition`](globals.md#featuredefinition)[]
+[`FlagDefinition`](globals.md#flagdefinition)[]
 
-The features definitions.
+The flags definitions.
 
-##### getFeatureRemote()
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlagDefinitions`](globals.md#getflagdefinitions-1)
+
+##### getFlagRemote()
 
 ```ts
-getFeatureRemote<TKey>(
+getFlagRemote<TKey>(
    key: TKey, 
    userId?: IdType, 
    companyId?: IdType, 
-additionalContext?: Context): Promise<Feature>
+additionalContext?: Context): Promise<Flag>
 ```
 
-Gets evaluated feature with the usage of remote context.
+Gets evaluated flag with the usage of remote context.
 This method triggers a network request every time it's called.
 
 ###### Type Parameters
@@ -885,7 +898,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-The key of the feature to get.
+The key of the flag to get.
 
 </td>
 </tr>
@@ -902,7 +915,7 @@ The key of the feature to get.
 </td>
 <td>
 
-The userId of the user to get the feature for.
+The userId of the user to get the flag for.
 
 </td>
 </tr>
@@ -919,7 +932,7 @@ The userId of the user to get the feature for.
 </td>
 <td>
 
-The companyId of the company to get the feature for.
+The companyId of the company to get the flag for.
 
 </td>
 </tr>
@@ -936,7 +949,7 @@ The companyId of the company to get the feature for.
 </td>
 <td>
 
-The additional context to get the feature for.
+The additional context to get the flag for.
 
 </td>
 </tr>
@@ -945,17 +958,21 @@ The additional context to get the feature for.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#featuretconfig)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Flag`](globals.md#flagtconfig)\>
 
-evaluated feature
+evaluated flag
 
-##### getFeatures()
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlagRemote`](globals.md#getflagremote-2)
+
+##### getFlags()
 
 ```ts
-getFeatures(options: ContextWithTracking): Record<string, Feature>
+getFlags(options: ContextWithTracking): Record<string, Flag>
 ```
 
-Gets the evaluated features for the current context which includes the user, company, and custom context.
+Gets the evaluated flags for the current context which includes the user, company, and custom context.
 
 ###### Parameters
 
@@ -990,24 +1007,28 @@ The options for the context.
 
 ###### Returns
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>
 
-The evaluated features.
+The evaluated flags.
 
 ###### Remarks
 
-Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
+Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
 
-##### getFeaturesRemote()
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlags`](globals.md#getflags-2)
+
+##### getFlagsRemote()
 
 ```ts
-getFeaturesRemote(
+getFlagsRemote(
    userId?: IdType, 
    companyId?: IdType, 
-additionalContext?: Context): Promise<Record<string, Feature>>
+additionalContext?: Context): Promise<Record<string, Flag>>
 ```
 
-Gets evaluated features with the usage of remote context.
+Gets evaluated flags with the usage of remote context.
 This method triggers a network request every time it's called.
 
 ###### Parameters
@@ -1034,7 +1055,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-The userId of the user to get the features for.
+The userId of the user to get the flags for.
 
 </td>
 </tr>
@@ -1051,7 +1072,7 @@ The userId of the user to get the features for.
 </td>
 <td>
 
-The companyId of the company to get the features for.
+The companyId of the company to get the flags for.
 
 </td>
 </tr>
@@ -1068,7 +1089,7 @@ The companyId of the company to get the features for.
 </td>
 <td>
 
-The additional context to get the features for.
+The additional context to get the flags for.
 
 </td>
 </tr>
@@ -1077,9 +1098,13 @@ The additional context to get the features for.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>\>
 
-evaluated features
+evaluated flags
+
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlagsRemote`](globals.md#getflagsremote-2)
 
 ##### initialize()
 
@@ -1087,7 +1112,7 @@ evaluated features
 initialize(): Promise<void>
 ```
 
-Initializes the client by caching the features definitions.
+Initializes the client by caching the flags definitions.
 
 ###### Returns
 
@@ -1095,8 +1120,12 @@ Initializes the client by caching the features definitions.
 
 ###### Remarks
 
-Call this method before calling `getFeatures` to ensure the feature definitions are cached.
+Call this method before calling `getFlags` to ensure the flag definitions are cached.
 The client will ignore subsequent calls to this method.
+
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`initialize`](globals.md#initialize-1)
 
 ##### track()
 
@@ -1109,7 +1138,7 @@ track(
 }): Promise<void>
 ```
 
-Tracks an event in Bucket.
+Tracks an event in Reflag.
 
 ###### Parameters
 
@@ -1172,6 +1201,10 @@ An error if the user is not set or the event is invalid or the options are inval
 
 If the company is set, the event will be associated with the company.
 
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`track`](globals.md#track-2)
+
 ##### updateCompany()
 
 ```ts
@@ -1180,7 +1213,7 @@ updateCompany(companyId: IdType, options?: TrackOptions & {
 }): Promise<void>
 ```
 
-Updates the associated company in Bucket.
+Updates the associated company in Reflag.
 
 ###### Parameters
 
@@ -1243,13 +1276,17 @@ An error if the company is not set or the options are invalid.
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
 
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`updateCompany`](globals.md#updatecompany-1)
+
 ##### updateUser()
 
 ```ts
 updateUser(userId: IdType, options?: TrackOptions): Promise<void>
 ```
 
-Updates the associated user in Bucket.
+Updates the associated user in Reflag.
 
 ###### Parameters
 
@@ -1312,39 +1349,48 @@ An error if the company is not set or the options are invalid.
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
 
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`updateUser`](globals.md#updateuser-1)
+
 ***
 
-### EdgeClient
+### ReflagClient
 
-The EdgeClient is BucketClient pre-configured to be used in edge runtimes, like
-Cloudflare Workers.
+The SDK client.
+
+#### Remarks
+
+This is the main class for interacting with Reflag.
+It is used to evaluate flags, update user and company contexts, and track events.
 
 #### Example
 
 ```ts
-// set the BUCKET_SECRET_KEY environment variable or pass the secret key in the constructor
-const client = new EdgeClient();
+// set the REFLAG_SECRET_KEY environment variable or pass the secret key to the constructor
+const client = new ReflagClient();
 
-// evaluate a feature flag
-const context = {
+// evaluate a flag
+const isFlagEnabled = client.getFlag("flag-key", {
   user: { id: "user-id" },
   company: { id: "company-id" },
-}
-const { isEnabled } = client.getFeature(context, "feature-flag-key");
-
+});
 ```
 
-#### Extends
+#### Extended by
 
-- [`BucketClient`](globals.md#bucketclient)
+- [`EdgeClient`](globals.md#edgeclient)
 
 #### Constructors
 
-##### new EdgeClient()
+##### new ReflagClient()
 
 ```ts
-new EdgeClient(options: EdgeClientOptions): EdgeClient
+new ReflagClient(options: ClientOptions): ReflagClient
 ```
+
+Creates a new SDK client.
+See README for configuration options.
 
 ###### Parameters
 
@@ -1353,6 +1399,7 @@ new EdgeClient(options: EdgeClientOptions): EdgeClient
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1364,7 +1411,12 @@ new EdgeClient(options: EdgeClientOptions): EdgeClient
 </td>
 <td>
 
-[`EdgeClientOptions`](globals.md#edgeclientoptions)
+[`ClientOptions`](globals.md#clientoptions)
+
+</td>
+<td>
+
+The options for the client or an existing client to clone.
 
 </td>
 </tr>
@@ -1373,11 +1425,11 @@ new EdgeClient(options: EdgeClientOptions): EdgeClient
 
 ###### Returns
 
-[`EdgeClient`](globals.md#edgeclient)
+[`ReflagClient`](globals.md#reflagclient)
 
-###### Overrides
+###### Throws
 
-[`BucketClient`](globals.md#bucketclient).[`constructor`](globals.md#constructors-1)
+An error if the options are invalid.
 
 #### Properties
 
@@ -1440,29 +1492,29 @@ Gets the logger associated with the client.
 
 #### Accessors
 
-##### featureOverrides
+##### flagOverrides
 
 ###### Set Signature
 
 ```ts
-set featureOverrides(overrides: 
-  | Partial<Record<string, FeatureOverride>>
-  | FeatureOverridesFn): void
+set flagOverrides(overrides: 
+  | Partial<Record<string, FlagOverride>>
+  | FlagOverridesFn): void
 ```
 
-Sets the feature overrides.
+Sets the flag overrides.
 
 ###### Remarks
 
-The feature overrides are used to override the feature definitions.
+The flag overrides are used to override the flag definitions.
 This is useful for testing or development.
 
 ###### Example
 
 ```ts
-client.featureOverrides = {
-  "feature-1": true,
-  "feature-2": false,
+client.flagOverrides = {
+  "flag-1": true,
+  "flag-2": false,
 };
 ```
 
@@ -1485,12 +1537,12 @@ client.featureOverrides = {
 </td>
 <td>
 
- \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FeatureOverride`](globals.md#featureoverride)\>\> \| [`FeatureOverridesFn`](globals.md#featureoverridesfn)
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
 
 </td>
 <td>
 
-The feature overrides.
+The flag overrides.
 
 </td>
 </tr>
@@ -1501,21 +1553,17 @@ The feature overrides.
 
 `void`
 
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`featureOverrides`](globals.md#featureoverrides)
-
 #### Methods
 
 ##### bindClient()
 
 ```ts
-bindClient(context: ContextWithTracking): BoundBucketClient
+bindClient(context: ContextWithTracking): BoundReflagClient
 ```
 
-Returns a new BoundBucketClient with the user/company/otherContext
+Returns a new BoundReflagClient with the user/company/otherContext
 set to be used in subsequent calls.
-For example, for evaluating feature targeting or tracking events.
+For example, for evaluating flag targeting or tracking events.
 
 ###### Parameters
 
@@ -1550,7 +1598,7 @@ The context to bind the client to.
 
 ###### Returns
 
-[`BoundBucketClient`](globals.md#boundbucketclient)
+[`BoundReflagClient`](globals.md#boundreflagclient)
 
 A new client bound with the arguments given.
 
@@ -1563,17 +1611,13 @@ An error if the user/company is given but their ID is not a string.
 The `updateUser` / `updateCompany` methods will automatically be called when
 the user/company is set respectively.
 
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`bindClient`](globals.md#bindclient-1)
-
-##### clearFeatureOverrides()
+##### clearFlagOverrides()
 
 ```ts
-clearFeatureOverrides(): void
+clearFlagOverrides(): void
 ```
 
-Clears the feature overrides.
+Clears the flag overrides.
 
 ###### Returns
 
@@ -1587,13 +1631,9 @@ This is useful for testing or development.
 
 ```ts
 afterAll(() => {
-  client.clearFeatureOverrides();
+  client.clearFlagOverrides();
 });
 ```
-
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`clearFeatureOverrides`](globals.md#clearfeatureoverrides)
 
 ##### flush()
 
@@ -1601,7 +1641,7 @@ afterAll(() => {
 flush(): Promise<void>
 ```
 
-Flushes and completes any in-flight fetches in the feature cache.
+Flushes and completes any in-flight fetches in the flag cache.
 
 ###### Returns
 
@@ -1614,18 +1654,14 @@ before the process exits.
 
 This method is automatically called when the process exits if `batchOptions.flushOnExit` is `true` in the options (default).
 
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`flush`](globals.md#flush-1)
-
-##### getFeature()
+##### getFlag()
 
 ```ts
-getFeature<TKey>(__namedParameters: ContextWithTracking, key: TKey): Feature
+getFlag<TKey>(__namedParameters: ContextWithTracking, key: TKey): Flag
 ```
 
-Gets the evaluated feature for the current context which includes the user, company, and custom context.
-Using the `isEnabled` property sends a `check` event to Bucket.
+Gets the evaluated flag for the current context which includes the user, company, and custom context.
+Using the `isEnabled` property sends a `check` event to Reflag.
 
 ###### Type Parameters
 
@@ -1687,7 +1723,7 @@ Using the `isEnabled` property sends a `check` event to Bucket.
 </td>
 <td>
 
-The key of the feature to get.
+The key of the flag to get.
 
 </td>
 </tr>
@@ -1696,48 +1732,40 @@ The key of the feature to get.
 
 ###### Returns
 
-[`Feature`](globals.md#featuretconfig)
+[`Flag`](globals.md#flagtconfig)
 
-The evaluated feature.
+The evaluated flag.
 
 ###### Remarks
 
-Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
+Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
 
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`getFeature`](globals.md#getfeature-1)
-
-##### getFeatureDefinitions()
+##### getFlagDefinitions()
 
 ```ts
-getFeatureDefinitions(): FeatureDefinition[]
+getFlagDefinitions(): FlagDefinition[]
 ```
 
-Gets the feature definitions, including all config values.
-To evaluate which features are enabled for a given user/company, use `getFeatures`.
+Gets the flag definitions, including all config values.
+To evaluate which flags are enabled for a given user/company, use `getFlags`.
 
 ###### Returns
 
-[`FeatureDefinition`](globals.md#featuredefinition)[]
+[`FlagDefinition`](globals.md#flagdefinition)[]
 
-The features definitions.
+The flags definitions.
 
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`getFeatureDefinitions`](globals.md#getfeaturedefinitions)
-
-##### getFeatureRemote()
+##### getFlagRemote()
 
 ```ts
-getFeatureRemote<TKey>(
+getFlagRemote<TKey>(
    key: TKey, 
    userId?: IdType, 
    companyId?: IdType, 
-additionalContext?: Context): Promise<Feature>
+additionalContext?: Context): Promise<Flag>
 ```
 
-Gets evaluated feature with the usage of remote context.
+Gets evaluated flag with the usage of remote context.
 This method triggers a network request every time it's called.
 
 ###### Type Parameters
@@ -1783,7 +1811,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-The key of the feature to get.
+The key of the flag to get.
 
 </td>
 </tr>
@@ -1800,7 +1828,7 @@ The key of the feature to get.
 </td>
 <td>
 
-The userId of the user to get the feature for.
+The userId of the user to get the flag for.
 
 </td>
 </tr>
@@ -1817,7 +1845,7 @@ The userId of the user to get the feature for.
 </td>
 <td>
 
-The companyId of the company to get the feature for.
+The companyId of the company to get the flag for.
 
 </td>
 </tr>
@@ -1834,7 +1862,7 @@ The companyId of the company to get the feature for.
 </td>
 <td>
 
-The additional context to get the feature for.
+The additional context to get the flag for.
 
 </td>
 </tr>
@@ -1843,21 +1871,17 @@ The additional context to get the feature for.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Feature`](globals.md#featuretconfig)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Flag`](globals.md#flagtconfig)\>
 
-evaluated feature
+evaluated flag
 
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`getFeatureRemote`](globals.md#getfeatureremote-1)
-
-##### getFeatures()
+##### getFlags()
 
 ```ts
-getFeatures(options: ContextWithTracking): Record<string, Feature>
+getFlags(options: ContextWithTracking): Record<string, Flag>
 ```
 
-Gets the evaluated features for the current context which includes the user, company, and custom context.
+Gets the evaluated flags for the current context which includes the user, company, and custom context.
 
 ###### Parameters
 
@@ -1892,28 +1916,24 @@ The options for the context.
 
 ###### Returns
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>
 
-The evaluated features.
+The evaluated flags.
 
 ###### Remarks
 
-Call `initialize` before calling this method to ensure the feature definitions are cached, no features will be returned otherwise.
+Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
 
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`getFeatures`](globals.md#getfeatures-1)
-
-##### getFeaturesRemote()
+##### getFlagsRemote()
 
 ```ts
-getFeaturesRemote(
+getFlagsRemote(
    userId?: IdType, 
    companyId?: IdType, 
-additionalContext?: Context): Promise<Record<string, Feature>>
+additionalContext?: Context): Promise<Record<string, Flag>>
 ```
 
-Gets evaluated features with the usage of remote context.
+Gets evaluated flags with the usage of remote context.
 This method triggers a network request every time it's called.
 
 ###### Parameters
@@ -1940,7 +1960,7 @@ This method triggers a network request every time it's called.
 </td>
 <td>
 
-The userId of the user to get the features for.
+The userId of the user to get the flags for.
 
 </td>
 </tr>
@@ -1957,7 +1977,7 @@ The userId of the user to get the features for.
 </td>
 <td>
 
-The companyId of the company to get the features for.
+The companyId of the company to get the flags for.
 
 </td>
 </tr>
@@ -1974,7 +1994,7 @@ The companyId of the company to get the features for.
 </td>
 <td>
 
-The additional context to get the features for.
+The additional context to get the flags for.
 
 </td>
 </tr>
@@ -1983,13 +2003,9 @@ The additional context to get the features for.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Feature`](globals.md#featuretconfig)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>\>
 
-evaluated features
-
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`getFeaturesRemote`](globals.md#getfeaturesremote-1)
+evaluated flags
 
 ##### initialize()
 
@@ -1997,7 +2013,7 @@ evaluated features
 initialize(): Promise<void>
 ```
 
-Initializes the client by caching the features definitions.
+Initializes the client by caching the flags definitions.
 
 ###### Returns
 
@@ -2005,12 +2021,8 @@ Initializes the client by caching the features definitions.
 
 ###### Remarks
 
-Call this method before calling `getFeatures` to ensure the feature definitions are cached.
+Call this method before calling `getFlags` to ensure the flag definitions are cached.
 The client will ignore subsequent calls to this method.
-
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`initialize`](globals.md#initialize)
 
 ##### track()
 
@@ -2023,7 +2035,7 @@ track(
 }): Promise<void>
 ```
 
-Tracks an event in Bucket.
+Tracks an event in Reflag.
 
 ###### Parameters
 
@@ -2086,10 +2098,6 @@ An error if the user is not set or the event is invalid or the options are inval
 
 If the company is set, the event will be associated with the company.
 
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`track`](globals.md#track-1)
-
 ##### updateCompany()
 
 ```ts
@@ -2098,7 +2106,7 @@ updateCompany(companyId: IdType, options?: TrackOptions & {
 }): Promise<void>
 ```
 
-Updates the associated company in Bucket.
+Updates the associated company in Reflag.
 
 ###### Parameters
 
@@ -2161,17 +2169,13 @@ An error if the company is not set or the options are invalid.
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
 
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`updateCompany`](globals.md#updatecompany)
-
 ##### updateUser()
 
 ```ts
 updateUser(userId: IdType, options?: TrackOptions): Promise<void>
 ```
 
-Updates the associated user in Bucket.
+Updates the associated user in Reflag.
 
 ###### Parameters
 
@@ -2233,10 +2237,6 @@ An error if the company is not set or the options are invalid.
 
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
-
-###### Inherited from
-
-[`BucketClient`](globals.md#bucketclient).[`updateUser`](globals.md#updateuser)
 
 ## Interfaces
 
@@ -2470,7 +2470,7 @@ The name of the user.
 
 ***
 
-### Feature\<TConfig\>
+### Flag\<TConfig\>
 
 Describes a feature
 
@@ -2487,12 +2487,12 @@ Describes a feature
 <tr>
 <td>
 
-`TConfig` *extends* [`FeatureType`](globals.md#featuretype)\[`"config"`\]
+`TConfig` *extends* [`FlagType`](globals.md#flagtype)\[`"config"`\]
 
 </td>
 <td>
 
-[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
+[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
 
 </td>
 </tr>
@@ -2518,7 +2518,7 @@ Describes a feature
 </td>
 <td>
 
- \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| \{ `key`: `string`; \} & `TConfig`
+ \| [`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig) \| \{ `key`: `string`; \} & `TConfig`
 
 </td>
 <td>
@@ -2572,7 +2572,7 @@ The key of the feature.
 track(): Promise<void>
 ```
 
-Track feature usage in Bucket.
+Track feature usage in Reflag.
 
 ###### Returns
 
@@ -2580,13 +2580,13 @@ Track feature usage in Bucket.
 
 ***
 
-### Features
+### Flags
 
 Describes a collection of evaluated features.
 
 #### Remarks
 
-You should extend the Features interface to define the available features.
+You should extend the Flags interface to define the available features.
 
 ***
 
@@ -2900,7 +2900,7 @@ Log a warning messages
 
 ***
 
-### RawFeature
+### RawFlag
 
 Describes a feature.
 
@@ -2923,7 +2923,7 @@ Describes a feature.
 </td>
 <td>
 
-[`RawFeatureRemoteConfig`](globals.md#rawfeatureremoteconfig)
+[`RawFlagRemoteConfig`](globals.md#rawflagremoteconfig)
 
 </td>
 <td>
@@ -3193,12 +3193,12 @@ type ClientOptions = {
   cacheStrategy: CacheStrategy;
   configFile: string;
   emitEvaluationEvents: boolean;
-  fallbackFeatures:   | TypedFeatureKey[]
-     | Record<TypedFeatureKey, Exclude<FeatureOverride, false>>;
-  featureOverrides:   | string
-     | (context: Context) => FeatureOverrides;
-  featuresFetchRetries: number;
+  fallbackFlags:   | TypedFlagKey[]
+     | Record<TypedFlagKey, Exclude<FlagOverride, false>>;
   fetchTimeoutMs: number;
+  flagOverrides:   | string
+     | (context: Context) => FlagOverrides;
+  flagsFetchRetries: number;
   host: string;
   httpClient: HttpClient;
   logger: Logger;
@@ -3287,8 +3287,8 @@ The cache strategy to use for the client (optional, defaults to "periodically-up
 <td>
 
 The path to the config file. If supplied, the config file will be loaded.
-Defaults to `bucket.json` when NODE_ENV is not production. Can also be
-set through the environment variable BUCKET_CONFIG_FILE.
+Defaults to `reflag.config.json` when NODE_ENV is not production. Can also be
+set through the environment variable REFLAG_CONFIG_FILE.
 
 </td>
 </tr>
@@ -3312,13 +3312,13 @@ If set to `false`, no evaluation events will be emitted.
 <tr>
 <td>
 
-<a id="fallbackfeatures"></a> `fallbackFeatures`?
+<a id="fallbackflags"></a> `fallbackFlags`?
 
 </td>
 <td>
 
-  \| [`TypedFeatureKey`](globals.md#typedfeaturekey)[]
-  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<[`TypedFeatureKey`](globals.md#typedfeaturekey), [`Exclude`](https://www.typescriptlang.org/docs/handbook/utility-types.html#excludeuniontype-excludedmembers)\<[`FeatureOverride`](globals.md#featureoverride), `false`\>\>
+  \| [`TypedFlagKey`](globals.md#typedflagkey)[]
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<[`TypedFlagKey`](globals.md#typedflagkey), [`Exclude`](https://www.typescriptlang.org/docs/handbook/utility-types.html#excludeuniontype-excludedmembers)\<[`FlagOverride`](globals.md#flagoverride), `false`\>\>
 
 </td>
 <td>
@@ -3328,49 +3328,6 @@ Can be an array of feature keys, or a record of feature keys and boolean or obje
 
 If a record is supplied instead of array, the values of each key are either the
 configuration values or the boolean value `true`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="featureoverrides-2"></a> `featureOverrides`?
-
-</td>
-<td>
-
-  \| `string`
-  \| (`context`: [`Context`](globals.md#context)) => [`FeatureOverrides`](globals.md#featureoverrides-3)
-
-</td>
-<td>
-
-If a filename is specified, feature targeting results be overridden with
-the values from this file. The file should be a JSON object with feature
-keys as keys, and boolean or object as values.
-
-If a function is specified, the function will be called with the context
-and should return a record of feature keys and boolean or object values.
-
-Defaults to "bucketFeatures.json".
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="featuresfetchretries"></a> `featuresFetchRetries`?
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-Number of times to retry fetching feature definitions (optional).
-Default is 3 times.
 
 </td>
 </tr>
@@ -3389,6 +3346,49 @@ Default is 3 times.
 
 The timeout in milliseconds for fetching feature targeting data (optional).
 Default is 10000 ms.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagoverrides-2"></a> `flagOverrides`?
+
+</td>
+<td>
+
+  \| `string`
+  \| (`context`: [`Context`](globals.md#context)) => [`FlagOverrides`](globals.md#flagoverrides-3)
+
+</td>
+<td>
+
+If a filename is specified, feature targeting results be overridden with
+the values from this file. The file should be a JSON object with flag
+keys as keys, and boolean or object as values.
+
+If a function is specified, the function will be called with the context
+and should return a record of flag keys and boolean or object values.
+
+Defaults to "reflagFlags.json".
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagsfetchretries"></a> `flagsFetchRetries`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Number of times to retry fetching feature definitions (optional).
+Default is 3 times.
 
 </td>
 </tr>
@@ -3475,7 +3475,7 @@ Use the console logger, but set a log level. Ineffective if a custom logger is p
 </td>
 <td>
 
-In offline mode, no data is sent or fetched from the the Bucket API.
+In offline mode, no data is sent or fetched from the the Reflag API.
 This is useful for testing or development.
 
 </td>
@@ -3493,7 +3493,7 @@ This is useful for testing or development.
 </td>
 <td>
 
-The secret key used to authenticate with the Bucket API.
+The secret key used to authenticate with the Reflag API.
 
 </td>
 </tr>
@@ -3727,10 +3727,10 @@ type EdgeClientOptions = Omit<ClientOptions, "cacheStrategy" | "flushIntervalMs"
 
 ***
 
-### EmptyFeatureRemoteConfig
+### EmptyFlagRemoteConfig
 
 ```ts
-type EmptyFeatureRemoteConfig = {
+type EmptyFlagRemoteConfig = {
   key: undefined;
   payload: undefined;
 };
@@ -3775,10 +3775,10 @@ type EmptyFeatureRemoteConfig = {
 
 ***
 
-### FeatureConfigVariant
+### FlagConfigVariant
 
 ```ts
-type FeatureConfigVariant = {
+type FlagConfigVariant = {
   filter: RuleFilter;
   key: string;
   payload: any;
@@ -3854,12 +3854,12 @@ The optional user-supplied payload data.
 
 ***
 
-### FeatureDefinition
+### FlagDefinition
 
 ```ts
-type FeatureDefinition = {
+type FlagDefinition = {
   config: {
-     variants: FeatureConfigVariant[];
+     variants: FlagConfigVariant[];
      version: number;
     };
   description: string | null;
@@ -3895,7 +3895,7 @@ Describes a feature definition.
 <td>
 
 \{
-  `variants`: [`FeatureConfigVariant`](globals.md#featureconfigvariant)[];
+  `variants`: [`FlagConfigVariant`](globals.md#flagconfigvariant)[];
   `version`: `number`;
  \}
 
@@ -3914,7 +3914,7 @@ The remote configuration for the feature.
 </td>
 <td>
 
-[`FeatureConfigVariant`](globals.md#featureconfigvariant)[]
+[`FlagConfigVariant`](globals.md#flagconfigvariant)[]
 
 </td>
 <td>
@@ -4037,11 +4037,11 @@ The key of the feature.
 
 ***
 
-### FeatureOverride
+### FlagOverride
 
 ```ts
-type FeatureOverride = 
-  | FeatureType & {
+type FlagOverride = 
+  | FlagType & {
   config: {
      key: string;
     };
@@ -4052,20 +4052,20 @@ type FeatureOverride =
 
 ***
 
-### FeatureOverrides
+### FlagOverrides
 
 ```ts
-type FeatureOverrides = Partial<keyof Features extends never ? Record<string, FeatureOverride> : { [FeatureKey in keyof Features]: Features[FeatureKey] extends FeatureOverride ? Features[FeatureKey] : Exclude<FeatureOverride, "config"> }>;
+type FlagOverrides = Partial<keyof Flags extends never ? Record<string, FlagOverride> : { [FlagKey in keyof Flags]: Flags[FlagKey] extends FlagOverride ? Flags[FlagKey] : Exclude<FlagOverride, "config"> }>;
 ```
 
 Describes the feature overrides.
 
 ***
 
-### FeatureOverridesFn()
+### FlagOverridesFn()
 
 ```ts
-type FeatureOverridesFn = (context: Context) => FeatureOverrides;
+type FlagOverridesFn = (context: Context) => FlagOverrides;
 ```
 
 #### Parameters
@@ -4095,19 +4095,19 @@ type FeatureOverridesFn = (context: Context) => FeatureOverrides;
 
 #### Returns
 
-[`FeatureOverrides`](globals.md#featureoverrides-3)
+[`FlagOverrides`](globals.md#flagoverrides-3)
 
 ***
 
-### FeatureRemoteConfig
+### FlagRemoteConfig
 
 ```ts
-type FeatureRemoteConfig = 
+type FlagRemoteConfig = 
   | {
   key: string;
   payload: any;
  }
-  | EmptyFeatureRemoteConfig;
+  | EmptyFlagRemoteConfig;
 ```
 
 A remotely managed configuration value for a feature.
@@ -4165,14 +4165,14 @@ The optional user-supplied payload data.
 </tbody>
 </table>
 
-[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
+[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
 
 ***
 
-### FeatureType
+### FlagType
 
 ```ts
-type FeatureType = {
+type FlagType = {
   config: {
      payload: any;
     };
@@ -4340,10 +4340,10 @@ type LogLevel = typeof LOG_LEVELS[number];
 
 ***
 
-### RawFeatureRemoteConfig
+### RawFlagRemoteConfig
 
 ```ts
-type RawFeatureRemoteConfig = {
+type RawFlagRemoteConfig = {
   key: string;
   missingContextFields: string[];
   payload: any;
@@ -4559,25 +4559,25 @@ The meta context associated with the event.
 
 ***
 
-### TypedFeatureKey
+### TypedFlagKey
 
 ```ts
-type TypedFeatureKey = keyof TypedFeatures;
+type TypedFlagKey = keyof TypedFlags;
 ```
 
 ***
 
-### TypedFeatures
+### TypedFlags
 
 ```ts
-type TypedFeatures = keyof Features extends never ? Record<string, Feature> : { [FeatureKey in keyof Features]: Features[FeatureKey] extends FeatureType ? Feature<Features[FeatureKey]["config"]> : Feature };
+type TypedFlags = keyof Flags extends never ? Record<string, Flag> : { [FlagKey in keyof Flags]: Flags[FlagKey] extends FlagType ? Flag<Flags[FlagKey]["config"]> : Flag };
 ```
 
 Describes a collection of evaluated feature.
 
 #### Remarks
 
-This types falls back to a generic Record<string, Feature> if the Features interface
+This types falls back to a generic Record<string, Flag> if the Flags interface
 has not been extended.
 
 ## Variables

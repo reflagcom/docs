@@ -13,23 +13,23 @@ pagination:
   visible: true
 ---
 
-# @bucketco/browser-sdk
+# @reflag/browser-sdk
 
 ## Classes
 
-### BucketClient
+### ReflagClient
 
-BucketClient lets you interact with the Bucket API.
+ReflagClient lets you interact with the Reflag API.
 
 #### Constructors
 
-##### new BucketClient()
+##### new ReflagClient()
 
 ```ts
-new BucketClient(opts: InitOptions): BucketClient
+new ReflagClient(opts: InitOptions): ReflagClient
 ```
 
-Create a new BucketClient instance.
+Create a new ReflagClient instance.
 
 ###### Parameters
 
@@ -58,7 +58,7 @@ Create a new BucketClient instance.
 
 ###### Returns
 
-[`BucketClient`](globals.md#bucketclient)
+[`ReflagClient`](globals.md#reflagclient)
 
 #### Properties
 
@@ -101,7 +101,7 @@ feedback(payload: Feedback): Promise<
 | Response>
 ```
 
-Submit user feedback to Bucket. Must include either `score` or `comment`, or both.
+Submit user feedback to Reflag. Must include either `score` or `comment`, or both.
 
 ###### Parameters
 
@@ -154,13 +154,11 @@ Get the current configuration.
 
 [`Config`](globals.md#config)
 
-##### getFeature()
+##### ~~getFeature()~~
 
 ```ts
-getFeature(key: string): Feature
+getFeature(flagKey: string): Flag
 ```
-
-Return a feature. Accessing `isEnabled` or `config` will automatically send a `check` event.
 
 ###### Parameters
 
@@ -175,7 +173,7 @@ Return a feature. Accessing `isEnabled` or `config` will automatically send a `c
 <tr>
 <td>
 
-`key`
+`flagKey`
 
 </td>
 <td>
@@ -189,26 +187,87 @@ Return a feature. Accessing `isEnabled` or `config` will automatically send a `c
 
 ###### Returns
 
-[`Feature`](globals.md#feature)
+[`Flag`](globals.md#flag)
 
-A feature.
+###### Deprecated
 
-##### getFeatures()
+Use `getFlag` instead.
+
+##### ~~getFeatures()~~
 
 ```ts
-getFeatures(): RawFeatures
+getFeatures(): RawFlags
 ```
 
-Returns a map of enabled features.
-Accessing a feature will *not* send a check event
-and `isEnabled` does not take any feature overrides
+###### Returns
+
+[`RawFlags`](globals.md#rawflags)
+
+###### Deprecated
+
+Use `getFlags` instead.
+
+##### getFlag()
+
+```ts
+getFlag(flagKey: string): Flag
+```
+
+Return a flag. Accessing `isEnabled` or `config` will automatically send a `check` event.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`flagKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the flag to get.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Flag`](globals.md#flag)
+
+A flag.
+
+##### getFlags()
+
+```ts
+getFlags(): RawFlags
+```
+
+Returns a map of enabled flags.
+Accessing a flag will *not* send a check event
+and `isEnabled` does not take any flag overrides
 into account.
 
 ###### Returns
 
-[`RawFeatures`](globals.md#rawfeatures)
+[`RawFlags`](globals.md#rawflags)
 
-Map of features.
+Map of flags.
 
 ##### initialize()
 
@@ -216,7 +275,7 @@ Map of features.
 initialize(): Promise<void>
 ```
 
-Initialize the Bucket SDK.
+Initialize the Reflag SDK.
 
 Must be called before calling other SDK methods.
 
@@ -396,9 +455,9 @@ A function to remove the hook.
 requestFeedback(options: RequestFeedbackData): void
 ```
 
-Display the Bucket feedback form UI programmatically.
+Display the Reflag feedback form UI programmatically.
 
-This can be used to collect feedback from users in Bucket in cases where Automated Feedback Surveys isn't appropriate.
+This can be used to collect feedback from users in Reflag in cases where Automated Feedback Surveys isn't appropriate.
 
 ###### Parameters
 
@@ -452,7 +511,7 @@ track(eventName: string, attributes?:
 | Response>
 ```
 
-Track an event in Bucket.
+Track an event in Reflag.
 
 ###### Parameters
 
@@ -639,78 +698,9 @@ Attempting to update the user ID will log a warning and be ignored.
 
 ## Interfaces
 
-### BucketContext
-
-#### Properties
-
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="company"></a> `company?`
-
-</td>
-<td>
-
-[`CompanyContext`](globals.md#companycontext)
-
-</td>
-<td>
-
-Company related context
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="othercontext"></a> `otherContext?`
-
-</td>
-<td>
-
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
-
-</td>
-<td>
-
-Context which is not related to a user or a company
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="user"></a> `user?`
-
-</td>
-<td>
-
-[`UserContext`](globals.md#usercontext)
-
-</td>
-<td>
-
-User related context
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
 ### CheckEvent
 
-Event representing checking the feature flag evaluation result
+Event representing checking the flag evaluation result
 
 #### Properties
 
@@ -753,7 +743,7 @@ Event representing checking the feature flag evaluation result
 </td>
 <td>
 
-Feature key.
+Flag key.
 
 </td>
 </tr>
@@ -804,8 +794,8 @@ Rule evaluation results.
 </td>
 <td>
 
-Result of feature flag or configuration evaluation.
-If `action` is `check-is-enabled`, this is the result of the feature flag evaluation and `value` is a boolean.
+Result of flag or configuration evaluation.
+If `action` is `check-is-enabled`, this is the result of the flag evaluation and `value` is a boolean.
 If `action` is `check-config`, this is the result of the configuration evaluation.
 
 </td>
@@ -895,7 +885,7 @@ Company name
 
 ### Config
 
-BucketClient configuration.
+ReflagClient configuration.
 
 #### Properties
 
@@ -921,7 +911,7 @@ BucketClient configuration.
 </td>
 <td>
 
-Base URL of Bucket servers.
+Base URL of Reflag servers.
 
 </td>
 </tr>
@@ -938,7 +928,7 @@ Base URL of Bucket servers.
 </td>
 <td>
 
-Base URL of the Bucket web app.
+Base URL of the Reflag web app.
 
 </td>
 </tr>
@@ -989,158 +979,12 @@ Whether to enable offline mode.
 </td>
 <td>
 
-Base URL of Bucket servers for SSE connections used by AutoFeedback.
+Base URL of Reflag servers for SSE connections used by AutoFeedback.
 
 </td>
 </tr>
 </tbody>
 </table>
-
-***
-
-### Feature
-
-Represents a feature.
-
-#### Properties
-
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config-1"></a> `config`
-
-</td>
-<td>
-
-[`FeatureRemoteConfig`](globals.md#featureremoteconfig)
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabled"></a> `isEnabled`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-Result of feature flag evaluation.
-Note: Does not take local overrides into account.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabledoverride"></a> `isEnabledOverride`
-
-</td>
-<td>
-
-`null` \| `boolean`
-
-</td>
-<td>
-
-The current override status of isEnabled for the feature.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="requestfeedback-1"></a> `requestFeedback`
-
-</td>
-<td>
-
-(`options`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"featureKey"`\>) => `void`
-
-</td>
-<td>
-
-Function to request feedback for this feature.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="track-1"></a> `track`
-
-</td>
-<td>
-
-() => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\< \| `undefined` \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
-
-</td>
-<td>
-
-Function to send analytics events for this feature.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Methods
-
-##### setIsEnabledOverride()
-
-```ts
-setIsEnabledOverride(isEnabled: null | boolean): void
-```
-
-Set the override status for isEnabled for the feature.
-Set to `null` to remove the override.
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`isEnabled`
-
-</td>
-<td>
-
-`null` \| `boolean`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`void`
 
 ***
 
@@ -1262,6 +1106,152 @@ Set to `null` to remove the override.
 
 ***
 
+### Flag
+
+Represents a flag.
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config-1"></a> `config`
+
+</td>
+<td>
+
+[`FlagRemoteConfig`](globals.md#flagremoteconfig)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabled"></a> `isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Result of flag flag evaluation.
+Note: Does not take local overrides into account.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabledoverride"></a> `isEnabledOverride`
+
+</td>
+<td>
+
+`null` \| `boolean`
+
+</td>
+<td>
+
+The current override status of isEnabled for the flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="requestfeedback-1"></a> `requestFeedback`
+
+</td>
+<td>
+
+(`options`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"flagKey"`\>) => `void`
+
+</td>
+<td>
+
+Function to request feedback for this flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="track-1"></a> `track`
+
+</td>
+<td>
+
+() => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\< \| `undefined` \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+
+</td>
+<td>
+
+Function to send analytics events for this flag.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Methods
+
+##### setIsEnabledOverride()
+
+```ts
+setIsEnabledOverride(isEnabled: null | boolean): void
+```
+
+Set the override status for isEnabled for the flag.
+Set to `null` to remove the override.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`isEnabled`
+
+</td>
+<td>
+
+`null` \| `boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`
+
+***
+
 ### HookArgs
 
 #### Properties
@@ -1295,7 +1285,7 @@ Set to `null` to remove the override.
 <tr>
 <td>
 
-<a id="company-1"></a> `company`
+<a id="company"></a> `company`
 
 </td>
 <td>
@@ -1312,50 +1302,31 @@ Set to `null` to remove the override.
 <tr>
 <td>
 
-<a id="configcheck"></a> ~~`configCheck`~~
+<a id="featuresupdated"></a> ~~`featuresUpdated`~~
 
 </td>
 <td>
 
-[`CheckEvent`](globals.md#checkevent)
+[`RawFlags`](globals.md#rawflags)
 
 </td>
 <td>
-
-Deprecated: Use `check` instead.
 
 **Deprecated**
+
+Use `flagsUpdated` instead.
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="enabledcheck"></a> ~~`enabledCheck`~~
+<a id="flagsupdated"></a> `flagsUpdated`
 
 </td>
 <td>
 
-[`CheckEvent`](globals.md#checkevent)
-
-</td>
-<td>
-
-Deprecated: Use `check` instead.
-
-**Deprecated**
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="featuresupdated"></a> `featuresUpdated`
-
-</td>
-<td>
-
-[`RawFeatures`](globals.md#rawfeatures)
+[`RawFlags`](globals.md#rawflags)
 
 </td>
 <td>
@@ -1384,7 +1355,7 @@ Deprecated: Use `check` instead.
 <tr>
 <td>
 
-<a id="user-1"></a> `user`
+<a id="user"></a> `user`
 
 </td>
 <td>
@@ -1799,6 +1770,75 @@ Undefined translation keys fall back to english defaults.
 
 ***
 
+### ReflagContext
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="company-1"></a> `company?`
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+Company related context
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="othercontext"></a> `otherContext?`
+
+</td>
+<td>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
+
+</td>
+<td>
+
+Context which is not related to a user or a company
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user-1"></a> `user?`
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+User related context
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### ToolbarPosition
 
 #### Properties
@@ -1923,127 +1963,16 @@ type DialogPlacement = "bottom-right" | "bottom-left" | "top-right" | "top-left"
 
 ***
 
-### FallbackFeatureOverride
+### FallbackFlagOverride
 
 ```ts
-type FallbackFeatureOverride = 
+type FallbackFlagOverride = 
   | {
   key: string;
   payload: any;
  }
   | true;
 ```
-
-***
-
-### FeatureRemoteConfig
-
-```ts
-type FeatureRemoteConfig = 
-  | {
-  key: string;
-  payload: any;
- }
-  | {
-  key: undefined;
-  payload: undefined;
-};
-```
-
-A remotely managed configuration value for a feature.
-
-#### Type declaration
-
-\{
-  `key`: `string`;
-  `payload`: `any`;
- \}
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the matched configuration value.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-\{
-  `key`: `undefined`;
-  `payload`: `undefined`;
- \}
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`payload`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-</tbody>
-</table>
 
 ***
 
@@ -2160,7 +2089,7 @@ type FeedbackOptions = {
 </td>
 <td>
 
-Enables automatic feedback prompting if it's set up in Bucket
+Enables automatic feedback prompting if it's set up in Reflag
 
 </td>
 </tr>
@@ -2260,7 +2189,7 @@ type FeedbackPrompt = {
 </td>
 <td>
 
-Feature ID from Bucket
+Feature ID from Reflag
 
 </td>
 </tr>
@@ -2439,7 +2368,7 @@ type FeedbackPromptHandlerCallbacks = {
 ```ts
 type FeedbackPromptHandlerOpenFeedbackFormOptions = Omit<RequestFeedbackOptions, 
   | "featureId"
-  | "featureKey"
+  | "flagKey"
   | "userId"
   | "companyId"
   | "onClose"
@@ -2763,10 +2692,10 @@ with desired language translation
 
 ***
 
-### FetchedFeature
+### FetchedFlag
 
 ```ts
-type FetchedFeature = {
+type FetchedFlag = {
   config: {
      key: string;
      missingContextFields: string[];
@@ -2782,7 +2711,7 @@ type FetchedFeature = {
 };
 ```
 
-A feature fetched from the server.
+A flag fetched from the server.
 
 #### Type declaration
 
@@ -2916,7 +2845,7 @@ The version of the matched configuration value.
 </td>
 <td>
 
-Result of feature flag evaluation.
+Result of flag evaluation.
 Note: does not take local overrides into account.
 
 </td>
@@ -2934,7 +2863,7 @@ Note: does not take local overrides into account.
 </td>
 <td>
 
-Feature key.
+Flag key.
 
 </td>
 </tr>
@@ -2994,6 +2923,117 @@ Version of targeting rules.
 
 ***
 
+### FlagRemoteConfig
+
+```ts
+type FlagRemoteConfig = 
+  | {
+  key: string;
+  payload: any;
+ }
+  | {
+  key: undefined;
+  payload: undefined;
+};
+```
+
+A remotely managed configuration value for a flag.
+
+#### Type declaration
+
+\{
+  `key`: `string`;
+  `payload`: `any`;
+ \}
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+\{
+  `key`: `undefined`;
+  `payload`: `undefined`;
+ \}
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### InitOptions
 
 ```ts
@@ -3004,8 +3044,8 @@ type InitOptions = {
   credentials: "include" | "same-origin" | "omit";
   enableTracking: boolean;
   expireTimeMs: number;
-  fallbackFeatures:   | string[]
-     | Record<string, FallbackFeatureOverride>;
+  fallbackFlags:   | string[]
+     | Record<string, FallbackFlagOverride>;
   feedback: FeedbackOptions;
   logger: Logger;
   offline: boolean;
@@ -3021,7 +3061,7 @@ type InitOptions = {
 };
 ```
 
-BucketClient initialization options.
+ReflagClient initialization options.
 
 #### Type declaration
 
@@ -3047,7 +3087,7 @@ BucketClient initialization options.
 </td>
 <td>
 
-Base URL of Bucket servers. You can override this to use your mocked server.
+Base URL of Reflag servers. You can override this to use your mocked server.
 
 </td>
 </tr>
@@ -3064,7 +3104,7 @@ Base URL of Bucket servers. You can override this to use your mocked server.
 </td>
 <td>
 
-Base URL of the Bucket web app. Links open ín this app by default.
+Base URL of the Reflag web app. Links open ín this app by default.
 
 </td>
 </tr>
@@ -3081,8 +3121,8 @@ Base URL of the Bucket web app. Links open ín this app by default.
 </td>
 <td>
 
-Company related context. If you provide `id` Bucket will enrich the evaluation context with
-company attributes on Bucket servers.
+Company related context. If you provide `id` Reflag will enrich the evaluation context with
+company attributes on Reflag servers.
 
 </td>
 </tr>
@@ -3135,26 +3175,26 @@ Whether to enable tracking. Defaults to `true`.
 </td>
 <td>
 
-If set, features will be cached between page loads for this duration
+If set, flags will be cached between page loads for this duration
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="fallbackfeatures"></a> `fallbackFeatures`?
+<a id="fallbackflags"></a> `fallbackFlags`?
 
 </td>
 <td>
 
   \| `string`[]
-  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FallbackFeatureOverride`](globals.md#fallbackfeatureoverride)\>
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FallbackFlagOverride`](globals.md#fallbackflagoverride)\>
 
 </td>
 <td>
 
-Feature keys for which `isEnabled` should fallback to true
-if SDK fails to fetch features from Bucket servers. If a record
+Flag keys for which `isEnabled` should fallback to true
+if SDK fails to fetch flags from Reflag servers. If a record
 is supplied instead of array, the values of each key represent the
 configuration values and `isEnabled` is assume `true`.
 
@@ -3280,7 +3320,7 @@ Version of the SDK
 </td>
 <td>
 
-Base URL of Bucket servers for SSE connections used by AutoFeedback.
+Base URL of Reflag servers for SSE connections used by AutoFeedback.
 
 </td>
 </tr>
@@ -3297,7 +3337,7 @@ Base URL of Bucket servers for SSE connections used by AutoFeedback.
 </td>
 <td>
 
-Stale features will be returned if staleWhileRevalidate is true if no new features can be fetched
+Stale flags will be returned if staleWhileRevalidate is true if no new flags can be fetched
 
 </td>
 </tr>
@@ -3314,7 +3354,7 @@ Stale features will be returned if staleWhileRevalidate is true if no new featur
 </td>
 <td>
 
-If set to true stale features will be returned while refetching features
+If set to true stale flags will be returned while refetching flags
 
 </td>
 </tr>
@@ -3331,7 +3371,7 @@ If set to true stale features will be returned while refetching features
 </td>
 <td>
 
-Timeout in milliseconds when fetching features
+Timeout in milliseconds when fetching flags
 
 </td>
 </tr>
@@ -3365,8 +3405,8 @@ Toolbar configuration
 </td>
 <td>
 
-User related context. If you provide `id` Bucket will enrich the evaluation context with
-user attributes on Bucket servers.
+User related context. If you provide `id` Reflag will enrich the evaluation context with
+user attributes on Reflag servers.
 
 </td>
 </tr>
@@ -3464,10 +3504,10 @@ type Position =
 
 ***
 
-### RawFeature
+### RawFlag
 
 ```ts
-type RawFeature = FetchedFeature & {
+type RawFlag = FetchedFlag & {
   isEnabledOverride: boolean | null;
 };
 ```
@@ -3505,10 +3545,10 @@ If not null, the result is being overridden locally
 
 ***
 
-### RawFeatures
+### RawFlags
 
 ```ts
-type RawFeatures = Record<string, RawFeature>;
+type RawFlags = Record<string, RawFlag>;
 ```
 
 ***
@@ -3518,7 +3558,7 @@ type RawFeatures = Record<string, RawFeature>;
 ```ts
 type RequestFeedbackData = Omit<OpenFeedbackFormOptions, "key" | "onSubmit"> & {
   companyId: string;
-  featureKey: string;
+  flagKey: string;
   onAfterSubmit: (data: FeedbackSubmission) => void;
 };
 ```
@@ -3554,7 +3594,7 @@ Company ID from your own application.
 <tr>
 <td>
 
-`featureKey`
+`flagKey`
 
 </td>
 <td>
@@ -3564,7 +3604,7 @@ Company ID from your own application.
 </td>
 <td>
 
-Bucket feature key.
+Flag key.
 
 </td>
 </tr>
@@ -3731,8 +3771,8 @@ type TrackEvent = {
 ```ts
 type UnassignedFeedback = {
   comment: string;
-  featureKey: string;
   feedbackId: string;
+  flagKey: string;
   promptedQuestion: string;
   promptId: string;
   question: string;
@@ -3765,24 +3805,7 @@ type UnassignedFeedback = {
 </td>
 <td>
 
-User supplied comment about your feature.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="featurekey"></a> `featureKey`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Bucket feature key.
+User supplied comment about your flag.
 
 </td>
 </tr>
@@ -3799,7 +3822,24 @@ Bucket feature key.
 </td>
 <td>
 
-Bucket feedback ID
+Reflag feedback ID
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagkey"></a> `flagKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Flag key.
 
 </td>
 </tr>
@@ -3834,10 +3874,10 @@ This only needs to be populated if the feedback was submitted through the automa
 </td>
 <td>
 
-Bucket feedback prompt ID.
+Reflag feedback prompt ID.
 
 This only exists if the feedback was submitted
-as part of an automated prompt from Bucket.
+as part of an automated prompt from Reflag.
 
 Used for internal state management of automated
 feedback.
@@ -3935,7 +3975,7 @@ export const DEFAULT_TRANSLATIONS: FeedbackTranslations = {
 ### feedbackContainerId
 
 ```ts
-const feedbackContainerId: "bucket-feedback-dialog-container" = "bucket-feedback-dialog-container";
+const feedbackContainerId: "reflag-feedback-dialog-container" = "reflag-feedback-dialog-container";
 ```
 
 ID of HTML DIV element which contains the feedback dialog

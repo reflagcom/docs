@@ -13,13 +13,13 @@ pagination:
   visible: true
 ---
 
-# @bucketco/react-sdk
+# @reflag/react-sdk
 
 ## Interfaces
 
 ### CheckEvent
 
-Event representing checking the feature flag evaluation result
+Event representing checking the flag evaluation result
 
 #### Properties
 
@@ -62,7 +62,7 @@ Event representing checking the feature flag evaluation result
 </td>
 <td>
 
-Feature key.
+Flag key.
 
 </td>
 </tr>
@@ -113,8 +113,8 @@ Rule evaluation results.
 </td>
 <td>
 
-Result of feature flag or configuration evaluation.
-If `action` is `check-is-enabled`, this is the result of the feature flag evaluation and `value` is a boolean.
+Result of flag or configuration evaluation.
+If `action` is `check-is-enabled`, this is the result of the flag evaluation and `value` is a boolean.
 If `action` is `check-config`, this is the result of the configuration evaluation.
 
 </td>
@@ -202,7 +202,7 @@ Company name
 
 ***
 
-### Feature\<TConfig\>
+### Flag\<TConfig\>
 
 Describes a feature
 
@@ -219,12 +219,12 @@ Describes a feature
 <tr>
 <td>
 
-`TConfig` *extends* [`FeatureType`](globals.md#featuretype)\[`"config"`\]
+`TConfig` *extends* [`FlagType`](globals.md#flagtype)\[`"config"`\]
 
 </td>
 <td>
 
-[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
+[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
 
 </td>
 </tr>
@@ -250,7 +250,7 @@ Describes a feature
 </td>
 <td>
 
- \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| \{ `key`: `string`; \} & `TConfig`
+ \| [`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig) \| \{ `key`: `string`; \} & `TConfig`
 
 </td>
 <td>
@@ -342,7 +342,7 @@ track():
 | Response>
 ```
 
-Track feature usage in Bucket.
+Track feature usage in Reflag.
 
 ###### Returns
 
@@ -353,7 +353,7 @@ Track feature usage in Bucket.
 
 ***
 
-### Features
+### Flags
 
 ***
 
@@ -432,18 +432,203 @@ User name
 
 ## Type Aliases
 
-### BucketProps
+### EmptyFlagRemoteConfig
 
 ```ts
-type BucketProps = BucketContext & InitOptions & {
-  children: ReactNode;
-  debug: boolean;
-  loadingComponent: ReactNode;
-  newBucketClient: (...args: ConstructorParameters<typeof BucketClient>) => BucketClient;
+type EmptyFlagRemoteConfig = {
+  key: undefined;
+  payload: undefined;
 };
 ```
 
-Props for the BucketProvider.
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="key-2"></a> `key`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="payload"></a> `payload`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### FlagKey
+
+```ts
+type FlagKey = keyof TypedFlags;
+```
+
+***
+
+### FlagRemoteConfig
+
+```ts
+type FlagRemoteConfig = 
+  | {
+  key: string;
+  payload: any;
+ }
+  | EmptyFlagRemoteConfig;
+```
+
+A remotely managed configuration value for a feature.
+
+#### Type declaration
+
+\{
+  `key`: `string`;
+  `payload`: `any`;
+ \}
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
+
+***
+
+### FlagType
+
+```ts
+type FlagType = {
+  config: {
+     payload: any;
+    };
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config-1"></a> `config`?
+
+</td>
+<td>
+
+\{
+  `payload`: `any`;
+ \}
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### RawFlags
+
+```ts
+type RawFlags = Record<string, RawFlag>;
+```
+
+***
+
+### ReflagProps
+
+```ts
+type ReflagProps = ReflagContext & InitOptions & {
+  children: ReactNode;
+  debug: boolean;
+  loadingComponent: ReactNode;
+  newReflagClient: (...args: ConstructorParameters<typeof ReflagClient>) => ReflagClient;
+};
+```
+
+Props for the ReflagProvider.
 
 #### Type declaration
 
@@ -510,216 +695,31 @@ Loading component to be rendered while features are loading.
 <tr>
 <td>
 
-`newBucketClient`?
+`newReflagClient`?
 
 </td>
 <td>
 
-(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
+(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`ReflagClient`](../browser-sdk/globals.md#reflagclient)\>) => [`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 </td>
 <td>
 
 **`Internal`**
 
-New BucketClient constructor.
+New ReflagClient constructor.
 
 </td>
 </tr>
 </tbody>
 </table>
-
-***
-
-### EmptyFeatureRemoteConfig
-
-```ts
-type EmptyFeatureRemoteConfig = {
-  key: undefined;
-  payload: undefined;
-};
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="key-2"></a> `key`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="payload"></a> `payload`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### FeatureKey
-
-```ts
-type FeatureKey = keyof TypedFeatures;
-```
-
-***
-
-### FeatureRemoteConfig
-
-```ts
-type FeatureRemoteConfig = 
-  | {
-  key: string;
-  payload: any;
- }
-  | EmptyFeatureRemoteConfig;
-```
-
-A remotely managed configuration value for a feature.
-
-#### Type declaration
-
-\{
-  `key`: `string`;
-  `payload`: `any`;
- \}
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the matched configuration value.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
-
-***
-
-### FeatureType
-
-```ts
-type FeatureType = {
-  config: {
-     payload: any;
-    };
-};
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config-1"></a> `config`?
-
-</td>
-<td>
-
-\{
-  `payload`: `any`;
- \}
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### RawFeatures
-
-```ts
-type RawFeatures = Record<string, RawFeature>;
-```
 
 ***
 
 ### RequestFeedbackOptions
 
 ```ts
-type RequestFeedbackOptions = Omit<RequestFeedbackData, "featureKey" | "featureId">;
+type RequestFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">;
 ```
 
 ***
@@ -800,28 +800,28 @@ type TrackEvent = {
 
 ***
 
-### TypedFeatures
+### TypedFlags
 
 ```ts
-type TypedFeatures = keyof Features extends never ? Record<string, Feature> : { [TypedFeatureKey in keyof Features]: Features[TypedFeatureKey] extends FeatureType ? Feature<Features[TypedFeatureKey]["config"]> : Feature };
+type TypedFlags = keyof Flags extends never ? Record<string, Flag> : { [TypedFlagKey in keyof Flags]: Flags[TypedFlagKey] extends FlagType ? Flag<Flags[TypedFlagKey]["config"]> : Flag };
 ```
 
 Describes a collection of evaluated feature.
 
 #### Remarks
 
-This types falls back to a generic Record<string, Feature> if the Features interface
+This types falls back to a generic Record<string, Flag> if the Flags interface
 has not been extended.
 
 ## Functions
 
-### BucketProvider()
+### ReflagProvider()
 
 ```ts
-function BucketProvider(__namedParameters: BucketProps): Element
+function ReflagProvider(__namedParameters: ReflagProps): Element
 ```
 
-Provider for the BucketClient.
+Provider for the ReflagClient.
 
 #### Parameters
 
@@ -841,7 +841,7 @@ Provider for the BucketClient.
 </td>
 <td>
 
-[`BucketProps`](globals.md#bucketprops)
+[`ReflagProps`](globals.md#reflagprops)
 
 </td>
 </tr>
@@ -857,12 +857,12 @@ Provider for the BucketClient.
 ### useClient()
 
 ```ts
-function useClient(): undefined | BucketClient
+function useClient(): undefined | ReflagClient
 ```
 
-Returns the current `BucketClient` used by the `BucketProvider`.
+Returns the current `ReflagClient` used by the `ReflagProvider`.
 
-This is useful if you need to access the `BucketClient` outside of the `BucketProvider`.
+This is useful if you need to access the `ReflagClient` outside of the `ReflagProvider`.
 
 ```ts
 const client = useClient();
@@ -875,21 +875,81 @@ useEffect(() => {
 
 #### Returns
 
-`undefined` \| [`BucketClient`](../browser-sdk/globals.md#bucketclient)
+`undefined` \| [`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 ***
 
-### useFeature()
+### ~~useFeature()~~
 
 ```ts
-function useFeature<TKey>(key: TKey): TypedFeatures[TKey]
+function useFeature<TKey>(key: TKey): Flag
+```
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`TKey`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`Flag`](globals.md#flagtconfig)
+
+#### Deprecated
+
+use `useFlag` instead
+
+***
+
+### useFlag()
+
+```ts
+function useFlag<TKey>(key: TKey): TypedFlags[TKey]
 ```
 
 Returns the state of a given feature for the current context, e.g.
 
 ```ts
 function HuddleButton() {
-  const {isEnabled, config: { payload }, track} = useFeature("huddle");
+  const {isEnabled, config: { payload }, track} = useFlag("huddle");
   if (isEnabled) {
    return <button onClick={() => track()}>{payload?.buttonTitle ?? "Start Huddle"}</button>;
 }
@@ -941,7 +1001,7 @@ function HuddleButton() {
 
 #### Returns
 
-[`TypedFeatures`](globals.md#typedfeatures)\[`TKey`\]
+[`TypedFlags`](globals.md#typedflags)\[`TKey`\]
 
 ***
 
@@ -958,8 +1018,8 @@ See [link](../../documents/browser-sdk/FEEDBACK.md) for more information
 
 ```ts
 const requestFeedback = useRequestFeedback();
-bucket.requestFeedback({
-  featureKey: "file-uploads",
+reflag.requestFeedback({
+  flagKey: "file-uploads",
   title: "How satisfied are you with file uploads?",
 });
 ```
@@ -1017,7 +1077,7 @@ See [link](../../documents/browser-sdk/FEEDBACK.md) for more information
 ```ts
 const sendFeedback = useSendFeedback();
 sendFeedback({
-  featureKey: "huddle";
+  flagKey: "huddle";
   question: "How did you like the new huddle feature?";
   score: 5;
   comment: "I loved it!";
@@ -1149,7 +1209,7 @@ of the company update.
 
 ```ts
 const updateCompany = useUpdateCompany();
-updateCompany({ plan: "enterprise" }).then(() => console.log("Features updated"));
+updateCompany({ plan: "enterprise" }).then(() => console.log("Flags updated"));
 ```
 
 #### Returns
@@ -1206,7 +1266,7 @@ of the update to the "other" context.
 ```ts
 const updateOtherContext = useUpdateOtherContext();
 updateOtherContext({ workspaceId: newWorkspaceId })
-  .then(() => console.log("Features updated"));
+  .then(() => console.log("Flags updated"));
 ```
 
 #### Returns
@@ -1262,7 +1322,7 @@ of the user update.
 
 ```ts
 const updateUser = useUpdateUser();
-updateUser({ optInHuddles: "true" }).then(() => console.log("Features updated"));
+updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 ```
 
 #### Returns

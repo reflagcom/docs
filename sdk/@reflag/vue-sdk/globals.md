@@ -13,13 +13,13 @@ pagination:
   visible: true
 ---
 
-# @bucketco/vue-sdk
+# @reflag/vue-sdk
 
 ## Interfaces
 
 ### CheckEvent
 
-Event representing checking the feature flag evaluation result
+Event representing checking the flag evaluation result
 
 #### Properties
 
@@ -62,7 +62,7 @@ Event representing checking the feature flag evaluation result
 </td>
 <td>
 
-Feature key.
+Flag key.
 
 </td>
 </tr>
@@ -113,8 +113,8 @@ Rule evaluation results.
 </td>
 <td>
 
-Result of feature flag or configuration evaluation.
-If `action` is `check-is-enabled`, this is the result of the feature flag evaluation and `value` is a boolean.
+Result of flag or configuration evaluation.
+If `action` is `check-is-enabled`, this is the result of the flag evaluation and `value` is a boolean.
 If `action` is `check-config`, this is the result of the configuration evaluation.
 
 </td>
@@ -202,7 +202,7 @@ Company name
 
 ***
 
-### Feature\<TConfig\>
+### Flag\<TConfig\>
 
 #### Type Parameters
 
@@ -217,12 +217,12 @@ Company name
 <tr>
 <td>
 
-`TConfig` *extends* [`FeatureType`](globals.md#featuretype)\[`"config"`\]
+`TConfig` *extends* [`FlagType`](globals.md#flagtype)\[`"config"`\]
 
 </td>
 <td>
 
-[`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig)
+[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
 
 </td>
 </tr>
@@ -247,7 +247,7 @@ Company name
 </td>
 <td>
 
-`Ref`\< \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| \{ `key`: `string`; \} & `TConfig`, \| [`EmptyFeatureRemoteConfig`](globals.md#emptyfeatureremoteconfig) \| \{ `key`: `string`; \} & `TConfig`\>
+`Ref`\< \| [`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig) \| \{ `key`: `string`; \} & `TConfig`, \| [`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig) \| \{ `key`: `string`; \} & `TConfig`\>
 
 </td>
 </tr>
@@ -295,7 +295,7 @@ Company name
 </td>
 <td>
 
-(`opts`: [`RequestFeatureFeedbackOptions`](globals.md#requestfeaturefeedbackoptions)) => `void`
+(`opts`: [`RequestFlagFeedbackOptions`](globals.md#requestflagfeedbackoptions)) => `void`
 
 </td>
 </tr>
@@ -398,58 +398,10 @@ User name
 
 ## Type Aliases
 
-### BucketProps
+### EmptyFlagRemoteConfig
 
 ```ts
-type BucketProps = BucketContext & InitOptions & {
-  debug: boolean;
-  newBucketClient: (...args: ConstructorParameters<typeof BucketClient>) => BucketClient;
-};
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`debug`?
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`newBucketClient`?
-
-</td>
-<td>
-
-(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>) => [`BucketClient`](../browser-sdk/globals.md#bucketclient)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### EmptyFeatureRemoteConfig
-
-```ts
-type EmptyFeatureRemoteConfig = {
+type EmptyFlagRemoteConfig = {
   key: undefined;
   payload: undefined;
 };
@@ -494,10 +446,10 @@ type EmptyFeatureRemoteConfig = {
 
 ***
 
-### FeatureType
+### FlagType
 
 ```ts
-type FeatureType = {
+type FlagType = {
   config: {
      payload: any;
     };
@@ -545,18 +497,58 @@ type FeatureType = {
 
 ***
 
-### RawFeatures
+### ReflagProps
 
 ```ts
-type RawFeatures = Record<string, RawFeature>;
+type ReflagProps = ReflagContext & InitOptions & {
+  debug: boolean;
+  newReflagClient: (...args: ConstructorParameters<typeof ReflagClient>) => ReflagClient;
+};
 ```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`debug`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`newReflagClient`?
+
+</td>
+<td>
+
+(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`ReflagClient`](../browser-sdk/globals.md#reflagclient)\>) => [`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### RequestFeatureFeedbackOptions
+### RequestFlagFeedbackOptions
 
 ```ts
-type RequestFeatureFeedbackOptions = Omit<RequestFeedbackData, "featureKey" | "featureId">;
+type RequestFlagFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">;
 ```
 
 ***
@@ -637,14 +629,6 @@ type TrackEvent = {
 
 ## Variables
 
-### BucketProvider
-
-```ts
-const BucketProvider: DefineComponent<Record<string, unknown>, Record<string, unknown>, unknown>;
-```
-
-***
-
 ### default
 
 ```ts
@@ -678,31 +662,39 @@ default: {
 </tbody>
 </table>
 
+***
+
+### ReflagProvider
+
+```ts
+const ReflagProvider: DefineComponent<Record<string, unknown>, Record<string, unknown>, unknown>;
+```
+
 ## Functions
 
 ### useClient()
 
 ```ts
-function useClient(): Ref<BucketClient, BucketClient>
+function useClient(): Ref<ReflagClient, ReflagClient>
 ```
 
-Vue composable for getting the Bucket client.
+Vue composable for getting the Reflag client.
 
-This composable returns the Bucket client. You can use this to get the Bucket
+This composable returns the Reflag client. You can use this to get the Reflag
 client at any point in your application.
 
 #### Returns
 
-`Ref`\<[`BucketClient`](../browser-sdk/globals.md#bucketclient), [`BucketClient`](../browser-sdk/globals.md#bucketclient)\>
+`Ref`\<[`ReflagClient`](../browser-sdk/globals.md#reflagclient), [`ReflagClient`](../browser-sdk/globals.md#reflagclient)\>
 
-The Bucket client.
+The Reflag client.
 
 ***
 
-### useFeature()
+### useFlag()
 
 ```ts
-function useFeature(key: string): Feature<any>
+function useFlag(key: string): Flag<any>
 ```
 
 #### Parameters
@@ -732,7 +724,7 @@ function useFeature(key: string): Feature<any>
 
 #### Returns
 
-[`Feature`](globals.md#featuretconfig)\<`any`\>
+[`Flag`](globals.md#flagtconfig)\<`any`\>
 
 ***
 
@@ -742,10 +734,10 @@ function useFeature(key: string): Feature<any>
 function useIsLoading(): Ref<boolean, boolean>
 ```
 
-Vue composable for checking if the Bucket client is loading.
+Vue composable for checking if the Reflag client is loading.
 
-This composable returns a boolean value that indicates whether the Bucket client is loading.
-You can use this to check if the Bucket client is loading at any point in your application.
+This composable returns a boolean value that indicates whether the Reflag client is loading.
+You can use this to check if the Reflag client is loading at any point in your application.
 
 #### Returns
 
@@ -762,7 +754,7 @@ function useRequestFeedback(): (options: RequestFeedbackData) => void
 Vue composable for requesting user feedback.
 
 This composable returns a function that can be used to trigger the feedback
-collection flow with the Bucket SDK. You can use this to prompt users for
+collection flow with the Reflag SDK. You can use this to prompt users for
 feedback at any point in your application.
 
 #### Returns
@@ -804,7 +796,7 @@ A function that requests feedback from the user. The function accepts:
 #### Example
 
 ```ts
-import { useRequestFeedback } from '@bucketco/vue-sdk';
+import { useRequestFeedback } from '@reflag/vue-sdk';
 
 const requestFeedback = useRequestFeedback();
 
@@ -828,13 +820,13 @@ function useSendFeedback(): (opts: UnassignedFeedback) => Promise<
 Vue composable for sending feedback.
 
 This composable returns a function that can be used to send feedback to the
-Bucket SDK. You can use this to send feedback from your application.
+Reflag SDK. You can use this to send feedback from your application.
 
 #### Returns
 
 `Function`
 
-A function that sends feedback to the Bucket SDK. The function accepts:
+A function that sends feedback to the Reflag SDK. The function accepts:
   - `options`: An object containing feedback options.
 
 ##### Parameters
@@ -871,7 +863,7 @@ A function that sends feedback to the Bucket SDK. The function accepts:
 #### Example
 
 ```ts
-import { useSendFeedback } from '@bucketco/vue-sdk';
+import { useSendFeedback } from '@reflag/vue-sdk';
 
 const sendFeedback = useSendFeedback();
 
@@ -897,7 +889,7 @@ function useTrack(): (eventName: string, attributes?:
 Vue composable for tracking custom events.
 
 This composable returns a function that can be used to track custom events
-with the Bucket SDK.
+with the Reflag SDK.
 
 #### Returns
 
@@ -953,7 +945,7 @@ A function that tracks an event. The function accepts:
 #### Example
 
 ```ts
-import { useTrack } from '@bucketco/vue-sdk';
+import { useTrack } from '@reflag/vue-sdk';
 
 const track = useTrack();
 
@@ -972,7 +964,7 @@ function useUpdateCompany(): (opts: {}) => Promise<void>
 Vue composable for updating the company context.
 
 This composable returns a function that can be used to update the company
-context with the Bucket SDK. You can use this to update the company context
+context with the Reflag SDK. You can use this to update the company context
 at any point in your application.
 
 #### Returns
@@ -1014,7 +1006,7 @@ A function that updates the company context. The function accepts:
 #### Example
 
 ```ts
-import { useUpdateCompany } from '@bucketco/vue-sdk';
+import { useUpdateCompany } from '@reflag/vue-sdk';
 
 const updateCompany = useUpdateCompany();
 
@@ -1033,7 +1025,7 @@ function useUpdateOtherContext(): (opts: {}) => Promise<void>
 Vue composable for updating the other context.
 
 This composable returns a function that can be used to update the other
-context with the Bucket SDK. You can use this to update the other context
+context with the Reflag SDK. You can use this to update the other context
 at any point in your application.
 
 #### Returns
@@ -1075,7 +1067,7 @@ A function that updates the other context. The function accepts:
 #### Example
 
 ```ts
-import { useUpdateOtherContext } from '@bucketco/vue-sdk';
+import { useUpdateOtherContext } from '@reflag/vue-sdk';
 
 const updateOtherContext = useUpdateOtherContext();
 
@@ -1094,7 +1086,7 @@ function useUpdateUser(): (opts: {}) => Promise<void>
 Vue composable for updating the user context.
 
 This composable returns a function that can be used to update the user context
-with the Bucket SDK. You can use this to update the user context at any point
+with the Reflag SDK. You can use this to update the user context at any point
 in your application.
 
 #### Returns
@@ -1136,7 +1128,7 @@ A function that updates the user context. The function accepts:
 #### Example
 
 ```ts
-import { useUpdateUser } from '@bucketco/vue-sdk';
+import { useUpdateUser } from '@reflag/vue-sdk';
 
 const updateUser = useUpdateUser();
 

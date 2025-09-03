@@ -65,7 +65,7 @@ pagination:
 <tr>
 <td>
 
-[@bucketco/browser-sdk](@bucketco/browser-sdk/README.md)
+[@reflag/browser-sdk](@reflag/browser-sdk/README.md)
 
 </td>
 <td>
@@ -77,7 +77,7 @@ pagination:
 <tr>
 <td>
 
-[@bucketco/node-sdk](@bucketco/node-sdk/README.md)
+[@reflag/node-sdk](@reflag/node-sdk/README.md)
 
 </td>
 <td>
@@ -89,7 +89,7 @@ pagination:
 <tr>
 <td>
 
-[@bucketco/react-sdk](@bucketco/react-sdk/README.md)
+[@reflag/react-sdk](@reflag/react-sdk/README.md)
 
 </td>
 <td>
@@ -101,7 +101,7 @@ pagination:
 <tr>
 <td>
 
-[@bucketco/vue-sdk](@bucketco/vue-sdk/README.md)
+[@reflag/vue-sdk](@reflag/vue-sdk/README.md)
 
 </td>
 <td>
