@@ -7,15 +7,15 @@
 ## Supported languages
 
 * [Overview](supported-languages/overview.md)
-* [React SDK](supported-languages/react-sdk/README.md)
-  * [Reference](supported-languages/react-sdk/globals.md)
-* [Vue SDK (beta)](supported-languages/vue-sdk/README.md)
-  * [Reference](supported-languages/vue-sdk/globals.md)
-* [Browser SDK](supported-languages/browser-sdk/README.md)
-  * [Feedback](supported-languages/browser-sdk/feedback.md)
-  * [Reference](supported-languages/browser-sdk/globals.md)
-* [Node.js SDK](supported-languages/node-sdk/README.md)
-  * [Reference](supported-languages/node-sdk/globals.md)
+* [React SDK](sdk/@reflag/react-sdk/README.md)
+  * [Reference](sdk/@reflag/react-sdk/globals.md)
+* [Vue SDK (beta)](sdk/@reflag/vue-sdk/README.md)
+  * [Reference](sdk/@reflag/vue-sdk/globals.md)
+* [Browser SDK](sdk/@reflag/browser-sdk/README.md)
+  * [Feedback](sdk/documents/browser-sdk/FEEDBACK.md)
+  * [Reference](sdk/@reflag/browser-sdk/globals.md)
+* [Node.js SDK](sdk/@reflag/node-sdk/README.md)
+  * [Reference](sdk/@reflag/node-sdk/globals.md)
 * [Next.js](supported-languages/next.js.md)
 * [OpenFeature](supported-languages/openfeature.md)
 * [Ruby SDK](supported-languages/ruby-rails-stimulus.md)
@@ -24,7 +24,7 @@
 
 * [API Introduction](api/http-api.md)
 * [API Reference](api/api-reference.md)
-* [CLI](api/cli.md)
+* [CLI](sdk/documents/cli/README.md)
 * [MCP](api/mcp.md)
 
 ## Integrations

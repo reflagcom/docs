@@ -7,7 +7,7 @@ This feature **keeps the codepath that grants access (isEnabled == true)** when 
 {% endhint %}
 
 {% hint style="info" %}
-Note: This works best when using the [React SDK](../../supported-languages/react-sdk/), but stay tuned for improved Node.js support
+Note: This works best when using the [React SDK](../../sdk/@reflag/browser-sdk/), but stay tuned for improved Node.js support
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-07-10 at 14.29.20.png" alt=""><figcaption></figcaption></figure>
@@ -81,7 +81,7 @@ jobs:
         uses: ./.github/actions/install
 
       - name: ✨ Run formatting
-        run: yarn format   # <--- this is where you run `eslint --fix` or `prettier -w` etc.
+        run: yarn format # <--- this is where you run `eslint --fix` or `prettier -w` etc.
 
       - name: 💾 Commit formatted files
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -121,5 +121,5 @@ function StartHuddleButton() {
 
 **Limitations**:
 
-* Only `isEnabled` is removed, whereas `track`, `config`, and `requestFeedback` are untouched.
-* Works best with the React SDK while in beta.
+- Only `isEnabled` is removed, whereas `track`, `config`, and `requestFeedback` are untouched.
+- Works best with the React SDK while in beta.

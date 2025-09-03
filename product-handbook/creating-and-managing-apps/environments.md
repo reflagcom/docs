@@ -22,7 +22,7 @@ All environments except `Production` can be edited or deleted at any time.
 * Fetch your unique `publishable keys`  and/or `secret keys` to implement with an [SDK or HTTP API](../../supported-languages/overview.md).
   * This key is essential for integrating your applications with our platform. It ensures that events and data are attributed to the correct environment.
 
-<figure><img src="../../.gitbook/assets/Getting started-min.png" alt="Bucket Environments"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Getting started-min.png" alt="Reflag Environments"><figcaption></figcaption></figure>
 
 ## Managing environments
 

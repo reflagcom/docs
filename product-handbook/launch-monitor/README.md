@@ -28,8 +28,8 @@ function StartHuddleButton() {
 
   return (
     <div>
-       Huddles
-       <button onClick={() => track()}>Start huddle</button> 
+      Huddles
+      <button onClick={() => track()}>Start huddle</button>
     </div>
   );
 }
@@ -41,7 +41,7 @@ You can collect end-user feedback on new feature releases to catch and fix issue
 
 ### Static feedback button
 
-Here's a brief example using the [Reflag React SDK](../../supported-languages/react-sdk/) to collect feedback:
+Here's a brief example using the [Reflag React SDK](../../sdk/@reflag/browser-sdk/) to collect feedback:
 
 ```tsx
 import { useFlag } from "@reflag/react-sdk";

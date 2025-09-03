@@ -1,31 +1,31 @@
 ---
-description: Next.js client for Bucket
+description: Next.js client for Reflag
 ---
 
 # Next.js
 
-Using Bucket with Next.js is straightforward. You can use the [@bucketco/node-sdk](broken-reference/) on the server or [@bucketco/react-sdk](react-sdk/) in the browser. Handling feature targeting server-side is often advantageous because it removes the need for additional handling of loading states.
+Using Reflag with Next.js is straightforward. You can use the [@reflag/node-sdk](../sdk/@reflag/node-sdk/) on the server or [@reflag/react-sdk](../sdk/@reflag/react-sdk/) in the browser. Handling flag targeting server-side is often advantageous because it removes the need for additional handling of loading states.
 
 ## Server-side Rendering (SSR)
 
-It's often advantageous to use Server-side Rendering when possible because it can help avoid extra loading screens while your Bucket features are loading.
+It's often advantageous to use Server-side Rendering when possible because it can help avoid extra loading screens while your Reflag flags are loading.
 
-For pages that use server-side rendering, use the `@bucketco/node-sdk` in the following manner. Create a new file called `bucket.ts` and adjust it to your needs:
+For pages that use server-side rendering, use the `@reflag/node-sdk` in the following manner. Create a new file called `reflag.ts` and adjust it to your needs:
 
 ```typescript
-// app/bucket.ts
-import { BucketClient } from "@bucketco/node-sdk";
+// app/reflag.ts
+import { ReflagClient } from "@reflag/node-sdk";
 
 import { auth } from "@/auth";
 
-export let bucketClient: BucketClient;
+export let reflagClient: ReflagClient;
 
-async function initBucket() {
-  bucketClient = new BucketClient({
-    secretKey: process.env.BUCKET_SECRET_KEY ?? "",
+async function initReflag() {
+  reflagClient = new ReflagClient({
+    secretKey: process.env.REFLAG_SECRET_KEY ?? "",
     logger: console,
   });
-  await bucketClient.initialize();
+  await reflagClient.initialize();
 }
 
 export async function getContext() {
@@ -46,38 +46,38 @@ export async function getContext() {
   };
 }
 
-export async function getFeature(key: string) {
-  if (!bucketClient) {
-    await initBucket();
+export async function getFlag(key: string) {
+  if (!reflagClient) {
+    await initReflag();
   }
 
-  return bucketClient.getFeature(await getContext(), key);
+  return reflagClient.getFlag(await getContext(), key);
 }
 ```
 
-And then start using features!
+And then start using flags!
 
 {% tabs %}
 {% tab title="App router" %}
-Here's how you use features with App router:
+Here's how you use flags with App router:
 
 ```tsx
 // members-add/page.tsx
-import { getFeature } from "@/app/bucket";
+import { getFlag } from "@/app/reflag";
 
 async addMember() {
   "use server";
-  const { track } = await getFeature("member-add");
+  const { track } = await getFlag("member-add");
   track()
-  
+
   // add member
 }
 
 export default async function Page() {
-  const { isEnabled } = await getFeature("members-add");
-  
+  const { isEnabled } = await getFlag("members-add");
+
   if (!isEnabled) {
-    return null;      
+    return null;
   }
 
   return (
@@ -90,15 +90,15 @@ export default async function Page() {
 {% endtab %}
 
 {% tab title="Pages router" %}
-Here's how you use features with Pages router:
+Here's how you use flags with Pages router:
 
 ```tsx
 // members-add/page.tsx
-import { getFeature } from "@/app/bucket";
+import { getFlag } from "@/app/reflag";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
 export const getServerSideProps = (async () => {
-  const { isEnabled: membersAddEnabled } = await getFeature("members-add");
+  const { isEnabled: membersAddEnabled } = await getFlag("members-add");
   return { props: { membersAddEnabled } };
 }) satisfies GetServerSideProps<{ membersAddEnabled: boolean }>;
 
@@ -119,27 +119,27 @@ export default function Page({
 
 ### Flags SDK by Vercel
 
-[Flags SDK by Vercel](https://flags-sdk.dev/) is a Next.js oriented interface for server-side feature flags. It's straightforward to use with the Bucket Node.js SDK:
+[Flags SDK by Vercel](https://flags-sdk.dev/) is a Next.js oriented interface for server-side flags. It's straightforward to use with the Reflag Node.js SDK:
 
 ```typescript
 import { flag } from '@vercel/flags/next';
-import { getFeature } from "@/app/bucket";
- 
+import { getFlag } from "@/app/reflag";
+
 export const huddles = flag({
   key: 'huddles',
   async decide() {
-    return getFeature(this.key).isEnabled;
+    return getFlag(this.key).isEnabled;
   },
 });
 ```
 
 ## Client-side Rendering
 
-Use `@bucketco/react-sdk` with Next.js client-side rendering like so:
+Use `@reflag/react-sdk` with Next.js client-side rendering like so:
 
 ```tsx
 // layout.tsx
-import { BucketProvider } from "@bucketco/react-sdk";
+import { ReflagProvider } from "@reflag/react-sdk";
 
 import { useUser } from "./auth";
 
@@ -147,34 +147,34 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { user } = useUser()
 
   return (
-    <BucketProvider
-      publishableKey={process.env.NEXT_PUBLIC_BUCKET_PUBLISHABLE_KEY ?? ""}
+    <ReflagProvider
+      publishableKey={process.env.NEXT_PUBLIC_REFLAG_PUBLISHABLE_KEY ?? ""}
       user={{ id: user.id }}
       company={{ id: user.companyId }}
     >
       {children}
-    </BucketProvider>
+    </ReflagProvider>
   );
 }
 
 ```
 
-In a client components, use the hooks `useFeature`
+In a client components, use the hooks `useFlag`
 
 ```tsx
 "use client";
 
-import { useFeature } from "@bucketco/react-sdk";
+import { useFlag } from "@reflag/react-sdk";
 
 function StartHuddle() {
-  const { isEnabled, track } = useFeature("huddle");
+  const { isEnabled, track } = useFlag("huddle");
 
   if (!isEnabled) {
     return null
   }
 
   return (
-    <button onClick={track}>Start huddle!</button>    
+    <button onClick={track}>Start huddle!</button>
   );
 }
 ```

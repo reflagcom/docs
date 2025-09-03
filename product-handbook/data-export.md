@@ -1,10 +1,10 @@
 ---
-description: Learn more about data warehouse in Bucket
+description: Learn more about data warehouse in Reflag
 ---
 
 # Warehouse
 
-Bucket allows you to export company adoption data in a CSV file to use in other tools or databases.  This can be done either manually or automatically, depending on your plan.
+Reflag allows you to export company adoption data in a CSV file to use in other tools or databases.  This can be done either manually or automatically, depending on your plan.
 
 {% hint style="info" %}
 Data exports are only available on Pro and Enterprise plans. Automatic data exports are only available on the Enterprise plan.&#x20;
@@ -33,7 +33,7 @@ There are 4 historical data aggregation options:
 Read our [AWS S3](../integrations/aws-s3.md) data export guide.
 {% endhint %}
 
-You can also schedule data exports that run on a **daily** or **weekly** cadence. If enabled, Bucket automatically generates and exports a `CSV` file for each day or week and saves it to your S3-compatible file storage provider (such as _AWS S3_, _Google Cloud Storage_, _Cloudflare R2_, and others).
+You can also schedule data exports that run on a **daily** or **weekly** cadence. If enabled, Reflag automatically generates and exports a `CSV` file for each day or week and saves it to your S3-compatible file storage provider (such as _AWS S3_, _Google Cloud Storage_, _Cloudflare R2_, and others).
 
 * **Daily export**: Runs every day after `00:00 UTC` and exports a snapshot of the data as it was at `00:00 UTC`.&#x20;
 * **Weekly export**: Runs every Monday after `00:00 UTC` and exports a snapshot of the data as it was at `00:00 UTC on Monday`.
@@ -49,13 +49,13 @@ After enabling automatic exports, fill in the required configuration details:
 * **Access key**: The access key obtained from the cloud storage provider
 * **Secret access key**: The secret access key is obtained from the cloud storage provider
 
-After clicking `Save`, Bucket will validate that the supplied details are correct by attempting to list the files in the S3 bucket.&#x20;
+After clicking `Save`, Reflag will validate that the supplied details are correct by attempting to list the files in the S3 bucket.&#x20;
 
 If there is an error (such as misconfigured credentials, missing privileges, or misspelled names), an error message will appear.&#x20;
 
-Bucket will run the data export the following day or the next Monday depending on the selected cadence.
+Reflag will run the data export the following day or the next Monday depending on the selected cadence.
 
-Bucket records the status of the operation and displays it below the toggle. The status will show:
+Reflag records the status of the operation and displays it below the toggle. The status will show:
 
 * When the last export ran
 * The status of the last export. One of:
@@ -73,8 +73,8 @@ The company model contains information about company adoption of all your featur
 | ------------------ | ------------------ | ---------------------------------------------------------------- | ----------------------------------------------------------- |
 | Company ID         | `string`           |                                                                  | Company ID from your tracking calls                         |
 | Company Name       | `string` \| `null` |                                                                  | The company's name, if sent through tracking                |
-| Feature Name       | `string`           |                                                                  | Bucket feature name                                         |
-| Feature ID         | `string`           |                                                                  | Bucket feature ID                                           |
+| Feature Name       | `string`           |                                                                  | Reflag feature name                                         |
+| Feature ID         | `string`           |                                                                  | Reflag feature ID                                           |
 | Date               | `string`           | UTC Date (ISO-8601)                                              | The date of data point                                      |
 | First Seen         | `string`           | UTC Date (ISO-8601)                                              | The company's first tracking date                           |
 | Last Seen          | `string`           | UTC Date (ISO-8601)                                              | The company's latest tracking date                          |

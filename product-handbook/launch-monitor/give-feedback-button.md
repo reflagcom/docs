@@ -6,7 +6,7 @@ description: Adding a feedback button using Reflag SDKs in a few lines of code.
 
 Collecting feedback through a "Give feedback" button is a great way to collect feedback from users.
 
-Here's a brief example using the [Reflag React SDK](../../supported-languages/react-sdk/):
+Here's a brief example using the [Reflag React SDK](../../sdk/@reflag/browser-sdk/):
 
 ```tsx
 import { useFlag } from "@reflag/react-sdk";
@@ -34,4 +34,3 @@ function StartHuddleButton() {
   );
 }
 ```
-

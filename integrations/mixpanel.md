@@ -10,16 +10,16 @@ With the Mixpanel integration, you can attach feature access properties to users
 
 ### Get available features from Reflag
 
-In this example, we're using the [Browser SDK](../supported-languages/browser-sdk/):
+In this example, we're using the [Browser SDK](../sdk/@reflag/browser-sdk/):
 
 ```javascript
 //init
 const reflag = new ReflagBrowserSDK.ReflagClient({
-    publishableKey: "pub_prod_5eS0G5hX4ZOpwoAw1CKTeP",
-    user: { 
-        id: "u1234", 
-        name: "Rasmus Makwarth" 
-    },
+  publishableKey: "pub_prod_5eS0G5hX4ZOpwoAw1CKTeP",
+  user: {
+    id: "u1234",
+    name: "Rasmus Makwarth",
+  },
 });
 
 //get features

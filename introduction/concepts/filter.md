@@ -2,9 +2,9 @@
 
 ### Definition
 
-A filter, in Bucket, is a mechanism that is used to check if entities such as [user](user.md), [company](company.md), [event](event.md), etc. match a set of predicates. Filters can also be aggregated into logical expressions, thus, facilitating advanced use cases.
+A filter, in Reflag, is a mechanism that is used to check if entities such as [user](user.md), [company](company.md), [event](event.md), etc. match a set of predicates. Filters can also be aggregated into logical expressions, thus, facilitating advanced use cases.
 
-Bucket support the following filter types:
+Reflag support the following filter types:
 
 * [Company attribute](company.md#attributes) filter, that can be used to check company attributes,
 * Company [feature metrics](feature.md#metrics) filter, which allows checking for feature metrics applied to a given company (for example which [STARS](broken-reference) state the company is in for a feature),
@@ -17,7 +17,7 @@ Bucket support the following filter types:
 
 ### Company attribute filter
 
-This filter can be used to check company attributes against a set predicates. The attributes include the `First seen` and `Last seen` which are maintained by Bucket. You can use any attribute name that your application sent to Bucket.
+This filter can be used to check company attributes against a set predicates. The attributes include the `First seen` and `Last seen` which are maintained by Reflag. You can use any attribute name that your application sent to Reflag.
 
 ### Company feature metrics
 
@@ -25,11 +25,11 @@ This filter allows checking company's feature-specific metrics. These metrics in
 
 ### User attribute filter
 
-This filter can be used to check user attributes against a set predicates. You can use any attribute name that your application sent to Bucket when updating user.
+This filter can be used to check user attributes against a set predicates. You can use any attribute name that your application sent to Reflag when updating user.
 
 ### Event attribute filter
 
-This filter can be used to check event attributes against a set predicates. You can use any attribute name that your application sent to Bucket when sending track events.
+This filter can be used to check event attributes against a set predicates. You can use any attribute name that your application sent to Reflag when sending track events.
 
 ### Company segment filter
 
@@ -45,7 +45,7 @@ This filter is used by feature access targeting when enabling gradual rollout. I
 
 ### Other context filter
 
-This filter can be used to check `other` context attributes against a set predicates. You can use any attribute name that your application sends to Bucket when evaluating feature access.
+This filter can be used to check `other` context attributes against a set predicates. You can use any attribute name that your application sends to Reflag when evaluating feature access.
 
 {% hint style="warning" %}
 * Company attribute filters using `First seen` and `Last seen` attributes cannot be used in targeting rules,

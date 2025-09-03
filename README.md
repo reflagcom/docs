@@ -22,7 +22,7 @@ Now let's create your first feature.&#x20;
 npx @reflag/cli new
 ```
 
-See [CLI docs](api/cli.md).
+See [CLI docs](sdk/documents/cli/README.md).
 {% endtab %}
 
 {% tab title="UI" %}
