@@ -8,8 +8,6 @@ You release features gradually to de-risk rollouts. It's better that only a few 
 
 Ideally, you first test internally and then roll out a limited release to beta customers. Once you've caught the major bugs or points of confusion, you release the feature to general availability.
 
-This is how to use Reflag to safely roll out [new features](https://github.com/reflagcom/docs/blob/main/product-handbook/feature-rollouts/broken-reference/README.md).
-
 ## Gradually roll out your feature
 
 To roll out a feature in Reflag, you can set access rules.
