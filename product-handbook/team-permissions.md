@@ -13,7 +13,7 @@ The Team Management page in your Reflag organization provides essential features
 
 Team member roles can be changed by selecting them from the dropdown. Additionally, any member can be removed from the organization by clicking the "_delete_" icon situated next to the role selector.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Team management page</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/https___content.gitbook.com_content_pgXAy2Cgsm5pON9oJ06m_blobs_6wGbrQlJPE4JllBuIhla_image (1).png" alt=""><figcaption><p>Team management page</p></figcaption></figure>
 
 ## Roles and permissions
 
