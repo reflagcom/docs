@@ -78,7 +78,7 @@
 
 ## Guides
 
-* [Create a beta feature opt-in page](guides/self-opt-in.md)
+* [Beta feature opt-in](guides/self-opt-in.md)
 
 ## Support
 
@@ -87,3 +87,7 @@
 ***
 
 * [Changelog](https://reflag.com/changelog)
+
+## Group 1
+
+* [Page 1](group-1/page-1.md)
