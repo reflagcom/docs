@@ -75,7 +75,7 @@ Here are examples of access conditions:
 * Give access to companies who already have access to the Huddle feature: `Feature access: Feature [Huddle] is enabled`
 * Enable feature for a single company but only when managing a particular event: `Company attribute: Company ID IS [42] AND Other context: eventID IS [641]`
 
-<figure><img src="../../.gitbook/assets/There are 5 different types of conditions to chose from-min.png" alt="Bucket feature flag targeting rules"><figcaption><p>There are 5 different types of conditions to chose from</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/There are 5 different types of conditions to chose from-min.png" alt="Reflag feature flag targeting rules"><figcaption><p>There are 5 different types of conditions to chose from</p></figcaption></figure>
 
 ## Setting multiple access rules <a href="#setting-multiple-targeting-rules" id="setting-multiple-targeting-rules"></a>
 

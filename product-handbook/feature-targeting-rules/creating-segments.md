@@ -1,5 +1,5 @@
 ---
-description: Learn more about segments in Bucket
+description: Learn more about segments in Reflag
 ---
 
 # Creating segments

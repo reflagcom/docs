@@ -1,5 +1,5 @@
 ---
-description: Learn more about apps in Bucket
+description: Learn more about apps in Reflag
 ---
 
 # Managing apps
@@ -13,7 +13,7 @@ Learn about [apps](../introduction/concepts/app.md) here.
 * You can modify the `App name`
 * You can delete the app by clicking the `Delete app` button
 
-<figure><img src="../.gitbook/assets/Modifying or deleting an app-min.png" alt="Bucket Global Settings page"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Modifying or deleting an app-min.png" alt="Reflag Global Settings page"><figcaption></figcaption></figure>
 
 ### Creating a new app
 

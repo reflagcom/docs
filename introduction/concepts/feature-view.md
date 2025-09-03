@@ -6,4 +6,4 @@ A feature view is a simple grouping of multiple [features](feature.md). It offer
 
 ### Next steps
 
-* Learn how to [manage feature views](../../product-handbook/feature-views.md) within Bucket UI.
+* Learn how to [manage feature views](../../product-handbook/feature-views.md) within Reflag UI.
