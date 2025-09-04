@@ -7,7 +7,7 @@ description: >-
 
 # MCP
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F6wSC8SR2SupI4hONkYqp%2Fuploads%2F3ldWF5ngJR7yUMAysZKa%2Fcursor-mcp-demo_h264.mp4?alt=media&token=8e77c2e5-24fd-4451-85ee-5120008626c7" %}
+{% embed url="https://139729605.fs1.hubspotusercontent-eu1.net/hubfs/139729605/Videos/bucketco-website/cursor-mcp-flag-feature_full-height_h264.mp4" %}
 
 ## Get started with Reflag Remote MCP
 
@@ -33,8 +33,6 @@ npx @reflag/cli@latest mcp
 Make sure your editor/client and [Node.js](https://nodejs.org/en/download) versions are up-to-date.
 {% endhint %}
 
-{% embed url="https://2489416983-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F6wSC8SR2SupI4hONkYqp%2Fuploads%2FAvCYllmE5g5WBDiUSeez%2Fmcp-remote.mp4?alt=media&token=9b5f31bd-d94b-4831-a7d0-85410265dab3" %}
-
 ## Manual setup
 
 Below are the manual setup steps for some of the popular editors, but there are [more MCP-compatible clients](https://modelcontextprotocol.io/clients). Before you start with the manual setup, you first need the `App ID` from [your app settings page](https://app.reflag.com/env-current/settings/app-general).
@@ -53,11 +51,7 @@ We use [mcp-remote](https://www.npmjs.com/package/mcp-remote) to enable authenti
 {
   "mcpServers": {
     "Reflag": {
-      "command": "npx",
-      "args": [
-        "mcp-remote@latest",
-        "https://app.reflag.com/api/mcp?appId=<YOUR APP ID>"
-      ]
+      "url": "https://app.reflag.com/api/mcp?appId=<YOUR_APP_ID>"
     }
   }
 }
