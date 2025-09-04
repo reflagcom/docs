@@ -24,7 +24,7 @@ For most integrations, you first need connect Reflag with your Linear account. T
 
 The Agent integration enables you to `@reflag` within Linear.&#x20;
 
-<figure><img src="../.gitbook/assets/ezgif-242d06617aea38.gif" alt=""><figcaption></figcaption></figure>
+{% embed url="https://139729605.fs1.hubspotusercontent-eu1.net/hubfs/139729605/Videos/bucketco-website/linear-agent-create-flag_h264.mp4" %}
 
 #### Creating features
 
@@ -46,9 +46,7 @@ Example: `@reflag link to <feature name/key>`
 
 The broadcast integration posts feature access change to a Linear issue or project.
 
-
-
-<figure><img src="../.gitbook/assets/CleanShot 2025-05-09 at 1 .29.05@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 Here's how to get started:\
 
@@ -67,7 +65,7 @@ When you link a feature with a Linear issue or project, you'll see a link to the
 
 When you start working on a new project in Linear, we recommend adding a "Create feature flag" issue.&#x20;
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-10 at 14.04.34.png" alt=""><figcaption><p>A Linear project template with an issue included by default to make it easy to get started with features in Reflag</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt="A Linear project template with an issue included by default to make it easy to get started with features in Reflag"><figcaption><p>A Linear project template with an issue included by default to make it easy to get started with features in Reflag</p></figcaption></figure>
 
 This way, when you start a new project, part of the initial work will be setting up a feature in Reflag.&#x20;
 
