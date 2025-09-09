@@ -8,7 +8,7 @@ Reflag's segment integration is for customers who already use Segment for event 
 
 ## Getting started
 
-1.  Set up [Reflag Cloud destination](https://app.segment.com/goto-my-workspace/destinations/catalog/reflag) to receive data from a Segment source.\
+1.  Set up [Reflag Cloud destination](https://app.segment.com/goto-my-workspace/destinations/catalog/bucket) to receive data from a Segment source.\
     \
 
 
