@@ -19,6 +19,6 @@ GitHub integration is available on Pro and Enterprise [plans](https://reflag.com
 
 Connecting to GitHub happens at the Organization level. Go to [Organization settings](https://app.reflag.com/env-current/settings/org-integrations) and:
 
-1. Click "Connect" for the GitHub integraiton.
+1. Click "Connect" for the GitHub integration.
 2. You'll be taken to an authentication consent screen.
 3. Once you've approved, you'll need to pick a repository.
