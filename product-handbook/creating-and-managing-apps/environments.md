@@ -8,18 +8,18 @@ What are environments?
 
 An environment is an instance of an app that is specified by a group of shared parameters or servers. Environments are usually used to isolate a production app from testing, however, they can also differentiate multiple single-tenant deployments of the same app.
 
-Reflag has three default environments: `Production`, `Staging`, and `Development`.&#x20;
+Reflag has three default environments: `Production`, `Staging`, and `Development`.
 
-You can add, edit, and delete as many additional environments as you’d like.&#x20;
+You can add, edit, and delete as many additional environments as you’d like.
 
 All environments except `Production` can be edited or deleted at any time.
 
 ## Getting started
 
-* When you create your account, there are three default environments: `Production`, `Staging`, and `Development`.&#x20;
+* When you create your account, there are three default environments: `Production`, `Staging`, and `Development`.
 * Go to `Settings`
 * Under `App: [Your App Name]`, click `Environments`
-* Fetch your unique `publishable keys`  and/or `secret keys` to implement with an [SDK or HTTP API](../../supported-languages/overview.md).
+* Fetch your unique `publishable keys` and/or `secret keys` to implement with an [SDK or HTTP API](../../supported-languages/overview.md).
   * This key is essential for integrating your applications with our platform. It ensures that events and data are attributed to the correct environment.
 
 <figure><img src="../../.gitbook/assets/Getting started-min.png" alt="Reflag Environments"><figcaption></figcaption></figure>
@@ -46,9 +46,8 @@ The `Production` environment cannot be deleted or edited. New environments can b
 
 You can switch between environments by:
 
-* Click the app switcher interface in the top-left corner of the browser
-* Click on an environment listed below the application's name to switch to that environment
-* When a non-Production environment is active, it will be displayed under the current application's name in the app switcher.
+* Click the environment listed in the left-hand navigation bar
+* The current active environment name is highlighted in left-hand the navigation bar.
 
 <figure><img src="../../.gitbook/assets/Switching Between Environments-min.png" alt="Switching between environments"><figcaption></figcaption></figure>
 
