@@ -9,11 +9,11 @@ description: Learn more about segments in Reflag
 Segments are reusable lists of companies created based off one of more of the following:
 
 * [Company attributes](concepts/company.md#attributes)&#x20;
-* Feature access
-* Feature metrics
+* Flag access
+* Flag metrics
 * Feature feedback
 
-Company segments can be used as access rule for managing feature access.
+Company segments can be used as access rule for managing flag access.
 
 ## Getting started <a href="#get-started" id="get-started"></a>
 
