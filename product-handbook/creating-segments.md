@@ -30,16 +30,17 @@ There are 4 types of conditions:
 
 * `Company attribute`
   * `Company ID`
-  * `Company name`
+  * `First seen`&#x20;
+  * `Last seen`&#x20;
   * `any custom attributes`
-* `Feature access`&#x20;
-  * `isEnabled`
-* `Feature metric`&#x20;
-  * `Frequency`
-  * `Satisfaction`
-  * `Event count`
-  * `First used`
-  * `Last used`
+* `Flag access`&#x20;
+  * `is enabled`
+  * `is not enabled` &#x20;
+* `Flag metric`&#x20;
+  * `Track count`&#x20;
+  * `Exposure count`
+  * `First track`
+  * `Last track` &#x20;
 * `Segment`&#x20;
   * `in Segment`
   * `not in Segment`
@@ -68,7 +69,9 @@ There are 4 types of conditions:
 * Date
   * `Less than X days ago`
   * `More than X days ago`
-* Feature access
+  * `Before date X`     &#x20;
+  * `After date X` &#x20;
+* Flag access
   * `Is enabled`
   * `Is not enabled`
 * Segment
