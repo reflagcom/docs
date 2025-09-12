@@ -13,7 +13,7 @@ Learn about [apps](../concepts/app.md) here.
 * You can modify the `App name`
 * You can delete the app by clicking the `Delete app` button
 
-<figure><img src="../../.gitbook/assets/Modifying or deleting an app-min.png" alt="Reflag Global Settings page"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 15.32.39.png" alt="Reflag Global Settings page"><figcaption></figcaption></figure>
 
 ### Creating a new app
 
