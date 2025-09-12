@@ -4,7 +4,7 @@ description: >-
   "clean-up guide",  notifications and automatic clean-up pull requests.
 ---
 
-# Feature clean-up and archival (beta)
+# Feature clean-up and archival
 
 ## Stale features
 
@@ -16,7 +16,7 @@ After features have been rolled out to everyone, they turn stale after a given p
 
 The stale features view lets you see all the features that are currently stale as well as what needs to be done before they can be archived
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-09-02 at 17.19.44.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-02 at 17.19.44 (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Clean-up guide
 
