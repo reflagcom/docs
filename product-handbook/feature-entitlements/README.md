@@ -57,7 +57,7 @@ In Reflag, segments are automatically aggregated at the company level. This mean
 
 Company attribute **"plan**" equals **"business**"
 
-<figure><img src="../../.gitbook/assets/CleanShot 2024-11-27 at 10 .47.14@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 14.58.27.png" alt=""><figcaption></figcaption></figure>
 
 You can do this for all plans. For example:
 
@@ -91,7 +91,7 @@ Companies in the segment **Business** or **Enterprise**
 
 Here’s what that looks like in the Reflag UI:
 
-<figure><img src="../../.gitbook/assets/Feature targeting rules example v3-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 15.00.32.png" alt=""><figcaption></figcaption></figure>
 
 That’s it!&#x20;
 
@@ -103,7 +103,7 @@ If you need to grant individual companies access to a feature when they don't ha
 
 Simply click the "+ Add" button beside the "Companies" label and select the companies you'd like to add from the searchable dropdown.
 
-<figure><img src="../../.gitbook/assets/company example v3-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 15.01.32.png" alt=""><figcaption></figcaption></figure>
 
 ## How to handle usage-based gating
 
@@ -111,7 +111,7 @@ Simply click the "+ Add" button beside the "Companies" label and select the comp
 This use case isn't yet natively supported by Reflag, but Reflag is flexible enough to handle it in some cases.
 {% endhint %}
 
-If your features are restricted by plan _and_ usage, like only allowing 10,000 API requests/mo on the Business plan, you can do the following:
+If your features are restricted by plan _and_ usage, like only allowing 1,000 API requests/mo on the Business plan, you can do the following:
 
 ### Step 1: Let Reflag know of the current usage&#x20;
 
@@ -121,7 +121,7 @@ For example, you can send the company's current usage metrics to Reflag at an ho
 
 ```tsx
 reflag.companyUpdate(companyId51, {
-    apiRequestsCurrentMonth: 7930
+    apiRequestsCurrentMonth: 793
 });
 ```
 
@@ -129,7 +129,7 @@ reflag.companyUpdate(companyId51, {
 
 Then, add this custom attribute metric to your access rules.
 
-<figure><img src="../../.gitbook/assets/usage attribute example v3.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 15.04.39.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/CleanShot 2025-01-23 at 2 .10.23@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 15.06.50.png" alt=""><figcaption></figcaption></figure>
 
