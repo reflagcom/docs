@@ -79,11 +79,11 @@ In the default state, the widget will appear in the bottom right corner of your 
 
 Once a user interacts with the widget by providing a CSAT score, the widget will expand to give them the option to add feedback.
 
-![](../../.gitbook/assets/03642c5-dwFrame_201.png)
+![](<../../.gitbook/assets/03642c5-dwFrame_201 (1).png>)
 
 After a user leaves a comment and clicks `Send feedback`, the widget will display a confirmation message and automatically close.
 
-![](../../.gitbook/assets/be124cd-dwdwFrame_201.png)
+![](<../../.gitbook/assets/be124cd-dwdwFrame_201 (1).png>)
 
 The feedback widget will automatically close if a user doesn't interact with it.\
 \
