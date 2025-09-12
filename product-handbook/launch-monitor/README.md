@@ -2,7 +2,7 @@
 
 Use the launch monitor to track exposure and adoption, and to collect end-user feedback.
 
-<figure><img src="../../.gitbook/assets/Monitor (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Monitor (7).png" alt=""><figcaption></figcaption></figure>
 
 ## Exposure
 
@@ -37,7 +37,7 @@ function StartHuddleButton() {
 
 ## Feedback
 
-You can collect end-user feedback on new feature releases to catch and fix issues faster.&#x20;
+You can collect end-user feedback on new feature releases to catch and fix issues faster.
 
 ### Static feedback button
 
