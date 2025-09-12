@@ -9,9 +9,9 @@
 
 
 
-## 1. Create your first feature
+## 1. Create your first flag
 
-Now let's create your first feature.
+Now let's create your first flag.
 
 {% tabs %}
 {% tab title="CLI" %}
@@ -24,10 +24,10 @@ See [CLI docs](sdk/documents/cli/).
 
 {% tab title="UI" %}
 1. [Sign up](https://app.reflag.com/) in the app
-2. Click `New feature` in the sidebar.
-3. Give your feature a name, and we'll suggest a `feature key` .
+2. Click `New flag` in the sidebar.
+3. Give your feature a name, and we'll suggest a `flag key` .
 
-<figure><img src=".gitbook/assets/New feature.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Screenshot 2025-09-12 at 11.50.41.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="MCP" %}
@@ -75,7 +75,7 @@ From here, you can define segments, companies, and users that will access your f
 
 On the Monitor tab you can track real-time feature exposure, adoption and user feedback.
 
-<figure><img src=".gitbook/assets/Monitor (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Monitor.png" alt=""><figcaption></figcaption></figure>
 
 ### Track exposure
 
