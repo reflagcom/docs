@@ -45,7 +45,7 @@ Sensitive data, like API keys or passwords should be managed with proper care ou
 
 The config values are shared across all environments. Any new value that you add in one environment, will automatically be added to other environments but without any targeting rules, effectively making it disabled.
 
-<figure><img src="../.gitbook/assets/remote config - 3.png" alt=""><figcaption><p>Remote config with three values in the Production environment</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2025-09-12 at 14.29.56.png" alt=""><figcaption><p>Remote config with three values in the Production environment</p></figcaption></figure>
 
 In the image above, a feature is set up to have three config values. This is an example of configuring  LLM settings for an AI feature. The "gpt-4o" value is the default and served with all requests that do not match any other, more specific values. The "claude-3-7-sonnet" value will be served to users in "Apex" and "Blaze" companies while the "gpt-5" value will be served to the "Adrian Borer" user as well as the "Logix" and "Hightrix" companies.
 
@@ -93,16 +93,14 @@ Remote config is a great tool when used to support [entitlements scenarios](feat
 
 <figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption><p>Example of AI model variations by subscription tier</p></figcaption></figure>
 
-The image above exemplifies a feature called "_AI Transcripts_" which serves five different categories of customers: "_Not customers_", "_Signed-Up_", "_Trial_", "_Pro_" and "_Enterprise_". Each category is entitled to different feature tier.
+The image above exemplifies a feature called "_AI Transcripts_" which serves four different categories of customers: "_Not customers_", "_Beta_", "Business Plan", and "_Enterprise Plan_". Each category is entitled to different feature tier.
 
 ## Start using remote config
 
-First, [create your first feature](https://app.reflag.com/), if you haven't yet. Then, open your feature and click on the "_Remote config_" tab at the top.
+First, [create your first flag](https://app.reflag.com/), if you haven't yet. Then, open your flag and click on the "_Remote config_" tab at the top.
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption><p>Click "Create config value" to start</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2025-09-12 at 14.37.52.png" alt=""><figcaption><p>Click "Create config value" to start</p></figcaption></figure>
 
 Once you have set up your feature and config values, don't forget to configure the targeting rules in other environments as well.
-
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption><p>The environment picker</p></figcaption></figure>
 
 Finally, use [any of our SDKs](../supported-languages/overview.md) to access the feature and its config in your application.
