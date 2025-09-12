@@ -13,7 +13,7 @@ Authentication happens at the environment level. Once you've authenticated, all 
 * Go to **Settings**
 * Select **Slack** under Environment.
 
-<figure><img src="../.gitbook/assets/slackDisconnected.png" alt=""><figcaption><p>Click "Connect to Slack" to authenticate</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/slackDisconnected (1).png" alt=""><figcaption><p>Click "Connect to Slack" to authenticate</p></figcaption></figure>
 
 ## Choose default Slack channel
 
@@ -24,7 +24,7 @@ You can set a default Slack channel for an app. This means that all features wit
 
 Note: Slack notifications are only supported in the Production [environment](../product-handbook/concepts/environment.md).
 
-<figure><img src="../.gitbook/assets/slackConnected.png" alt=""><figcaption><p>Choose default Slack channel for this app's production environment</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/slackConnected (1).png" alt=""><figcaption><p>Choose default Slack channel for this app's production environment</p></figcaption></figure>
 
 
 
