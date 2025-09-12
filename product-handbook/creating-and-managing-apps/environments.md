@@ -22,7 +22,7 @@ All environments except `Production` can be edited or deleted at any time.
 * Fetch your unique `publishable keys` and/or `secret keys` to implement with an [SDK or HTTP API](../../supported-languages/overview.md).
   * This key is essential for integrating your applications with our platform. It ensures that events and data are attributed to the correct environment.
 
-<figure><img src="../../.gitbook/assets/Getting started-min.png" alt="Reflag Environments"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 15.33.57.png" alt="Reflag Environments"><figcaption></figcaption></figure>
 
 ## Managing environments
 
@@ -36,7 +36,7 @@ To create a new environment:
   * If needed, you can rename the environment later
 * After clicking the `Create` button, the new environment will appear in the list alongside its associated `publishable key` and `secret key.`
 
-<figure><img src="../../.gitbook/assets/Create a new environment-min.png" alt="Environments after adding a new environment"><figcaption><p>Environments after adding "Pre-Production"</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 15.35.09.png" alt="Environments after adding a new environment"><figcaption><p>Environments after adding "Pre-Production"</p></figcaption></figure>
 
 {% hint style="info" %}
 The `Production` environment cannot be deleted or edited. New environments can be edited or deleted at any time.
@@ -47,9 +47,9 @@ The `Production` environment cannot be deleted or edited. New environments can b
 You can switch between environments by:
 
 * Click the environment listed in the left-hand navigation bar
-* The current active environment name is highlighted in left-hand the navigation bar.
+* The current active environment name is highlighted in the left-hand navigation bar.
 
-<figure><img src="../../.gitbook/assets/Switching Between Environments-min.png" alt="Switching between environments"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 15.36.14.png" alt="Switching between environments"><figcaption></figcaption></figure>
 
 ## Environment settings
 
