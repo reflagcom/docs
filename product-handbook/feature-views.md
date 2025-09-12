@@ -1,23 +1,23 @@
 ---
-description: Learn more about feature views in Reflag
+description: Learn more about views in Reflag
 ---
 
 # Feature views
 
-## What are feature views?
+## What are views?
 
-Feature views group features in a single view to let you organize features as well as enable and customize Slack reporting and column configurations.
+Views group features in a single view to let you organize features as well as enable and customize Slack reporting and column configurations.
 
-## Creating feature views
+## Creating views
 
-You can create and manage feature views in the [App Settings](https://app.reflag.com/env-current/settings/app-stages). You can create new feature views, edit existing views, and enable weekly reporting to Slack.
+You can create and manage views in the [App Settings](https://app.reflag.com/env-current/settings/app-stages). You can create new views, edit existing views, and enable weekly reporting to Slack.
 
-<figure><img src="../.gitbook/assets/Global settings - Feature views-min.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2025-09-12 at 15.16.42.png" alt=""><figcaption></figcaption></figure>
 
-## Adding and removing features to feature views
+## Adding and removing flags to views
 
-To add a feature to a feature view, go to the [feature](https://app.reflag.com/env-current/features) you want to add to a feature view. In the right-hand sidebar, click on the + icon beside "Feature views" to add it to a feature view. You'll have the option to select an existing view or create a new one.
+To add a flag to a view, go to the [flag](https://app.reflag.com/env-current/features) you want to add to a view. In the right-hand sidebar, click on the + icon beside "Add to views" to add it to a view. You'll have the option to select an existing view or create a new one.
 
 You can remove a feature from a view simply by clicking on the X icon.
 
-<figure><img src="../.gitbook/assets/Adding features to a feature view-min.png" alt="Adding a feature to a feature view"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2025-09-12 at 15.18.42.png" alt="Adding a feature to a feature view"><figcaption></figcaption></figure>
