@@ -89,9 +89,4 @@ VS Code also supports workspace-specific MCP servers by adding the above configu
 ### Claude Code
 
 1. On the command line inside your project directory, enter: `claude mcp add --transport http Reflag https://app.reflag.com/api/mcp`
-2. Start `claude` and enter `/mcp` to begin the authentication process\
-
-
-## Additional notes
-
-MCP is in a very early stage of development, and changes are frequent. If something isn't working, please check out the [Model Context Protocol Website](https://modelcontextprotocol.io/), [mcp-remote](https://www.npmjs.com/package/mcp-remote?activeTab=versions), and open an [issue ticket here](https://github.com/reflagcom/reflag-javascript-sdk/issues).
+2. Start `claude` and enter `/mcp` to begin the authentication process
