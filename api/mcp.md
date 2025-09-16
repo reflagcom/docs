@@ -15,13 +15,10 @@ The Model Context Protocol (MCP) is an open protocol that provides a standardize
 
 {% stepper %}
 {% step %}
-#### Set up the MCP connection with the [Reflag CLI](../sdk/documents/cli/)
+#### One-click add Reflag MCP in your IDE
 
-Simply run our one-line command in your project directory and select the options that best suit you.
-
-```bash
-npx @reflag/cli@latest mcp
-```
+* [Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=Reflag\&config=eyJ1cmwiOiJodHRwczovL2FwcC5yZWZsYWcuY29tL2FwaS9tY3AiLCJ0eXBlIjoiaHR0cCJ9)
+* [VSCode](vscode:mcp/install?%7B%22name%22%3A%22Reflag%22%2C%22gallery%22%3Afalse%2C%22url%22%3A%22https%3A%2F%2Fapp.reflag.com%2Fapi%2Fmcp%22%7D)
 {% endstep %}
 
 {% step %}
@@ -44,14 +41,14 @@ We use [mcp-remote](https://www.npmjs.com/package/mcp-remote) to enable authenti
 ### [Cursor](https://docs.cursor.com/context/model-context-protocol)
 
 1. Open Cursor.
-2. Go to `Settings > MCP`.
-3. Click `Add new global MCP server` and paste the `STDIO` configure with your `App ID`:
+2. Go to `Settings > Cursor Settings`.
+3. Click `MCP` and `New MCP Server`  make sure the Reflag MCP server entry is present:
 
 ```json
 {
   "mcpServers": {
     "Reflag": {
-      "url": "https://app.reflag.com/api/mcp?appId=<YOUR_APP_ID>"
+      "url": "https://app.reflag.com/api/mcp"
     }
   }
 }
@@ -73,7 +70,7 @@ You must enable the [Copilot agent mode](https://code.visualstudio.com/docs/copi
 2. Open the command palette, typically `CMD + SHIFT + P` or `CTRL + SHIFT + P`.
 3. Type and select `MCP: Add Server...` .
 4. Select `Command (stdio)` .
-5. Enter `npx mcp-remote@latest https://app.reflag.com/api/mcp?appId=<YOUR APP ID>` as the command, with your `App ID`.
+5. Enter `npx mcp-remote@latest https://app.reflag.com/api/mcp` as the command, with your `App ID`.
 6. Enter `Reflag` as the server ID.
 7. Select either `User Settings` or `Workspace Settings`.
 
