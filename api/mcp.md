@@ -82,7 +82,7 @@ VS Code also supports workspace-specific MCP servers by adding the above configu
 ### [Claude Desktop](https://modelcontextprotocol.io/quickstart/user)
 
 1. Open Cursor Desktop.
-2. Go to `Settings > General >Claude Settings (Configure) > Connectors`
+2. Go to `Settings > General > Claude Settings (Configure) > Connectors`
 3. Click Add Custom Connector
 4. Enter "Reflag" as the name and paste the MCP url in: `https://app.reflag.com/api/mcp`
 
