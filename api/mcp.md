@@ -69,10 +69,9 @@ You must enable the [Copilot agent mode](https://code.visualstudio.com/docs/copi
 1. Open VS Code.
 2. Open the command palette, typically `CMD + SHIFT + P` or `CTRL + SHIFT + P`.
 3. Type and select `MCP: Add Server...` .
-4. Select `Command (stdio)` .
-5. Enter `npx mcp-remote@latest https://app.reflag.com/api/mcp` as the command, with your `App ID`.
+4. Select `HTTP` .
+5. Enter `https://app.reflag.com/api/mcp` as the URL
 6. Enter `Reflag` as the server ID.
-7. Select either `User Settings` or `Workspace Settings`.
 
 {% hint style="info" %}
 VS Code also supports workspace-specific MCP servers by adding the above configuration to `.vscode/mcp.json` inside your project directory.
@@ -83,24 +82,15 @@ VS Code also supports workspace-specific MCP servers by adding the above configu
 ### [Claude Desktop](https://modelcontextprotocol.io/quickstart/user)
 
 1. Open Cursor Desktop.
-2. Go to `Settings > Developer`.
-3. Click `Edit Config` , open `claude_desktop_config.json` and paste the `STDIO` configuration with your `App ID`:
+2. Go to `Settings > General >Claude Settings (Configure) > Connectors`
+3. Click Add Custom Connector
+4. Enter "Reflag" as the name and paste the MCP url in: `https://app.reflag.com/api/mcp`
 
-```json
-{
-  "mcpServers": {
-    "Reflag": {
-      "command": "npx",
-      "args": [
-        "mcp-remote@latest",
-        "https://app.reflag.com/api/mcp?appId=<YOUR APP ID>"
-      ]
-    }
-  }
-}
-```
+### Claude Code
 
-4. Save, restart Claude Desktop, and start prompting!
+1. On the command line inside your project directory, enter: `claude mcp add --transport http Reflag https://app.reflag.com/api/mcp`
+2. Start `claude` and enter `/mcp` to begin the authentication process\
+
 
 ## Additional notes
 
