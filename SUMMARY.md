@@ -75,6 +75,7 @@
   * [Targeting rules](product-handbook/concepts/targeting-rules.md)
   * [Filter](product-handbook/concepts/filter.md)
 * [Data residency](product-handbook/data-residency.md)
+* [Anonymous users](product-handbook/anonymous-users.md)
 
 ## Guides
 
