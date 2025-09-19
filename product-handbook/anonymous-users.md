@@ -25,8 +25,8 @@ For anonymous users you supply an empty user ID and empty company ID.
 import { ReflagClient } from "@reflag/node-sdk";
 
 const client = new ReflagClient(...)
-
-const flags = client.getFlags({}) // using an empty context for anonymous users
+// using an empty context for anonymous users
+const { isEnabled } = client.bindClient({}).getFlag("export-to-csv")
 ```
 {% endtab %}
 
@@ -58,7 +58,7 @@ import { ReflagClient } from "@reflag/node-sdk";
 const client = new ReflagClient(...)
 
 // supply only the company ID if the users is anonymous but belongs to a company
-const flags = client.getFlags({company: {id: "petes-burgers"})
+const { isEnabled } = client.bindClient({company: {id: "petes-burgers"}).getFlag("export-to-csv")
 ```
 {% endtab %}
 
