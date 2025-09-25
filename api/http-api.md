@@ -78,7 +78,7 @@ Authorization: Bearer <secretKey>
 }
 ```
 
-See [API reference](api-reference.md#features).
+See [API reference](public-api-reference.md#features).
 
 ### `GET /features/evaluated`
 
@@ -116,13 +116,13 @@ This is a more realistic example of `context` that lets you write advanced featu
 Note: The Reflag UI uses the attributes provided in the `company` endpoint to determine which companies have which features enabled. Ensure any `company` attributes used in the `context` are also provided through the `company` endpoint.
 {% endhint %}
 
-See [API reference](api-reference.md#features-evaluated).
+See [API reference](public-api-reference.md#features-evaluated).
 
 ### `GET /features/enabled`
 
 The `features/enabled` endpoints is identical to `features/evaluated` but lists only the features which are evaluated as `true`.
 
-See [API reference](api-reference.md#features-enabled).
+See [API reference](public-api-reference.md#features-enabled).
 
 ### `POST /features/events`
 
@@ -146,7 +146,7 @@ The `/features/events` endpoint is used to send "evaluate" and "check" events. T
 }
 </code></pre>
 
-See [API reference](api-reference.md#features-events).
+See [API reference](public-api-reference.md#features-events).
 
 ### `POST /user`
 
@@ -176,7 +176,7 @@ You can pass along attributes that will be set for the given user. User attribut
 | attributes | Optional | Object   |
 | timestamp  | Optional | ISO 8601 |
 
-See [API reference](api-reference.md#user).
+See [API reference](public-api-reference.md#user).
 
 ### `POST /company`
 
@@ -220,7 +220,7 @@ POST https://front.reflag.com/company?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NH
 | timestamp  | Optional | ISO 8601 String |
 | userId     | Optional | String          |
 
-See [API reference](api-reference.md#company).
+See [API reference](public-api-reference.md#company).
 
 ### `POST /event`
 
@@ -249,7 +249,7 @@ POST https://front.reflag.com/event?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLj
 | attributes | Optional | Object   |
 | timestamp  | Optional | ISO 8601 |
 
-See [API reference](api-reference.md#event).
+See [API reference](public-api-reference.md#event).
 
 ### `POST Feedback`
 
@@ -280,7 +280,7 @@ POST https://front.reflag.com/feedback?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5N
 
 Note: You can find the `featureId` in under "Settings" for a given feature.
 
-See [API reference](api-reference.md#feedback).
+See [API reference](public-api-reference.md#feedback).
 
 ## Responses
 

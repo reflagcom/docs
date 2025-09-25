@@ -2,7 +2,7 @@
 
 ### Definition
 
-Environments, in Reflag, serve to fully segregate the collected data. In practice, this means that any data received by our [public API](../../api/api-reference.md) in the "_Production_" environment for example, will be completely different from the data collected in other environments. Specifically, this pertains to:
+Environments, in Reflag, serve to fully segregate the collected data. In practice, this means that any data received by our [public API](../../api/public-api-reference.md) in the "_Production_" environment for example, will be completely different from the data collected in other environments. Specifically, this pertains to:
 
 * [Companies](company.md)' details that have been collected
 * [Users](user.md)' details

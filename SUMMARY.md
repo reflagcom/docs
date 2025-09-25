@@ -23,7 +23,8 @@
 ## API
 
 * [API Introduction](api/http-api.md)
-* [API Reference](api/api-reference.md)
+* [Public API Reference](api/public-api-reference.md)
+* [Reflag REST API Reference](api/reflag-api-reference.md)
 * [CLI](sdk/documents/cli/README.md)
 * [MCP](api/mcp.md)
 
