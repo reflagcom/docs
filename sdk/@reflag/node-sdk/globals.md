@@ -347,6 +347,21 @@ Meant for use in serialization of flags for transferring to the client-side/brow
 
 Flags for the given user/company and whether each one is enabled or not
 
+##### getFlagsForBootstrap()
+
+```ts
+getFlagsForBootstrap(): BootstrappedFlags
+```
+
+Get raw flags for the user/company/other context bound to this client without wrapping them in getters.
+This method returns raw flag data suitable for bootstrapping client-side applications.
+
+###### Returns
+
+[`BootstrappedFlags`](globals.md#bootstrappedflags)
+
+Raw flags for the given user/company and whether each one is enabled or not
+
 ##### getFlagsRemote()
 
 ```ts
@@ -710,6 +725,28 @@ afterAll(() => {
 
 [`ReflagClient`](globals.md#reflagclient).[`clearFlagOverrides`](globals.md#clearflagoverrides-1)
 
+##### destroy()
+
+```ts
+destroy(): void
+```
+
+Destroys the client and cleans up all resources including timers and background processes.
+
+###### Returns
+
+`void`
+
+###### Remarks
+
+After calling this method, the client should not be used anymore.
+This is particularly useful in development environments with hot reloading to prevent
+multiple background processes from running simultaneously.
+
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`destroy`](globals.md#destroy-1)
+
 ##### flush()
 
 ```ts
@@ -944,7 +981,7 @@ The companyId of the company to get the flag for.
 </td>
 <td>
 
-[`Context`](globals.md#context)
+[`Context`](globals.md#context-1)
 
 </td>
 <td>
@@ -1019,6 +1056,61 @@ Call `initialize` before calling this method to ensure the flag definitions are 
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlags`](globals.md#getflags-2)
 
+##### getFlagsForBootstrap()
+
+```ts
+getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
+```
+
+Gets the evaluated flags for the current context without wrapping them in getters.
+This method returns raw flag data suitable for bootstrapping client-side applications.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+<td>
+
+The options for the context.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`BootstrappedFlags`](globals.md#bootstrappedflags)
+
+The evaluated raw flags and the context.
+
+###### Remarks
+
+Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
+This method returns RawFlag objects without wrapping them in getters, making them suitable for serialization.
+
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlagsForBootstrap`](globals.md#getflagsforbootstrap-2)
+
 ##### getFlagsRemote()
 
 ```ts
@@ -1084,7 +1176,7 @@ The companyId of the company to get the flags for.
 </td>
 <td>
 
-[`Context`](globals.md#context)
+[`Context`](globals.md#context-1)
 
 </td>
 <td>
@@ -1635,6 +1727,24 @@ afterAll(() => {
 });
 ```
 
+##### destroy()
+
+```ts
+destroy(): void
+```
+
+Destroys the client and cleans up all resources including timers and background processes.
+
+###### Returns
+
+`void`
+
+###### Remarks
+
+After calling this method, the client should not be used anymore.
+This is particularly useful in development environments with hot reloading to prevent
+multiple background processes from running simultaneously.
+
 ##### flush()
 
 ```ts
@@ -1857,7 +1967,7 @@ The companyId of the company to get the flag for.
 </td>
 <td>
 
-[`Context`](globals.md#context)
+[`Context`](globals.md#context-1)
 
 </td>
 <td>
@@ -1924,6 +2034,57 @@ The evaluated flags.
 
 Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
 
+##### getFlagsForBootstrap()
+
+```ts
+getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
+```
+
+Gets the evaluated flags for the current context without wrapping them in getters.
+This method returns raw flag data suitable for bootstrapping client-side applications.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+<td>
+
+The options for the context.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`BootstrappedFlags`](globals.md#bootstrappedflags)
+
+The evaluated raw flags and the context.
+
+###### Remarks
+
+Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
+This method returns RawFlag objects without wrapping them in getters, making them suitable for serialization.
+
 ##### getFlagsRemote()
 
 ```ts
@@ -1989,7 +2150,7 @@ The companyId of the company to get the flags for.
 </td>
 <td>
 
-[`Context`](globals.md#context)
+[`Context`](globals.md#context-1)
 
 </td>
 <td>
@@ -2246,7 +2407,7 @@ A context with tracking option.
 
 #### Extends
 
-- [`Context`](globals.md#context)
+- [`Context`](globals.md#context-1)
 
 #### Properties
 
@@ -3176,6 +3337,56 @@ The maximum size of the buffer before it is flushed.
 
 ***
 
+### BootstrappedFlags
+
+```ts
+type BootstrappedFlags = {
+  context: Context;
+  flags: RawFlags;
+};
+```
+
+Describes a collection of evaluated raw flags and the context for bootstrapping.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="context"></a> `context`
+
+</td>
+<td>
+
+[`Context`](globals.md#context-1)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flags-1"></a> `flags`
+
+</td>
+<td>
+
+[`RawFlags`](globals.md#rawflags)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### CacheStrategy
 
 ```ts
@@ -3358,7 +3569,7 @@ Default is 10000 ms.
 <td>
 
   \| `string`
-  \| (`context`: [`Context`](globals.md#context)) => [`FlagOverrides`](globals.md#flagoverrides-3)
+  \| (`context`: [`Context`](globals.md#context-1)) => [`FlagOverrides`](globals.md#flagoverrides-3)
 
 </td>
 <td>
@@ -4086,7 +4297,7 @@ type FlagOverridesFn = (context: Context) => FlagOverrides;
 </td>
 <td>
 
-[`Context`](globals.md#context)
+[`Context`](globals.md#context-1)
 
 </td>
 </tr>
@@ -4452,6 +4663,16 @@ The version of the targeting rules used to select the config value.
 </tr>
 </tbody>
 </table>
+
+***
+
+### RawFlags
+
+```ts
+type RawFlags = Record<TypedFlagKey, RawFlag>;
+```
+
+Describes a collection of evaluated raw flags.
 
 ***
 

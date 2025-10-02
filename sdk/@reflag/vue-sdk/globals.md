@@ -144,6 +144,7 @@ Version of targeting rules.
 ### CompanyContext
 
 Context is a set of key-value pairs.
+This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing company.
 
 #### Indexable
@@ -323,7 +324,15 @@ track():
 
 ***
 
+### Flags
+
+***
+
 ### UserContext
+
+Context is a set of key-value pairs.
+This is used to determine if feature targeting matches and to track events.
+Id should always be present so that it can be referenced to an existing user.
 
 #### Indexable
 
@@ -397,6 +406,54 @@ User name
 </table>
 
 ## Type Aliases
+
+### BootstrappedFlags
+
+```ts
+type BootstrappedFlags = {
+  context: ReflagContext;
+  flags: RawFlags;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="context"></a> `context`
+
+</td>
+<td>
+
+[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flags-1"></a> `flags`
+
+</td>
+<td>
+
+[`RawFlags`](../browser-sdk/globals.md#rawflags)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
 
 ### EmptyFlagRemoteConfig
 
@@ -497,14 +554,18 @@ type FlagType = {
 
 ***
 
-### ReflagProps
+### ReflagBaseProps
 
 ```ts
-type ReflagProps = ReflagContext & InitOptions & {
+type ReflagBaseProps = {
   debug: boolean;
-  newReflagClient: (...args: ConstructorParameters<typeof ReflagClient>) => ReflagClient;
+  initialLoading: boolean;
 };
 ```
+
+**`Internal`**
+
+Base props for the ReflagProvider and ReflagBootstrappedProvider.
 
 #### Type declaration
 
@@ -513,13 +574,14 @@ type ReflagProps = ReflagContext & InitOptions & {
 <tr>
 <th>Name</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`debug`?
+<a id="debug"></a> `debug`?
 
 </td>
 <td>
@@ -527,16 +589,235 @@ type ReflagProps = ReflagContext & InitOptions & {
 `boolean`
 
 </td>
+<td>
+
+Set to `true` to enable debug logging to the console.
+
+</td>
 </tr>
 <tr>
 <td>
 
-`newReflagClient`?
+<a id="initialloading"></a> `initialLoading`?
 
 </td>
 <td>
 
-(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`ReflagClient`](../browser-sdk/globals.md#reflagclient)\>) => [`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+`boolean`
+
+</td>
+<td>
+
+Set to `true` to show the loading component while the client is initializing.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### ReflagBootstrappedProps
+
+```ts
+type ReflagBootstrappedProps = ReflagInitOptionsBase & ReflagBaseProps & {
+  flags: BootstrappedFlags;
+};
+```
+
+Props for the ReflagBootstrappedProvider.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`flags`
+
+</td>
+<td>
+
+[`BootstrappedFlags`](globals.md#bootstrappedflags)
+
+</td>
+<td>
+
+Pre-fetched flags to be used instead of fetching them from the server.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### ReflagClientProviderProps
+
+```ts
+type ReflagClientProviderProps = Omit<ReflagBaseProps, "debug"> & {
+  client: ReflagClient;
+};
+```
+
+Props for the ReflagClientProvider.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`client`
+
+</td>
+<td>
+
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+
+</td>
+<td>
+
+A pre-initialized ReflagClient to use.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### ReflagInitOptionsBase
+
+```ts
+type ReflagInitOptionsBase = Omit<InitOptions, "user" | "company" | "other" | "otherContext" | "bootstrappedFlags">;
+```
+
+**`Internal`**
+
+Base init options for the ReflagProvider and ReflagBootstrappedProvider.
+
+***
+
+### ReflagProps
+
+```ts
+type ReflagProps = ReflagInitOptionsBase & ReflagBaseProps & {
+  company: CompanyContext;
+  context: ReflagContext;
+  otherContext: Record<string, string | number | undefined>;
+  user: UserContext;
+};
+```
+
+Props for the ReflagProvider.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`company`?
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+Company related context. If you provide `id` Reflag will enrich the evaluation context with
+company attributes on Reflag servers.
+
+**Deprecated**
+
+Use `context` instead, this property will be removed in the next major version
+
+</td>
+</tr>
+<tr>
+<td>
+
+`context`?
+
+</td>
+<td>
+
+[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
+
+</td>
+<td>
+
+The context to use for the ReflagClient containing user, company, and other context.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`otherContext`?
+
+</td>
+<td>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `string` \| `number` \| `undefined`\>
+
+</td>
+<td>
+
+Context which is not related to a user or a company.
+
+**Deprecated**
+
+Use `context` instead, this property will be removed in the next major version
+
+</td>
+</tr>
+<tr>
+<td>
+
+`user`?
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+User related context. If you provide `id` Reflag will enrich the evaluation context with
+user attributes on Reflag servers.
+
+**Deprecated**
+
+Use `context` instead, this property will be removed in the next major version
 
 </td>
 </tr>
@@ -627,6 +908,14 @@ type TrackEvent = {
 </tbody>
 </table>
 
+***
+
+### TypedFlags
+
+```ts
+type TypedFlags = keyof Flags extends never ? Record<string, Flag> : { [TypedFlagKey in keyof Flags]: Flags[TypedFlagKey] extends FlagType ? Flag<Flags[TypedFlagKey]["config"]> : Flag };
+```
+
 ## Variables
 
 ### default
@@ -664,10 +953,10 @@ default: {
 
 ***
 
-### ReflagProvider
+### ReflagBootstrappedProvider
 
 ```ts
-const ReflagProvider: DefineComponent<Record<string, unknown>, Record<string, unknown>, unknown>;
+const ReflagBootstrappedProvider: DefineComponent<Record<string, unknown>, Record<string, unknown>, unknown>;
 ```
 
 ## Functions
@@ -675,7 +964,7 @@ const ReflagProvider: DefineComponent<Record<string, unknown>, Record<string, un
 ### useClient()
 
 ```ts
-function useClient(): Ref<ReflagClient, ReflagClient>
+function useClient(): ReflagClient
 ```
 
 Vue composable for getting the Reflag client.
@@ -685,17 +974,50 @@ client at any point in your application.
 
 #### Returns
 
-`Ref`\<[`ReflagClient`](../browser-sdk/globals.md#reflagclient), [`ReflagClient`](../browser-sdk/globals.md#reflagclient)\>
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 The Reflag client.
+
+#### Example
+
+```ts
+import { useClient } from '@reflag/vue-sdk';
+
+const client = useClient();
+
+console.log(client.getContext());
+```
 
 ***
 
 ### useFlag()
 
 ```ts
-function useFlag(key: string): Flag<any>
+function useFlag<TKey>(key: TKey): TypedFlags[TKey]
 ```
+
+Vue composable for getting the state of a given flag for the current context.
+
+This composable returns an object with the state of the flag for the current context.
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`TKey` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Parameters
 
@@ -704,6 +1026,7 @@ function useFlag(key: string): Flag<any>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -715,7 +1038,12 @@ function useFlag(key: string): Flag<any>
 </td>
 <td>
 
-`string`
+`TKey`
+
+</td>
+<td>
+
+The key of the flag to get the state of.
 
 </td>
 </tr>
@@ -724,7 +1052,23 @@ function useFlag(key: string): Flag<any>
 
 #### Returns
 
-[`Flag`](globals.md#flagtconfig)\<`any`\>
+[`TypedFlags`](globals.md#typedflags)\[`TKey`\]
+
+An object with the state of the flag.
+
+#### Example
+
+```ts
+import { useFlag } from '@reflag/vue-sdk';
+
+const { isEnabled, config, track, requestFeedback } = useFlag("huddles");
+
+function StartHuddlesButton() {
+  const { isEnabled, config: { payload }, track } = useFlag("huddles");
+  if (isEnabled) {
+   return <button onClick={() => track()}>{payload?.buttonTitle ?? "Start Huddles"}</button>;
+}
+```
 
 ***
 
@@ -738,10 +1082,132 @@ Vue composable for checking if the Reflag client is loading.
 
 This composable returns a boolean value that indicates whether the Reflag client is loading.
 You can use this to check if the Reflag client is loading at any point in your application.
+Initially, the value will be true until the client is initialized.
 
 #### Returns
 
 `Ref`\<`boolean`, `boolean`\>
+
+#### Example
+
+```ts
+import { useIsLoading } from '@reflag/vue-sdk';
+
+const isLoading = useIsLoading();
+
+console.log(isLoading);
+```
+
+***
+
+### useOnEvent()
+
+```ts
+function useOnEvent<THookType>(
+   event: THookType, 
+   handler: (arg0: HookArgs[THookType]) => void, 
+   client?: ReflagClient): void
+```
+
+Vue composable for listening to Reflag client events.
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`THookType` *extends* keyof [`HookArgs`](../browser-sdk/globals.md#hookargs)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`event`
+
+</td>
+<td>
+
+`THookType`
+
+</td>
+<td>
+
+The event to listen to.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`handler`
+
+</td>
+<td>
+
+(`arg0`: [`HookArgs`](../browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
+
+</td>
+<td>
+
+The function to call when the event is triggered.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`client`?
+
+</td>
+<td>
+
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+
+</td>
+<td>
+
+The Reflag client to listen to. If not provided, the client will be retrieved from the context.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`void`
+
+#### Example
+
+```ts
+import { useOnEvent } from '@reflag/vue-sdk';
+
+useOnEvent("flagsUpdated", () => {
+  console.log("flags updated");
+});
+```
 
 ***
 
@@ -869,7 +1335,7 @@ const sendFeedback = useSendFeedback();
 
 // Send feedback from the user
 sendFeedback({
-  feedback: "I love this feature!",
+  feedback: "I love this flag!",
   metadata: { page: "dashboard" }
 });
 ```
@@ -950,7 +1416,7 @@ import { useTrack } from '@reflag/vue-sdk';
 const track = useTrack();
 
 // Track a custom event
-track('button_clicked', { buttonName: 'Start Huddle' });
+track('button_clicked', { buttonName: 'Start Huddles' });
 ```
 
 ***
@@ -1135,3 +1601,13 @@ const updateUser = useUpdateUser();
 // Update the user context
 updateUser({ id: "123", name: "John Doe" });
 ```
+
+## References
+
+### ReflagClientProvider
+
+Renames and re-exports [ReflagBootstrappedProvider](globals.md#reflagbootstrappedprovider)
+
+### ReflagProvider
+
+Renames and re-exports [ReflagBootstrappedProvider](globals.md#reflagbootstrappedprovider)

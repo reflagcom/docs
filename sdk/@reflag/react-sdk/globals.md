@@ -144,6 +144,7 @@ Version of targeting rules.
 ### CompanyContext
 
 Context is a set of key-value pairs.
+This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing company.
 
 #### Indexable
@@ -359,6 +360,10 @@ Track feature usage in Reflag.
 
 ### UserContext
 
+Context is a set of key-value pairs.
+This is used to determine if feature targeting matches and to track events.
+Id should always be present so that it can be referenced to an existing user.
+
 #### Indexable
 
 ```ts
@@ -431,6 +436,54 @@ User name
 </table>
 
 ## Type Aliases
+
+### BootstrappedFlags
+
+```ts
+type BootstrappedFlags = {
+  context: ReflagContext;
+  flags: RawFlags;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="context"></a> `context`
+
+</td>
+<td>
+
+[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flags-1"></a> `flags`
+
+</td>
+<td>
+
+[`RawFlags`](globals.md#rawflags)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
 
 ### EmptyFlagRemoteConfig
 
@@ -612,19 +665,113 @@ type FlagType = {
 ### RawFlags
 
 ```ts
-type RawFlags = Record<string, RawFlag>;
+type RawFlags = Record<FlagKey, RawFlag>;
 ```
+
+Describes a collection of evaluated raw flags.
+
+***
+
+### ReflagBootstrappedProps
+
+```ts
+type ReflagBootstrappedProps = ReflagPropsBase & ReflagInitOptionsBase & {
+  flags: BootstrappedFlags;
+};
+```
+
+Props for the ReflagBootstrappedProvider.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`flags`
+
+</td>
+<td>
+
+[`BootstrappedFlags`](globals.md#bootstrappedflags)
+
+</td>
+<td>
+
+Pre-fetched flags to be used instead of fetching them from the server.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### ReflagClientProviderProps
+
+```ts
+type ReflagClientProviderProps = Omit<ReflagPropsBase, "debug"> & {
+  client: ReflagClient;
+};
+```
+
+Props for the ReflagClientProvider.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`client`
+
+</td>
+<td>
+
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### ReflagInitOptionsBase
+
+```ts
+type ReflagInitOptionsBase = Omit<InitOptions, "user" | "company" | "other" | "otherContext" | "bootstrappedFlags">;
+```
+
+**`Internal`**
+
+Base init options for the ReflagProvider and ReflagBootstrappedProvider.
 
 ***
 
 ### ReflagProps
 
 ```ts
-type ReflagProps = ReflagContext & InitOptions & {
-  children: ReactNode;
-  debug: boolean;
-  loadingComponent: ReactNode;
-  newReflagClient: (...args: ConstructorParameters<typeof ReflagClient>) => ReflagClient;
+type ReflagProps = ReflagPropsBase & ReflagInitOptionsBase & {
+  company: CompanyContext;
+  context: ReflagContext;
+  otherContext: Record<string, string | number | undefined>;
+  user: UserContext;
 };
 ```
 
@@ -644,7 +791,120 @@ Props for the ReflagProvider.
 <tr>
 <td>
 
-`children`?
+`company`?
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+Company related context. If you provide `id` Reflag will enrich the evaluation context with
+company attributes on Reflag servers.
+
+**Deprecated**
+
+Use `context` instead, this property will be removed in the next major version
+
+</td>
+</tr>
+<tr>
+<td>
+
+`context`?
+
+</td>
+<td>
+
+[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
+
+</td>
+<td>
+
+The context to use for the ReflagClient containing user, company, and other context.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`otherContext`?
+
+</td>
+<td>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `string` \| `number` \| `undefined`\>
+
+</td>
+<td>
+
+Context which is not related to a user or a company.
+
+**Deprecated**
+
+Use `context` instead, this property will be removed in the next major version
+
+</td>
+</tr>
+<tr>
+<td>
+
+`user`?
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+User related context. If you provide `id` Reflag will enrich the evaluation context with
+user attributes on Reflag servers.
+
+**Deprecated**
+
+Use `context` instead, this property will be removed in the next major version
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### ReflagPropsBase
+
+```ts
+type ReflagPropsBase = {
+  children: ReactNode;
+  debug: boolean;
+  initialLoading: boolean;
+  loadingComponent: ReactNode;
+};
+```
+
+**`Internal`**
+
+Base props for the ReflagProvider and ReflagBootstrappedProvider.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="children"></a> `children`?
 
 </td>
 <td>
@@ -654,14 +914,14 @@ Props for the ReflagProvider.
 </td>
 <td>
 
-Children to be rendered.
+The children to render after the client is initialized.
 
 </td>
 </tr>
 <tr>
 <td>
 
-`debug`?
+<a id="debug"></a> `debug`?
 
 </td>
 <td>
@@ -671,14 +931,31 @@ Children to be rendered.
 </td>
 <td>
 
-Whether to enable debug mode (optional).
+Set to `true` to enable debug logging to the console,
 
 </td>
 </tr>
 <tr>
 <td>
 
-`loadingComponent`?
+<a id="initialloading"></a> `initialLoading`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Set to `true` to show the loading component while the client is initializing.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="loadingcomponent"></a> `loadingComponent`?
 
 </td>
 <td>
@@ -688,26 +965,7 @@ Whether to enable debug mode (optional).
 </td>
 <td>
 
-Loading component to be rendered while features are loading.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`newReflagClient`?
-
-</td>
-<td>
-
-(...`args`: [`ConstructorParameters`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)\<*typeof* [`ReflagClient`](../browser-sdk/globals.md#reflagclient)\>) => [`ReflagClient`](../browser-sdk/globals.md#reflagclient)
-
-</td>
-<td>
-
-**`Internal`**
-
-New ReflagClient constructor.
+A React component to show while the client is initializing.
 
 </td>
 </tr>
@@ -815,6 +1073,82 @@ has not been extended.
 
 ## Functions
 
+### ReflagBootstrappedProvider()
+
+```ts
+function ReflagBootstrappedProvider(__namedParameters: ReflagBootstrappedProps): Element
+```
+
+Bootstrapped Provider for the ReflagClient using pre-fetched flags.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`__namedParameters`
+
+</td>
+<td>
+
+[`ReflagBootstrappedProps`](globals.md#reflagbootstrappedprops)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`Element`
+
+***
+
+### ReflagClientProvider()
+
+```ts
+function ReflagClientProvider(__namedParameters: ReflagClientProviderProps): Element
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`__namedParameters`
+
+</td>
+<td>
+
+[`ReflagClientProviderProps`](globals.md#reflagclientproviderprops)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`Element`
+
+***
+
 ### ReflagProvider()
 
 ```ts
@@ -857,25 +1191,29 @@ Provider for the ReflagClient.
 ### useClient()
 
 ```ts
-function useClient(): undefined | ReflagClient
+function useClient(): ReflagClient
 ```
 
 Returns the current `ReflagClient` used by the `ReflagProvider`.
 
 This is useful if you need to access the `ReflagClient` outside of the `ReflagProvider`.
 
-```ts
-const client = useClient();
-useEffect(() => {
-  return client?.on("check", () => {
-    console.log("check hook called");
-  });
-}, [client]);
-```
-
 #### Returns
 
-`undefined` \| [`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+
+The `ReflagClient`.
+
+#### Example
+
+```ts
+import { useClient } from '@reflag/react-sdk';
+
+function App() {
+  const client = useClient();
+  console.log(client.getContext());
+}
+```
 
 ***
 
@@ -1005,10 +1343,149 @@ function HuddleButton() {
 
 ***
 
+### useIsLoading()
+
+```ts
+function useIsLoading(): boolean
+```
+
+Returns a boolean indicating if the Reflag client is loading.
+You can use this to check if the Reflag client is loading at any point in your application.
+Initially, the value will be true until the client is initialized.
+
+#### Returns
+
+`boolean`
+
+A boolean indicating if the Reflag client is loading.
+
+#### Example
+
+```ts
+import { useIsLoading } from '@reflag/react-sdk';
+
+const isLoading = useIsLoading();
+
+console.log(isLoading);
+```
+
+***
+
+### useOnEvent()
+
+```ts
+function useOnEvent<THookType>(
+   event: THookType, 
+   handler: (arg0: HookArgs[THookType]) => void, 
+   client?: ReflagClient): void
+```
+
+Attach a callback handler to client events to act on changes. It automatically disposes itself on unmount.
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`THookType` *extends* keyof [`HookArgs`](../browser-sdk/globals.md#hookargs)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`event`
+
+</td>
+<td>
+
+`THookType`
+
+</td>
+<td>
+
+The event to listen to.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`handler`
+
+</td>
+<td>
+
+(`arg0`: [`HookArgs`](../browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
+
+</td>
+<td>
+
+The function to call when the event is triggered.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`client`?
+
+</td>
+<td>
+
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+
+</td>
+<td>
+
+The Reflag client to listen to. If not provided, the client will be retrieved from the context.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`void`
+
+#### Example
+
+```ts
+import { useOnEvent } from '@reflag/react-sdk';
+
+useOnEvent("flagsUpdated", () => {
+  console.log("flags updated");
+});
+```
+
+***
+
 ### useRequestFeedback()
 
 ```ts
-function useRequestFeedback(): (options: RequestFeedbackData) => undefined | void
+function useRequestFeedback(): (options: RequestFeedbackData) => void
 ```
 
 Returns a function to open up the feedback form
@@ -1055,16 +1532,14 @@ reflag.requestFeedback({
 
 ##### Returns
 
-`undefined` \| `void`
+`void`
 
 ***
 
 ### useSendFeedback()
 
 ```ts
-function useSendFeedback(): (opts: UnassignedFeedback) => 
-  | undefined
-  | Promise<
+function useSendFeedback(): (opts: UnassignedFeedback) => Promise<
   | undefined
 | Response>
 ```
@@ -1115,8 +1590,7 @@ sendFeedback({
 
 ##### Returns
 
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
   \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
@@ -1127,9 +1601,7 @@ sendFeedback({
 ```ts
 function useTrack(): (eventName: string, attributes?: 
   | null
-  | Record<string, any>) => 
-  | undefined
-  | Promise<
+  | Record<string, any>) => Promise<
   | undefined
 | Response>
 ```
@@ -1185,8 +1657,7 @@ track("Started Huddle", { button: "cta" });
 
 ##### Returns
 
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
   \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
@@ -1195,9 +1666,7 @@ track("Started Huddle", { button: "cta" });
 ### useUpdateCompany()
 
 ```ts
-function useUpdateCompany(): (opts: {}) => 
-  | undefined
-| Promise<void>
+function useUpdateCompany(): (opts: {}) => Promise<void>
 ```
 
 Returns a function to update the current company's information.
@@ -1243,17 +1712,14 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Flags updated"));
 
 ##### Returns
 
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
 ### useUpdateOtherContext()
 
 ```ts
-function useUpdateOtherContext(): (opts: {}) => 
-  | undefined
-| Promise<void>
+function useUpdateOtherContext(): (opts: {}) => Promise<void>
 ```
 
 Returns a function to update the "other" context information.
@@ -1300,17 +1766,14 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 
 ##### Returns
 
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
 ### useUpdateUser()
 
 ```ts
-function useUpdateUser(): (opts: {}) => 
-  | undefined
-| Promise<void>
+function useUpdateUser(): (opts: {}) => Promise<void>
 ```
 
 Returns a function to update the current user's information.
@@ -1356,5 +1819,4 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 
 ##### Returns
 
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>

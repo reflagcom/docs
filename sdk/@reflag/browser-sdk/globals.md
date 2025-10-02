@@ -154,6 +154,18 @@ Get the current configuration.
 
 [`Config`](globals.md#config)
 
+##### getContext()
+
+```ts
+getContext(): ReflagContext
+```
+
+Get the current context.
+
+###### Returns
+
+[`ReflagContext`](globals.md#reflagcontext)
+
 ##### ~~getFeature()~~
 
 ```ts
@@ -268,6 +280,16 @@ into account.
 [`RawFlags`](globals.md#rawflags)
 
 Map of flags.
+
+##### getState()
+
+```ts
+getState(): State
+```
+
+###### Returns
+
+[`State`](globals.md#state)
 
 ##### initialize()
 
@@ -488,6 +510,50 @@ This can be used to collect feedback from users in Reflag in cases where Automat
 
 `void`
 
+##### setContext()
+
+```ts
+setContext(context: ReflagDeprecatedContext): Promise<void>
+```
+
+Update the context.
+Replaces the existing context with a new context.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`context`
+
+</td>
+<td>
+
+[`ReflagDeprecatedContext`](globals.md#reflagdeprecatedcontext)
+
+</td>
+<td>
+
+The context to update.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
 ##### stop()
 
 ```ts
@@ -575,7 +641,7 @@ updateCompany(company: {}): Promise<void>
 
 Update the company context.
 Performs a shallow merge with the existing company context.
-Attempting to update the company ID will log a warning and be ignored.
+It will not update the context if nothing has changed.
 
 ###### Parameters
 
@@ -612,6 +678,77 @@ The company details.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
+##### updateFlags()
+
+```ts
+updateFlags(flags: RawFlags, triggerEvent: boolean): void
+```
+
+Update the flags.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`flags`
+
+</td>
+<td>
+
+[`RawFlags`](globals.md#rawflags)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+<td>
+
+The flags to update.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`triggerEvent`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`true`
+
+</td>
+<td>
+
+Whether to trigger the `flagsUpdated` event.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`
+
 ##### updateOtherContext()
 
 ```ts
@@ -620,7 +757,7 @@ updateOtherContext(otherContext: {}): Promise<void>
 
 Update the company context.
 Performs a shallow merge with the existing company context.
-Updates to the company ID will be ignored.
+It will not update the context if nothing has changed.
 
 ###### Parameters
 
@@ -665,7 +802,7 @@ updateUser(user: {}): Promise<void>
 
 Update the user context.
 Performs a shallow merge with the existing user context.
-Attempting to update the user ID will log a warning and be ignored.
+It will not update the context if nothing has changed.
 
 ###### Parameters
 
@@ -825,6 +962,7 @@ Version of targeting rules.
 ### CompanyContext
 
 Context is a set of key-value pairs.
+This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing company.
 
 #### Indexable
@@ -929,6 +1067,23 @@ Base URL of Reflag servers.
 <td>
 
 Base URL of the Reflag web app.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="bootstrapped"></a> `bootstrapped`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether the client is bootstrapped.
 
 </td>
 </tr>
@@ -1327,6 +1482,23 @@ Use `flagsUpdated` instead.
 <td>
 
 [`RawFlags`](globals.md#rawflags)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="stateupdated"></a> `stateUpdated`
+
+</td>
+<td>
+
+[`State`](globals.md#state)
 
 </td>
 <td>
@@ -1772,6 +1944,13 @@ Undefined translation keys fall back to english defaults.
 
 ### ReflagContext
 
+Context is a set of key-value pairs.
+This is used to determine if feature targeting matches and to track events.
+
+#### Extended by
+
+- [`ReflagDeprecatedContext`](globals.md#reflagdeprecatedcontext)
+
 #### Properties
 
 <table>
@@ -1796,14 +1975,15 @@ Undefined translation keys fall back to english defaults.
 </td>
 <td>
 
-Company related context
+Company related context. If you provide `id` Reflag will enrich the evaluation context with
+company attributes on Reflag servers.
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="othercontext"></a> `otherContext?`
+<a id="other"></a> `other?`
 
 </td>
 <td>
@@ -1813,7 +1993,7 @@ Company related context
 </td>
 <td>
 
-Context which is not related to a user or a company
+Context which is not related to a user or a company.
 
 </td>
 </tr>
@@ -1830,7 +2010,110 @@ Context which is not related to a user or a company
 </td>
 <td>
 
-User related context
+User related context. If you provide `id` Reflag will enrich the evaluation context with
+user attributes on Reflag servers.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### ~~ReflagDeprecatedContext~~
+
+**`Internal`**
+
+#### Deprecated
+
+Use `ReflagContext` instead, this interface will be removed in the next major version
+
+#### Extends
+
+- [`ReflagContext`](globals.md#reflagcontext)
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="company-2"></a> ~~`company?`~~
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+Company related context. If you provide `id` Reflag will enrich the evaluation context with
+company attributes on Reflag servers.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="other-1"></a> ~~`other?`~~
+
+</td>
+<td>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
+
+</td>
+<td>
+
+Context which is not related to a user or a company.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="othercontext"></a> ~~`otherContext?`~~
+
+</td>
+<td>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
+
+</td>
+<td>
+
+Context which is not related to a user or a company.
+
+**Deprecated**
+
+Use `other` instead, this property will be removed in the next major version
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user-2"></a> ~~`user?`~~
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+User related context. If you provide `id` Reflag will enrich the evaluation context with
+user attributes on Reflag servers.
 
 </td>
 </tr>
@@ -1881,6 +2164,10 @@ User related context
 ***
 
 ### UserContext
+
+Context is a set of key-value pairs.
+This is used to determine if feature targeting matches and to track events.
+Id should always be present so that it can be referenced to an existing user.
 
 #### Indexable
 
@@ -2692,10 +2979,561 @@ with desired language translation
 
 ***
 
-### FetchedFlag
+### FlagOverrides
 
 ```ts
-type FetchedFlag = {
+type FlagOverrides = Record<string, boolean | undefined>;
+```
+
+***
+
+### FlagRemoteConfig
+
+```ts
+type FlagRemoteConfig = 
+  | {
+  key: string;
+  payload: any;
+ }
+  | {
+  key: undefined;
+  payload: undefined;
+};
+```
+
+A remotely managed configuration value for a flag.
+
+#### Type declaration
+
+\{
+  `key`: `string`;
+  `payload`: `any`;
+ \}
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+\{
+  `key`: `undefined`;
+  `payload`: `undefined`;
+ \}
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### InitOptions
+
+```ts
+type InitOptions = ReflagDeprecatedContext & {
+  apiBaseUrl: string;
+  appBaseUrl: string;
+  bootstrappedFlags: RawFlags;
+  credentials: "include" | "same-origin" | "omit";
+  enableTracking: boolean;
+  expireTimeMs: number;
+  fallbackFlags:   | string[]
+     | Record<string, FallbackFlagOverride>;
+  feedback: FeedbackOptions;
+  logger: Logger;
+  offline: boolean;
+  publishableKey: string;
+  sdkVersion: string;
+  sseBaseUrl: string;
+  staleTimeMs: number;
+  staleWhileRevalidate: boolean;
+  timeoutMs: number;
+  toolbar: ToolbarOptions;
+};
+```
+
+ReflagClient initialization options.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`apiBaseUrl`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Reflag servers. You can override this to use your mocked server.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`appBaseUrl`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of the Reflag web app. Links open ín this app by default.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`bootstrappedFlags`?
+
+</td>
+<td>
+
+[`RawFlags`](globals.md#rawflags)
+
+</td>
+<td>
+
+Pre-fetched flags to be used instead of fetching them from the server.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`credentials`?
+
+</td>
+<td>
+
+`"include"` \| `"same-origin"` \| `"omit"`
+
+</td>
+<td>
+
+When proxying requests, you may want to include credentials like cookies
+so you can authorize the request in the proxy.
+This option controls the `credentials` option of the fetch API.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`enableTracking`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether to enable tracking. Defaults to `true`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`expireTimeMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+If set, flags will be cached between page loads for this duration
+
+</td>
+</tr>
+<tr>
+<td>
+
+`fallbackFlags`?
+
+</td>
+<td>
+
+  \| `string`[]
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FallbackFlagOverride`](globals.md#fallbackflagoverride)\>
+
+</td>
+<td>
+
+Flag keys for which `isEnabled` should fallback to true
+if SDK fails to fetch flags from Reflag servers. If a record
+is supplied instead of array, the values of each key represent the
+configuration values and `isEnabled` is assume `true`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`feedback`?
+
+</td>
+<td>
+
+[`FeedbackOptions`](globals.md#feedbackoptions)
+
+</td>
+<td>
+
+AutoFeedback specific configuration
+
+</td>
+</tr>
+<tr>
+<td>
+
+`logger`?
+
+</td>
+<td>
+
+[`Logger`](globals.md#logger-1)
+
+</td>
+<td>
+
+You can provide a logger to see the logs of the network calls.
+This is undefined by default.
+For debugging purposes you can just set the browser console to this property:
+```javascript
+options.logger = window.console;
+```
+
+</td>
+</tr>
+<tr>
+<td>
+
+`offline`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether to enable offline mode. Defaults to `false`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`publishableKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Publishable key for authentication
+
+</td>
+</tr>
+<tr>
+<td>
+
+`sdkVersion`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Version of the SDK
+
+</td>
+</tr>
+<tr>
+<td>
+
+`sseBaseUrl`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Reflag servers for SSE connections used by AutoFeedback.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`staleTimeMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Stale flags will be returned if staleWhileRevalidate is true if no new flags can be fetched
+
+</td>
+</tr>
+<tr>
+<td>
+
+`staleWhileRevalidate`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+If set to true stale flags will be returned while refetching flags
+
+</td>
+</tr>
+<tr>
+<td>
+
+`timeoutMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Timeout in milliseconds when fetching flags
+
+</td>
+</tr>
+<tr>
+<td>
+
+`toolbar`?
+
+</td>
+<td>
+
+[`ToolbarOptions`](globals.md#toolbaroptions)
+
+</td>
+<td>
+
+Toolbar configuration
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### Offset
+
+```ts
+type Offset = {
+  x: string | number;
+  y: string | number;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="x"></a> `x`?
+
+</td>
+<td>
+
+`string` \| `number`
+
+</td>
+<td>
+
+Offset from the nearest horizontal screen edge after placement is resolved
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="y"></a> `y`?
+
+</td>
+<td>
+
+`string` \| `number`
+
+</td>
+<td>
+
+Offset from the nearest vertical screen edge after placement is resolved
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### PopoverPlacement
+
+```ts
+type PopoverPlacement = Placement;
+```
+
+***
+
+### Position
+
+```ts
+type Position = 
+  | {
+  type: "MODAL";
+ }
+  | {
+  offset: Offset;
+  placement: DialogPlacement;
+  type: "DIALOG";
+ }
+  | {
+  anchor:   | HTMLElement
+     | null;
+  placement: PopoverPlacement;
+  type: "POPOVER";
+};
+```
+
+***
+
+### RawFlag
+
+```ts
+type RawFlag = {
   config: {
      key: string;
      missingContextFields: string[];
@@ -2704,6 +3542,7 @@ type FetchedFlag = {
      version: number;
     };
   isEnabled: boolean;
+  isEnabledOverride: boolean | null;
   key: string;
   missingContextFields: string[];
   ruleEvaluationResults: boolean[];
@@ -2853,6 +3692,23 @@ Note: does not take local overrides into account.
 <tr>
 <td>
 
+<a id="isenabledoverride-1"></a> `isEnabledOverride`?
+
+</td>
+<td>
+
+`boolean` \| `null`
+
+</td>
+<td>
+
+If not null or undefined, the result is being overridden locally
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="key-2"></a> `key`
 
 </td>
@@ -2915,628 +3771,6 @@ Rule evaluation results.
 <td>
 
 Version of targeting rules.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### FlagRemoteConfig
-
-```ts
-type FlagRemoteConfig = 
-  | {
-  key: string;
-  payload: any;
- }
-  | {
-  key: undefined;
-  payload: undefined;
-};
-```
-
-A remotely managed configuration value for a flag.
-
-#### Type declaration
-
-\{
-  `key`: `string`;
-  `payload`: `any`;
- \}
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the matched configuration value.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-\{
-  `key`: `undefined`;
-  `payload`: `undefined`;
- \}
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`payload`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### InitOptions
-
-```ts
-type InitOptions = {
-  apiBaseUrl: string;
-  appBaseUrl: string;
-  company: CompanyContext;
-  credentials: "include" | "same-origin" | "omit";
-  enableTracking: boolean;
-  expireTimeMs: number;
-  fallbackFlags:   | string[]
-     | Record<string, FallbackFlagOverride>;
-  feedback: FeedbackOptions;
-  logger: Logger;
-  offline: boolean;
-  otherContext: Record<string, any>;
-  publishableKey: string;
-  sdkVersion: string;
-  sseBaseUrl: string;
-  staleTimeMs: number;
-  staleWhileRevalidate: boolean;
-  timeoutMs: number;
-  toolbar: ToolbarOptions;
-  user: UserContext;
-};
-```
-
-ReflagClient initialization options.
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="apibaseurl-1"></a> `apiBaseUrl`?
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Base URL of Reflag servers. You can override this to use your mocked server.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="appbaseurl-1"></a> `appBaseUrl`?
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Base URL of the Reflag web app. Links open ín this app by default.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="company-2"></a> `company`?
-
-</td>
-<td>
-
-[`CompanyContext`](globals.md#companycontext)
-
-</td>
-<td>
-
-Company related context. If you provide `id` Reflag will enrich the evaluation context with
-company attributes on Reflag servers.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="credentials"></a> `credentials`?
-
-</td>
-<td>
-
-`"include"` \| `"same-origin"` \| `"omit"`
-
-</td>
-<td>
-
-When proxying requests, you may want to include credentials like cookies
-so you can authorize the request in the proxy.
-This option controls the `credentials` option of the fetch API.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="enabletracking-1"></a> `enableTracking`?
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-Whether to enable tracking. Defaults to `true`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="expiretimems"></a> `expireTimeMs`?
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-If set, flags will be cached between page loads for this duration
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="fallbackflags"></a> `fallbackFlags`?
-
-</td>
-<td>
-
-  \| `string`[]
-  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FallbackFlagOverride`](globals.md#fallbackflagoverride)\>
-
-</td>
-<td>
-
-Flag keys for which `isEnabled` should fallback to true
-if SDK fails to fetch flags from Reflag servers. If a record
-is supplied instead of array, the values of each key represent the
-configuration values and `isEnabled` is assume `true`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="feedback-2"></a> `feedback`?
-
-</td>
-<td>
-
-[`FeedbackOptions`](globals.md#feedbackoptions)
-
-</td>
-<td>
-
-AutoFeedback specific configuration
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="logger-2"></a> `logger`?
-
-</td>
-<td>
-
-[`Logger`](globals.md#logger-1)
-
-</td>
-<td>
-
-You can provide a logger to see the logs of the network calls.
-This is undefined by default.
-For debugging purposes you can just set the browser console to this property:
-```javascript
-options.logger = window.console;
-```
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="offline-1"></a> `offline`?
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-Whether to enable offline mode. Defaults to `false`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="othercontext-1"></a> `otherContext`?
-
-</td>
-<td>
-
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
-
-</td>
-<td>
-
-Context not related to users or companies
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="publishablekey"></a> `publishableKey`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Publishable key for authentication
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="sdkversion"></a> `sdkVersion`?
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Version of the SDK
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="ssebaseurl-1"></a> `sseBaseUrl`?
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-Base URL of Reflag servers for SSE connections used by AutoFeedback.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="staletimems"></a> `staleTimeMs`?
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-Stale flags will be returned if staleWhileRevalidate is true if no new flags can be fetched
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="stalewhilerevalidate"></a> `staleWhileRevalidate`?
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-If set to true stale flags will be returned while refetching flags
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="timeoutms"></a> `timeoutMs`?
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-Timeout in milliseconds when fetching flags
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="toolbar"></a> `toolbar`?
-
-</td>
-<td>
-
-[`ToolbarOptions`](globals.md#toolbaroptions)
-
-</td>
-<td>
-
-Toolbar configuration
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="user-2"></a> `user`?
-
-</td>
-<td>
-
-[`UserContext`](globals.md#usercontext)
-
-</td>
-<td>
-
-User related context. If you provide `id` Reflag will enrich the evaluation context with
-user attributes on Reflag servers.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### Offset
-
-```ts
-type Offset = {
-  x: string | number;
-  y: string | number;
-};
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="x"></a> `x`?
-
-</td>
-<td>
-
-`string` \| `number`
-
-</td>
-<td>
-
-Offset from the nearest horizontal screen edge after placement is resolved
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="y"></a> `y`?
-
-</td>
-<td>
-
-`string` \| `number`
-
-</td>
-<td>
-
-Offset from the nearest vertical screen edge after placement is resolved
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### PopoverPlacement
-
-```ts
-type PopoverPlacement = Placement;
-```
-
-***
-
-### Position
-
-```ts
-type Position = 
-  | {
-  type: "MODAL";
- }
-  | {
-  offset: Offset;
-  placement: DialogPlacement;
-  type: "DIALOG";
- }
-  | {
-  anchor:   | HTMLElement
-     | null;
-  placement: PopoverPlacement;
-  type: "POPOVER";
-};
-```
-
-***
-
-### RawFlag
-
-```ts
-type RawFlag = FetchedFlag & {
-  isEnabledOverride: boolean | null;
-};
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`isEnabledOverride`
-
-</td>
-<td>
-
-`boolean` \| `null`
-
-</td>
-<td>
-
-If not null, the result is being overridden locally
 
 </td>
 </tr>
@@ -3672,6 +3906,16 @@ User ID from your own application.
 </tr>
 </tbody>
 </table>
+
+***
+
+### State
+
+```ts
+type State = "idle" | "initializing" | "initialized" | "stopped";
+```
+
+State of the client.
 
 ***
 
