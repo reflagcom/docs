@@ -2,6 +2,7 @@
 description: >-
   Describes the REST API that allows clients to manage and update apps, flags
   and related entities.
+hidden: true
 ---
 
 # Reflag REST API Reference
