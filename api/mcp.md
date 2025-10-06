@@ -15,14 +15,14 @@ The Model Context Protocol (MCP) is an open protocol that provides a standardize
 
 {% stepper %}
 {% step %}
-**One-click add Reflag MCP in your IDE**
+#### One-click add Reflag MCP in your IDE
 
 * [Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=Reflag\&config=eyJ1cmwiOiJodHRwczovL2FwcC5yZWZsYWcuY29tL2FwaS9tY3AiLCJ0eXBlIjoiaHR0cCJ9)
 * [VSCode](vscode:mcp/install?%7B%22name%22%3A%22Reflag%22%2C%22gallery%22%3Afalse%2C%22url%22%3A%22https%3A%2F%2Fapp.reflag.com%2Fapi%2Fmcp%22%7D)
 {% endstep %}
 
 {% step %}
-**That's it!**
+#### That's it!
 {% endstep %}
 {% endstepper %}
 
@@ -35,14 +35,14 @@ Make sure your editor/client and [Node.js](https://nodejs.org/en/download) versi
 Below are the manual setup steps for some of the popular editors, but there are [more MCP-compatible clients](https://modelcontextprotocol.io/clients). Before you start with the manual setup, you first need the `App ID` from [your app settings page](https://app.reflag.com/env-current/settings/app-general).
 
 {% hint style="info" %}
-You can use [mcp-remote](https://www.npmjs.com/package/mcp-remote) to enable authentication and remote MCP connections in clients that don't yet support it.
+You can use [mcp-remote](https://www.npmjs.com/package/mcp-remote) to enable authentication and remote MCP connections in clients that don't support it.
 {% endhint %}
 
 ### [Cursor](https://docs.cursor.com/context/model-context-protocol)
 
 1. Open Cursor.
 2. Go to `Settings > Cursor Settings`.
-3. Click `MCP` and `New MCP Server` make sure the Reflag MCP server entry is present:
+3. Click `MCP` and `New MCP Server`  make sure the Reflag MCP server entry is present:
 
 ```json
 {
