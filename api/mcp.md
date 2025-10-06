@@ -35,7 +35,7 @@ Make sure your editor/client and [Node.js](https://nodejs.org/en/download) versi
 Below are the manual setup steps for some of the popular editors, but there are [more MCP-compatible clients](https://modelcontextprotocol.io/clients). Before you start with the manual setup, you first need the `App ID` from [your app settings page](https://app.reflag.com/env-current/settings/app-general).
 
 {% hint style="info" %}
-You can use [mcp-remote](https://www.npmjs.com/package/mcp-remote) to enable authentication and remote MCP connections in clients that don't support it.
+You can use [mcp-remote](https://www.npmjs.com/package/mcp-remote) to enable authentication and remote MCP connections in clients that don't yet support these features.
 {% endhint %}
 
 ### [Cursor](https://docs.cursor.com/context/model-context-protocol)
