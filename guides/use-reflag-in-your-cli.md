@@ -1,5 +1,5 @@
 ---
-description: High-level guide to feature flagging features in your CLI
+description: High-level guide to flagging features in your CLI
 icon: rectangle-terminal
 ---
 
