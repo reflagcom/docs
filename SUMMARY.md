@@ -80,6 +80,7 @@
 
 ## Guides
 
+* [Use Reflag in your CLI](guides/use-reflag-in-your-cli.md)
 * [Beta feature opt-in](guides/self-opt-in.md)
 
 ## Support
