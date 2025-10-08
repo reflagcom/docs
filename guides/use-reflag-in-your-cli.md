@@ -16,7 +16,7 @@ Authorization: Bearer <APIKEY>
 
 The endpoint will take the API key and use it to look up the associated user.
 
-Then, use the [public-api-reference.md](../api/public-api-reference.md "mention") to get enabled flags for the authenticated user. Return the flags to the CLI:
+Then, use the [public-api-reference.md](../api/public-api/public-api-reference.md "mention") to get enabled flags for the authenticated user. Return the flags to the CLI:
 
 ```
 {
@@ -76,7 +76,7 @@ if(flags['myflag'].isEnabled) {
 
 ### If you use OAuth for auth
 
-Use [node-sdk](../sdk/@reflag/node-sdk/ "mention") or [public-api-reference.md](../api/public-api-reference.md "mention") to get flags for the authenticated user.
+Use [node-sdk](../sdk/@reflag/node-sdk/ "mention") or [public-api-reference.md](../api/public-api/public-api-reference.md "mention") to get flags for the authenticated user.
 
 In Node, configure the SDK like so:
 

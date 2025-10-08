@@ -2,10 +2,9 @@
 description: >-
   Describes the REST API that allows clients to manage and update apps, flags
   and related entities.
-hidden: true
 ---
 
-# Reflag REST API Reference
+# API Reference
 
 {% openapi-operation spec="reflag-api" path="/apps" method="get" %}
 [OpenAPI reflag-api](https://app.reflag.com/openapi.json)
