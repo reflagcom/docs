@@ -82,8 +82,8 @@ In the React SDK, you enable it with `toolbar:`
 
 ```jsx
 <ReflagProvider
-   publishableKey="<PUBKEY>"
-   context={<USERCONTEXT>}
+   publishableKey=""
+   context={}
    toolbar={true}
 >
 ```
