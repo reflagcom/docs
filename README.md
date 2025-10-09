@@ -5,7 +5,8 @@
 1. Create your first feature flag.
 2. Install the Reflag SDK.
 3. Set feature access rules and/or remote configuration.
-4. Monitor your feature launch.
+4. Enable Toolbar for local testing
+5. Monitor your feature launch.
 
 
 
@@ -71,7 +72,23 @@ Head back over to [your dashboard](https://app.reflag.com/), select your feature
 
 From here, you can define segments, companies, and users that will access your feature.
 
-## 4. Monitor your feature launch <a href="#next-steps-1" id="next-steps-1"></a>
+## 4. Enable Toolbar for local testing <a href="#next-steps-1" id="next-steps-1"></a>
+
+In the frontend SDK, enable the Toolbar to toggle features locally.&#x20;
+
+<figure><img src=".gitbook/assets/CleanShot 2025-10-09 at 10 .23.21@2x.png" alt=""><figcaption></figcaption></figure>
+
+In the React SDK, you enable it with `toolbar:`
+
+```jsx
+<ReflagProvider
+   publishableKey="<PUBKEY>"
+   context={<USERCONTEXT>}
+   toolbar={true}
+>
+```
+
+## 5. Monitor your feature launch <a href="#next-steps-1" id="next-steps-1"></a>
 
 On the Monitor tab you can track real-time feature exposure, adoption and user feedback.
 
