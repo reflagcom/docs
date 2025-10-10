@@ -29,11 +29,24 @@ It's recommended that you do not check in the flag types, but instead generate t
     echo "gen/flags.d.ts" >> .gitignore
     ```
 4. Retrieve an [API Key](http://app.reflag.com/env-current/settings/org-api-access) for your build system
-5.  Set up your build system to run the Reflag CLI to generate types:
+5.  Set up your build system to run the Reflag CLI to generate types (use the `--api-key` option or specify the API key in the `REFLAG_API_KEY` environment variable)
 
     ```
-    # make the API key available as the REFLAG_API_KEY environment variable
-    npx reflag types generate
+    npx reflag apps list --api-key $REFLAG_API_KEY
     ```
+
+Example CI workflow:
+
+```yaml
+# GitHub Actions example
+- name: Generate types
+  run: npx reflag flags types --api-key ${{ secrets.REFLAG_API_KEY }}
+
+# GitHub Actions example (using environment):
+- name: Generate types (environment)
+  run: npx reflag flags types
+  env:
+    REFLAG_API_KEY: ${{ secrets.REFLAG_CI_API_KEY }}
+```
 
 There's further guidance and examples of using [Reflag CLI in CI/CD pipelines](https://docs.reflag.com/api/cli#using-in-ci-cd-pipelines-beta).
