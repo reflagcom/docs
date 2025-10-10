@@ -79,6 +79,7 @@
   * [Filter](product-handbook/concepts/filter.md)
 * [Data residency](product-handbook/data-residency.md)
 * [Anonymous users](product-handbook/anonymous-users.md)
+* [Type safety](product-handbook/type-safety.md)
 
 ## Guides
 
