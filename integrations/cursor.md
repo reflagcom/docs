@@ -18,7 +18,7 @@ If installed, you can use the the Reflag MCP to create flags.
 Alternatively, try this command to use the Reflag CLI: npx reflag new
 ```
 
-### Slach Command
+### Slash Command
 
 Create a slash command called `.cursor/commands/flag.md` Here's a template you can use:
 
