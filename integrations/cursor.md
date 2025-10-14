@@ -30,7 +30,7 @@ Feature flag the changes
 
 The Reflag documentation is located at https://docs.reflag.com
 If installed, use the CLI to create a feature flag using the command: npx reflag new
-If the Reflag MCP is installed, you can create a flag throught the Reflag MCP
+If the Reflag MCP is installed, you can create a flag through the Reflag MCP
 ```
 
 ### MCP
