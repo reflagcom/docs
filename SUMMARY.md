@@ -35,6 +35,7 @@
 * [Overview](integrations/overview.md)
 * [Slack](integrations/slack.md)
 * [Linear](integrations/linear.md)
+* [Cursor](integrations/cursor.md)
 * [GitHub](integrations/github.md)
 * [Vercel](https://flags-sdk.dev/providers/reflag)
 * [GitBook](https://gitbook.com/docs/publishing-documentation/adaptive-content/enabling-adaptive-content/feature-flags#reflag)
