@@ -54,6 +54,10 @@
 * [Feature clean-up and archival](product-handbook/feature-clean-up-and-archival-beta/README.md)
   * [AI code clean-up](product-handbook/feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md)
 * [Remote config](product-handbook/remote-config.md)
+* [Type safety](product-handbook/type-safety.md)
+* [Team permissions](product-handbook/team-permissions.md)
+* [Data residency](product-handbook/data-residency.md)
+* [Anonymous users](product-handbook/anonymous-users.md)
 * [Launch monitor](product-handbook/launch-monitor/README.md)
   * [Give feedback button](product-handbook/launch-monitor/give-feedback-button.md)
   * [Automated feedback surveys](product-handbook/launch-monitor/automated-feedback-surveys.md)
@@ -61,7 +65,6 @@
   * [Simple role-based entitlements](product-handbook/feature-entitlements/simple-role-based-entitlements.md)
 * [Creating segments](product-handbook/creating-segments.md)
 * [Feature views](product-handbook/feature-views.md)
-* [Team permissions](product-handbook/team-permissions.md)
 * [Managing apps](product-handbook/creating-and-managing-apps/README.md)
   * [Environments](product-handbook/creating-and-managing-apps/environments.md)
 * [Data model](product-handbook/concepts/README.md)
@@ -78,9 +81,6 @@
   * [Release stage](product-handbook/concepts/release-stage.md)
   * [Targeting rules](product-handbook/concepts/targeting-rules.md)
   * [Filter](product-handbook/concepts/filter.md)
-* [Data residency](product-handbook/data-residency.md)
-* [Anonymous users](product-handbook/anonymous-users.md)
-* [Type safety](product-handbook/type-safety.md)
 
 ## Guides
 
