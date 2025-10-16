@@ -34,6 +34,8 @@ Example: `@reflag create feature flag for this issue`&#x20;
 
 Example: `@reflag release to everyone and bump stage to GA`&#x20;
 
+If there's a Customer Request, try: `@reflag release to the customers that requsted it`
+
 #### Link issue to feature
 
 Example: `@reflag link to <feature name/key>`
