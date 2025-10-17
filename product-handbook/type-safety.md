@@ -4,6 +4,8 @@ description: Reflag offers type safety which reduces errors and frustation
 
 # Type safety
 
+{% embed url="https://www.youtube.com/watch?v=2ay2sc9g6Oc" %}
+
 Type safety in Reflag ensures that flag key typos become build errors. This guarantees that if you try to use a non-existent flag key, you'll receive a type error, preventing potential runtime errors and improving code reliability. For remote config, it also ensures that the shape of the payload defined on Reflag matches what your code expects.
 
 Use the Reflag CLI to generate flag types from their definition in Reflag. Once flag types have been generated they are automatically picked up by TypeScript.
