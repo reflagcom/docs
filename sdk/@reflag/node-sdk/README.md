@@ -619,6 +619,20 @@ const client = new ReflagClient({
 });
 ```
 
+## Local Flag Evaluation
+
+Generally, our SDKs send your user/company attributes to our servers and return a list of features that should be enabled. Since we operate a global network, we keep the initial evaluation round-trip time low.
+
+However, if you’re concerned about potential downtime, you can evaluate features locally on your servers instead of sending a request to our servers. Our SDKs will download the targeting rules from our servers and run checks against the rules using the given user and company properties locally instead of contacting our servers for every evaluation. 
+
+The SDKs will periodically refresh the targeting rules to make sure any changes you make to targeting are quickly effective.
+
+Local evaluation is particularly useful when:
+
+- You have a high volume of feature flags
+- You're worried about intermittent downtime
+- You want to improve latency
+
 ## Remote Flag Evaluation
 
 In addition to local flag evaluation, Reflag supports remote evaluation using stored context. This is useful when you want to evaluate flags using user/company attributes that were previously sent to Reflag:
