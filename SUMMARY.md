@@ -81,6 +81,7 @@
   * [Release stage](product-handbook/concepts/release-stage.md)
   * [Targeting rules](product-handbook/concepts/targeting-rules.md)
   * [Filter](product-handbook/concepts/filter.md)
+* [Service Resiliency](product-handbook/service-resiliency.md)
 
 ## Guides
 
