@@ -76,7 +76,7 @@
   * [Segment](product-handbook/concepts/segment.md)
   * [User](product-handbook/concepts/user.md)
   * [Track event](product-handbook/concepts/event.md)
-  * [Feature events](product-handbook/concepts/feature-events.md)
+  * [Flag events](product-handbook/concepts/feature-events.md)
   * [Feedback](product-handbook/concepts/feedback.md)
   * [Release stage](product-handbook/concepts/release-stage.md)
   * [Targeting rules](product-handbook/concepts/targeting-rules.md)
