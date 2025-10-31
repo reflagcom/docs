@@ -71,7 +71,7 @@
   * [App](product-handbook/concepts/app.md)
   * [Environment](product-handbook/concepts/environment.md)
   * [Flag](product-handbook/concepts/feature.md)
-  * [Feature view](product-handbook/concepts/feature-view.md)
+  * [Flag view](product-handbook/concepts/feature-view.md)
   * [Company](product-handbook/concepts/company.md)
   * [Segment](product-handbook/concepts/segment.md)
   * [User](product-handbook/concepts/user.md)
