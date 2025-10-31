@@ -11,7 +11,7 @@ Reflag support the following filter types:
 * [User attribute](user.md#attributes) filter, used to check user attributes,
 * [Event attribute](event.md#attributes) filter, used to check event attributes,
 * Company [segment](segment.md) filter, can be used to check a company's membership in a segment,
-* [Feature access](feature.md#access) filter, can be used to check whether a company has access to a feature,
+* [Flag access](feature.md#access) filter, can be used to check whether a company has access to a flag,
 * [Gradual rollout](../feature-rollouts/#gradually-roll-out-your-feature) filter, is used in advanced scenarios to evaluate whether a company matches target rollout bracket,
 * [Other context](targeting-rules.md#evaluation-context) filter, used when rules can access additional context, in addition to user and company attributes.
 
@@ -35,9 +35,9 @@ This filter can be used to check event attributes against a set predicates. You 
 
 This filter can be used to check if a given company is (or not) included in a given segment. The filter essentially evaluates the segment's filter against the company.
 
-### Feature access filter
+### Flag access filter
 
-This filter can be used to check if a given company has (or not) access to a given feature. The filter evaluates the feature's targeting rules against the provided company, and assumes skips evaluation of any non-company attribute related filters.
+This filter can be used to check if a given company has (or not) access to a given flag. The filter evaluates the flag's targeting rules against the provided company, and assumes skips evaluation of any non-company attribute related filters.
 
 ### Gradual rollout filter
 
