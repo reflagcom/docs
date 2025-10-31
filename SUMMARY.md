@@ -70,7 +70,7 @@
 * [Data model](product-handbook/concepts/README.md)
   * [App](product-handbook/concepts/app.md)
   * [Environment](product-handbook/concepts/environment.md)
-  * [Feature](product-handbook/concepts/feature.md)
+  * [Flag](product-handbook/concepts/feature.md)
   * [Feature view](product-handbook/concepts/feature-view.md)
   * [Company](product-handbook/concepts/company.md)
   * [Segment](product-handbook/concepts/segment.md)
