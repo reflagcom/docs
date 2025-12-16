@@ -8,15 +8,13 @@ To configure an automatic data export to an Amazon S3 bucket, follow the steps b
 
 ## Implementation steps
 
-1.  Log into the AWS Console. Navigate to `Identity and Access Management (IAM)` and select the `Users` option.\
-
+1.  Log into the AWS Console. Navigate to `Identity and Access Management (IAM)` and select the `Users` option.<br>
 
     <figure><img src="../.gitbook/assets/630b5e9-image.png" alt=""><figcaption></figcaption></figure>
 2. For security reasons, we recommend creating a new restricted user to access the designated S3 bucket. Use the `Create user` button to create a new user.
 3.  Select the desired user in the `Users` window, then click on the `Security credentials tab` and scroll down to the `Access Keys` section. \
     \
-    There, click `Create Access Key` to obtain a new **Access Key** and **Secret Access Key.**\
-
+    There, click `Create Access Key` to obtain a new **Access Key** and **Secret Access Key.**<br>
 
     <figure><img src="../.gitbook/assets/1a0b50d-image.png" alt=""><figcaption></figcaption></figure>
 4. Copy the user's ARN (AWS unique resource number). The ARN will be required when setting up the permissions on the S3 bucket.

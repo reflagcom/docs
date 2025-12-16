@@ -24,7 +24,7 @@ Reflag's feature flagging is purpose-built for B2B with native support for gatin
 
 ### Step 1: Initialize Reflag
 
-Choose [an SDK](broken-reference) to get started, if you haven't already. \
+Choose [an SDK](/broken/pages/rQYVZJTNvOro7VC6k1qo) to get started, if you haven't already. \
 \
 Reflag needs to know who the authenticated user is and which company they belong to. We attached attribute metadata, such as the company's subscription plan.
 

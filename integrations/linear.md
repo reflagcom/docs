@@ -50,8 +50,7 @@ The broadcast integration posts feature access change to a Linear issue or proje
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-Here's how to get started:\
-
+Here's how to get started:<br>
 
 1. Make sure you've [connected](linear.md#first-connect-to-linear) to Linear.
 2. In the feature sidebar, select a Linear issue or project.

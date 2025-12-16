@@ -30,6 +30,6 @@ The Event log tab shows you a log of recent events as well as a list of all the 
 
 ## Settings
 
-The Settings tab is where you manage billing, [users](team-permissions.md), [integrations](broken-reference), [feature views](feature-views.md), [company segments](creating-segments.md), [environments](creating-and-managing-apps/environments.md), data exports, and more.
+The Settings tab is where you manage billing, [users](team-permissions.md), [integrations](/broken/pages/kR5OsasKOyLj0Ho6thZa), [feature views](feature-views.md), [company segments](creating-segments.md), [environments](creating-and-managing-apps/environments.md), data exports, and more.
 
 <figure><img src="../.gitbook/assets/Settings-min (1).png" alt="Global settings page"><figcaption></figcaption></figure>
