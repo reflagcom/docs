@@ -82,6 +82,7 @@
   * [Targeting rules](product-handbook/concepts/targeting-rules.md)
   * [Filter](product-handbook/concepts/filter.md)
 * [Service Resiliency](product-handbook/service-resiliency.md)
+* [Flag import](product-handbook/flag-import.md)
 
 ## Guides
 
