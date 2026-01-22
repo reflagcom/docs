@@ -1,6 +1,5 @@
 ---
 description: >-
-  The toolbar is one of the most powerful aha moments with feature flagging.
   Learn how you can control who gets the toolbar in production by toggling a
   feature flag on/off
 icon: toolbox
