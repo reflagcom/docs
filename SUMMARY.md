@@ -88,6 +88,7 @@
 
 * [Use Reflag in your CLI](guides/use-reflag-in-your-cli.md)
 * [Beta feature opt-in](guides/self-opt-in.md)
+* [Toggle toolbar with a flag](guides/toggle-toolbar-with-a-flag.md)
 
 ## Support
 
