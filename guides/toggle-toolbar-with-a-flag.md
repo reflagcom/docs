@@ -29,10 +29,18 @@ function ToolbarFlagControl() {
   const {isEnabled: toolbarEnabled} = useFlag("toolbar");
   useEffect(() => {
     if (toolbarEnabled) {
-      client?.showToolbar();
+      client?.showToolbarToggle();
     }
   }, [toolbarEnabled]);
 }
 ```
 
 Done! You can now enable/disable the toolbar for users by toggling the `toolbar` feature flag for them inside Reflag.
+
+{% hint style="info" %}
+showToolbarToggle() became available in the following SDK versions:
+
+* @reflag/react-sdk: 1.3.0
+* @reflag/vue-sdk: 1.3.0
+* @reflag/browser-sdk: 1.3.0
+{% endhint %}
