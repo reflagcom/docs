@@ -554,6 +554,41 @@ The context to update.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
+##### showToolbarToggle()
+
+```ts
+showToolbarToggle(position?: ToolbarPosition): void
+```
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`position`?
+
+</td>
+<td>
+
+[`ToolbarPosition`](globals.md#toolbarposition)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`
+
 ##### stop()
 
 ```ts
