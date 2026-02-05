@@ -471,6 +471,18 @@ A function to remove the hook.
 
 `void`
 
+##### refresh()
+
+```ts
+refresh(): Promise<undefined | RawFlags>
+```
+
+Force refresh flags from the API, bypassing cache.
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| [`RawFlags`](globals.md#rawflags)\>
+
 ##### requestFeedback()
 
 ```ts
@@ -3153,6 +3165,7 @@ type InitOptions = ReflagDeprecatedContext & {
   sseBaseUrl: string;
   staleTimeMs: number;
   staleWhileRevalidate: boolean;
+  storage: StorageAdapter;
   timeoutMs: number;
   toolbar: ToolbarOptions;
 };
@@ -3440,6 +3453,24 @@ If set to true stale flags will be returned while refetching flags
 <tr>
 <td>
 
+`storage`?
+
+</td>
+<td>
+
+[`StorageAdapter`](globals.md#storageadapter)
+
+</td>
+<td>
+
+Optional storage adapter used for caching flags and overrides.
+Useful for React Native (AsyncStorage).
+
+</td>
+</tr>
+<tr>
+<td>
+
 `timeoutMs`?
 
 </td>
@@ -3556,8 +3587,7 @@ type Position =
   type: "DIALOG";
  }
   | {
-  anchor:   | HTMLElement
-     | null;
+  anchor: any | null;
   placement: PopoverPlacement;
   type: "POPOVER";
 };
@@ -3951,6 +3981,67 @@ type State = "idle" | "initializing" | "initialized" | "stopped";
 ```
 
 State of the client.
+
+***
+
+### StorageAdapter
+
+```ts
+type StorageAdapter = {
+  getItem: Promise<null | string>;
+  removeItem: Promise<void>;
+  setItem: Promise<void>;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="getitem"></a> `getItem()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`null` \| `string`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="removeitem"></a> `removeItem()`?
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="setitem"></a> `setItem()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 

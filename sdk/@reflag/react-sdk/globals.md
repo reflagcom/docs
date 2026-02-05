@@ -982,6 +982,67 @@ type RequestFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">
 
 ***
 
+### StorageAdapter
+
+```ts
+type StorageAdapter = {
+  getItem: Promise<null | string>;
+  removeItem: Promise<void>;
+  setItem: Promise<void>;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="getitem"></a> `getItem()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`null` \| `string`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="removeitem"></a> `removeItem()`?
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="setitem"></a> `setItem()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### TrackEvent
 
 ```ts
