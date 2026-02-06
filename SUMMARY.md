@@ -7,19 +7,18 @@
 ## Supported languages
 
 * [Overview](supported-languages/overview.md)
-* [React SDK](supported-languages/react-sdk/README.md)
-  * [Reference](supported-languages/react-sdk/globals.md)
-* [React Native SDK](supported-languages/react-native.md)
-* [Vue SDK (beta)](supported-languages/vue-sdk/README.md)
-  * [Reference](supported-languages/vue-sdk/globals.md)
-* [Browser SDK](supported-languages/browser-sdk/README.md)
-  * [Feedback](supported-languages/browser-sdk/feedback.md)
-  * [Reference](supported-languages/browser-sdk/globals.md)
-* [Node.js SDK](supported-languages/node-sdk/README.md)
-  * [Reference](supported-languages/node-sdk/globals.md)
-* [Next.js](supported-languages/next.js.md)
-* [OpenFeature](supported-languages/openfeature.md)
-* [Ruby SDK](supported-languages/ruby-rails-stimulus.md)
+* [React SDK](sdk/@reflag/react-sdk/README.md)
+  * [Reference](sdk/@reflag/react-sdk/globals.md)
+* [React Native SDK (beta)](sdk/@reflag/react-native.md)
+* [Vue SDK (beta)](sdk/@reflag/vue-sdk/README.md)
+  * [Reference](sdk/@reflag/vue-sdk/globals.md)
+* [Browser SDK](sdk/@reflag/browser-sdk/README.md)
+  * [Reference](sdk/@reflag/browser-sdk/globals.md)
+* [Node.js SDK](sdk/@reflag/node-sdk/README.md)
+  * [Reference](sdk/@reflag/node-sdk/globals.md)
+* [Next.js](sdk/@reflag/next.js.md)
+* [OpenFeature](sdk/@reflag/openfeature.md)
+* [Ruby SDK](sdk/@reflag/ruby-rails-stimulus.md)
 
 ## API
 
@@ -28,7 +27,7 @@
   * [API Reference](api/public-api/public-api-reference.md)
 * [Reflag REST API](api/reflag-rest-api/README.md)
   * [API Reference](api/reflag-rest-api/reflag-api-reference.md)
-* [CLI](api/cli.md)
+* [CLI](sdk/documents/cli.md)
 * [MCP](api/mcp.md)
 
 ## Integrations

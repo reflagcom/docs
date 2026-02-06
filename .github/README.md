@@ -19,10 +19,7 @@ This repository syncs the documentation to [docs.reflag.com](https://docs.reflag
 
 ## Quick links
 
-- Ready to get started? [Follow the guide](https://docs.reflag.com/introduction/getting-started)
-- Need help? [Talk to a founder](https://reflag.com/contact)
+- Ready to get started? [Follow the guide](https://docs.reflag.com/)
 - Latest product updates? [See Changelog](https://reflag.com/changelog)
 
-Follow us [@bucketdotco on X](https://x.com/bucketdotco) or [@bucket.co on Bluesky](https://bsky.app/profile/bucket.co) for the latest product updates.
-
-We're crafting a feature flag management tool for B2B SaaS.
+Follow us [@reflagcom on X](https://x.com/reflagcom) for the latest product updates.
