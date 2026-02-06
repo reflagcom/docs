@@ -13,13 +13,12 @@ pagination:
   visible: true
 ---
 
-# Reflag React Native SDK
+# React Native SDK
 
 React Native client library for [Reflag.com](https://reflag.com).
 
-This package is a thin wrapper around the Reflag React SDK. It uses the same API
-surface (provider + hooks) and wires up AsyncStorage by default for React Native
-persistence.
+`@reflag/react-native-sdk` is a thin wrapper around `@reflag/react-sdk` that
+wires up AsyncStorage by default. The API surface is the same (provider + hooks).
 
 ## Install
 
@@ -61,11 +60,12 @@ function StartHuddleButton() {
 }
 ```
 
-## Next steps
+## Reference
 
-For type safety, remote config, and advanced usage, see the React SDK docs:
+The React Native SDK shares its API with the React SDK. Use the React SDK
+reference for full types and details:
 
-- [Reflag React SDK](../react-sdk/README.md)
+- [React SDK Reference](../sdk/@reflag/react-sdk/globals.md)
 
 ## Example
 
