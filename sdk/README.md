@@ -49,6 +49,30 @@ pagination:
 
 </td>
 </tr>
+<tr>
+<td>
+
+[react-sdk/README](documents/react-sdk/README.md)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+[react-native-sdk/README](documents/react-native-sdk/README.md)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -78,6 +102,18 @@ pagination:
 <td>
 
 [@reflag/node-sdk](@reflag/node-sdk/README.md)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+[@reflag/react-native-sdk](@reflag/react-native-sdk/README.md)
 
 </td>
 <td>
