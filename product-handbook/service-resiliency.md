@@ -8,7 +8,7 @@ To keep your product working even if the Reflag service is disrupted, we provide
 
 ### Local evaluation
 
-To improve latency and provide downtime protection, our [node-sdk](../sdk/@reflag/node-sdk/) and [openfeature-node-sdk](../supported-languages/openfeature.md) perform "local evaluation" of flag rules.&#x20;
+To improve latency and provide downtime protection, our [node-sdk](../supported-languages/node-sdk/) and [openfeature-node-sdk](../supported-languages/openfeature.md) perform "local evaluation" of flag rules.&#x20;
 
 With local evaluation, our SDKs will download the flag definitions from our servers and check the user and company properties against the flag rules in your application instead of contacting our servers for every evaluation. The SDK caches the downloaded list in memory, so will keep working during service disruption so long as the service that is using the SDK doesn't get rebooted.
 

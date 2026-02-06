@@ -4,7 +4,7 @@ description: Next.js client for Reflag
 
 # Next.js
 
-Using Reflag with Next.js is straightforward. You can use the [@reflag/node-sdk](../sdk/@reflag/node-sdk/) on the server or [@reflag/react-sdk](../sdk/@reflag/react-sdk/) in the browser. Handling flag targeting server-side is often advantageous because it removes the need for additional handling of loading states.
+Using Reflag with Next.js is straightforward. You can use the [@reflag/node-sdk](node-sdk/) on the server or [@reflag/react-sdk](react-sdk/) in the browser. Handling flag targeting server-side is often advantageous because it removes the need for additional handling of loading states.
 
 ## Server-side Rendering (SSR)
 
@@ -179,4 +179,4 @@ function StartHuddle() {
 }
 ```
 
-For more details, please see the [React SDK documentation](react-sdk/)
+For more details, please see the [React SDK documentation](https://github.com/bucketco/docs/blob/main/supported-languages/react-sdk/README.md)

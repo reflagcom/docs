@@ -1,27 +1,27 @@
 ---
 layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
+  visible: true
+title:
+  visible: true
+description:
+  visible: false
+tableOfContents:
+  visible: true
+outline:
+  visible: true
+pagination:
+  visible: true
 ---
 
-# CLI
+# Reflag CLI
 
-Command-line interface for interacting with Reflag services. The CLI allows you to manage apps, features, authentication, and generate TypeScript types for your Reflag features. With this tool, you can streamline your feature flagging workflow directly from your terminal.
+Command-line interface for interacting with Reflag services. The CLI allows you to manage apps,
+flags, authentication, and generate TypeScript types for your Reflag flags. With this tool,
+you can streamline your flagging workflow directly from your terminal.
 
-## Usage
+## Installation
 
-Get started by installing the CLI locally in your project:
+Install the CLI as a development dependency in your project:
 
 ```bash
 # npm
@@ -31,7 +31,7 @@ npm install --save-dev @reflag/cli
 yarn add --dev @reflag/cli
 ```
 
-Then running the `new` command from your project's root directory, initializing the CLI, creating a feature, and generating the types all at once:
+Run the `new` command from your project's root directory to initialize the CLI, create a flag, and generate TypeScript types in one step:
 
 ```bash
 # npm
@@ -41,19 +41,32 @@ npx reflag new
 yarn reflag new
 ```
 
-### Individual commands
+## Migrating from Bucket SDK
 
-Instead of running `new` you can call each step individually.
+If you're migrating from the Bucket CLI, here are the key changes to be aware of:
+
+- **Command name**: Changed from `bucket` to `reflag`
+- **Type definitions file**: Renamed from `features.d.ts` to `flags.d.ts` (manually remove the old file if it was committed)
+- **Authentication file**: Changed from `.bucket-auth` to `.reflag-auth` (rename or remove the old file)
+- **Configuration file**: Changed from `bucket.config.json` to `reflag.config.json` (rename or remove the old file)
+- **Command**: `features` command is now `flags`
+- **Environment variable**: Use `REFLAG_API_KEY` instead of `BUCKET_API_KEY`
+
+**Important**: Update your scripts, build steps, and `.gitignore` patterns to reflect these changes.
+
+### Individual Commands
+
+For more control, you can run each command individually:
 
 ```bash
 # Initialize Reflag in your project (if not already setup)
 npx reflag init
 
-# Create a new feature
-npx reflag features create "My Feature"
+# Create a new flag
+npx reflag flags create "My Flag"
 
-# Generate TypeScript types for your features
-npx reflag features types
+# Generate TypeScript types for your flags
+npx reflag flags types
 ```
 
 ## Configuration
@@ -62,7 +75,7 @@ The CLI creates a `reflag.config.json` file in your project directory when you r
 
 ### Configuration File Structure
 
-Here's a comprehensive list of configuration options available in the `reflag.config.json` file:
+Here are all the configuration options available in the `reflag.config.json` file:
 
 ```json
 {
@@ -72,7 +85,7 @@ Here's a comprehensive list of configuration options available in the `reflag.co
   "appId": "ap123456789",
   "typesOutput": [
     {
-      "path": "gen/features.d.ts",
+      "path": "gen/flags.d.ts",
       "format": "react"
     }
   ]
@@ -85,7 +98,7 @@ Here's a comprehensive list of configuration options available in the `reflag.co
 | `baseUrl`     | Base URL for Reflag services.                                                                                                                                        | "https://app.reflag.com"                           |
 | `apiUrl`      | API URL for Reflag services (overrides baseUrl for API calls).                                                                                                       | "https://app.reflag.com/api"                       |
 | `appId`       | Your Reflag application ID.                                                                                                                                          | Required                                           |
-| `typesOutput` | Path(s) where TypeScript types will be generated. Can be a string or an array of objects with `path` and `format` properties. Available formats: `react` and `node`. | "gen/features.ts" with format "react"              |
+| `typesOutput` | Path(s) where TypeScript types will be generated. Can be a string or an array of objects with `path` and `format` properties. Available formats: `react` and `node`. | "gen/flags.ts" with format "react"                 |
 
 You can override these settings using command-line options for individual commands.
 
@@ -101,31 +114,31 @@ npx reflag init [--overwrite]
 
 Options:
 
-* `--overwrite`: Overwrite existing configuration file if one exists.
-* `--app-id <id>`: Set the application ID.
-* `--key-format <format>`: Set the key format for features.
+- `--overwrite`: Overwrite existing configuration file if one exists.
+- `--app-id <id>`: Set the application ID.
+- `--key-format <format>`: Set the key format for flags.
 
-### `reflag new [featureName]`
+### `reflag new [flagName]`
 
-All-in-one command to get started quickly. This command combines `init`, feature creation, and type generation in a single step. Use this for the fastest way to get up and running with Reflag.
+All-in-one command to get started quickly. This command combines `init`, flag creation, and type generation in a single step. Use this for the fastest way to get up and running with Reflag.
 
 ```bash
-npx reflag new "My Feature" [--app-id ap123456789] [--key my-feature]  [--key-format custom] [--out gen/features.ts] [--format react]
+npx reflag new "My Flag" [--app-id ap123456789] [--key my-flag]  [--key-format custom] [--out gen/flags.ts] [--format react]
 ```
 
 Options:
 
-* `--key`: Specific key for the feature.
-* `--app-id`: App ID to use.
-* `--key-format`: Format for feature keys (custom, snake, camel, etc.).
-* `--out`: Path to generate TypeScript types.
-* `--format`: Format of the generated types (react or node).
+- `--key`: Specific key for the flag.
+- `--app-id`: App ID to use.
+- `--key-format`: Format for flag keys (custom, snake, camel, etc.).
+- `--out`: Path to generate TypeScript types.
+- `--format`: Format of the generated types (react or node).
 
-If you prefer more control over each step, you can use the individual commands (`init`, `features create`, `features types`) instead.
+If you prefer more control over each step, you can use the individual commands (`init`, `flags create`, `flags types`) instead.
 
 ### `reflag login`
 
-Log in to your Reflag account. This will authenticate your CLI for subsequent operations and store credentials securely.
+Authenticate with your Reflag account. This stores your credentials securely for subsequent operations.
 
 ```bash
 npx reflag login
@@ -133,109 +146,55 @@ npx reflag login
 
 ### `reflag logout`
 
-Log out from your Reflag account, removing stored credentials.
+Sign out from your Reflag account and remove stored credentials.
 
 ```bash
 npx reflag logout
 ```
 
-### `reflag features`
+### `reflag flags`
 
-Manage your Reflag features with the following subcommands.
+Manage your Reflag flags with these subcommands:
 
-#### `reflag features create [featureName]`
+#### `reflag flags create [flagName]`
 
-Create a new feature in your Reflag app. The command guides you through the feature creation process with interactive prompts if options are not provided.
+Create a new flag in your Reflag app. The command guides you through the flag creation process with interactive prompts if options are not provided.
 
 ```bash
-npx reflag features create "My Feature" [--app-id ap123456789] [--key my-feature] [--key-format custom]
+npx reflag flags create "My Flag" [--app-id ap123456789] [--key my-flag] [--key-format custom]
 ```
 
 Options:
 
-* `--key`: Specific key for the feature.
-* `--app-id`: App ID to use.
-* `--key-format`: Format for feature keys.
+- `--key`: Specific key for the flag.
+- `--app-id`: App ID to use.
+- `--key-format`: Format for flag keys.
 
-#### `reflag features list`
+#### `reflag flags list`
 
-List all features for the current app. This helps you visualize what features are available and their current configurations.
+List all flags for the current app. This helps you visualize what flags are available and their current configurations.
 
 ```bash
-npx reflag features list [--app-id ap123456789]
+npx reflag flags list [--app-id ap123456789]
 ```
 
 Options:
 
-* `--app-id`: App ID to use.
+- `--app-id`: App ID to use.
 
-#### `reflag features types`
+#### `reflag flags types`
 
-Generate TypeScript types for your features. This ensures type safety when using Reflag features in your TypeScript/JavaScript applications.
+Generate TypeScript types for your flags. This ensures type safety when using Reflag flags in your TypeScript/JavaScript applications.
 
 ```bash
-npx reflag features types [--app-id ap123456789] [--out gen/features.ts] [--format react]
+npx reflag flags types [--app-id ap123456789] [--out gen/flags.ts] [--format react]
 ```
 
 Options:
 
-* `--app-id`: App ID to use.
-* `--out`: Path to generate TypeScript types.
-* `--format`: Format of the generated types (react or node).
-
-### `reflag companies`
-
-Commands for managing companies.
-
-#### `reflag companies list`
-
-List all companies in your app.
-
-```bash
-npx reflag companies list [--filter <text>] [--app-id ap123456789]
-```
-
-Options:
-
-* `--filter`: Filter companies by name or ID.
-* `--app-id`: App ID to use.
-
-The command outputs a table with the following columns:
-
-* `id`: Company ID.
-* `name`: Company name (shows "(unnamed)" if not set).
-* `users`: Number of users in the company.
-* `lastSeen`: Date when the company was last active.
-
-### `reflag companies features access`
-
-Grant or revoke access to specific features for companies, segments, and users. If no feature key is provided, you'll be prompted to select one from a list.
-
-```bash
-npx reflag companies features access [--app-id ap123456789] [featureKey] [--enable|--disable] [--companies <id...>] [--segments <id...>] [--users <id...>]
-```
-
-Arguments:
-
-* `featureKey`: Key of the feature to grant/revoke access to (optional, interactive selection if omitted).
-
-Options:
-
-* `--enable`: Enable the feature for the specified targets.
-* `--disable`: Disable the feature for the specified targets.
-* `--users`: User IDs to target. Can be specified multiple times.
-* `--companies`: Company IDs to target. Can be specified multiple times.
-* `--segments`: Segment IDs to target. Can be specified multiple times.
-* `--app-id`: App ID to use.
-
-At least one target (companies, segments, or users) must be specified. You must also specify either `--enable` or `--disable`, but not both.
-
-Example:
-
-```bash
-# Enable feature for multiple companies and users
-npx reflag companies features access my-feature --enable --companies comp_123 --companies comp_456 --users user_789
-```
+- `--app-id`: App ID to use.
+- `--out`: Path to generate TypeScript types.
+- `--format`: Format of the generated types (react or node).
 
 ### `reflag apps`
 
@@ -245,19 +204,19 @@ Commands for managing Reflag apps.
 
 These options can be used with any command:
 
-* `--debug`: Enable debug mode for verbose output.
-* `--base-url <url>`: Set the base URL for Reflag API.
-* `--api-url <url>`: Set the API URL directly (overrides base URL).
-* `--api-key <key>`: Reflag API key for non-interactive authentication.
-* `--help`: Display help information for a command.
+- `--debug`: Enable debug mode for verbose output.
+- `--base-url <url>`: Set the base URL for Reflag API.
+- `--api-url <url>`: Set the API URL directly (overrides base URL).
+- `--api-key <key>`: Reflag API key for non-interactive authentication.
+- `--help`: Display help information for a command.
 
 ## AI-Assisted Development
 
-Reflag provides powerful AI-assisted development capabilities through rules and Model Context Protocol (MCP). These features help your AI development tools better understand your features and provide more accurate assistance.
+Reflag provides powerful AI-assisted development capabilities through rules and Model Context Protocol (MCP). These features help your AI development tools better understand your flags and provide more accurate assistance.
 
 ### Reflag Rules (Recommended)
 
-The `rules` command helps you set up AI-specific rules for your project. These rules enable AI tools to better understand how to work with Reflag and feature flags and how they should be used in your codebase.
+The `rules` command helps you set up AI-specific rules for your project. These rules enable AI tools to better understand how to work with Reflag flags and how they should be used in your codebase.
 
 ```bash
 npx reflag rules [--format <cursor|copilot>] [--yes]
@@ -265,36 +224,35 @@ npx reflag rules [--format <cursor|copilot>] [--yes]
 
 Options:
 
-* `--format`: Format to add rules in:
-  * `cursor`: Adds rules to `.cursor/rules/reflag.mdc` for Cursor IDE integration.
-  * `copilot`: Adds rules to `.github/copilot-instructions.md` for GitHub Copilot integration.
-* `--yes`: Skip confirmation prompts and overwrite existing files without asking.
+- `--format`: Format to add rules in:
+  - `cursor`: Adds rules to `.cursor/rules/reflag.mdc` for Cursor IDE integration.
+  - `copilot`: Adds rules to `.github/copilot-instructions.md` for GitHub Copilot integration.
+- `--yes`: Skip confirmation prompts and overwrite existing files without asking.
 
-This command will add rules to your project that provide AI tools with context about how to setup and use Reflag feature flags. For the copilot format, the rules will be added to a dedicated section in the file, allowing you to maintain other copilot instructions alongside Reflag's rules.
+This command adds rules to your project that provide AI tools with context about how to set up and use Reflag flags. For the copilot format, the rules are added to a dedicated section in the file, allowing you to maintain other copilot instructions alongside Reflag's rules.
 
 ## Model Context Protocol
 
-The Model Context Protocol (MCP) is an open protocol that provides a standardized way to connect AI models to different data sources and tools. In the context of Reflag, MCP enables your code editor to understand your feature flags, their states, and their relationships within your codebase. This creates a seamless bridge between your feature management workflow and AI-powered development tools. The MCP server is hosted by Reflag, so it's very easy to get started.
+The Model Context Protocol (MCP) is an open protocol that provides a standardized way to connect AI models to different data sources and tools. In the context of Reflag, MCP enables your code editor to understand your flags, their states, and their relationships within your codebase. This creates a seamless bridge between your flag management workflow and AI-powered development tools. The MCP server is hosted by Reflag, making it easy to get started.
 
-_**Note: The Reflag `mcp` CLI command was previously used for a \_local**_**&#x20;server. However, in recent versions of the Reflag CLI, the `mcp` command has been repurposed to help you connect to the new remote MCP server.**
+_\*\*Note: The Reflag `mcp` CLI command was previously used for a \_local_ server. However, in recent versions of the Reflag CLI, the `mcp` command has been repurposed to help you connect to the new remote MCP server.\*\*\_
 
 ### Setting up MCP
 
-The `mcp` command helps you configure your editor or AI client to connect with Reflag's remote MCP server. This allows your AI tools to understand your feature flags and provide more contextual assistance.
+The `mcp` command helps you configure your editor or AI client to connect with Reflag's remote MCP server. This allows your AI tools to understand your flags and provide more contextual assistance.
 
 ```bash
-npx reflag mcp [--app-id <id>] [--editor <editor>] [--scope <local|global>]
+npx reflag mcp [--editor <editor>] [--scope <local|global>]
 ```
 
 Options:
 
-* `--app-id`: App ID to use for the MCP connection.
-* `--editor`: The editor/client to configure:
-  * `cursor`: [Cursor IDE](https://www.cursor.com/)
-  * `vscode`: [Visual Studio Code](https://code.visualstudio.com/)
-  * `claude`: [Claude Desktop](https://claude.ai/download)
-  * `windsurf`: [Windsurf](https://windsurf.com/editor)
-* `--scope`: Whether to configure settings globally or locally for the project.
+- `--editor`: The editor/client to configure:
+  - `cursor`: [Cursor IDE](https://www.cursor.com/)
+  - `vscode`: [Visual Studio Code](https://code.visualstudio.com/)
+  - `claude`: [Claude Desktop](https://claude.ai/download)
+  - `windsurf`: [Windsurf](https://windsurf.com/editor)
+- `--scope`: Whether to configure settings globally or locally for the project.
 
 The command will guide you through:
 
@@ -303,11 +261,11 @@ The command will guide you through:
 3. Deciding between global or project-local configuration.
 4. Setting up the appropriate configuration file for your chosen editor .
 
-_**Note: The setup uses**_ [_**mcp-remote**_](https://github.com/geelen/mcp-remote) _**as a compatibility layer allowing the remote hosted Reflag MCP server to work with all editors/clients that support MCP STDIO servers. If your editor/client supports HTTP Streaming with OAuth you can connect to the Reflag MCP server directly.**_
+_**Note: The setup uses [mcp-remote](https://github.com/geelen/mcp-remote) as a compatibility layer allowing the remote hosted Reflag MCP server to work with all editors/clients that support MCP STDIO servers. If your editor/client supports HTTP Streaming with OAuth you can connect to the Reflag MCP server directly.**_
 
 ## Using in CI/CD Pipelines (Beta)
 
-The Reflag CLI is designed to work seamlessly in CI/CD pipelines. For automated environments where interactive login is not possible, use the `--api-key` option, or specify the API key in `REFLAG_API_KEY` environment variable.
+The Reflag CLI is designed to work seamlessly in CI/CD pipelines. For automated environments where interactive login is not possible, use the `--api-key` option or specify the API key in the `REFLAG_API_KEY` environment variable.
 
 ```bash
 # Generate types in CI/CD
@@ -316,22 +274,21 @@ npx reflag apps list --api-key $REFLAG_API_KEY
 
 **Important restrictions:**
 
-* When using `--api-key`, the `login` and `logout` commands are disabled.
-* API keys bypass all interactive authentication flows.
-* Only _read-only_ access to Reflag API is granted at the moment.
-* API keys are bound to one app only. Commands such as `apps list` will only return the bound app.
-* Store API keys securely using your CI/CD platform's secret management.
+- When using `--api-key`, the `login` and `logout` commands are disabled
+- API keys bypass all interactive authentication flows
+- API keys are bound to one app only. Commands such as `apps list` will only return the bound app
+- Store API keys securely using your CI/CD platform's secret management
 
 Example CI workflow:
 
 ```yaml
 # GitHub Actions example
 - name: Generate types
-  run: npx reflag features types --api-key ${{ secrets.REFLAG_API_KEY }}
+  run: npx reflag flags types --api-key ${{ secrets.REFLAG_API_KEY }}
 
 # GitHub Actions example (using environment):
 - name: Generate types (environment)
-  run: npx reflag features types
+  run: npx reflag flags types
   env:
     REFLAG_API_KEY: ${{ secrets.REFLAG_CI_API_KEY }}
 ```
@@ -352,8 +309,9 @@ yarn format
 
 ## Requirements
 
-* Node.js >=18.0.0
+- Node.js >=18.0.0
 
 ## License
 
-> MIT License Copyright (c) 2025 Bucket ApS
+> MIT License
+> Copyright (c) 2025 Bucket ApS

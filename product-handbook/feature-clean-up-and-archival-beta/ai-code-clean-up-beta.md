@@ -1,4 +1,4 @@
-# AI code clean-up (beta)
+# AI code clean-up
 
 When the [GitHub integration](../../integrations/github.md) has been enabled, Reflag can automatically clean up your code after features turn stale. The Reflag bot simply submits a pull request to your GitHub repository which removes the flag code once a feature turns stale.
 
@@ -7,7 +7,7 @@ This feature **keeps the codepath that grants access (isEnabled == true)** when 
 {% endhint %}
 
 {% hint style="info" %}
-Note: This works best when using the [React SDK](../../sdk/@reflag/browser-sdk/), but stay tuned for improved Node.js support
+Note: This works best when using the [React SDK](../../supported-languages/browser-sdk/), but stay tuned for improved Node.js support
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/1753259671871 (1).jpeg" alt=""><figcaption></figcaption></figure>
@@ -24,21 +24,21 @@ Enable "Auto-create AI Clean-up PRs" under organization-level [Clean-up settings
 
 This will ensure that newly created features have the automation switched on.
 
-<figure><img src="../../.gitbook/assets/image (26).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (28).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 3. Test it manually
 
 Find a stale feature that is ready for clean-up by looking for the broom icon in the features table.
 
-<figure><img src="../../.gitbook/assets/image (30).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (32).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Find the "Clean-up guide" in the feature sidebar, click "Show details" and hit the "Create AI clean-up PR" button to start the process.
 
-<figure><img src="../../.gitbook/assets/image (23).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (25).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Within a few minutes, you'll have a GitHub Pull Request that removes the feature flag and keeps the enabled codepath, like here:
 
-<figure><img src="../../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
 Magical! ✨
 

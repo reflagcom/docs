@@ -6,7 +6,7 @@ Flag events in Reflag are generated automatically in some cases, and are sent by
 
 ### Access evaluated
 
-This event is generated automatically on Reflag side when the client uses server-side feature evaluation (e.g. when using [@reflag/browser-sdk](../../sdk/@reflag/browser-sdk/) or [@reflag/react-sdk](../../sdk/@reflag/browser-sdk/)) or on client side when local evaluation is used (e.g. using local mode in [@reflag/node-sdk](../../sdk/@reflag/node-sdk/)).
+This event is generated automatically on Reflag side when the client uses server-side feature evaluation (e.g. when using [@reflag/browser-sdk](../../supported-languages/browser-sdk/) or [@reflag/react-sdk](../../supported-languages/browser-sdk/)) or on client side when local evaluation is used (e.g. using local mode in [@reflag/node-sdk](../../supported-languages/node-sdk/)).
 
 This events contains the following information:
 

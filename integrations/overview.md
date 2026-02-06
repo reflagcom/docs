@@ -14,7 +14,7 @@ These integrations are crafted and maintained by the Reflag team.
 
 To build your own integrations with Reflag, you can use:
 
-* [Event listeners](../sdk/@reflag/browser-sdk/#event-listeners)
+* [Event listeners](../supported-languages/browser-sdk/#event-listeners)
 * [HTTP API](../api/public-api/)
 
 **To request support for more integrations,** [**please fill out this form**](https://share-eu1.hsforms.com/14DktM5t6T229b5Bg8KPDBg2b6w1x) **— Thanks!**

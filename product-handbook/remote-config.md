@@ -91,7 +91,7 @@ The **multi-variate feature flag** is the classical example that is directly ena
 
 Remote config is a great tool when used to support [entitlements scenarios](feature-entitlements/). For each feature you create, you can add config values targeting different **companies** or **company segments** with different values. Each config value can then define the restrictions on the feature use.
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption><p>Example of AI model variations by subscription tier</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption><p>Example of AI model variations by subscription tier</p></figcaption></figure>
 
 The image above exemplifies a feature called "_AI Transcripts_" which serves four different categories of customers: "_Not customers_", "_Beta_", "Business Plan", and "_Enterprise Plan_". Each category is entitled to different feature tier.
 

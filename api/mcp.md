@@ -39,7 +39,7 @@ Ensure your editor/client and [Node.js](https://nodejs.org/en/download) versions
 
 To install the MCP into your preferred editor, use the Reflag CLI. This tool will configure your editor and provide agent guidelines, enhancing editor intelligence.
 
-To set up the [MCP support](../sdk/documents/cli/#setting-up-mcp), invoke:
+To set up the [MCP support](cli.md#setting-up-mcp), invoke:
 
 ```sh
 npx reflag mcp

@@ -2,7 +2,7 @@
 
 Use the launch monitor to track exposure and adoption, and to collect end-user feedback.
 
-<figure><img src="../../.gitbook/assets/Monitor (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Monitor (8).png" alt=""><figcaption></figcaption></figure>
 
 ## Exposure
 
@@ -41,7 +41,7 @@ You can collect end-user feedback on new feature releases to catch and fix issue
 
 ### Static feedback button
 
-Here's a brief example using the [Reflag React SDK](../../sdk/@reflag/browser-sdk/) to collect feedback:
+Here's a brief example using the [Reflag React SDK](../../supported-languages/browser-sdk/) to collect feedback:
 
 ```tsx
 import { useFlag } from "@reflag/react-sdk";

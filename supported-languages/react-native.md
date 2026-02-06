@@ -1,24 +1,33 @@
 ---
-layout:
-  visible: true
 title:
   visible: true
-description:
-  visible: false
 tableOfContents:
   visible: true
 outline:
   visible: true
 pagination:
   visible: true
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
 ---
 
 # React Native SDK
 
 React Native client library for [Reflag.com](https://reflag.com).
 
-`@reflag/react-native-sdk` is a thin wrapper around `@reflag/react-sdk` that
-wires up AsyncStorage by default. The API surface is the same (provider + hooks).
+`@reflag/react-native-sdk` is a thin wrapper around `@reflag/react-sdk` that wires up AsyncStorage by default. The API surface is the same (provider + hooks).
 
 ## Install
 
@@ -62,12 +71,10 @@ function StartHuddleButton() {
 
 ## Reference
 
-The React Native SDK shares its API with the React SDK. Use the React SDK
-reference for full types and details:
+The React Native SDK shares its API with the React SDK. Use the React SDK reference for full types and details:
 
-- [React SDK Reference](../sdk/@reflag/react-sdk/globals.md)
+* [React SDK Reference](react-sdk/globals.md)
 
 ## Example
 
-An Expo example app lives at `packages/react-native-sdk/dev/expo` in the
-JavaScript SDK repo.
+An Expo example app lives at `packages/react-native-sdk/dev/expo` in the JavaScript SDK repo.
