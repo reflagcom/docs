@@ -15,6 +15,7 @@
   * [Reference](sdk/@reflag/vue-sdk/globals.md)
 * [Browser SDK](sdk/@reflag/browser-sdk/README.md)
   * [Reference](sdk/@reflag/browser-sdk/globals.md)
+  * [Feedback](sdk/documents/browser-sdk/FEEDBACK.md)
 * [Node.js SDK](sdk/@reflag/node-sdk/README.md)
   * [Reference](sdk/@reflag/node-sdk/globals.md)
 * [Next.js](sdk/@reflag/next.js.md)
