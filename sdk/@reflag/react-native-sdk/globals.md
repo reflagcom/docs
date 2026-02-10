@@ -464,7 +464,7 @@ type BootstrappedFlags = {
 </td>
 <td>
 
-`ReflagContext`
+[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
 
 </td>
 </tr>
@@ -743,7 +743,7 @@ Props for the ReflagClientProvider.
 </td>
 <td>
 
-`ReflagClient`
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 </td>
 </tr>
@@ -818,7 +818,7 @@ Use `context` instead, this property will be removed in the next major version
 </td>
 <td>
 
-`ReflagContext`
+[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
 
 </td>
 <td>
@@ -1257,7 +1257,7 @@ This is useful if you need to access the `ReflagClient` outside of the `ReflagPr
 
 #### Returns
 
-`ReflagClient`
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 The `ReflagClient`.
 
@@ -1451,7 +1451,7 @@ Attach a callback handler to client events to act on changes. It automatically d
 <tr>
 <td>
 
-`THookType` *extends* keyof `HookArgs`
+`THookType` *extends* keyof [`HookArgs`](../browser-sdk/globals.md#hookargs)
 
 </td>
 </tr>
@@ -1494,7 +1494,7 @@ The event to listen to.
 </td>
 <td>
 
-(`arg0`: `HookArgs`\[`THookType`\]) => `void`
+(`arg0`: [`HookArgs`](../browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
 
 </td>
 <td>
@@ -1511,7 +1511,7 @@ The function to call when the event is triggered.
 </td>
 <td>
 
-`ReflagClient`
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 </td>
 <td>
@@ -1580,7 +1580,7 @@ reflag.requestFeedback({
 </td>
 <td>
 
-`RequestFeedbackData`
+[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -1638,7 +1638,7 @@ sendFeedback({
 </td>
 <td>
 
-`UnassignedFeedback`
+[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
 
 </td>
 </tr>
