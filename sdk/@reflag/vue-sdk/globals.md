@@ -434,7 +434,7 @@ type BootstrappedFlags = {
 </td>
 <td>
 
-[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
+`ReflagContext`
 
 </td>
 </tr>
@@ -446,7 +446,7 @@ type BootstrappedFlags = {
 </td>
 <td>
 
-[`RawFlags`](../browser-sdk/globals.md#rawflags)
+`RawFlags`
 
 </td>
 </tr>
@@ -689,7 +689,7 @@ Props for the ReflagClientProvider.
 </td>
 <td>
 
-[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+`ReflagClient`
 
 </td>
 <td>
@@ -769,7 +769,7 @@ Use `context` instead, this property will be removed in the next major version
 </td>
 <td>
 
-[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
+`ReflagContext`
 
 </td>
 <td>
@@ -974,7 +974,7 @@ client at any point in your application.
 
 #### Returns
 
-[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+`ReflagClient`
 
 The Reflag client.
 
@@ -1123,7 +1123,7 @@ Vue composable for listening to Reflag client events.
 <tr>
 <td>
 
-`THookType` *extends* keyof [`HookArgs`](../browser-sdk/globals.md#hookargs)
+`THookType` *extends* keyof `HookArgs`
 
 </td>
 </tr>
@@ -1166,7 +1166,7 @@ The event to listen to.
 </td>
 <td>
 
-(`arg0`: [`HookArgs`](../browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
+(`arg0`: `HookArgs`\[`THookType`\]) => `void`
 
 </td>
 <td>
@@ -1183,7 +1183,7 @@ The function to call when the event is triggered.
 </td>
 <td>
 
-[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+`ReflagClient`
 
 </td>
 <td>
@@ -1248,7 +1248,7 @@ A function that requests feedback from the user. The function accepts:
 </td>
 <td>
 
-[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
+`RequestFeedbackData`
 
 </td>
 </tr>
@@ -1313,7 +1313,7 @@ A function that sends feedback to the Reflag SDK. The function accepts:
 </td>
 <td>
 
-[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
+`UnassignedFeedback`
 
 </td>
 </tr>
