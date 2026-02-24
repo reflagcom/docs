@@ -376,6 +376,18 @@ Get remotely evaluated flag for the user/company/other context bound to this cli
 
 Flags for the given user/company and whether each one is enabled or not
 
+##### refreshFlags()
+
+```ts
+refreshFlags(): Promise<void>
+```
+
+Refreshes the flag definitions from the server.
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
 ##### track()
 
 ```ts
@@ -1218,6 +1230,31 @@ The client will ignore subsequent calls to this method.
 ###### Inherited from
 
 [`ReflagClient`](globals.md#reflagclient).[`initialize`](globals.md#initialize-1)
+
+##### refreshFlags()
+
+```ts
+refreshFlags(): Promise<void>
+```
+
+Refreshes the flag definitions from the server.
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+###### Remarks
+
+This triggers an on-demand refresh of the cached flag definitions.
+Useful when you know flags have changed and don't want to wait for the next automatic refresh cycle.
+
+Note: updated flag rules take a few seconds to propagate to all servers.
+
+Concurrent calls are deduplicated — multiple calls share the same in-flight request.
+
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`refreshFlags`](globals.md#refreshflags-2)
 
 ##### track()
 
@@ -2184,6 +2221,27 @@ Initializes the client by caching the flags definitions.
 
 Call this method before calling `getFlags` to ensure the flag definitions are cached.
 The client will ignore subsequent calls to this method.
+
+##### refreshFlags()
+
+```ts
+refreshFlags(): Promise<void>
+```
+
+Refreshes the flag definitions from the server.
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+###### Remarks
+
+This triggers an on-demand refresh of the cached flag definitions.
+Useful when you know flags have changed and don't want to wait for the next automatic refresh cycle.
+
+Note: updated flag rules take a few seconds to propagate to all servers.
+
+Concurrent calls are deduplicated — multiple calls share the same in-flight request.
 
 ##### track()
 
