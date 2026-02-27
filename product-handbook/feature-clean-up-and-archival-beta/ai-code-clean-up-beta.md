@@ -7,7 +7,7 @@ This feature **keeps the codepath that grants access (isEnabled == true)** when 
 {% endhint %}
 
 {% hint style="info" %}
-Note: This works best when using the [React SDK](../../supported-languages/browser-sdk/), but stay tuned for improved Node.js support
+Note: This works best when using the [React SDK](../../sdk/@reflag/browser-sdk/), but stay tuned for improved Node.js support
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/1753259671871 (1).jpeg" alt=""><figcaption></figcaption></figure>

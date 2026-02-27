@@ -16,7 +16,7 @@ These SDKs are crafted and maintained by the Reflag team.
 
 The following SDKs are community-led.
 
-* [Ruby on Rails](ruby-rails-stimulus.md) by [mikker](https://gist.github.com/mikker)
+* [Ruby on Rails](ruby-sdk.md) by [mikker](https://gist.github.com/mikker)
 
 For non-supported languages, you can use the [HTTP API](../api/public-api/).
 

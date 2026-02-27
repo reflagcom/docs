@@ -18,9 +18,9 @@
   * [Feedback](sdk/documents/browser-sdk/FEEDBACK.md)
 * [Node.js SDK](sdk/@reflag/node-sdk/README.md)
   * [Reference](sdk/@reflag/node-sdk/globals.md)
-* [Next.js](sdk/@reflag/next.js.md)
-* [OpenFeature](sdk/@reflag/openfeature.md)
-* [Ruby SDK](sdk/@reflag/ruby-rails-stimulus.md)
+* [Next.js](supported-languages/next.js.md)
+* [OpenFeature](supported-languages/openfeature.md)
+* [Ruby SDK](supported-languages/ruby-sdk.md)
 
 ## API
 
@@ -29,7 +29,7 @@
   * [API Reference](api/public-api/public-api-reference.md)
 * [Reflag REST API](api/reflag-rest-api/README.md)
   * [API Reference](api/reflag-rest-api/reflag-api-reference.md)
-* [CLI](sdk/documents/cli.md)
+* [CLI](api/cli.md)
 * [MCP](api/mcp.md)
 
 ## Integrations
