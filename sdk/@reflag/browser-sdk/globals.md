@@ -1,6 +1,10 @@
 ---
+layout:
+  visible: true
 title:
   visible: true
+description:
+  visible: false
 tableOfContents:
   visible: true
 outline:
@@ -9,7 +13,7 @@ pagination:
   visible: true
 ---
 
-# Reference
+# @reflag/browser-sdk
 
 ## Classes
 
@@ -19,7 +23,7 @@ ReflagClient lets you interact with the Reflag API.
 
 #### Constructors
 
-**new ReflagClient()**
+##### new ReflagClient()
 
 ```ts
 new ReflagClient(opts: InitOptions): ReflagClient
@@ -27,25 +31,69 @@ new ReflagClient(opts: InitOptions): ReflagClient
 
 Create a new ReflagClient instance.
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type                                    |
-| --------- | --------------------------------------- |
-| `opts`    | [`InitOptions`](globals.md#initoptions) |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`opts`
+
+</td>
+<td>
+
+[`InitOptions`](globals.md#initoptions)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 [`ReflagClient`](globals.md#reflagclient)
 
 #### Properties
 
-| Property | Modifier   | Type                            |
-| -------- | ---------- | ------------------------------- |
-| `logger` | `readonly` | [`Logger`](globals.md#logger-1) |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Modifier</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="logger"></a> `logger`
+
+</td>
+<td>
+
+`readonly`
+
+</td>
+<td>
+
+[`Logger`](globals.md#logger-1)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Methods
 
-**feedback()**
+##### feedback()
 
 ```ts
 feedback(payload: Feedback): Promise<
@@ -55,19 +103,46 @@ feedback(payload: Feedback): Promise<
 
 Submit user feedback to Reflag. Must include either `score` or `comment`, or both.
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type                                | Description                     |
-| --------- | ----------------------------------- | ------------------------------- |
-| `payload` | [`Feedback`](globals.md#feedback-1) | The feedback details to submit. |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`payload`
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)< | `undefined` | [`Response`](https://developer.mozilla.org/docs/Web/API/Response)>
+</td>
+<td>
+
+[`Feedback`](globals.md#feedback-1)
+
+</td>
+<td>
+
+The feedback details to submit.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 The server response.
 
-**getConfig()**
+##### getConfig()
 
 ```ts
 getConfig(): Config
@@ -75,11 +150,11 @@ getConfig(): Config
 
 Get the current configuration.
 
-**Returns**
+###### Returns
 
 [`Config`](globals.md#config)
 
-**getContext()**
+##### getContext()
 
 ```ts
 getContext(): ReflagContext
@@ -87,45 +162,64 @@ getContext(): ReflagContext
 
 Get the current context.
 
-**Returns**
+###### Returns
 
 [`ReflagContext`](globals.md#reflagcontext)
 
-~~**getFeature()**~~
+##### ~~getFeature()~~
 
 ```ts
 getFeature(flagKey: string): Flag
 ```
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type     |
-| --------- | -------- |
-| `flagKey` | `string` |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`flagKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 [`Flag`](globals.md#flag)
 
-**Deprecated**
+###### Deprecated
 
 Use `getFlag` instead.
 
-~~**getFeatures()**~~
+##### ~~getFeatures()~~
 
 ```ts
 getFeatures(): RawFlags
 ```
 
-**Returns**
+###### Returns
 
 [`RawFlags`](globals.md#rawflags)
 
-**Deprecated**
+###### Deprecated
 
 Use `getFlags` instead.
 
-**getFlag()**
+##### getFlag()
 
 ```ts
 getFlag(flagKey: string): Flag
@@ -133,43 +227,71 @@ getFlag(flagKey: string): Flag
 
 Return a flag. Accessing `isEnabled` or `config` will automatically send a `check` event.
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type     | Description                 |
-| --------- | -------- | --------------------------- |
-| `flagKey` | `string` | The key of the flag to get. |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`flagKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the flag to get.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 [`Flag`](globals.md#flag)
 
 A flag.
 
-**getFlags()**
+##### getFlags()
 
 ```ts
 getFlags(): RawFlags
 ```
 
-Returns a map of enabled flags. Accessing a flag will _not_ send a check event and `isEnabled` does not take any flag overrides into account.
+Returns a map of enabled flags.
+Accessing a flag will *not* send a check event
+and `isEnabled` does not take any flag overrides
+into account.
 
-**Returns**
+###### Returns
 
 [`RawFlags`](globals.md#rawflags)
 
 Map of flags.
 
-**getState()**
+##### getState()
 
 ```ts
 getState(): State
 ```
 
-**Returns**
+###### Returns
 
 [`State`](globals.md#state)
 
-**initialize()**
+##### initialize()
 
 ```ts
 initialize(): Promise<void>
@@ -179,11 +301,11 @@ Initialize the Reflag SDK.
 
 Must be called before calling other SDK methods.
 
-**Returns**
+###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-**off()**
+##### off()
 
 ```ts
 off<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): void
@@ -191,26 +313,80 @@ off<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): 
 
 Remove an event listener
 
-**Type Parameters**
+###### Type Parameters
 
-| Type Parameter                                                |
-| ------------------------------------------------------------- |
-| `THookType` _extends_ keyof [`HookArgs`](globals.md#hookargs) |
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Parameters**
+`THookType` *extends* keyof [`HookArgs`](globals.md#hookargs)
 
-| Parameter | Type                                                                 | Description                                |
-| --------- | -------------------------------------------------------------------- | ------------------------------------------ |
-| `type`    | `THookType`                                                          | Type of event to remove.                   |
-| `handler` | (`args0`: [`HookArgs`](globals.md#hookargs)\[`THookType`]) => `void` | The same function that was passed to `on`. |
+</td>
+</tr>
+</tbody>
+</table>
 
-**Returns**
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`type`
+
+</td>
+<td>
+
+`THookType`
+
+</td>
+<td>
+
+Type of event to remove.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`handler`
+
+</td>
+<td>
+
+(`args0`: [`HookArgs`](globals.md#hookargs)\[`THookType`\]) => `void`
+
+</td>
+<td>
+
+The same function that was passed to `on`.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 `void`
 
 A function to remove the hook.
 
-**on()**
+##### on()
 
 ```ts
 on<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): () => void
@@ -218,30 +394,84 @@ on<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): (
 
 Add an event listener
 
-**Type Parameters**
+###### Type Parameters
 
-| Type Parameter                                                |
-| ------------------------------------------------------------- |
-| `THookType` _extends_ keyof [`HookArgs`](globals.md#hookargs) |
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Parameters**
+`THookType` *extends* keyof [`HookArgs`](globals.md#hookargs)
 
-| Parameter | Type                                                                 | Description                                       |
-| --------- | -------------------------------------------------------------------- | ------------------------------------------------- |
-| `type`    | `THookType`                                                          | Type of events to listen for                      |
-| `handler` | (`args0`: [`HookArgs`](globals.md#hookargs)\[`THookType`]) => `void` | The function to call when the event is triggered. |
+</td>
+</tr>
+</tbody>
+</table>
 
-**Returns**
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`type`
+
+</td>
+<td>
+
+`THookType`
+
+</td>
+<td>
+
+Type of events to listen for
+
+</td>
+</tr>
+<tr>
+<td>
+
+`handler`
+
+</td>
+<td>
+
+(`args0`: [`HookArgs`](globals.md#hookargs)\[`THookType`\]) => `void`
+
+</td>
+<td>
+
+The function to call when the event is triggered.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 `Function`
 
 A function to remove the hook.
 
-**Returns**
+###### Returns
 
 `void`
 
-**refresh()**
+##### refresh()
 
 ```ts
 refresh(): Promise<undefined | RawFlags>
@@ -249,11 +479,11 @@ refresh(): Promise<undefined | RawFlags>
 
 Force refresh flags from the API, bypassing cache.
 
-**Returns**
+###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`undefined` | [`RawFlags`](globals.md#rawflags)>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| [`RawFlags`](globals.md#rawflags)\>
 
-**requestFeedback()**
+##### requestFeedback()
 
 ```ts
 requestFeedback(options: RequestFeedbackData): void
@@ -263,63 +493,128 @@ Display the Reflag feedback form UI programmatically.
 
 This can be used to collect feedback from users in Reflag in cases where Automated Feedback Surveys isn't appropriate.
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type                                                    |
-| --------- | ------------------------------------------------------- |
-| `options` | [`RequestFeedbackData`](globals.md#requestfeedbackdata) |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`options`
+
+</td>
+<td>
+
+[`RequestFeedbackData`](globals.md#requestfeedbackdata)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 `void`
 
-**setContext()**
+##### setContext()
 
 ```ts
 setContext(context: ReflagDeprecatedContext): Promise<void>
 ```
 
-Update the context. Replaces the existing context with a new context.
+Update the context.
+Replaces the existing context with a new context.
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type                                                            | Description            |
-| --------- | --------------------------------------------------------------- | ---------------------- |
-| `context` | [`ReflagDeprecatedContext`](globals.md#reflagdeprecatedcontext) | The context to update. |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`context`
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
+</td>
+<td>
 
-**showToolbarToggle()**
+[`ReflagDeprecatedContext`](globals.md#reflagdeprecatedcontext)
+
+</td>
+<td>
+
+The context to update.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+##### showToolbarToggle()
 
 ```ts
 showToolbarToggle(position?: ToolbarPosition): void
 ```
 
-**Parameters**
+###### Parameters
 
-| Parameter   | Type                                            |
-| ----------- | ----------------------------------------------- |
-| `position`? | [`ToolbarPosition`](globals.md#toolbarposition) |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`position`?
+
+</td>
+<td>
+
+[`ToolbarPosition`](globals.md#toolbarposition)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 `void`
 
-**stop()**
+##### stop()
 
 ```ts
 stop(): Promise<void>
 ```
 
-Stop the SDK. This will stop any automated feedback surveys.
+Stop the SDK.
+This will stop any automated feedback surveys.
 
-**Returns**
+###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-**track()**
+##### track()
 
 ```ts
 track(eventName: string, attributes?: 
@@ -331,36 +626,106 @@ track(eventName: string, attributes?:
 
 Track an event in Reflag.
 
-**Parameters**
+###### Parameters
 
-| Parameter     | Type                                                                                                                      | Description                                     |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `eventName`   | `string`                                                                                                                  | The name of the event.                          |
-| `attributes`? | \| `null` \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)<`string`, `any`> | Any attributes you want to attach to the event. |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`eventName`
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)< | `undefined` | [`Response`](https://developer.mozilla.org/docs/Web/API/Response)>
+</td>
+<td>
 
-**updateCompany()**
+`string`
+
+</td>
+<td>
+
+The name of the event.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`attributes`?
+
+</td>
+<td>
+
+ \| `null` \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
+
+</td>
+<td>
+
+Any attributes you want to attach to the event.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+
+##### updateCompany()
 
 ```ts
 updateCompany(company: {}): Promise<void>
 ```
 
-Update the company context. Performs a shallow merge with the existing company context. It will not update the context if nothing has changed.
+Update the company context.
+Performs a shallow merge with the existing company context.
+It will not update the context if nothing has changed.
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type | Description          |
-| --------- | ---- | -------------------- |
-| `company` | {}   | The company details. |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`company`
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
+</td>
+<td>
 
-**updateFlags()**
+\{\}
+
+</td>
+<td>
+
+The company details.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+##### updateFlags()
 
 ```ts
 updateFlags(flags: RawFlags, triggerEvent: boolean): void
@@ -368,52 +733,152 @@ updateFlags(flags: RawFlags, triggerEvent: boolean): void
 
 Update the flags.
 
-**Parameters**
+###### Parameters
 
-| Parameter      | Type                              | Default value | Description                                  |
-| -------------- | --------------------------------- | ------------- | -------------------------------------------- |
-| `flags`        | [`RawFlags`](globals.md#rawflags) | `undefined`   | The flags to update.                         |
-| `triggerEvent` | `boolean`                         | `true`        | Whether to trigger the `flagsUpdated` event. |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`flags`
+
+</td>
+<td>
+
+[`RawFlags`](globals.md#rawflags)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+<td>
+
+The flags to update.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`triggerEvent`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`true`
+
+</td>
+<td>
+
+Whether to trigger the `flagsUpdated` event.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 `void`
 
-**updateOtherContext()**
+##### updateOtherContext()
 
 ```ts
 updateOtherContext(otherContext: {}): Promise<void>
 ```
 
-Update the company context. Performs a shallow merge with the existing company context. It will not update the context if nothing has changed.
+Update the company context.
+Performs a shallow merge with the existing company context.
+It will not update the context if nothing has changed.
 
-**Parameters**
+###### Parameters
 
-| Parameter      | Type | Description         |
-| -------------- | ---- | ------------------- |
-| `otherContext` | {}   | Additional context. |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`otherContext`
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
+</td>
+<td>
 
-**updateUser()**
+\{\}
+
+</td>
+<td>
+
+Additional context.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+##### updateUser()
 
 ```ts
 updateUser(user: {}): Promise<void>
 ```
 
-Update the user context. Performs a shallow merge with the existing user context. It will not update the context if nothing has changed.
+Update the user context.
+Performs a shallow merge with the existing user context.
+It will not update the context if nothing has changed.
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type |
-| --------- | ---- |
-| `user`    | {}   |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`user`
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>
+</td>
+<td>
+
+\{\}
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ## Interfaces
 
@@ -423,20 +888,129 @@ Event representing checking the flag evaluation result
 
 #### Properties
 
-| Property                 | Type                                                   | Description                                                                                                                                                                                                                           |
-| ------------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `action`                 | `"check-is-enabled"` \| `"check-config"`               | `check-is-enabled` means `isEnabled` was checked, `check-config` means `config` was checked.                                                                                                                                          |
-| `key`                    | `string`                                               | Flag key.                                                                                                                                                                                                                             |
-| `missingContextFields?`  | `string`\[]                                            | Missing context fields.                                                                                                                                                                                                               |
-| `ruleEvaluationResults?` | `boolean`\[]                                           | Rule evaluation results.                                                                                                                                                                                                              |
-| `value?`                 | \| `boolean` \| { `key`: `string`; `payload`: `any`; } | Result of flag or configuration evaluation. If `action` is `check-is-enabled`, this is the result of the flag evaluation and `value` is a boolean. If `action` is `check-config`, this is the result of the configuration evaluation. |
-| `version?`               | `number`                                               | Version of targeting rules.                                                                                                                                                                                                           |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="action"></a> `action`
+
+</td>
+<td>
+
+`"check-is-enabled"` \| `"check-config"`
+
+</td>
+<td>
+
+`check-is-enabled` means `isEnabled` was checked, `check-config` means `config` was checked.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Flag key.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="missingcontextfields"></a> `missingContextFields?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+Missing context fields.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ruleevaluationresults"></a> `ruleEvaluationResults?`
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+<td>
+
+Rule evaluation results.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="value"></a> `value?`
+
+</td>
+<td>
+
+ \| `boolean` \| \{ `key`: `string`; `payload`: `any`; \}
+
+</td>
+<td>
+
+Result of flag or configuration evaluation.
+If `action` is `check-is-enabled`, this is the result of the flag evaluation and `value` is a boolean.
+If `action` is `check-config`, this is the result of the configuration evaluation.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="version"></a> `version?`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Version of targeting rules.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
 ### CompanyContext
 
-Context is a set of key-value pairs. This is used to determine if feature targeting matches and to track events. Id should always be present so that it can be referenced to an existing company.
+Context is a set of key-value pairs.
+This is used to determine if feature targeting matches and to track events.
+Id should always be present so that it can be referenced to an existing company.
 
 #### Indexable
 
@@ -446,10 +1020,51 @@ Context is a set of key-value pairs. This is used to determine if feature target
 
 #### Properties
 
-| Property | Type                                | Description  |
-| -------- | ----------------------------------- | ------------ |
-| `id`     | `undefined` \| `string` \| `number` | Company id   |
-| `name?`  | `string`                            | Company name |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="id"></a> `id`
+
+</td>
+<td>
+
+`undefined` \| `string` \| `number`
+
+</td>
+<td>
+
+Company id
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Company name
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -459,14 +1074,119 @@ ReflagClient configuration.
 
 #### Properties
 
-| Property         | Type      | Description                                                          |
-| ---------------- | --------- | -------------------------------------------------------------------- |
-| `apiBaseUrl`     | `string`  | Base URL of Reflag servers.                                          |
-| `appBaseUrl`     | `string`  | Base URL of the Reflag web app.                                      |
-| `bootstrapped`   | `boolean` | Whether the client is bootstrapped.                                  |
-| `enableTracking` | `boolean` | Whether to enable tracking.                                          |
-| `offline`        | `boolean` | Whether to enable offline mode.                                      |
-| `sseBaseUrl`     | `string`  | Base URL of Reflag servers for SSE connections used by AutoFeedback. |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="apibaseurl"></a> `apiBaseUrl`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Reflag servers.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="appbaseurl"></a> `appBaseUrl`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of the Reflag web app.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="bootstrapped"></a> `bootstrapped`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether the client is bootstrapped.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="enabletracking"></a> `enableTracking`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether to enable tracking.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="offline"></a> `offline`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether to enable offline mode.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ssebaseurl"></a> `sseBaseUrl`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Reflag servers for SSE connections used by AutoFeedback.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -474,11 +1194,52 @@ ReflagClient configuration.
 
 #### Properties
 
-| Property      | Type     |
-| ------------- | -------- |
-| `feedbackId?` | `string` |
-| `question`    | `string` |
-| `score`       | `number` |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="feedbackid"></a> `feedbackId?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="question"></a> `question`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="score"></a> `score`
+
+</td>
+<td>
+
+`number`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -486,12 +1247,64 @@ ReflagClient configuration.
 
 #### Properties
 
-| Property      | Type     |
-| ------------- | -------- |
-| `comment`     | `string` |
-| `feedbackId?` | `string` |
-| `question`    | `string` |
-| `score`       | `number` |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="comment"></a> `comment`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="feedbackid-1"></a> `feedbackId?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="question-1"></a> `question`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="score-1"></a> `score`
+
+</td>
+<td>
+
+`number`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -501,31 +1314,141 @@ Represents a flag.
 
 #### Properties
 
-| Property            | Type                                                                                                                                                                                                  | Description                                                                       |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `config`            | [`FlagRemoteConfig`](globals.md#flagremoteconfig)                                                                                                                                                     | ‐                                                                                 |
-| `isEnabled`         | `boolean`                                                                                                                                                                                             | Result of flag flag evaluation. Note: Does not take local overrides into account. |
-| `isEnabledOverride` | `null` \| `boolean`                                                                                                                                                                                   | The current override status of isEnabled for the flag.                            |
-| `requestFeedback`   | (`options`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"flagKey"`>) => `void` | Function to request feedback for this flag.                                       |
-| `track`             | () => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)< \| `undefined` \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)>           | Function to send analytics events for this flag.                                  |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config-1"></a> `config`
+
+</td>
+<td>
+
+[`FlagRemoteConfig`](globals.md#flagremoteconfig)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabled"></a> `isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Result of flag flag evaluation.
+Note: Does not take local overrides into account.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabledoverride"></a> `isEnabledOverride`
+
+</td>
+<td>
+
+`null` \| `boolean`
+
+</td>
+<td>
+
+The current override status of isEnabled for the flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="requestfeedback-1"></a> `requestFeedback`
+
+</td>
+<td>
+
+(`options`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"flagKey"`\>) => `void`
+
+</td>
+<td>
+
+Function to request feedback for this flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="track-1"></a> `track`
+
+</td>
+<td>
+
+() => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\< \| `undefined` \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+
+</td>
+<td>
+
+Function to send analytics events for this flag.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Methods
 
-**setIsEnabledOverride()**
+##### setIsEnabledOverride()
 
 ```ts
 setIsEnabledOverride(isEnabled: null | boolean): void
 ```
 
-Set the override status for isEnabled for the flag. Set to `null` to remove the override.
+Set the override status for isEnabled for the flag.
+Set to `null` to remove the override.
 
-**Parameters**
+###### Parameters
 
-| Parameter   | Type                |
-| ----------- | ------------------- |
-| `isEnabled` | `null` \| `boolean` |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`isEnabled`
+
+</td>
+<td>
+
+`null` \| `boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 `void`
 
@@ -535,15 +1458,138 @@ Set the override status for isEnabled for the flag. Set to `null` to remove the 
 
 #### Properties
 
-| Property              | Type                                          | Description                                                                     |
-| --------------------- | --------------------------------------------- | ------------------------------------------------------------------------------- |
-| `check`               | [`CheckEvent`](globals.md#checkevent)         | ‐                                                                               |
-| `company`             | [`CompanyContext`](globals.md#companycontext) | ‐                                                                               |
-| ~~`featuresUpdated`~~ | [`RawFlags`](globals.md#rawflags)             | <p><strong>Deprecated</strong></p><p>Use <code>flagsUpdated</code> instead.</p> |
-| `flagsUpdated`        | [`RawFlags`](globals.md#rawflags)             | ‐                                                                               |
-| `stateUpdated`        | [`State`](globals.md#state)                   | ‐                                                                               |
-| `track`               | [`TrackEvent`](globals.md#trackevent)         | ‐                                                                               |
-| `user`                | [`UserContext`](globals.md#usercontext)       | ‐                                                                               |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="check"></a> `check`
+
+</td>
+<td>
+
+[`CheckEvent`](globals.md#checkevent)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="company"></a> `company`
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="featuresupdated"></a> ~~`featuresUpdated`~~
+
+</td>
+<td>
+
+[`RawFlags`](globals.md#rawflags)
+
+</td>
+<td>
+
+**Deprecated**
+
+Use `flagsUpdated` instead.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagsupdated"></a> `flagsUpdated`
+
+</td>
+<td>
+
+[`RawFlags`](globals.md#rawflags)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="stateupdated"></a> `stateUpdated`
+
+</td>
+<td>
+
+[`State`](globals.md#state)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="track-2"></a> `track`
+
+</td>
+<td>
+
+[`TrackEvent`](globals.md#trackevent)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user"></a> `user`
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -551,71 +1597,191 @@ Set the override status for isEnabled for the flag. Set to `null` to remove the 
 
 #### Methods
 
-**debug()**
+##### debug()
 
 ```ts
 debug(message: string, ...args: any[]): void
 ```
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type     |
-| --------- | -------- |
-| `message` | `string` |
-| ...`args` | `any`\[] |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`message`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+...`args`
+
+</td>
+<td>
+
+`any`[]
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 `void`
 
-**error()**
+##### error()
 
 ```ts
 error(message: string, ...args: any[]): void
 ```
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type     |
-| --------- | -------- |
-| `message` | `string` |
-| ...`args` | `any`\[] |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`message`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+...`args`
+
+</td>
+<td>
+
+`any`[]
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 `void`
 
-**info()**
+##### info()
 
 ```ts
 info(message: string, ...args: any[]): void
 ```
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type     |
-| --------- | -------- |
-| `message` | `string` |
-| ...`args` | `any`\[] |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`message`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+...`args`
+
+</td>
+<td>
+
+`any`[]
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 `void`
 
-**warn()**
+##### warn()
 
 ```ts
 warn(message: string, ...args: any[]): void
 ```
 
-**Parameters**
+###### Parameters
 
-| Parameter | Type     |
-| --------- | -------- |
-| `message` | `string` |
-| ...`args` | `any`\[] |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-**Returns**
+`message`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+...`args`
+
+</td>
+<td>
+
+`any`[]
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
 
 `void`
 
@@ -625,9 +1791,28 @@ warn(message: string, ...args: any[]): void
 
 #### Properties
 
-| Property     | Type     |
-| ------------ | -------- |
-| `feedbackId` | `string` |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="feedbackid-2"></a> `feedbackId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -635,35 +1820,250 @@ warn(message: string, ...args: any[]): void
 
 #### Properties
 
-| Property                  | Type                                                                                                                                                                                                                                  | Description                                                                                                       |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `key`                     | `string`                                                                                                                                                                                                                              | ‐                                                                                                                 |
-| `onClose?`                | () => `void`                                                                                                                                                                                                                          | ‐                                                                                                                 |
-| `onDismiss?`              | () => `void`                                                                                                                                                                                                                          | ‐                                                                                                                 |
-| `onScoreSubmit?`          | (`data`: [`FeedbackScoreSubmission`](globals.md#feedbackscoresubmission)) => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`OnScoreSubmitResult`](globals.md#onscoresubmitresult)> | ‐                                                                                                                 |
-| `onSubmit`                | (`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => \| `void` \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>                                               | ‐                                                                                                                 |
-| `openWithCommentVisible?` | `boolean`                                                                                                                                                                                                                             | Open the form with both the score and comment fields visible. Defaults to `false`                                 |
-| `position?`               | [`Position`](globals.md#position-1)                                                                                                                                                                                                   | Control the placement and behavior of the feedback form.                                                          |
-| `title?`                  | `string`                                                                                                                                                                                                                              | ‐                                                                                                                 |
-| `translations?`           | [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FeedbackTranslations`](globals.md#feedbacktranslations)>                                                                                   | Add your own custom translations for the feedback form. Undefined translation keys fall back to english defaults. |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="key-1"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="onclose"></a> `onClose?`
+
+</td>
+<td>
+
+() => `void`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ondismiss"></a> `onDismiss?`
+
+</td>
+<td>
+
+() => `void`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="onscoresubmit"></a> `onScoreSubmit?`
+
+</td>
+<td>
+
+(`data`: [`FeedbackScoreSubmission`](globals.md#feedbackscoresubmission)) => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`OnScoreSubmitResult`](globals.md#onscoresubmitresult)\>
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="onsubmit"></a> `onSubmit`
+
+</td>
+<td>
+
+(`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => \| `void` \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="openwithcommentvisible"></a> `openWithCommentVisible?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Open the form with both the score and comment fields visible.
+Defaults to `false`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="position"></a> `position?`
+
+</td>
+<td>
+
+[`Position`](globals.md#position-1)
+
+</td>
+<td>
+
+Control the placement and behavior of the feedback form.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="title"></a> `title?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="translations"></a> `translations?`
+
+</td>
+<td>
+
+[`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
+
+</td>
+<td>
+
+Add your own custom translations for the feedback form.
+Undefined translation keys fall back to english defaults.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
 ### ReflagContext
 
-Context is a set of key-value pairs. This is used to determine if feature targeting matches and to track events.
+Context is a set of key-value pairs.
+This is used to determine if feature targeting matches and to track events.
 
 #### Extended by
 
-* [`ReflagDeprecatedContext`](globals.md#reflagdeprecatedcontext)
+- [`ReflagDeprecatedContext`](globals.md#reflagdeprecatedcontext)
 
 #### Properties
 
-| Property   | Type                                                                                                                                       | Description                                                                                                                       |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| `company?` | [`CompanyContext`](globals.md#companycontext)                                                                                              | Company related context. If you provide `id` Reflag will enrich the evaluation context with company attributes on Reflag servers. |
-| `other?`   | [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)<`string`, `undefined` \| `string` \| `number`> | Context which is not related to a user or a company.                                                                              |
-| `user?`    | [`UserContext`](globals.md#usercontext)                                                                                                    | User related context. If you provide `id` Reflag will enrich the evaluation context with user attributes on Reflag servers.       |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="company-1"></a> `company?`
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+Company related context. If you provide `id` Reflag will enrich the evaluation context with
+company attributes on Reflag servers.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="other"></a> `other?`
+
+</td>
+<td>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
+
+</td>
+<td>
+
+Context which is not related to a user or a company.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user-1"></a> `user?`
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+User related context. If you provide `id` Reflag will enrich the evaluation context with
+user attributes on Reflag servers.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -677,16 +2077,95 @@ Use `ReflagContext` instead, this interface will be removed in the next major ve
 
 #### Extends
 
-* [`ReflagContext`](globals.md#reflagcontext)
+- [`ReflagContext`](globals.md#reflagcontext)
 
 #### Properties
 
-| Property            | Type                                                                                                                                       | Description                                                                                                                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ~~`company?`~~      | [`CompanyContext`](globals.md#companycontext)                                                                                              | Company related context. If you provide `id` Reflag will enrich the evaluation context with company attributes on Reflag servers.                                                           |
-| ~~`other?`~~        | [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)<`string`, `undefined` \| `string` \| `number`> | Context which is not related to a user or a company.                                                                                                                                        |
-| ~~`otherContext?`~~ | [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)<`string`, `undefined` \| `string` \| `number`> | <p>Context which is not related to a user or a company.</p><p><strong>Deprecated</strong></p><p>Use <code>other</code> instead, this property will be removed in the next major version</p> |
-| ~~`user?`~~         | [`UserContext`](globals.md#usercontext)                                                                                                    | User related context. If you provide `id` Reflag will enrich the evaluation context with user attributes on Reflag servers.                                                                 |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="company-2"></a> ~~`company?`~~
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+<td>
+
+Company related context. If you provide `id` Reflag will enrich the evaluation context with
+company attributes on Reflag servers.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="other-1"></a> ~~`other?`~~
+
+</td>
+<td>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
+
+</td>
+<td>
+
+Context which is not related to a user or a company.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="othercontext"></a> ~~`otherContext?`~~
+
+</td>
+<td>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
+
+</td>
+<td>
+
+Context which is not related to a user or a company.
+
+**Deprecated**
+
+Use `other` instead, this property will be removed in the next major version
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user-2"></a> ~~`user?`~~
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+<td>
+
+User related context. If you provide `id` Reflag will enrich the evaluation context with
+user attributes on Reflag servers.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -694,16 +2173,48 @@ Use `ReflagContext` instead, this interface will be removed in the next major ve
 
 #### Properties
 
-| Property    | Type                                            |
-| ----------- | ----------------------------------------------- |
-| `offset?`   | [`Offset`](globals.md#offset-1)                 |
-| `placement` | [`DialogPlacement`](globals.md#dialogplacement) |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="offset"></a> `offset?`
+
+</td>
+<td>
+
+[`Offset`](globals.md#offset-1)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="placement"></a> `placement`
+
+</td>
+<td>
+
+[`DialogPlacement`](globals.md#dialogplacement)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
 ### UserContext
 
-Context is a set of key-value pairs. This is used to determine if feature targeting matches and to track events. Id should always be present so that it can be referenced to an existing user.
+Context is a set of key-value pairs.
+This is used to determine if feature targeting matches and to track events.
+Id should always be present so that it can be referenced to an existing user.
 
 #### Indexable
 
@@ -713,11 +2224,68 @@ Context is a set of key-value pairs. This is used to determine if feature target
 
 #### Properties
 
-| Property | Type                                | Description |
-| -------- | ----------------------------------- | ----------- |
-| `email?` | `string`                            | User email  |
-| `id`     | `undefined` \| `string` \| `number` | User id     |
-| `name?`  | `string`                            | User name   |
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="email"></a> `email?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User email
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="id-1"></a> `id`
+
+</td>
+<td>
+
+`undefined` \| `string` \| `number`
+
+</td>
+<td>
+
+User id
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-1"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User name
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Type Aliases
 
@@ -753,10 +2321,51 @@ type Feedback = UnassignedFeedback & {
 
 #### Type declaration
 
-| Name         | Type     | Description                           |
-| ------------ | -------- | ------------------------------------- |
-| `companyId`? | `string` | Company ID from your own application. |
-| `userId`?    | `string` | User ID from your own application.    |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`companyId`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Company ID from your own application.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`userId`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User ID from your own application.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -775,13 +2384,106 @@ type FeedbackOptions = {
 
 #### Type declaration
 
-| Name                   | Type                                                                                                                                                                                                                      | Description                                                                                                       |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `autoFeedbackHandler`? | [`FeedbackPromptHandler`](globals.md#feedbackprompthandler)                                                                                                                                                               | ‐                                                                                                                 |
-| `enableAutoFeedback`?  | `boolean`                                                                                                                                                                                                                 | Enables automatic feedback prompting if it's set up in Reflag                                                     |
-| `ui`?                  | { `position`: [`Position`](globals.md#position-1); `translations`: [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FeedbackTranslations`](globals.md#feedbacktranslations)>; } | With these options you can override the look of the feedback prompt                                               |
-| `ui.position`?         | [`Position`](globals.md#position-1)                                                                                                                                                                                       | Control the placement and behavior of the feedback form.                                                          |
-| `ui.translations`?     | [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FeedbackTranslations`](globals.md#feedbacktranslations)>                                                                       | Add your own custom translations for the feedback form. Undefined translation keys fall back to english defaults. |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="autofeedbackhandler"></a> `autoFeedbackHandler`?
+
+</td>
+<td>
+
+[`FeedbackPromptHandler`](globals.md#feedbackprompthandler)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="enableautofeedback"></a> `enableAutoFeedback`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Enables automatic feedback prompting if it's set up in Reflag
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ui"></a> `ui`?
+
+</td>
+<td>
+
+\{
+  `position`: [`Position`](globals.md#position-1);
+  `translations`: [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>;
+ \}
+
+</td>
+<td>
+
+With these options you can override the look of the feedback prompt
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ui.position`?
+
+</td>
+<td>
+
+[`Position`](globals.md#position-1)
+
+</td>
+<td>
+
+Control the placement and behavior of the feedback form.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ui.translations`?
+
+</td>
+<td>
+
+[`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
+
+</td>
+<td>
+
+Add your own custom translations for the feedback form.
+Undefined translation keys fall back to english defaults.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -799,13 +2501,102 @@ type FeedbackPrompt = {
 
 #### Type declaration
 
-| Name         | Type                                                                                      | Description                                        |
-| ------------ | ----------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| `featureId`  | `string`                                                                                  | Feature ID from Reflag                             |
-| `promptId`   | `string`                                                                                  | Id of the prompt                                   |
-| `question`   | `string`                                                                                  | Specific question user was asked                   |
-| `showAfter`  | [`Date`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date) | Feedback prompt should appear only after this time |
-| `showBefore` | [`Date`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date) | Feedback prompt will not be shown after this time  |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="featureid"></a> `featureId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Feature ID from Reflag
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="promptid"></a> `promptId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Id of the prompt
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="question-2"></a> `question`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Specific question user was asked
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="showafter"></a> `showAfter`
+
+</td>
+<td>
+
+[`Date`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date)
+
+</td>
+<td>
+
+Feedback prompt should appear only after this time
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="showbefore"></a> `showBefore`
+
+</td>
+<td>
+
+[`Date`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date)
+
+</td>
+<td>
+
+Feedback prompt will not be shown after this time
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -817,10 +2608,40 @@ type FeedbackPromptHandler = (prompt: FeedbackPrompt, handlers: FeedbackPromptHa
 
 #### Parameters
 
-| Parameter  | Type                                                                          |
-| ---------- | ----------------------------------------------------------------------------- |
-| `prompt`   | [`FeedbackPrompt`](globals.md#feedbackprompt)                                 |
-| `handlers` | [`FeedbackPromptHandlerCallbacks`](globals.md#feedbackprompthandlercallbacks) |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`prompt`
+
+</td>
+<td>
+
+[`FeedbackPrompt`](globals.md#feedbackprompt)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`handlers`
+
+</td>
+<td>
+
+[`FeedbackPromptHandlerCallbacks`](globals.md#feedbackprompthandlercallbacks)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Returns
 
@@ -839,10 +2660,40 @@ type FeedbackPromptHandlerCallbacks = {
 
 #### Type declaration
 
-| Name               | Type                                                                                                                             |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| `openFeedbackForm` | (`options`: [`FeedbackPromptHandlerOpenFeedbackFormOptions`](globals.md#feedbackprompthandleropenfeedbackformoptions)) => `void` |
-| `reply`            | [`FeedbackPromptReplyHandler`](globals.md#feedbackpromptreplyhandler)                                                            |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="openfeedbackform"></a> `openFeedbackForm`
+
+</td>
+<td>
+
+(`options`: [`FeedbackPromptHandlerOpenFeedbackFormOptions`](globals.md#feedbackprompthandleropenfeedbackformoptions)) => `void`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="reply"></a> `reply`
+
+</td>
+<td>
+
+[`FeedbackPromptReplyHandler`](globals.md#feedbackpromptreplyhandler)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -873,12 +2724,64 @@ type FeedbackPromptReply = {
 
 #### Type declaration
 
-| Name         | Type     |
-| ------------ | -------- |
-| `comment`?   | `string` |
-| `companyId`? | `string` |
-| `question`   | `string` |
-| `score`?     | `number` |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="comment-1"></a> `comment`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="companyid"></a> `companyId`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="question-3"></a> `question`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="score-2"></a> `score`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -892,19 +2795,53 @@ type FeedbackPromptReplyHandler = <T>(reply: T) => T extends null ? Promise<void
 
 #### Type Parameters
 
-| Type Parameter                                                                  |
-| ------------------------------------------------------------------------------- |
-| `T` _extends_ [`FeedbackPromptReply`](globals.md#feedbackpromptreply) \| `null` |
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`T` *extends* [`FeedbackPromptReply`](globals.md#feedbackpromptreply) \| `null`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Parameters
 
-| Parameter | Type |
-| --------- | ---- |
-| `reply`   | `T`  |
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`reply`
+
+</td>
+<td>
+
+`T`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Returns
 
-`T` _extends_ `null` ? [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`> : [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<{ `feedbackId`: `string`; }>
+`T` *extends* `null` ? [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\> : [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\{
+  `feedbackId`: `string`;
+ \}\>
 
 ***
 
@@ -927,24 +2864,165 @@ type FeedbackTranslations = {
 };
 ```
 
-You can use this to override text values in the feedback form with desired language translation
+You can use this to override text values in the feedback form
+with desired language translation
 
 #### Type declaration
 
-| Name                         | Type     |
-| ---------------------------- | -------- |
-| `DefaultQuestionLabel`       | `string` |
-| `QuestionPlaceholder`        | `string` |
-| `ScoreDissatisfiedLabel`     | `string` |
-| `ScoreNeutralLabel`          | `string` |
-| `ScoreSatisfiedLabel`        | `string` |
-| `ScoreStatusDescription`     | `string` |
-| `ScoreStatusLoading`         | `string` |
-| `ScoreStatusReceived`        | `string` |
-| `ScoreVeryDissatisfiedLabel` | `string` |
-| `ScoreVerySatisfiedLabel`    | `string` |
-| `SendButton`                 | `string` |
-| `SuccessMessage`             | `string` |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="defaultquestionlabel"></a> `DefaultQuestionLabel`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="questionplaceholder"></a> `QuestionPlaceholder`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scoredissatisfiedlabel"></a> `ScoreDissatisfiedLabel`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scoreneutrallabel"></a> `ScoreNeutralLabel`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scoresatisfiedlabel"></a> `ScoreSatisfiedLabel`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scorestatusdescription"></a> `ScoreStatusDescription`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scorestatusloading"></a> `ScoreStatusLoading`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scorestatusreceived"></a> `ScoreStatusReceived`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scoreverydissatisfiedlabel"></a> `ScoreVeryDissatisfiedLabel`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scoreverysatisfiedlabel"></a> `ScoreVerySatisfiedLabel`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="sendbutton"></a> `SendButton`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="successmessage"></a> `SuccessMessage`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -974,19 +3052,96 @@ A remotely managed configuration value for a flag.
 
 #### Type declaration
 
-{ `key`: `string`; `payload`: `any`; }
+\{
+  `key`: `string`;
+  `payload`: `any`;
+ \}
 
-| Name      | Type     | Description                                 |
-| --------- | -------- | ------------------------------------------- |
-| `key`     | `string` | The key of the matched configuration value. |
-| `payload` | `any`    | The optional user-supplied payload data.    |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-{ `key`: `undefined`; `payload`: `undefined`; }
+`key`
 
-| Name      | Type        |
-| --------- | ----------- |
-| `key`     | `undefined` |
-| `payload` | `undefined` |
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+\{
+  `key`: `undefined`;
+  `payload`: `undefined`;
+ \}
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`payload`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1020,8 +3175,335 @@ ReflagClient initialization options.
 
 #### Type declaration
 
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>apiBaseUrl</code>?</td><td><code>string</code></td><td>Base URL of Reflag servers. You can override this to use your mocked server.</td></tr><tr><td><code>appBaseUrl</code>?</td><td><code>string</code></td><td>Base URL of the Reflag web app. Links open ín this app by default.</td></tr><tr><td><code>bootstrappedFlags</code>?</td><td><a href="globals.md#rawflags"><code>RawFlags</code></a></td><td>Pre-fetched flags to be used instead of fetching them from the server.</td></tr><tr><td><code>credentials</code>?</td><td><code>"include"</code> | <code>"same-origin"</code> | <code>"omit"</code></td><td>When proxying requests, you may want to include credentials like cookies so you can authorize the request in the proxy. This option controls the <code>credentials</code> option of the fetch API.</td></tr><tr><td><code>enableTracking</code>?</td><td><code>boolean</code></td><td>Whether to enable tracking. Defaults to <code>true</code>.</td></tr><tr><td><code>expireTimeMs</code>?</td><td><code>number</code></td><td>If set, flags will be cached between page loads for this duration</td></tr><tr><td><code>fallbackFlags</code>?</td><td>| <code>string</code>[] | <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type"><code>Record</code></a>&#x3C;<code>string</code>, <a href="globals.md#fallbackflagoverride"><code>FallbackFlagOverride</code></a>></td><td>Flag keys for which <code>isEnabled</code> should fallback to true if SDK fails to fetch flags from Reflag servers. If a record is supplied instead of array, the values of each key represent the configuration values and <code>isEnabled</code> is assume <code>true</code>.</td></tr><tr><td><code>feedback</code>?</td><td><a href="globals.md#feedbackoptions"><code>FeedbackOptions</code></a></td><td>AutoFeedback specific configuration</td></tr><tr><td><code>logger</code>?</td><td><a href="globals.md#logger-1"><code>Logger</code></a></td><td><p>You can provide a logger to see the logs of the network calls. This is undefined by default. For debugging purposes you can just set the browser console to this property:</p><pre class="language-javascript"><code class="lang-javascript">options.logger = window.console;
-</code></pre></td></tr><tr><td><code>offline</code>?</td><td><code>boolean</code></td><td>Whether to enable offline mode. Defaults to <code>false</code>.</td></tr><tr><td><code>publishableKey</code></td><td><code>string</code></td><td>Publishable key for authentication</td></tr><tr><td><code>sdkVersion</code>?</td><td><code>string</code></td><td>Version of the SDK</td></tr><tr><td><code>sseBaseUrl</code>?</td><td><code>string</code></td><td>Base URL of Reflag servers for SSE connections used by AutoFeedback.</td></tr><tr><td><code>staleTimeMs</code>?</td><td><code>number</code></td><td>Stale flags will be returned if staleWhileRevalidate is true if no new flags can be fetched</td></tr><tr><td><code>staleWhileRevalidate</code>?</td><td><code>boolean</code></td><td>If set to true stale flags will be returned while refetching flags</td></tr><tr><td><code>storage</code>?</td><td><a href="globals.md#storageadapter"><code>StorageAdapter</code></a></td><td>Optional storage adapter used for caching flags and overrides. Useful for React Native (AsyncStorage).</td></tr><tr><td><code>timeoutMs</code>?</td><td><code>number</code></td><td>Timeout in milliseconds when fetching flags</td></tr><tr><td><code>toolbar</code>?</td><td><a href="globals.md#toolbaroptions"><code>ToolbarOptions</code></a></td><td>Toolbar configuration</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`apiBaseUrl`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Reflag servers. You can override this to use your mocked server.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`appBaseUrl`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of the Reflag web app. Links open ín this app by default.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`bootstrappedFlags`?
+
+</td>
+<td>
+
+[`RawFlags`](globals.md#rawflags)
+
+</td>
+<td>
+
+Pre-fetched flags to be used instead of fetching them from the server.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`credentials`?
+
+</td>
+<td>
+
+`"include"` \| `"same-origin"` \| `"omit"`
+
+</td>
+<td>
+
+When proxying requests, you may want to include credentials like cookies
+so you can authorize the request in the proxy.
+This option controls the `credentials` option of the fetch API.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`enableTracking`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether to enable tracking. Defaults to `true`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`expireTimeMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+If set, flags will be cached between page loads for this duration
+
+</td>
+</tr>
+<tr>
+<td>
+
+`fallbackFlags`?
+
+</td>
+<td>
+
+  \| `string`[]
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FallbackFlagOverride`](globals.md#fallbackflagoverride)\>
+
+</td>
+<td>
+
+Flag keys for which `isEnabled` should fallback to true
+if SDK fails to fetch flags from Reflag servers. If a record
+is supplied instead of array, the values of each key represent the
+configuration values and `isEnabled` is assume `true`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`feedback`?
+
+</td>
+<td>
+
+[`FeedbackOptions`](globals.md#feedbackoptions)
+
+</td>
+<td>
+
+AutoFeedback specific configuration
+
+</td>
+</tr>
+<tr>
+<td>
+
+`logger`?
+
+</td>
+<td>
+
+[`Logger`](globals.md#logger-1)
+
+</td>
+<td>
+
+You can provide a logger to see the logs of the network calls.
+This is undefined by default.
+For debugging purposes you can just set the browser console to this property:
+```javascript
+options.logger = window.console;
+```
+
+</td>
+</tr>
+<tr>
+<td>
+
+`offline`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether to enable offline mode. Defaults to `false`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`publishableKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Publishable key for authentication
+
+</td>
+</tr>
+<tr>
+<td>
+
+`sdkVersion`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Version of the SDK
+
+</td>
+</tr>
+<tr>
+<td>
+
+`sseBaseUrl`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Base URL of Reflag servers for SSE connections used by AutoFeedback.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`staleTimeMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Stale flags will be returned if staleWhileRevalidate is true if no new flags can be fetched
+
+</td>
+</tr>
+<tr>
+<td>
+
+`staleWhileRevalidate`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+If set to true stale flags will be returned while refetching flags
+
+</td>
+</tr>
+<tr>
+<td>
+
+`storage`?
+
+</td>
+<td>
+
+[`StorageAdapter`](globals.md#storageadapter)
+
+</td>
+<td>
+
+Optional storage adapter used for caching flags and overrides.
+Useful for React Native (AsyncStorage).
+
+</td>
+</tr>
+<tr>
+<td>
+
+`timeoutMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Timeout in milliseconds when fetching flags
+
+</td>
+</tr>
+<tr>
+<td>
+
+`toolbar`?
+
+</td>
+<td>
+
+[`ToolbarOptions`](globals.md#toolbaroptions)
+
+</td>
+<td>
+
+Toolbar configuration
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1036,10 +3518,51 @@ type Offset = {
 
 #### Type declaration
 
-| Name | Type                 | Description                                                                |
-| ---- | -------------------- | -------------------------------------------------------------------------- |
-| `x`? | `string` \| `number` | Offset from the nearest horizontal screen edge after placement is resolved |
-| `y`? | `string` \| `number` | Offset from the nearest vertical screen edge after placement is resolved   |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="x"></a> `x`?
+
+</td>
+<td>
+
+`string` \| `number`
+
+</td>
+<td>
+
+Offset from the nearest horizontal screen edge after placement is resolved
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="y"></a> `y`?
+
+</td>
+<td>
+
+`string` \| `number`
+
+</td>
+<td>
+
+Offset from the nearest vertical screen edge after placement is resolved
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1096,20 +3619,228 @@ A flag fetched from the server.
 
 #### Type declaration
 
-| Name                            | Type                                                                                                                                    | Description                                                                  |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `config`?                       | { `key`: `string`; `missingContextFields`: `string`\[]; `payload`: `any`; `ruleEvaluationResults`: `boolean`\[]; `version`: `number`; } | Optional user-defined dynamic configuration.                                 |
-| `config.key`                    | `string`                                                                                                                                | The key of the matched configuration value.                                  |
-| `config.missingContextFields`?  | `string`\[]                                                                                                                             | The missing context fields.                                                  |
-| `config.payload`?               | `any`                                                                                                                                   | The optional user-supplied payload data.                                     |
-| `config.ruleEvaluationResults`? | `boolean`\[]                                                                                                                            | The rule evaluation results.                                                 |
-| `config.version`?               | `number`                                                                                                                                | The version of the matched configuration value.                              |
-| `isEnabled`                     | `boolean`                                                                                                                               | Result of flag evaluation. Note: does not take local overrides into account. |
-| `isEnabledOverride`?            | `boolean` \| `null`                                                                                                                     | If not null or undefined, the result is being overridden locally             |
-| `key`                           | `string`                                                                                                                                | Flag key.                                                                    |
-| `missingContextFields`?         | `string`\[]                                                                                                                             | Missing context fields.                                                      |
-| `ruleEvaluationResults`?        | `boolean`\[]                                                                                                                            | Rule evaluation results.                                                     |
-| `targetingVersion`?             | `number`                                                                                                                                | Version of targeting rules.                                                  |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config-2"></a> `config`?
+
+</td>
+<td>
+
+\{
+  `key`: `string`;
+  `missingContextFields`: `string`[];
+  `payload`: `any`;
+  `ruleEvaluationResults`: `boolean`[];
+  `version`: `number`;
+ \}
+
+</td>
+<td>
+
+Optional user-defined dynamic configuration.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.missingContextFields`?
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+The missing context fields.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.payload`?
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.ruleEvaluationResults`?
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+<td>
+
+The rule evaluation results.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.version`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The version of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabled-1"></a> `isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Result of flag evaluation.
+Note: does not take local overrides into account.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isenabledoverride-1"></a> `isEnabledOverride`?
+
+</td>
+<td>
+
+`boolean` \| `null`
+
+</td>
+<td>
+
+If not null or undefined, the result is being overridden locally
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key-2"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Flag key.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="missingcontextfields-1"></a> `missingContextFields`?
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+Missing context fields.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ruleevaluationresults-1"></a> `ruleEvaluationResults`?
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+<td>
+
+Rule evaluation results.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="targetingversion"></a> `targetingVersion`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Version of targeting rules.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1133,11 +3864,72 @@ type RequestFeedbackData = Omit<OpenFeedbackFormOptions, "key" | "onSubmit"> & {
 
 #### Type declaration
 
-| Name             | Type                                                                      | Description                                                                                                                                                                           |
-| ---------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `companyId`?     | `string`                                                                  | Company ID from your own application.                                                                                                                                                 |
-| `flagKey`        | `string`                                                                  | Flag key.                                                                                                                                                                             |
-| `onAfterSubmit`? | (`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => `void` | <p>Allows you to handle a copy of the already submitted feedback.</p><p>This can be used for side effects, such as storing a copy of the feedback in your own application or CRM.</p> |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`companyId`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Company ID from your own application.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`flagKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Flag key.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`onAfterSubmit`?
+
+</td>
+<td>
+
+(`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => `void`
+
+</td>
+<td>
+
+Allows you to handle a copy of the already submitted
+feedback.
+
+This can be used for side effects, such as storing a
+copy of the feedback in your own application or CRM.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1151,9 +3943,34 @@ type RequestFeedbackOptions = RequestFeedbackData & {
 
 #### Type declaration
 
-| Name     | Type     | Description                        |
-| -------- | -------- | ---------------------------------- |
-| `userId` | `string` | User ID from your own application. |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`userId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User ID from your own application.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1179,11 +3996,52 @@ type StorageAdapter = {
 
 #### Type declaration
 
-| Name            | Type                                                                                                                |
-| --------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `getItem()`     | [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`null` \| `string`> |
-| `removeItem()`? | [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>             |
-| `setItem()`     | [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`void`>             |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="getitem"></a> `getItem()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`null` \| `string`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="removeitem"></a> `removeItem()`?
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="setitem"></a> `setItem()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1216,12 +4074,65 @@ type TrackEvent = {
 
 #### Type declaration
 
-| Name          | Type                                                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `attributes`? | \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)<`string`, `any`> \| `null` |
-| `company`?    | [`CompanyContext`](globals.md#companycontext)                                                                             |
-| `eventName`   | `string`                                                                                                                  |
-| `user`        | [`UserContext`](globals.md#usercontext)                                                                                   |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="attributes"></a> `attributes`?
+
+</td>
+<td>
+
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
+  \| `null`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="company-3"></a> `company`?
+
+</td>
+<td>
+
+[`CompanyContext`](globals.md#companycontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="eventname"></a> `eventName`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="user-3"></a> `user`
+
+</td>
+<td>
+
+[`UserContext`](globals.md#usercontext)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1242,16 +4153,163 @@ type UnassignedFeedback = {
 
 #### Type declaration
 
-| Name                | Type                                | Description                                                                                                                                                                                                                                                                                                                              |
-| ------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `comment`?          | `string`                            | User supplied comment about your flag.                                                                                                                                                                                                                                                                                                   |
-| `feedbackId`?       | `string`                            | Reflag feedback ID                                                                                                                                                                                                                                                                                                                       |
-| `flagKey`           | `string`                            | Flag key.                                                                                                                                                                                                                                                                                                                                |
-| `promptedQuestion`? | `string`                            | The original question. This only needs to be populated if the feedback was submitted through the automated feedback surveys channel.                                                                                                                                                                                                     |
-| `promptId`?         | `string`                            | <p>Reflag feedback prompt ID.</p><p>This only exists if the feedback was submitted as part of an automated prompt from Reflag.</p><p>Used for internal state management of automated feedback.</p>                                                                                                                                       |
-| `question`?         | `string`                            | The question that was presented to the user.                                                                                                                                                                                                                                                                                             |
-| `score`?            | `number`                            | Customer satisfaction score.                                                                                                                                                                                                                                                                                                             |
-| `source`?           | `"prompt"` \| `"sdk"` \| `"widget"` | <p>Source of the feedback, depending on how the user was asked</p><ul><li><code>prompt</code> - Feedback submitted by way of an automated feedback survey (prompted)</li><li><code>widget</code> - Feedback submitted via <code>requestFeedback</code></li><li><code>sdk</code> - Feedback submitted via <code>feedback</code></li></ul> |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="comment-2"></a> `comment`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User supplied comment about your flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="feedbackid-3"></a> `feedbackId`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Reflag feedback ID
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagkey"></a> `flagKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Flag key.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="promptedquestion"></a> `promptedQuestion`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The original question.
+This only needs to be populated if the feedback was submitted through the automated feedback surveys channel.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="promptid-1"></a> `promptId`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Reflag feedback prompt ID.
+
+This only exists if the feedback was submitted
+as part of an automated prompt from Reflag.
+
+Used for internal state management of automated
+feedback.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="question-4"></a> `question`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The question that was presented to the user.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="score-3"></a> `score`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Customer satisfaction score.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="source"></a> `source`?
+
+</td>
+<td>
+
+`"prompt"` \| `"sdk"` \| `"widget"`
+
+</td>
+<td>
+
+Source of the feedback, depending on how the user was asked
+- `prompt` - Feedback submitted by way of an automated feedback survey (prompted)
+- `widget` - Feedback submitted via `requestFeedback`
+- `sdk` - Feedback submitted via `feedback`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Variables
 

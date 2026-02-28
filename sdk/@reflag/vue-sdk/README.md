@@ -1,6 +1,10 @@
 ---
+layout:
+  visible: true
 title:
   visible: true
+description:
+  visible: false
 tableOfContents:
   visible: true
 outline:
@@ -9,7 +13,7 @@ pagination:
   visible: true
 ---
 
-# Vue SDK (beta)
+# Reflag Vue SDK (beta)
 
 Vue client side library for [Reflag.com](https://reflag.com)
 
@@ -29,25 +33,25 @@ npm i @reflag/vue-sdk
 
 If you have been using the Bucket SDKs, the following list will help you migrate to Reflag SDK:
 
-* `Bucket*` classes, and types have been renamed to `Reflag*` (e.g. `BucketClient` is now `ReflagClient`)
-* `Feature*` classes, and types have been renamed to `Feature*` (e.g. `Feature` is now `Flag`, `RawFeatures` is now `RawFlags`)
-* All methods that contained `feature` in the name have been renamed to use the `flag` terminology (e.g. `getFeature` is `getFlag`)
-* The `fallbackFeatures` property in client constructor and configuration files has been renamed to `fallbackFlags`
-* `featureKey` has been renamed to `flagKey` in all methods that accepts that argument
-* The SDKs will not emit `evaluate` and `evaluate-config` events anymore
-* The new cookies that are stored in the client's browser are now `reflag-*` prefixed instead og `bucket-*`
-* The `featuresUpdated` hook has been renamed to `flagsUpdated`
-* The `checkIsEnabled` and `checkConfig` hooks have been removed, use `check` from now on
+- `Bucket*` classes, and types have been renamed to `Reflag*` (e.g. `BucketClient` is now `ReflagClient`)
+- `Feature*` classes, and types have been renamed to `Feature*` (e.g. `Feature` is now `Flag`, `RawFeatures` is now `RawFlags`)
+- All methods that contained `feature` in the name have been renamed to use the `flag` terminology (e.g. `getFeature` is `getFlag`)
+- The `fallbackFeatures` property in client constructor and configuration files has been renamed to `fallbackFlags`
+- `featureKey` has been renamed to `flagKey` in all methods that accepts that argument
+- The SDKs will not emit `evaluate` and `evaluate-config` events anymore
+- The new cookies that are stored in the client's browser are now `reflag-*` prefixed instead og `bucket-*`
+- The `featuresUpdated` hook has been renamed to `flagsUpdated`
+- The `checkIsEnabled` and `checkConfig` hooks have been removed, use `check` from now on
 
 To ease in transition to Reflag SDK, some of the old methods have been preserved as aliases to the new methods:
 
-* `getFeature` method is an alias for `getFlag`
-* `getFeatures` method is an alias for `getFlags`
-* `featuresUpdated` hook is an alias for `flagsUpdated`
+- `getFeature` method is an alias for `getFlag`
+- `getFeatures` method is an alias for `getFlags`
+- `featuresUpdated` hook is an alias for `flagsUpdated`
 
 If you are running with strict Content Security Policies active on your website, you will need change them as follows:
 
-* `connect-src https://front.bucket.co` to `connect-src https://front.reflag.com`
+- `connect-src https://front.bucket.co` to `connect-src https://front.reflag.com`
 
 Finally, if you have customized the look & feel of the Feedback component, update `--bucket-feedback-*` CSS classes to `--reflag-feedback-*`
 
@@ -77,7 +81,7 @@ import { ReflagProvider } from "@reflag/vue-sdk";
 
 If using Nuxt, wrap `<ReflagProvider>` in `<ClientOnly>`. `<ReflagProvider>` only renders client-side currently.
 
-### 2. Use \`useFlag get flag status
+### 2. Use `useFlag get flag status
 
 ```vue
 <script setup lang="ts">
@@ -93,11 +97,12 @@ const { isEnabled } = useFlag("huddles");
 </template>
 ```
 
-See [useFlag()](./#useflag) for a full example
+See [useFlag()](#useflag) for a full example
 
 ## Setting context
 
-Reflag determines which flags are active for a given `user`, `company`, or `other` context. You can pass these to the `ReflagProvider` using the `context` prop.
+Reflag determines which flags are active for a given `user`, `company`, or `other` context.
+You can pass these to the `ReflagProvider` using the `context` prop.
 
 ### Using the `context` prop
 
@@ -129,27 +134,33 @@ For backward compatibility, you can still use individual props, but these are de
 </ReflagProvider>
 ```
 
-> \[!Important] The `user`, `company`, and `otherContext` props are deprecated. Use the `context` prop instead, which provides the same functionality in a more structured way.
+> [!Important]
+> The `user`, `company`, and `otherContext` props are deprecated. Use the `context` prop instead, which provides the same functionality in a more structured way.
 
 ### Context requirements
 
-If you supply `user` or `company` objects, they must include at least the `id` property otherwise they will be ignored in their entirety. In addition to the `id`, you must also supply anything additional that you want to be able to evaluate flag targeting rules against. Attributes which are not properties of the `user` or `company` can be supplied using the `other` property.
+If you supply `user` or `company` objects, they must include at least the `id` property otherwise they will be ignored in their entirety.
+In addition to the `id`, you must also supply anything additional that you want to be able to evaluate flag targeting rules against.
+Attributes which are not properties of the `user` or `company` can be supplied using the `other` property.
 
-Attributes cannot be nested (multiple levels) and must be either strings, numbers or booleans. A number of special attributes exist:
+Attributes cannot be nested (multiple levels) and must be either strings, numbers or booleans.
+A number of special attributes exist:
 
-* `name` -- display name for `user`/`company`,
-* `email` -- the email of the user,
-* `avatar` -- the URL for `user`/`company` avatar image.
+- `name` -- display name for `user`/`company`,
+- `email` -- the email of the user,
+- `avatar` -- the URL for `user`/`company` avatar image.
 
 To retrieve flags along with their targeting information, use `useFlag(key: string)` hook (described in a section below).
 
-Note that accessing `isEnabled` on the object returned by `useFlag()` automatically generates a `check` event.
+Note that accessing `isEnabled` on the object returned by `useFlag()` automatically
+generates a `check` event.
 
 ## Remote config
 
 Remote config is a dynamic and flexible approach to configuring flag behavior outside of your app – without needing to re-deploy it.
 
-Similar to `isEnabled`, each flag accessed using the `useFlag()` hook, has a `config` property. This configuration is managed from within Reflag. It is managed similar to the way access to flags is managed, but instead of the binary `isEnabled` you can have multiple configuration values which are given to different user/companies.
+Similar to `isEnabled`, each flag accessed using the `useFlag()` hook, has a `config` property. This configuration is managed from within Reflag. It is managed similar to the way access to flags is managed, but instead of the
+binary `isEnabled` you can have multiple configuration values which are given to different user/companies.
 
 ### Get started with Remote config
 
@@ -166,28 +177,32 @@ const {
 
 `key` is mandatory for a config, but if a flag has no config or no config value was matched against the context, the `key` will be `undefined`. Make sure to check against this case when trying to use the configuration in your application. `payload` is an optional JSON value for arbitrary configuration needs.
 
-Note that, similar to `isEnabled`, accessing `config` on the object returned by `useFlag()` automatically generates a `check` event.
+Note that, similar to `isEnabled`, accessing `config` on the object returned by `useFlag()` automatically
+generates a `check` event.
 
 ## `<ReflagProvider>` component
 
 The `<ReflagProvider>` initializes the Reflag SDK, fetches flags and starts listening for automated feedback survey events. The component can be configured using a number of props:
 
-* `publishableKey` is used to connect the provider to an _environment_ on Reflag. Find your `publishableKey` under [environment settings](https://app.reflag.com/env-current/settings/app-environments) in Reflag,
-* `context`: An object containing `user`, `company`, and `other` properties that make up the evaluation context used to determine if a flag is enabled or not. `company` and `user` contexts are automatically transmitted to Reflag servers so the Reflag app can show you which companies have access to which flags etc.
-*   `company`, `user` and `otherContext` (deprecated): Individual props for context. These are deprecated in favor of the `context` prop and will be removed in the next major version.
+- `publishableKey` is used to connect the provider to an _environment_ on Reflag. Find your `publishableKey` under [environment settings](https://app.reflag.com/env-current/settings/app-environments) in Reflag,
+- `context`: An object containing `user`, `company`, and `other` properties that make up the evaluation context used to determine if a flag is enabled or not. `company` and `user` contexts are automatically transmitted to Reflag servers so the Reflag app can show you which companies have access to which flags etc.
+- `company`, `user` and `otherContext` (deprecated): Individual props for context. These are deprecated in favor of the `context` prop and will be removed in the next major version.
 
-    > \[!Note] If you specify `company` and/or `user` they must have at least the `id` property, otherwise they will be ignored in their entirety. You should also supply anything additional you want to be able to evaluate flag targeting against,
-* `timeoutMs`: Timeout in milliseconds when fetching flags from the server,
-* `staleWhileRevalidate`: If set to `true`, stale flags will be returned while refetching flags in the background,
-* `expireTimeMs`: If set, flags will be cached between page loads for this duration (in milliseconds),
-* `staleTimeMs`: Maximum time (in milliseconds) that stale flags will be returned if `staleWhileRevalidate` is true and new flags cannot be fetched.
-* `enableTracking`: Set to `false` to stop sending tracking events and user/company updates to Reflag. Useful when you're impersonating a user (defaults to `true`),
-* `apiBaseUrl`: Optional base URL for the Reflag API. Use this to override the default API endpoint,
-* `appBaseUrl`: Optional base URL for the Reflag application. Use this to override the default app URL,
-* `sseBaseUrl`: Optional base URL for Server-Sent Events. Use this to override the default SSE endpoint,
-* `debug`: Set to `true` to enable debug logging to the console,
-* `toolbar`: Optional [configuration](https://docs.reflag.com/supported-languages/browser-sdk/globals#toolbaroptions) for the Reflag toolbar,
-* `feedback`: Optional configuration for feedback collection
+  > [!Note]
+  > If you specify `company` and/or `user` they must have at least the `id` property, otherwise they will be ignored in their entirety. You should also supply anything additional you want to be able to evaluate flag targeting against,
+
+- `timeoutMs`: Timeout in milliseconds when fetching flags from the server,
+- `staleWhileRevalidate`: If set to `true`, stale flags will be returned while refetching flags in the background,
+- `expireTimeMs`: If set, flags will be cached between page loads for this duration (in milliseconds),
+- `staleTimeMs`: Maximum time (in milliseconds) that stale flags will be returned if `staleWhileRevalidate` is true and new flags cannot be fetched.
+
+- `enableTracking`: Set to `false` to stop sending tracking events and user/company updates to Reflag. Useful when you're impersonating a user (defaults to `true`),
+- `apiBaseUrl`: Optional base URL for the Reflag API. Use this to override the default API endpoint,
+- `appBaseUrl`: Optional base URL for the Reflag application. Use this to override the default app URL,
+- `sseBaseUrl`: Optional base URL for Server-Sent Events. Use this to override the default SSE endpoint,
+- `debug`: Set to `true` to enable debug logging to the console,
+- `toolbar`: Optional [configuration](https://docs.reflag.com/supported-languages/browser-sdk/globals#toolbaroptions) for the Reflag toolbar,
+- `feedback`: Optional configuration for feedback collection
 
 ### Loading states
 
@@ -274,8 +289,8 @@ const bootstrappedFlags = client.getFlagsForBootstrap(context);
 
 `ReflagBootstrappedProvider` accepts all the same props as `ReflagProvider` except:
 
-* `flags`: The pre-fetched flags object containing context and flag data
-* All other props available in `ReflagProvider` are supported except `context`, `user`, `company`, and `otherContext` (which are extracted from `flags.context`)
+- `flags`: The pre-fetched flags object containing context and flag data
+- All other props available in `ReflagProvider` are supported except `context`, `user`, `company`, and `otherContext` (which are extracted from `flags.context`)
 
 If the `flags` prop is not provided or is undefined, the provider will not initialize the client and will render in a non-loading state.
 
@@ -314,13 +329,14 @@ await client.initialize();
 
 The `ReflagClientProvider` accepts the following props:
 
-* `client`: A pre-initialized `ReflagClient` instance
+- `client`: A pre-initialized `ReflagClient` instance
 
 ### Slots
 
-* `loading`: Optional slot to show while the client is initializing (same as `ReflagProvider`)
+- `loading`: Optional slot to show while the client is initializing (same as `ReflagProvider`)
 
-> \[!Note] Most applications should use `ReflagProvider` or `ReflagBootstrappedProvider` instead of `ReflagClientProvider`. Only use this component when you need the advanced control it provides.
+> [!Note]
+> Most applications should use `ReflagProvider` or `ReflagBootstrappedProvider` instead of `ReflagClientProvider`. Only use this component when you need the advanced control it provides.
 
 ## Hooks
 
@@ -404,7 +420,8 @@ Returns a function that lets you open up a dialog to ask for feedback on a speci
 
 See [Automated Feedback Surveys](https://docs.reflag.com/product-handbook/live-satisfaction) for how to do this automatically, without code.
 
-When using the `useRequestFeedback` you must pass the flag key to `requestFeedback`. The example below shows how to use `position` to ensure the popover appears next to the "Give feedback!" button.
+When using the `useRequestFeedback` you must pass the flag key to `requestFeedback`.
+The example below shows how to use `position` to ensure the popover appears next to the "Give feedback!" button.
 
 ```vue
 <script setup lang="ts">
@@ -516,7 +533,8 @@ Note: To change the `user.id` or `company.id`, you need to update the props pass
 
 ### `useClient()`
 
-Returns the `ReflagClient` used by the `ReflagProvider`. The client offers more functionality that is not directly accessible through the other composables.
+Returns the `ReflagClient` used by the `ReflagProvider`. The client offers more functionality that
+is not directly accessible through the other composables.
 
 ```vue
 <script setup>
@@ -535,7 +553,8 @@ console.log(client.getContext());
 
 ### `useIsLoading()`
 
-Returns a `Ref<boolean>` to indicate if Reflag has finished loading. Initially, the value will be `true` if no bootstrap flags have been provided and the client has not be initialized.
+Returns a `Ref<boolean>` to indicate if Reflag has finished loading.
+Initially, the value will be `true` if no bootstrap flags have been provided and the client has not be initialized.
 
 ```vue
 <script setup>
@@ -556,9 +575,9 @@ Vue composable for listening to Reflag client events. This composable automatica
 
 Available events include:
 
-* `flagsUpdated`: Triggered when flags are updated
-* `track`: Triggered when tracking events are sent
-* `feedback`: Triggered when feedback is sent
+- `flagsUpdated`: Triggered when flags are updated
+- `track`: Triggered when tracking events are sent
+- `feedback`: Triggered when feedback is sent
 
 ```vue
 <script setup lang="ts">

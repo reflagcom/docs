@@ -1,6 +1,10 @@
 ---
+layout:
+  visible: true
 title:
   visible: true
+description:
+  visible: false
 tableOfContents:
   visible: true
 outline:
@@ -9,11 +13,11 @@ pagination:
   visible: true
 ---
 
-# React Native SDK (beta)
+# Reflag React Native SDK (beta)
 
 A thin React Native wrapper around `@reflag/react-sdk`.
 
-For more usage details, see the [React SDK README](../../documents/react-sdk/).
+For more usage details, see the [React SDK README](../../documents/react-sdk/README.md).
 
 An Expo example app lives in [packages/react-native-sdk/dev/expo](https://github.com/reflagcom/javascript/tree/main/packages/react-native-sdk/dev/expo).
 
@@ -57,24 +61,25 @@ function StartHuddleButton() {
 }
 ```
 
-See the [React SDK README](../../documents/react-sdk/) for more details.
+See the [React SDK README](../../documents/react-sdk/README.md) for more details.
 
 ## React Native differences
 
-* The Reflag toolbar is web-only and is not available in React Native.
-* Built-in feedback UI is web-only. In React Native, use your own UI and call `useSendFeedback` or `client.feedback` when you're ready to send feedback.
+- The Reflag toolbar is web-only and is not available in React Native.
+- Built-in feedback UI is web-only. In React Native, use your own UI and call `useSendFeedback` or `client.feedback` when you're ready to send feedback.
 
 ## Reference
 
 The React Native SDK shares its API with the React SDK. Use the React SDK reference for full types and details:
 
-[React SDK Reference](../../documents/react-sdk/)
+[React SDK Reference](../../documents/react-sdk/README.md)
 
 ## Cookbook
 
 ### Refresh flags when the app returns to the foreground
 
-Flags are updated if the context passed to `<ReflagProvider>` changes, but you might also want to update them when the app comes to the foreground. See this snippet:
+Flags are updated if the context passed to `<ReflagProvider>` changes, but you might also want to update them when the app comes to the foreground.
+See this snippet:
 
 ```tsx
 import React, { useEffect, useRef } from "react";
@@ -114,4 +119,5 @@ export function App() {
 
 ## Bootstrapping
 
-You can use `<ReflagBootstrappedProvider>` in React Native when you already have pre-fetched flags and want to avoid an initial fetch. For bootstrap usage patterns and options, see the [React SDK bootstrapping docs](../../documents/react-sdk/).
+You can use `<ReflagBootstrappedProvider>` in React Native when you already have pre-fetched flags and want to avoid an initial fetch.
+For bootstrap usage patterns and options, see the [React SDK bootstrapping docs](../../documents/react-sdk/README.md).
