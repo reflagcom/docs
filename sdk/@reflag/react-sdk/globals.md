@@ -718,7 +718,7 @@ Pre-fetched flags to be used instead of fetching them from the server.
 ### ReflagClientProviderProps
 
 ```ts
-type ReflagClientProviderProps = Omit<ReflagPropsBase, "debug"> & {
+type ReflagClientProviderProps = Omit<ReflagPropsBase, "debug" | "logger"> & {
   client: ReflagClient;
 };
 ```
@@ -755,7 +755,13 @@ Props for the ReflagClientProvider.
 ### ReflagInitOptionsBase
 
 ```ts
-type ReflagInitOptionsBase = Omit<InitOptions, "user" | "company" | "other" | "otherContext" | "bootstrappedFlags">;
+type ReflagInitOptionsBase = Omit<InitOptions, 
+  | "user"
+  | "company"
+  | "other"
+  | "otherContext"
+  | "bootstrappedFlags"
+| "logger">;
 ```
 
 **`Internal`**
@@ -883,6 +889,7 @@ type ReflagPropsBase = {
   debug: boolean;
   initialLoading: boolean;
   loadingComponent: ReactNode;
+  logger: Logger;
 };
 ```
 
@@ -966,6 +973,25 @@ Set to `true` to show the loading component while the client is initializing.
 <td>
 
 A React component to show while the client is initializing.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="logger"></a> `logger`?
+
+</td>
+<td>
+
+[`Logger`](../browser-sdk/globals.md#logger-1)
+
+</td>
+<td>
+
+A custom logger to use for SDK logs.
+Use this for advanced control or filtering of SDK logs.
+If both `logger` and `debug` are provided, `logger` takes precedence.
 
 </td>
 </tr>

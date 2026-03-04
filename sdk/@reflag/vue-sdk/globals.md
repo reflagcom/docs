@@ -560,6 +560,7 @@ type FlagType = {
 type ReflagBaseProps = {
   debug: boolean;
   initialLoading: boolean;
+  logger: Logger;
 };
 ```
 
@@ -609,6 +610,25 @@ Set to `true` to enable debug logging to the console.
 <td>
 
 Set to `true` to show the loading component while the client is initializing.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="logger"></a> `logger`?
+
+</td>
+<td>
+
+`Logger`
+
+</td>
+<td>
+
+A custom logger to use for SDK logs.
+Use this for advanced control or filtering of SDK logs.
+If both `logger` and `debug` are provided, `logger` takes precedence.
 
 </td>
 </tr>
@@ -663,7 +683,7 @@ Pre-fetched flags to be used instead of fetching them from the server.
 ### ReflagClientProviderProps
 
 ```ts
-type ReflagClientProviderProps = Omit<ReflagBaseProps, "debug"> & {
+type ReflagClientProviderProps = Omit<ReflagBaseProps, "debug" | "logger"> & {
   client: ReflagClient;
 };
 ```
@@ -706,7 +726,13 @@ A pre-initialized ReflagClient to use.
 ### ReflagInitOptionsBase
 
 ```ts
-type ReflagInitOptionsBase = Omit<InitOptions, "user" | "company" | "other" | "otherContext" | "bootstrappedFlags">;
+type ReflagInitOptionsBase = Omit<InitOptions, 
+  | "user"
+  | "company"
+  | "other"
+  | "otherContext"
+  | "bootstrappedFlags"
+| "logger">;
 ```
 
 **`Internal`**
