@@ -58,6 +58,7 @@
 * [Remote config](product-handbook/remote-config.md)
 * [Type safety](product-handbook/type-safety.md)
 * [Team permissions](product-handbook/team-permissions.md)
+* [Notification Policies](product-handbook/notification-policies.md)
 * [Data residency](product-handbook/data-residency.md)
 * [Anonymous users](product-handbook/anonymous-users.md)
 * [Launch monitor](product-handbook/launch-monitor/README.md)
