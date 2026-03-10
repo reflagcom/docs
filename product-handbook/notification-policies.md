@@ -18,6 +18,8 @@ Notification policies allow you to configure:
 
 You configure notifications policies under **Settings / Notification Policies**
 
+<figure><img src="../.gitbook/assets/notification-policies.png" alt="" width="563"><figcaption></figcaption></figure>
+
 ## Notification levels
 
 Each integration can use one of the following levels:
