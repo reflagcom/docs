@@ -434,7 +434,7 @@ type BootstrappedFlags = {
 </td>
 <td>
 
-`ReflagContext`
+[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
 
 </td>
 </tr>
@@ -446,7 +446,7 @@ type BootstrappedFlags = {
 </td>
 <td>
 
-`RawFlags`
+[`RawFlags`](../browser-sdk/globals.md#rawflags)
 
 </td>
 </tr>
@@ -621,7 +621,7 @@ Set to `true` to show the loading component while the client is initializing.
 </td>
 <td>
 
-`Logger`
+[`Logger`](../browser-sdk/globals.md#logger-1)
 
 </td>
 <td>
@@ -709,7 +709,7 @@ Props for the ReflagClientProvider.
 </td>
 <td>
 
-`ReflagClient`
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 </td>
 <td>
@@ -795,7 +795,7 @@ Use `context` instead, this property will be removed in the next major version
 </td>
 <td>
 
-`ReflagContext`
+[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
 
 </td>
 <td>
@@ -1000,7 +1000,7 @@ client at any point in your application.
 
 #### Returns
 
-`ReflagClient`
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 The Reflag client.
 
@@ -1149,7 +1149,7 @@ Vue composable for listening to Reflag client events.
 <tr>
 <td>
 
-`THookType` *extends* keyof `HookArgs`
+`THookType` *extends* keyof [`HookArgs`](../browser-sdk/globals.md#hookargs)
 
 </td>
 </tr>
@@ -1192,7 +1192,7 @@ The event to listen to.
 </td>
 <td>
 
-(`arg0`: `HookArgs`\[`THookType`\]) => `void`
+(`arg0`: [`HookArgs`](../browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
 
 </td>
 <td>
@@ -1209,7 +1209,7 @@ The function to call when the event is triggered.
 </td>
 <td>
 
-`ReflagClient`
+[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 </td>
 <td>
@@ -1274,7 +1274,7 @@ A function that requests feedback from the user. The function accepts:
 </td>
 <td>
 
-`RequestFeedbackData`
+[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -1339,7 +1339,7 @@ A function that sends feedback to the Reflag SDK. The function accepts:
 </td>
 <td>
 
-`UnassignedFeedback`
+[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
 
 </td>
 </tr>

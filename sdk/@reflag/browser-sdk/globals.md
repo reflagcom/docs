@@ -3168,6 +3168,12 @@ type InitOptions = ReflagDeprecatedContext & {
   storage: StorageAdapter;
   timeoutMs: number;
   toolbar: ToolbarOptions;
+  trackingQueue: {
+     flushDelayMs: number;
+     maxSize: number;
+     retryBaseDelayMs: number;
+     retryMaxDelayMs: number;
+    };
 };
 ```
 
@@ -3499,6 +3505,105 @@ Timeout in milliseconds when fetching flags
 <td>
 
 Toolbar configuration
+
+</td>
+</tr>
+<tr>
+<td>
+
+`trackingQueue`?
+
+</td>
+<td>
+
+\{
+  `flushDelayMs`: `number`;
+  `maxSize`: `number`;
+  `retryBaseDelayMs`: `number`;
+  `retryMaxDelayMs`: `number`;
+ \}
+
+</td>
+<td>
+
+Queue settings for tracking updates sent to `/bulk`.
+Applies to user/company updates, check events, and prompt events.
+Queue data is persisted in `sessionStorage` and restored on reloads
+within the same browser tab.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`trackingQueue.flushDelayMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Delay in milliseconds before flushing queued events.
+Lower values send sooner; slightly higher values batch better.
+Defaults to 200ms.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`trackingQueue.maxSize`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Maximum number of queued events retained locally.
+Oldest events are dropped when the cap is exceeded.
+Defaults to 100.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`trackingQueue.retryBaseDelayMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Base retry delay in milliseconds after a failed bulk request.
+Defaults to 5000ms.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`trackingQueue.retryMaxDelayMs`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Maximum retry delay in milliseconds after repeated failures.
+Defaults to 60000ms.
 
 </td>
 </tr>
