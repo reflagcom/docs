@@ -1231,81 +1231,6 @@ The client will ignore subsequent calls to this method.
 
 [`ReflagClient`](globals.md#reflagclient).[`initialize`](globals.md#initialize-1)
 
-##### pushFlagOverrides()
-
-```ts
-pushFlagOverrides(overrides: 
-  | Partial<Record<string, FlagOverride>>
-  | FlagOverridesFn): () => void
-```
-
-Temporarily layers flag overrides on top of the current overrides.
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`overrides`
-
-</td>
-<td>
-
- \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
-
-</td>
-<td>
-
-The flag overrides to apply for the scoped period.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`Function`
-
-A restore function that removes only this override layer.
-
-###### Returns
-
-`void`
-
-###### Remarks
-
-This is intended for tests or other short-lived local overrides. The restore
-function is idempotent and can safely be called multiple times.
-
-###### Example
-
-```ts
-let restore: (() => void) | undefined;
-
-beforeEach(() => {
-  restore = client.pushFlagOverrides({ "flag-1": true });
-});
-
-afterEach(() => {
-  restore?.();
-  restore = undefined;
-});
-```
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`pushFlagOverrides`](globals.md#pushflagoverrides-1)
-
 ##### refreshFlags()
 
 ```ts
@@ -2296,77 +2221,6 @@ Initializes the client by caching the flags definitions.
 
 Call this method before calling `getFlags` to ensure the flag definitions are cached.
 The client will ignore subsequent calls to this method.
-
-##### pushFlagOverrides()
-
-```ts
-pushFlagOverrides(overrides: 
-  | Partial<Record<string, FlagOverride>>
-  | FlagOverridesFn): () => void
-```
-
-Temporarily layers flag overrides on top of the current overrides.
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`overrides`
-
-</td>
-<td>
-
- \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
-
-</td>
-<td>
-
-The flag overrides to apply for the scoped period.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`Function`
-
-A restore function that removes only this override layer.
-
-###### Returns
-
-`void`
-
-###### Remarks
-
-This is intended for tests or other short-lived local overrides. The restore
-function is idempotent and can safely be called multiple times.
-
-###### Example
-
-```ts
-let restore: (() => void) | undefined;
-
-beforeEach(() => {
-  restore = client.pushFlagOverrides({ "flag-1": true });
-});
-
-afterEach(() => {
-  restore?.();
-  restore = undefined;
-});
-```
 
 ##### refreshFlags()
 
@@ -3611,7 +3465,7 @@ type ClientOptions = {
   fallbackFlags:   | TypedFlagKey[]
      | Record<TypedFlagKey, Exclude<FlagOverride, false>>;
   fetchTimeoutMs: number;
-  flagOverrides:   | FlagOverrides
+  flagOverrides:   | string
      | (context: Context) => FlagOverrides;
   flagsFetchRetries: number;
   host: string;
@@ -3772,16 +3626,20 @@ Default is 10000 ms.
 </td>
 <td>
 
-  \| [`FlagOverrides`](globals.md#flagoverrides-3)
+  \| `string`
   \| (`context`: [`Context`](globals.md#context-1)) => [`FlagOverrides`](globals.md#flagoverrides-3)
 
 </td>
 <td>
 
-Local flag overrides for testing or development.
+If a filename is specified, feature targeting results be overridden with
+the values from this file. The file should be a JSON object with flag
+keys as keys, and boolean or object as values.
 
 If a function is specified, the function will be called with the context
 and should return a record of flag keys and boolean or object values.
+
+Defaults to "reflagFlags.json".
 
 </td>
 </tr>
