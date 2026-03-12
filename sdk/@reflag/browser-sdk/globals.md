@@ -3528,8 +3528,7 @@ Toolbar configuration
 
 Queue settings for tracking updates sent to `/bulk`.
 Applies to user/company updates, check events, and prompt events.
-Queue data is persisted in `sessionStorage` and restored on reloads
-within the same browser tab.
+Events are buffered in memory and flushed in the background.
 
 </td>
 </tr>
@@ -3584,8 +3583,7 @@ Defaults to 100.
 </td>
 <td>
 
-Base retry delay in milliseconds after a failed bulk request.
-Defaults to 5000ms.
+Deprecated: retries are no longer performed for bulk delivery.
 
 </td>
 </tr>
@@ -3602,8 +3600,7 @@ Defaults to 5000ms.
 </td>
 <td>
 
-Maximum retry delay in milliseconds after repeated failures.
-Defaults to 60000ms.
+Deprecated: retries are no longer performed for bulk delivery.
 
 </td>
 </tr>
