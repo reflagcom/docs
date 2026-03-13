@@ -592,21 +592,9 @@ set flagOverrides(overrides:
   | FlagOverridesFn): void
 ```
 
-Sets the flag overrides.
+###### Deprecated
 
-###### Remarks
-
-The flag overrides are used to override the flag definitions.
-This is useful for testing or development.
-
-###### Example
-
-```ts
-client.flagOverrides = {
-  "flag-1": true,
-  "flag-2": false,
-};
-```
+Use `setFlagOverrides()` for replacing the base override set.
 
 ###### Parameters
 
@@ -615,7 +603,6 @@ client.flagOverrides = {
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -628,11 +615,6 @@ client.flagOverrides = {
 <td>
 
  \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
-
-</td>
-<td>
-
-The flag overrides.
 
 </td>
 </tr>
@@ -715,7 +697,7 @@ the user/company is set respectively.
 clearFlagOverrides(): void
 ```
 
-Clears the flag overrides.
+Clears the base flag overrides.
 
 ###### Returns
 
@@ -723,14 +705,12 @@ Clears the flag overrides.
 
 ###### Remarks
 
-This is useful for testing or development.
+This does not affect temporary layers added with `pushFlagOverrides()`.
 
 ###### Example
 
 ```ts
-afterAll(() => {
-  client.clearFlagOverrides();
-});
+client.clearFlagOverrides();
 ```
 
 ###### Inherited from
@@ -1231,6 +1211,81 @@ The client will ignore subsequent calls to this method.
 
 [`ReflagClient`](globals.md#reflagclient).[`initialize`](globals.md#initialize-1)
 
+##### pushFlagOverrides()
+
+```ts
+pushFlagOverrides(overrides: 
+  | Partial<Record<string, FlagOverride>>
+  | FlagOverridesFn): () => void
+```
+
+Temporarily layers flag overrides on top of the current overrides.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`overrides`
+
+</td>
+<td>
+
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
+
+</td>
+<td>
+
+The flag overrides to apply for the scoped period.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`Function`
+
+A remove function that removes only this override layer.
+
+###### Returns
+
+`void`
+
+###### Remarks
+
+This is intended for tests or other short-lived local overrides. The remove
+function is idempotent and can safely be called multiple times.
+
+###### Example
+
+```ts
+let remove: (() => void) | undefined;
+
+beforeEach(() => {
+  remove = client.pushFlagOverrides({ "flag-1": true });
+});
+
+afterEach(() => {
+  remove?.();
+  remove = undefined;
+});
+```
+
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`pushFlagOverrides`](globals.md#pushflagoverrides-1)
+
 ##### refreshFlags()
 
 ```ts
@@ -1255,6 +1310,69 @@ Concurrent calls are deduplicated — multiple calls share the same in-flight re
 ###### Inherited from
 
 [`ReflagClient`](globals.md#reflagclient).[`refreshFlags`](globals.md#refreshflags-2)
+
+##### setFlagOverrides()
+
+```ts
+setFlagOverrides(overrides: 
+  | Partial<Record<string, FlagOverride>>
+  | FlagOverridesFn): void
+```
+
+Replaces the base flag overrides used by the client.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`overrides`
+
+</td>
+<td>
+
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
+
+</td>
+<td>
+
+The flag overrides.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`
+
+###### Remarks
+
+Base overrides are always applied before any temporary layers added through
+`pushFlagOverrides()`.
+
+###### Example
+
+```ts
+client.setFlagOverrides({
+  "flag-1": true,
+  "flag-2": false,
+});
+```
+
+###### Inherited from
+
+[`ReflagClient`](globals.md#reflagclient).[`setFlagOverrides`](globals.md#setflagoverrides-1)
 
 ##### track()
 
@@ -1631,21 +1749,9 @@ set flagOverrides(overrides:
   | FlagOverridesFn): void
 ```
 
-Sets the flag overrides.
+###### Deprecated
 
-###### Remarks
-
-The flag overrides are used to override the flag definitions.
-This is useful for testing or development.
-
-###### Example
-
-```ts
-client.flagOverrides = {
-  "flag-1": true,
-  "flag-2": false,
-};
-```
+Use `setFlagOverrides()` for replacing the base override set.
 
 ###### Parameters
 
@@ -1654,7 +1760,6 @@ client.flagOverrides = {
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1667,11 +1772,6 @@ client.flagOverrides = {
 <td>
 
  \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
-
-</td>
-<td>
-
-The flag overrides.
 
 </td>
 </tr>
@@ -1746,7 +1846,7 @@ the user/company is set respectively.
 clearFlagOverrides(): void
 ```
 
-Clears the flag overrides.
+Clears the base flag overrides.
 
 ###### Returns
 
@@ -1754,14 +1854,12 @@ Clears the flag overrides.
 
 ###### Remarks
 
-This is useful for testing or development.
+This does not affect temporary layers added with `pushFlagOverrides()`.
 
 ###### Example
 
 ```ts
-afterAll(() => {
-  client.clearFlagOverrides();
-});
+client.clearFlagOverrides();
 ```
 
 ##### destroy()
@@ -2222,6 +2320,77 @@ Initializes the client by caching the flags definitions.
 Call this method before calling `getFlags` to ensure the flag definitions are cached.
 The client will ignore subsequent calls to this method.
 
+##### pushFlagOverrides()
+
+```ts
+pushFlagOverrides(overrides: 
+  | Partial<Record<string, FlagOverride>>
+  | FlagOverridesFn): () => void
+```
+
+Temporarily layers flag overrides on top of the current overrides.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`overrides`
+
+</td>
+<td>
+
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
+
+</td>
+<td>
+
+The flag overrides to apply for the scoped period.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`Function`
+
+A remove function that removes only this override layer.
+
+###### Returns
+
+`void`
+
+###### Remarks
+
+This is intended for tests or other short-lived local overrides. The remove
+function is idempotent and can safely be called multiple times.
+
+###### Example
+
+```ts
+let remove: (() => void) | undefined;
+
+beforeEach(() => {
+  remove = client.pushFlagOverrides({ "flag-1": true });
+});
+
+afterEach(() => {
+  remove?.();
+  remove = undefined;
+});
+```
+
 ##### refreshFlags()
 
 ```ts
@@ -2242,6 +2411,65 @@ Useful when you know flags have changed and don't want to wait for the next auto
 Note: updated flag rules take a few seconds to propagate to all servers.
 
 Concurrent calls are deduplicated — multiple calls share the same in-flight request.
+
+##### setFlagOverrides()
+
+```ts
+setFlagOverrides(overrides: 
+  | Partial<Record<string, FlagOverride>>
+  | FlagOverridesFn): void
+```
+
+Replaces the base flag overrides used by the client.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`overrides`
+
+</td>
+<td>
+
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
+
+</td>
+<td>
+
+The flag overrides.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`
+
+###### Remarks
+
+Base overrides are always applied before any temporary layers added through
+`pushFlagOverrides()`.
+
+###### Example
+
+```ts
+client.setFlagOverrides({
+  "flag-1": true,
+  "flag-2": false,
+});
+```
 
 ##### track()
 
@@ -3465,7 +3693,7 @@ type ClientOptions = {
   fallbackFlags:   | TypedFlagKey[]
      | Record<TypedFlagKey, Exclude<FlagOverride, false>>;
   fetchTimeoutMs: number;
-  flagOverrides:   | string
+  flagOverrides:   | FlagOverrides
      | (context: Context) => FlagOverrides;
   flagsFetchRetries: number;
   host: string;
@@ -3626,20 +3854,16 @@ Default is 10000 ms.
 </td>
 <td>
 
-  \| `string`
+  \| [`FlagOverrides`](globals.md#flagoverrides-3)
   \| (`context`: [`Context`](globals.md#context-1)) => [`FlagOverrides`](globals.md#flagoverrides-3)
 
 </td>
 <td>
 
-If a filename is specified, feature targeting results be overridden with
-the values from this file. The file should be a JSON object with flag
-keys as keys, and boolean or object as values.
+Local flag overrides for testing or development.
 
 If a function is specified, the function will be called with the context
 and should return a record of flag keys and boolean or object values.
-
-Defaults to "reflagFlags.json".
 
 </td>
 </tr>
