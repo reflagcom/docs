@@ -3037,6 +3037,100 @@ You should extend the Flags interface to define the available features.
 
 ***
 
+### FlagsFallbackProvider
+
+Provider used to load and save raw flag definition snapshots.
+
+#### Methods
+
+##### load()
+
+```ts
+load(context: FlagsFallbackProviderContext): Promise<undefined | FlagsFallbackSnapshot>
+```
+
+Load a previously saved snapshot.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`context`
+
+</td>
+<td>
+
+[`FlagsFallbackProviderContext`](globals.md#flagsfallbackprovidercontext)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| [`FlagsFallbackSnapshot`](globals.md#flagsfallbacksnapshot)\>
+
+##### save()
+
+```ts
+save(context: FlagsFallbackProviderContext, snapshot: FlagsFallbackSnapshot): Promise<void>
+```
+
+Persist a snapshot after a successful live fetch.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`context`
+
+</td>
+<td>
+
+[`FlagsFallbackProviderContext`](globals.md#flagsfallbackprovidercontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`snapshot`
+
+</td>
+<td>
+
+[`FlagsFallbackSnapshot`](globals.md#flagsfallbacksnapshot)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+***
+
 ### HttpClient
 
 Defines the interface for an HTTP client.
@@ -3695,6 +3789,7 @@ type ClientOptions = {
   fetchTimeoutMs: number;
   flagOverrides:   | FlagOverrides
      | (context: Context) => FlagOverrides;
+  flagsFallbackProvider: FlagsFallbackProvider;
   flagsFetchRetries: number;
   host: string;
   httpClient: HttpClient;
@@ -3826,6 +3921,10 @@ Can be an array of feature keys, or a record of feature keys and boolean or obje
 If a record is supplied instead of array, the values of each key are either the
 configuration values or the boolean value `true`.
 
+**Deprecated**
+
+Use `flagsFallbackProvider` instead.
+
 </td>
 </tr>
 <tr>
@@ -3864,6 +3963,24 @@ Local flag overrides for testing or development.
 
 If a function is specified, the function will be called with the context
 and should return a record of flag keys and boolean or object values.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagsfallbackprovider-1"></a> `flagsFallbackProvider`?
+
+</td>
+<td>
+
+[`FlagsFallbackProvider`](globals.md#flagsfallbackprovider)
+
+</td>
+<td>
+
+Optional provider used to load and save raw flag definitions for fallback startup.
+Ignored in offline mode.
 
 </td>
 </tr>
@@ -3968,7 +4085,8 @@ Use the console logger, but set a log level. Ineffective if a custom logger is p
 </td>
 <td>
 
-In offline mode, no data is sent or fetched from the the Reflag API.
+In offline mode, no data is sent or fetched from the the Reflag API,
+and `flagsFallbackProvider` is not used.
 This is useful for testing or development.
 
 </td>
@@ -4268,17 +4386,13 @@ type EmptyFlagRemoteConfig = {
 
 ***
 
-### FlagConfigVariant
+### FileFallbackProviderOptions
 
 ```ts
-type FlagConfigVariant = {
-  filter: RuleFilter;
-  key: string;
-  payload: any;
+type FileFallbackProviderOptions = {
+  directory: string;
 };
 ```
-
-Describes a remote feature config variant.
 
 #### Type declaration
 
@@ -4294,24 +4408,7 @@ Describes a remote feature config variant.
 <tr>
 <td>
 
-<a id="filter"></a> `filter`
-
-</td>
-<td>
-
-`RuleFilter`
-
-</td>
-<td>
-
-The filter for the variant.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key-3"></a> `key`
+<a id="directory"></a> `directory`?
 
 </td>
 <td>
@@ -4321,24 +4418,7 @@ The filter for the variant.
 </td>
 <td>
 
-The key of the variant.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="payload-1"></a> `payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
+Directory where per-environment snapshots are stored.
 
 </td>
 </tr>
@@ -4347,26 +4427,28 @@ The optional user-supplied payload data.
 
 ***
 
-### FlagDefinition
+### FlagAPIResponse
 
 ```ts
-type FlagDefinition = {
+type FlagAPIResponse = {
   config: {
      variants: FlagConfigVariant[];
      version: number;
     };
   description: string | null;
-  flag: {
+  key: string;
+  targeting: {
      rules: {
         filter: RuleFilter;
        }[];
      version: number;
     };
-  key: string;
 };
 ```
 
-Describes a feature definition.
+**`Internal`**
+
+(Internal) Describes a specific feature in the API response.
 
 #### Type declaration
 
@@ -4453,6 +4535,268 @@ Description of the feature.
 <tr>
 <td>
 
+<a id="key-3"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the feature.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="targeting"></a> `targeting`
+
+</td>
+<td>
+
+\{
+  `rules`: \{
+     `filter`: `RuleFilter`;
+    \}[];
+  `version`: `number`;
+ \}
+
+</td>
+<td>
+
+The targeting rules for the feature.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`targeting.rules`
+
+</td>
+<td>
+
+\{
+  `filter`: `RuleFilter`;
+ \}[]
+
+</td>
+<td>
+
+The targeting rules.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`targeting.version`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The version of the targeting rules.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### FlagConfigVariant
+
+```ts
+type FlagConfigVariant = {
+  filter: RuleFilter;
+  key: string;
+  payload: any;
+};
+```
+
+Describes a remote feature config variant.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="filter"></a> `filter`
+
+</td>
+<td>
+
+`RuleFilter`
+
+</td>
+<td>
+
+The filter for the variant.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key-4"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The key of the variant.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="payload-1"></a> `payload`
+
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+The optional user-supplied payload data.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### FlagDefinition
+
+```ts
+type FlagDefinition = {
+  config: {
+     variants: FlagConfigVariant[];
+     version: number;
+    };
+  description: string | null;
+  flag: {
+     rules: {
+        filter: RuleFilter;
+       }[];
+     version: number;
+    };
+  key: string;
+};
+```
+
+Describes a feature definition.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="config-3"></a> `config`?
+
+</td>
+<td>
+
+\{
+  `variants`: [`FlagConfigVariant`](globals.md#flagconfigvariant)[];
+  `version`: `number`;
+ \}
+
+</td>
+<td>
+
+The remote configuration for the feature.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.variants`
+
+</td>
+<td>
+
+[`FlagConfigVariant`](globals.md#flagconfigvariant)[]
+
+</td>
+<td>
+
+The variants of the remote configuration.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.version`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+The version of the remote configuration.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="description-1"></a> `description`
+
+</td>
+<td>
+
+`string` \| `null`
+
+</td>
+<td>
+
+Description of the feature.
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="flag"></a> `flag`
 
 </td>
@@ -4511,7 +4855,7 @@ The version of the targeting rules.
 <tr>
 <td>
 
-<a id="key-4"></a> `key`
+<a id="key-5"></a> `key`
 
 </td>
 <td>
@@ -4662,6 +5006,174 @@ The optional user-supplied payload data.
 
 ***
 
+### FlagsAPIResponse
+
+```ts
+type FlagsAPIResponse = {
+  features: FlagAPIResponse[];
+};
+```
+
+**`Internal`**
+
+(Internal) Describes the response of the features endpoint.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="features"></a> `features`
+
+</td>
+<td>
+
+[`FlagAPIResponse`](globals.md#flagapiresponse)[]
+
+</td>
+<td>
+
+The feature definitions.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### FlagsFallbackProviderContext
+
+```ts
+type FlagsFallbackProviderContext = {
+  secretKeyHash: string;
+};
+```
+
+Non-secret context passed to fallback providers so they can derive
+storage keys without access to the raw secret key.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="secretkeyhash"></a> `secretKeyHash`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Deterministic hash of the configured secret key.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### FlagsFallbackSnapshot
+
+```ts
+type FlagsFallbackSnapshot = {
+  flags: FlagAPIResponse[];
+  savedAt: string;
+  version: 1;
+};
+```
+
+Snapshot of flag definitions used for fallback initialization.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="flags-2"></a> `flags`
+
+</td>
+<td>
+
+[`FlagAPIResponse`](globals.md#flagapiresponse)[]
+
+</td>
+<td>
+
+Raw flag definitions as returned by the API.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="savedat"></a> `savedAt`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+ISO timestamp indicating when the snapshot was saved.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="version"></a> `version`
+
+</td>
+<td>
+
+`1`
+
+</td>
+<td>
+
+Snapshot schema version.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### FlagType
 
 ```ts
@@ -4685,7 +5197,7 @@ type FlagType = {
 <tr>
 <td>
 
-<a id="config-3"></a> `config`?
+<a id="config-4"></a> `config`?
 
 </td>
 <td>
@@ -4705,6 +5217,122 @@ type FlagType = {
 <td>
 
 `any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### GCSFallbackProviderOptions
+
+```ts
+type GCSFallbackProviderOptions = {
+  bucket: string;
+  client: {
+     bucket: {
+        file: {
+           download: Promise<[Uint8Array]>;
+           exists: Promise<[boolean]>;
+           save: Promise<unknown>;
+          };
+       };
+    };
+  keyPrefix: string;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="bucket"></a> `bucket`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Bucket where snapshots are stored.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="client"></a> `client`?
+
+</td>
+<td>
+
+\{
+  `bucket`: \{
+     `file`: \{
+        `download`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\[[`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)\]\>;
+        `exists`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\[`boolean`\]\>;
+        `save`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`unknown`\>;
+       \};
+    \};
+ \}
+
+</td>
+<td>
+
+Optional GCS client. A default client is created when omitted.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="bucket-1"></a> `bucket()`
+
+</td>
+<td>
+
+\{
+  `file`: \{
+     `download`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\[[`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)\]\>;
+     `exists`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\[`boolean`\]\>;
+     `save`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`unknown`\>;
+    \};
+ \}
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="keyprefix"></a> `keyPrefix`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Prefix for generated per-environment keys.
 
 </td>
 </tr>
@@ -4861,7 +5489,7 @@ A remotely managed configuration value for a feature.
 <tr>
 <td>
 
-<a id="key-5"></a> `key`
+<a id="key-6"></a> `key`
 
 </td>
 <td>
@@ -4955,6 +5583,244 @@ type RawFlags = Record<TypedFlagKey, RawFlag>;
 ```
 
 Describes a collection of evaluated raw flags.
+
+***
+
+### RedisFallbackProviderOptions
+
+```ts
+type RedisFallbackProviderOptions = {
+  client: {
+     get: Promise<undefined | null | string>;
+     set: Promise<unknown>;
+    };
+  keyPrefix: string;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="client-1"></a> `client`?
+
+</td>
+<td>
+
+\{
+  `get`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| `null` \| `string`\>;
+  `set`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`unknown`\>;
+ \}
+
+</td>
+<td>
+
+Optional Redis client. When omitted, a client is created using `REDIS_URL`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="get-1"></a> `get()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| `null` \| `string`\>
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="set"></a> `set()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`unknown`\>
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="keyprefix-1"></a> `keyPrefix`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Prefix for generated per-environment keys.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### S3FallbackProviderOptions
+
+```ts
+type S3FallbackProviderOptions = {
+  bucket: string;
+  client: {
+     send: Promise<any>;
+    };
+  keyPrefix: string;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="bucket-2"></a> `bucket`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Bucket where snapshots are stored.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="client-2"></a> `client`?
+
+</td>
+<td>
+
+\{
+  `send`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`any`\>;
+ \}
+
+</td>
+<td>
+
+Optional S3 client. A default client is created when omitted.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="send"></a> `send()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`any`\>
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="keyprefix-2"></a> `keyPrefix`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Prefix for generated per-environment keys.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### StaticFallbackProviderOptions
+
+```ts
+type StaticFallbackProviderOptions = {
+  flags: Record<string, boolean>;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="flags-3"></a> `flags`
+
+</td>
+<td>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `boolean`\>
+
+</td>
+<td>
+
+Static fallback flags keyed by flag key.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -5084,6 +5950,119 @@ This types falls back to a generic Record<string, Flag> if the Flags interface
 has not been extended.
 
 ## Variables
+
+### fallbackProviders
+
+```ts
+const fallbackProviders: {
+  file: (__namedParameters: FileFallbackProviderOptions) => FlagsFallbackProvider;
+  gcs: (__namedParameters: GCSFallbackProviderOptions) => FlagsFallbackProvider;
+  redis: (__namedParameters: RedisFallbackProviderOptions) => FlagsFallbackProvider;
+  s3: (__namedParameters: S3FallbackProviderOptions) => FlagsFallbackProvider;
+  static: (__namedParameters: StaticFallbackProviderOptions) => FlagsFallbackProvider;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="file"></a> `file`
+
+</td>
+<td>
+
+(`__namedParameters`: [`FileFallbackProviderOptions`](globals.md#filefallbackprovideroptions)) => [`FlagsFallbackProvider`](globals.md#flagsfallbackprovider)
+
+</td>
+<td>
+
+createFileFallbackProvider
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="gcs"></a> `gcs`
+
+</td>
+<td>
+
+(`__namedParameters`: [`GCSFallbackProviderOptions`](globals.md#gcsfallbackprovideroptions)) => [`FlagsFallbackProvider`](globals.md#flagsfallbackprovider)
+
+</td>
+<td>
+
+createGCSFallbackProvider
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="redis"></a> `redis`
+
+</td>
+<td>
+
+(`__namedParameters`: [`RedisFallbackProviderOptions`](globals.md#redisfallbackprovideroptions)) => [`FlagsFallbackProvider`](globals.md#flagsfallbackprovider)
+
+</td>
+<td>
+
+createRedisFallbackProvider
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="s3"></a> `s3`
+
+</td>
+<td>
+
+(`__namedParameters`: [`S3FallbackProviderOptions`](globals.md#s3fallbackprovideroptions)) => [`FlagsFallbackProvider`](globals.md#flagsfallbackprovider)
+
+</td>
+<td>
+
+createS3FallbackProvider
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="static"></a> `static`
+
+</td>
+<td>
+
+(`__namedParameters`: [`StaticFallbackProviderOptions`](globals.md#staticfallbackprovideroptions)) => [`FlagsFallbackProvider`](globals.md#flagsfallbackprovider)
+
+</td>
+<td>
+
+createStaticFallbackProvider
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
 
 ### LOG\_LEVELS
 
