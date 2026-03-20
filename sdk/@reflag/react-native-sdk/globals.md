@@ -476,7 +476,7 @@ type BootstrappedFlags = {
 </td>
 <td>
 
-[`RawFlags`](globals.md#rawflags)
+[`RawFlags`](../browser-sdk/globals.md#rawflags)
 
 </td>
 </tr>

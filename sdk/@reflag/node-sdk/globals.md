@@ -5101,7 +5101,7 @@ Deterministic hash of the configured secret key.
 type FlagsFallbackSnapshot = {
   flags: FlagAPIResponse[];
   savedAt: string;
-  version: 1;
+  version: number;
 };
 ```
 
@@ -5160,7 +5160,7 @@ ISO timestamp indicating when the snapshot was saved.
 </td>
 <td>
 
-`1`
+`number`
 
 </td>
 <td>
