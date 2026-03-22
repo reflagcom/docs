@@ -13,7 +13,7 @@ pagination:
   visible: true
 ---
 
-# @reflag/rest-api-sdk
+# @reflag/management-sdk
 
 ## Classes
 

@@ -52,7 +52,7 @@ pagination:
 <tr>
 <td>
 
-[rest-api-sdk/README](documents/rest-api-sdk/README.md)
+[management-sdk/README](documents/management-sdk/README.md)
 
 </td>
 <td>
@@ -113,6 +113,18 @@ pagination:
 <tr>
 <td>
 
+[@reflag/management-sdk](@reflag/management-sdk/README.md)
+
+</td>
+<td>
+
+Reflag Management SDK
+
+</td>
+</tr>
+<tr>
+<td>
+
 [@reflag/node-sdk](@reflag/node-sdk/README.md)
 
 </td>
@@ -143,18 +155,6 @@ pagination:
 <td>
 
 &hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-[@reflag/rest-api-sdk](@reflag/rest-api-sdk/README.md)
-
-</td>
-<td>
-
-Reflag REST API SDK
 
 </td>
 </tr>
