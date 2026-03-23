@@ -31,7 +31,7 @@
   * [Reference](sdk/@reflag/management-sdk/globals.md) 
 * [REST API](api/reflag-rest-api/README.md)
   * [API Reference](api/reflag-rest-api/reflag-api-reference.md)
-* [CLI](documents/cli/README.md)
+* [CLI](sdk/documents/cli/README.md)
 * [MCP](api/mcp.md)
 
 ## Integrations
