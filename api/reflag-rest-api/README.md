@@ -1,32 +1,32 @@
 ---
-description: Introduction to Reflag REST API
+description: Introduction to Reflag Management API
 ---
 
-# Reflag REST API
+# Management API
 
-## What is the REST API?
+## What is the Management API?
 
-The Reflag REST API allows developers to programmatically interact with their Reflag accounts.&#x20;
+The Reflag Management API allows developers to programmatically interact with their Reflag accounts.
 
 By using HTTP requests, such as GET, POST, PUT, and DELETE, users can perform actions like retrieving data, updating account settings, or managing resources without accessing the Reflag web application directly. This enables seamless integration with other systems, automation of tasks, and enhanced flexibility in account management.
 
 {% hint style="info" %}
-The Reflag REST API serves a different purpose than the Public API. For app integrations, please use the [Public API](../public-api/).
+The Reflag Management API serves a different purpose than the Runtime API. For app integrations, please use the [Runtime API](../public-api/).
 {% endhint %}
 
 ## Authentication
 
 To begin, generate a new [API key](../api-access.md) from your Reflag app settings. An API key is associated with a specific app and is usable across all environments. It comes with designated scopes that define its capabilities.
 
-Pass the API keys to Reflag API through the `Authorization` header using the `bearer` scheme.
+Pass API keys to the Reflag Management API through the `Authorization` header using the `Bearer` scheme.
 
 ## Use Cases
 
-This section covers a few simple use cases for the Reflag REST API.
+This section covers a few simple use cases for the Reflag Management API.
 
 ### Toggling Flags
 
-The REST API enables customers to integrate their back-office systems with Reflag's flag targeting. By using our API, you can quickly provide access to specific flags for a company or user directly from your systems.
+The Management API enables customers to integrate their back-office systems with Reflag's flag targeting. By using our API, you can quickly provide access to specific flags for a company or user directly from your systems.
 
 Here's a brief guide to enabling the `new-checkout-flow` flag for the `acme-corp` company:
 
@@ -72,4 +72,4 @@ npx reflag flags types --api-key ${REFLAG_CI_KEY}
 
 ## Further Documentation <a href="#install-the-sdk" id="install-the-sdk"></a>
 
-For a comprehensive overview of the available Reflag REST API endpoints, refer to the [API Reference](reflag-api-reference.md) section.
+For a comprehensive overview of the available Reflag Management API endpoints, refer to the [API Reference](reflag-api-reference.md) section.

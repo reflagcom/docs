@@ -25,11 +25,11 @@
 ## API
 
 * [API Access](api/api-access.md)
-* [Public API](api/public-api/README.md)
+* [Runtime API](api/public-api/README.md)
   * [API Reference](api/public-api/public-api-reference.md)
 * [Management SDK](sdk/@reflag/management-sdk/README.md)
-  * [Reference](sdk/@reflag/management-sdk/globals.md) 
-* [REST API](api/reflag-rest-api/README.md)
+  * [Reference](sdk/@reflag/management-sdk/globals.md)
+* [Management API](api/reflag-rest-api/README.md)
   * [API Reference](api/reflag-rest-api/reflag-api-reference.md)
 * [CLI](sdk/documents/cli/README.md)
 * [MCP](api/mcp.md)

@@ -20,7 +20,7 @@ Now let's create your first flag.
 npx @reflag/cli new
 ```
 
-See [CLI docs](api/cli.md).
+See [CLI docs](sdk/documents/cli/).
 {% endtab %}
 
 {% tab title="UI" %}

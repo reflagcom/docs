@@ -1,18 +1,18 @@
 ---
-description: Introduction to Reflag Public API
+description: Introduction to Reflag Runtime API
 ---
 
-# Public API
+# Runtime API
 
-## What is the Public API?
+## What is the Runtime API?
 
-Our public API utilizes JSON over HTTP, allowing both browsers and backend services to access flag data and share information, including companies, users, and events.
+The Reflag Runtime API uses JSON over HTTP. It lets browsers and backend services access flag data and share companies, users, and events.
 
 ## Authentication
 
 To start, you need to obtain either a [_publishable_ or _secret_ SDK key](../api-access.md) from within your Reflag app settings.
 
-Publishable keys can be either passed in the `Authorization` header using the `bearer` scheme, or as a query parameter when calling our Public API. Secret keys, on the other hand, can only be passed in the  `Authorization` header:
+Publishable keys can be passed in the `Authorization` header using the `bearer` scheme, or as a query parameter when calling the Runtime API. Secret keys can only be passed in the `Authorization` header:
 
 ```
 // using headers
@@ -24,7 +24,7 @@ GET /features/enabled?publishableKey=<publishable_key>
 
 ## Global Infrastructure
 
-The Public API currently resides at: `https://front.reflag.com/` and `https://front-eu.reflag.com`&#x20;
+The Runtime API currently resides at `https://front.reflag.com/` and `https://front-eu.reflag.com`.
 
 Requests to the front-facing API are automatically routed to a data center near you and should thus have a relatively low latency regardless of where your customers are located.
 
@@ -155,8 +155,8 @@ This endpoint is designed to relay flag "check" events for various functions wit
 
 <pre class="language-http" data-title="Request" data-overflow="wrap"><code class="lang-http"><strong>POST https://front.reflag.com/features/events?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjWy
 </strong><strong>Content-Type: application/json
-</strong><strong>
-</strong><strong>{
+</strong>
+<strong>{
 </strong>  "action": "evaluate",
   "key": "feature1",
   "targetingVersion": 42,
@@ -190,8 +190,8 @@ If a user isn't associated with a company, their events will not be taken into a
 
 <pre class="language-http" data-title="Request" data-overflow="wrap"><code class="lang-http"><strong>POST https://front.reflag.com/user?publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjWy
 </strong><strong>Content-Type: application/json
-</strong><strong>
-</strong><strong>{
+</strong>
+<strong>{
 </strong>  "userId": 1234567890,
   "attributes": {
     "name": "Rasmus Makwarth",
@@ -208,7 +208,7 @@ This endpoint is designed to track individual companies _(organizations)_ within
 
 * **Unique ID**: Use a stable unique identifier, such as a database ID or a stable hash, to reference companies.
 * **Company Attributes**: You can include additional attributes for the company.
-* **User ID**:  You can associate a user with a company by providing the `userId`. This is important as flags in Reflag look at company-level data.
+* **User ID**: You can associate a user with a company by providing the `userId`. This is important as flags in Reflag look at company-level data.
 
 #### Expected Body
 
@@ -216,7 +216,7 @@ This endpoint is designed to track individual companies _(organizations)_ within
 
 #### Example
 
-To monitor which companies have Slack enabled, set `has_slack_enabled: true` for the desired companies. Then, create a flag in Reflag that uses  `has_slack_enabled` attribute in its targeting rules.
+To monitor which companies have Slack enabled, set `has_slack_enabled: true` for the desired companies. Then, create a flag in Reflag that uses `has_slack_enabled` attribute in its targeting rules.
 
 {% code title="Request" overflow="wrap" %}
 ```http
@@ -308,4 +308,4 @@ If you encounter a `500` status code, retry the request. Sending events to Refla
 
 ## Further Documentation <a href="#install-the-sdk" id="install-the-sdk"></a>
 
-For a comprehensive overview of the available Public API endpoints, refer to the [API Reference](public-api-reference.md) section.
+For a comprehensive overview of the available Runtime API endpoints, refer to the [API Reference](public-api-reference.md) section.

@@ -1,7 +1,7 @@
 ---
 description: >-
-  Describes the REST API that allows clients to manage and update apps, flags
-  and related entities.
+  Describes the Management API that allows clients to manage and update apps,
+  flags, and related entities.
 ---
 
 # API Reference
