@@ -16,7 +16,7 @@ Reflag offers two distinct APIs:
     Each environment on Reflag has a publishable key and a secret key.
 2. [**Management API**](reflag-rest-api/): This API lets you manage your Reflag account, including listing apps, flags, and updating targeting rules. API keys govern access to the Management API. API keys are bound to your Reflag app.
 
-## Runtime API and SDK Access
+## Runtime API Access
 
 To use the Reflag runtime SDKs and/or Reflag Runtime API, you need an environment-specific SDK key. These keys are unique to each environment on Reflag and ensure secure interaction with data in that environment only. While the data (flag targeting, companies, users, events, and more) are environment-specific, the exposed flag details and remote config values are shared across all environments.
 
