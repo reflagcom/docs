@@ -1,37 +1,25 @@
 ---
+layout:
+  visible: true
 title:
   visible: true
+description:
+  visible: false
 tableOfContents:
   visible: true
 outline:
   visible: true
 pagination:
   visible: true
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
-  tags:
-    visible: true
 ---
 
-# Management SDK
+# @reflag/management-sdk (beta)
 
 Typed SDK for interacting with Reflag’s Management API.
 
 Use `@reflag/management-sdk` to programmatically manage feature flags such as listing flags, and enabling or disabling them for specific users or companies.
 
-For a practical example of what you can build, see the [Customer Admin Panel](https://github.com/reflagcom/javascript/blob/main/packages/management-sdk/examples/customer-admin-panel/README.md) example app.
+For a practical example of what you can build, see the [Customer Admin Panel](https://github.com/reflagcom/javascript/blob/main/packages/rest-api-sdk/examples/customer-admin-panel/README.md) example app.
 
 ## Installation
 
@@ -57,17 +45,17 @@ const api = new Api({
 
 Main exports:
 
-* `Api`: base client
-* `createAppClient(appId, config)`: app-scoped client
-* `ReflagApiError`: normalized API error type
-* Generated request/response types and models from `@reflag/management-sdk`
+- `Api`: base client
+- `createAppClient(appId, config)`: app-scoped client
+- `ReflagApiError`: normalized API error type
+- Generated request/response types and models from `@reflag/management-sdk`
 
 Core method groups:
 
-* Applications: `listApps`, `getApp`
-* Environments: `listEnvironments`, `getEnvironment`
-* Flags: `listFlags`, `createFlag`, `updateFlag`
-* User/company evaluation: `getUserFlags`, `updateUserFlags`, `getCompanyFlags`, `updateCompanyFlags`
+- Applications: `listApps`, `getApp`
+- Environments: `listEnvironments`, `getEnvironment`
+- Flags: `listFlags`, `createFlag`, `updateFlag`
+- User/company evaluation: `getUserFlags`, `updateUserFlags`, `getCompanyFlags`, `updateCompanyFlags`
 
 ## Quick start
 
@@ -199,7 +187,8 @@ console.log(updated.flag);
 
 ### Read user flags for an environment
 
-`getUserFlags` evaluates flag results for one user in one environment and returns the user’s current values plus exposure/check metadata for each flag.
+`getUserFlags` evaluates flag results for one user in one environment and returns
+the user’s current values plus exposure/check metadata for each flag.
 
 ```typescript
 const userFlags = await api.getUserFlags({

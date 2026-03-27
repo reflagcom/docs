@@ -6413,6 +6413,57 @@ Whether the flag is archived
 <tr>
 <td>
 
+<a id="coderefscleanedup"></a> `codeRefsCleanedUp`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether code references for this flag have been cleaned up
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="coderefsmarkedcleanat"></a> `codeRefsMarkedCleanAt?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Timestamp when code references were marked as cleaned up
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="coderefsmarkedcleanusername"></a> `codeRefsMarkedCleanUserName?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Name of the user who marked code references as cleaned up
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="createdat"></a> `createdAt?`
 
 </td>
@@ -6526,6 +6577,23 @@ Timestamp when the flag was last tracked
 <td>
 
 Flag name
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="norecentchecks"></a> `noRecentChecks`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether the flag has no recent access checks
 
 </td>
 </tr>
@@ -8698,6 +8766,23 @@ Environment details
 <tr>
 <td>
 
+<a id="flagstateversion"></a> `flagStateVersion`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Environment version incremented when flag state changes
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="id-4"></a> `id`
 
 </td>
@@ -8801,6 +8886,23 @@ Basic environment information
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+
+<a id="flagstateversion-1"></a> `flagStateVersion`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Environment version incremented when flag state changes
+
+</td>
+</tr>
 <tr>
 <td>
 
@@ -9265,6 +9367,57 @@ Whether the flag is archived
 <tr>
 <td>
 
+<a id="coderefscleanedup-1"></a> `codeRefsCleanedUp`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether code references for this flag have been cleaned up
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="coderefsmarkedcleanat-1"></a> `codeRefsMarkedCleanAt?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Timestamp when code references were marked as cleaned up
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="coderefsmarkedcleanusername-1"></a> `codeRefsMarkedCleanUserName?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Name of the user who marked code references as cleaned up
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="createdat-2"></a> `createdAt?`
 
 </td>
@@ -9384,6 +9537,23 @@ Flag name
 <tr>
 <td>
 
+<a id="norecentchecks-1"></a> `noRecentChecks`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether the flag has no recent access checks
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="owner-1"></a> `owner?`
 
 </td>
@@ -9412,6 +9582,23 @@ Flag name
 <td>
 
 Whether the flag is permanent
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="rolledouttoeveryoneat-1"></a> `rolledOutToEveryoneAt?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Timestamp when the flag was rolled out to everyone
 
 </td>
 </tr>
@@ -11737,8 +11924,8 @@ type UpdateEntityFlagsBodyNotificationsEnum = typeof UpdateEntityFlagsBodyNotifi
 const BASE_PATH: string;
 ```
 
-Reflag API
-Feature flag management API
+Reflag Management API
+Feature flag Management API
 
 The version of the OpenAPI document: 3.0.1
 
@@ -12133,6 +12320,7 @@ const FlagHeaderCollectionSortByEnum: {
   LastTrack: "lastTrack";
   Name: "name";
   Owner: "owner";
+  RolledOutToEveryoneAt: "rolledOutToEveryoneAt";
   Stage: "stage";
   Stale: "stale";
 };
@@ -12299,6 +12487,23 @@ const FlagHeaderCollectionSortByEnum: {
 <td>
 
 'owner'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="rolledouttoeveryoneat-2"></a> `RolledOutToEveryoneAt`
+
+</td>
+<td>
+
+`"rolledOutToEveryoneAt"`
+
+</td>
+<td>
+
+'rolledOutToEveryoneAt'
 
 </td>
 </tr>
