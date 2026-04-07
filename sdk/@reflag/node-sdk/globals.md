@@ -379,10 +379,49 @@ Flags for the given user/company and whether each one is enabled or not
 ##### refreshFlags()
 
 ```ts
-refreshFlags(): Promise<void>
+refreshFlags(waitForVersion?: number): Promise<void>
 ```
 
 Refreshes the flag definitions from the server.
+
+Fetch starts are throttled to at most once per second. Outside
+`in-request` mode, a call to `refreshFlags(waitForVersion)` still waits
+until the cache has applied that version or newer.
+
+In `in-request` mode, a throttled call only records pending refresh work.
+The fetch then runs on the next request/access or `refreshFlags()` call
+after the throttle window expires.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`waitForVersion`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Optional flag state version to wait for before returning updated definitions.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ###### Returns
 
@@ -460,6 +499,12 @@ An error if the event is invalid or the options are invalid.
 
 The EdgeClient is ReflagClient pre-configured to be used in edge runtimes, like
 Cloudflare Workers.
+
+It always uses `flagsSyncMode: "in-request"`. Refresh fetch starts are
+throttled to at most once per second. A `refreshFlags()` call made during
+that throttle window only records pending refresh work, so the call may
+resolve before the fetch runs. That pending refresh is executed on the next
+request/access or `refreshFlags()` call after the window expires.
 
 #### Example
 
@@ -1289,10 +1334,41 @@ afterEach(() => {
 ##### refreshFlags()
 
 ```ts
-refreshFlags(): Promise<void>
+refreshFlags(waitForVersion?: number): Promise<void>
 ```
 
 Refreshes the flag definitions from the server.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`waitForVersion`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Optional flag state version to wait for before returning updated definitions.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ###### Returns
 
@@ -1305,7 +1381,18 @@ Useful when you know flags have changed and don't want to wait for the next auto
 
 Note: updated flag rules take a few seconds to propagate to all servers.
 
-Concurrent calls are deduplicated — multiple calls share the same in-flight request.
+Fetch starts are throttled to at most once per second.
+Outside `in-request` mode, throttling only delays when the next fetch
+begins: `refreshFlags(99)` still waits until the cache has applied flag
+definitions from version `99` or newer before the promise resolves.
+Concurrent callers are deduplicated and may share the same in-flight or
+scheduled follow-up refresh.
+
+In `in-request` mode, delayed follow-up refreshes are not scheduled. On edge
+runtimes like Cloudflare Workers, a call during the throttle window only
+records pending refresh work, and the promise may resolve before that fetch
+runs. The pending refresh is executed on the next request/access or
+`refreshFlags()` call after the throttle window expires.
 
 ###### Inherited from
 
@@ -2394,10 +2481,41 @@ afterEach(() => {
 ##### refreshFlags()
 
 ```ts
-refreshFlags(): Promise<void>
+refreshFlags(waitForVersion?: number): Promise<void>
 ```
 
 Refreshes the flag definitions from the server.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`waitForVersion`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Optional flag state version to wait for before returning updated definitions.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ###### Returns
 
@@ -2410,7 +2528,18 @@ Useful when you know flags have changed and don't want to wait for the next auto
 
 Note: updated flag rules take a few seconds to propagate to all servers.
 
-Concurrent calls are deduplicated — multiple calls share the same in-flight request.
+Fetch starts are throttled to at most once per second.
+Outside `in-request` mode, throttling only delays when the next fetch
+begins: `refreshFlags(99)` still waits until the cache has applied flag
+definitions from version `99` or newer before the promise resolves.
+Concurrent callers are deduplicated and may share the same in-flight or
+scheduled follow-up refresh.
+
+In `in-request` mode, delayed follow-up refreshes are not scheduled. On edge
+runtimes like Cloudflare Workers, a call during the throttle window only
+records pending refresh work, and the promise may resolve before that fetch
+runs. The pending refresh is executed on the next request/access or
+`refreshFlags()` call after the throttle window expires.
 
 ##### setFlagOverrides()
 
@@ -3791,6 +3920,8 @@ type ClientOptions = {
      | (context: Context) => FlagOverrides;
   flagsFallbackProvider: FlagsFallbackProvider;
   flagsFetchRetries: number;
+  flagsPushUrl: string;
+  flagsSyncMode: FlagsSyncMode;
   host: string;
   httpClient: HttpClient;
   logger: Logger;
@@ -3861,7 +3992,9 @@ If not provided, the default options are used.
 </td>
 <td>
 
-The cache strategy to use for the client (optional, defaults to "periodically-update").
+**Deprecated**
+
+Use `flagsSyncMode`.
 
 </td>
 </tr>
@@ -3999,6 +4132,44 @@ Ignored in offline mode.
 
 Number of times to retry fetching feature definitions (optional).
 Default is 3 times.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagspushurl"></a> `flagsPushUrl`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Push endpoint used when `flagsSyncMode` is `"push"`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagssyncmode"></a> `flagsSyncMode`?
+
+</td>
+<td>
+
+[`FlagsSyncMode`](globals.md#flagssyncmode-1)
+
+</td>
+<td>
+
+How flag definitions are synchronized.
+
+- `polling` (default): periodic background refresh.
+- `in-request`: stale refresh is triggered during request handling.
+- `push`: live updates over SSE keep flag definitions up to date.
 
 </td>
 </tr>
@@ -4333,7 +4504,7 @@ The name of the user.
 ### EdgeClientOptions
 
 ```ts
-type EdgeClientOptions = Omit<ClientOptions, "cacheStrategy" | "flushIntervalMs" | "batchOptions">;
+type EdgeClientOptions = Omit<ClientOptions, "flagsSyncMode" | "cacheStrategy" | "flushIntervalMs" | "batchOptions">;
 ```
 
 ***
@@ -5011,6 +5182,7 @@ The optional user-supplied payload data.
 ```ts
 type FlagsAPIResponse = {
   features: FlagAPIResponse[];
+  flagStateVersion: number;
 };
 ```
 
@@ -5043,6 +5215,24 @@ type FlagsAPIResponse = {
 <td>
 
 The feature definitions.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagstateversion"></a> `flagStateVersion`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Optional for backward compatibility; when absent, the snapshot version
+should be treated as unknown by consumers.
 
 </td>
 </tr>
@@ -5171,6 +5361,14 @@ Snapshot schema version.
 </tr>
 </tbody>
 </table>
+
+***
+
+### FlagsSyncMode
+
+```ts
+type FlagsSyncMode = "polling" | "in-request" | "push";
+```
 
 ***
 
