@@ -5423,20 +5423,22 @@ type FlagType = {
 
 ***
 
+### GCSFallbackProviderClient
+
+```ts
+type GCSFallbackProviderClient = 
+  | GCSLegacyClient
+  | GCSGoogleApisClient;
+```
+
+***
+
 ### GCSFallbackProviderOptions
 
 ```ts
 type GCSFallbackProviderOptions = {
   bucket: string;
-  client: {
-     bucket: {
-        file: {
-           download: Promise<[Uint8Array]>;
-           exists: Promise<[boolean]>;
-           save: Promise<unknown>;
-          };
-       };
-    };
+  client: GCSFallbackProviderClient;
   keyPrefix: string;
 };
 ```
@@ -5477,43 +5479,17 @@ Bucket where snapshots are stored.
 </td>
 <td>
 
-\{
-  `bucket`: \{
-     `file`: \{
-        `download`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\[[`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)\]\>;
-        `exists`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\[`boolean`\]\>;
-        `save`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`unknown`\>;
-       \};
-    \};
- \}
+[`GCSFallbackProviderClient`](globals.md#gcsfallbackproviderclient)
 
 </td>
 <td>
 
 Optional GCS client. A default client is created when omitted.
 
-</td>
-</tr>
-<tr>
-<td>
+Accepts either a legacy `bucket().file()` client or a generated
+`@googleapis/storage` client.
 
-<a id="bucket-1"></a> `bucket()`
-
-</td>
-<td>
-
-\{
-  `file`: \{
-     `download`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\[[`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)\]\>;
-     `exists`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\[`boolean`\]\>;
-     `save`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`unknown`\>;
-    \};
- \}
-
-</td>
-<td>
-
-&hyphen;
+TODO(next major): Replace this with a simpler object-store interface.
 
 </td>
 </tr>
@@ -5531,6 +5507,124 @@ Optional GCS client. A default client is created when omitted.
 <td>
 
 Prefix for generated per-environment keys.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### GCSGoogleApisClient
+
+```ts
+type GCSGoogleApisClient = {
+  objects: {
+     get: Promise<{
+        data: unknown;
+       }>;
+     insert: Promise<unknown>;
+    };
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="objects"></a> `objects`
+
+</td>
+<td>
+
+\{
+  `get`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\{
+     `data`: `unknown`;
+    \}\>;
+  `insert`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`unknown`\>;
+ \}
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="get-1"></a> `get()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\{
+  `data`: `unknown`;
+ \}\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="insert"></a> `insert()`
+
+</td>
+<td>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`unknown`\>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### GCSLegacyClient
+
+```ts
+type GCSLegacyClient = {
+  bucket: {
+     file: {
+        download: Promise<[Uint8Array]>;
+        exists: Promise<[boolean]>;
+        save: Promise<unknown>;
+       };
+    };
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="bucket-1"></a> `bucket()`
+
+</td>
+<td>
+
+\{
+  `file`: \{
+     `download`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\[[`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)\]\>;
+     `exists`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\[`boolean`\]\>;
+     `save`: [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`unknown`\>;
+    \};
+ \}
 
 </td>
 </tr>
@@ -5830,7 +5924,7 @@ Optional Redis client. When omitted, a client is created using `REDIS_URL`.
 <tr>
 <td>
 
-<a id="get-1"></a> `get()`
+<a id="get-2"></a> `get()`
 
 </td>
 <td>
