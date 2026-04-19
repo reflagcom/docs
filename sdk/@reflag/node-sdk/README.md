@@ -158,10 +158,10 @@ and downloads the flags with their targeting rules.
 These rules are then matched against the user/company information you provide
 to `getFlags()` (or through `bindClient(..).getFlags()`). That means the
 `getFlags()` call does not need to contact the Reflag servers once
-`initialize()` has completed. By default, `ReflagClient` will continue to
-refresh the targeting rules from the Reflag servers in the background. You can
-change this behavior with `flagsSyncMode` to use request-driven refreshes or
-push-based updates instead.
+`initialize()` has completed. By default, `ReflagClient` uses
+`flagsSyncMode: "push"`, which keeps targeting rules up to date via live SSE
+updates. You can switch `flagsSyncMode` to `polling` for periodic background
+refreshes or `in-request` for request-driven refreshes instead.
 
 ### Batch Operations
 
@@ -172,7 +172,7 @@ The batch buffer is configurable through the client options:
 const client = new ReflagClient({
   batchOptions: {
     maxSize: 100, // Maximum number of events to batch
-    intervalMs: 1000, // Flush interval in milliseconds
+    intervalMs: 10000, // Flush interval in milliseconds (default: 10000)
   },
 });
 ```
@@ -298,13 +298,14 @@ await client.initialize();
 ```
 
 The file provider stores one snapshot file per environment in the configured
-`directory`.
+`directory`, using the filename
+`flags-fallback-<secretKeyHash.slice(0, 16)>.json`.
 
 ##### Redis provider
 
-The built-in Redis provider creates a Redis client automatically when omitted and uses `REDIS_URL` from the environment. It stores snapshots under the configured `keyPrefix` and uses the first 16 characters of the secret key hash in the Redis key.
+The built-in Redis provider creates a Redis client automatically when omitted and uses `REDIS_URL` from the environment. It stores snapshots under the configured `keyPrefix` and appends the first 16 characters of the secret key hash to that prefix.
 
-Without a `keyPrefix` set, it will default to to the key `reflag:flags-fallback:${secretKeyHash}`.
+Without a `keyPrefix` set, it will default to the key `reflag:flags-fallback:<secretKeyHash.slice(0, 16)>`. When you provide a custom `keyPrefix`, any trailing `:` is trimmed before the hash suffix is appended.
 
 ```typescript
 import { ReflagClient, fallbackProviders } from "@reflag/node-sdk";
@@ -319,9 +320,9 @@ await client.initialize();
 
 ##### S3 provider
 
-The built-in S3 provider works out of the box using the AWS SDK's default credential chain and region resolution. It stores the snapshot object under the configured `keyPrefix` and uses a hash of the secret key in the object name.
+The built-in S3 provider works out of the box using the AWS SDK's default credential chain and region resolution. It stores the snapshot object under the configured `keyPrefix` and uses the filename `flags-fallback-<secretKeyHash.slice(0, 16)>.json`.
 
-Without a `keyPrefix` set, it will default to path `reflag/flags-fallback/${secretKeyHash}`.
+Without a `keyPrefix` set, it will default to the object key `reflag/flags-fallback/flags-fallback-<secretKeyHash.slice(0, 16)>.json`. When you provide a custom `keyPrefix`, any trailing `/` is trimmed before the filename is appended.
 
 ```typescript
 import { ReflagClient, fallbackProviders } from "@reflag/node-sdk";
@@ -338,9 +339,9 @@ await client.initialize();
 
 ##### GCS provider
 
-The built-in GCS provider works out of the box using Google Cloud's default application credentials. It stores the snapshot object under the configured `keyPrefix` and uses a hash of the secret key in the object name.
+The built-in GCS provider works out of the box using Google Cloud's default application credentials. It stores the snapshot object under the configured `keyPrefix` and uses the filename `flags-fallback-<secretKeyHash.slice(0, 16)>.json`.
 
-Without a `keyPrefix` set, it will default to path `reflag/flags-fallback/${secretKeyHash}`.
+Without a `keyPrefix` set, it will default to the object key `reflag/flags-fallback/flags-fallback-<secretKeyHash.slice(0, 16)>.json`. When you provide a custom `keyPrefix`, any trailing `/` is trimmed before the filename is appended.
 
 ```typescript
 import { ReflagClient, fallbackProviders } from "@reflag/node-sdk";
@@ -588,7 +589,7 @@ current working directory.
 | `apiBaseUrl`            | string                                | The base API URL for the Reflag servers.                                                                                                                                                                                                            | REFLAG_API_BASE_URL                         |
 | `flagOverrides`         | Record<string, boolean>               | An object specifying flag overrides for testing or local development. See [examples/express/app.test.ts](https://github.com/reflagcom/javascript/tree/main/packages/node-sdk/examples/express/app.test.ts) for how to use `flagOverrides` in tests. | REFLAG_FLAGS_ENABLED, REFLAG_FLAGS_DISABLED |
 | `flagsFallbackProvider` | `FlagsFallbackProvider`               | Optional provider used to load and save raw flag definitions for fallback startup when the initial live fetch fails. Available only through the constructor. Ignored in offline mode.                                                               | -                                           |
-| `flagsSyncMode`         | `"polling" \| "in-request" \| "push"` | Flag-definition sync mode. `polling` uses periodic background refresh, `in-request` refreshes stale flags during request handling, and `push` subscribes to live updates. Default: `"polling"`.                                                     | -                                           |
+| `flagsSyncMode`         | `"polling" \| "in-request" \| "push"` | Flag-definition sync mode. `push` subscribes to live updates, `polling` uses periodic background refresh, and `in-request` refreshes stale flags during request handling. Default: `"push"`.                                                        | -                                           |
 | `flagsPushUrl`          | string                                | Push endpoint used when `flagsSyncMode: "push"`. Default: `https://pubsub.reflag.com/sse`.                                                                                                                                                          | -                                           |
 | `configFile`            | string                                | Load this config file from disk. Default: `reflag.config.json`                                                                                                                                                                                      | REFLAG_CONFIG_FILE                          |
 
@@ -841,17 +842,17 @@ await client.updateCompany("company456", {
   },
 });
 
-// Later, evaluate flags remotely using stored context
-const flags = await client.getFlagsRemote("company456", "user123");
+// Later, evaluate flags remotely using stored context.
+// Note: the argument order is (userId, companyId, additionalContext?)
+const userId = "user123";
+const companyId = "company456";
+
+const flags = await client.getFlagsRemote(userId, companyId);
 // Or evaluate a single flag
-const flag = await client.getFlagRemote(
-  "create-todos",
-  "company456",
-  "user123",
-);
+const flag = await client.getFlagRemote("create-todos", userId, companyId);
 
 // You can also provide additional context
-const flagsWithContext = await client.getFlagsRemote("company456", "user123", {
+const flagsWithContext = await client.getFlagsRemote(userId, companyId, {
   other: {
     location: "US",
     platform: "mobile",
@@ -933,7 +934,8 @@ See [examples/express/app.ts](https://github.com/reflagcom/javascript/tree/main/
 If you don't want to provide context each time when evaluating flags but
 rather you would like to utilize the attributes you sent to Reflag previously
 (by calling `updateCompany` and `updateUser`) you can do so by calling `getFlagsRemote`
-(or `getFlagRemote` for a specific flag) with providing just `userId` and `companyId`.
+(or `getFlagRemote` for a specific flag) with just `userId` and `companyId`
+in that order.
 These methods will call Reflag's servers and flags will be evaluated remotely
 using the stored attributes.
 
@@ -954,8 +956,8 @@ client.updateCompany("acme_inc", {
 });
 ...
 
-// This will evaluate flags with respecting the attributes sent previously
-const flags = await client.getFlagsRemote("acme_inc", "john_doe");
+// This will evaluate flags using the stored attributes for the user/company pair
+const flags = await client.getFlagsRemote("john_doe", "acme_inc");
 ```
 
 {% hint style="warning" %}

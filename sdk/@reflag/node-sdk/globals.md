@@ -4030,7 +4030,11 @@ set through the environment variable REFLAG_CONFIG_FILE.
 </td>
 <td>
 
-If set to `false`, no evaluation events will be emitted.
+Deprecated: evaluation events are no longer emitted.
+
+**Deprecated**
+
+This option has no effect and will be removed in the next major version.
 
 </td>
 </tr>
@@ -4167,9 +4171,9 @@ Push endpoint used when `flagsSyncMode` is `"push"`.
 
 How flag definitions are synchronized.
 
-- `polling` (default): periodic background refresh.
+- `push` (default): live updates over SSE keep flag definitions up to date.
+- `polling`: periodic background refresh.
 - `in-request`: stale refresh is triggered during request handling.
-- `push`: live updates over SSE keep flag definitions up to date.
 
 </td>
 </tr>
