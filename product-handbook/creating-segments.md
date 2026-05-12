@@ -29,8 +29,10 @@ Each segment is created using a set of conditions. You can add as many segmentat
 
 There are 4 types of conditions:
 
-* `Company attribute`
-* `User attributes`
+* `Company attribute` - any kind of attribute, like `plan IS 'pro'`
+* `Company list`  - convenient way to search for companies by name or paste a list of company IDs to target
+* `User attributes`  - any kind of attribute, like `roles CONTAINS 'admin'`
+* `User list` - convenient way to search for users by name or paste a list of company IDs to target
 * `Flag access`
   * `is enabled`
   * `is not enabled`
