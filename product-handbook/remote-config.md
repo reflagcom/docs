@@ -97,7 +97,7 @@ The image above shows a flag called "_AI Transcripts_" that serves four customer
 
 ## Start using remote config
 
-First, [create your first flag](https://app.reflag.com/), if you have not already. Then open your flag and click the "_Remote config_" tab.
+First, [create your first flag](https://app.reflag.com/env-current/flags/new), if you have not already. Then open your flag and click the "_Remote config_" tab.
 
 <figure><img src="../.gitbook/assets/Screenshot 2025-09-12 at 14.37.52.png" alt=""><figcaption><p>Click "Create config value" to start</p></figcaption></figure>
 
