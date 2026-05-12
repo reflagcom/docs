@@ -4,50 +4,64 @@ description: Learn more about segments in Reflag
 
 # Creating segments
 
-## What's a segment?
+## What segments are
 
-Segments are reusable lists of companies or users created based off one of more of the following:
+Segments are reusable audiences built from companies, users, or both together.
 
-* [Company attributes](concepts/company.md#attributes)
-* [User attributes](concepts/user.md)
-* Flag access
-* Flag metrics
-* Feature feedback
+You build them from filters such as company lists, user lists, [company attributes](concepts/company.md#attributes), [user attributes](concepts/user.md), flag access, and flag metrics.
 
-Segments can be used as access rule for managing flag access.
+Use segments when you want to save an audience once and reuse it across multiple flags in [access rules](feature-rollouts/feature-targeting-rules.md).
 
-## Getting started <a href="#get-started" id="get-started"></a>
+## Create a segment <a href="#create-a-segment" id="create-a-segment"></a>
 
-* Go to the `Segments` page on the sidebar
-* Click on the `Add filter +` menu item to build your segment conditions
+1. Open **Segments** in the sidebar.
+2. Click **Add filter +**.
+3. Add the conditions for the companies, users, or combined audience you want to include.
+4. Save the segment.
 
-## Set segment conditions
+## Choose segment conditions
 
-Each segment is created using a set of conditions. You can add as many segmentation conditions as you’d like.
+Each segment uses one or more conditions. Add as many conditions as you need.
 
-### Conditions
+### Condition types
 
-There are 4 types of conditions:
+You can build a segment from these condition types:
 
-* `Company attribute` - any kind of attribute, like `plan IS 'pro'`
-* `Company list`  - convenient way to search for companies by name or paste a list of company IDs to target
-* `User attributes`  - any kind of attribute, like `roles CONTAINS 'admin'`
-* `User list` - convenient way to search for users by name or paste a list of company IDs to target
+* `Company attribute` — match company data such as `plan IS 'pro'`
+* `User attribute` — match user data such as `role CONTAINS 'admin'`
+* `Company list` — search by company name or paste company IDs
+* `User list` — search by user name or paste user IDs
 * `Flag access`
-  * `is enabled`
-  * `is not enabled`
+  * `Is enabled`
+  * `Is not enabled`
 * `Flag metric`
   * `Track count`
   * `Exposure count`
   * `First track`
   * `Last track`
 * `Segment`
-  * `in Segment`
-  * `not in Segment`
+  * `In segment`
+  * `Not in segment`
 
-<figure><img src="../.gitbook/assets/Screenshot 2025-09-12 at 15.13.45.png" alt="Using feature filters to create segments"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2025-09-12 at 15.13.45.png" alt="Using flag filters to create segments"><figcaption></figcaption></figure>
 
-### **Operators**
+### How conditions work
+
+All conditions in a segment must match.
+
+That means segment conditions work like `AND`.
+
+You can combine company conditions and user conditions in the same segment.
+
+### Common examples
+
+* Pro customers — `Company attribute: plan IS 'pro'`
+* Admin users at beta companies — `User attribute: role CONTAINS 'admin'` and `Segment: In segment 'Beta customers'`
+* Companies with access to a flag — `Flag access: [Flag name] is enabled`
+
+### Available operators
+
+Operators depend on the condition type:
 
 * Any
   * `Is`
@@ -78,8 +92,10 @@ There are 4 types of conditions:
   * `In segment`
   * `Not in segment`
 
-## Save the segment
+## Save and reuse the segment
 
-After adding any applicable conditions, you can save the segment. You can create as many segments as you need.
+After you save a segment, you can reuse it in flag [access rules](feature-rollouts/feature-targeting-rules.md) and rollout workflows.
+
+You can create as many segments as you need.
 
 <figure><img src="../.gitbook/assets/Screenshot 2025-09-12 at 15.14.43.png" alt="Saving a segment"><figcaption></figcaption></figure>

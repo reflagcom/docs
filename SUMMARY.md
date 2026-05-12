@@ -53,9 +53,9 @@
 ## Product Handbook
 
 * [Product overview](product-handbook/product-overview.md)
-* [Feature rollouts](product-handbook/feature-rollouts/README.md)
+* [Flag rollouts](product-handbook/feature-rollouts/README.md)
   * [Access rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
-* [Feature clean-up and archival](product-handbook/feature-clean-up-and-archival-beta/README.md)
+* [Flag clean-up and archival](product-handbook/feature-clean-up-and-archival-beta/README.md)
   * [AI code clean-up](product-handbook/feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md)
 * [Remote config](product-handbook/remote-config.md)
 * [Type safety](product-handbook/type-safety.md)

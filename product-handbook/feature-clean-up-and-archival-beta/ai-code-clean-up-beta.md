@@ -1,9 +1,9 @@
 # AI code clean-up
 
-When the [GitHub integration](../../integrations/github.md) has been enabled, Reflag can automatically clean up your code after features turn stale. The Reflag bot simply submits a pull request to your GitHub repository which removes the flag code once a feature turns stale.
+When the [GitHub integration](../../integrations/github.md) is enabled, Reflag can automatically clean up your code after flags turn stale. The Reflag bot submits a pull request to your GitHub repository that removes flag code once a flag turns stale.
 
 {% hint style="warning" %}
-This feature **keeps the codepath that grants access (isEnabled == true)** when cleaning up and archiving a feature i.e. releasing it everyone by removing the flagging code.
+This automation **keeps the codepath that grants access (`isEnabled == true`)** when cleaning up and archiving a flag. In practice, it releases the flag to everyone by removing the flagging code.
 {% endhint %}
 
 {% hint style="info" %}
@@ -22,21 +22,21 @@ Make sure the [GitHub integration](https://app.reflag.com/env-current/settings/o
 
 Enable "Auto-create AI Clean-up PRs" under organization-level [Clean-up settings](https://app.reflag.com/env-current/settings/org-archiving-flow).
 
-This will ensure that newly created features have the automation switched on.
+This ensures that newly created flags have the automation switched on.
 
 <figure><img src="../../.gitbook/assets/image (28).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 3. Test it manually
 
-Find a stale feature that is ready for clean-up by looking for the broom icon in the features table.
+Find a stale flag that is ready for clean-up by looking for the broom icon in the flags table.
 
 <figure><img src="../../.gitbook/assets/image (32).png" alt="" width="563"><figcaption></figcaption></figure>
 
-Find the "Clean-up guide" in the feature sidebar, click "Show details" and hit the "Create AI clean-up PR" button to start the process.
+Find the "Clean-up guide" in the flag sidebar, click "Show details", and hit the "Create AI clean-up PR" button to start the process.
 
 <figure><img src="../../.gitbook/assets/image (24).png" alt="" width="563"><figcaption></figcaption></figure>
 
-Within a few minutes, you'll have a GitHub Pull Request that removes the feature flag and keeps the enabled codepath, like here:
+Within a few minutes, you'll have a GitHub pull request that removes the flag and keeps the enabled codepath, like here:
 
 <figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
@@ -95,9 +95,9 @@ Unfortunately, GitHub purposefully disables running checks on commits that are g
 
 ## Under the hood
 
-The GitHub integration continuously checks the codebase against the feature keys in Reflag whenever a commit is pushed to the repository.
+The GitHub integration continuously checks the codebase against the flag keys in Reflag whenever a commit is pushed to the repository.
 
-When the AI clean-up bot operates, it searches for usage of the Reflag SDK in your codebase and identifies where specific feature keys are used. LLMs are employed to intelligently refactor the code to remove the flag and eliminate codepaths that become unreachable.
+When the AI clean-up bot runs, it searches for usage of the Reflag SDK in your codebase and identifies where specific flag keys are used. LLMs then refactor the code to remove the flag and eliminate unreachable codepaths.
 
 For React, this usually corresponds to the `useFlag` hook, like in this contrived example:
 

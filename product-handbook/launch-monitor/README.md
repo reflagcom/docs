@@ -6,11 +6,11 @@ Use the launch monitor to track exposure and adoption, and to collect end-user f
 
 ## Exposure
 
-The Exposed chart shows you the distinct count of companies that have been exposed the the feature. Exposed means that they've been checked for feature access in the SDK and the check returned `enabled`.
+The Exposed chart shows the distinct count of companies that have been exposed to the flag. Exposed means they were checked for flag access in the SDK and the check returned `enabled`.
 
 ## Adoption
 
-The Tracked chart shows you the dinstinct count of companies that have interacted with the feature. Interactions are tracked with the `track` method. Here's a code example:
+The Tracked chart shows the distinct count of companies that have interacted with the flagged workflow. Interactions are tracked with the `track` method.
 
 ```typescript
 import { useFlag } from "@reflag/react-sdk";
@@ -37,7 +37,7 @@ function StartHuddleButton() {
 
 ## Feedback
 
-You can collect end-user feedback on new feature releases to catch and fix issues faster.
+You can collect end-user feedback on new flag rollouts to catch and fix issues faster.
 
 ### Static feedback button
 
@@ -47,7 +47,7 @@ Here's a brief example using the [Reflag React SDK](../../sdk/@reflag/browser-sd
 import { useFlag } from "@reflag/react-sdk";
 
 function StartHuddleButton() {
-  const { isLoading, isEnabled, requestFeedback } = useFlag("my-feature");
+  const { isLoading, isEnabled, requestFeedback } = useFlag("my-flag");
 
   if (isLoading) {
     return <Loading />;
@@ -59,9 +59,9 @@ function StartHuddleButton() {
 
   return (
     <>
-      <button>Use feature!</button>
+      <button>Use huddle</button>
       <button
-        onClick={() => requestFeedback({ title: "How do you like <feature>?" })}
+        onClick={() => requestFeedback({ title: "How do you like huddles?" })}
       >
         Give feedback!
       </button>
@@ -72,4 +72,4 @@ function StartHuddleButton() {
 
 ### Automated feedback survey
 
-Automated surveys lets you ask for feedback at just the right time after N interactions with the feature. [Learn more here](automated-feedback-surveys.md).
+Automated surveys let you ask for feedback at the right time after `N` interactions with the flag. [Learn more here](automated-feedback-surveys.md).

@@ -1,53 +1,50 @@
 ---
 description: >-
-  Managing feature flag lifecycle on Reflag is straight forward with the
-  "clean-up guide",  notifications and automatic clean-up pull requests.
+  Managing the flag lifecycle in Reflag is straightforward with the clean-up
+  guide, notifications, and automatic clean-up pull requests.
 ---
 
-# Feature clean-up and archival
+# Flag clean-up and archival
 
-## Stale features
+## Stale flags
 
-After features have been rolled out to everyone, they turn stale after a given period of time. Stale features show up with a little broom next to their name and you also receive a Slack notification if the Slack notification is enabled
+After flags have been rolled out to everyone, they turn stale after a set period of time. Stale flags show a broom next to their name. You also receive a Slack notification if that integration is enabled.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-07-15 at 21.31.16.png" alt=""><figcaption></figcaption></figure>
 
-## Stale features view
+## Stale flags view
 
-The stale features view lets you see all the features that are currently stale as well as what needs to be done before they can be archived
+The stale flags view shows all flags that are currently stale and what still needs to happen before they can be archived.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-09-02 at 17.19.44 (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Clean-up guide
 
-Open up a feature and find the built in "Clean-up guide". The "Clean-up guide" helps you through the steps required to safely archive a feature.
+Open a flag and find the built-in "Clean-up guide". It walks you through the steps required to archive a flag safely.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-07-10 at 14.04.07.png" alt="" width="563"><figcaption></figcaption></figure>
 
-There are three **checks** that must pass for the feature to be safe to archive:
+There are three **checks** that must pass before the flag is safe to archive:
 
-* Stale: Feature was rolled out to everyone some time ago
+* Stale: the flag was rolled out to everyone some time ago
 * Flag removed from the code in a GitHub repository
 * No access checks for some time
 
-There are two **automations** that can be enabled at the feature level:
+There are two **automations** that can be enabled at the flag level:
 
-* Auto-creating a Pull Request once the feature turns stale
+* Auto-creating a Pull Request once the flag turns stale
 * Auto-archiving once all checks pass
 
-See the [AI code clean-up](ai-code-clean-up-beta.md) page for more information on automating code clean-up
+See [AI code clean-up](ai-code-clean-up-beta.md) for more on automating code clean-up.
 
 ## Organization clean-up settings
 
-In organization settings, you control requirements for each checks to pass:
+In organization settings, you control the requirements for each check to pass:
 
-* Configure how soon after rollout features should be considered stale
+* Configure how soon after rollout flags should be considered stale
 * If GitHub is connected, you'll see which repository will be checked for the presence of flags
 * How long to wait for the last access check
 
-You can also set the default automation settings for newly created features.
+You can also set the default automation settings for newly created flags.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-07-10 at 14.11.01.png" alt=""><figcaption></figcaption></figure>
-
-
-

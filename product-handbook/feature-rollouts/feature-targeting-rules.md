@@ -6,17 +6,17 @@ description: Learn more about access rules in Reflag
 
 ## What are access rules?
 
-Feature access lets you conditionally enable features for a company or a user.
+Flag access lets you conditionally enable flags for a company or a user.
 
-Using conditions based on company and user attributes, you can target specific groups of users and conditionally enable a feature for them.
+Using conditions based on company and user attributes, you can target specific audiences and conditionally enable a flag for them.
 
-By using rollout percentages you can roll the feature out to only a certain percentage of companies in the group.
+By using rollout percentages, you can roll a flag out to only a certain percentage of companies in the group.
 
-You'll find the feature access configuration under the `Access` tab in each feature.
+You'll find the flag access configuration under the `Access` tab in each flag.
 
 ## Getting started <a href="#get-started" id="get-started"></a>
 
-* Create your [feature](https://app.reflag.com/)
+* Create your [flag](https://app.reflag.com/)
 * Select the `Access` tab
 
 ## Access rules
@@ -37,7 +37,7 @@ The default access criteria let you add segments, companies, and users without a
 
 You can also create advanced access rules with the "+ Add Rule" button.
 
-Advanced rules let you specify rollout percentages and create access rules using company attributes, user attributes, feature access, or other contexts.
+Advanced rules let you specify rollout percentages and create access rules using company attributes, user attributes, feature access, or other contexts. Advanced rules let you specify rollout percentages and create access rules using company attributes, user attributes, flag access, or other contexts.
 
 ### Conditions
 
@@ -54,10 +54,12 @@ There are 5 types of conditions:
   * `Email`
   * `Any user-defined custom attributes`
 * `Segment`
-  * Existing segments created in the [Companies](../creating-segments.md) tab that don’t use `First seen`, `Last seen`, or `Feature metrics` filters.
+  * Existing segments that don’t use `First seen`, `Last seen`, or `Flag metrics` filters.
+  * Segments can combine company and user conditions in the same audience.
   * You can include or exclude companies that are part of a segment.
-* `Feature access`
-  * Re-use access rules from another feature. You can choose to include or exclude companies that have access to another feature.
+* `Flag access`
+  * Reuse access rules from another flag.
+  * You can choose to include or exclude companies that have access to another flag.
 * `Other context`
   * Set access rules based on custom data that does not belong to a company or user but rather a specific situation that a company or user is in, like an `eventID`.
   * Example:
@@ -72,22 +74,22 @@ Here are examples of access conditions:
 * Give access to users with the manager role at all companies: `User attribute: role IS [manager]`
 * Give access to companies in the Pro plan segment: `Segment: In segment ['Pro']`
 * Give access to companies in the Beta users’ segment: `Segment: In segment ['Beta users']`
-* Give access to companies who already have access to the Huddle feature: `Feature access: Feature [Huddle] is enabled`
-* Enable feature for a single company but only when managing a particular event: `Company attribute: Company ID IS [42] AND Other context: eventID IS [641]`
+* Give access to companies who already have access to the Huddle flag: `Flag access: Flag [Huddle] is enabled`
+* Enable a flag for a single company but only when managing a particular event: `Company attribute: Company ID IS [42] AND Other context: eventID IS [641]`
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 13.21.25.png" alt="Reflag feature flag targeting rules"><figcaption><p>There are 5 different types of conditions to chose from</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-09-12 at 13.21.25.png" alt="Reflag flag targeting rules"><figcaption><p>There are 5 different types of conditions to choose from.</p></figcaption></figure>
 
 ## Setting multiple access rules <a href="#setting-multiple-targeting-rules" id="setting-multiple-targeting-rules"></a>
 
 You can create as many access rules as you like. Rules are made up of individual conditions.
 
-Companies will get access to your feature if they meet the criteria of any of the access rules. For a rule to match, they must meet all the conditions of that rule. In other words, there’s an `OR` between the rules and an `AND` between the conditions.
+Companies will get access to your flag if they meet the criteria of any of the access rules. For a rule to match, they must meet all the conditions of that rule. In other words, there’s an `OR` between the rules and an `AND` between the conditions.
 
 ### Example
 
 We’ve added two rules. The first rule has two conditions while the second rule has a single condition.
 
-If _**any**_ rules match, the feature will be enabled for a given company or user. A rule matches if _**all**_ conditions within it match.
+If _**any**_ rules match, the flag will be enabled for a given company or user. A rule matches if _**all**_ conditions within it match.
 
 Another way to say this is that there’s an `OR` between the rules and an `AND` between the conditions.
 
@@ -97,40 +99,40 @@ The rules you create will be different between [environments](feature-targeting-
 
 ## Specify rollout percentage
 
-Select a rollout percentage (default value: 100%) to give access to a percentage of companies that match the access rules.
+Select a rollout percentage, default `100%`, to give access to a percentage of companies that match the access rules.
 
-Specifying 0% will not enable the feature flag for anyone.
+Specifying `0%` will disable the flag for anyone.
 
 ### **Rollout percentages**
 
-Rollout percentages are stable. If the initial rollout percentage is 1% and you roll it out to 100% before rolling it back to 1%, the companies found in the 1% rollout will be the same.
+Rollout percentages are stable. If the initial rollout percentage is `1%` and you roll it out to `100%` before rolling it back to `1%`, the companies found in the `1%` rollout will be the same.
 
-However, companies within the rollout percentages aren’t consistent across features. The companies found in a 1% rollout percentage may be different for different features. To roll out two features to the same set of companies, use the `Feature access` condition.
+However, companies within rollout percentages aren’t consistent across flags. The companies found in a `1%` rollout percentage may be different for different flags. To roll out two flags to the same set of companies, use the `Flag access` condition.
 
 **Example**
 
-You have rolled out `Feature A` and `Feature B` to 10% of the `Beta User` segment.
+You have rolled out `Flag A` and `Flag B` to `10%` of the `Beta User` segment.
 
-The set of companies within the `Beta User` segment with access to `Feature A` and `Feature B` will not be the same.
+The set of companies within the `Beta User` segment with access to `Flag A` and `Flag B` will not be the same.
 
 ## Environments
 
 You can switch between environments by clicking the environments in the left sidebar.
 
-## Rolling back feature access changes
+## Rolling back flag access changes
 
-See previous access rules and roll back to past rules by reviewing the `Targeting timeline` underneath.
+See previous access rules and roll back to past rules by reviewing the `Targeting timeline`.
 
-Find past versions and click the `Rollback button` to reimplement previous access rules.
+Find past versions and click the `Rollback` button to reapply previous access rules.
 
-Access rules that use segment rules are linked to the current version of the segment even if you roll back to a previous version of the access rules.
+Access rules that use segments are linked to the current version of the segment even if you roll back to a previous version of the access rules.
 
 ### **Example**
 
-The `Beta customers` segment contains 40 companies. Version #1 of the Huddles gives access to 25% of companies in the `Beta customers` segment (10 companies) on January 1st.
+The `Beta customers` segment contains `40` companies. Version `#1` of the Huddles flag gives access to `25%` of companies in the `Beta customers` segment, or `10` companies, on January 1st.
 
-On January 15th, you add 20 more companies to the `Beta customers` segment (60 companies).
+On January 15th, you add `20` more companies to the `Beta customers` segment, bringing it to `60` companies.
 
-On January 20th, Version #2 of the Huddles feature gives 50% of companies in the `Beta customers` segment (30 companies) access.
+On January 20th, version `#2` of the Huddles flag gives `50%` of companies in the `Beta customers` segment, or `30` companies, access.
 
-The next day, you roll it back to Version #1. Since the `Beta customers` segment now contains 60 companies, the feature will be available to 15 companies rather than 10 companies.
+The next day, you roll it back to version `#1`. Since the `Beta customers` segment now contains `60` companies, the flag will be available to `15` companies rather than `10`.
