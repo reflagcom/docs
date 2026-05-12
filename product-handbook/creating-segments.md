@@ -6,42 +6,40 @@ description: Learn more about segments in Reflag
 
 ## What's a segment?
 
-Segments are reusable lists of companies created based off one of more of the following:
+Segments are reusable lists of companies or users created based off one of more of the following:
 
-* [Company attributes](concepts/company.md#attributes)&#x20;
+* [Company attributes](concepts/company.md#attributes)
+* [User attributes](concepts/user.md)
 * Flag access
 * Flag metrics
 * Feature feedback
 
-Company segments can be used as access rule for managing flag access.
+Segments can be used as access rule for managing flag access.
 
 ## Getting started <a href="#get-started" id="get-started"></a>
 
-* Go to the `Companies` page on the sidebar
+* Go to the `Segments` page on the sidebar
 * Click on the `Add filter +` menu item to build your segment conditions
 
 ## Set segment conditions
 
-Each segment is created using a set of conditions. You can add as many segmentation conditions as you’d like.&#x20;
+Each segment is created using a set of conditions. You can add as many segmentation conditions as you’d like.
 
 ### Conditions
 
 There are 4 types of conditions:
 
 * `Company attribute`
-  * `Company ID`
-  * `First seen`&#x20;
-  * `Last seen`&#x20;
-  * `any custom attributes`
-* `Flag access`&#x20;
+* `User attributes`
+* `Flag access`
   * `is enabled`
-  * `is not enabled` &#x20;
-* `Flag metric`&#x20;
-  * `Track count`&#x20;
+  * `is not enabled`
+* `Flag metric`
+  * `Track count`
   * `Exposure count`
   * `First track`
-  * `Last track` &#x20;
-* `Segment`&#x20;
+  * `Last track`
+* `Segment`
   * `in Segment`
   * `not in Segment`
 
@@ -69,8 +67,8 @@ There are 4 types of conditions:
 * Date
   * `Less than X days ago`
   * `More than X days ago`
-  * `Before date X`     &#x20;
-  * `After date X` &#x20;
+  * `Before date X`
+  * `After date X`
 * Flag access
   * `Is enabled`
   * `Is not enabled`

@@ -34,7 +34,7 @@ Find a stale feature that is ready for clean-up by looking for the broom icon in
 
 Find the "Clean-up guide" in the feature sidebar, click "Show details" and hit the "Create AI clean-up PR" button to start the process.
 
-<figure><img src="../../.gitbook/assets/image (25).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (24).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Within a few minutes, you'll have a GitHub Pull Request that removes the feature flag and keeps the enabled codepath, like here:
 

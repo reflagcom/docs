@@ -53,6 +53,6 @@ mixpanel.people.set({
 
 Which will look like this on Mixpanel:
 
-<figure><img src="../.gitbook/assets/CleanShot 2025-01-09 at 11 .11.54@2x (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/CleanShot 2025-01-09 at 11 .11.54@2x.png" alt=""><figcaption></figcaption></figure>
 
 You may want to add the property to the user's group as well.
