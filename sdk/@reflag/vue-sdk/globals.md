@@ -410,8 +410,7 @@ User name
 ### BootstrappedFlags
 
 ```ts
-type BootstrappedFlags = {
-  context: ReflagContext;
+type BootstrappedFlags = BootstrappedState & {
   flags: RawFlags;
 };
 ```
@@ -429,19 +428,7 @@ type BootstrappedFlags = {
 <tr>
 <td>
 
-<a id="context"></a> `context`
-
-</td>
-<td>
-
-[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="flags-1"></a> `flags`
+`flags`
 
 </td>
 <td>
@@ -732,6 +719,7 @@ type ReflagInitOptionsBase = Omit<InitOptions,
   | "other"
   | "otherContext"
   | "bootstrappedFlags"
+  | "bootstrappedState"
 | "logger">;
 ```
 

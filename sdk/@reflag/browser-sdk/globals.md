@@ -93,6 +93,64 @@ Create a new ReflagClient instance.
 
 #### Methods
 
+##### applyBootstrappedState()
+
+```ts
+applyBootstrappedState(bootstrappedState: BootstrappedState, triggerEvent: boolean): void
+```
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`bootstrappedState`
+
+</td>
+<td>
+
+[`BootstrappedState`](globals.md#bootstrappedstate)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`triggerEvent`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`true`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`
+
 ##### feedback()
 
 ```ts
@@ -728,7 +786,10 @@ The company details.
 ##### updateFlags()
 
 ```ts
-updateFlags(flags: RawFlags, triggerEvent: boolean): void
+updateFlags(
+   flags: RawFlags, 
+   triggerEvent: boolean, 
+   flagStateVersion?: number): void
 ```
 
 Update the flags.
@@ -786,6 +847,28 @@ The flags to update.
 <td>
 
 Whether to trigger the `flagsUpdated` event.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`flagStateVersion`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+<td>
+
+&hyphen;
 
 </td>
 </tr>
@@ -1181,7 +1264,8 @@ Whether to enable offline mode.
 </td>
 <td>
 
-Base URL of Reflag servers for SSE connections used by AutoFeedback.
+Base URL used for pubsub SSE connections.
+Defaults to `apiBaseUrl`.
 
 </td>
 </tr>
@@ -2289,11 +2373,159 @@ User name
 
 ## Type Aliases
 
+### BootstrappedState
+
+```ts
+type BootstrappedState = {
+  context: ReflagContext;
+  flags: RawFlags;
+  flagStateVersion: number;
+};
+```
+
+Pre-fetched evaluated state used to bootstrap the client.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="context"></a> `context`
+
+</td>
+<td>
+
+[`ReflagContext`](globals.md#reflagcontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flags"></a> `flags`
+
+</td>
+<td>
+
+[`RawFlags`](globals.md#rawflags)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagstateversion"></a> `flagStateVersion`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### DialogPlacement
 
 ```ts
 type DialogPlacement = "bottom-right" | "bottom-left" | "top-right" | "top-left";
 ```
+
+***
+
+### EventSourceFactory()
+
+```ts
+type EventSourceFactory = (url: string) => EventSourceLike;
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`url`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EventSourceLike`](globals.md#eventsourcelike)
+
+***
+
+### EventSourceLike
+
+```ts
+type EventSourceLike = {
+  addEventListener: (type: string, cb: (event: any) => void) => void;
+  close: () => void;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="addeventlistener"></a> `addEventListener`
+
+</td>
+<td>
+
+(`type`: `string`, `cb`: (`event`: `any`) => `void`) => `void`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="close"></a> `close`
+
+</td>
+<td>
+
+() => `void`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -3152,8 +3384,11 @@ type InitOptions = ReflagDeprecatedContext & {
   apiBaseUrl: string;
   appBaseUrl: string;
   bootstrappedFlags: RawFlags;
+  bootstrappedState: BootstrappedState;
   credentials: "include" | "same-origin" | "omit";
+  enableLiveFlagUpdates: boolean;
   enableTracking: boolean;
+  eventSourceFactory: EventSourceFactory;
   expireTimeMs: number;
   fallbackFlags:   | string[]
      | Record<string, FallbackFlagOverride>;
@@ -3239,6 +3474,27 @@ Base URL of the Reflag web app. Links open ín this app by default.
 
 Pre-fetched flags to be used instead of fetching them from the server.
 
+**Deprecated**
+
+Use `bootstrappedState` instead.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`bootstrappedState`?
+
+</td>
+<td>
+
+[`BootstrappedState`](globals.md#bootstrappedstate)
+
+</td>
+<td>
+
+Pre-fetched evaluated state to be used instead of fetching it from the server.
+
 </td>
 </tr>
 <tr>
@@ -3263,6 +3519,29 @@ This option controls the `credentials` option of the fetch API.
 <tr>
 <td>
 
+`enableLiveFlagUpdates`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether to enable live flag updates.
+
+When enabled, the SDK opens a Server-Sent Events (SSE) connection and
+refreshes flag definitions automatically whenever they change on the
+server, without relying on context changes or manual refreshes.
+
+Defaults to `false` in the browser SDK.
+
+</td>
+</tr>
+<tr>
+<td>
+
 `enableTracking`?
 
 </td>
@@ -3274,6 +3553,28 @@ This option controls the `credentials` option of the fetch API.
 <td>
 
 Whether to enable tracking. Defaults to `true`.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`eventSourceFactory`?
+
+</td>
+<td>
+
+[`EventSourceFactory`](globals.md#eventsourcefactory)
+
+</td>
+<td>
+
+Optional factory used to create SSE connections.
+
+By default the SDK uses the global `EventSource` implementation available
+in browsers. This option is intended for alternative runtimes where you
+need to provide an EventSource-compatible transport manually. The React
+Native wrapper already injects a transport automatically.
 
 </td>
 </tr>
@@ -3418,7 +3719,10 @@ Version of the SDK
 </td>
 <td>
 
-Base URL of Reflag servers for SSE connections used by AutoFeedback.
+**Deprecated**
+
+SSE now uses the same origin as `apiBaseUrl` by default.
+Override only if you need a separate pubsub host temporarily.
 
 </td>
 </tr>

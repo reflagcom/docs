@@ -3852,6 +3852,7 @@ The maximum size of the buffer before it is flushed.
 type BootstrappedFlags = {
   context: Context;
   flags: RawFlags;
+  flagStateVersion: number;
 };
 ```
 
@@ -3888,6 +3889,18 @@ Describes a collection of evaluated raw flags and the context for bootstrapping.
 <td>
 
 [`RawFlags`](globals.md#rawflags)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagstateversion"></a> `flagStateVersion`?
+
+</td>
+<td>
+
+`number`
 
 </td>
 </tr>
@@ -5225,7 +5238,7 @@ The feature definitions.
 <tr>
 <td>
 
-<a id="flagstateversion"></a> `flagStateVersion`?
+<a id="flagstateversion-1"></a> `flagStateVersion`?
 
 </td>
 <td>
