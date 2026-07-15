@@ -4,7 +4,7 @@ description: How we keep your product working even if the Reflag service is disr
 
 # Service Resiliency
 
-To keep your product working even if the Reflag service is disrupted, we provide a number of safe guards and features that build on each other to provide full resiliency against Reflag downtime.
+To keep your product working even if the Reflag service is disrupted, we provide a number of safe guards and features that build on each other to provide uninterrupted service in the unlikely event of Reflag downtime.
 
 ### Local evaluation
 
@@ -30,7 +30,7 @@ For details on how to set it up, see the [flag fallback provider docs](../sdk/@r
 
 With [getFlagsForBootstrap()](https://docs.reflag.com/supported-languages/node-sdk#bootstrapping-client-side-applications) in the Node SDK and [ReflagBootstrappedProvider](https://docs.reflag.com/supported-languages/react-sdk#server-side-rendering-and-bootstrapping) in the React/Vue SDKs, you can evaluate flags on the server and pass them to your client-side applications.
 
-Bootstrapping is recommended as it means that the server has local evaluation and will pass the evaluated flags to the frontend on load, further protecting you from service disruption. The combination of local evaluation, fallback flags and bootstrapped flags means your end users will not notice in the unlikely event that Reflag servers have downtime.
+Bootstrapping is recommended as it means that the server has local evaluation and will pass the evaluated flags to the frontend on load, further protecting you from service disruption. The combination of local evaluation, fallback flags and bootstrapped flags means your end users will not notice in the event that Reflag servers have downtime.
 
 ### Client SDK caching
 
