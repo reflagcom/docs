@@ -24,7 +24,7 @@ Reflag is purpose-built for B2B, with native support for gating flags at the com
 
 ### Step 1: Initialize Reflag
 
-Choose [an SDK](/broken/pages/rQYVZJTNvOro7VC6k1qo) to get started, if you haven't already.\
+Choose [an SDK](https://app.gitbook.com/s/pgXAy2Cgsm5pON9oJ06m/supported-languages) to get started, if you haven't already.\
 \
 Reflag needs to know who the authenticated user is and which company they belong to. We attach attribute metadata such as the company's subscription plan.
 
