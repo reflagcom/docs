@@ -6,6 +6,30 @@ description: How we keep your product working even if the Reflag service is disr
 
 To keep your product working even if the Reflag service is disrupted, we provide a number of safe guards and features that build on each other to provide uninterrupted service in the unlikely event of Reflag downtime.
 
+```mermaid
+flowchart LR
+    R["Reflag Service"]
+
+    subgraph S["Server application"]
+        subgraph SDK["Server SDK"]
+            L["Local evaluation"]
+            F["Flag fallback provider"]
+        end
+    end
+
+    P["Persistent storage"]
+
+    subgraph C["Client application"]
+        B["Bootstrapped flags"]
+        K["Client cache"]
+    end
+
+    R -->|"definitions + updates"| SDK
+    F -->|"save latest definitions"| P
+    P -.->|" on app server restart, restore in case of Reflag outage"| F
+    SDK -->|"bootstrap evaluated flags"| C
+```
+
 ### Local evaluation
 
 To improve latency and provide downtime protection, our [node-sdk](../sdk/@reflag/node-sdk/) and [openfeature-node-sdk](../supported-languages/openfeature.md) perform "local evaluation" of flag rules.
