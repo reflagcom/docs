@@ -1,37 +1,23 @@
 ---
+layout:
+  visible: true
 title:
   visible: true
+description:
+  visible: false
 tableOfContents:
   visible: true
 outline:
   visible: true
 pagination:
   visible: true
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
-  tags:
-    visible: true
-  actions:
-    visible: true
 ---
 
-# React Native SDK (beta)
+# Reflag React Native SDK (beta)
 
 A thin React Native wrapper around `@reflag/react-sdk`.
 
-For more usage details, see the [React SDK README](https://github.com/reflagcom/docs/blob/main/sdk/documents/react-sdk/README.md).
+For more usage details, see the [React SDK README](../../documents/react-sdk/README.md).
 
 An Expo example app lives in [packages/react-native-sdk/dev/expo](https://github.com/reflagcom/javascript/tree/main/packages/react-native-sdk/dev/expo).
 
@@ -75,26 +61,27 @@ function StartHuddleButton() {
 }
 ```
 
-See the [React SDK README](https://github.com/reflagcom/docs/blob/main/sdk/documents/react-sdk/README.md) for more details.
+See the [React SDK README](../../documents/react-sdk/README.md) for more details.
 
 ## React Native differences
 
-* The Reflag toolbar is web-only and is not available in React Native.
-* Built-in feedback UI is web-only. In React Native, use your own UI and call `useSendFeedback` or `client.feedback` when you're ready to send feedback.
-* Live flag updates work out of the box. The React Native SDK bundles an SSE transport via `react-native-sse`, so no global `EventSource` shim is required.
-* If you need custom SSE behavior, you can still override the transport by passing `eventSourceFactory` to `ReflagProvider` or `ReflagBootstrappedProvider`.
+- The Reflag toolbar is web-only and is not available in React Native.
+- Built-in feedback UI is web-only. In React Native, use your own UI and call `useSendFeedback` or `client.feedback` when you're ready to send feedback.
+- Live flag updates work out of the box. The React Native SDK bundles an SSE transport via `react-native-sse`, so no global `EventSource` shim is required.
+- If you need custom SSE behavior, you can still override the transport by passing `eventSourceFactory` to `ReflagProvider` or `ReflagBootstrappedProvider`.
 
 ## Reference
 
 The React Native SDK shares its API with the React SDK. Use the React SDK reference for full types and details:
 
-[React SDK Reference](https://github.com/reflagcom/docs/blob/main/sdk/documents/react-sdk/README.md)
+[React SDK Reference](../../documents/react-sdk/README.md)
 
 ## Cookbook
 
 ### Refresh flags when the app returns to the foreground
 
-Flags are updated if the context passed to `<ReflagProvider>` changes, but you might also want to update them when the app comes to the foreground. See this snippet:
+Flags are updated if the context passed to `<ReflagProvider>` changes, but you might also want to update them when the app comes to the foreground.
+See this snippet:
 
 ```tsx
 import React, { useEffect, useRef } from "react";
@@ -134,10 +121,11 @@ export function App() {
 
 ## Bootstrapping
 
-You can use `<ReflagBootstrappedProvider>` in React Native when you already have pre-fetched flags and want to avoid an initial fetch. Pass the full object returned by the Node SDK's `getFlagsForBootstrap()` directly as the provider's `flags` prop; it includes `context`, evaluated `flags`, and an optional `flagStateVersion`.
+You can use `<ReflagBootstrappedProvider>` in React Native when you already have pre-fetched flags and want to avoid an initial fetch.
+Pass the full object returned by the Node SDK's `getFlagsForBootstrap()` directly as the provider's `flags` prop; it includes `context`, evaluated `flags`, and an optional `flagStateVersion`.
 
 If you want live flag updates to continue working after bootstrapping, use a recent `@reflag/node-sdk` so `getFlagsForBootstrap()` includes `flagStateVersion`.
 
 After bootstrapping, any live flag updates are fetched directly by the client SDK from Reflag using the client-visible context. If your bootstrapped snapshot depends on server-only or secret context that is not available in the app, later live refreshes may differ. In that case, keep `enableLiveFlagUpdates` disabled.
 
-For bootstrap usage patterns and options, see the [React SDK bootstrapping docs](https://github.com/reflagcom/docs/blob/main/sdk/documents/react-sdk/README.md).
+For bootstrap usage patterns and options, see the [React SDK bootstrapping docs](../../documents/react-sdk/README.md).
