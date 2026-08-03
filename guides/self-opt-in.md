@@ -19,12 +19,15 @@ function OptInList() {
   const setOptIn = useSetOptIn();
 
   return optInFlags.map((flag) => (
-    <button
-      key={flag.key}
-      onClick={() => setOptIn(flag.key, { optedIn: !flag.userOptedIn })}
-    >
-      {flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`}
-    </button>
+    <section key={flag.key}>
+      <h2>{flag.name}</h2>
+      {flag.description && <p>{flag.description}</p>}
+      <button
+        onClick={() => setOptIn(flag.key, { optedIn: !flag.userOptedIn })}
+      >
+        {flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`}
+      </button>
+    </section>
   ));
 }
 ```
