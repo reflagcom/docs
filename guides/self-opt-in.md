@@ -1,63 +1,100 @@
 ---
-description: How to create a beta feature self opt-in page in React with Reflag
+description: How to build a beta feature opt-in page with the Reflag React SDK
 icon: browser
 ---
 
 # Beta feature opt-in
 
-Creating a page where users can opt into certain beta/experimental features is straightforward with Reflag and the Reflag React SDK.
+Let users opt themselves—or their company—into beta and experimental features with Reflag's React SDK.
 
-The basic concept is to set an attribute on the user/company which denotes that the user has self-opted into a specific feature, for example `optin-<featureKey> = true.` Updating an attribute is very simple from the SDK. Then use that attribute to control who has access to the feature by updating the feature access rules such that users/companies with the attribute `optin-<featureKey>=true` will have access to the feature.
+## Quick start
 
-## Step-by-step guide
-
-Here's a step-by-step guide:
-
-1. Select a feature to let people self-opt into.
-2. Add the rule: `optin-<featureKey> IS TRUE` to the rules section for all the environments. Replace `<featureKey>` with the actual feature key of the feature.
-3. Use the following React component to let users self-opt opt-in to specific features:
+After enabling end-user opt-in on at least one flag in Reflag, render the available flags and let the current user set their opt-in status:
 
 ```tsx
-import { useUpdateUser, useFlag, ReflagFeatures } from "@reflag/react-sdk";
-import { useState } from "react";
+import { useOptInFlags, useSetOptIn } from "@reflag/react-sdk";
 
-function FeatureOptIn({
-  featureKey,
-  featureName,
-}: {
-  featureKey: ReflagFeatures;
-  featureName: string;
-}) {
-  const updateUser = useUpdateUser();
-  const [sendingUpdate, setSendingUpdate] = useState(false);
-  const { isEnabled } = useFlag(featureKey);
+function OptInList() {
+  const optInFlags = useOptInFlags();
+  const setOptIn = useSetOptIn();
 
-  return (
-    <div>
-      <label htmlFor="huddlesOptIn">Opt-in to {featureName} feature</label>
-      <input
-        disabled={sendingUpdate}
-        id="huddlesOptIn"
-        type="checkbox"
-        checked={isEnabled}
-        onChange={() => {
-          setSendingUpdate(true);
-          updateUser({
-            [`optin-${featureKey}`]: isEnabled ? "false" : "true",
-          }).then(() => {
-            setSendingUpdate(false);
-          });
-        }}
-      />
-    </div>
-  );
+  return optInFlags.map((flag) => (
+    <button
+      key={flag.key}
+      onClick={() => setOptIn(flag.key, { optedIn: !flag.userOptedIn })}
+    >
+      {flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`}
+    </button>
+  ));
 }
 ```
 
-### How it works
+`useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
-The React component above uses [remote attributes](https://reflag.com/changelog/introducing-remote-attributes) to ensure that any feature you've enabled stays enabled between sessions.
+## Configure a flag for opt-in
+
+1. Open a non-secret flag in Reflag.
+2. Go to **Settings > Opt-in**.
+3. Enable **End-user opt-in**.
+4. Optionally add a **Public description**. The SDK exposes this text so you can display it in your opt-in UI.
+5. Save your changes.
+6. On the flag's **Access** tab, verify that access is set to **Some** in each environment where users should be able to opt in. Leave the other access rules empty for an opt-in-only feature, or add rules to grant access through either targeting or opt-in.
+
+Secret flags cannot use end-user opt-in because opt-ins are submitted directly from a browser or client using a publishable key.
+
+## Opt-in flag data
+
+`useOptInFlags()` returns the opt-in-enabled flags available to the current context. Each flag includes:
+
+| Field | Description |
+| --- | --- |
+| `key` | The flag key. |
+| `name` | The flag's display name. |
+| `description` | The public opt-in description configured in Reflag, or `null`. |
+| `isEnabled` | Whether the flag is enabled for the current context. |
+| `userOptedIn` | Whether the current user opted in. |
+| `companyOptedIn` | Whether the current company opted in. |
+| `isOptedIn` | Whether either the current user or company opted in. |
+
+Use `userOptedIn` or `companyOptedIn`—not `isEnabled`—as the state of an opt-in control. A flag can be enabled by an access rule even when the user or company has not opted in.
+
+## Company opt-in
+
+To change the current company's opt-in, pass `scope: "company"`. The current Reflag context must include a `company.id`.
+
+```tsx
+setOptIn(flag.key, {
+  optedIn: !flag.companyOptedIn,
+  scope: "company",
+});
+```
+
+User and company opt-ins are independent. Setting `optedIn` to `false` removes the opt-in only for the selected scope. For example, cancelling a user's opt-in does not change the company's opt-in for the same flag. `isOptedIn` remains `true` while either scope is opted in.
+
+Cancelling every opt-in also does not necessarily disable the flag: an access rule may independently enable it for the current context.
+
+## Access behavior
+
+A flag's access setting determines how opt-in membership affects evaluation:
+
+| Access | Behavior |
+| --- | --- |
+| **No one** | The flag is off for everyone. Existing opt-ins are inactive, and new opt-ins are rejected. |
+| **Some** | The flag is enabled when another access rule matches **or** the current user or company opted in. With no other rules, access is opt-in-only. |
+| **Everyone** | The flag is enabled for everyone, regardless of opt-in status. |
+
+Disabling end-user opt-in stops new opt-ins and makes existing memberships inactive, but it does not delete them. Re-enabling opt-in reactivates those memberships unless access is set to **No one**.
+
+## Waiting for an update
+
+`setOptIn()` returns a promise. It resolves after the latest flag state has been applied, the requested membership change has been confirmed, and components using `useOptInFlags()` have been notified. React schedules the resulting render normally, so it may not have committed when the promise resolves.
+
+You can await it when your UI needs a pending or error state:
+
+```tsx
+await setOptIn(flag.key, { optedIn: true });
+```
 
 ### Next steps
 
-* Learn how to manage who has access, and modify the [Targeting rules](../product-handbook/feature-rollouts/feature-targeting-rules.md) in the UI.
+Learn how to manage additional access with [Access rules](../product-handbook/feature-rollouts/feature-targeting-rules.md).
