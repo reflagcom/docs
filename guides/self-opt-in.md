@@ -12,25 +12,56 @@ Let users opt themselves—or their company—into beta and experimental feature
 After enabling end-user opt-in on at least one flag in Reflag, render the available flags and let the current user set their opt-in status:
 
 ```tsx
-import { useOptInFlags, useSetOptIn } from "@reflag/react-sdk";
+import { useState } from "react";
+import {
+  type OptInFlag,
+  useOptInFlags,
+  useSetOptIn,
+} from "@reflag/react-sdk";
+import { Spinner } from "your-component-library";
 
 function OptInList() {
   const optInFlags = useOptInFlags();
   const setOptIn = useSetOptIn();
+  const [updatingFlagKey, setUpdatingFlagKey] = useState<string | null>(null);
 
-  return optInFlags.map((flag) => (
-    <section key={flag.key}>
-      <h2>{flag.name}</h2>
-      {flag.description && <p>{flag.description}</p>}
-      <button
-        onClick={() => setOptIn(flag.key, { optedIn: !flag.userOptedIn })}
-      >
-        {flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`}
-      </button>
-    </section>
-  ));
+  async function updateOptIn(flag: OptInFlag) {
+    setUpdatingFlagKey(flag.key);
+
+    try {
+      await setOptIn(flag.key, { optedIn: !flag.userOptedIn });
+    } finally {
+      setUpdatingFlagKey(null);
+    }
+  }
+
+  return optInFlags.map((flag) => {
+    const isUpdating = updatingFlagKey === flag.key;
+
+    return (
+      <section key={flag.key}>
+        <h2>{flag.name}</h2>
+        {flag.description && <p>{flag.description}</p>}
+        <button
+          aria-busy={isUpdating}
+          disabled={updatingFlagKey !== null}
+          onClick={() => updateOptIn(flag)}
+        >
+          {isUpdating ? (
+            <Spinner aria-label={`Updating ${flag.name}`} />
+          ) : flag.userOptedIn ? (
+            "Cancel opt-in"
+          ) : (
+            `Try ${flag.name}`
+          )}
+        </button>
+      </section>
+    );
+  });
 }
 ```
+
+Replace the `Spinner` import with the spinner component from your application or component library.
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
