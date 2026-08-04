@@ -652,11 +652,12 @@ type FlagType = {
 ### OptInFlag
 
 ```ts
-type OptInFlag = RawFlagOptIn & {
-  isEnabled: boolean;
-  key: string;
+type OptInFlag = Omit<OptInFlag, "key"> & {
+  key: FlagKey;
 };
 ```
+
+An opt-in-enabled flag for the generated React SDK flag definitions.
 
 #### Type declaration
 
@@ -665,27 +666,9 @@ type OptInFlag = RawFlagOptIn & {
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>
-
-`isEnabled`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-Result of flag evaluation.
-
-</td>
-</tr>
 <tr>
 <td>
 
@@ -694,12 +677,7 @@ Result of flag evaluation.
 </td>
 <td>
 
-`string`
-
-</td>
-<td>
-
-Flag key.
+[`FlagKey`](globals.md#flagkey)
 
 </td>
 </tr>
@@ -752,8 +730,8 @@ Props for the ReflagBootstrappedProvider.
 </td>
 <td>
 
-Pre-fetched flags used for the initial render. If opt-in flags are requested and
-browser opt-in metadata is missing, the browser client refreshes them on demand.
+Pre-fetched flags used for the initial render. The browser client fetches opt-in
+metadata on demand when opt-in flags are requested.
 
 </td>
 </tr>
@@ -1057,8 +1035,9 @@ If both `logger` and `debug` are provided, `logger` takes precedence.
 </td>
 <td>
 
-Set to `true` to make `useFlag` suspend while the client is loading.
-Components that call `useFlag` must be wrapped in a React `<Suspense>` boundary.
+Set to `true` to make `useFlag` and `useOptInFlags` suspend while their
+required flag data is loading. Components that call either hook must be
+wrapped in a React `<Suspense>` boundary.
 
 </td>
 </tr>
@@ -1762,14 +1741,45 @@ useOnEvent("flagsUpdated", () => {
 ### useOptInFlags()
 
 ```ts
-function useOptInFlags(): OptInFlag[]
+function useOptInFlags(options?: UseOptInFlagsOptions): UseOptInFlagsResult
 ```
 
-Returns opt-in-enabled flags for the current context.
+Returns opt-in-enabled flags and their loading state for the current context.
+
+The loading state is only used with `ReflagBootstrappedProvider` while
+opt-in metadata is fetched on demand. Regular providers load opt-in metadata
+with the initial flags.
+When suspense is enabled for the provider or this hook, it suspends instead
+of returning a loading result.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`options`?
+
+</td>
+<td>
+
+[`UseOptInFlagsOptions`](../react-sdk/globals.md#useoptinflagsoptions)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Returns
 
-[`OptInFlag`](globals.md#optinflag)[]
+[`UseOptInFlagsResult`](../react-sdk/globals.md#useoptinflagsresult)
 
 ***
 

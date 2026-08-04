@@ -339,6 +339,20 @@ into account.
 
 Map of flags.
 
+##### getIsLoadingOptInFlags()
+
+```ts
+getIsLoadingOptInFlags(): boolean
+```
+
+Returns whether opt-in flags are loading for the current context.
+
+Calling this method requests opt-in metadata if it is not already available.
+
+###### Returns
+
+`boolean`
+
 ##### getOptInFlags()
 
 ```ts
@@ -1676,6 +1690,23 @@ Use `flagsUpdated` instead.
 <td>
 
 [`RawFlags`](globals.md#rawflags)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="optinflagsloadingupdated"></a> `optInFlagsLoadingUpdated`
+
+</td>
+<td>
+
+`boolean`
 
 </td>
 <td>
@@ -3536,7 +3567,7 @@ Base URL of the Reflag web app. Links open ín this app by default.
 <td>
 
 Pre-fetched flags used for the initial flag state.
-If opt-in flags are requested and browser opt-in metadata is missing, the client refreshes them on demand.
+The client fetches opt-in metadata on demand when opt-in flags are requested.
 
 **Deprecated**
 
@@ -3558,7 +3589,7 @@ Use `bootstrappedState` instead.
 <td>
 
 Pre-fetched evaluated state used for the initial flag state.
-If opt-in flags are requested and browser opt-in metadata is missing, the client refreshes it on demand.
+The client fetches opt-in metadata on demand when opt-in flags are requested.
 
 </td>
 </tr>

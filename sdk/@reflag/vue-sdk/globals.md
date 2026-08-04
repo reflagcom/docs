@@ -490,6 +490,14 @@ type EmptyFlagRemoteConfig = {
 
 ***
 
+### FlagKey
+
+```ts
+type FlagKey = keyof TypedFlags;
+```
+
+***
+
 ### FlagType
 
 ```ts
@@ -544,9 +552,8 @@ type FlagType = {
 ### OptInFlag
 
 ```ts
-type OptInFlag = RawFlagOptIn & {
-  isEnabled: boolean;
-  key: string;
+type OptInFlag = Omit<OptInFlag, "key"> & {
+  key: FlagKey;
 };
 ```
 
@@ -557,27 +564,9 @@ type OptInFlag = RawFlagOptIn & {
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>
-
-`isEnabled`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-Result of flag evaluation.
-
-</td>
-</tr>
 <tr>
 <td>
 
@@ -586,12 +575,7 @@ Result of flag evaluation.
 </td>
 <td>
 
-`string`
-
-</td>
-<td>
-
-Flag key.
+[`FlagKey`](globals.md#flagkey)
 
 </td>
 </tr>
@@ -717,8 +701,8 @@ Props for the ReflagBootstrappedProvider.
 </td>
 <td>
 
-Pre-fetched flags used for the initial render. If opt-in flags are requested and
-browser opt-in metadata is missing, the browser client refreshes them on demand.
+Pre-fetched flags used for the initial render. The browser client fetches opt-in
+metadata on demand when opt-in flags are requested.
 
 </td>
 </tr>
@@ -1051,6 +1035,54 @@ type TrackEvent = {
 type TypedFlags = keyof Flags extends never ? Record<string, Flag> : { [TypedFlagKey in keyof Flags]: Flags[TypedFlagKey] extends FlagType ? Flag<Flags[TypedFlagKey]["config"]> : Flag };
 ```
 
+***
+
+### UseOptInFlagsResult
+
+```ts
+type UseOptInFlagsResult = {
+  flags: ComputedRef<OptInFlag[]>;
+  isLoading: ComputedRef<boolean>;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="flags-1"></a> `flags`
+
+</td>
+<td>
+
+`ComputedRef`\<[`OptInFlag`](globals.md#optinflag)[]\>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isloading-1"></a> `isLoading`
+
+</td>
+<td>
+
+`ComputedRef`\<`boolean`\>
+
+</td>
+</tr>
+</tbody>
+</table>
+
 ## Variables
 
 ### default
@@ -1349,30 +1381,19 @@ useOnEvent("flagsUpdated", () => {
 ### useOptInFlags()
 
 ```ts
-function useOptInFlags(): ComputedRef<{
-  companyOptedIn: boolean;
-  description: null | string;
-  isEnabled: boolean;
-  isOptedIn: boolean;
-  key: string;
-  name: string;
-  userOptedIn: boolean;
-}[]>
+function useOptInFlags(): UseOptInFlagsResult
 ```
 
-Vue composable for getting opt-in-enabled flags for the current context.
+Vue composable for getting opt-in-enabled flags and their loading state for
+the current context.
+
+The loading state is only used with `ReflagBootstrappedProvider` while
+opt-in metadata is fetched on demand. Regular providers load opt-in metadata
+with the initial flags.
 
 #### Returns
 
-`ComputedRef`\<\{
-  `companyOptedIn`: `boolean`;
-  `description`: `null` \| `string`;
-  `isEnabled`: `boolean`;
-  `isOptedIn`: `boolean`;
-  `key`: `string`;
-  `name`: `string`;
-  `userOptedIn`: `boolean`;
- \}[]\>
+[`UseOptInFlagsResult`](globals.md#useoptinflagsresult)
 
 ***
 
