@@ -11,7 +11,7 @@ Let users opt themselves—or their company—into beta and experimental feature
 
 After enabling end-user opt-in on at least one flag in Reflag, render the available flags and let the current user set their opt-in status.
 
-This example assumes your app has a `<Suspense>` boundary. See below for an example without `<Suspense>`.
+If you're using `<ReflagBootstrappedProvider>` without a `<Suspense>` boundary, see the section below. 
 
 ```tsx
 import { useState } from "react";
@@ -23,7 +23,7 @@ import {
 import { Spinner } from "your-component-library";
 
 function OptInPage() {
-  const { flags: optInFlags } = useOptInFlags({ suspense: true });
+  const { flags: optInFlags } = useOptInFlags();
 
   if (optInFlags.length === 0) {
     return <p>No opt-in flags are available.</p>;
@@ -110,18 +110,6 @@ User and company opt-ins are independent. Setting `optedIn` to `false` removes o
 
 Cancelling every opt-in does not necessarily disable the flag: an access rule may independently enable it for the current context.
 
-## Access behavior
-
-A flag's access setting determines how opt-in membership affects evaluation:
-
-| Access | Behavior |
-| --- | --- |
-| **No one** | The flag is off for everyone. Existing opt-ins are inactive, and new opt-ins are rejected. |
-| **Some** | The flag is enabled when another access rule matches **or** the current user or company opted in. With no other rules, access is opt-in-only. |
-| **Everyone** | The flag is enabled for everyone, regardless of opt-in status. |
-
-Disabling end-user opt-in stops new opt-ins and makes existing memberships inactive, but it does not delete them. Re-enabling opt-in reactivates those memberships unless access is set to **No one**.
-
 ## Managing loading state with `<ReflagBootstrappedProvider>` and without `<Suspense>`
 
 Only apps using `ReflagBootstrappedProvider` without Suspense need to handle this loading state. Bootstrapped flag data does not include opt-in metadata, so the SDK fetches it when `useOptInFlags()` is first used.
@@ -140,7 +128,7 @@ if (optInFlags.length === 0) {
 }
 ```
 
-With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()` or the provider's `loadingComponent` for the normal initial loading state.
+With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()`, suspense or the provider's `loadingComponent` for the normal initial loading state.
 
 ## Next steps
 
