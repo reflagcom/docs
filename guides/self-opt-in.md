@@ -9,10 +9,12 @@ Let users opt themselves—or their company—into beta and experimental feature
 
 ## Quick start
 
-After enabling end-user opt-in on at least one flag in Reflag, render the available flags and let the current user set their opt-in status:
+After enabling end-user opt-in on at least one flag in Reflag, render the available flags and let the current user set their opt-in status.
+
+This example assumes your app has a `<Suspense>` boundary. See below for an example without `<Suspense>`.
 
 ```tsx
-import { Suspense, use, useState } from "react";
+import { useState } from "react";
 import {
   type OptInFlag,
   useOptInFlags,
@@ -21,14 +23,6 @@ import {
 import { Spinner } from "your-component-library";
 
 function OptInPage() {
-  return (
-    <Suspense fallback={<Spinner aria-label="Loading opt-in flags" />}>
-      <OptInList />
-    </Suspense>
-  );
-}
-
-function OptInList() {
   const { flags: optInFlags } = useOptInFlags({ suspense: true });
 
   if (optInFlags.length === 0) {
@@ -42,93 +36,59 @@ function OptInList() {
 
 function OptInFlagCard({ flag }: { flag: OptInFlag }) {
   const setOptIn = useSetOptIn();
-  const [pendingUpdate, setPendingUpdate] = useState<Promise<void> | null>(null);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [updateError, setUpdateError] = useState<string | null>(null);
+  const label = flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`;
 
-  function updateOptIn() {
+  async function updateOptIn() {
     setUpdateError(null);
+    setIsUpdating(true);
 
-    const update = setOptIn(flag.key, {
-      optedIn: !flag.userOptedIn,
-    })
-      .then((response) => {
-        if (response?.ok === false) {
-          throw new Error("Opt-in request failed");
-        }
-      })
-      .catch(() => {
-        setUpdateError(`Could not update ${flag.name}. Please try again.`);
+    try {
+      const response = await setOptIn(flag.key, {
+        optedIn: !flag.userOptedIn,
       });
 
-    setPendingUpdate(update);
+      if (response?.ok === false) {
+        throw new Error("Opt-in request failed");
+      }
+    } catch {
+      setUpdateError(`Could not update ${flag.name}. Please try again.`);
+    } finally {
+      setIsUpdating(false);
+    }
   }
 
   return (
     <section>
       <h2>{flag.name}</h2>
       {flag.description && <p>{flag.description}</p>}
-      <Suspense fallback={<OptInButtonFallback flag={flag} />}>
-        <OptInButton
-          flag={flag}
-          pendingUpdate={pendingUpdate}
-          onClick={updateOptIn}
-        />
-      </Suspense>
+      <button
+        aria-busy={isUpdating}
+        disabled={isUpdating}
+        onClick={updateOptIn}
+      >
+        {isUpdating ? (
+          <Spinner aria-label={`Updating ${flag.name}`} />
+        ) : (
+          label
+        )}
+      </button>
       {updateError && <p role="alert">{updateError}</p>}
     </section>
   );
 }
-
-function OptInButtonFallback({ flag }: { flag: OptInFlag }) {
-  const label = flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`;
-
-  return (
-    <button aria-busy disabled style={{ position: "relative" }}>
-      <span aria-hidden style={{ visibility: "hidden" }}>
-        {label}
-      </span>
-      <span
-        style={{
-          position: "absolute",
-          inset: 0,
-          display: "grid",
-          placeItems: "center",
-        }}
-      >
-        <Spinner aria-label={`Updating ${flag.name}`} />
-      </span>
-    </button>
-  );
-}
-
-function OptInButton({
-  flag,
-  pendingUpdate,
-  onClick,
-}: {
-  flag: OptInFlag;
-  pendingUpdate: Promise<void> | null;
-  onClick: () => void;
-}) {
-  if (pendingUpdate) use(pendingUpdate);
-
-  return (
-    <button onClick={onClick}>
-      {flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`}
-    </button>
-  );
-}
 ```
 
-This React 19 example uses one Suspense boundary for the initial flags. Each `OptInFlagCard` owns its pending and error state and contains its own boundary around the opt-in button, so calling `use()` with the update promise replaces only that button and leaves the other controls available. The fallback keeps an invisible copy of the button label in the layout and overlays the spinner, preventing nearby content from reflowing while the update is pending.
-
-You can enable `suspense` on `ReflagProvider` or `ReflagBootstrappedProvider` instead of passing `{ suspense: true }` to each hook.
+To use Suspense by default, enable `suspense` on `ReflagProvider` or `ReflagBootstrappedProvider` instead of passing `{ suspense: true }` to the hook.
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
 ### Managing loading state without `<Suspense>`
 
-Without Suspense, `useOptInFlags()` returns `{ flags, isLoading }`. Check `isLoading` before rendering an empty state:
+Only apps using `ReflagBootstrappedProvider` without Suspense need to handle this loading state. Bootstrapped flag data does not include opt-in metadata, so the SDK fetches it when `useOptInFlags()` is first used.
+
+Check the hook's `isLoading` value before rendering an empty state:
 
 ```tsx
 const { flags: optInFlags, isLoading } = useOptInFlags({ suspense: false });
@@ -142,11 +102,7 @@ if (optInFlags.length === 0) {
 }
 ```
 
-This opt-in loading state is only `true` with `ReflagBootstrappedProvider`. The SDK fetches opt-in metadata on first use and sets `isLoading` back to `false` after the flags refresh succeeds or fails.
-
 With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()` or the provider's `loadingComponent` for the normal initial loading state.
-
-Pass `{ suspense: false }` to `useOptInFlags()` to opt out of the initial opt-in metadata Suspense behavior for one hook when Suspense is enabled at the provider level.
 
 ## Configure a flag for opt-in
 
@@ -159,22 +115,6 @@ Pass `{ suspense: false }` to `useOptInFlags()` to opt out of the initial opt-in
 
 Secret flags cannot use end-user opt-in because opt-ins are submitted directly from a browser or client using a publishable key.
 
-## Opt-in flag data
-
-The `flags` value returned by `useOptInFlags()` contains the opt-in-enabled flags available to the current context. Each flag includes:
-
-| Field | Description |
-| --- | --- |
-| `key` | The flag key. |
-| `name` | The flag's display name. |
-| `description` | The public opt-in description configured in Reflag, or `null`. |
-| `isEnabled` | Whether the flag is enabled for the current context. |
-| `userOptedIn` | Whether the current user opted in. |
-| `companyOptedIn` | Whether the current company opted in. |
-| `isOptedIn` | Whether either the current user or company opted in. |
-
-Use `userOptedIn` or `companyOptedIn`—not `isEnabled`—as the state of an opt-in control. A flag can be enabled by an access rule even when the user or company has not opted in.
-
 ## Company opt-in
 
 To change the current company's opt-in, pass `scope: "company"`. The current Reflag context must include a `company.id`.
@@ -186,9 +126,9 @@ setOptIn(flag.key, {
 });
 ```
 
-User and company opt-ins are independent. Setting `optedIn` to `false` removes the opt-in only for the selected scope. For example, cancelling a user's opt-in does not change the company's opt-in for the same flag. `isOptedIn` remains `true` while either scope is opted in.
+User and company opt-ins are independent. Setting `optedIn` to `false` removes only the selected scope, so `isOptedIn` remains `true` while either scope is opted in.
 
-Cancelling every opt-in also does not necessarily disable the flag: an access rule may independently enable it for the current context.
+Cancelling every opt-in does not necessarily disable the flag: an access rule may independently enable it for the current context.
 
 ## Access behavior
 
@@ -204,14 +144,10 @@ Disabling end-user opt-in stops new opt-ins and makes existing memberships inact
 
 ## Waiting for an update
 
-`setOptIn()` returns a promise. It resolves after the latest flag state has been applied, the requested membership change has been confirmed, and components using `useOptInFlags()` have been notified. React schedules the resulting render normally, so it may not have committed when the promise resolves.
+`setOptIn()` returns a promise that resolves after the SDK applies the latest flag state, confirms the membership change, and notifies components using `useOptInFlags()`. React may not have committed the resulting render yet.
 
-You can await it when your UI needs a pending or error state:
+The quick-start example awaits this promise to disable the button while the update is pending and report errors.
 
-```tsx
-await setOptIn(flag.key, { optedIn: true });
-```
-
-### Next steps
+## Next steps
 
 Learn how to manage additional access with [Access rules](../product-handbook/feature-rollouts/feature-targeting-rules.md).
