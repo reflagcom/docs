@@ -43,29 +43,61 @@ function OptInList() {
 function OptInFlagCard({ flag }: { flag: OptInFlag }) {
   const setOptIn = useSetOptIn();
   const [pendingUpdate, setPendingUpdate] = useState<Promise<void> | null>(null);
+  const [updateError, setUpdateError] = useState<string | null>(null);
+
+  function updateOptIn() {
+    setUpdateError(null);
+
+    const update = setOptIn(flag.key, {
+      optedIn: !flag.userOptedIn,
+    })
+      .then((response) => {
+        if (response?.ok === false) {
+          throw new Error("Opt-in request failed");
+        }
+      })
+      .catch(() => {
+        setUpdateError(`Could not update ${flag.name}. Please try again.`);
+      });
+
+    setPendingUpdate(update);
+  }
 
   return (
     <section>
       <h2>{flag.name}</h2>
       {flag.description && <p>{flag.description}</p>}
-      <Suspense
-        fallback={
-          <button aria-busy disabled>
-            <Spinner aria-label={`Updating ${flag.name}`} />
-          </button>
-        }
-      >
+      <Suspense fallback={<OptInButtonFallback flag={flag} />}>
         <OptInButton
           flag={flag}
           pendingUpdate={pendingUpdate}
-          onClick={() =>
-            setPendingUpdate(
-              setOptIn(flag.key, { optedIn: !flag.userOptedIn }),
-            )
-          }
+          onClick={updateOptIn}
         />
       </Suspense>
+      {updateError && <p role="alert">{updateError}</p>}
     </section>
+  );
+}
+
+function OptInButtonFallback({ flag }: { flag: OptInFlag }) {
+  const label = flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`;
+
+  return (
+    <button aria-busy disabled style={{ position: "relative" }}>
+      <span aria-hidden style={{ visibility: "hidden" }}>
+        {label}
+      </span>
+      <span
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "grid",
+          placeItems: "center",
+        }}
+      >
+        <Spinner aria-label={`Updating ${flag.name}`} />
+      </span>
+    </button>
   );
 }
 
@@ -88,7 +120,9 @@ function OptInButton({
 }
 ```
 
-This React 19 example uses one Suspense boundary for the initial flags. Each `OptInFlagCard` contains its own boundary around the opt-in button, so calling `use()` with the promise returned by `setOptIn()` replaces only that button with its pending fallback and leaves the other controls available. You can enable `suspense` on `ReflagProvider` or `ReflagBootstrappedProvider` instead of passing `{ suspense: true }` to each hook.
+This React 19 example uses one Suspense boundary for the initial flags. Each `OptInFlagCard` owns its pending and error state and contains its own boundary around the opt-in button, so calling `use()` with the update promise replaces only that button and leaves the other controls available. The fallback keeps an invisible copy of the button label in the layout and overlays the spinner, preventing nearby content from reflowing while the update is pending.
+
+You can enable `suspense` on `ReflagProvider` or `ReflagBootstrappedProvider` instead of passing `{ suspense: true }` to each hook.
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
@@ -116,15 +150,30 @@ For individual updates in React 19, `useTransition()` provides a pending state w
 
 ```tsx
 const [isUpdating, startTransition] = useTransition();
+const [updateError, setUpdateError] = useState<string | null>(null);
 
 function updateOptIn() {
-  startTransition(() =>
-    setOptIn(flag.key, { optedIn: !flag.userOptedIn }),
-  );
+  setUpdateError(null);
+
+  startTransition(async () => {
+    try {
+      const response = await setOptIn(flag.key, {
+        optedIn: !flag.userOptedIn,
+      });
+
+      if (response?.ok === false) {
+        throw new Error("Opt-in request failed");
+      }
+    } catch {
+      setUpdateError(`Could not update ${flag.name}. Please try again.`);
+    }
+  });
 }
 ```
 
-Use `isUpdating` to disable the selected flag's button and display its spinner. Pass `{ suspense: false }` to opt out for one hook when Suspense is enabled at the provider level.
+Keep this state in the component that renders one flag so only that flag's control is disabled. Reserve space for the spinner—or overlay it within a control of the same dimensions—to avoid shifting nearby content while `isUpdating` changes.
+
+Pass `{ suspense: false }` to `useOptInFlags()` to opt out of the initial opt-in metadata Suspense behavior for one hook when Suspense is enabled at the provider level.
 
 ## Configure a flag for opt-in
 
