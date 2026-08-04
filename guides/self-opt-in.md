@@ -146,33 +146,6 @@ This opt-in loading state is only `true` when you use `ReflagBootstrappedProvide
 
 With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()` or the provider's `loadingComponent` for the normal initial loading state.
 
-For individual updates in React 19, `useTransition()` provides a pending state without suspending the component:
-
-```tsx
-const [isUpdating, startTransition] = useTransition();
-const [updateError, setUpdateError] = useState<string | null>(null);
-
-function updateOptIn() {
-  setUpdateError(null);
-
-  startTransition(async () => {
-    try {
-      const response = await setOptIn(flag.key, {
-        optedIn: !flag.userOptedIn,
-      });
-
-      if (response?.ok === false) {
-        throw new Error("Opt-in request failed");
-      }
-    } catch {
-      setUpdateError(`Could not update ${flag.name}. Please try again.`);
-    }
-  });
-}
-```
-
-Keep this state in the component that renders one flag so only that flag's control is disabled. Reserve space for the spinner—or overlay it within a control of the same dimensions—to avoid shifting nearby content while `isUpdating` changes.
-
 Pass `{ suspense: false }` to `useOptInFlags()` to opt out of the initial opt-in metadata Suspense behavior for one hook when Suspense is enabled at the provider level.
 
 ## Configure a flag for opt-in
