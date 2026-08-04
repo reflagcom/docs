@@ -22,18 +22,6 @@ import { Spinner } from "your-component-library";
 
 function OptInList() {
   const { flags: optInFlags, isLoading } = useOptInFlags();
-  const setOptIn = useSetOptIn();
-  const [updatingFlagKey, setUpdatingFlagKey] = useState<string | null>(null);
-
-  async function updateOptIn(flag: OptInFlag) {
-    setUpdatingFlagKey(flag.key);
-
-    try {
-      await setOptIn(flag.key, { optedIn: !flag.userOptedIn });
-    } finally {
-      setUpdatingFlagKey(null);
-    }
-  }
 
   if (isLoading) {
     return <Spinner aria-label="Loading opt-in flags" />;
@@ -43,33 +31,48 @@ function OptInList() {
     return <p>No opt-in flags are available.</p>;
   }
 
-  return optInFlags.map((flag) => {
-    const isUpdating = updatingFlagKey === flag.key;
+  return optInFlags.map((flag) => (
+    <OptInFlagCard key={flag.key} flag={flag} />
+  ));
+}
 
-    return (
-      <section key={flag.key}>
-        <h2>{flag.name}</h2>
-        {flag.description && <p>{flag.description}</p>}
-        <button
-          aria-busy={isUpdating}
-          disabled={updatingFlagKey !== null}
-          onClick={() => updateOptIn(flag)}
-        >
-          {isUpdating ? (
-            <Spinner aria-label={`Updating ${flag.name}`} />
-          ) : flag.userOptedIn ? (
-            "Cancel opt-in"
-          ) : (
-            `Try ${flag.name}`
-          )}
-        </button>
-      </section>
-    );
-  });
+function OptInFlagCard({ flag }: { flag: OptInFlag }) {
+  const setOptIn = useSetOptIn();
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  async function updateOptIn() {
+    setIsUpdating(true);
+
+    try {
+      await setOptIn(flag.key, { optedIn: !flag.userOptedIn });
+    } finally {
+      setIsUpdating(false);
+    }
+  }
+
+  return (
+    <section>
+      <h2>{flag.name}</h2>
+      {flag.description && <p>{flag.description}</p>}
+      <button
+        aria-busy={isUpdating}
+        disabled={isUpdating}
+        onClick={updateOptIn}
+      >
+        {isUpdating ? (
+          <Spinner aria-label={`Updating ${flag.name}`} />
+        ) : flag.userOptedIn ? (
+          "Cancel opt-in"
+        ) : (
+          `Try ${flag.name}`
+        )}
+      </button>
+    </section>
+  );
 }
 ```
 
-Replace the `Spinner` import with the spinner component from your application or component library.
+Replace the `Spinner` import with the spinner component from your application or component library. Each `OptInFlagCard` owns its pending state, preventing duplicate clicks on that flag while leaving the other opt-in controls available.
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
