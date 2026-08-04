@@ -142,7 +142,7 @@ if (optInFlags.length === 0) {
 }
 ```
 
-This opt-in loading state is only `true` when you use `ReflagBootstrappedProvider` with bootstrap data that does not contain browser opt-in metadata. The SDK fetches that metadata on demand and sets `isLoading` back to `false` after the request succeeds or fails. Bootstrap data that already contains complete opt-in metadata reports `false` immediately.
+This opt-in loading state is only `true` with `ReflagBootstrappedProvider`. The SDK fetches opt-in metadata on first use and sets `isLoading` back to `false` after the flags refresh succeeds or fails.
 
 With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()` or the provider's `loadingComponent` for the normal initial loading state.
 
