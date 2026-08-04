@@ -36,12 +36,7 @@ function OptInList() {
   }
 
   return optInFlags.map((flag) => (
-    <Suspense
-      key={flag.key}
-      fallback={<Spinner aria-label={`Updating ${flag.name}`} />}
-    >
-      <OptInFlagCard flag={flag} />
-    </Suspense>
+    <OptInFlagCard key={flag.key} flag={flag} />
   ));
 }
 
@@ -49,27 +44,51 @@ function OptInFlagCard({ flag }: { flag: OptInFlag }) {
   const setOptIn = useSetOptIn();
   const [pendingUpdate, setPendingUpdate] = useState<Promise<void> | null>(null);
 
-  if (pendingUpdate) use(pendingUpdate);
-
   return (
     <section>
       <h2>{flag.name}</h2>
       {flag.description && <p>{flag.description}</p>}
-      <button
-        onClick={() =>
-          setPendingUpdate(
-            setOptIn(flag.key, { optedIn: !flag.userOptedIn }),
-          )
+      <Suspense
+        fallback={
+          <button aria-busy disabled>
+            <Spinner aria-label={`Updating ${flag.name}`} />
+          </button>
         }
       >
-        {flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`}
-      </button>
+        <OptInButton
+          flag={flag}
+          pendingUpdate={pendingUpdate}
+          onClick={() =>
+            setPendingUpdate(
+              setOptIn(flag.key, { optedIn: !flag.userOptedIn }),
+            )
+          }
+        />
+      </Suspense>
     </section>
+  );
+}
+
+function OptInButton({
+  flag,
+  pendingUpdate,
+  onClick,
+}: {
+  flag: OptInFlag;
+  pendingUpdate: Promise<void> | null;
+  onClick: () => void;
+}) {
+  if (pendingUpdate) use(pendingUpdate);
+
+  return (
+    <button onClick={onClick}>
+      {flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`}
+    </button>
   );
 }
 ```
 
-This React 19 example uses one Suspense boundary for the initial flags and a boundary around each opt-in feature. Calling `use()` with the promise returned by `setOptIn()` shows the pending fallback for only that feature, leaving the other opt-in controls available. You can enable `suspense` on `ReflagProvider` or `ReflagBootstrappedProvider` instead of passing `{ suspense: true }` to each hook.
+This React 19 example uses one Suspense boundary for the initial flags. Each `OptInFlagCard` contains its own boundary around the opt-in button, so calling `use()` with the promise returned by `setOptIn()` replaces only that button with its pending fallback and leaves the other controls available. You can enable `suspense` on `ReflagProvider` or `ReflagBootstrappedProvider` instead of passing `{ suspense: true }` to each hook.
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
