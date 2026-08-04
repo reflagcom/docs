@@ -339,6 +339,18 @@ into account.
 
 Map of flags.
 
+##### getOptInFlags()
+
+```ts
+getOptInFlags(): OptInFlag[]
+```
+
+Returns opt-in-enabled flags for the current context.
+
+###### Returns
+
+[`OptInFlag`](globals.md#optinflag)[]
+
 ##### getState()
 
 ```ts
@@ -623,6 +635,59 @@ The context to update.
 ###### Returns
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+##### setOptIn()
+
+```ts
+setOptIn(flagKey: string, options: SetOptInOptions): Promise<
+  | undefined
+| Response>
+```
+
+Set whether the current user or company has opted into a flag.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`flagKey`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`SetOptInOptions`](globals.md#setoptinoptions)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 ##### showToolbarToggle()
 
@@ -1393,8 +1458,6 @@ Defaults to `apiBaseUrl`.
 ***
 
 ### Flag
-
-Represents a flag.
 
 #### Properties
 
@@ -3472,7 +3535,8 @@ Base URL of the Reflag web app. Links open ín this app by default.
 </td>
 <td>
 
-Pre-fetched flags to be used instead of fetching them from the server.
+Pre-fetched flags used for the initial flag state.
+If opt-in flags are requested and browser opt-in metadata is missing, the client refreshes them on demand.
 
 **Deprecated**
 
@@ -3493,7 +3557,8 @@ Use `bootstrappedState` instead.
 </td>
 <td>
 
-Pre-fetched evaluated state to be used instead of fetching it from the server.
+Pre-fetched evaluated state used for the initial flag state.
+If opt-in flags are requested and browser opt-in metadata is missing, the client refreshes it on demand.
 
 </td>
 </tr>
@@ -3972,6 +4037,65 @@ Offset from the nearest vertical screen edge after placement is resolved
 
 ***
 
+### OptInFlag
+
+```ts
+type OptInFlag = RawFlagOptIn & {
+  isEnabled: boolean;
+  key: string;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Result of flag evaluation.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Flag key.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### PopoverPlacement
 
 ```ts
@@ -4016,6 +4140,8 @@ type RawFlag = {
   isEnabledOverride: boolean | null;
   key: string;
   missingContextFields: string[];
+  optIn: RawFlagOptIn | null;
+  optInEnabled: boolean;
   ruleEvaluationResults: boolean[];
   targetingVersion: number;
 };
@@ -4214,6 +4340,40 @@ Missing context fields.
 <tr>
 <td>
 
+<a id="optin"></a> `optIn`?
+
+</td>
+<td>
+
+[`RawFlagOptIn`](globals.md#rawflagoptin) \| `null`
+
+</td>
+<td>
+
+Opt-in metadata for this flag and the current context.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="optinenabled"></a> `optInEnabled`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether end-user opt-in is enabled for this flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="ruleevaluationresults-1"></a> `ruleEvaluationResults`?
 
 </td>
@@ -4242,6 +4402,119 @@ Rule evaluation results.
 <td>
 
 Version of targeting rules.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### RawFlagOptIn
+
+```ts
+type RawFlagOptIn = {
+  companyOptedIn: boolean;
+  description: string | null;
+  isOptedIn: boolean;
+  name: string;
+  userOptedIn: boolean;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="companyoptedin"></a> `companyOptedIn`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether the current company has opted into the flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="description"></a> `description`
+
+</td>
+<td>
+
+`string` \| `null`
+
+</td>
+<td>
+
+SDK-facing opt-in description.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isoptedin"></a> `isOptedIn`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether either the current user or company has opted into the flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-2"></a> `name`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Display name of the opt-in flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="useroptedin"></a> `userOptedIn`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether the current user has opted into the flag.
 
 </td>
 </tr>
@@ -4372,6 +4645,67 @@ type RequestFeedbackOptions = RequestFeedbackData & {
 <td>
 
 User ID from your own application.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### SetOptInOptions
+
+```ts
+type SetOptInOptions = {
+  optedIn: boolean;
+  scope: "user" | "company";
+};
+```
+
+Represents a flag.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="optedin"></a> `optedIn`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether the scoped subject has opted in.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scope"></a> `scope`?
+
+</td>
+<td>
+
+`"user"` \| `"company"`
+
+</td>
+<td>
+
+Whether to update the current user or current company. Defaults to `user`.
 
 </td>
 </tr>

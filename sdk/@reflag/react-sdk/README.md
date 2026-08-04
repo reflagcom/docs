@@ -238,15 +238,15 @@ You can pass a simple boolean to force the toolbar to appear/disappear:
 
 ## Server-side rendering and bootstrapping
 
-For server-side rendered applications, you can eliminate the initial network request by bootstrapping the client with pre-fetched flag data using the `ReflagBootstrappedProvider`.
+For server-side rendered applications, you can render immediately with pre-fetched flag data using the `ReflagBootstrappedProvider`.
 
-Bootstrapping is also the recommended setup if you want the most resilient feature flag architecture in React. Instead of depending on an initial client-side request to Reflag, the client can render immediately from flags provided by your server.
+Bootstrapping is also the recommended setup if you want the most resilient feature flag architecture in React. The client renders immediately from flags provided by your server instead of making its initial render depend on a request to Reflag.
 
-If you want "bullet proof feature flags" in a React application, use React bootstrapping together with `flagsFallbackProvider` in the Node SDK. The fallback provider helps your server start with the latest saved snapshot if it cannot reach Reflag during initialization, and bootstrapping lets the React client use those server-provided flags without needing its own live fetch on first render.
+If you want "bullet proof feature flags" in a React application, use React bootstrapping together with `flagsFallbackProvider` in the Node SDK. The fallback provider helps your server start with the latest saved snapshot if it cannot reach Reflag during initialization, and bootstrapping gives the React client server-provided flags for its first render.
 
 ### Using `ReflagBootstrappedProvider`
 
-The `<ReflagBootstrappedProvider>` component is a specialized version of `ReflagProvider` designed for server-side rendering, preloaded flag scenarios, and high-reliability setups. Instead of fetching flags on initialization, it uses pre-fetched evaluated state, resulting in faster initial page loads, better SSR compatibility, and a more resilient startup path for React applications.
+The `<ReflagBootstrappedProvider>` component is a specialized version of `ReflagProvider` designed for server-side rendering, preloaded flag scenarios, and high-reliability setups. It uses pre-fetched evaluated state for the initial render, resulting in faster initial page loads, better SSR compatibility, and a more resilient startup path for React applications.
 
 ```tsx
 import { useState, useEffect } from "react";
@@ -383,7 +383,7 @@ function HuddleFeature() {
 }
 ```
 
-This approach eliminates loading states and improves performance by avoiding the initial flags API call.
+This approach eliminates loading states and removes the initial render's dependency on the flags API.
 
 ### Next.js App Router example
 
@@ -492,7 +492,9 @@ This App Router approach leverages Server Components for server-side flag fetchi
 
 ## `<ReflagClientProvider>` component
 
-The `<ReflagClientProvider>` is a lower-level component that accepts a pre-initialized `ReflagClient` instance. This is useful for advanced use cases where you need full control over client initialization or want to share a client instance across multiple parts of your application.
+The `<ReflagClientProvider>` is a lower-level component that accepts a `ReflagClient` instance. This is useful for advanced use cases where you need full control over client initialization or want to share a client instance across multiple parts of your application.
+
+In most cases you should initialize the client before rendering this provider. If you pass an idle client and enable `suspense`, a `useFlag()` call that suspends can initialize the client on demand; without Suspense, you must initialize the client yourself.
 
 ### Usage
 
@@ -524,8 +526,9 @@ function App() {
 
 The `ReflagClientProvider` accepts the following props:
 
-- `client`: A pre-initialized `ReflagClient` instance
+- `client`: A `ReflagClient` instance. Prefer passing an already-initialized client; idle clients are initialized on demand only by suspense-enabled `useFlag()` calls.
 - `loadingComponent`: Optional React component to show while the client is initializing (same as `ReflagProvider`)
+- `suspense`: Optional. Set to `true` to make `useFlag()` suspend while the client is loading
 
 > [!Note]
 > Most applications should use `ReflagProvider` or `ReflagBootstrappedProvider` instead of `ReflagClientProvider`. Only use this component when you need the advanced control it provides.
@@ -564,6 +567,7 @@ The `<ReflagProvider>` initializes the Reflag SDK, fetches flags and starts list
 - `staleTimeMs`: Maximum time (in milliseconds) that stale flags will be returned if `staleWhileRevalidate` is true and new flags cannot be fetched.
 - `offline`: Provide this option when testing or in local development environments to avoid contacting Reflag servers.
 - `loadingComponent` lets you specify an React component to be rendered instead of the children while the Reflag provider is initializing. If you want more control over loading screens, `useFlag()` and `useIsLoading` returns `isLoading` which you can use to customize the loading experience.
+- `suspense`: Set to `true` to make `useFlag()` suspend while the provider is loading. Wrap components that call `useFlag()` in React `<Suspense>` boundaries and omit `loadingComponent` if you want Suspense fallbacks to control loading UI.
 - `enableTracking`: Set to `false` to stop sending tracking events and user/company updates to Reflag. Useful when you're impersonating a user (defaults to `true`),
 - `enableLiveFlagUpdates`: Enables live flag updates over SSE. Defaults to `true` in the React SDK.
 - `apiBaseUrl`: Optional base URL for the Reflag API. This also controls the SSE origin used for live flag updates and automated feedback,
@@ -577,7 +581,7 @@ The `<ReflagProvider>` initializes the Reflag SDK, fetches flags and starts list
 
 ## `<ReflagBootstrappedProvider>` component
 
-The `<ReflagBootstrappedProvider>` is a specialized version of the `ReflagProvider` that uses pre-fetched flag data instead of making network requests during initialization. This is ideal for server-side rendering scenarios.
+The `<ReflagBootstrappedProvider>` is a specialized version of the `ReflagProvider` that uses pre-fetched flag data for the initial render. This is ideal for server-side rendering scenarios.
 
 The component accepts the following props:
 
@@ -613,9 +617,11 @@ function App({ bootstrapData }: AppProps) {
 > [!Note]
 > When using `ReflagBootstrappedProvider`, pass the entire object returned by `getFlagsForBootstrap()` directly as the `flags` prop. The context is extracted from `flags.context`, and `flags.flagStateVersion` is used when present.
 >
+> The bootstrap payload is used synchronously for SSR and the initial client render. If `useOptInFlags()` is used and the bootstrap payload does not include browser opt-in metadata, the browser SDK performs one evaluated-flags refresh on demand. Applications that do not use opt-in data do not make this request. If the refresh fails, the bootstrapped flags remain in use.
+>
 > If you want live flag updates to continue working after bootstrapping, use a recent `@reflag/node-sdk` so `getFlagsForBootstrap()` includes `flagStateVersion`.
 >
-> After bootstrapping, any live flag updates are fetched directly by the browser SDK from Reflag using the browser-visible context. If your bootstrapped snapshot depends on server-only or secret context that is not available in the browser, later live refreshes may differ. In that case, keep `enableLiveFlagUpdates` disabled.
+> The on-demand browser refresh and any later live flag updates use the browser-visible context. If your bootstrapped snapshot depends on server-only or secret context that is not available in the browser, refreshed flags may differ. In that case, keep `enableLiveFlagUpdates` disabled.
 
 ## Hooks
 
@@ -668,6 +674,53 @@ function StartHuddleButton() {
   );
 }
 ```
+
+#### Suspense loading
+
+Enable `suspense` on the provider to have `useFlag()` throw a promise while `isLoading` is true. The nearest `<Suspense>` boundary will render its fallback until flags are ready.
+
+```tsx
+import { Suspense } from "react";
+import { ReflagProvider } from "@reflag/react-sdk";
+
+<ReflagProvider publishableKey="..." context={context} suspense>
+  <Suspense fallback={<Loading />}>
+    <AppRoutes />
+  </Suspense>
+</ReflagProvider>;
+```
+
+You can also opt in for a single call with `useFlag("huddle", { suspense: true })`, or opt out inside a suspense-enabled provider with `{ suspense: false }`.
+
+### `useOptInFlags()` and `useSetOptIn()`
+
+Use these hooks to build an end-user opt-in UI for flags where opt-in is enabled in Reflag.
+
+```tsx
+import { useOptInFlags, useSetOptIn } from "@reflag/react-sdk";
+
+function OptInList() {
+  const optInFlags = useOptInFlags();
+  const setOptIn = useSetOptIn();
+
+  return optInFlags.map((flag) => (
+    <button
+      key={flag.key}
+      onClick={() => setOptIn(flag.key, { optedIn: !flag.userOptedIn })}
+    >
+      {flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`}
+    </button>
+  ));
+}
+```
+
+By default, `useSetOptIn()` changes the opt-in for the current user, so the current context must include a `user.id`. To manage the current company's opt-in instead, pass `scope: "company"`; the context must then include a `company.id`.
+
+User and company opt-ins are managed independently. Setting `optedIn` to `false` removes the opt-in only for the selected scope. For example, cancelling a user's opt-in does not change the company's opt-in for the same flag.
+
+`setOptIn` returns a promise so you can wait for the new membership state to be synchronized. It resolves after the latest flag state has been applied, the requested membership change has been confirmed, and components using `useOptInFlags()` have been notified. React schedules the resulting render normally, so it may not yet be committed when the promise resolves.
+
+When a bootstrapped payload does not contain browser opt-in metadata, `useOptInFlags()` automatically requests it once and updates after the evaluated flags arrive.
 
 ### `useTrack()`
 

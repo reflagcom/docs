@@ -541,6 +541,65 @@ type FlagType = {
 
 ***
 
+### OptInFlag
+
+```ts
+type OptInFlag = RawFlagOptIn & {
+  isEnabled: boolean;
+  key: string;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Result of flag evaluation.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Flag key.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### ReflagBaseProps
 
 ```ts
@@ -658,7 +717,8 @@ Props for the ReflagBootstrappedProvider.
 </td>
 <td>
 
-Pre-fetched flags to be used instead of fetching them from the server.
+Pre-fetched flags used for the initial render. If opt-in flags are requested and
+browser opt-in metadata is missing, the browser client refreshes them on demand.
 
 </td>
 </tr>
@@ -845,6 +905,67 @@ Use `context` instead, this property will be removed in the next major version
 ```ts
 type RequestFlagFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">;
 ```
+
+***
+
+### SetOptInOptions
+
+```ts
+type SetOptInOptions = {
+  optedIn: boolean;
+  scope: "user" | "company";
+};
+```
+
+Represents a flag.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="optedin"></a> `optedIn`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether the scoped subject has opted in.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scope"></a> `scope`?
+
+</td>
+<td>
+
+`"user"` \| `"company"`
+
+</td>
+<td>
+
+Whether to update the current user or current company. Defaults to `user`.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1225,6 +1346,36 @@ useOnEvent("flagsUpdated", () => {
 
 ***
 
+### useOptInFlags()
+
+```ts
+function useOptInFlags(): ComputedRef<{
+  companyOptedIn: boolean;
+  description: null | string;
+  isEnabled: boolean;
+  isOptedIn: boolean;
+  key: string;
+  name: string;
+  userOptedIn: boolean;
+}[]>
+```
+
+Vue composable for getting opt-in-enabled flags for the current context.
+
+#### Returns
+
+`ComputedRef`\<\{
+  `companyOptedIn`: `boolean`;
+  `description`: `null` \| `string`;
+  `isEnabled`: `boolean`;
+  `isOptedIn`: `boolean`;
+  `key`: `string`;
+  `name`: `string`;
+  `userOptedIn`: `boolean`;
+ \}[]\>
+
+***
+
 ### useRequestFeedback()
 
 ```ts
@@ -1353,6 +1504,65 @@ sendFeedback({
   metadata: { page: "dashboard" }
 });
 ```
+
+***
+
+### useSetOptIn()
+
+```ts
+function useSetOptIn(): (key: string, options: SetOptInOptions) => Promise<
+  | undefined
+| Response>
+```
+
+Vue composable for setting whether the current user or company has opted into a flag.
+
+#### Returns
+
+`Function`
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`SetOptInOptions`](globals.md#setoptinoptions)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| `undefined`
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 ***
 

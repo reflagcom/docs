@@ -649,6 +649,65 @@ type FlagType = {
 
 ***
 
+### OptInFlag
+
+```ts
+type OptInFlag = RawFlagOptIn & {
+  isEnabled: boolean;
+  key: string;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`isEnabled`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Result of flag evaluation.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Flag key.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### RawFlags
 
 ```ts
@@ -693,7 +752,8 @@ Props for the ReflagBootstrappedProvider.
 </td>
 <td>
 
-Pre-fetched flags to be used instead of fetching them from the server.
+Pre-fetched flags used for the initial render. If opt-in flags are requested and
+browser opt-in metadata is missing, the browser client refreshes them on demand.
 
 </td>
 </tr>
@@ -878,6 +938,7 @@ type ReflagPropsBase = {
   initialLoading: boolean;
   loadingComponent: ReactNode;
   logger: Logger;
+  suspense: boolean;
 };
 ```
 
@@ -983,6 +1044,24 @@ If both `logger` and `debug` are provided, `logger` takes precedence.
 
 </td>
 </tr>
+<tr>
+<td>
+
+<a id="suspense"></a> `suspense`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Set to `true` to make `useFlag` suspend while the client is loading.
+Components that call `useFlag` must be wrapped in a React `<Suspense>` boundary.
+
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -993,6 +1072,67 @@ If both `logger` and `debug` are provided, `logger` takes precedence.
 ```ts
 type RequestFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">;
 ```
+
+***
+
+### SetOptInOptions
+
+```ts
+type SetOptInOptions = {
+  optedIn: boolean;
+  scope: "user" | "company";
+};
+```
+
+Represents a flag.
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="optedin"></a> `optedIn`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Whether the scoped subject has opted in.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="scope"></a> `scope`?
+
+</td>
+<td>
+
+`"user"` \| `"company"`
+
+</td>
+<td>
+
+Whether to update the current user or current company. Defaults to `user`.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -1146,6 +1286,48 @@ Describes a collection of evaluated feature.
 This types falls back to a generic Record<string, Flag> if the Flags interface
 has not been extended.
 
+***
+
+### UseFlagOptions
+
+```ts
+type UseFlagOptions = {
+  suspense: boolean;
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="suspense-1"></a> `suspense`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Override the provider suspense setting for this `useFlag` call.
+When true, `useFlag` throws a promise while flags are loading.
+
+</td>
+</tr>
+</tbody>
+</table>
+
 ## Functions
 
 ### ReflagBootstrappedProvider()
@@ -1291,7 +1473,7 @@ function App() {
 ### ~~useFeature()~~
 
 ```ts
-function useFeature<TKey>(key: TKey): Flag<EmptyFlagRemoteConfig>
+function useFeature<TKey>(key: TKey, options?: UseFlagOptions): Flag<EmptyFlagRemoteConfig>
 ```
 
 #### Type Parameters
@@ -1335,6 +1517,18 @@ function useFeature<TKey>(key: TKey): Flag<EmptyFlagRemoteConfig>
 
 </td>
 </tr>
+<tr>
+<td>
+
+`options`?
+
+</td>
+<td>
+
+[`UseFlagOptions`](globals.md#useflagoptions)
+
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -1351,7 +1545,7 @@ use `useFlag` instead
 ### useFlag()
 
 ```ts
-function useFlag<TKey>(key: TKey): TypedFlags[TKey]
+function useFlag<TKey>(key: TKey, options?: UseFlagOptions): TypedFlags[TKey]
 ```
 
 Returns the state of a given feature for the current context, e.g.
@@ -1402,6 +1596,18 @@ function HuddleButton() {
 <td>
 
 `TKey`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`?
+
+</td>
+<td>
+
+[`UseFlagOptions`](globals.md#useflagoptions)
 
 </td>
 </tr>
@@ -1553,6 +1759,20 @@ useOnEvent("flagsUpdated", () => {
 
 ***
 
+### useOptInFlags()
+
+```ts
+function useOptInFlags(): OptInFlag[]
+```
+
+Returns opt-in-enabled flags for the current context.
+
+#### Returns
+
+[`OptInFlag`](globals.md#optinflag)[]
+
+***
+
 ### useRequestFeedback()
 
 ```ts
@@ -1653,6 +1873,65 @@ sendFeedback({
 <td>
 
 [`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
+  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)
+  \| `undefined`\>
+
+***
+
+### useSetOptIn()
+
+```ts
+function useSetOptIn(): (key: FlagKey, options: SetOptInOptions) => Promise<
+  | Response
+| undefined>
+```
+
+Returns a function to set whether the current user or company has opted into a flag.
+
+#### Returns
+
+`Function`
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+[`FlagKey`](globals.md#flagkey)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`SetOptInOptions`](globals.md#setoptinoptions)
 
 </td>
 </tr>
