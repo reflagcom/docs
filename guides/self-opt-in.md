@@ -80,29 +80,9 @@ function OptInFlagCard({ flag }: { flag: OptInFlag }) {
 }
 ```
 
-To use Suspense by default, enable `suspense` on `ReflagProvider` or `ReflagBootstrappedProvider` instead of passing `{ suspense: true }` to the hook.
+`setOptIn()` returns a promise that resolves after the SDK applies the latest flag state, confirms the membership change, and notifies components using `useOptInFlags()`. React may not have committed the resulting render yet.
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
-
-### Managing loading state without `<Suspense>`
-
-Only apps using `ReflagBootstrappedProvider` without Suspense need to handle this loading state. Bootstrapped flag data does not include opt-in metadata, so the SDK fetches it when `useOptInFlags()` is first used.
-
-Check the hook's `isLoading` value before rendering an empty state:
-
-```tsx
-const { flags: optInFlags, isLoading } = useOptInFlags({ suspense: false });
-
-if (isLoading) {
-  return <Spinner aria-label="Loading opt-in flags" />;
-}
-
-if (optInFlags.length === 0) {
-  return <p>No opt-in flags are available.</p>;
-}
-```
-
-With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()` or the provider's `loadingComponent` for the normal initial loading state.
 
 ## Configure a flag for opt-in
 
@@ -142,11 +122,25 @@ A flag's access setting determines how opt-in membership affects evaluation:
 
 Disabling end-user opt-in stops new opt-ins and makes existing memberships inactive, but it does not delete them. Re-enabling opt-in reactivates those memberships unless access is set to **No one**.
 
-## Waiting for an update
+## Managing loading state with `<ReflagBootstrappedProvider>` and without `<Suspense>`
 
-`setOptIn()` returns a promise that resolves after the SDK applies the latest flag state, confirms the membership change, and notifies components using `useOptInFlags()`. React may not have committed the resulting render yet.
+Only apps using `ReflagBootstrappedProvider` without Suspense need to handle this loading state. Bootstrapped flag data does not include opt-in metadata, so the SDK fetches it when `useOptInFlags()` is first used.
 
-The quick-start example awaits this promise to disable the button while the update is pending and report errors.
+Check the hook's `isLoading` value before rendering an empty state:
+
+```tsx
+const { flags: optInFlags, isLoading } = useOptInFlags({ suspense: false });
+
+if (isLoading) {
+  return <Spinner aria-label="Loading opt-in flags" />;
+}
+
+if (optInFlags.length === 0) {
+  return <p>No opt-in flags are available.</p>;
+}
+```
+
+With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()` or the provider's `loadingComponent` for the normal initial loading state.
 
 ## Next steps
 
