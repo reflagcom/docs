@@ -12,7 +12,7 @@ Let users opt themselves—or their company—into beta and experimental feature
 After enabling end-user opt-in on at least one flag in Reflag, render the available flags and let the current user set their opt-in status:
 
 ```tsx
-import { useState } from "react";
+import { Suspense, use, useState } from "react";
 import {
   type OptInFlag,
   useOptInFlags,
@@ -20,86 +20,92 @@ import {
 } from "@reflag/react-sdk";
 import { Spinner } from "your-component-library";
 
-function OptInList() {
-  const { flags: optInFlags, isLoading } = useOptInFlags();
+function OptInPage() {
+  return (
+    <Suspense fallback={<Spinner aria-label="Loading opt-in flags" />}>
+      <OptInList />
+    </Suspense>
+  );
+}
 
-  if (isLoading) {
-    return <Spinner aria-label="Loading opt-in flags" />;
-  }
+function OptInList() {
+  const { flags: optInFlags } = useOptInFlags({ suspense: true });
 
   if (optInFlags.length === 0) {
     return <p>No opt-in flags are available.</p>;
   }
 
   return optInFlags.map((flag) => (
-    <OptInFlagCard key={flag.key} flag={flag} />
+    <Suspense
+      key={flag.key}
+      fallback={<Spinner aria-label={`Updating ${flag.name}`} />}
+    >
+      <OptInFlagCard flag={flag} />
+    </Suspense>
   ));
 }
 
 function OptInFlagCard({ flag }: { flag: OptInFlag }) {
   const setOptIn = useSetOptIn();
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [pendingUpdate, setPendingUpdate] = useState<Promise<void> | null>(null);
 
-  async function updateOptIn() {
-    setIsUpdating(true);
-
-    try {
-      await setOptIn(flag.key, { optedIn: !flag.userOptedIn });
-    } finally {
-      setIsUpdating(false);
-    }
-  }
+  if (pendingUpdate) use(pendingUpdate);
 
   return (
     <section>
       <h2>{flag.name}</h2>
       {flag.description && <p>{flag.description}</p>}
       <button
-        aria-busy={isUpdating}
-        disabled={isUpdating}
-        onClick={updateOptIn}
+        onClick={() =>
+          setPendingUpdate(
+            setOptIn(flag.key, { optedIn: !flag.userOptedIn }),
+          )
+        }
       >
-        {isUpdating ? (
-          <Spinner aria-label={`Updating ${flag.name}`} />
-        ) : flag.userOptedIn ? (
-          "Cancel opt-in"
-        ) : (
-          `Try ${flag.name}`
-        )}
+        {flag.userOptedIn ? "Cancel opt-in" : `Try ${flag.name}`}
       </button>
     </section>
   );
 }
 ```
 
-Each `OptInFlagCard` owns its pending state, preventing duplicate clicks on that flag while leaving the other opt-in controls available.
+This React 19 example uses one Suspense boundary for the initial flags and a boundary around each opt-in feature. Calling `use()` with the promise returned by `setOptIn()` shows the pending fallback for only that feature, leaving the other opt-in controls available. You can enable `suspense` on `ReflagProvider` or `ReflagBootstrappedProvider` instead of passing `{ suspense: true }` to each hook.
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
-### Loading bootstrapped opt-in metadata
+### Managing loading state without `<Suspense>`
 
-`useOptInFlags()` returns `{ flags, isLoading }`. `isLoading` is only `true` when you use `ReflagBootstrappedProvider` with bootstrap data that does not contain browser opt-in metadata. The SDK fetches that metadata on demand and sets `isLoading` back to `false` after the request succeeds or fails. Bootstrap data that already contains complete opt-in metadata reports `false` immediately.
+Without Suspense, `useOptInFlags()` returns `{ flags, isLoading }`. Check `isLoading` before rendering an empty state:
+
+```tsx
+const { flags: optInFlags, isLoading } = useOptInFlags({ suspense: false });
+
+if (isLoading) {
+  return <Spinner aria-label="Loading opt-in flags" />;
+}
+
+if (optInFlags.length === 0) {
+  return <p>No opt-in flags are available.</p>;
+}
+```
+
+This opt-in loading state is only `true` when you use `ReflagBootstrappedProvider` with bootstrap data that does not contain browser opt-in metadata. The SDK fetches that metadata on demand and sets `isLoading` back to `false` after the request succeeds or fails. Bootstrap data that already contains complete opt-in metadata reports `false` immediately.
 
 With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()` or the provider's `loadingComponent` for the normal initial loading state.
 
-`useOptInFlags()` also supports React Suspense. Enable `suspense` on the provider or for one hook call with `useOptInFlags({ suspense: true })`:
+For individual updates in React 19, `useTransition()` provides a pending state without suspending the component:
 
 ```tsx
-import { Suspense } from "react";
-import { ReflagBootstrappedProvider } from "@reflag/react-sdk";
+const [isUpdating, startTransition] = useTransition();
 
-<ReflagBootstrappedProvider
-  publishableKey="..."
-  flags={bootstrapData}
-  suspense
->
-  <Suspense fallback={<Spinner aria-label="Loading opt-in flags" />}>
-    <OptInList />
-  </Suspense>
-</ReflagBootstrappedProvider>;
+function updateOptIn() {
+  startTransition(() =>
+    setOptIn(flag.key, { optedIn: !flag.userOptedIn }),
+  );
+}
 ```
 
-When Suspense is enabled, the fallback is shown instead of returning an `isLoading: true` result. Pass `{ suspense: false }` to one `useOptInFlags()` call to opt out of provider-level Suspense.
+Use `isUpdating` to disable the selected flag's button and display its spinner. Pass `{ suspense: false }` to opt out for one hook when Suspense is enabled at the provider level.
 
 ## Configure a flag for opt-in
 
