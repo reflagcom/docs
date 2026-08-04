@@ -72,7 +72,7 @@ function OptInFlagCard({ flag }: { flag: OptInFlag }) {
 }
 ```
 
-Replace the `Spinner` import with the spinner component from your application or component library. Each `OptInFlagCard` owns its pending state, preventing duplicate clicks on that flag while leaving the other opt-in controls available.
+Each `OptInFlagCard` owns its pending state, preventing duplicate clicks on that flag while leaving the other opt-in controls available.
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
