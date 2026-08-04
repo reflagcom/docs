@@ -21,7 +21,7 @@ import {
 import { Spinner } from "your-component-library";
 
 function OptInList() {
-  const optInFlags = useOptInFlags();
+  const { flags: optInFlags, isLoading } = useOptInFlags();
   const setOptIn = useSetOptIn();
   const [updatingFlagKey, setUpdatingFlagKey] = useState<string | null>(null);
 
@@ -33,6 +33,14 @@ function OptInList() {
     } finally {
       setUpdatingFlagKey(null);
     }
+  }
+
+  if (isLoading) {
+    return <Spinner aria-label="Loading opt-in flags" />;
+  }
+
+  if (optInFlags.length === 0) {
+    return <p>No opt-in flags are available.</p>;
   }
 
   return optInFlags.map((flag) => {
@@ -65,6 +73,31 @@ Replace the `Spinner` import with the spinner component from your application or
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
+### Loading bootstrapped opt-in metadata
+
+`useOptInFlags()` returns `{ flags, isLoading }`. `isLoading` is only `true` when you use `ReflagBootstrappedProvider` with bootstrap data that does not contain browser opt-in metadata. The SDK fetches that metadata on demand and sets `isLoading` back to `false` after the request succeeds or fails. Bootstrap data that already contains complete opt-in metadata reports `false` immediately.
+
+With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()` or the provider's `loadingComponent` for the normal initial loading state.
+
+`useOptInFlags()` also supports React Suspense. Enable `suspense` on the provider or for one hook call with `useOptInFlags({ suspense: true })`:
+
+```tsx
+import { Suspense } from "react";
+import { ReflagBootstrappedProvider } from "@reflag/react-sdk";
+
+<ReflagBootstrappedProvider
+  publishableKey="..."
+  flags={bootstrapData}
+  suspense
+>
+  <Suspense fallback={<Spinner aria-label="Loading opt-in flags" />}>
+    <OptInList />
+  </Suspense>
+</ReflagBootstrappedProvider>;
+```
+
+When Suspense is enabled, the fallback is shown instead of returning an `isLoading: true` result. Pass `{ suspense: false }` to one `useOptInFlags()` call to opt out of provider-level Suspense.
+
 ## Configure a flag for opt-in
 
 1. Open a non-secret flag in Reflag.
@@ -78,7 +111,7 @@ Secret flags cannot use end-user opt-in because opt-ins are submitted directly f
 
 ## Opt-in flag data
 
-`useOptInFlags()` returns the opt-in-enabled flags available to the current context. Each flag includes:
+The `flags` value returned by `useOptInFlags()` contains the opt-in-enabled flags available to the current context. Each flag includes:
 
 | Field | Description |
 | --- | --- |
