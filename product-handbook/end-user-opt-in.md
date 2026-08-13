@@ -60,8 +60,6 @@ The public description is exposed through Reflag's client-side SDKs. You can dis
 End-user opt-in cannot be enabled for secret flags. Opt-ins are submitted directly from a browser or client using a publishable key, so the flag must be publicly available.
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/end-user-opt-in-settings-help.png" alt="Help text explaining the behavior and limitations of end-user opt-in"><figcaption><p>The setting's help text summarizes how disabling opt-in affects stored memberships.</p></figcaption></figure>
-
 Opt-in is enabled at the flag level, but access is configured separately for each environment. In every environment where users should be able to opt in, ensure that **Access** is set to **Some**, rather than **No one**.
 
 When you enable opt-in while the current environment is set to **No one**, Reflag changes its access setting to **Some**.
