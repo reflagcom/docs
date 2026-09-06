@@ -3605,6 +3605,23 @@ The remote configuration value for the feature.
 <tr>
 <td>
 
+<a id="evaluationerrors"></a> `evaluationErrors?`
+
+</td>
+<td>
+
+`EvaluationError`[]
+
+</td>
+<td>
+
+Non-fatal diagnostics produced while evaluating targeting rules.
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="isenabled-1"></a> `isEnabled`
 
 </td>
@@ -3639,7 +3656,7 @@ The key of the feature.
 <tr>
 <td>
 
-<a id="missingcontextfields"></a> `missingContextFields?`
+<a id="missingcontextfields"></a> ~~`missingContextFields?`~~
 
 </td>
 <td>
@@ -3650,6 +3667,10 @@ The key of the feature.
 <td>
 
 The missing fields in the evaluation context (optional).
+
+**Deprecated**
+
+Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
 
 </td>
 </tr>
@@ -5774,6 +5795,7 @@ type LogLevel = typeof LOG_LEVELS[number];
 
 ```ts
 type RawFlagRemoteConfig = {
+  evaluationErrors: EvaluationError[];
   key: string;
   missingContextFields: string[];
   payload: any;
@@ -5795,6 +5817,23 @@ A remotely managed configuration value for a feature.
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+
+<a id="evaluationerrors-1"></a> `evaluationErrors`?
+
+</td>
+<td>
+
+`EvaluationError`[]
+
+</td>
+<td>
+
+Non-fatal diagnostics produced while evaluating targeting rules.
+
+</td>
+</tr>
 <tr>
 <td>
 
@@ -5826,6 +5865,10 @@ The key of the matched configuration value.
 <td>
 
 The missing fields in the evaluation context (optional).
+
+**Deprecated**
+
+Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
 
 </td>
 </tr>
