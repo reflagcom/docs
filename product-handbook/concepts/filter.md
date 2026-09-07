@@ -19,6 +19,10 @@ Reflag supports the following filter types:
 
 This filter can be used to check company attributes against a set of predicates. The attributes include `First seen` and `Last seen`, which are maintained by Reflag. You can use any attribute name that your application sends to Reflag.
 
+### Array-valued attributes
+
+User, company, event, and other-context attributes can contain arrays. `CONTAINS` matches if the array includes the specified value; `NOT_CONTAINS` matches if it does not. `ANY_OF` matches if the array includes at least one of the specified values; `NOT_ANY_OF` matches if it includes none. Use `SET`/`NOT_SET` for non-empty/empty arrays. Array membership compares whole values, is case-sensitive, and does not search for substrings inside elements. `IS` instead requires the array to have exactly one element equal to the specified value; `IS_NOT` matches all other present arrays. Numeric, date, and boolean operators remain scalar-only. See [array attributes](../array-attributes.md) for examples and normalization rules.
+
 ### Company flag metrics
 
 This filter allows checking company-level flag metrics. These metrics include `Event count`, `First used`, `Last used`, and more.

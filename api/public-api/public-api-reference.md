@@ -67,6 +67,15 @@
 | field     | string                                                                                                                                  | <p>Refers to a field of the context object.<br>Example: company.tier</p>                                                                                                                                                                        |
 | values    | string\[]                                                                                                                               | Array of values which will be compared with the value of the context field. Operators SET, NOT\_SET, IS\_TRUE, IS\_FALSE require 0 values, ANY\_OF and NOT\_ANY\_OF support multiple values. All the other operators require exactly one value. |
 | operator  | enum(`IS`,`IS_NOT`,`ANY_OF`,`NOT_ANY_OF`,`CONTAINS`,`NOT_CONTAINS`","`GT`" ,`LT`,`AFTER`,`BEFORE`,`SET`,`NOT_SET`,`IS_TRUE`,`IS_FALSE`) | Operator for comparison of the context field with provided values.                                                                                                                                                                              |
+
+For array-valued context fields:
+
+* `IS` matches if the array has exactly one element equal to the specified value; `IS_NOT` matches all other present arrays.
+* `CONTAINS` matches if the array includes the specified value; `NOT_CONTAINS` matches if it does not.
+* `ANY_OF` matches if the array includes at least one of the specified values; `NOT_ANY_OF` matches if it includes none.
+* `SET` matches non-empty arrays; `NOT_SET` matches empty arrays.
+
+Array comparisons use normalized, case-sensitive whole values, not substrings. Numeric, date, and boolean operators do not support arrays. See [array attributes](../../product-handbook/array-attributes.md) for examples, normalization, and missing-field behavior.
 {% endtab %}
 
 {% tab title="Rollout Percentage" %}

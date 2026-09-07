@@ -104,24 +104,31 @@ This endpoint retrieves a list of flag values evaluated for a particular user or
 The endpoint is a `GET` request to ensure that the request can be completed without a `CORS Preflight` request to reduce latency.
 {% endhint %}
 
-The context must be flattened and provided as query parameters. For instance, given the following nested object:
+Send the context as JSON in a single URL-encoded `contextJson` query parameter. This preserves [array-valued attributes](../../product-handbook/array-attributes.md):
 
-```typescript
-{
-    company: {
-        id: 42,
-    },
-    user: {
-        id: 99,
-    },
-}
+```javascript
+const context = {
+  company: { id: "42", entitlements: ["reports", "exports"] },
+  user: { id: "99", roles: ["admin", "editor"] },
+  other: { tags: ["beta"] },
+};
+const query = new URLSearchParams({
+  publishableKey: "<publishable_key>",
+  contextJson: JSON.stringify(context),
+});
+const response = await fetch(`https://front.reflag.com/features/evaluated?${query}`);
+const flags = await response.json();
 ```
 
-It needs to be flattened out into the following form: `context.company.id=42&context.user.id=99` .
+`contextJson` accepts optional `user`, `company`, and `other` objects. User/company IDs must be strings or numbers, not arrays. Attribute values can be strings, numbers, booleans, null, arrays, or objects containing those leaf values. One object level within an attribute is allowed, such as `user.profile.roles`; deeper object nesting outside arrays is rejected. Objects and nested arrays inside arrays are opaque JSON-encoded elements, not individually addressable paths.
 
-#### Example
+The decoded JSON parameter is limited to 16 KiB by default; HTTP servers or proxies may impose a smaller URL limit. Invalid JSON, invalid context shapes, duplicate `contextJson` parameters, or combining `contextJson` with `context`/`context.*` parameters returns a validation error.
 
-<pre class="language-http" data-title="Request" data-overflow="wrap"><code class="lang-http"><strong>GET https://front.reflag.com/features/enabled?context.company.id=42&#x26;context.user.id=99&#x26;publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjWy
+The older dotted scalar format, such as `context.company.id=42&context.user.id=99`, remains supported. Do not encode arrays as `context.user.roles.0=admin`; use `contextJson` instead.
+
+#### Example using the older scalar format
+
+<pre class="language-http" data-title="Request" data-overflow="wrap"><code class="lang-http"><strong>GET https://front.reflag.com/features/evaluated?context.company.id=42&#x26;context.user.id=99&#x26;publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjWy
 </strong></code></pre>
 
 {% code title="Response" %}
@@ -143,9 +150,28 @@ It needs to be flattened out into the following form: `context.company.id=42&con
 Reflag utilizes attributes from the `company` endpoint to identify which features are enabled for specific companies. Ensure all `company` attributes referenced in the `context` are also provided through the `company` endpoint.
 {% endhint %}
 
+#### Evaluation diagnostics
+
+Flag results may include `evaluationErrors`. An encountered unsupported array operation makes its entire targeting rule fail to match; it does not cause an HTTP error or prevent other rules from matching. Missing fields use code `MISSING_CONTEXT_FIELD`; unsupported array operators use `UNSUPPORTED_ARRAY_OPERATOR`. Config evaluation can report its own errors in `config.evaluationErrors`.
+
+```json
+{
+  "evaluationErrors": [
+    {
+      "code": "UNSUPPORTED_ARRAY_OPERATOR",
+      "field": "user.roles",
+      "operator": "GT",
+      "message": "Operator GT does not support array-valued context field \"user.roles\"."
+    }
+  ]
+}
+```
+
+The deprecated `missingContextFields` field remains available for older clients and reports only missing fields. For array membership, `CONTAINS` matches if the array includes the specified value, while `ANY_OF` matches if it includes at least one of the specified values. `NOT_CONTAINS` and `NOT_ANY_OF` match when those values are absent. `CONTAINS` retains substring matching only when the context value is a scalar string. `IS` requires an array with exactly one matching element; `IS_NOT` matches all other present arrays, including empty arrays.
+
 ### `GET /features/enabled`
 
-This endpoint is similar to `features/evaluated` but only includes flags that have been evaluated as `true`.
+This endpoint is similar to `features/evaluated` but only includes flags that have been evaluated as `true`. It accepts the same `contextJson` parameter.
 
 ### `POST /features/events`
 
@@ -293,6 +319,12 @@ Content-Type: application/json
 }
 ```
 {% endcode %}
+
+## Array-valued attributes
+
+The `attributes` objects in user, company, and event requests, and equivalent bulk items, accept native JSON arrays. For example, send `"roles": ["admin", "editor"]`, not `"roles": "[\"admin\",\"editor\"]"`. Array updates replace the whole attribute; `[]` clears the list. Arrays are not flattened into numeric paths.
+
+See [array attributes](../../product-handbook/array-attributes.md) for supported operators, element normalization, storage limits, and reserved-key handling.
 
 ## Responses
 
