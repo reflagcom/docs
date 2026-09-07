@@ -18,7 +18,9 @@ The evaluation context refers simply to a collection of **key** — **value** pa
 * Any other [company attributes](company.md#attributes) that might be used by the filters in the rules,
 * A collection of "_**other**_" attributes that can be used by the feature access targeting rules.
 
-The exact structure of the data will vary by the SDK in use. Custom attributes can also be [arrays](../array-attributes.md), such as `user.roles: ["admin", "editor"]`. `CONTAINS` matches if the array includes the specified value; `NOT_CONTAINS` matches if it does not. `ANY_OF` matches if the array includes at least one of the specified values; `NOT_ANY_OF` matches if it includes none of them. `IS` matches only if the array has exactly one element equal to the specified value; `IS_NOT` matches all other present arrays. Use `SET` and `NOT_SET` for empty/non-empty checks. For example, `user.roles CONTAINS ["admin"]` matches `["admin", "editor"]`. `user.roles ANY_OF ["admin", "owner"]` matches if either value is present. Array membership compares whole values and is case-sensitive; `CONTAINS` on a scalar string retains case-insensitive substring matching.
+The exact structure of the data will vary by the SDK in use. Custom attributes can also hold arrays, such as `user.roles: ["admin", "editor"]`.
+
+Use `CONTAINS` to check for a role such as `admin`, or `ANY_OF` to check for any of several roles. See [array attributes](../array-attributes.md#targeting-with-arrays) for examples and the full list of operators.
 
 ### Missing context fields
 
@@ -26,11 +28,15 @@ During the evaluation of targeting rules against a context it might happen that 
 
 Reflag reports these missing context fields using [feature events](feature-events.md). Reflag SDKs will also generate warnings in these cases making it easy to find these situations in your application.
 
-### Unsupported array operations
+### Checks that do not support arrays
 
-If an evaluated condition uses a scalar-only operator such as `GT`, `DATE_AFTER`, or `IS_TRUE` on an array, or uses an array for a percentage rollout, the entire targeting rule fails to match. Negating that condition does not make the rule match. Boolean short-circuiting is preserved: conditions that are not reached do not produce errors, and other targeting rules may still match.
+Some operators, such as `GT`, `DATE_AFTER`, and `IS_TRUE`, do not work with arrays. Arrays also cannot be used for percentage rollouts.
 
-The [evaluation API](../../api/public-api/README.md#get-featuresevaluated) reports these cases in `evaluationErrors` with code `UNSUPPORTED_ARRAY_OPERATOR`. Missing context fields use `MISSING_CONTEXT_FIELD`. The deprecated `missingContextFields` field remains available for older clients.
+If Reflag runs one of these checks on an array, the whole rule does not match. Adding `NOT` does not turn that error into a match. Other rules can still match.
+
+Reflag does not report errors for conditions it skips. For example, if the first condition in an `OR` group matches, Reflag does not check the remaining conditions in that group.
+
+The [evaluation API](../../api/public-api/README.md#evaluation-errors) reports these errors in `evaluationErrors`, with code `UNSUPPORTED_ARRAY_OPERATOR`. Missing fields use `MISSING_CONTEXT_FIELD`. The older `missingContextFields` field is still available but lists missing fields only.
 
 ### Next steps
 

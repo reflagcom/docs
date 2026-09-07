@@ -4,11 +4,11 @@ description: Target users and companies by roles, permissions, tags, and other l
 
 # Array attributes
 
-Custom attributes can contain arrays as well as scalar values. Use arrays for lists such as user roles, company entitlements, or event tags. Arrays are supported in user, company, event, and `other` evaluation-context attributes.
+Use arrays for lists such as user roles, company permissions, or event tags. You can send arrays in user, company, event, and `other` context attributes.
 
 ## Sending arrays
 
-Send a JSON array, not a JSON-encoded string:
+Send a JSON array, not a string:
 
 ```json
 {
@@ -19,55 +19,72 @@ Send a JSON array, not a JSON-encoded string:
 }
 ```
 
-Send this body to [`POST /user`](../api/public-api/README.md#post-user). The same attribute format works with `POST /company`, `POST /event`, bulk requests, and Segment traits/properties.
+Send this body to [`POST /user`](../api/public-api/README.md#post-user). The same attribute format works with `POST /company`, `POST /event`, bulk requests, and Segment traits and properties.
 
-For remote flag evaluation, send arrays using [`contextJson`](../api/public-api/README.md#get-featuresevaluated). If using an SDK, use a version that supports array-valued context transport; older clients may flatten arrays into indexed fields instead.
+For remote flag checks, send arrays using [`contextJson`](../api/public-api/README.md#get-featuresevaluated). If you use an SDK, choose a version that can send arrays in context. Older versions may turn an array into separate fields such as `user.roles.0` and `user.roles.1`.
 
 ## Targeting with arrays
 
-For `user.roles: ["admin", "editor"]`, create an access condition on **User attribute → roles**. Choose **contains** and enter `admin` to match users whose roles include `admin`. Choose **IS ANY OF** when you want to match any of several roles.
+For `user.roles: ["admin", "editor"]`, add an access condition on **User attribute → roles**. Choose **contains** and enter `admin` to match users whose roles include `admin`. Choose **IS ANY OF** to check for several roles at once.
 
-| Operator | Array behavior | Example |
+| Operator | When it matches | Example |
 | --- | --- | --- |
-| IS (`IS`) | Matches if the array has exactly one element and it equals the specified value. | `["admin"]` is `admin`; `["admin", "editor"]` is not. |
-| IS NOT (`IS_NOT`) | Matches any other present array. | `["admin", "editor"]` and `[]` are not `admin`. |
-| contains (`CONTAINS`) | Matches if the array includes the specified value. | `["admin", "editor"]` contains `admin`, but not `adm`. |
-| does not contain (`NOT_CONTAINS`) | Matches if the array does not include the specified value. | `["admin", "editor"]` does not contain `owner`. |
-| IS ANY OF (`ANY_OF`) | Matches if the array includes at least one of the specified values. | `["admin", "editor"]` matches `admin` or `owner`. |
-| IS NOT ANY OF (`NOT_ANY_OF`) | Matches if the array includes none of the specified values. | `["admin", "editor"]` does not match a condition excluding `admin`. |
-| IS SET (`SET`) | Matches a non-empty array. | `["admin"]` is set; `[]` is not. |
-| IS NOT SET (`NOT_SET`) | Matches an empty array. | `[]` is not set. |
+| IS (`IS`) | The array has just one item, equal to the value you chose. | `["admin"]` matches `IS admin`; `["admin", "editor"]` does not. |
+| IS NOT (`IS_NOT`) | The array is empty, has more than one item, or its only item differs from the value you chose. | `["admin", "editor"]` and `[]` match `IS NOT admin`. |
+| contains (`CONTAINS`) | The array includes the value you chose. | `["admin", "editor"]` contains `admin`, but not `adm`. |
+| does not contain (`NOT_CONTAINS`) | The array does not include the value you chose. | `["admin", "editor"]` does not contain `owner`. |
+| IS ANY OF (`ANY_OF`) | The array includes at least one of the values you chose. | `["admin", "editor"]` matches `IS ANY OF [admin, owner]`. |
+| IS NOT ANY OF (`NOT_ANY_OF`) | The array includes none of the values you chose. | `["admin", "editor"]` matches `IS NOT ANY OF [owner, guest]`. |
+| IS SET (`SET`) | The array has at least one item. | `["admin"]` is set; `[]` is not. |
+| IS NOT SET (`NOT_SET`) | The array is empty. | `[]` is not set. |
 
-Matching compares whole values, not substrings, and is case-sensitive. Array order and duplicate elements do not affect membership matching. `IS`, `IS_NOT`, `CONTAINS`, and `NOT_CONTAINS` take one comparison value. Unlike membership checks, `IS` also requires the array to have exactly one element: `["admin", "admin"] IS "admin"` is false. `ANY_OF` and `NOT_ANY_OF` take a list; `ANY_OF` requires only one overlap, not all configured values.
+Array checks compare whole values and treat uppercase and lowercase letters as different. For example, `["admin"]` does not contain `adm` or `Admin`.
 
-For an empty array, `IS`, `CONTAINS`, and `ANY_OF` are false, while `IS_NOT`, `NOT_CONTAINS`, and `NOT_ANY_OF` are true. A missing field is different from an empty array: use `SET` or `NOT_SET` to test presence. Other operators on a missing evaluation-context field cause the targeting rule not to match.
+Use one comparison value with `IS`, `IS_NOT`, `CONTAINS`, or `NOT_CONTAINS`. Use a list with `ANY_OF` or `NOT_ANY_OF`. `ANY_OF` needs only one match, not every value in the list.
 
-Scalar behavior is unchanged: `ANY_OF` still checks whether a single scalar value is among the configured values. For flag evaluation, `CONTAINS` on a scalar string remains a case-insensitive substring check, so `"SuperAdmin" CONTAINS "admin"` is true. In contrast, `["SuperAdmin"] CONTAINS "admin"` is false.
+The order of items does not matter. Repeated items matter only for `IS` and `IS_NOT`: `["admin", "admin"]` fails `IS admin` because it has two items.
+
+For flag access, `CONTAINS` on a single string checks for part of the text and ignores letter case. For example, `"SuperAdmin" CONTAINS "admin"` is true, but `["SuperAdmin"] CONTAINS "admin"` is false.
+
+You can also use array checks in company segments and event filters.
+
+### Empty arrays and missing fields
+
+For `[]`, `IS`, `CONTAINS`, and `ANY_OF` are false. `IS_NOT`, `NOT_CONTAINS`, and `NOT_ANY_OF` are true.
+
+When checking flag access, a missing field is different from an empty array. `SET` is false for a missing field; `NOT_SET` is true. If Reflag checks a missing field with any other operator, that rule does not match.
+
+### Checks that do not support arrays
+
+Numeric and date operators, plus `IS_TRUE` and `IS_FALSE`, do not work with arrays. Use an ID, such as `company.id`, rather than an array for percentage rollouts.
 
 {% hint style="warning" %}
-Use `CONTAINS` or `ANY_OF` to test array membership. Use `IS` only when the array must contain exactly one matching element. Numeric, date, and boolean operators do not support array-valued attributes. Arrays also cannot be used as percentage-rollout identifiers; use a scalar such as `company.id`.
-
-During flag evaluation, encountering an unsupported array operation makes that entire targeting rule fail to match, even inside a negated condition. Other targeting rules can still match. Conditions skipped by boolean short-circuiting do not produce errors.
+If Reflag checks an array with an unsupported operator in a flag access rule, the whole rule does not match. Adding `NOT` does not turn that error into a match. Other rules can still match, and conditions that Reflag skips do not cause errors.
 {% endhint %}
 
-These membership operators also work in company segments and event-attribute filters.
+## How Reflag reads array items
 
-## Values and nesting
+* Strings stay as they are. Numbers and true/false values become strings: `[1, true]` matches the rule values `"1"` and `"true"`.
+* `null` becomes an empty string. `[null]` still has one item, so it is `SET`.
+* Objects and arrays inside an array become JSON strings without extra spaces. For example, `[{"level":3}, ["a","b"]]` becomes `["{\"level\":3}", "[\"a\",\"b\"]"]`. Reflag treats each of these strings as one value. You cannot target properties or items inside them.
+* An array stays one attribute. Target `user.roles`, not `user.roles.0`.
+* A string such as `"[\"admin\"]"` in an evaluation request stays a string, not an array. Do not call `JSON.stringify()` on each array attribute before sending it.
 
-* String elements remain strings. Numbers and booleans are converted to strings: `[1, true]` matches configured values `1` and `true`.
-* A `null` element becomes an empty string. `[null]` is still a non-empty array and therefore is set.
-* Objects and nested arrays inside an array become compact JSON strings. For example, `[{"level":3}, ["a","b"]]` becomes `["{\"level\":3}", "[\"a\",\"b\"]"]`. They are opaque values: targeting inside their properties or array positions is not supported.
-* Arrays remain single attributes. Target `user.roles`, not `user.roles.0`.
-* In an evaluation request, a string such as `"[\"admin\"]"` remains a scalar string, not an array. Do not call `JSON.stringify()` on individual array attributes before sending them.
+Remote evaluation allows one object level within an attribute, such as `user.profile.roles`. A path such as `user.profile.settings.roles` is too deep. This limit does not apply to objects inside arrays, which are treated as whole values.
 
-Remote evaluation permits one object level within an attribute, for example `user.profile.roles`. Deeper object nesting outside arrays is rejected.
+## Updating and viewing arrays
 
-## Storage and display
+Sending an updated array replaces the whole list. It does not add to the old list or merge the two. To clear a list, send `[]`.
 
-Updating an array replaces the whole attribute; it does not append or merge elements. To clear a list, send `[]`.
+Reflag stores the array after converting its items as described above. The app and some API responses show arrays as JSON text, such as `["admin","editor"]`. They still work as arrays in targeting rules.
 
-Ingest stores arrays natively after normalizing their elements. User/company attribute views and existing scalar-valued API responses may display them as compact JSON text, such as `["admin","editor"]`. This display format does not change their targeting behavior.
+## Limits and ignored keys
 
-Oversized stored arrays are replaced entirely with the scalar string `"[TRUNCATED]"`, rather than keeping a partial list. The default limits are 1,000 elements and 2,000 characters in the normalized serialized array; deployments may configure a different serialized-value limit. These storage limits are separate from remote evaluation's request-size limit.
+The default storage limits for an array are:
 
-Ingest silently skips reserved keys `__proto__`, `constructor`, and `prototype`, including nested keys, dotted path segments, and variants containing null bytes. Other attributes are accepted normally.
+* 1,000 items.
+* 2,000 characters after converting the items and writing the array as JSON, including brackets and quotes.
+
+If an array exceeds either limit, Reflag replaces the whole value with the string `"[TRUNCATED]"`. It does not keep part of the list. The server may use different limits. These storage limits are separate from the size limit for remote evaluation requests.
+
+Reflag ignores attribute keys named `__proto__`, `constructor`, or `prototype`. This also applies inside objects, in dotted names such as `profile.constructor`, and after removing null characters (`\u0000`) from names. Other attributes are still accepted.

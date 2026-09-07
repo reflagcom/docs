@@ -104,7 +104,7 @@ This endpoint retrieves a list of flag values evaluated for a particular user or
 The endpoint is a `GET` request to ensure that the request can be completed without a `CORS Preflight` request to reduce latency.
 {% endhint %}
 
-Send the context as JSON in a single URL-encoded `contextJson` query parameter. This preserves [array-valued attributes](../../product-handbook/array-attributes.md):
+Send the context in one query parameter called `contextJson`. Use `JSON.stringify()` to turn the whole context into JSON text, then `URLSearchParams` to encode it for the URL. Arrays stay as arrays:
 
 ```javascript
 const context = {
@@ -120,13 +120,21 @@ const response = await fetch(`https://front.reflag.com/features/evaluated?${quer
 const flags = await response.json();
 ```
 
-`contextJson` accepts optional `user`, `company`, and `other` objects. User/company IDs must be strings or numbers, not arrays. Attribute values can be strings, numbers, booleans, null, arrays, or objects containing those leaf values. One object level within an attribute is allowed, such as `user.profile.roles`; deeper object nesting outside arrays is rejected. Objects and nested arrays inside arrays are opaque JSON-encoded elements, not individually addressable paths.
+The context can include `user`, `company`, and `other` objects. None of these objects is required. User and company IDs are also optional; if provided, they must be strings or numbers, not arrays.
 
-The decoded JSON parameter is limited to 16 KiB by default; HTTP servers or proxies may impose a smaller URL limit. Invalid JSON, invalid context shapes, duplicate `contextJson` parameters, or combining `contextJson` with `context`/`context.*` parameters returns a validation error.
+Attributes can hold strings, numbers, true/false values, `null`, arrays, or objects. Remote evaluation allows one object level within an attribute: `user.profile.roles` is allowed, but `user.profile.settings.roles` is too deep. Objects and arrays inside an array are treated as single values. See [array attributes](../../product-handbook/array-attributes.md) for details.
 
-The older dotted scalar format, such as `context.company.id=42&context.user.id=99`, remains supported. Do not encode arrays as `context.user.roles.0=admin`; use `contextJson` instead.
+By default, the JSON text can be up to 16,384 bytes before URL encoding. Your HTTP server or proxy may have a lower URL limit.
 
-#### Example using the older scalar format
+The API returns a validation error if:
+
+* The JSON is not valid or the context does not follow the rules above.
+* You send `contextJson` more than once.
+* You send `contextJson` together with `context` or `context.*` parameters.
+
+The older query format still works for single values, such as `context.company.id=42&context.user.id=99`. For arrays, use `contextJson`; do not send separate items as `context.user.roles.0=admin`.
+
+#### Example using the older query format
 
 <pre class="language-http" data-title="Request" data-overflow="wrap"><code class="lang-http"><strong>GET https://front.reflag.com/features/evaluated?context.company.id=42&#x26;context.user.id=99&#x26;publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjWy
 </strong></code></pre>
@@ -150,9 +158,14 @@ The older dotted scalar format, such as `context.company.id=42&context.user.id=9
 Reflag utilizes attributes from the `company` endpoint to identify which features are enabled for specific companies. Ensure all `company` attributes referenced in the `context` are also provided through the `company` endpoint.
 {% endhint %}
 
-#### Evaluation diagnostics
+#### Evaluation errors
 
-Flag results may include `evaluationErrors`. An encountered unsupported array operation makes its entire targeting rule fail to match; it does not cause an HTTP error or prevent other rules from matching. Missing fields use code `MISSING_CONTEXT_FIELD`; unsupported array operators use `UNSUPPORTED_ARRAY_OPERATOR`. Config evaluation can report its own errors in `config.evaluationErrors`.
+Flag results may include `evaluationErrors`:
+
+* `MISSING_CONTEXT_FIELD`: a rule needs a field that was not provided.
+* `UNSUPPORTED_ARRAY_OPERATOR`: a rule tried to use an operator that does not work with arrays.
+
+The affected rule does not match, but the API still returns a normal response and other rules can match. Errors while choosing a config value are listed in `config.evaluationErrors`.
 
 ```json
 {
@@ -167,7 +180,9 @@ Flag results may include `evaluationErrors`. An encountered unsupported array op
 }
 ```
 
-The deprecated `missingContextFields` field remains available for older clients and reports only missing fields. For array membership, `CONTAINS` matches if the array includes the specified value, while `ANY_OF` matches if it includes at least one of the specified values. `NOT_CONTAINS` and `NOT_ANY_OF` match when those values are absent. `CONTAINS` retains substring matching only when the context value is a scalar string. `IS` requires an array with exactly one matching element; `IS_NOT` matches all other present arrays, including empty arrays.
+Older clients can still use `missingContextFields`, which lists missing fields only. Use `evaluationErrors` for new integrations.
+
+See [array attributes](../../product-handbook/array-attributes.md#targeting-with-arrays) for the supported operators and examples.
 
 ### `GET /features/enabled`
 
@@ -320,11 +335,13 @@ Content-Type: application/json
 ```
 {% endcode %}
 
-## Array-valued attributes
+## Array attributes
 
-The `attributes` objects in user, company, and event requests, and equivalent bulk items, accept native JSON arrays. For example, send `"roles": ["admin", "editor"]`, not `"roles": "[\"admin\",\"editor\"]"`. Array updates replace the whole attribute; `[]` clears the list. Arrays are not flattened into numeric paths.
+You can send arrays in the `attributes` of user, company, and event requests, including bulk requests. Send `"roles": ["admin", "editor"]`, not `"roles": "[\"admin\",\"editor\"]"`.
 
-See [array attributes](../../product-handbook/array-attributes.md) for supported operators, element normalization, storage limits, and reserved-key handling.
+An update replaces the whole list; sending `[]` clears it. Each array stays one attribute, rather than becoming separate fields such as `roles.0`.
+
+See [array attributes](../../product-handbook/array-attributes.md) for matching rules, how Reflag reads each item, storage limits, and keys that Reflag ignores.
 
 ## Responses
 

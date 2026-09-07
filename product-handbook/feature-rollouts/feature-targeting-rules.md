@@ -72,7 +72,7 @@ Here are examples of access conditions:
 * Companies with Company IDs 1 and 2: `Company attribute: Company ID IS ANY OF [1,2]`
 * Give access to newly created companies: `Company attribute: createdAt LESS THAN [30] DAYS AGO`
 * Give access to users with the manager role at all companies: `User attribute: role IS [manager]`
-* Give access to users whose `roles` array includes manager: `User attribute: roles IS ANY OF [manager]`. See [array attributes](../array-attributes.md) for supported operators and examples.
+* Give access to users whose `roles` list includes `manager`: `User attribute: roles contains [manager]`. See [array attributes](../array-attributes.md) for more examples.
 * Give access to companies in the Pro plan segment: `Segment: In segment ['Pro']`
 * Give access to companies in the Beta users’ segment: `Segment: In segment ['Beta users']`
 * Give access to companies who already have access to the Huddle flag: `Flag access: Flag [Huddle] is enabled`
