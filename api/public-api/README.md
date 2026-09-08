@@ -104,24 +104,39 @@ This endpoint retrieves a list of flag values evaluated for a particular user or
 The endpoint is a `GET` request to ensure that the request can be completed without a `CORS Preflight` request to reduce latency.
 {% endhint %}
 
-The context must be flattened and provided as query parameters. For instance, given the following nested object:
+Send the context in one query parameter called `contextJson`. Use `JSON.stringify()` to turn the whole context into JSON text, then `URLSearchParams` to encode it for the URL. Arrays stay as arrays:
 
-```typescript
-{
-    company: {
-        id: 42,
-    },
-    user: {
-        id: 99,
-    },
-}
+```javascript
+const context = {
+  company: { id: "42", entitlements: ["reports", "exports"] },
+  user: { id: "99", roles: ["admin", "editor"] },
+  other: { tags: ["beta"] },
+};
+const query = new URLSearchParams({
+  publishableKey: "<publishable_key>",
+  contextJson: JSON.stringify(context),
+});
+const response = await fetch(`https://front.reflag.com/features/evaluated?${query}`);
+const flags = await response.json();
 ```
 
-It needs to be flattened out into the following form: `context.company.id=42&context.user.id=99` .
+The context can include `user`, `company`, and `other` objects. None of these objects is required. User and company IDs are also optional; if provided, they must be strings or numbers, not arrays.
 
-#### Example
+Context attributes can hold strings, numbers, true/false values, `null`, or arrays. You can group attributes in one nested object—for example, `user.profile.roles`, targeted with the same dotted path. Deeper object nesting is rejected.
 
-<pre class="language-http" data-title="Request" data-overflow="wrap"><code class="lang-http"><strong>GET https://front.reflag.com/features/enabled?context.company.id=42&#x26;context.user.id=99&#x26;publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjWy
+By default, the JSON text can be up to 16,384 bytes before URL encoding. Your HTTP server or proxy may have a lower URL limit.
+
+The API returns a validation error if:
+
+* The JSON is not valid or the context does not follow the rules above.
+* You send `contextJson` more than once.
+* You send `contextJson` together with `context` or `context.*` parameters.
+
+The older query format still works for single values, such as `context.company.id=42&context.user.id=99`. For arrays, use `contextJson`; do not send separate items as `context.user.roles.0=admin`.
+
+#### Example using the older query format
+
+<pre class="language-http" data-title="Request" data-overflow="wrap"><code class="lang-http"><strong>GET https://front.reflag.com/features/evaluated?context.company.id=42&#x26;context.user.id=99&#x26;publishableKey=pub_prod_Cqx4DGo1lk3Lcct5NHLjWy
 </strong></code></pre>
 
 {% code title="Response" %}
@@ -143,9 +158,35 @@ It needs to be flattened out into the following form: `context.company.id=42&con
 Reflag utilizes attributes from the `company` endpoint to identify which features are enabled for specific companies. Ensure all `company` attributes referenced in the `context` are also provided through the `company` endpoint.
 {% endhint %}
 
+#### Evaluation errors
+
+Flag results may include `evaluationErrors`:
+
+* `MISSING_CONTEXT_FIELD`: a rule needs a field that was not provided.
+* `UNSUPPORTED_ARRAY_OPERATOR`: a rule tried to use an operator that does not work with arrays.
+
+The affected rule does not match, but the API still returns a normal response and other rules can match. Errors while choosing a config value are listed in `config.evaluationErrors`.
+
+```json
+{
+  "evaluationErrors": [
+    {
+      "code": "UNSUPPORTED_ARRAY_OPERATOR",
+      "field": "user.roles",
+      "operator": "GT",
+      "message": "Operator GT does not support array-valued context field \"user.roles\"."
+    }
+  ]
+}
+```
+
+Older clients can still use `missingContextFields`, which lists missing fields only. Use `evaluationErrors` for new integrations.
+
+See [array attribute operators](../../product-handbook/creating-segments.md#array-attributes) for supported operators and examples.
+
 ### `GET /features/enabled`
 
-This endpoint is similar to `features/evaluated` but only includes flags that have been evaluated as `true`.
+This endpoint is similar to `features/evaluated` but only includes flags that have been evaluated as `true`. It accepts the same `contextJson` parameter.
 
 ### `POST /features/events`
 
@@ -293,6 +334,14 @@ Content-Type: application/json
 }
 ```
 {% endcode %}
+
+## Array attributes
+
+You can send arrays in the `attributes` of user, company, and event requests, including bulk requests. Send `"roles": ["admin", "editor"]`, not `"roles": "[\"admin\",\"editor\"]"`.
+
+An update replaces the whole list; sending `[]` clears it. Each array stays one attribute, rather than becoming separate fields such as `roles.0`.
+
+See [array attribute operators](../../product-handbook/creating-segments.md#array-attributes) for matching rules and examples.
 
 ## Responses
 

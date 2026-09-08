@@ -19,6 +19,16 @@ Reflag supports the following filter types:
 
 This filter can be used to check company attributes against a set of predicates. The attributes include `First seen` and `Last seen`, which are maintained by Reflag. You can use any attribute name that your application sends to Reflag.
 
+### Array attributes
+
+Attributes can hold lists, such as `roles: ["admin", "editor"]`.
+
+* Use `CONTAINS` to check for one value, such as `admin`.
+* Use `ANY_OF` to check for any of several values, such as `admin` or `owner`.
+* Use `IS` when the list must have just one item, equal to the value you chose.
+
+Array checks match whole values and treat uppercase and lowercase letters as different. See [array attribute operators](../creating-segments.md#array-attributes) for all supported operators and examples.
+
 ### Company flag metrics
 
 This filter allows checking company-level flag metrics. These metrics include `Event count`, `First used`, `Last used`, and more.
