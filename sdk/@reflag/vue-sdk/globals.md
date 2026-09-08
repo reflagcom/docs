@@ -150,7 +150,7 @@ Id should always be present so that it can be referenced to an existing company.
 #### Indexable
 
 ```ts
-[key: string]: undefined | string | number
+[key: string]: ContextValue
 ```
 
 #### Properties
@@ -337,7 +337,7 @@ Id should always be present so that it can be referenced to an existing user.
 #### Indexable
 
 ```ts
-[key: string]: undefined | string | number
+[key: string]: ContextValue
 ```
 
 #### Properties
