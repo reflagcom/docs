@@ -122,7 +122,7 @@ const flags = await response.json();
 
 The context can include `user`, `company`, and `other` objects. None of these objects is required. User and company IDs are also optional; if provided, they must be strings or numbers, not arrays.
 
-Attributes can hold strings, numbers, true/false values, `null`, arrays, or objects. Remote evaluation allows one object level within an attribute: `user.profile.roles` is allowed, but `user.profile.settings.roles` is too deep. Objects and arrays inside an array are treated as single values.
+Context attributes can hold strings, numbers, true/false values, `null`, or arrays. You can group attributes in one nested object—for example, `user.profile.roles`, targeted with the same dotted path. Deeper object nesting is rejected.
 
 By default, the JSON text can be up to 16,384 bytes before URL encoding. Your HTTP server or proxy may have a lower URL limit.
 
