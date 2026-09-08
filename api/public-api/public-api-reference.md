@@ -77,7 +77,7 @@ When the context field holds an array:
 
 These checks match whole values and treat uppercase and lowercase letters as different. For example, `["admin"]` does not contain `adm` or `Admin`. Numeric and date operators, plus `IS_TRUE` and `IS_FALSE`, do not work with arrays.
 
-See [array attributes](../../product-handbook/array-attributes.md) for examples, how Reflag reads array items, and what happens when a field is missing.
+See [array attribute operators](../../product-handbook/creating-segments.md#array-attributes) for examples.
 {% endtab %}
 
 {% tab title="Rollout Percentage" %}

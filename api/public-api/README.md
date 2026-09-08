@@ -122,7 +122,7 @@ const flags = await response.json();
 
 The context can include `user`, `company`, and `other` objects. None of these objects is required. User and company IDs are also optional; if provided, they must be strings or numbers, not arrays.
 
-Attributes can hold strings, numbers, true/false values, `null`, arrays, or objects. Remote evaluation allows one object level within an attribute: `user.profile.roles` is allowed, but `user.profile.settings.roles` is too deep. Objects and arrays inside an array are treated as single values. See [array attributes](../../product-handbook/array-attributes.md) for details.
+Attributes can hold strings, numbers, true/false values, `null`, arrays, or objects. Remote evaluation allows one object level within an attribute: `user.profile.roles` is allowed, but `user.profile.settings.roles` is too deep. Objects and arrays inside an array are treated as single values.
 
 By default, the JSON text can be up to 16,384 bytes before URL encoding. Your HTTP server or proxy may have a lower URL limit.
 
@@ -182,7 +182,7 @@ The affected rule does not match, but the API still returns a normal response an
 
 Older clients can still use `missingContextFields`, which lists missing fields only. Use `evaluationErrors` for new integrations.
 
-See [array attributes](../../product-handbook/array-attributes.md#targeting-with-arrays) for the supported operators and examples.
+See [array attribute operators](../../product-handbook/creating-segments.md#array-attributes) for supported operators and examples.
 
 ### `GET /features/enabled`
 
@@ -341,7 +341,7 @@ You can send arrays in the `attributes` of user, company, and event requests, in
 
 An update replaces the whole list; sending `[]` clears it. Each array stays one attribute, rather than becoming separate fields such as `roles.0`.
 
-See [array attributes](../../product-handbook/array-attributes.md) for matching rules, how Reflag reads each item, storage limits, and keys that Reflag ignores.
+See [array attribute operators](../../product-handbook/creating-segments.md#array-attributes) for matching rules and examples.
 
 ## Responses
 

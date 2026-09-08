@@ -20,7 +20,7 @@ The evaluation context refers simply to a collection of **key** — **value** pa
 
 The exact structure of the data will vary by the SDK in use. Custom attributes can also hold arrays, such as `user.roles: ["admin", "editor"]`.
 
-Use `CONTAINS` to check for a role such as `admin`, or `ANY_OF` to check for any of several roles. See [array attributes](../array-attributes.md#targeting-with-arrays) for examples and the full list of operators.
+Use `CONTAINS` to check for a role such as `admin`, or `ANY_OF` to check for any of several roles. See [array attribute operators](../creating-segments.md#array-attributes) for examples and the full list of operators.
 
 ### Missing context fields
 

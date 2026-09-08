@@ -92,6 +92,27 @@ Operators depend on the condition type:
   * `In segment`
   * `Not in segment`
 
+These attribute operators are also available when you create flag access rules.
+
+#### Array attributes
+
+Attributes can hold arrays such as `roles: ["admin", "editor"]`. Array operators compare whole items and are case-sensitive: `admin` does not match `Admin` or part of a value such as `adm`.
+
+| Operator | Matches an array when |
+| --- | --- |
+| `Is` | It has exactly one item, equal to the selected value. |
+| `Is not` | It is empty, has more than one item, or its only item differs from the selected value. |
+| `Contains` | It includes the selected value. |
+| `Does not contain` | It does not include the selected value. |
+| `Is any of` | It includes at least one selected value. |
+| `Is not any of` | It includes none of the selected values. |
+| `Has any value` | It has at least one item. |
+| `Has no value` | It is empty. |
+
+For example, `roles: ["admin", "editor"]` matches `Contains admin` and `Is any of [admin, owner]`, but it does not match `Is admin`.
+
+Number, date, and boolean operators do not support arrays, and arrays cannot be used for percentage rollouts. If an access rule applies an unsupported operator to an array, that rule does not match.
+
 ## Save and reuse the segment
 
 After you save a segment, you can reuse it in flag [access rules](feature-rollouts/feature-targeting-rules.md) and rollout workflows.

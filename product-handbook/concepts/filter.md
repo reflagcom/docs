@@ -27,7 +27,7 @@ Attributes can hold lists, such as `roles: ["admin", "editor"]`.
 * Use `ANY_OF` to check for any of several values, such as `admin` or `owner`.
 * Use `IS` when the list must have just one item, equal to the value you chose.
 
-Array checks match whole values and treat uppercase and lowercase letters as different. See [array attributes](../array-attributes.md) for all supported operators, examples, and limits.
+Array checks match whole values and treat uppercase and lowercase letters as different. See [array attribute operators](../creating-segments.md#array-attributes) for all supported operators and examples.
 
 ### Company flag metrics
 

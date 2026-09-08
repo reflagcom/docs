@@ -57,7 +57,6 @@
   * [Access rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
 * [Flag clean-up and archival](product-handbook/feature-clean-up-and-archival-beta/README.md)
   * [AI code clean-up](product-handbook/feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md)
-* [Array attributes](product-handbook/array-attributes.md)
 * [Remote config](product-handbook/remote-config.md)
 * [Type safety](product-handbook/type-safety.md)
 * [Team permissions](product-handbook/team-permissions.md)
