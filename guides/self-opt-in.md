@@ -1,17 +1,25 @@
 ---
-description: How to build a beta feature opt-in page with the Reflag React SDK
+description: Build a beta feature opt-in page with the Reflag React SDK
 icon: browser
 ---
 
-# Beta feature opt-in
+# Build a beta feature opt-in page
 
-Let users opt themselves—or their company—into beta and experimental features with Reflag's React SDK.
+Use Reflag's React SDK to let users opt themselves—or their company—into beta and experimental features.
+
+For an overview of how opt-in affects access and how memberships are managed in Reflag, see [End-user opt-in](../product-handbook/end-user-opt-in.md).
+
+## Before you begin
+
+1. [Configure one or more non-secret flags for end-user opt-in](../product-handbook/end-user-opt-in.md#configure-end-user-opt-in).
+2. Set **Access** to **Some** in every environment where opting in should be available.
+3. Include a `user.id` in the Reflag context for user opt-in. To support company opt-in, also include a `company.id`.
 
 ## Quick start
 
-After enabling end-user opt-in on at least one flag in Reflag, render the available flags and let the current user set their opt-in status.
+Render the available opt-in flags and let the current user set their opt-in status.
 
-If you're using `<ReflagBootstrappedProvider>` without a `<Suspense>` boundary, see the section below. 
+If you're using `<ReflagBootstrappedProvider>` without a `<Suspense>` boundary, see the loading section below.
 
 ```tsx
 import { useState } from "react";
@@ -84,17 +92,6 @@ function OptInFlagCard({ flag }: { flag: OptInFlag }) {
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
-## Configure a flag for opt-in
-
-1. Open a non-secret flag in Reflag.
-2. Go to **Settings > Opt-in**.
-3. Enable **End-user opt-in**.
-4. Optionally add a **Public description**. The SDK exposes this text so you can display it in your opt-in UI.
-5. Save your changes.
-6. On the flag's **Access** tab, verify that access is set to **Some** in each environment where users should be able to opt in. Leave the other access rules empty for an opt-in-only feature, or add rules to grant access through either targeting or opt-in.
-
-Secret flags cannot use end-user opt-in because opt-ins are submitted directly from a browser or client using a publishable key.
-
 ## Company opt-in
 
 To change the current company's opt-in, pass `scope: "company"`. The current Reflag context must include a `company.id`.
@@ -132,4 +129,5 @@ With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal f
 
 ## Next steps
 
-Learn how to manage additional access with [Access rules](../product-handbook/feature-rollouts/feature-targeting-rules.md).
+* Learn how to view, manage, disable, and re-enable memberships in [End-user opt-in](../product-handbook/end-user-opt-in.md).
+* Learn how to grant additional access with [Access rules](../product-handbook/feature-rollouts/feature-targeting-rules.md).

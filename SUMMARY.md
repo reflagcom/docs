@@ -55,6 +55,7 @@
 * [Product overview](product-handbook/product-overview.md)
 * [Flag rollouts](product-handbook/feature-rollouts/README.md)
   * [Access rules](product-handbook/feature-rollouts/feature-targeting-rules.md)
+  * [End-user opt-in](product-handbook/end-user-opt-in.md)
 * [Flag clean-up and archival](product-handbook/feature-clean-up-and-archival-beta/README.md)
   * [AI code clean-up](product-handbook/feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md)
 * [Remote config](product-handbook/remote-config.md)
