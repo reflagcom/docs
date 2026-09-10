@@ -113,7 +113,7 @@ new Api(config?: ConfigurationParameters): Api
 createFlag(requestParameters: CreateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<CreateFlag200Response>
 ```
 
-Create a new flag in the application. Returns the created flag details.
+Create a new flag in the application. Returns the created flag and the resulting flag-state version for every environment.
 Create a flag
 
 ###### Parameters
@@ -167,7 +167,7 @@ Create a flag
 createFlagRaw(requestParameters: CreateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<CreateFlag200Response>>
 ```
 
-Create a new flag in the application. Returns the created flag details.
+Create a new flag in the application. Returns the created flag and the resulting flag-state version for every environment.
 Create a flag
 
 ###### Parameters
@@ -214,6 +214,222 @@ Create a flag
 ###### Inherited from
 
 [`DefaultApi`](globals.md#defaultapi).[`createFlagRaw`](globals.md#createflagraw-1)
+
+##### deleteCompany()
+
+```ts
+deleteCompany(requestParameters: DeleteCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<object>
+```
+
+Synchronously delete a company and its related data from an environment. Requires the `write:entities` API key scope or admin member access. By default, users that belong only to this company are also deleted; set `deleteUsers` to false to preserve them. Users that belong to other companies are always preserved.
+Delete a company
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteCompanyOperationRequest`](globals.md#deletecompanyoperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`object`\>
+
+###### Inherited from
+
+[`DefaultApi`](globals.md#defaultapi).[`deleteCompany`](globals.md#deletecompany-1)
+
+##### deleteCompanyRaw()
+
+```ts
+deleteCompanyRaw(requestParameters: DeleteCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<object>>
+```
+
+Synchronously delete a company and its related data from an environment. Requires the `write:entities` API key scope or admin member access. By default, users that belong only to this company are also deleted; set `deleteUsers` to false to preserve them. Users that belong to other companies are always preserved.
+Delete a company
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteCompanyOperationRequest`](globals.md#deletecompanyoperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<`object`\>\>
+
+###### Inherited from
+
+[`DefaultApi`](globals.md#defaultapi).[`deleteCompanyRaw`](globals.md#deletecompanyraw-1)
+
+##### deleteUser()
+
+```ts
+deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<object>
+```
+
+Synchronously delete a user and its related data, including company memberships, from an environment. Requires the `write:entities` API key scope or admin member access.
+Delete a user
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteUserRequest`](globals.md#deleteuserrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`object`\>
+
+###### Inherited from
+
+[`DefaultApi`](globals.md#defaultapi).[`deleteUser`](globals.md#deleteuser-1)
+
+##### deleteUserRaw()
+
+```ts
+deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<object>>
+```
+
+Synchronously delete a user and its related data, including company memberships, from an environment. Requires the `write:entities` API key scope or admin member access.
+Delete a user
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteUserRequest`](globals.md#deleteuserrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<`object`\>\>
+
+###### Inherited from
+
+[`DefaultApi`](globals.md#defaultapi).[`deleteUserRaw`](globals.md#deleteuserraw-1)
 
 ##### getApp()
 
@@ -1187,10 +1403,10 @@ protected request(context: RequestOpts, initOverrides?: RequestInit | InitOverri
 ##### updateCompanyFlags()
 
 ```ts
-updateCompanyFlags(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
+updateCompanyFlags(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpdateEntityFlagsResponse>
 ```
 
-Update specific targeting for flags for a company in an environment
+Update specific targeting for flags for a company in an environment. Returns the environment flag-state version containing the completed update.
 Update flag targeting for a company
 
 ###### Parameters
@@ -1232,7 +1448,7 @@ Update flag targeting for a company
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>
 
 ###### Inherited from
 
@@ -1241,10 +1457,10 @@ Update flag targeting for a company
 ##### updateCompanyFlagsRaw()
 
 ```ts
-updateCompanyFlagsRaw(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
+updateCompanyFlagsRaw(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpdateEntityFlagsResponse>>
 ```
 
-Update specific targeting for flags for a company in an environment
+Update specific targeting for flags for a company in an environment. Returns the environment flag-state version containing the completed update.
 Update flag targeting for a company
 
 ###### Parameters
@@ -1286,7 +1502,7 @@ Update flag targeting for a company
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>\>
 
 ###### Inherited from
 
@@ -1298,7 +1514,7 @@ Update flag targeting for a company
 updateFlag(requestParameters: UpdateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<CreateFlag200Response>
 ```
 
-Update an existing flag
+Update an existing flag. Returns the current flag-state version for every environment, including any versions advanced by this update.
 Update a flag
 
 ###### Parameters
@@ -1352,7 +1568,7 @@ Update a flag
 updateFlagRaw(requestParameters: UpdateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<CreateFlag200Response>>
 ```
 
-Update an existing flag
+Update an existing flag. Returns the current flag-state version for every environment, including any versions advanced by this update.
 Update a flag
 
 ###### Parameters
@@ -1403,10 +1619,10 @@ Update a flag
 ##### updateUserFlags()
 
 ```ts
-updateUserFlags(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
+updateUserFlags(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpdateEntityFlagsResponse>
 ```
 
-Update specific targeting for flags for a user in an environment
+Update specific targeting for flags for a user in an environment. Returns the environment flag-state version containing the completed update.
 Update flag targeting for a user
 
 ###### Parameters
@@ -1448,7 +1664,7 @@ Update flag targeting for a user
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>
 
 ###### Inherited from
 
@@ -1457,10 +1673,10 @@ Update flag targeting for a user
 ##### updateUserFlagsRaw()
 
 ```ts
-updateUserFlagsRaw(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
+updateUserFlagsRaw(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpdateEntityFlagsResponse>>
 ```
 
-Update specific targeting for flags for a user in an environment
+Update specific targeting for flags for a user in an environment. Returns the environment flag-state version containing the completed update.
 Update flag targeting for a user
 
 ###### Parameters
@@ -1502,11 +1718,227 @@ Update flag targeting for a user
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>\>
 
 ###### Inherited from
 
 [`DefaultApi`](globals.md#defaultapi).[`updateUserFlagsRaw`](globals.md#updateuserflagsraw-1)
+
+##### upsertCompany()
+
+```ts
+upsertCompany(requestParameters: UpsertCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpsertCompany200Response>
+```
+
+Synchronously create or update a company in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name and avatar attributes also update the corresponding company fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New companies may omit all fields. When this request succeeds, a subsequent company targeting request can read the company. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+Create or update a company
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertCompanyOperationRequest`](globals.md#upsertcompanyoperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpsertCompany200Response`](globals.md#upsertcompany200response)\>
+
+###### Inherited from
+
+[`DefaultApi`](globals.md#defaultapi).[`upsertCompany`](globals.md#upsertcompany-1)
+
+##### upsertCompanyRaw()
+
+```ts
+upsertCompanyRaw(requestParameters: UpsertCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpsertCompany200Response>>
+```
+
+Synchronously create or update a company in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name and avatar attributes also update the corresponding company fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New companies may omit all fields. When this request succeeds, a subsequent company targeting request can read the company. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+Create or update a company
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertCompanyOperationRequest`](globals.md#upsertcompanyoperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpsertCompany200Response`](globals.md#upsertcompany200response)\>\>
+
+###### Inherited from
+
+[`DefaultApi`](globals.md#defaultapi).[`upsertCompanyRaw`](globals.md#upsertcompanyraw-1)
+
+##### upsertUser()
+
+```ts
+upsertUser(requestParameters: UpsertUserOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpsertUser200Response>
+```
+
+Synchronously create or update a user in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name, email, and avatar attributes also update the corresponding user fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New users may omit all fields. When this request succeeds, a subsequent user targeting request can read the user. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+Create or update a user
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertUserOperationRequest`](globals.md#upsertuseroperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpsertUser200Response`](globals.md#upsertuser200response)\>
+
+###### Inherited from
+
+[`DefaultApi`](globals.md#defaultapi).[`upsertUser`](globals.md#upsertuser-1)
+
+##### upsertUserRaw()
+
+```ts
+upsertUserRaw(requestParameters: UpsertUserOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpsertUser200Response>>
+```
+
+Synchronously create or update a user in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name, email, and avatar attributes also update the corresponding user fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New users may omit all fields. When this request succeeds, a subsequent user targeting request can read the user. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+Create or update a user
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertUserOperationRequest`](globals.md#upsertuseroperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpsertUser200Response`](globals.md#upsertuser200response)\>\>
+
+###### Inherited from
+
+[`DefaultApi`](globals.md#defaultapi).[`upsertUserRaw`](globals.md#upsertuserraw-1)
 
 ##### withMiddleware()
 
@@ -2559,7 +2991,7 @@ new DefaultApi(configuration: Configuration): DefaultApi
 createFlag(requestParameters: CreateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<CreateFlag200Response>
 ```
 
-Create a new flag in the application. Returns the created flag details.
+Create a new flag in the application. Returns the created flag and the resulting flag-state version for every environment.
 Create a flag
 
 ###### Parameters
@@ -2613,7 +3045,7 @@ Create a flag
 createFlagRaw(requestParameters: CreateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<CreateFlag200Response>>
 ```
 
-Create a new flag in the application. Returns the created flag details.
+Create a new flag in the application. Returns the created flag and the resulting flag-state version for every environment.
 Create a flag
 
 ###### Parameters
@@ -2660,6 +3092,222 @@ Create a flag
 ###### Implementation of
 
 [`DefaultApiInterface`](globals.md#defaultapiinterface).[`createFlagRaw`](globals.md#createflagraw-2)
+
+##### deleteCompany()
+
+```ts
+deleteCompany(requestParameters: DeleteCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<object>
+```
+
+Synchronously delete a company and its related data from an environment. Requires the `write:entities` API key scope or admin member access. By default, users that belong only to this company are also deleted; set `deleteUsers` to false to preserve them. Users that belong to other companies are always preserved.
+Delete a company
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteCompanyOperationRequest`](globals.md#deletecompanyoperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`object`\>
+
+###### Implementation of
+
+[`DefaultApiInterface`](globals.md#defaultapiinterface).[`deleteCompany`](globals.md#deletecompany-2)
+
+##### deleteCompanyRaw()
+
+```ts
+deleteCompanyRaw(requestParameters: DeleteCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<object>>
+```
+
+Synchronously delete a company and its related data from an environment. Requires the `write:entities` API key scope or admin member access. By default, users that belong only to this company are also deleted; set `deleteUsers` to false to preserve them. Users that belong to other companies are always preserved.
+Delete a company
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteCompanyOperationRequest`](globals.md#deletecompanyoperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<`object`\>\>
+
+###### Implementation of
+
+[`DefaultApiInterface`](globals.md#defaultapiinterface).[`deleteCompanyRaw`](globals.md#deletecompanyraw-2)
+
+##### deleteUser()
+
+```ts
+deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<object>
+```
+
+Synchronously delete a user and its related data, including company memberships, from an environment. Requires the `write:entities` API key scope or admin member access.
+Delete a user
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteUserRequest`](globals.md#deleteuserrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`object`\>
+
+###### Implementation of
+
+[`DefaultApiInterface`](globals.md#defaultapiinterface).[`deleteUser`](globals.md#deleteuser-2)
+
+##### deleteUserRaw()
+
+```ts
+deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<object>>
+```
+
+Synchronously delete a user and its related data, including company memberships, from an environment. Requires the `write:entities` API key scope or admin member access.
+Delete a user
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteUserRequest`](globals.md#deleteuserrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<`object`\>\>
+
+###### Implementation of
+
+[`DefaultApiInterface`](globals.md#defaultapiinterface).[`deleteUserRaw`](globals.md#deleteuserraw-2)
 
 ##### getApp()
 
@@ -3633,10 +4281,10 @@ protected request(context: RequestOpts, initOverrides?: RequestInit | InitOverri
 ##### updateCompanyFlags()
 
 ```ts
-updateCompanyFlags(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
+updateCompanyFlags(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpdateEntityFlagsResponse>
 ```
 
-Update specific targeting for flags for a company in an environment
+Update specific targeting for flags for a company in an environment. Returns the environment flag-state version containing the completed update.
 Update flag targeting for a company
 
 ###### Parameters
@@ -3678,7 +4326,7 @@ Update flag targeting for a company
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>
 
 ###### Implementation of
 
@@ -3687,10 +4335,10 @@ Update flag targeting for a company
 ##### updateCompanyFlagsRaw()
 
 ```ts
-updateCompanyFlagsRaw(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
+updateCompanyFlagsRaw(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpdateEntityFlagsResponse>>
 ```
 
-Update specific targeting for flags for a company in an environment
+Update specific targeting for flags for a company in an environment. Returns the environment flag-state version containing the completed update.
 Update flag targeting for a company
 
 ###### Parameters
@@ -3732,7 +4380,7 @@ Update flag targeting for a company
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>\>
 
 ###### Implementation of
 
@@ -3744,7 +4392,7 @@ Update flag targeting for a company
 updateFlag(requestParameters: UpdateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<CreateFlag200Response>
 ```
 
-Update an existing flag
+Update an existing flag. Returns the current flag-state version for every environment, including any versions advanced by this update.
 Update a flag
 
 ###### Parameters
@@ -3798,7 +4446,7 @@ Update a flag
 updateFlagRaw(requestParameters: UpdateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<CreateFlag200Response>>
 ```
 
-Update an existing flag
+Update an existing flag. Returns the current flag-state version for every environment, including any versions advanced by this update.
 Update a flag
 
 ###### Parameters
@@ -3849,10 +4497,10 @@ Update a flag
 ##### updateUserFlags()
 
 ```ts
-updateUserFlags(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
+updateUserFlags(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpdateEntityFlagsResponse>
 ```
 
-Update specific targeting for flags for a user in an environment
+Update specific targeting for flags for a user in an environment. Returns the environment flag-state version containing the completed update.
 Update flag targeting for a user
 
 ###### Parameters
@@ -3894,7 +4542,7 @@ Update flag targeting for a user
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>
 
 ###### Implementation of
 
@@ -3903,10 +4551,10 @@ Update flag targeting for a user
 ##### updateUserFlagsRaw()
 
 ```ts
-updateUserFlagsRaw(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
+updateUserFlagsRaw(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpdateEntityFlagsResponse>>
 ```
 
-Update specific targeting for flags for a user in an environment
+Update specific targeting for flags for a user in an environment. Returns the environment flag-state version containing the completed update.
 Update flag targeting for a user
 
 ###### Parameters
@@ -3948,11 +4596,227 @@ Update flag targeting for a user
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>\>
 
 ###### Implementation of
 
 [`DefaultApiInterface`](globals.md#defaultapiinterface).[`updateUserFlagsRaw`](globals.md#updateuserflagsraw-2)
+
+##### upsertCompany()
+
+```ts
+upsertCompany(requestParameters: UpsertCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpsertCompany200Response>
+```
+
+Synchronously create or update a company in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name and avatar attributes also update the corresponding company fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New companies may omit all fields. When this request succeeds, a subsequent company targeting request can read the company. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+Create or update a company
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertCompanyOperationRequest`](globals.md#upsertcompanyoperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpsertCompany200Response`](globals.md#upsertcompany200response)\>
+
+###### Implementation of
+
+[`DefaultApiInterface`](globals.md#defaultapiinterface).[`upsertCompany`](globals.md#upsertcompany-2)
+
+##### upsertCompanyRaw()
+
+```ts
+upsertCompanyRaw(requestParameters: UpsertCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpsertCompany200Response>>
+```
+
+Synchronously create or update a company in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name and avatar attributes also update the corresponding company fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New companies may omit all fields. When this request succeeds, a subsequent company targeting request can read the company. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+Create or update a company
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertCompanyOperationRequest`](globals.md#upsertcompanyoperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpsertCompany200Response`](globals.md#upsertcompany200response)\>\>
+
+###### Implementation of
+
+[`DefaultApiInterface`](globals.md#defaultapiinterface).[`upsertCompanyRaw`](globals.md#upsertcompanyraw-2)
+
+##### upsertUser()
+
+```ts
+upsertUser(requestParameters: UpsertUserOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpsertUser200Response>
+```
+
+Synchronously create or update a user in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name, email, and avatar attributes also update the corresponding user fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New users may omit all fields. When this request succeeds, a subsequent user targeting request can read the user. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+Create or update a user
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertUserOperationRequest`](globals.md#upsertuseroperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpsertUser200Response`](globals.md#upsertuser200response)\>
+
+###### Implementation of
+
+[`DefaultApiInterface`](globals.md#defaultapiinterface).[`upsertUser`](globals.md#upsertuser-2)
+
+##### upsertUserRaw()
+
+```ts
+upsertUserRaw(requestParameters: UpsertUserOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpsertUser200Response>>
+```
+
+Synchronously create or update a user in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name, email, and avatar attributes also update the corresponding user fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New users may omit all fields. When this request succeeds, a subsequent user targeting request can read the user. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+Create or update a user
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertUserOperationRequest`](globals.md#upsertuseroperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpsertUser200Response`](globals.md#upsertuser200response)\>\>
+
+###### Implementation of
+
+[`DefaultApiInterface`](globals.md#defaultapiinterface).[`upsertUserRaw`](globals.md#upsertuserraw-2)
 
 ##### withMiddleware()
 
@@ -6358,6 +7222,7 @@ CreateFlag200Response
 <tr>
 <th>Property</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -6370,6 +7235,28 @@ CreateFlag200Response
 <td>
 
 [`CreateFlag200ResponseFlag`](globals.md#createflag200responseflag)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagstateversions"></a> `flagStateVersions`
+
+</td>
+<td>
+
+\{\}
+
+</td>
+<td>
+
+Current flag-state version keyed by environment ID
 
 </td>
 </tr>
@@ -7021,7 +7908,7 @@ DefaultApi - interface
 createFlag(requestParameters: CreateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<CreateFlag200Response>
 ```
 
-Create a new flag in the application. Returns the created flag details.
+Create a new flag in the application. Returns the created flag and the resulting flag-state version for every environment.
 Create a flag
 
 ###### Parameters
@@ -7071,7 +7958,7 @@ Create a flag
 createFlagRaw(requestParameters: CreateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<CreateFlag200Response>>
 ```
 
-Create a new flag in the application. Returns the created flag details.
+Create a new flag in the application. Returns the created flag and the resulting flag-state version for every environment.
 
 ###### Parameters
 
@@ -7124,6 +8011,230 @@ Request parameters for this operation.
 ###### Returns
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`CreateFlag200Response`](globals.md#createflag200response)\>\>
+
+###### Throws
+
+##### deleteCompany()
+
+```ts
+deleteCompany(requestParameters: DeleteCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<object>
+```
+
+Synchronously delete a company and its related data from an environment. Requires the `write:entities` API key scope or admin member access. By default, users that belong only to this company are also deleted; set `deleteUsers` to false to preserve them. Users that belong to other companies are always preserved.
+Delete a company
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteCompanyOperationRequest`](globals.md#deletecompanyoperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`object`\>
+
+##### deleteCompanyRaw()
+
+```ts
+deleteCompanyRaw(requestParameters: DeleteCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<object>>
+```
+
+Synchronously delete a company and its related data from an environment. Requires the `write:entities` API key scope or admin member access. By default, users that belong only to this company are also deleted; set `deleteUsers` to false to preserve them. Users that belong to other companies are always preserved.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteCompanyOperationRequest`](globals.md#deletecompanyoperationrequest)
+
+</td>
+<td>
+
+Request parameters for this operation.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<`object`\>\>
+
+###### Throws
+
+##### deleteUser()
+
+```ts
+deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<object>
+```
+
+Synchronously delete a user and its related data, including company memberships, from an environment. Requires the `write:entities` API key scope or admin member access.
+Delete a user
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteUserRequest`](globals.md#deleteuserrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`object`\>
+
+##### deleteUserRaw()
+
+```ts
+deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<object>>
+```
+
+Synchronously delete a user and its related data, including company memberships, from an environment. Requires the `write:entities` API key scope or admin member access.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`DeleteUserRequest`](globals.md#deleteuserrequest)
+
+</td>
+<td>
+
+Request parameters for this operation.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<`object`\>\>
 
 ###### Throws
 
@@ -8026,10 +9137,10 @@ Request parameters for this operation.
 ##### updateCompanyFlags()
 
 ```ts
-updateCompanyFlags(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
+updateCompanyFlags(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpdateEntityFlagsResponse>
 ```
 
-Update specific targeting for flags for a company in an environment
+Update specific targeting for flags for a company in an environment. Returns the environment flag-state version containing the completed update.
 Update flag targeting for a company
 
 ###### Parameters
@@ -8071,15 +9182,15 @@ Update flag targeting for a company
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>
 
 ##### updateCompanyFlagsRaw()
 
 ```ts
-updateCompanyFlagsRaw(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
+updateCompanyFlagsRaw(requestParameters: UpdateCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpdateEntityFlagsResponse>>
 ```
 
-Update specific targeting for flags for a company in an environment
+Update specific targeting for flags for a company in an environment. Returns the environment flag-state version containing the completed update.
 
 ###### Parameters
 
@@ -8131,7 +9242,7 @@ Request parameters for this operation.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>\>
 
 ###### Throws
 
@@ -8141,7 +9252,7 @@ Request parameters for this operation.
 updateFlag(requestParameters: UpdateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<CreateFlag200Response>
 ```
 
-Update an existing flag
+Update an existing flag. Returns the current flag-state version for every environment, including any versions advanced by this update.
 Update a flag
 
 ###### Parameters
@@ -8191,7 +9302,7 @@ Update a flag
 updateFlagRaw(requestParameters: UpdateFlagOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<CreateFlag200Response>>
 ```
 
-Update an existing flag
+Update an existing flag. Returns the current flag-state version for every environment, including any versions advanced by this update.
 
 ###### Parameters
 
@@ -8250,10 +9361,10 @@ Request parameters for this operation.
 ##### updateUserFlags()
 
 ```ts
-updateUserFlags(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
+updateUserFlags(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpdateEntityFlagsResponse>
 ```
 
-Update specific targeting for flags for a user in an environment
+Update specific targeting for flags for a user in an environment. Returns the environment flag-state version containing the completed update.
 Update flag targeting for a user
 
 ###### Parameters
@@ -8295,15 +9406,15 @@ Update flag targeting for a user
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>
 
 ##### updateUserFlagsRaw()
 
 ```ts
-updateUserFlagsRaw(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
+updateUserFlagsRaw(requestParameters: UpdateUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpdateEntityFlagsResponse>>
 ```
 
-Update specific targeting for flags for a user in an environment
+Update specific targeting for flags for a user in an environment. Returns the environment flag-state version containing the completed update.
 
 ###### Parameters
 
@@ -8355,9 +9466,392 @@ Request parameters for this operation.
 
 ###### Returns
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`EntityFlagsResponse`](globals.md#entityflagsresponse)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)\>\>
 
 ###### Throws
+
+##### upsertCompany()
+
+```ts
+upsertCompany(requestParameters: UpsertCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpsertCompany200Response>
+```
+
+Synchronously create or update a company in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name and avatar attributes also update the corresponding company fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New companies may omit all fields. When this request succeeds, a subsequent company targeting request can read the company. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+Create or update a company
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertCompanyOperationRequest`](globals.md#upsertcompanyoperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpsertCompany200Response`](globals.md#upsertcompany200response)\>
+
+##### upsertCompanyRaw()
+
+```ts
+upsertCompanyRaw(requestParameters: UpsertCompanyOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpsertCompany200Response>>
+```
+
+Synchronously create or update a company in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name and avatar attributes also update the corresponding company fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New companies may omit all fields. When this request succeeds, a subsequent company targeting request can read the company. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertCompanyOperationRequest`](globals.md#upsertcompanyoperationrequest)
+
+</td>
+<td>
+
+Request parameters for this operation.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpsertCompany200Response`](globals.md#upsertcompany200response)\>\>
+
+###### Throws
+
+##### upsertUser()
+
+```ts
+upsertUser(requestParameters: UpsertUserOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<UpsertUser200Response>
+```
+
+Synchronously create or update a user in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name, email, and avatar attributes also update the corresponding user fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New users may omit all fields. When this request succeeds, a subsequent user targeting request can read the user. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+Create or update a user
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertUserOperationRequest`](globals.md#upsertuseroperationrequest)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`UpsertUser200Response`](globals.md#upsertuser200response)\>
+
+##### upsertUserRaw()
+
+```ts
+upsertUserRaw(requestParameters: UpsertUserOperationRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<UpsertUser200Response>>
+```
+
+Synchronously create or update a user in an environment. Requires the `write:entities` API key scope or admin member access. This scope also grants deletion through the corresponding entity DELETE endpoints, but does not grant membership changes or flag targeting; grant `write:flag:targeting` separately to assign flags and `read` for GET requests. Attributes accept JSON values and are normalized and merged using the same rules as ingestion. Recognized name, email, and avatar attributes also update the corresponding user fields; top-level `name` takes precedence over name attributes. Omitting a field preserves its existing value. New users may omit all fields. When this request succeeds, a subsequent user targeting request can read the user. Flag configuration propagation to SDKs is independent. Delayed ingestion writes may later replace overlapping values because the last database writer wins.
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`requestParameters`
+
+</td>
+<td>
+
+[`UpsertUserOperationRequest`](globals.md#upsertuseroperationrequest)
+
+</td>
+<td>
+
+Request parameters for this operation.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`initOverrides`?
+
+</td>
+<td>
+
+`RequestInit` \| [`InitOverrideFunction`](globals.md#initoverridefunction)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`ApiResponse`](globals.md#apiresponset)\<[`UpsertUser200Response`](globals.md#upsertuser200response)\>\>
+
+###### Throws
+
+***
+
+### DeleteCompanyOperationRequest
+
+DeleteCompanyRequest
+
+#### Extends
+
+- [`DeleteCompanyRequest`](globals.md#deletecompanyrequest)
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="appid-1"></a> `appId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="companyid"></a> `companyId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="deleteusers"></a> `deleteUsers?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="envid"></a> `envId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### DeleteCompanyRequest
+
+DeleteCompanyRequest
+
+#### Extended by
+
+- [`DeleteCompanyOperationRequest`](globals.md#deletecompanyoperationrequest)
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="deleteusers-1"></a> `deleteUsers?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### DeleteUserRequest
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="appid-2"></a> `appId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="envid-1"></a> `envId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="userid"></a> `userId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -9923,7 +11417,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="appid-1"></a> `appId`
+<a id="appid-3"></a> `appId`
 
 </td>
 <td>
@@ -9952,7 +11446,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="appid-2"></a> `appId`
+<a id="appid-4"></a> `appId`
 
 </td>
 <td>
@@ -9964,7 +11458,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="companyid"></a> `companyId`
+<a id="companyid-1"></a> `companyId`
 
 </td>
 <td>
@@ -9976,7 +11470,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="envid"></a> `envId`
+<a id="envid-2"></a> `envId`
 
 </td>
 <td>
@@ -10005,7 +11499,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="appid-3"></a> `appId`
+<a id="appid-5"></a> `appId`
 
 </td>
 <td>
@@ -10017,7 +11511,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="envid-1"></a> `envId`
+<a id="envid-3"></a> `envId`
 
 </td>
 <td>
@@ -10046,7 +11540,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="appid-4"></a> `appId`
+<a id="appid-6"></a> `appId`
 
 </td>
 <td>
@@ -10058,7 +11552,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="envid-2"></a> `envId`
+<a id="envid-4"></a> `envId`
 
 </td>
 <td>
@@ -10099,7 +11593,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="appid-5"></a> `appId`
+<a id="appid-7"></a> `appId`
 
 </td>
 <td>
@@ -10111,7 +11605,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="envid-3"></a> `envId`
+<a id="envid-5"></a> `envId`
 
 </td>
 <td>
@@ -10123,7 +11617,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="userid"></a> `userId`
+<a id="userid-1"></a> `userId`
 
 </td>
 <td>
@@ -10181,7 +11675,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="appid-6"></a> `appId`
+<a id="appid-8"></a> `appId`
 
 </td>
 <td>
@@ -10234,7 +11728,7 @@ Users that were explicitly given the value
 <tr>
 <td>
 
-<a id="appid-7"></a> `appId`
+<a id="appid-9"></a> `appId`
 
 </td>
 <td>
@@ -10762,6 +12256,18 @@ interface ResponseTransformer(json: any): T
 
 ***
 
+### Schema0
+
+Schema0
+
+***
+
+### Schema1
+
+Schema1
+
+***
+
 ### SegmentHeader
 
 Segment's basic information
@@ -10946,7 +12452,7 @@ Request body for updating flags for an entity
 <tr>
 <td>
 
-<a id="appid-8"></a> `appId`
+<a id="appid-10"></a> `appId`
 
 </td>
 <td>
@@ -10980,7 +12486,7 @@ Description of the change for audit history
 <tr>
 <td>
 
-<a id="companyid-1"></a> `companyId`
+<a id="companyid-2"></a> `companyId`
 
 </td>
 <td>
@@ -10997,7 +12503,7 @@ Description of the change for audit history
 <tr>
 <td>
 
-<a id="envid-4"></a> `envId`
+<a id="envid-6"></a> `envId`
 
 </td>
 <td>
@@ -11127,6 +12633,112 @@ List of flag updates to apply
 
 ***
 
+### UpdateEntityFlagsResponse
+
+Updated entity flags and the environment flag-state version containing the change
+ UpdateEntityFlagsResponse
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="data-4"></a> `data`
+
+</td>
+<td>
+
+[`EntityFlag`](globals.md#entityflag)[]
+
+</td>
+<td>
+
+List of flags with their enabled status
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagstateversion-2"></a> `flagStateVersion`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Environment flag-state version containing the completed mutation
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="pageindex-2"></a> `pageIndex`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Page index
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="pagesize-2"></a> `pageSize`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Page size
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="totalcount-2"></a> `totalCount`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+Total number of flags
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### UpdateFlagOperationRequest
 
 UpdateFlagRequest
@@ -11149,7 +12761,7 @@ UpdateFlagRequest
 <tr>
 <td>
 
-<a id="appid-9"></a> `appId`
+<a id="appid-11"></a> `appId`
 
 </td>
 <td>
@@ -11470,7 +13082,7 @@ Request body for updating flags for an entity
 <tr>
 <td>
 
-<a id="appid-10"></a> `appId`
+<a id="appid-12"></a> `appId`
 
 </td>
 <td>
@@ -11504,7 +13116,7 @@ Description of the change for audit history
 <tr>
 <td>
 
-<a id="envid-5"></a> `envId`
+<a id="envid-7"></a> `envId`
 
 </td>
 <td>
@@ -11555,7 +13167,7 @@ List of flag updates to apply
 <tr>
 <td>
 
-<a id="userid-1"></a> `userId`
+<a id="userid-2"></a> `userId`
 
 </td>
 <td>
@@ -11566,6 +13178,482 @@ List of flag updates to apply
 <td>
 
 &hyphen;
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### UpsertCompany200Response
+
+UpsertCompany200Response
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="attributes"></a> `attributes?`
+
+</td>
+<td>
+
+`null` \| \{\}
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="id-11"></a> `id`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Company ID within your application
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-19"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Company name. Omit it to preserve an existing name; new companies may be unnamed.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### UpsertCompanyOperationRequest
+
+UpsertCompanyRequest
+
+#### Extends
+
+- [`UpsertCompanyRequest`](globals.md#upsertcompanyrequest)
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="appid-13"></a> `appId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="attributes-1"></a> `attributes?`
+
+</td>
+<td>
+
+`null` \| \{\}
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="companyid-3"></a> `companyId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="envid-8"></a> `envId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-20"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Company name. Omit it to preserve an existing name; new companies may be unnamed.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### UpsertCompanyRequest
+
+UpsertCompanyRequest
+
+#### Extended by
+
+- [`UpsertCompanyOperationRequest`](globals.md#upsertcompanyoperationrequest)
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="attributes-2"></a> `attributes?`
+
+</td>
+<td>
+
+`null` \| \{\}
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-21"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+Company name. Omit it to preserve an existing name; new companies may be unnamed.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### UpsertUser200Response
+
+UpsertUser200Response
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="attributes-3"></a> `attributes?`
+
+</td>
+<td>
+
+`null` \| \{\}
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="id-12"></a> `id`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User ID within your application
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-22"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User name. Omit it to preserve an existing name; new users may be unnamed.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### UpsertUserOperationRequest
+
+UpsertUserRequest
+
+#### Extends
+
+- [`UpsertUserRequest`](globals.md#upsertuserrequest)
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="appid-14"></a> `appId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="attributes-4"></a> `attributes?`
+
+</td>
+<td>
+
+`null` \| \{\}
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="envid-9"></a> `envId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-23"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User name. Omit it to preserve an existing name; new users may be unnamed.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="userid-3"></a> `userId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### UpsertUserRequest
+
+UpsertUserRequest
+
+#### Extended by
+
+- [`UpsertUserOperationRequest`](globals.md#upsertuseroperationrequest)
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="attributes-5"></a> `attributes?`
+
+</td>
+<td>
+
+`null` \| \{\}
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-24"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+User name. Omit it to preserve an existing name; new users may be unnamed.
 
 </td>
 </tr>
@@ -11927,7 +14015,7 @@ const BASE_PATH: string;
 Reflag Management API
 Feature flag Management API
 
-The version of the OpenAPI document: 3.0.1
+The version of the OpenAPI document: 3.1.0
 
 NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
 https://openapi-generator.tech
@@ -12104,7 +14192,7 @@ The column to sort by
 <tr>
 <td>
 
-<a id="name-19"></a> `Name`
+<a id="name-25"></a> `Name`
 
 </td>
 <td>
@@ -12459,7 +14547,7 @@ const FlagHeaderCollectionSortByEnum: {
 <tr>
 <td>
 
-<a id="name-20"></a> `Name`
+<a id="name-26"></a> `Name`
 
 </td>
 <td>
@@ -14073,6 +16161,189 @@ function CreateFlagRequestToJSONTyped(value?: null | CreateFlagRequest, ignoreDi
 <td>
 
 `null` \| [`CreateFlagRequest`](globals.md#createflagrequest)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### DeleteCompanyRequestFromJSON()
+
+```ts
+function DeleteCompanyRequestFromJSON(json: any): DeleteCompanyRequest
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`DeleteCompanyRequest`](globals.md#deletecompanyrequest)
+
+***
+
+### DeleteCompanyRequestFromJSONTyped()
+
+```ts
+function DeleteCompanyRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteCompanyRequest
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`DeleteCompanyRequest`](globals.md#deletecompanyrequest)
+
+***
+
+### DeleteCompanyRequestToJSON()
+
+```ts
+function DeleteCompanyRequestToJSON(json: any): DeleteCompanyRequest
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`DeleteCompanyRequest`](globals.md#deletecompanyrequest)
+
+***
+
+### DeleteCompanyRequestToJSONTyped()
+
+```ts
+function DeleteCompanyRequestToJSONTyped(value?: null | DeleteCompanyRequest, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+`null` \| [`DeleteCompanyRequest`](globals.md#deletecompanyrequest)
 
 </td>
 <td>
@@ -17289,6 +19560,45 @@ Check if a given object implements the CreateFlagRequest interface.
 
 ***
 
+### instanceOfDeleteCompanyRequest()
+
+```ts
+function instanceOfDeleteCompanyRequest(value: object): value is DeleteCompanyRequest
+```
+
+Check if a given object implements the DeleteCompanyRequest interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is DeleteCompanyRequest`
+
+***
+
 ### instanceOfEntityFlag()
 
 ```ts
@@ -17985,6 +20295,84 @@ Check if a given object implements the ReflagUserHeader interface.
 
 ***
 
+### instanceOfSchema0()
+
+```ts
+function instanceOfSchema0(value: object): value is Schema0
+```
+
+Check if a given object implements the Schema0 interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is Schema0`
+
+***
+
+### instanceOfSchema1()
+
+```ts
+function instanceOfSchema1(value: object): value is Schema1
+```
+
+Check if a given object implements the Schema1 interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is Schema1`
+
+***
+
 ### instanceOfSegmentHeader()
 
 ```ts
@@ -18176,6 +20564,45 @@ Check if a given object implements the UpdateEntityFlagsBody interface.
 
 ***
 
+### instanceOfUpdateEntityFlagsResponse()
+
+```ts
+function instanceOfUpdateEntityFlagsResponse(value: object): value is UpdateEntityFlagsResponse
+```
+
+Check if a given object implements the UpdateEntityFlagsResponse interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is UpdateEntityFlagsResponse`
+
+***
+
 ### instanceOfUpdateFlagRequest()
 
 ```ts
@@ -18212,6 +20639,162 @@ Check if a given object implements the UpdateFlagRequest interface.
 #### Returns
 
 `value is UpdateFlagRequest`
+
+***
+
+### instanceOfUpsertCompany200Response()
+
+```ts
+function instanceOfUpsertCompany200Response(value: object): value is UpsertCompany200Response
+```
+
+Check if a given object implements the UpsertCompany200Response interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is UpsertCompany200Response`
+
+***
+
+### instanceOfUpsertCompanyRequest()
+
+```ts
+function instanceOfUpsertCompanyRequest(value: object): value is UpsertCompanyRequest
+```
+
+Check if a given object implements the UpsertCompanyRequest interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is UpsertCompanyRequest`
+
+***
+
+### instanceOfUpsertUser200Response()
+
+```ts
+function instanceOfUpsertUser200Response(value: object): value is UpsertUser200Response
+```
+
+Check if a given object implements the UpsertUser200Response interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is UpsertUser200Response`
+
+***
+
+### instanceOfUpsertUserRequest()
+
+```ts
+function instanceOfUpsertUserRequest(value: object): value is UpsertUserRequest
+```
+
+Check if a given object implements the UpsertUserRequest interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is UpsertUserRequest`
 
 ***
 
@@ -18658,6 +21241,372 @@ function ReflagUserHeaderToJSONTyped(value?: null | ReflagUserHeader, ignoreDisc
 <td>
 
 `null` \| [`ReflagUserHeader`](globals.md#reflaguserheader)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### Schema0FromJSON()
+
+```ts
+function Schema0FromJSON(json: any): Schema0
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`Schema0`](globals.md#schema0)
+
+***
+
+### Schema0FromJSONTyped()
+
+```ts
+function Schema0FromJSONTyped(json: any, ignoreDiscriminator: boolean): Schema0
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`Schema0`](globals.md#schema0)
+
+***
+
+### Schema0ToJSON()
+
+```ts
+function Schema0ToJSON(json: any): Schema0
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`Schema0`](globals.md#schema0)
+
+***
+
+### Schema0ToJSONTyped()
+
+```ts
+function Schema0ToJSONTyped(value?: null | Schema0, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+`null` \| [`Schema0`](globals.md#schema0)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### Schema1FromJSON()
+
+```ts
+function Schema1FromJSON(json: any): Schema1
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`Schema1`](globals.md#schema1)
+
+***
+
+### Schema1FromJSONTyped()
+
+```ts
+function Schema1FromJSONTyped(json: any, ignoreDiscriminator: boolean): Schema1
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`Schema1`](globals.md#schema1)
+
+***
+
+### Schema1ToJSON()
+
+```ts
+function Schema1ToJSON(json: any): Schema1
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`Schema1`](globals.md#schema1)
+
+***
+
+### Schema1ToJSONTyped()
+
+```ts
+function Schema1ToJSONTyped(value?: null | Schema1, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+`null` \| [`Schema1`](globals.md#schema1)
 
 </td>
 <td>
@@ -19585,6 +22534,191 @@ function UpdateEntityFlagsBodyToJSONTyped(value?: null | UpdateEntityFlagsBody, 
 
 ***
 
+### UpdateEntityFlagsResponseFromJSON()
+
+```ts
+function UpdateEntityFlagsResponseFromJSON(json: any): UpdateEntityFlagsResponse
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)
+
+***
+
+### UpdateEntityFlagsResponseFromJSONTyped()
+
+```ts
+function UpdateEntityFlagsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateEntityFlagsResponse
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)
+
+***
+
+### UpdateEntityFlagsResponseToJSON()
+
+```ts
+function UpdateEntityFlagsResponseToJSON(json: any): UpdateEntityFlagsResponse
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)
+
+***
+
+### UpdateEntityFlagsResponseToJSONTyped()
+
+```ts
+function UpdateEntityFlagsResponseToJSONTyped(value?: 
+  | null
+  | UpdateEntityFlagsResponse, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+ \| `null` \| [`UpdateEntityFlagsResponse`](globals.md#updateentityflagsresponse)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
 ### UpdateFlagRequestFromJSON()
 
 ```ts
@@ -19734,6 +22868,740 @@ function UpdateFlagRequestToJSONTyped(value?: null | UpdateFlagRequest, ignoreDi
 <td>
 
 `null` \| [`UpdateFlagRequest`](globals.md#updateflagrequest)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### UpsertCompany200ResponseFromJSON()
+
+```ts
+function UpsertCompany200ResponseFromJSON(json: any): UpsertCompany200Response
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertCompany200Response`](globals.md#upsertcompany200response)
+
+***
+
+### UpsertCompany200ResponseFromJSONTyped()
+
+```ts
+function UpsertCompany200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpsertCompany200Response
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertCompany200Response`](globals.md#upsertcompany200response)
+
+***
+
+### UpsertCompany200ResponseToJSON()
+
+```ts
+function UpsertCompany200ResponseToJSON(json: any): UpsertCompany200Response
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertCompany200Response`](globals.md#upsertcompany200response)
+
+***
+
+### UpsertCompany200ResponseToJSONTyped()
+
+```ts
+function UpsertCompany200ResponseToJSONTyped(value?: 
+  | null
+  | UpsertCompany200Response, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+ \| `null` \| [`UpsertCompany200Response`](globals.md#upsertcompany200response)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### UpsertCompanyRequestFromJSON()
+
+```ts
+function UpsertCompanyRequestFromJSON(json: any): UpsertCompanyRequest
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertCompanyRequest`](globals.md#upsertcompanyrequest)
+
+***
+
+### UpsertCompanyRequestFromJSONTyped()
+
+```ts
+function UpsertCompanyRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpsertCompanyRequest
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertCompanyRequest`](globals.md#upsertcompanyrequest)
+
+***
+
+### UpsertCompanyRequestToJSON()
+
+```ts
+function UpsertCompanyRequestToJSON(json: any): UpsertCompanyRequest
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertCompanyRequest`](globals.md#upsertcompanyrequest)
+
+***
+
+### UpsertCompanyRequestToJSONTyped()
+
+```ts
+function UpsertCompanyRequestToJSONTyped(value?: null | UpsertCompanyRequest, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+`null` \| [`UpsertCompanyRequest`](globals.md#upsertcompanyrequest)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### UpsertUser200ResponseFromJSON()
+
+```ts
+function UpsertUser200ResponseFromJSON(json: any): UpsertUser200Response
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertUser200Response`](globals.md#upsertuser200response)
+
+***
+
+### UpsertUser200ResponseFromJSONTyped()
+
+```ts
+function UpsertUser200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpsertUser200Response
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertUser200Response`](globals.md#upsertuser200response)
+
+***
+
+### UpsertUser200ResponseToJSON()
+
+```ts
+function UpsertUser200ResponseToJSON(json: any): UpsertUser200Response
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertUser200Response`](globals.md#upsertuser200response)
+
+***
+
+### UpsertUser200ResponseToJSONTyped()
+
+```ts
+function UpsertUser200ResponseToJSONTyped(value?: null | UpsertUser200Response, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+`null` \| [`UpsertUser200Response`](globals.md#upsertuser200response)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### UpsertUserRequestFromJSON()
+
+```ts
+function UpsertUserRequestFromJSON(json: any): UpsertUserRequest
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertUserRequest`](globals.md#upsertuserrequest)
+
+***
+
+### UpsertUserRequestFromJSONTyped()
+
+```ts
+function UpsertUserRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpsertUserRequest
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertUserRequest`](globals.md#upsertuserrequest)
+
+***
+
+### UpsertUserRequestToJSON()
+
+```ts
+function UpsertUserRequestToJSON(json: any): UpsertUserRequest
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`UpsertUserRequest`](globals.md#upsertuserrequest)
+
+***
+
+### UpsertUserRequestToJSONTyped()
+
+```ts
+function UpsertUserRequestToJSONTyped(value?: null | UpsertUserRequest, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+`null` \| [`UpsertUserRequest`](globals.md#upsertuserrequest)
 
 </td>
 <td>

@@ -1177,7 +1177,7 @@ Id should always be present so that it can be referenced to an existing company.
 #### Indexable
 
 ```ts
-[key: string]: undefined | string | number
+[key: string]: ContextValue
 ```
 
 #### Properties
@@ -2213,7 +2213,7 @@ company attributes on Reflag servers.
 </td>
 <td>
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`ContextValue`](globals.md#contextvalue)\>
 
 </td>
 <td>
@@ -2294,7 +2294,7 @@ company attributes on Reflag servers.
 </td>
 <td>
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`ContextValue`](globals.md#contextvalue)\>
 
 </td>
 <td>
@@ -2311,7 +2311,7 @@ Context which is not related to a user or a company.
 </td>
 <td>
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| `string` \| `number`\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`ContextValue`](globals.md#contextvalue)\>
 
 </td>
 <td>
@@ -2397,7 +2397,7 @@ Id should always be present so that it can be referenced to an existing user.
 #### Indexable
 
 ```ts
-[key: string]: undefined | string | number
+[key: string]: ContextValue
 ```
 
 #### Properties
@@ -2527,6 +2527,32 @@ Pre-fetched evaluated state used to bootstrap the client.
 </tr>
 </tbody>
 </table>
+
+***
+
+### ContextValue
+
+```ts
+type ContextValue = DefinedContextValue | undefined;
+```
+
+A context value. Object properties set to `undefined` are omitted.
+
+***
+
+### DefinedContextValue
+
+```ts
+type DefinedContextValue = 
+  | string
+  | number
+  | boolean
+  | null
+  | DefinedContextValue[]
+| {};
+```
+
+A JSON-compatible context value that is not `undefined`.
 
 ***
 
