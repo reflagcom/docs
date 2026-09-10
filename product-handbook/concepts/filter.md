@@ -21,13 +21,22 @@ This filter can be used to check company attributes against a set of predicates.
 
 ### Array attributes
 
-Attributes can hold lists, such as `roles: ["admin", "editor"]`.
+Attributes can hold lists, such as `roles: ["admin", "editor"]`. Filters apply the following operators to array attributes:
 
-* Use `CONTAINS` to check for one value, such as `admin`.
-* Use `ANY_OF` to check for any of several values, such as `admin` or `owner`.
-* Use `IS` when the list must have just one item, equal to the value you chose.
+| Operator | Matches an array when |
+| --- | --- |
+| `Is` | It has exactly one item, equal to the selected value. |
+| `Is not` | It is empty, has more than one item, or its only item differs from the selected value. |
+| `Contains` | It includes the selected value. |
+| `Does not contain` | It does not include the selected value. |
+| `Is any of` | It includes at least one selected value. |
+| `Is not any of` | It includes none of the selected values. |
+| `Has any value` | It has at least one item. |
+| `Has no value` | It is empty. |
 
-Array checks match whole values and treat uppercase and lowercase letters as different. See [array attribute operators](../creating-segments.md#array-attributes) for all supported operators and examples.
+Array checks match whole values and treat uppercase and lowercase letters as different. For example, `roles: ["admin", "editor"]` matches `Contains admin` and `Is any of [admin, owner]`, but it does not match `Is admin`.
+
+Number, date, and boolean operators do not support arrays. See [array attribute operators](../creating-segments.md#array-attributes) for more information.
 
 ### Company flag metrics
 
