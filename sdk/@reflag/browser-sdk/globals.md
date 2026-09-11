@@ -660,6 +660,15 @@ setOptIn(flagKey: string, options: SetOptInOptions): Promise<
 
 Set whether the current user or company has opted into a flag.
 
+A successful Response is returned after the refreshed flag state confirms
+the membership change. HTTP failures return a non-OK Response without
+refreshing flags. Offline mode, invalid arguments, or missing scoped context
+return undefined. Network and confirmation failures reject the promise;
+a confirmation failure may occur after membership changed remotely.
+
+Context IDs are supplied by the caller, not authenticated user identities.
+Company scope does not enforce application roles or admin permissions.
+
 ###### Parameters
 
 <table>
@@ -4715,11 +4724,11 @@ User ID from your own application.
 ```ts
 type SetOptInOptions = {
   optedIn: boolean;
-  scope: "user" | "company";
+  scope?: "user" | "company";
 };
 ```
 
-Represents a flag.
+Options for changing the current user or company's opt-in membership.
 
 #### Type declaration
 
