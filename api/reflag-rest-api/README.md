@@ -8,10 +8,10 @@ description: Introduction to Reflag Management API
 
 The Reflag Management API allows developers to programmatically interact with their Reflag accounts.
 
-By using HTTP requests, such as GET, POST, PUT, and DELETE, users can perform actions like retrieving data, updating account settings, or managing resources without accessing the Reflag web application directly. This enables seamless integration with other systems, automation of tasks, and enhanced flexibility in account management.
+Use HTTP requests to create and update flags, manage users and companies, and grant flag access from your backend or back-office tools, in any language.
 
 {% hint style="info" %}
-The Reflag Management API serves a different purpose than the Runtime API. For app integrations, please use the [Runtime API](../public-api/).
+Use the [Runtime API](../public-api/) and runtime SDKs to evaluate flags and track activity. Use the Management API to manage entities and change targeting. Application backends can use both, for example to create a user, grant flag access, and then evaluate that flag.
 {% endhint %}
 
 ## Authentication
@@ -28,30 +28,73 @@ This section covers a few simple use cases for the Reflag Management API.
 
 The Management API enables customers to integrate their back-office systems with Reflag's flag targeting. By using our API, you can quickly provide access to specific flags for a company or user directly from your systems.
 
-Here's a brief guide to enabling the `new-checkout-flow` flag for the `acme-corp` company:
+Enable the existing `new-checkout-flow` flag for an existing `acme-corp` company.
+Set `APP_ID`, `ENV_ID`, and `REFLAG_API_KEY` to your app ID, environment ID, and
+Management API key:
 
-```typescript
-await fetch(
-  `https://app.reflag.com/api/apps/${appId}/flags/specific-targets/${envId}`,
-  {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${apiToken}`,
-    },
-    body: JSON.stringify({
-      updates: [
-        {
-          flagKey: "new-checkout-flow",
-          value: true,
-          companyId: "acme-corp",
-        },
-      ],
-      changeDescription: "Enabled new checkout flow for Acme Corp in prod",
-    }),
-  }
-);
+```sh
+curl --fail-with-body \
+  --request PATCH \
+  "https://app.reflag.com/api/apps/${APP_ID}/envs/${ENV_ID}/companies/acme-corp/flags" \
+  --header "Authorization: Bearer ${REFLAG_API_KEY}" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "updates": [
+      { "flagKey": "new-checkout-flow", "specificTargetValue": true }
+    ],
+    "changeDescription": "Enabled new checkout flow for Acme Corp in prod"
+  }'
 ```
+
+For users, send a PATCH request to
+`/apps/{appId}/envs/{envId}/users/{userId}/flags` with the same body format.
+Set `specificTargetValue` to `null` to remove specific targeting;
+other targeting rules may still enable the flag.
+
+### Create a user and immediately enable a flag
+
+Use a synchronous Management API upsert when a new user must be available to a
+subsequent targeting request. Runtime tracking ingestion is asynchronous, so
+sending a tracking event is not a substitute for awaiting this upsert.
+
+The flag must already exist. Your Management API key needs `write:entities` to
+upsert the user and `write:flag:targeting` to enable the flag. See
+[Management API Access](../api-access.md#management-api-access).
+
+First, send a PUT request to create or update the user. Once it succeeds, send a
+PATCH request to enable the flag. The `&&` below runs the targeting request only
+if the upsert succeeds:
+
+```sh
+curl --fail-with-body \
+  --request PUT \
+  "https://app.reflag.com/api/apps/${APP_ID}/envs/${ENV_ID}/users/user-123" \
+  --header "Authorization: Bearer ${REFLAG_API_KEY}" \
+  --header "Content-Type: application/json" \
+  --data '{ "name": "Jane Doe" }' &&
+curl --fail-with-body \
+  --request PATCH \
+  "https://app.reflag.com/api/apps/${APP_ID}/envs/${ENV_ID}/users/user-123/flags" \
+  --header "Authorization: Bearer ${REFLAG_API_KEY}" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "updates": [
+      { "flagKey": "new-checkout-flow", "specificTargetValue": true }
+    ]
+  }'
+```
+
+A successful PUT response means the user is available to the targeting request;
+no delay or polling is needed between these two calls. These are separate
+operations: if the targeting request fails, the user remains created.
+
+Flag configuration propagation to runtime SDKs is separate. The PATCH response
+includes `flagStateVersion`, the environment version containing the completed
+targeting change. It does not mean every SDK has already received that version.
+
+For companies, use the same sequence with
+`PUT /apps/{appId}/envs/{envId}/companies/{companyId}` followed by
+`PATCH /apps/{appId}/envs/{envId}/companies/{companyId}/flags`.
 
 #### Automating TypeScript Type Generation with Reflag CLI in CI/CD
 
