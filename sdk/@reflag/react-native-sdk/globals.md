@@ -652,12 +652,16 @@ type FlagType = {
 ### OptInFlag
 
 ```ts
-type OptInFlag = Omit<OptInFlag, "key"> & {
+type OptInFlag = Omit<import("@reflag/browser-sdk").OptInFlag, "key"> & {
   key: FlagKey;
 };
 ```
 
 An opt-in-enabled flag for the generated React SDK flag definitions.
+
+Includes all fields from [BrowserOptInFlag](../browser-sdk/globals.md#optinflag): `name`, `description`,
+`isEnabled`, `userOptedIn`, `companyOptedIn`, and `isOptedIn`.
+Only `key` is narrowed to the generated [FlagKey](globals.md#flagkey) type.
 
 #### Type declaration
 
@@ -1059,11 +1063,11 @@ type RequestFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">
 ```ts
 type SetOptInOptions = {
   optedIn: boolean;
-  scope: "user" | "company";
+  scope?: "user" | "company";
 };
 ```
 
-Represents a flag.
+Options for changing the current user or company's opt-in membership.
 
 #### Type declaration
 
@@ -1748,9 +1752,15 @@ Returns opt-in-enabled flags and their loading state for the current context.
 
 The loading state is only used with `ReflagBootstrappedProvider` while
 opt-in metadata is fetched on demand. Regular providers load opt-in metadata
-with the initial flags.
+with the initial flags; use [useIsLoading](globals.md#useisloading) for their loading state.
+Complete bootstrapped opt-in metadata needs no extra request.
 When suspense is enabled for the provider or this hook, it suspends instead
-of returning a loading result.
+of returning a loading result. A Suspense boundary alone does not enable it.
+
+Fetch failures end loading without exposing an error, so an empty list can
+also mean unavailable data. Re-rendering does not retry a failed on-demand
+fetch for the same context. Call the client returned by [useClient](globals.md#useclient)'s
+`refresh()` method to retry and manage the retry's pending/error state yourself.
 
 #### Parameters
 
@@ -1906,6 +1916,11 @@ function useSetOptIn(): (key: FlagKey, options: SetOptInOptions) => Promise<
 ```
 
 Returns a function to set whether the current user or company has opted into a flag.
+
+Check the returned Response's `ok` property and catch promise rejections.
+HTTP failures return a non-OK Response; offline mode, invalid arguments, or
+missing scoped context return undefined. Confirmation failures can reject
+after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sdk/globals.md#setoptin).
 
 #### Returns
 

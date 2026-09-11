@@ -19,27 +19,69 @@ For an overview of how opt-in affects access and how memberships are managed in 
 
 Render the available opt-in flags and let the current user set their opt-in status.
 
-If you're using `<ReflagBootstrappedProvider>` without a `<Suspense>` boundary, see the loading section below.
+Use `@reflag/react-sdk` 1.6.2 or later. This example explicitly enables Suspense on the hook and supplies a boundary inside your existing Reflag provider. A boundary alone does not enable Suspense in the SDK. See below for loading without Suspense.
 
 ```tsx
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import {
   type OptInFlag,
+  useClient,
   useOptInFlags,
   useSetOptIn,
 } from "@reflag/react-sdk";
 import { Spinner } from "your-component-library";
 
 function OptInPage() {
-  const { flags: optInFlags } = useOptInFlags();
+  return (
+    <Suspense fallback={<Spinner aria-label="Loading opt-in flags" />}>
+      <OptInList />
+    </Suspense>
+  );
+}
+
+function OptInList() {
+  const { flags: optInFlags } = useOptInFlags({ suspense: true });
 
   if (optInFlags.length === 0) {
-    return <p>No opt-in flags are available.</p>;
+    return (
+      <section>
+        <p>No opt-in flags to show. If you expected some, try reloading.</p>
+        <ReloadOptInFlags />
+      </section>
+    );
   }
 
   return optInFlags.map((flag) => (
     <OptInFlagCard key={flag.key} flag={flag} />
   ));
+}
+
+function ReloadOptInFlags() {
+  const client = useClient();
+  const [isReloading, setIsReloading] = useState(false);
+  const [reloadError, setReloadError] = useState<string | null>(null);
+
+  async function reload() {
+    setReloadError(null);
+    setIsReloading(true);
+    try {
+      const flags = await client.refresh();
+      if (!flags) throw new Error("Flag refresh failed");
+    } catch {
+      setReloadError("Could not reload opt-in flags. Please try again.");
+    } finally {
+      setIsReloading(false);
+    }
+  }
+
+  return (
+    <>
+      <button type="button" disabled={isReloading} onClick={reload}>
+        {isReloading ? "Reloading…" : "Reload opt-in flags"}
+      </button>
+      {reloadError && <p role="alert">{reloadError}</p>}
+    </>
+  );
 }
 
 function OptInFlagCard({ flag }: { flag: OptInFlag }) {
@@ -57,7 +99,7 @@ function OptInFlagCard({ flag }: { flag: OptInFlag }) {
         optedIn: !flag.userOptedIn,
       });
 
-      if (response?.ok === false) {
+      if (!response?.ok) {
         throw new Error("Opt-in request failed");
       }
     } catch {
@@ -72,6 +114,7 @@ function OptInFlagCard({ flag }: { flag: OptInFlag }) {
       <h2>{flag.name}</h2>
       {flag.description && <p>{flag.description}</p>}
       <button
+        type="button"
         aria-busy={isUpdating}
         disabled={isUpdating}
         onClick={updateOptIn}
@@ -88,7 +131,14 @@ function OptInFlagCard({ flag }: { flag: OptInFlag }) {
 }
 ```
 
-`setOptIn()` returns a promise that resolves after the SDK applies the latest flag state, confirms the membership change, and notifies components using `useOptInFlags()`. React may not have committed the resulting render yet.
+`setOptIn()` returns `Promise<Response | undefined>`:
+
+* An OK `Response` means the SDK has applied refreshed flag state and confirmed the membership change. Subscribed components are notified when flags change; React may not have committed the render yet.
+* A non-OK `Response` means the HTTP request failed; the SDK does not refresh flags. Check `response.ok` and, if needed, read `response.json()` for error details.
+* `undefined` means the request was skipped because offline mode is enabled, the scoped context ID is missing, or the arguments are invalid.
+* Network and confirmation failures reject the promise. A confirmation failure can happen **after** membership changed remotely, so an error does not necessarily mean nothing changed.
+
+The example handles both non-OK/missing responses and promise rejections.
 
 `useOptInFlags()` keeps the list synchronized with Reflag. `useSetOptIn()` changes the current user's opt-in by default and requires the current Reflag context to include a `user.id`.
 
@@ -96,36 +146,60 @@ function OptInFlagCard({ flag }: { flag: OptInFlag }) {
 
 To change the current company's opt-in, pass `scope: "company"`. The current Reflag context must include a `company.id`.
 
+Inside the `try` block in `updateOptIn()` above, replace the request with this call, keeping the same response check and error handling. Also use `flag.companyOptedIn` instead of `flag.userOptedIn` for the button label.
+
 ```tsx
-setOptIn(flag.key, {
+const response = await setOptIn(flag.key, {
   optedIn: !flag.companyOptedIn,
   scope: "company",
 });
 ```
 
+{% hint style="warning" %}
+Opt-in is not an authorization boundary. Requests use a publishable key and caller-supplied context IDs; company scope does not verify company membership or administrator permissions. Hiding the button from non-admins does not prevent direct requests. For admin-only or sensitive access, enforce authorization in your backend and use server-controlled access rules instead of public end-user opt-in.
+{% endhint %}
+
 User and company opt-ins are independent. Setting `optedIn` to `false` removes only the selected scope, so `isOptedIn` remains `true` while either scope is opted in.
 
 Cancelling every opt-in does not necessarily disable the flag: an access rule may independently enable it for the current context.
 
-## Managing loading state with `<ReflagBootstrappedProvider>` and without `<Suspense>`
+## Loading without Suspense
 
-Only apps using `ReflagBootstrappedProvider` without Suspense need to handle this loading state. Bootstrapped flag data does not include opt-in metadata, so the SDK fetches it when `useOptInFlags()` is first used.
+With `ReflagBootstrappedProvider`, the SDK fetches opt-in metadata on demand only if it is missing from the bootstrapped state. Node SDK `getFlagsForBootstrap()` data currently lacks this metadata. Complete bootstrapped metadata is immediately available without an extra request.
 
-Check the hook's `isLoading` value before rendering an empty state:
+{% hint style="warning" %}
+The on-demand refresh evaluates flags using browser-visible context. If your bootstrap depends on server-only or secret context, refreshed flags may differ. Disabling `enableLiveFlagUpdates` does not prevent this metadata refresh; only request opt-in data if browser-side re-evaluation is appropriate.
+{% endhint %}
+
+With a regular `ReflagProvider`, `useOptInFlags().isLoading` remains `false`; `useIsLoading()` tracks normal initialization. To support either provider without Suspense, check both loading values before rendering an empty state:
 
 ```tsx
+import { useIsLoading, useOptInFlags } from "@reflag/react-sdk";
+
+const isProviderLoading = useIsLoading();
 const { flags: optInFlags, isLoading } = useOptInFlags({ suspense: false });
 
-if (isLoading) {
+if (isProviderLoading || isLoading) {
   return <Spinner aria-label="Loading opt-in flags" />;
 }
 
 if (optInFlags.length === 0) {
-  return <p>No opt-in flags are available.</p>;
+  return (
+    <section>
+      <p>No opt-in flags to show. If you expected some, try reloading.</p>
+      <ReloadOptInFlags />
+    </section>
+  );
 }
 ```
 
-With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()`, suspense or the provider's `loadingComponent` for the normal initial loading state.
+`ReloadOptInFlags` is defined in the quick-start example. A provider's `loadingComponent` can handle normal initialization instead, but does not cover the on-demand metadata fetch.
+
+### Failed metadata requests and retrying
+
+The hook stops loading (or suspending) when the metadata refresh succeeds **or fails**. It does not expose an error field or throw fetch failures to an error boundary. An empty list can therefore mean either no available flags or a failed request; it is not proof that no opt-in flags exist.
+
+After a failed on-demand refresh, rendering the hook again does not start another attempt for the same context. The example provides a manual retry through `useClient().refresh()`. This bypasses the cache, updates subscribers on success, and returns `undefined` if the refresh fails or is skipped. Track the retry's pending/error state separately, as shown above.
 
 ## Next steps
 
