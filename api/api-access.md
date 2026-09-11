@@ -40,16 +40,6 @@ One primary use case is the [Reflag CLI](../sdk/documents/cli/), which can run i
 
 To start, create a new API key and select its scopes. After setting the necessary scopes, securely store the API key for use in your CI/CD pipelines or other automated processes.
 
-For the [create a user and immediately enable a flag](reflag-rest-api/README.md#create-a-user-and-immediately-enable-a-flag) workflow, select both:
-
-| Scope | Purpose |
-| --- | --- |
-| `write:entities` | Create or update users and companies. This scope also permits entity deletion. |
-| `write:flag:targeting` | Update flag targeting for users and companies. |
-
-`write:entities` does not grant flag targeting or company membership changes. Add
-`read` separately if your integration also makes Management API GET requests.
-
 <figure><img src="../.gitbook/assets/image (34).png" alt="" width="563"><figcaption><p>Create a new API key</p></figcaption></figure>
 
 After clicking _"Create,"_ you'll receive the API key. Remember to save it, as you won't be able to retrieve it later.
