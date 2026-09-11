@@ -54,14 +54,18 @@ description: >-
 [OpenAPI reflag-api](https://app.reflag.com/openapi.json)
 {% endopenapi-operation %}
 
-{% openapi-operation spec="reflag-api" path="/apps/{appId}" method="get" %}
+{% openapi-operation spec="reflag-api" path="/apps/{appId}/envs/{envId}/companies/{companyId}" method="put" %}
 [OpenAPI reflag-api](https://app.reflag.com/openapi.json)
 {% endopenapi-operation %}
 
-{% openapi-operation spec="reflag-api" path="/apps" method="get" %}
+{% openapi-operation spec="reflag-api" path="/apps/{appId}/envs/{envId}/companies/{companyId}" method="delete" %}
 [OpenAPI reflag-api](https://app.reflag.com/openapi.json)
 {% endopenapi-operation %}
 
-{% openapi-operation spec="reflag-api" path="/apps/{appId}/flags" method="get" %}
+{% openapi-operation spec="reflag-api" path="/apps/{appId}/envs/{envId}/users/{userId}" method="put" %}
+[OpenAPI reflag-api](https://app.reflag.com/openapi.json)
+{% endopenapi-operation %}
+
+{% openapi-operation spec="reflag-api" path="/apps/{appId}/envs/{envId}/users/{userId}" method="delete" %}
 [OpenAPI reflag-api](https://app.reflag.com/openapi.json)
 {% endopenapi-operation %}

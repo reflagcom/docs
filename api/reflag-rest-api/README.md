@@ -8,10 +8,10 @@ description: Introduction to Reflag Management API
 
 The Reflag Management API allows developers to programmatically interact with their Reflag accounts.
 
-By using HTTP requests, such as GET, POST, PUT, and DELETE, users can perform actions like retrieving data, updating account settings, or managing resources without accessing the Reflag web application directly. This enables seamless integration with other systems, automation of tasks, and enhanced flexibility in account management.
+Use it to create and update flags, manage users and companies, and grant flag access from your backend or back-office tools. For TypeScript applications, the [Management SDK](../../sdk/@reflag/management-sdk/README.md) provides typed methods for these operations.
 
 {% hint style="info" %}
-The Reflag Management API serves a different purpose than the Runtime API. For app integrations, please use the [Runtime API](../public-api/).
+Use the [Runtime API](../public-api/) and runtime SDKs to evaluate flags and track activity. Use the Management API to manage entities and change targeting. Application backends can use both, for example to create a user, grant flag access, and then evaluate that flag.
 {% endhint %}
 
 ## Authentication
@@ -28,30 +28,64 @@ This section covers a few simple use cases for the Reflag Management API.
 
 The Management API enables customers to integrate their back-office systems with Reflag's flag targeting. By using our API, you can quickly provide access to specific flags for a company or user directly from your systems.
 
-Here's a brief guide to enabling the `new-checkout-flow` flag for the `acme-corp` company:
+Enable the existing `new-checkout-flow` flag for an existing `acme-corp` company with the Management SDK:
 
 ```typescript
-await fetch(
-  `https://app.reflag.com/api/apps/${appId}/flags/specific-targets/${envId}`,
-  {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${apiToken}`,
-    },
-    body: JSON.stringify({
-      updates: [
-        {
-          flagKey: "new-checkout-flow",
-          value: true,
-          companyId: "acme-corp",
-        },
-      ],
-      changeDescription: "Enabled new checkout flow for Acme Corp in prod",
-    }),
-  }
-);
+import { Api } from "@reflag/management-sdk";
+
+const api = new Api({ accessToken: process.env.REFLAG_API_KEY });
+
+await api.updateCompanyFlags({
+  appId,
+  envId,
+  companyId: "acme-corp",
+  updates: [{ flagKey: "new-checkout-flow", specificTargetValue: true }],
+  changeDescription: "Enabled new checkout flow for Acme Corp in prod",
+});
 ```
+
+This uses `PATCH /apps/{appId}/envs/{envId}/companies/{companyId}/flags`.
+For users, use `updateUserFlags` and the corresponding `/users/{userId}/flags`
+endpoint. Set `specificTargetValue` to `null` to remove specific targeting;
+other targeting rules may still enable the flag.
+
+### Create a user and immediately enable a flag
+
+Use a synchronous Management API upsert when a new user must be available to a
+subsequent targeting request. Runtime tracking ingestion is asynchronous, so
+sending a tracking event is not a substitute for awaiting this upsert.
+
+The flag must already exist. Your Management API key needs `write:entities` to
+upsert the user and `write:flag:targeting` to enable the flag. See
+[Management API Access](../api-access.md#management-api-access).
+
+```typescript
+// `api` is the Management SDK client initialized above.
+const scope = { appId, envId };
+const userId = "user-123";
+
+await api.upsertUser({ ...scope, userId, name: "Jane Doe" });
+
+const { flagStateVersion } = await api.updateUserFlags({
+  ...scope,
+  userId,
+  updates: [{ flagKey: "new-checkout-flow", specificTargetValue: true }],
+});
+
+// Optional: evaluate immediately using an initialized Node SDK client
+// configured for the same app and environment.
+await client.refreshFlags(flagStateVersion);
+const flag = client.getFlag("new-checkout-flow", { user: { id: userId } });
+```
+
+Awaiting `upsertUser` makes the user available to the targeting request. Flag
+configuration propagation to runtime SDKs is separate: `refreshFlags(flagStateVersion)`
+requests the version containing the change or newer instead of waiting for the
+next automatic refresh. If refreshing fails, the Node SDK retains cached or
+fallback flags rather than throwing.
+
+The same workflow works for companies with `upsertCompany` and `updateCompanyFlags`.
+For more detail, see [Waiting for flag changes to reach an SDK](../../sdk/@reflag/management-sdk/README.md#waiting-for-flag-changes-to-reach-an-sdk).
 
 #### Automating TypeScript Type Generation with Reflag CLI in CI/CD
 
