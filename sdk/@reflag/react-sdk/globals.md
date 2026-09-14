@@ -52,6 +52,23 @@ Event representing checking the flag evaluation result
 <tr>
 <td>
 
+<a id="evaluationerrors"></a> `evaluationErrors?`
+
+</td>
+<td>
+
+\{ `code`: `string`; `field`: `string`; `message`: `string`; `operator`: `string`; \}[]
+
+</td>
+<td>
+
+Non-fatal diagnostics produced while evaluating the flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="key"></a> `key`
 
 </td>
@@ -69,7 +86,7 @@ Flag key.
 <tr>
 <td>
 
-<a id="missingcontextfields"></a> `missingContextFields?`
+<a id="missingcontextfields"></a> ~~`missingContextFields?`~~
 
 </td>
 <td>
@@ -80,6 +97,10 @@ Flag key.
 <td>
 
 Missing context fields.
+
+**Deprecated**
+
+Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
 
 </td>
 </tr>

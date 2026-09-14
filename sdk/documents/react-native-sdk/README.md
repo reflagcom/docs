@@ -13,7 +13,7 @@ pagination:
   visible: true
 ---
 
-# Reflag React Native SDK (beta)
+# Reflag React Native SDK
 
 A thin React Native wrapper around `@reflag/react-sdk`.
 

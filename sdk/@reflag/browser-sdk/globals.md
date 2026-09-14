@@ -1079,6 +1079,23 @@ Event representing checking the flag evaluation result
 <tr>
 <td>
 
+<a id="evaluationerrors"></a> `evaluationErrors?`
+
+</td>
+<td>
+
+\{ `code`: `string`; `field`: `string`; `message`: `string`; `operator`: `string`; \}[]
+
+</td>
+<td>
+
+Non-fatal diagnostics produced while evaluating the flag.
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="key"></a> `key`
 
 </td>
@@ -1096,7 +1113,7 @@ Flag key.
 <tr>
 <td>
 
-<a id="missingcontextfields"></a> `missingContextFields?`
+<a id="missingcontextfields"></a> ~~`missingContextFields?`~~
 
 </td>
 <td>
@@ -1107,6 +1124,10 @@ Flag key.
 <td>
 
 Missing context fields.
+
+**Deprecated**
+
+Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
 
 </td>
 </tr>
@@ -4187,12 +4208,19 @@ type Position =
 ```ts
 type RawFlag = {
   config: {
+     evaluationErrors: RawFlag["evaluationErrors"];
      key: string;
      missingContextFields: string[];
      payload: any;
      ruleEvaluationResults: boolean[];
      version: number;
     };
+  evaluationErrors: {
+     code: string;
+     field: string;
+     message: string;
+     operator: string;
+    }[];
   isEnabled: boolean;
   isEnabledOverride: boolean | null;
   key: string;
@@ -4226,6 +4254,7 @@ A flag fetched from the server.
 <td>
 
 \{
+  `evaluationErrors`: [`RawFlag`](globals.md#rawflag)\[`"evaluationErrors"`\];
   `key`: `string`;
   `missingContextFields`: `string`[];
   `payload`: `any`;
@@ -4237,6 +4266,23 @@ A flag fetched from the server.
 <td>
 
 Optional user-defined dynamic configuration.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`config.evaluationErrors`?
+
+</td>
+<td>
+
+[`RawFlag`](globals.md#rawflag)\[`"evaluationErrors"`\]
+
+</td>
+<td>
+
+Non-fatal diagnostics produced while evaluating targeting rules.
 
 </td>
 </tr>
@@ -4271,6 +4317,10 @@ The key of the matched configuration value.
 <td>
 
 The missing context fields.
+
+**Deprecated**
+
+Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
 
 </td>
 </tr>
@@ -4322,6 +4372,28 @@ The rule evaluation results.
 <td>
 
 The version of the matched configuration value.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evaluationerrors-1"></a> `evaluationErrors`?
+
+</td>
+<td>
+
+\{
+  `code`: `string`;
+  `field`: `string`;
+  `message`: `string`;
+  `operator`: `string`;
+ \}[]
+
+</td>
+<td>
+
+Non-fatal diagnostics produced while evaluating targeting rules.
 
 </td>
 </tr>
@@ -4391,6 +4463,10 @@ Flag key.
 <td>
 
 Missing context fields.
+
+**Deprecated**
+
+Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
 
 </td>
 </tr>

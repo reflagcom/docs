@@ -801,7 +801,10 @@ Flushes and completes any in-flight fetches in the flag cache.
 It is recommended to call this method when the application is shutting down to ensure all events are sent
 before the process exits.
 
-This method is automatically called when the process exits if `batchOptions.flushOnExit` is `true` in the options (default).
+This method is automatically called on natural process exit (`beforeExit`) if
+`batchOptions.flushOnExit` is `true` in the options (default). For signal-driven
+shutdown or an explicit `process.exit()`, await this method in your application's
+shutdown hook before exiting. The SDK does not install signal handlers.
 
 ###### Inherited from
 
@@ -1984,7 +1987,10 @@ Flushes and completes any in-flight fetches in the flag cache.
 It is recommended to call this method when the application is shutting down to ensure all events are sent
 before the process exits.
 
-This method is automatically called when the process exits if `batchOptions.flushOnExit` is `true` in the options (default).
+This method is automatically called on natural process exit (`beforeExit`) if
+`batchOptions.flushOnExit` is `true` in the options (default). For signal-driven
+shutdown or an explicit `process.exit()`, await this method in your application's
+shutdown hook before exiting. The SDK does not install signal handlers.
 
 ##### getFlag()
 
@@ -3803,7 +3809,10 @@ A function that handles flushing the items in the buffer.
 </td>
 <td>
 
-Whether to flush the buffer on exit.
+Whether to flush the buffer on natural process exit (`beforeExit`).
+This does not install signal handlers. For signal-driven shutdown or an
+explicit `process.exit()`, await `client.flush()` in your application's
+shutdown hook before exiting.
 
 </td>
 </tr>
