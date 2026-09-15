@@ -25,7 +25,6 @@ Use `@reflag/react-sdk` 1.6.2 or later. This example explicitly enables Suspense
 import { Suspense, useState } from "react";
 import {
   type OptInFlag,
-  useClient,
   useOptInFlags,
   useSetOptIn,
 } from "@reflag/react-sdk";
@@ -43,45 +42,12 @@ function OptInList() {
   const { flags: optInFlags } = useOptInFlags({ suspense: true });
 
   if (optInFlags.length === 0) {
-    return (
-      <section>
-        <p>No opt-in flags to show. If you expected some, try reloading.</p>
-        <ReloadOptInFlags />
-      </section>
-    );
+    return <p>No opt-in flags to show.</p>;
   }
 
   return optInFlags.map((flag) => (
     <OptInFlagCard key={flag.key} flag={flag} />
   ));
-}
-
-function ReloadOptInFlags() {
-  const client = useClient();
-  const [isReloading, setIsReloading] = useState(false);
-  const [reloadError, setReloadError] = useState<string | null>(null);
-
-  async function reload() {
-    setReloadError(null);
-    setIsReloading(true);
-    try {
-      const flags = await client.refresh();
-      if (!flags) throw new Error("Flag refresh failed");
-    } catch {
-      setReloadError("Could not reload opt-in flags. Please try again.");
-    } finally {
-      setIsReloading(false);
-    }
-  }
-
-  return (
-    <>
-      <button type="button" disabled={isReloading} onClick={reload}>
-        {isReloading ? "Reloading…" : "Reload opt-in flags"}
-      </button>
-      {reloadError && <p role="alert">{reloadError}</p>}
-    </>
-  );
 }
 
 function OptInFlagCard({ flag }: { flag: OptInFlag }) {
@@ -184,22 +150,15 @@ if (isProviderLoading || isLoading) {
 }
 
 if (optInFlags.length === 0) {
-  return (
-    <section>
-      <p>No opt-in flags to show. If you expected some, try reloading.</p>
-      <ReloadOptInFlags />
-    </section>
-  );
+  return <p>No opt-in flags to show.</p>;
 }
 ```
 
-`ReloadOptInFlags` is defined in the quick-start example. A provider's `loadingComponent` can handle normal initialization instead, but does not cover the on-demand metadata fetch.
+A provider's `loadingComponent` can handle normal initialization instead, but does not cover the on-demand metadata fetch.
 
-### Failed metadata requests and retrying
+### Failed metadata requests
 
-The hook stops loading (or suspending) when the metadata refresh succeeds **or fails**. It does not expose an error field or throw fetch failures to an error boundary. An empty list can therefore mean either no available flags or a failed request; it is not proof that no opt-in flags exist.
-
-After a failed on-demand refresh, rendering the hook again does not start another attempt for the same context. The example provides a manual retry through `useClient().refresh()`. This bypasses the cache, updates subscribers on success, and returns `undefined` if the refresh fails or is skipped. Track the retry's pending/error state separately, as shown above.
+The hook stops loading on success or failure without exposing fetch errors, so an empty list may also mean a failed request. Re-rendering does not retry an on-demand request for the same context. To retry, call `refresh()` on the client returned by `useClient()`; it returns `undefined` if the refresh fails or is skipped.
 
 ## Next steps
 
