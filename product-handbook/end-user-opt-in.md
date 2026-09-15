@@ -111,4 +111,4 @@ If you enable opt-in again, retained memberships become active again as long as 
 
 Reflag does not impose a particular end-user experience. You can build a Labs page, beta settings page, organization-level experiments page, or any other interface that fits your product.
 
-See [Beta feature opt-in](../guides/self-opt-in.md) for a step-by-step React implementation using Reflag's SDK hooks.
+See [Build a beta feature opt-in page](../guides/self-opt-in.md) for setup guidance and a link to the React SDK example.
