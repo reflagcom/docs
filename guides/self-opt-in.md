@@ -25,10 +25,6 @@ Follow the [React SDK opt-in example](../sdk/@reflag/react-sdk/README.md#useopti
 
 User and company memberships are independent. Cancelling one does not remove the other. Even after cancelling both, an access rule may still enable the flag.
 
-{% hint style="warning" %}
-Opt-in requests use a publishable key and caller-supplied context IDs. Company scope does not verify membership or administrator permissions, so hiding a control is not an authorization boundary. Enforce authorization for sensitive access in your backend.
-{% endhint %}
-
 ## Next steps
 
 * Learn how to view, manage, disable, and re-enable memberships in [End-user opt-in](../product-handbook/end-user-opt-in.md).
