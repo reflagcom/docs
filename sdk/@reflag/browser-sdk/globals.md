@@ -660,6 +660,12 @@ setOptIn(flagKey: string, options: SetOptInOptions): Promise<
 
 Set whether the current user or company has opted into a flag.
 
+A successful Response is returned after the refreshed flag state confirms
+the membership change. HTTP failures return a non-OK Response without
+refreshing flags. Offline mode, invalid arguments, or missing scoped context
+return undefined. Network and confirmation failures reject the promise;
+a confirmation failure may occur after membership changed remotely.
+
 ###### Parameters
 
 <table>
@@ -4795,7 +4801,7 @@ type SetOptInOptions = {
 };
 ```
 
-Represents a flag.
+Options for changing the current user or company's opt-in membership.
 
 #### Type declaration
 
