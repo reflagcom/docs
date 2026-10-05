@@ -6,7 +6,7 @@ description: Integrate Slack to get notified about new flag changes and feedback
 
 With the integration for Slack, you can get notifications whenever flags change and whenever an end-user submit feature feedback.
 
-_AI-generated responses may be inaccurate. The AI agent requires a paid Slack plan; other app features work on free plans._
+**AI disclaimer:** Reflag’s AI agent uses a large language model (LLM) and may generate inaccurate responses, summaries, or other outputs. A paid Slack plan is required to access the AI agent in the app container. Other Reflag Slack app features continue to work on free Slack plans.
 
 ## Authenticate with Slack
 
