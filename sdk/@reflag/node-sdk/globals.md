@@ -5685,6 +5685,7 @@ type GCSLegacyClient = {
 ```ts
 type HttpClientResponse<TResponse> = {
   body: TResponse | undefined;
+  etag: string;
   ok: boolean;
   status: number;
 };
@@ -5742,6 +5743,24 @@ The type of the response body.
 <td>
 
 The body of the response if available.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="etag"></a> `etag`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+The response's ETag, if available. Return its exact value to enable
+conditional flag-definition refreshes with a custom HTTP client.
 
 </td>
 </tr>
