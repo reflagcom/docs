@@ -545,7 +545,7 @@ Get details of an application
 getCompanyFlags(requestParameters: GetCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
 ```
 
-Retrieve all flags with their targeting status for a specific company
+Retrieve flags evaluated with current runtime rules and the company\'s stored attributes. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No user or other/request context is supplied; stored attributes may differ from a live SDK request.
 Get flags for a company
 
 ###### Parameters
@@ -599,7 +599,7 @@ Get flags for a company
 getCompanyFlagsRaw(requestParameters: GetCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
 ```
 
-Retrieve all flags with their targeting status for a specific company
+Retrieve flags evaluated with current runtime rules and the company\'s stored attributes. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No user or other/request context is supplied; stored attributes may differ from a live SDK request.
 Get flags for a company
 
 ###### Parameters
@@ -761,7 +761,7 @@ Get environment details
 getFlagTargeting(requestParameters: GetFlagTargetingRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<FlagTargeting>
 ```
 
-Retrieve targeting for a flag in an environment
+Read a flag\'s authored targeting mode, saved explicit assignments, and compiled runtime enable rules with read scope. Saved targets may remain configured while No one disables all effective rules. Version, mode, assignments, and effective rules come from one configuration snapshot. This does not guarantee SDK propagation or replay a live evaluation context.
 Get flag targeting for an environment
 
 ###### Parameters
@@ -815,7 +815,7 @@ Get flag targeting for an environment
 getFlagTargetingRaw(requestParameters: GetFlagTargetingRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<FlagTargeting>>
 ```
 
-Retrieve targeting for a flag in an environment
+Read a flag\'s authored targeting mode, saved explicit assignments, and compiled runtime enable rules with read scope. Saved targets may remain configured while No one disables all effective rules. Version, mode, assignments, and effective rules come from one configuration snapshot. This does not guarantee SDK propagation or replay a live evaluation context.
 Get flag targeting for an environment
 
 ###### Parameters
@@ -869,7 +869,7 @@ Get flag targeting for an environment
 getUserFlags(requestParameters: GetUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
 ```
 
-Retrieve all flags with their targeting status for a specific user
+Retrieve flags evaluated with current runtime rules and stored user attributes, also checking each stored company membership separately. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No other/request context is supplied; this is not a replay of a single live SDK request.
 Get flags for a user
 
 ###### Parameters
@@ -923,7 +923,7 @@ Get flags for a user
 getUserFlagsRaw(requestParameters: GetUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
 ```
 
-Retrieve all flags with their targeting status for a specific user
+Retrieve flags evaluated with current runtime rules and stored user attributes, also checking each stored company membership separately. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No other/request context is supplied; this is not a replay of a single live SDK request.
 Get flags for a user
 
 ###### Parameters
@@ -3423,7 +3423,7 @@ Get details of an application
 getCompanyFlags(requestParameters: GetCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
 ```
 
-Retrieve all flags with their targeting status for a specific company
+Retrieve flags evaluated with current runtime rules and the company\'s stored attributes. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No user or other/request context is supplied; stored attributes may differ from a live SDK request.
 Get flags for a company
 
 ###### Parameters
@@ -3477,7 +3477,7 @@ Get flags for a company
 getCompanyFlagsRaw(requestParameters: GetCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
 ```
 
-Retrieve all flags with their targeting status for a specific company
+Retrieve flags evaluated with current runtime rules and the company\'s stored attributes. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No user or other/request context is supplied; stored attributes may differ from a live SDK request.
 Get flags for a company
 
 ###### Parameters
@@ -3639,7 +3639,7 @@ Get environment details
 getFlagTargeting(requestParameters: GetFlagTargetingRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<FlagTargeting>
 ```
 
-Retrieve targeting for a flag in an environment
+Read a flag\'s authored targeting mode, saved explicit assignments, and compiled runtime enable rules with read scope. Saved targets may remain configured while No one disables all effective rules. Version, mode, assignments, and effective rules come from one configuration snapshot. This does not guarantee SDK propagation or replay a live evaluation context.
 Get flag targeting for an environment
 
 ###### Parameters
@@ -3693,7 +3693,7 @@ Get flag targeting for an environment
 getFlagTargetingRaw(requestParameters: GetFlagTargetingRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<FlagTargeting>>
 ```
 
-Retrieve targeting for a flag in an environment
+Read a flag\'s authored targeting mode, saved explicit assignments, and compiled runtime enable rules with read scope. Saved targets may remain configured while No one disables all effective rules. Version, mode, assignments, and effective rules come from one configuration snapshot. This does not guarantee SDK propagation or replay a live evaluation context.
 Get flag targeting for an environment
 
 ###### Parameters
@@ -3747,7 +3747,7 @@ Get flag targeting for an environment
 getUserFlags(requestParameters: GetUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
 ```
 
-Retrieve all flags with their targeting status for a specific user
+Retrieve flags evaluated with current runtime rules and stored user attributes, also checking each stored company membership separately. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No other/request context is supplied; this is not a replay of a single live SDK request.
 Get flags for a user
 
 ###### Parameters
@@ -3801,7 +3801,7 @@ Get flags for a user
 getUserFlagsRaw(requestParameters: GetUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
 ```
 
-Retrieve all flags with their targeting status for a specific user
+Retrieve flags evaluated with current runtime rules and stored user attributes, also checking each stored company membership separately. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No other/request context is supplied; this is not a replay of a single live SDK request.
 Get flags for a user
 
 ###### Parameters
@@ -8356,7 +8356,7 @@ Request parameters for this operation.
 getCompanyFlags(requestParameters: GetCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
 ```
 
-Retrieve all flags with their targeting status for a specific company
+Retrieve flags evaluated with current runtime rules and the company\'s stored attributes. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No user or other/request context is supplied; stored attributes may differ from a live SDK request.
 Get flags for a company
 
 ###### Parameters
@@ -8406,7 +8406,7 @@ Get flags for a company
 getCompanyFlagsRaw(requestParameters: GetCompanyFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
 ```
 
-Retrieve all flags with their targeting status for a specific company
+Retrieve flags evaluated with current runtime rules and the company\'s stored attributes. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No user or other/request context is supplied; stored attributes may differ from a live SDK request.
 
 ###### Parameters
 
@@ -8580,7 +8580,7 @@ Request parameters for this operation.
 getFlagTargeting(requestParameters: GetFlagTargetingRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<FlagTargeting>
 ```
 
-Retrieve targeting for a flag in an environment
+Read a flag\'s authored targeting mode, saved explicit assignments, and compiled runtime enable rules with read scope. Saved targets may remain configured while No one disables all effective rules. Version, mode, assignments, and effective rules come from one configuration snapshot. This does not guarantee SDK propagation or replay a live evaluation context.
 Get flag targeting for an environment
 
 ###### Parameters
@@ -8630,7 +8630,7 @@ Get flag targeting for an environment
 getFlagTargetingRaw(requestParameters: GetFlagTargetingRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<FlagTargeting>>
 ```
 
-Retrieve targeting for a flag in an environment
+Read a flag\'s authored targeting mode, saved explicit assignments, and compiled runtime enable rules with read scope. Saved targets may remain configured while No one disables all effective rules. Version, mode, assignments, and effective rules come from one configuration snapshot. This does not guarantee SDK propagation or replay a live evaluation context.
 
 ###### Parameters
 
@@ -8692,7 +8692,7 @@ Request parameters for this operation.
 getUserFlags(requestParameters: GetUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<EntityFlagsResponse>
 ```
 
-Retrieve all flags with their targeting status for a specific user
+Retrieve flags evaluated with current runtime rules and stored user attributes, also checking each stored company membership separately. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No other/request context is supplied; this is not a replay of a single live SDK request.
 Get flags for a user
 
 ###### Parameters
@@ -8742,7 +8742,7 @@ Get flags for a user
 getUserFlagsRaw(requestParameters: GetUserFlagsRequest, initOverrides?: RequestInit | InitOverrideFunction): Promise<ApiResponse<EntityFlagsResponse>>
 ```
 
-Retrieve all flags with their targeting status for a specific user
+Retrieve flags evaluated with current runtime rules and stored user attributes, also checking each stored company membership separately. value is the evaluated enabled state, not a default or the last SDK result. specificTargetValue is saved assignment metadata and can remain true while No one makes value false. No other/request context is supplied; this is not a replay of a single live SDK request.
 
 ###### Parameters
 
@@ -9855,6 +9855,453 @@ DeleteCompanyRequest
 
 ***
 
+### EffectiveFlagFilter
+
+A compiled runtime filter with segment and flag references resolved
+ EffectiveFlagFilter
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="field-1"></a> `field`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="filter"></a> `filter`
+
+</td>
+<td>
+
+[`EffectiveFlagFilter`](globals.md#effectiveflagfilter)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="filters"></a> `filters`
+
+</td>
+<td>
+
+[`EffectiveFlagFilter`](globals.md#effectiveflagfilter)[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="key-3"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="operator"></a> `operator`
+
+</td>
+<td>
+
+[`EffectiveFlagFilterOperatorEnum`](globals.md#effectiveflagfilteroperatorenum)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="partialrolloutattribute"></a> `partialRolloutAttribute`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="partialrolloutthreshold"></a> `partialRolloutThreshold`
+
+</td>
+<td>
+
+`number`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="type"></a> `type`
+
+</td>
+<td>
+
+[`EffectiveFlagFilterTypeEnum`](globals.md#effectiveflagfiltertypeenum)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="value-5"></a> `value`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="values"></a> `values?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOf
+
+EffectiveFlagFilterAnyOf
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="field-2"></a> `field`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="operator-1"></a> `operator`
+
+</td>
+<td>
+
+[`EffectiveFlagFilterAnyOfOperatorEnum`](globals.md#effectiveflagfilteranyofoperatorenum)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="type-1"></a> `type`
+
+</td>
+<td>
+
+`"context"`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="values-1"></a> `values?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOf1
+
+EffectiveFlagFilterAnyOf1
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="key-4"></a> `key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="partialrolloutattribute-1"></a> `partialRolloutAttribute`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="partialrolloutthreshold-1"></a> `partialRolloutThreshold`
+
+</td>
+<td>
+
+`number`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="type-2"></a> `type`
+
+</td>
+<td>
+
+`"rolloutPercentage"`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOf2
+
+EffectiveFlagFilterAnyOf2
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="type-3"></a> `type`
+
+</td>
+<td>
+
+`"constant"`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="value-6"></a> `value`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOf3
+
+EffectiveFlagFilterAnyOf3
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="filters-1"></a> `filters`
+
+</td>
+<td>
+
+[`EffectiveFlagFilter`](globals.md#effectiveflagfilter)[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="operator-2"></a> `operator`
+
+</td>
+<td>
+
+[`EffectiveFlagFilterAnyOf3OperatorEnum`](globals.md#effectiveflagfilteranyof3operatorenum)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="type-4"></a> `type`
+
+</td>
+<td>
+
+`"group"`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOf4
+
+EffectiveFlagFilterAnyOf4
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="filter-1"></a> `filter`
+
+</td>
+<td>
+
+[`EffectiveFlagFilter`](globals.md#effectiveflagfilter)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="type-5"></a> `type`
+
+</td>
+<td>
+
+`"negation"`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagRule
+
+One independent enable rule; a flag is enabled if any rule matches
+ EffectiveFlagRule
+
+#### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="filter-2"></a> `filter`
+
+</td>
+<td>
+
+[`EffectiveFlagFilter`](globals.md#effectiveflagfilter)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### EntityFlag
 
 Flag information with enabled status for an entity
@@ -9959,7 +10406,7 @@ Flag ID
 <tr>
 <td>
 
-<a id="key-3"></a> `key`
+<a id="key-5"></a> `key`
 
 </td>
 <td>
@@ -10078,7 +10525,7 @@ Number of track events for this flag
 <tr>
 <td>
 
-<a id="value-5"></a> `value`
+<a id="value-7"></a> `value`
 
 </td>
 <td>
@@ -10088,7 +10535,7 @@ Number of track events for this flag
 </td>
 <td>
 
-Whether the flag is enabled for this entity
+Evaluated enabled state using current runtime rules and stored entity attributes, not the last SDK result or a default value. Company checks supply only company context. User checks supply user context and also check each stored company membership; no other/request context is supplied. Stored attributes and context may differ from a live SDK request.
 
 </td>
 </tr>
@@ -10963,7 +11410,7 @@ Flag ID
 <tr>
 <td>
 
-<a id="key-4"></a> `key`
+<a id="key-6"></a> `key`
 
 </td>
 <td>
@@ -11277,6 +11724,23 @@ Flag targeting information and its audience
 <tr>
 <td>
 
+<a id="effectiverules"></a> `effectiveRules`
+
+</td>
+<td>
+
+[`EffectiveFlagRule`](globals.md#effectiveflagrule)[]
+
+</td>
+<td>
+
+Compiled runtime enable rules, including active opt-ins, with segment and flag references resolved. Rules are evaluated independently (OR), not as one combined rule. Empty for No one, archived flags, or a configuration with no enable rules. Uses the same authored snapshot as version; does not guarantee SDK propagation or reproduce a live SDK context.
+
+</td>
+</tr>
+<tr>
+<td>
+
 <a id="flagkey-1"></a> `flagKey`
 
 </td>
@@ -11304,7 +11768,24 @@ Unique flag key
 </td>
 <td>
 
-The flag targeting for each value
+Saved explicit assignments, preserved even when inactive. Use targetingMode and effectiveRules to interpret effective targeting, not list membership alone.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="targetingmode"></a> `targetingMode`
+
+</td>
+<td>
+
+[`FlagTargetingTargetingModeEnum`](globals.md#flagtargetingtargetingmodeenum)
+
+</td>
+<td>
+
+Authored targeting mode. Saved specific targets are inactive when this is none and are not required when it is everyone.
 
 </td>
 </tr>
@@ -12321,7 +12802,7 @@ Segment name
 <tr>
 <td>
 
-<a id="type"></a> `type`
+<a id="type-6"></a> `type`
 
 </td>
 <td>
@@ -13689,6 +14170,78 @@ type AppScopedApi<T> = { [K in keyof T]: OmitAppIdParam<T[K]> };
 
 ***
 
+### EffectiveFlagFilterAnyOf1TypeEnum
+
+```ts
+type EffectiveFlagFilterAnyOf1TypeEnum = typeof EffectiveFlagFilterAnyOf1TypeEnum[keyof typeof EffectiveFlagFilterAnyOf1TypeEnum];
+```
+
+***
+
+### EffectiveFlagFilterAnyOf2TypeEnum
+
+```ts
+type EffectiveFlagFilterAnyOf2TypeEnum = typeof EffectiveFlagFilterAnyOf2TypeEnum[keyof typeof EffectiveFlagFilterAnyOf2TypeEnum];
+```
+
+***
+
+### EffectiveFlagFilterAnyOf3OperatorEnum
+
+```ts
+type EffectiveFlagFilterAnyOf3OperatorEnum = typeof EffectiveFlagFilterAnyOf3OperatorEnum[keyof typeof EffectiveFlagFilterAnyOf3OperatorEnum];
+```
+
+***
+
+### EffectiveFlagFilterAnyOf3TypeEnum
+
+```ts
+type EffectiveFlagFilterAnyOf3TypeEnum = typeof EffectiveFlagFilterAnyOf3TypeEnum[keyof typeof EffectiveFlagFilterAnyOf3TypeEnum];
+```
+
+***
+
+### EffectiveFlagFilterAnyOf4TypeEnum
+
+```ts
+type EffectiveFlagFilterAnyOf4TypeEnum = typeof EffectiveFlagFilterAnyOf4TypeEnum[keyof typeof EffectiveFlagFilterAnyOf4TypeEnum];
+```
+
+***
+
+### EffectiveFlagFilterAnyOfOperatorEnum
+
+```ts
+type EffectiveFlagFilterAnyOfOperatorEnum = typeof EffectiveFlagFilterAnyOfOperatorEnum[keyof typeof EffectiveFlagFilterAnyOfOperatorEnum];
+```
+
+***
+
+### EffectiveFlagFilterAnyOfTypeEnum
+
+```ts
+type EffectiveFlagFilterAnyOfTypeEnum = typeof EffectiveFlagFilterAnyOfTypeEnum[keyof typeof EffectiveFlagFilterAnyOfTypeEnum];
+```
+
+***
+
+### EffectiveFlagFilterOperatorEnum
+
+```ts
+type EffectiveFlagFilterOperatorEnum = typeof EffectiveFlagFilterOperatorEnum[keyof typeof EffectiveFlagFilterOperatorEnum];
+```
+
+***
+
+### EffectiveFlagFilterTypeEnum
+
+```ts
+type EffectiveFlagFilterTypeEnum = typeof EffectiveFlagFilterTypeEnum[keyof typeof EffectiveFlagFilterTypeEnum];
+```
+
+***
+
 ### EntityFlagUpdateSpecificTargetValueEnum
 
 ```ts
@@ -13733,6 +14286,14 @@ type FlagHeaderCollectionSortByEnum = typeof FlagHeaderCollectionSortByEnum[keyo
 
 ```ts
 type FlagKeyFormat = typeof FlagKeyFormat[keyof typeof FlagKeyFormat];
+```
+
+***
+
+### FlagTargetingTargetingModeEnum
+
+```ts
+type FlagTargetingTargetingModeEnum = typeof FlagTargetingTargetingModeEnum[keyof typeof FlagTargetingTargetingModeEnum];
 ```
 
 ***
@@ -14126,6 +14687,753 @@ const DefaultConfig: Configuration;
 
 ***
 
+### EffectiveFlagFilterAnyOf1TypeEnum
+
+```ts
+const EffectiveFlagFilterAnyOf1TypeEnum: {
+  RolloutPercentage: "rolloutPercentage";
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="rolloutpercentage"></a> `RolloutPercentage`
+
+</td>
+<td>
+
+`"rolloutPercentage"`
+
+</td>
+<td>
+
+'rolloutPercentage'
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOf2TypeEnum
+
+```ts
+const EffectiveFlagFilterAnyOf2TypeEnum: {
+  Constant: "constant";
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="constant"></a> `Constant`
+
+</td>
+<td>
+
+`"constant"`
+
+</td>
+<td>
+
+'constant'
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOf3OperatorEnum
+
+```ts
+const EffectiveFlagFilterAnyOf3OperatorEnum: {
+  And: "and";
+  Or: "or";
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="and"></a> `And`
+
+</td>
+<td>
+
+`"and"`
+
+</td>
+<td>
+
+'and'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="or"></a> `Or`
+
+</td>
+<td>
+
+`"or"`
+
+</td>
+<td>
+
+'or'
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOf3TypeEnum
+
+```ts
+const EffectiveFlagFilterAnyOf3TypeEnum: {
+  Group: "group";
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="group"></a> `Group`
+
+</td>
+<td>
+
+`"group"`
+
+</td>
+<td>
+
+'group'
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOf4TypeEnum
+
+```ts
+const EffectiveFlagFilterAnyOf4TypeEnum: {
+  Negation: "negation";
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="negation"></a> `Negation`
+
+</td>
+<td>
+
+`"negation"`
+
+</td>
+<td>
+
+'negation'
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOfOperatorEnum
+
+```ts
+const EffectiveFlagFilterAnyOfOperatorEnum: {
+  After: "AFTER";
+  AnyOf: "ANY_OF";
+  Before: "BEFORE";
+  Contains: "CONTAINS";
+  DateAfter: "DATE_AFTER";
+  DateBefore: "DATE_BEFORE";
+  Gt: "GT";
+  Is: "IS";
+  IsFalse: "IS_FALSE";
+  IsNot: "IS_NOT";
+  IsTrue: "IS_TRUE";
+  Lt: "LT";
+  NotAnyOf: "NOT_ANY_OF";
+  NotContains: "NOT_CONTAINS";
+  NotSet: "NOT_SET";
+  Set: "SET";
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="after"></a> `After`
+
+</td>
+<td>
+
+`"AFTER"`
+
+</td>
+<td>
+
+'AFTER'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="anyof"></a> `AnyOf`
+
+</td>
+<td>
+
+`"ANY_OF"`
+
+</td>
+<td>
+
+'ANY\_OF'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="before"></a> `Before`
+
+</td>
+<td>
+
+`"BEFORE"`
+
+</td>
+<td>
+
+'BEFORE'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="contains"></a> `Contains`
+
+</td>
+<td>
+
+`"CONTAINS"`
+
+</td>
+<td>
+
+'CONTAINS'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="dateafter"></a> `DateAfter`
+
+</td>
+<td>
+
+`"DATE_AFTER"`
+
+</td>
+<td>
+
+'DATE\_AFTER'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="datebefore"></a> `DateBefore`
+
+</td>
+<td>
+
+`"DATE_BEFORE"`
+
+</td>
+<td>
+
+'DATE\_BEFORE'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="gt"></a> `Gt`
+
+</td>
+<td>
+
+`"GT"`
+
+</td>
+<td>
+
+'GT'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="is"></a> `Is`
+
+</td>
+<td>
+
+`"IS"`
+
+</td>
+<td>
+
+'IS'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isfalse"></a> `IsFalse`
+
+</td>
+<td>
+
+`"IS_FALSE"`
+
+</td>
+<td>
+
+'IS\_FALSE'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="isnot"></a> `IsNot`
+
+</td>
+<td>
+
+`"IS_NOT"`
+
+</td>
+<td>
+
+'IS\_NOT'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="istrue"></a> `IsTrue`
+
+</td>
+<td>
+
+`"IS_TRUE"`
+
+</td>
+<td>
+
+'IS\_TRUE'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="lt"></a> `Lt`
+
+</td>
+<td>
+
+`"LT"`
+
+</td>
+<td>
+
+'LT'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="notanyof"></a> `NotAnyOf`
+
+</td>
+<td>
+
+`"NOT_ANY_OF"`
+
+</td>
+<td>
+
+'NOT\_ANY\_OF'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="notcontains"></a> `NotContains`
+
+</td>
+<td>
+
+`"NOT_CONTAINS"`
+
+</td>
+<td>
+
+'NOT\_CONTAINS'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="notset"></a> `NotSet`
+
+</td>
+<td>
+
+`"NOT_SET"`
+
+</td>
+<td>
+
+'NOT\_SET'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="set"></a> `Set`
+
+</td>
+<td>
+
+`"SET"`
+
+</td>
+<td>
+
+'SET'
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterAnyOfTypeEnum
+
+```ts
+const EffectiveFlagFilterAnyOfTypeEnum: {
+  Context: "context";
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="context"></a> `Context`
+
+</td>
+<td>
+
+`"context"`
+
+</td>
+<td>
+
+'context'
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterOperatorEnum
+
+```ts
+const EffectiveFlagFilterOperatorEnum: {
+  And: "and";
+  Or: "or";
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="and-1"></a> `And`
+
+</td>
+<td>
+
+`"and"`
+
+</td>
+<td>
+
+'and'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="or-1"></a> `Or`
+
+</td>
+<td>
+
+`"or"`
+
+</td>
+<td>
+
+'or'
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EffectiveFlagFilterTypeEnum
+
+```ts
+const EffectiveFlagFilterTypeEnum: {
+  Constant: "constant";
+  Context: "context";
+  Group: "group";
+  Negation: "negation";
+  RolloutPercentage: "rolloutPercentage";
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="constant-1"></a> `Constant`
+
+</td>
+<td>
+
+`"constant"`
+
+</td>
+<td>
+
+'constant'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="context-1"></a> `Context`
+
+</td>
+<td>
+
+`"context"`
+
+</td>
+<td>
+
+'context'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="group-1"></a> `Group`
+
+</td>
+<td>
+
+`"group"`
+
+</td>
+<td>
+
+'group'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="negation-1"></a> `Negation`
+
+</td>
+<td>
+
+`"negation"`
+
+</td>
+<td>
+
+'negation'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="rolloutpercentage-1"></a> `RolloutPercentage`
+
+</td>
+<td>
+
+`"rolloutPercentage"`
+
+</td>
+<td>
+
+'rolloutPercentage'
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### EntityFlagUpdateSpecificTargetValueEnum
 
 ```ts
@@ -14496,7 +15804,7 @@ const FlagHeaderCollectionSortByEnum: {
 <tr>
 <td>
 
-<a id="key-5"></a> `Key`
+<a id="key-7"></a> `Key`
 
 </td>
 <td>
@@ -14785,6 +16093,83 @@ The enforced key format when creating flags
 
 ***
 
+### FlagTargetingTargetingModeEnum
+
+```ts
+const FlagTargetingTargetingModeEnum: {
+  Everyone: "everyone";
+  None: "none";
+  Some: "some";
+};
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="everyone"></a> `Everyone`
+
+</td>
+<td>
+
+`"everyone"`
+
+</td>
+<td>
+
+'everyone'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="none"></a> `None`
+
+</td>
+<td>
+
+`"none"`
+
+</td>
+<td>
+
+'none'
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="some"></a> `Some`
+
+</td>
+<td>
+
+`"some"`
+
+</td>
+<td>
+
+'some'
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
 ### FlagValue
 
 ```ts
@@ -14793,7 +16178,7 @@ const FlagValue: {
 };
 ```
 
-The value of the flag served to the audience.
+The saved explicit value for the audience; does not imply that targeting is active.
 
 #### Type declaration
 
@@ -16344,6 +17729,1297 @@ function DeleteCompanyRequestToJSONTyped(value?: null | DeleteCompanyRequest, ig
 <td>
 
 `null` \| [`DeleteCompanyRequest`](globals.md#deletecompanyrequest)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### EffectiveFlagFilterAnyOf1FromJSON()
+
+```ts
+function EffectiveFlagFilterAnyOf1FromJSON(json: any): EffectiveFlagFilterAnyOf1
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf1`](globals.md#effectiveflagfilteranyof1)
+
+***
+
+### EffectiveFlagFilterAnyOf1FromJSONTyped()
+
+```ts
+function EffectiveFlagFilterAnyOf1FromJSONTyped(json: any, ignoreDiscriminator: boolean): EffectiveFlagFilterAnyOf1
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf1`](globals.md#effectiveflagfilteranyof1)
+
+***
+
+### EffectiveFlagFilterAnyOf1ToJSON()
+
+```ts
+function EffectiveFlagFilterAnyOf1ToJSON(json: any): EffectiveFlagFilterAnyOf1
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf1`](globals.md#effectiveflagfilteranyof1)
+
+***
+
+### EffectiveFlagFilterAnyOf1ToJSONTyped()
+
+```ts
+function EffectiveFlagFilterAnyOf1ToJSONTyped(value?: 
+  | null
+  | EffectiveFlagFilterAnyOf1, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+ \| `null` \| [`EffectiveFlagFilterAnyOf1`](globals.md#effectiveflagfilteranyof1)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### EffectiveFlagFilterAnyOf2FromJSON()
+
+```ts
+function EffectiveFlagFilterAnyOf2FromJSON(json: any): EffectiveFlagFilterAnyOf2
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf2`](globals.md#effectiveflagfilteranyof2)
+
+***
+
+### EffectiveFlagFilterAnyOf2FromJSONTyped()
+
+```ts
+function EffectiveFlagFilterAnyOf2FromJSONTyped(json: any, ignoreDiscriminator: boolean): EffectiveFlagFilterAnyOf2
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf2`](globals.md#effectiveflagfilteranyof2)
+
+***
+
+### EffectiveFlagFilterAnyOf2ToJSON()
+
+```ts
+function EffectiveFlagFilterAnyOf2ToJSON(json: any): EffectiveFlagFilterAnyOf2
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf2`](globals.md#effectiveflagfilteranyof2)
+
+***
+
+### EffectiveFlagFilterAnyOf2ToJSONTyped()
+
+```ts
+function EffectiveFlagFilterAnyOf2ToJSONTyped(value?: 
+  | null
+  | EffectiveFlagFilterAnyOf2, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+ \| `null` \| [`EffectiveFlagFilterAnyOf2`](globals.md#effectiveflagfilteranyof2)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### EffectiveFlagFilterAnyOf3FromJSON()
+
+```ts
+function EffectiveFlagFilterAnyOf3FromJSON(json: any): EffectiveFlagFilterAnyOf3
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf3`](globals.md#effectiveflagfilteranyof3)
+
+***
+
+### EffectiveFlagFilterAnyOf3FromJSONTyped()
+
+```ts
+function EffectiveFlagFilterAnyOf3FromJSONTyped(json: any, ignoreDiscriminator: boolean): EffectiveFlagFilterAnyOf3
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf3`](globals.md#effectiveflagfilteranyof3)
+
+***
+
+### EffectiveFlagFilterAnyOf3ToJSON()
+
+```ts
+function EffectiveFlagFilterAnyOf3ToJSON(json: any): EffectiveFlagFilterAnyOf3
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf3`](globals.md#effectiveflagfilteranyof3)
+
+***
+
+### EffectiveFlagFilterAnyOf3ToJSONTyped()
+
+```ts
+function EffectiveFlagFilterAnyOf3ToJSONTyped(value?: 
+  | null
+  | EffectiveFlagFilterAnyOf3, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+ \| `null` \| [`EffectiveFlagFilterAnyOf3`](globals.md#effectiveflagfilteranyof3)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### EffectiveFlagFilterAnyOf4FromJSON()
+
+```ts
+function EffectiveFlagFilterAnyOf4FromJSON(json: any): EffectiveFlagFilterAnyOf4
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf4`](globals.md#effectiveflagfilteranyof4)
+
+***
+
+### EffectiveFlagFilterAnyOf4FromJSONTyped()
+
+```ts
+function EffectiveFlagFilterAnyOf4FromJSONTyped(json: any, ignoreDiscriminator: boolean): EffectiveFlagFilterAnyOf4
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf4`](globals.md#effectiveflagfilteranyof4)
+
+***
+
+### EffectiveFlagFilterAnyOf4ToJSON()
+
+```ts
+function EffectiveFlagFilterAnyOf4ToJSON(json: any): EffectiveFlagFilterAnyOf4
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf4`](globals.md#effectiveflagfilteranyof4)
+
+***
+
+### EffectiveFlagFilterAnyOf4ToJSONTyped()
+
+```ts
+function EffectiveFlagFilterAnyOf4ToJSONTyped(value?: 
+  | null
+  | EffectiveFlagFilterAnyOf4, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+ \| `null` \| [`EffectiveFlagFilterAnyOf4`](globals.md#effectiveflagfilteranyof4)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### EffectiveFlagFilterAnyOfFromJSON()
+
+```ts
+function EffectiveFlagFilterAnyOfFromJSON(json: any): EffectiveFlagFilterAnyOf
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf`](globals.md#effectiveflagfilteranyof)
+
+***
+
+### EffectiveFlagFilterAnyOfFromJSONTyped()
+
+```ts
+function EffectiveFlagFilterAnyOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): EffectiveFlagFilterAnyOf
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf`](globals.md#effectiveflagfilteranyof)
+
+***
+
+### EffectiveFlagFilterAnyOfToJSON()
+
+```ts
+function EffectiveFlagFilterAnyOfToJSON(json: any): EffectiveFlagFilterAnyOf
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilterAnyOf`](globals.md#effectiveflagfilteranyof)
+
+***
+
+### EffectiveFlagFilterAnyOfToJSONTyped()
+
+```ts
+function EffectiveFlagFilterAnyOfToJSONTyped(value?: 
+  | null
+  | EffectiveFlagFilterAnyOf, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+ \| `null` \| [`EffectiveFlagFilterAnyOf`](globals.md#effectiveflagfilteranyof)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### EffectiveFlagFilterFromJSON()
+
+```ts
+function EffectiveFlagFilterFromJSON(json: any): EffectiveFlagFilter
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilter`](globals.md#effectiveflagfilter)
+
+***
+
+### EffectiveFlagFilterFromJSONTyped()
+
+```ts
+function EffectiveFlagFilterFromJSONTyped(json: any, ignoreDiscriminator: boolean): EffectiveFlagFilter
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilter`](globals.md#effectiveflagfilter)
+
+***
+
+### EffectiveFlagFilterToJSON()
+
+```ts
+function EffectiveFlagFilterToJSON(json: any): EffectiveFlagFilter
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagFilter`](globals.md#effectiveflagfilter)
+
+***
+
+### EffectiveFlagFilterToJSONTyped()
+
+```ts
+function EffectiveFlagFilterToJSONTyped(value?: null | EffectiveFlagFilter, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+`null` \| [`EffectiveFlagFilter`](globals.md#effectiveflagfilter)
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`false`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### EffectiveFlagRuleFromJSON()
+
+```ts
+function EffectiveFlagRuleFromJSON(json: any): EffectiveFlagRule
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagRule`](globals.md#effectiveflagrule)
+
+***
+
+### EffectiveFlagRuleFromJSONTyped()
+
+```ts
+function EffectiveFlagRuleFromJSONTyped(json: any, ignoreDiscriminator: boolean): EffectiveFlagRule
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ignoreDiscriminator`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagRule`](globals.md#effectiveflagrule)
+
+***
+
+### EffectiveFlagRuleToJSON()
+
+```ts
+function EffectiveFlagRuleToJSON(json: any): EffectiveFlagRule
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`json`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EffectiveFlagRule`](globals.md#effectiveflagrule)
+
+***
+
+### EffectiveFlagRuleToJSONTyped()
+
+```ts
+function EffectiveFlagRuleToJSONTyped(value?: null | EffectiveFlagRule, ignoreDiscriminator?: boolean): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`?
+
+</td>
+<td>
+
+`null` \| [`EffectiveFlagRule`](globals.md#effectiveflagrule)
 
 </td>
 <td>
@@ -19596,6 +22272,279 @@ Check if a given object implements the DeleteCompanyRequest interface.
 #### Returns
 
 `value is DeleteCompanyRequest`
+
+***
+
+### instanceOfEffectiveFlagFilter()
+
+```ts
+function instanceOfEffectiveFlagFilter(value: object): value is EffectiveFlagFilter
+```
+
+Check if a given object implements the EffectiveFlagFilter interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is EffectiveFlagFilter`
+
+***
+
+### instanceOfEffectiveFlagFilterAnyOf()
+
+```ts
+function instanceOfEffectiveFlagFilterAnyOf(value: object): value is EffectiveFlagFilterAnyOf
+```
+
+Check if a given object implements the EffectiveFlagFilterAnyOf interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is EffectiveFlagFilterAnyOf`
+
+***
+
+### instanceOfEffectiveFlagFilterAnyOf1()
+
+```ts
+function instanceOfEffectiveFlagFilterAnyOf1(value: object): value is EffectiveFlagFilterAnyOf1
+```
+
+Check if a given object implements the EffectiveFlagFilterAnyOf1 interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is EffectiveFlagFilterAnyOf1`
+
+***
+
+### instanceOfEffectiveFlagFilterAnyOf2()
+
+```ts
+function instanceOfEffectiveFlagFilterAnyOf2(value: object): value is EffectiveFlagFilterAnyOf2
+```
+
+Check if a given object implements the EffectiveFlagFilterAnyOf2 interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is EffectiveFlagFilterAnyOf2`
+
+***
+
+### instanceOfEffectiveFlagFilterAnyOf3()
+
+```ts
+function instanceOfEffectiveFlagFilterAnyOf3(value: object): value is EffectiveFlagFilterAnyOf3
+```
+
+Check if a given object implements the EffectiveFlagFilterAnyOf3 interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is EffectiveFlagFilterAnyOf3`
+
+***
+
+### instanceOfEffectiveFlagFilterAnyOf4()
+
+```ts
+function instanceOfEffectiveFlagFilterAnyOf4(value: object): value is EffectiveFlagFilterAnyOf4
+```
+
+Check if a given object implements the EffectiveFlagFilterAnyOf4 interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is EffectiveFlagFilterAnyOf4`
+
+***
+
+### instanceOfEffectiveFlagRule()
+
+```ts
+function instanceOfEffectiveFlagRule(value: object): value is EffectiveFlagRule
+```
+
+Check if a given object implements the EffectiveFlagRule interface.
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`object`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`value is EffectiveFlagRule`
 
 ***
 
