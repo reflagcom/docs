@@ -1,0 +1,47 @@
+name: SDK versioning preview
+
+on:
+  pull_request:
+    paths:
+      - previews/sdk-versioning/**
+      - .github/workflows/sdk-versioning-preview.yml
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - name: Install preview checker
+        working-directory: previews/sdk-versioning
+        run: yarn install --immutable
+      - name: Check GitBook schema, navigation and negative controls
+        working-directory: previews/sdk-versioning
+        run: yarn test
+      - name: Check out the exact candidate SDK source
+        uses: actions/checkout@v4
+        with:
+          repository: reflagcom/javascript
+          ref: 9f3a0ae027e386747a2d4cf7683a68dcab70b355
+          path: .sdk-candidate
+          persist-credentials: false
+      - name: Build matching SDK declarations
+        working-directory: .sdk-candidate
+        run: |
+          yarn install --immutable
+          yarn workspace @reflag/flag-evaluation build
+          yarn workspace @reflag/node-sdk build
+          yarn workspace @reflag/browser-sdk build
+          yarn workspace @reflag/react-sdk build
+      - name: Compile all six examples against v1 and v2
+        working-directory: previews/sdk-versioning
+        run: yarn check:examples "$GITHUB_WORKSPACE/.sdk-candidate"

@@ -1,0 +1,39 @@
+# Opt-in React-only preview, not the production site's content mapping.
+# The Git Sync Project directory would be previews/sdk-versioning.
+# Do not apply these fixture keys to the existing live site: changing a space's
+# key replaces its identity. Export and preserve the real site's keys first.
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+site:
+  title: Reflag docs — SDK versioning preview
+  structure:
+    - type: section
+      key: sdk-preview-javascript
+      title: JavaScript SDKs
+      path: sdk
+      default: true
+      children:
+        - type: space
+          key: sdk-preview-v2
+          title: v2 (candidate)
+          path: v2
+          default: true
+          content:
+            directory: ./v2
+        - type: space
+          key: sdk-preview-v1
+          title: v1 (legacy)
+          path: v1
+          content:
+            directory: ./v1
+    - type: section
+      key: sdk-preview-guides
+      title: Shared docs
+      path: guides
+      children:
+        - type: space
+          key: sdk-preview-shared
+          title: Shared docs
+          path: current
+          default: true
+          content:
+            directory: ./shared
