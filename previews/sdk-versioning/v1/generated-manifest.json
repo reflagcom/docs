@@ -1,0 +1,32 @@
+{
+  "status": "published-v1-sources",
+  "sourceRepository": "https://github.com/reflagcom/javascript",
+  "sourceCommit": "b4fe5b3d9386b87c6546175c323862d9878e1430",
+  "sdkMajor": 1,
+  "packages": {
+    "@reflag/node-sdk": "1.8.3",
+    "@reflag/browser-sdk": "1.7.4",
+    "@reflag/react-sdk": "1.7.4",
+    "@reflag/vue-sdk": "1.5.7"
+  },
+  "transforms": [
+    "GitBook version/source banner",
+    "major-pinned install commands",
+    "source-linked README routing",
+    "TypeDoc property-anchor normalization",
+    "TypeDoc code-block trailing whitespace"
+  ],
+  "files": {
+    "@reflag/node-sdk/README.md": "abb57cc1f359aa6dde1c2efa2e303d6e4e6207b30999f8356d10f0a54b41e740",
+    "@reflag/node-sdk/globals.md": "eaeb4cd4f0a23d96f9ebe027dab962a16fcfa0800d1b4246ded837f6f0a8c848",
+    "@reflag/browser-sdk/README.md": "bbe6fff035c406e2b283703883073613d2269f7f23c60b828e09cd3611d52fcd",
+    "@reflag/browser-sdk/globals.md": "cd87381d6bc5490623375b41231f190f4c26b9118a8f98bc858523d49ca2476a",
+    "@reflag/react-sdk/README.md": "45c7983809e2eb8c97bc0710c9107d368fb6ab306f9cd7798767b9f2163296c2",
+    "@reflag/react-sdk/globals.md": "d30061ec411518e28bd91267afb67148879215702209840b786687c6aeb5d1cf",
+    "@reflag/vue-sdk/README.md": "b8783f8d2f6c4ae486d80c131a63d4ddd75e455b8c3570698174d864c304775c",
+    "@reflag/vue-sdk/globals.md": "108ded15fb05d92db0370ef34aa2268ce877f714a5096bad8a2dc26e217b6010",
+    "documents/browser-sdk/FEEDBACK.md": "9a287958d63d328d244ebcc325d9fc75f3d6a575eaa777bdedecabff2d1bcc3a",
+    "_media/type-check-failed.png": "f04547c0bf0425bcf554aa1a1dddec56096ca9967d120bdca7737562327d4db8",
+    "_media/type-check-payload-failed.png": "8b53c24ecd19288111bda14eab7c490f7e26abba569eea11e16504cc7abeb54a"
+  }
+}
