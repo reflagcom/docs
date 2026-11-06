@@ -9,9 +9,15 @@ import { checkLayout } from "./check-layout.mjs";
 
 const project = fileURLToPath(new URL("../", import.meta.url));
 function fixture(t) {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), "reflag-docs-preview-test-"));
-  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  fs.copyFileSync(path.join(project, "gitbook-docs.yaml"), path.join(root, "gitbook-docs.yaml"));
+  const repo = fs.mkdtempSync(path.join(os.tmpdir(), "reflag-docs-preview-test-"));
+  t.after(() => fs.rmSync(repo, { recursive: true, force: true }));
+  const root = path.join(repo, "previews/sdk-versioning");
+  fs.mkdirSync(root, { recursive: true });
+  for (const file of ["gitbook-docs.yaml", ".gitbook.yaml"])
+    fs.copyFileSync(path.resolve(project, "../..", file), path.join(repo, file));
+  for (const file of ["gitbook-docs.yaml", ".gitbook.yaml"]) {
+    fs.copyFileSync(path.join(project, file), path.join(root, file));
+  }
   for (const name of ["v1", "v2", "shared"])
     fs.cpSync(path.join(project, name), path.join(root, name), { recursive: true });
   return root;
@@ -23,10 +29,9 @@ function changeConfig(root, change) {
   fs.writeFileSync(file, stringify(config));
 }
 
-test("the preview is internally consistent", () => {
+test("generated SDK variants and both configuration entrypoints are consistent", () => {
   checkLayout();
 });
-
 test("duplicate GitBook identities fail", (t) => {
   const root = fixture(t);
   changeConfig(root, (config) => {
@@ -34,42 +39,45 @@ test("duplicate GitBook identities fail", (t) => {
   });
   assert.throws(() => checkLayout(root), /Duplicate GitBook identity/);
 });
-
-test("shared docs cannot acquire a legacy variant", (t) => {
+test("shared docs cannot acquire legacy variants", (t) => {
   const root = fixture(t);
   changeConfig(root, (config) => {
     config.site.structure[1].children.push(config.site.structure[0].children[1]);
   });
   assert.throws(() => checkLayout(root), /Shared docs must not acquire SDK variants/);
 });
-
-test("the candidate must remain the only default SDK variant", (t) => {
+test("only one SDK variant can be the default", (t) => {
   const root = fixture(t);
   changeConfig(root, (config) => {
     config.site.structure[0].children[1].default = true;
   });
   assert.throws(() => checkLayout(root), /exactly one default/);
 });
-
-test("a missing navigation target fails", (t) => {
+test("missing generated navigation pages fail", (t) => {
   const root = fixture(t);
-  fs.unlinkSync(path.join(root, "v2/suspense.md"));
+  fs.unlinkSync(path.join(root, "v2/@reflag/node-sdk/globals.md"));
   assert.throws(() => checkLayout(root), /SUMMARY.md/);
 });
-
-test("a broken same-version anchor fails", (t) => {
+test("broken same-version anchors fail", (t) => {
   const root = fixture(t);
-  const file = path.join(root, "v1/reference.md");
-  fs.writeFileSync(file, fs.readFileSync(file, "utf8").replace("## useFlag", "## Other flag"));
+  fs.appendFileSync(path.join(root, "v1/README.md"), "\n[Broken](README.md#missing-anchor)\n");
   assert.throws(() => checkLayout(root), /Missing linked anchor/);
 });
-
-test("content links cannot escape a space's mapped directory", (t) => {
+test("links cannot escape a mapped space", (t) => {
   const root = fixture(t);
-  const file = path.join(root, "v1/README.md");
-  fs.writeFileSync(
-    file,
-    fs.readFileSync(file, "utf8").replace("(reference.md#useflag)", "(../v2/reference.md#useflag)"),
-  );
+  fs.appendFileSync(path.join(root, "v1/README.md"), "\n[Wrong version](../v2/README.md)\n");
   assert.throws(() => checkLayout(root), /Path escapes content root/);
+});
+test("manual changes to generated pages fail provenance verification", (t) => {
+  const root = fixture(t);
+  fs.appendFileSync(path.join(root, "v1/@reflag/node-sdk/README.md"), "\nHandwritten SDK change\n");
+  assert.throws(() => checkLayout(root), /Generated file drift/);
+});
+test("root and nested projects must map the same existing identity keys", (t) => {
+  const root = fixture(t);
+  const file = path.resolve(root, "../../gitbook-docs.yaml");
+  const config = parse(fs.readFileSync(file, "utf8"));
+  config.site.structure[0].children[1].key = "replacement-space";
+  fs.writeFileSync(file, stringify(config));
+  assert.throws(() => checkLayout(root), /same identities/);
 });

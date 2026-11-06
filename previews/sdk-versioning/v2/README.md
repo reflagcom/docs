@@ -1,35 +1,22 @@
-# React SDK
+# JavaScript SDKs — v2
 
-> SDK v2 / candidate. This is an unpublished version-switcher prototype, not a production documentation update or release announcement.
+{% hint style="warning" %}
+**Candidate documentation, not a release announcement.** These pages are generated from SDK candidate commit [`9f3a0ae`](https://github.com/reflagcom/javascript/commit/9f3a0ae027e386747a2d4cf7683a68dcab70b355), version **2.0.0-next.0**. Matching SDK/CLI releases and server readiness are still required. A staging server deployment alone does not release these packages.
+{% endhint %}
 
-Use the version picker to compare the same React overview and API reference between v1 and v2. General product guides will remain shared and use v2 examples only.
+Use the **v1 / v2 variant picker** in the JavaScript SDKs section to change versions. Both variants use the same package and reference paths so equivalent pages can be matched.
+
+## SDK documentation
+
+- [React SDK](./@reflag/react-sdk/README.md) · [API reference](./@reflag/react-sdk/globals.md)
+- [Vue SDK](./@reflag/vue-sdk/README.md) · [API reference](./@reflag/vue-sdk/globals.md)
+- [Browser SDK](./@reflag/browser-sdk/README.md) · [API reference](./@reflag/browser-sdk/globals.md) · [Feedback](documents/browser-sdk/FEEDBACK.md)
+- [Node.js SDK](./@reflag/node-sdk/README.md) · [API reference](./@reflag/node-sdk/globals.md)
 
 ## Compatibility
 
-V2 requires matching Browser SDK v2 and compatible Reflag server endpoints. Server bootstrap must come from Node SDK v2. Native and OpenFeature integrations retain their own supported versions; this preview does not upgrade them.
+V2 reads return direct Boolean/JSON values, with positional defaults for JSON reads. Tracking and feedback are separate APIs. For server bootstrap, use matching Node and Browser/framework v2 packages. Regenerate direct-value declarations with CLI 2 when that release is available.
 
-## Reading direct flag values
+React Native, OpenFeature and Management retain their independently supported contracts; this selector does not claim v2 support for them.
 
-A bare read returns a Boolean, with implicit false. Supply a positional default for JSON values. Tracking uses a separate hook.
-
-```tsx
-import { useFlag, useTrack } from "@reflag/react-sdk";
-
-export function StartHuddleButton() {
-  const enabled = useFlag("huddle");
-  const settings = useFlag("huddle-settings", { maxParticipants: 10 });
-  const track = useTrack();
-  if (!enabled) return null;
-  return (
-    <button onClick={() => track("Started huddle")}>
-      Start huddle (up to {settings.maxParticipants} people)
-    </button>
-  );
-}
-```
-
-## Next step
-
-Open the [API reference](reference.md#useflag), then switch versions. You should remain on the equivalent reference page when possible.
-
-[Suspense](suspense.md) is a v2-only page included to test switching when the other version has no equivalent page.
+SDK READMEs and API comments remain authored in the [JavaScript repository](https://github.com/reflagcom/javascript). The pages here are generated, version-labelled copies—not a second manually maintained SDK reference.

@@ -1,64 +1,74 @@
-# SDK versioning preview
+# Generated SDK versioning preview
 
-Reviewable source for the React-only version-switching prototype. This is **not a documentation cutover or release announcement**. The root `SUMMARY.md`, generated `sdk/` tree, GitBook connection, and live site settings are unchanged.
+This branch now contains the **full generated Node, Browser, React and Vue SDK documentation** for v1 and the v2 candidate, rather than the earlier React-only samples. SDK READMEs and source comments in **[reflagcom/javascript](https://github.com/reflagcom/javascript)** remain authoritative. Do not hand-edit generated SDK pages here.
 
-## Layout
+This is an SDK preview, **not the complete production-site migration**. Existing product guides, original generated `sdk/` content and production navigation are not moved into this project. Do not merge its site mapping into production without preserving production identities and completing the shared-content/routing migration.
 
-| Directory | GitBook content                  | Purpose                                             |
-| --------- | -------------------------------- | --------------------------------------------------- |
-| `v2/`     | JavaScript SDKs → v2 (candidate) | Direct values, separate tracking, explicit Suspense |
-| `v1/`     | JavaScript SDKs → v1 (legacy)    | Boolean wrappers and flag-bound tracking            |
-| `shared/` | Shared docs, one variant         | One current, v2-only example; no legacy tabs        |
+## GitBook configuration
 
-`gitbook-docs.yaml` expresses the native section/variant layout. Each mapped directory has its own `.gitbook.yaml` and `SUMMARY.md`. Overview and reference paths match across SDK versions; `v2/suspense.md` intentionally has no v1 equivalent. These are small test pages, **not full generated SDK references**. Canonical SDK README/reference changes still belong in [reflagcom/javascript](https://github.com/reflagcom/javascript), not handwritten edits to generated files here.
+The same preview structure is available in two project locations:
 
-## GitBook boundary
+| Git Sync Project directory | Site mapping                                                                       |
+| -------------------------- | ---------------------------------------------------------------------------------- |
+| Repository root            | `/gitbook-docs.yaml` maps the `previews/sdk-versioning/{v1,v2,shared}` directories |
+| `previews/sdk-versioning`  | Its existing `gitbook-docs.yaml` maps `./v1`, `./v2`, `./shared`                   |
 
-The configuration is deliberately **not at the repository root**. GitBook reads it only if its Git Sync **Project directory** is explicitly set to `previews/sdk-versioning`. This PR does not set up or change Git Sync, and it does not create a site.
+Both mappings retain the **same existing `sdk-preview-*` identity keys**. The JavaScript SDKs section has native **v2 (candidate)** and **v1 (legacy)** variants; the separate shared sample has no SDK version picker. Each space has its own `.gitbook.yaml` and complete `SUMMARY.md`. Package overview/reference paths align across versions.
 
-**Do not point the live Reflag site at this directory.** It contains only the fixture, not the existing documentation. Its `sdk-preview-*` keys are fixture identities, not replacements for production space keys. Before a real-site migration, export the existing content mapping and preserve its keys, space identities, pages, and URLs. Changing a space key replaces that space; changing the key back does not restore it.
+For **individual-space Git Sync**, both project locations also have a `.gitbook.yaml` pointing to the complete generated v2 space. This makes actual SDK content visible when a space syncs this branch from the repository root. **Individual-space sync does not create a native variant selector**: that requires site-wide Git Sync/content mapping or variants configured in GitBook. No manual Markdown selector is being presented as a native one.
 
-A GitHub PR is not evidence that a GitBook content change request isolates site-wide settings. Previewing this mapping on the real site still requires a verified, non-publishing configuration workflow. No automatic GitBook preview for this PR is claimed.
+This PR does not create sites, configure Git Sync, publish, change the live default, or prove that PR previews isolate site-wide settings. The live Reflag space observed during preparation still reported `main`/individual-space sync; it was not changed. Check the intended preview's branch/project/scope if the variant picker is absent.
+
+**Production identity warning:** these are preview identities, not replacements for live keys. GitBook matches spaces by `key`, not title/path/directory. Changing a live key replaces its space; changing it back does not restore the original. Export and preserve production keys, space IDs, content and URLs before any migration.
 
 References: [content configuration](https://gitbook.com/docs/docs-as-code/git-sync/content-configuration), [monorepos](https://gitbook.com/docs/docs-as-code/git-sync/monorepos), [native variants](https://gitbook.com/docs/manage-your-site/site-structure/variants).
 
-## Checks
+## Source versions and generated ownership
 
-With Node 24 and Yarn 4.10.3:
+| Variant | Source checkout                            | Package versions                           |
+| ------- | ------------------------------------------ | ------------------------------------------ |
+| v1      | `b4fe5b3d9386b87c6546175c323862d9878e1430` | Node 1.8.3; Browser/React 1.7.4; Vue 1.5.7 |
+| v2      | `9f3a0ae027e386747a2d4cf7683a68dcab70b355` | Node/Browser/React/Vue 2.0.0-next.0        |
+
+The v1 checkout is Node's published `@reflag/node-sdk@1.8.3` tag. Browser/React/Vue package trees were verified identical to their respective published tags at `70b7fbe7e65e95e7bce5ccad64400b0c3e06f63c`. V2 is an **unreleased source candidate**, not a packed or deployed acceptance claim. Native/OpenFeature/Management are not included in this coordinated selector. CLI 2's separate local work is not presented as released documentation.
+
+Each variant includes four generated README/reference pairs, Browser feedback, and referenced media. `generated-manifest.json` records source commit, actual package versions and output hashes. The importer copies output from the JavaScript repository's canonical `docs.sh` build and only applies version/source banners, major-pinned installation commands, README-link routing, the existing TypeDoc property-anchor normalization and trailing-whitespace cleanup inside generated code blocks. It never copies the mixed all-package index, deletes content, or overwrites navigation, landing pages, another variant or the original `sdk/` tree.
+
+## Reproduce and check
+
+Build each **clean** source checkout with its own immutable dependencies. For v1:
+
+```sh
+yarn install --immutable
+yarn workspace @reflag/browser-sdk build
+yarn workspace @reflag/react-sdk build
+yarn workspace @reflag/node-sdk build
+yarn workspace @reflag/vue-sdk build
+yarn exec bash ./docs.sh
+```
+
+For v2, first build `@reflag/flag-evaluation`, then Node, Browser, React and Vue, followed by `yarn exec bash ./docs.sh`. Bash is explicit because the published v1 source declares `/bin/sh` but contains `[[`.
+
+From the docs repository root, regenerate only the owned copies:
+
+```sh
+node .github/scripts/import-sdk-docs.mjs --source /path/to/built-v1 --destination previews/sdk-versioning/v1 --major 1
+node .github/scripts/import-sdk-docs.mjs --source /path/to/built-v2 --destination previews/sdk-versioning/v2 --major 2
+```
+
+Add `--check` to compare without writing. Then:
 
 ```sh
 cd previews/sdk-versioning
 yarn install --immutable
 yarn test
+yarn check:examples /path/to/built-v2 /path/to/built-v1
 ```
 
-The check validates the YAML against GitBook's published schema, the SDK-only variant boundary, defaults, self-contained content roots, navigation links/anchors, and intentionally unmatched pages. Schema validation needs network access to `https://api.gitbook.com/gitbook-docs.yaml`.
+Checks validate both mappings against GitBook's published schema, matching root/nested identity maps, generated hashes, complete navigation, equivalent SDK paths, local files/assets/anchors, and negative controls. CI independently rebuilds both exact source checkouts and verifies the generated copies. Six original React smoke examples are retained under `scripts/fixtures` plus the shared sample and compiled against matching real 1.7.4/2.0.0-next.0 declarations with anti-`any`/wrapper guards. This is **not** a claim that every partial example in every generated reference was compiled independently.
 
-To compile all six TSX snippets, build a separate checkout of JavaScript SDK candidate commit `9f3a0ae027e386747a2d4cf7683a68dcab70b355`:
+## Rendering and remaining work
 
-```sh
-# In that SDK checkout, using its own lockfile:
-yarn install --immutable
-yarn workspace @reflag/flag-evaluation build
-yarn workspace @reflag/node-sdk build
-yarn workspace @reflag/browser-sdk build
-yarn workspace @reflag/react-sdk build
+The earlier manual native fixture established equivalent-page switching and mobile picker behavior, but **does not validate rendering of this new full generated project**. Recheck after GitBook sync: Node/Browser/React/Vue overview/reference switching, feedback links/media, mobile layout and shared-section isolation. Previously observed native limitations were cleared fragments, missing pages falling back to the destination variant home, and section reentry opening the default v2 home.
 
-# Back in this preview directory:
-yarn check:examples /absolute/path/to/the/sdk-checkout
-```
-
-The compiler resolves v1 from the SDK checkout's published React Native dependencies (React/Browser 1.7.0), and v2 from its built workspace declarations (2.0.0-next.0). Negative type guards reject accidentally-`any` declarations and v2 flag wrappers. The PR workflow runs both the layout tests and all six example checks, building that exact candidate commit. It has read-only repository permissions and does not publish anything. This is source-declaration validation, not final packed-release or deployed-server acceptance.
-
-## Browser observations and remaining gates
-
-The earlier unpublished native fixture passed desktop/mobile overview and reference switching, SDK-local version retention, and a shared section without a picker. That manual test does **not** establish that this new Git Sync configuration has been imported or rendered.
-
-Observed limitations to recheck after import:
-
-- Switching preserves equivalent pages but clears even a shared fragment such as `#useflag`.
-- A missing page falls back to the destination variant's homepage. In this React-only fixture that is the React overview; nearest-package fallback in a complete multi-SDK space is unverified.
-- Leaving the SDK section and returning opens its default v2 overview, not the last selected v1 page.
-- Default-section/variant aliases can omit path prefixes. The YAML paths are fixture paths, not a final public routing or redirect specification.
-
-The full shared-page conversion, published-v1 archive, generated v2 references, CLI 2 documentation, legacy URL preservation, and release-aware publisher remain separate work. In particular, the current JavaScript publisher deletes/replaces the entire generated `sdk/` tree after any package publication. Keeping this fixture outside that tree protects the prototype, **not the eventual production migration**. Fix the publisher before v2 reaches main, and hold any live documentation cutover for matching SDK/CLI artifacts and server/snapshot readiness.
+The release-scoped automatic publisher remains a separate JavaScript-repository workstream. It must retain SDK READMEs/source comments as the source of truth, use actual published packages/versions, and preserve other majors and independent SDKs. Full shared-v2 conversion, legacy routes, production identity mapping, matching SDK/CLI artifacts and server/snapshot readiness remain cutover gates. Nothing here authorizes publication or a production mapping change.

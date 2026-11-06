@@ -5,8 +5,9 @@ const path = require("node:path");
 const { createRequire } = require("node:module");
 
 const sdkRoot = process.argv[2] && path.resolve(process.argv[2]);
-if (!sdkRoot)
-  throw new Error("Usage: yarn check:examples /absolute/path/to/the/built-sdk-checkout");
+const legacyRoot = process.argv[3] && path.resolve(process.argv[3]);
+if (!sdkRoot || !legacyRoot)
+  throw new Error("Usage: yarn check:examples /path/to/built-v2-sdk /path/to/built-v1-sdk");
 const sdkRequire = createRequire(path.join(sdkRoot, "package.json"));
 const ts = sdkRequire("typescript");
 const reactTypes = path.dirname(sdkRequire.resolve("@types/react/package.json"));
@@ -35,22 +36,21 @@ const temporary = fs.mkdtempSync(path.join(os.tmpdir(), "reflag-docs-examples-")
 const reports = [];
 try {
   for (const version of ["v1", "v2"]) {
-    const react = sdkPackage(
-      version === "v1" ? path.join(sdkRoot, "packages/react-native-sdk") : sdkRoot,
-      "@reflag/react-sdk",
-    );
+    const react = sdkPackage(version === "v1" ? legacyRoot : sdkRoot, "@reflag/react-sdk");
     const browser = sdkPackage(react.dir, "@reflag/browser-sdk");
-    const expected = version === "v1" ? "1.7.0" : "2.0.0-next.0";
+    const expected = version === "v1" ? "1.7.4" : "2.0.0-next.0";
     assert.equal(react.version, expected, "Wrong React SDK version");
     assert.equal(browser.version, expected, "Wrong Browser SDK version");
     const output = path.join(temporary, version);
     fs.mkdirSync(output);
     const files = [];
     for (const directory of version === "v2" ? [version, "shared"] : [version]) {
-      for (const name of fs
-        .readdirSync(path.join(project, directory))
-        .filter((file) => file.endsWith(".md"))) {
-        const markdown = fs.readFileSync(path.join(project, directory, name), "utf8");
+      const source =
+        directory === "shared"
+          ? path.join(project, directory)
+          : path.join(project, "scripts/fixtures", directory);
+      for (const name of fs.readdirSync(source).filter((file) => file.endsWith(".md"))) {
+        const markdown = fs.readFileSync(path.join(source, name), "utf8");
         [...markdown.matchAll(/```tsx\r?\n([\s\S]*?)```/g)].forEach((match, index) => {
           const file = path.join(output, `${directory}-${name}-${index}.tsx`);
           fs.writeFileSync(file, match[1]);

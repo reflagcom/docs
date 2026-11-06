@@ -1,0 +1,5 @@
+# Single-space preview fallback; native variants use the site mapping instead.
+root: ./v2/
+structure:
+  readme: README.md
+  summary: SUMMARY.md

@@ -1,5 +1,5 @@
-# Opt-in React-only preview, not the production site's content mapping.
-# The Git Sync Project directory would be previews/sdk-versioning.
+# Generated SDK v1/v2 preview, not the production site's content mapping.
+# This nested project and the repository-root mapping use identical space keys.
 # Do not apply these fixture keys to the existing live site: changing a space's
 # key replaces its identity. Export and preserve the real site's keys first.
 $schema: https://api.gitbook.com/gitbook-docs.yaml

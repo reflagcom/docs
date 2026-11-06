@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - previews/sdk-versioning/**
+      - gitbook-docs.yaml
+      - .gitbook.yaml
+      - .gitattributes
+      - .github/scripts/**
       - .github/workflows/sdk-versioning-preview.yml
 
 permissions:
@@ -24,17 +28,34 @@ jobs:
       - name: Install preview checker
         working-directory: previews/sdk-versioning
         run: yarn install --immutable
-      - name: Check GitBook schema, navigation and negative controls
+      - name: Check GitBook mappings, generated provenance, navigation and negative controls
         working-directory: previews/sdk-versioning
         run: yarn test
-      - name: Check out the exact candidate SDK source
+      - name: Check out published v1 source
+        uses: actions/checkout@v4
+        with:
+          repository: reflagcom/javascript
+          ref: b4fe5b3d9386b87c6546175c323862d9878e1430
+          path: .sdk-v1
+          persist-credentials: false
+      - name: Rebuild published v1 declarations and docs
+        working-directory: .sdk-v1
+        run: |
+          yarn install --immutable
+          yarn workspace @reflag/browser-sdk build
+          yarn workspace @reflag/react-sdk build
+          yarn workspace @reflag/node-sdk build
+          yarn workspace @reflag/vue-sdk build
+          # This published source's script declares /bin/sh but contains [[.
+          yarn exec bash ./docs.sh
+      - name: Check out the exact v2 candidate source
         uses: actions/checkout@v4
         with:
           repository: reflagcom/javascript
           ref: 9f3a0ae027e386747a2d4cf7683a68dcab70b355
           path: .sdk-candidate
           persist-credentials: false
-      - name: Build matching SDK declarations
+      - name: Rebuild candidate declarations and docs
         working-directory: .sdk-candidate
         run: |
           yarn install --immutable
@@ -42,6 +63,12 @@ jobs:
           yarn workspace @reflag/node-sdk build
           yarn workspace @reflag/browser-sdk build
           yarn workspace @reflag/react-sdk build
-      - name: Compile all six examples against v1 and v2
+          yarn workspace @reflag/vue-sdk build
+          yarn exec bash ./docs.sh
+      - name: Verify generated pages against both source checkouts
+        run: |
+          node .github/scripts/import-sdk-docs.mjs --source .sdk-v1 --destination previews/sdk-versioning/v1 --major 1 --check
+          node .github/scripts/import-sdk-docs.mjs --source .sdk-candidate --destination previews/sdk-versioning/v2 --major 2 --check
+      - name: Compile six smoke examples against matching v1 and v2 declarations
         working-directory: previews/sdk-versioning
-        run: yarn check:examples "$GITHUB_WORKSPACE/.sdk-candidate"
+        run: yarn check:examples "$GITHUB_WORKSPACE/.sdk-candidate" "$GITHUB_WORKSPACE/.sdk-v1"

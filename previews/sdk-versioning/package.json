@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "check": "node scripts/check-layout.mjs",
-    "test": "yarn check && node --test scripts/check-layout.test.mjs",
+    "test": "yarn check && node --test scripts/check-layout.test.mjs ../../.github/scripts/import-sdk-docs.test.mjs",
     "check:examples": "node scripts/check-examples.cjs"
   },
   "devDependencies": {
