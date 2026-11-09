@@ -9,3 +9,10 @@ site:
       default: true
       content:
         directory: /
+    - type: space
+      key: space-2
+      title: v1 (legacy)
+      path: v1-legacy
+      draft: true
+      content:
+        directory: ./v1-legacy
