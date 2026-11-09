@@ -1,0 +1,39 @@
+# Standalone SDK v1/v2 fixture, not the repository-root site's full mapping.
+# Only the SDK subtree shares identity keys with the repository-root mapping.
+# The root mapping preserves real documentation space-1 instead of this sample.
+# Never replace an existing production space key with these fixture keys.
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+site:
+  title: Reflag docs — SDK versioning preview
+  structure:
+    - type: section
+      key: sdk-preview-javascript
+      title: JavaScript SDKs
+      path: sdk
+      default: true
+      children:
+        - type: space
+          key: sdk-preview-v2
+          title: v2 (candidate)
+          path: v2
+          default: true
+          content:
+            directory: ./v2
+        - type: space
+          key: sdk-preview-v1
+          title: v1 (legacy)
+          path: v1
+          content:
+            directory: ./v1
+    - type: section
+      key: sdk-preview-guides
+      title: Shared docs
+      path: guides
+      children:
+        - type: space
+          key: sdk-preview-shared
+          title: Shared docs
+          path: current
+          default: true
+          content:
+            directory: ./shared

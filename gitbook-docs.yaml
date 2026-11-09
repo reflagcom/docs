@@ -2,10 +2,34 @@ $schema: https://api.gitbook.com/gitbook-docs.yaml
 site:
   title: Reflag docs
   structure:
-    - type: space
-      key: space-1
-      title: Reflag docs
-      path: reflag-docs
+    - type: section
+      key: documentation
+      title: Documentation
+      path: documentation
       default: true
-      content:
-        directory: /
+      children:
+        - type: space
+          key: space-1
+          title: Reflag docs
+          path: reflag-docs
+          default: true
+          content:
+            directory: /
+    - type: section
+      key: sdk-preview-javascript
+      title: JavaScript SDKs
+      path: javascript-sdks
+      children:
+        - type: space
+          key: sdk-preview-v2
+          title: v2 (candidate)
+          path: v2
+          default: true
+          content:
+            directory: ./previews/sdk-versioning/v2
+        - type: space
+          key: sdk-preview-v1
+          title: v1 (legacy)
+          path: v1
+          content:
+            directory: ./previews/sdk-versioning/v1
