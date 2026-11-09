@@ -10,7 +10,7 @@ With the Datadog integration, you can enrich your RUM data with feature flag dat
 
 ### Get available features from Reflag
 
-In this example, we're using the [React SDK](../sdk/@reflag/browser-sdk/):
+In this example, we're using the [React SDK](../supported-languages/browser-sdk/):
 
 ```javascript
 import { datadogRum } from "@datadog/browser-rum";

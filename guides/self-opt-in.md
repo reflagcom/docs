@@ -3,15 +3,15 @@ description: Build a beta feature opt-in page with the Reflag React SDK
 icon: browser
 ---
 
-# Build a beta feature opt-in page
+# Beta feature opt-in
 
 Use Reflag's React SDK to let users opt themselves—or their company—into beta and experimental features.
 
-For an overview of how opt-in affects access and how memberships are managed in Reflag, see [End-user opt-in](../product-handbook/end-user-opt-in.md).
+For an overview of how opt-in affects access and how memberships are managed in Reflag, see [End-user opt-in](../product-handbook/feature-rollouts/end-user-opt-in.md).
 
 ## Before you begin
 
-1. [Configure one or more non-secret flags for end-user opt-in](../product-handbook/end-user-opt-in.md#configure-end-user-opt-in).
+1. [Configure one or more non-secret flags for end-user opt-in](../product-handbook/feature-rollouts/end-user-opt-in.md#configure-end-user-opt-in).
 2. Set **Access** to **Some** in every environment where opting in should be available.
 3. Include a `user.id` in the Reflag context for user opt-in. To support company opt-in, also include a `company.id`.
 
@@ -129,5 +129,5 @@ With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal f
 
 ## Next steps
 
-* Learn how to view, manage, disable, and re-enable memberships in [End-user opt-in](../product-handbook/end-user-opt-in.md).
+* Learn how to view, manage, disable, and re-enable memberships in [End-user opt-in](../product-handbook/feature-rollouts/end-user-opt-in.md).
 * Learn how to grant additional access with [Access rules](../product-handbook/feature-rollouts/feature-targeting-rules.md).

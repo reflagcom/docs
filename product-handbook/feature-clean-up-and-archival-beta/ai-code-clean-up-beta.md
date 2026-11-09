@@ -7,7 +7,7 @@ This automation **keeps the codepath that grants access (`isEnabled == true`)** 
 {% endhint %}
 
 {% hint style="info" %}
-Note: This works best when using the [React SDK](../../sdk/@reflag/browser-sdk/), but stay tuned for improved Node.js support
+Note: This works best when using the [React SDK](../../supported-languages/browser-sdk/), but stay tuned for improved Node.js support
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/1753259671871 (1).jpeg" alt=""><figcaption></figcaption></figure>
@@ -24,21 +24,21 @@ Enable "Auto-create AI Clean-up PRs" under organization-level [Clean-up settings
 
 This ensures that newly created flags have the automation switched on.
 
-<figure><img src="../../.gitbook/assets/image (28).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (24).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 3. Test it manually
 
 Find a stale flag that is ready for clean-up by looking for the broom icon in the flags table.
 
-<figure><img src="../../.gitbook/assets/image (32).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (28).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Find the "Clean-up guide" in the flag sidebar, click "Show details", and hit the "Create AI clean-up PR" button to start the process.
 
-<figure><img src="../../.gitbook/assets/image (24).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (21).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Within a few minutes, you'll have a GitHub pull request that removes the flag and keeps the enabled codepath, like here:
 
-<figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
 
 Magical! ✨
 

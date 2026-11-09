@@ -10,7 +10,7 @@ The Flags tab of Reflag is where you create and manage your flags.
 
 This is where you create and manage feature flags, set access rules, remote config, and monitor your feature launch.
 
-<figure><img src="../.gitbook/assets/Screenshot 2025-09-02 at 17.10.36 (2).png" alt="Feature page with rollout targeting rules"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2025-09-02 at 17.10.36 (1).png" alt="Feature page with rollout targeting rules"><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/Screenshot 2025-09-02 at 17.11.21 (1).png" alt=""><figcaption></figcaption></figure>
 

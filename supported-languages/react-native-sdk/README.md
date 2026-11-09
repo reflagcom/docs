@@ -1,0 +1,163 @@
+---
+title:
+  visible: true
+tableOfContents:
+  visible: true
+outline:
+  visible: true
+pagination:
+  visible: true
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+  actions:
+    visible: true
+  anchors:
+    visible: true
+---
+
+# React Native SDK (beta)
+
+A thin React Native wrapper around `@reflag/react-sdk`.
+
+For more usage details, see the [React SDK README](../../sdk/documents/react-sdk/).
+
+An Expo example app lives in [packages/react-native-sdk/dev/expo](https://github.com/reflagcom/javascript/tree/main/packages/react-native-sdk/dev/expo).
+
+## Get started
+
+### Install
+
+```shell
+npm i @reflag/react-native-sdk
+```
+
+### 1. Add the ReflagProvider
+
+Wrap your app with the provider from `@reflag/react-native-sdk`:
+
+```tsx
+import { ReflagProvider } from "@reflag/react-native-sdk";
+
+<ReflagProvider
+  publishableKey="{YOUR_PUBLISHABLE_KEY}"
+  context={{
+    user: { id: "user_123", name: "John Doe", email: "john@acmeinc.com" },
+    company: { id: "company_123", name: "Acme, Inc", plan: "pro" },
+  }}
+>
+  {/* children here are shown when loading finishes */}
+</ReflagProvider>;
+```
+
+### 2. Use `useFlag(<flagKey>)`
+
+```tsx
+import { useFlag } from "@reflag/react-native-sdk";
+
+function StartHuddleButton() {
+  const { isEnabled, track } = useFlag("huddle");
+
+  if (!isEnabled) return null;
+
+  return <Button title="Start huddle" onPress={track} />;
+}
+```
+
+See the [React SDK README](../../sdk/documents/react-sdk/) for more details.
+
+## React Native differences
+
+* The Reflag toolbar is web-only and is not available in React Native.
+* Built-in feedback UI is web-only. In React Native, use your own UI and call `useSendFeedback` or `client.feedback` when you're ready to send feedback.
+* Live flag updates work out of the box. The React Native SDK bundles an SSE transport via `react-native-sse`, so no global `EventSource` shim is required.
+* If you need custom SSE behavior, you can still override the transport by passing `eventSourceFactory` to `ReflagProvider` or `ReflagBootstrappedProvider`.
+
+## Reference
+
+The React Native SDK shares its API with the React SDK. Use the React SDK reference for full types and details:
+
+[React SDK Reference](../../sdk/documents/react-sdk/)
+
+## Cookbook
+
+### Refresh flags when the app returns to the foreground
+
+Flags are updated if the context passed to `<ReflagProvider>` changes, but you might also want to update them when the app comes to the foreground. See this snippet:
+
+```tsx
+import React, { useEffect, useRef } from "react";
+import { AppState } from "react-native";
+import { ReflagProvider, useClient } from "@reflag/react-native-sdk";
+
+function AppStateListener() {
+  const client = useClient();
+  const appState = useRef(AppState.currentState);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (nextAppState) => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === "active"
+      ) {
+        void client.refresh();
+      }
+      appState.current = nextAppState;
+    });
+
+    return () => subscription.remove();
+  }, [client]);
+
+  return null;
+}
+
+export function App() {
+  return (
+    <ReflagProvider publishableKey="{YOUR_PUBLISHABLE_KEY}">
+      <AppStateListener />
+      <MyApp />
+    </ReflagProvider>
+  );
+}
+```
+
+## Suspense loading
+
+Enable `<Suspense>` support by setting the `suspense` prop on the provider and wrap components that call `useFlag` in a Suspense boundary:
+
+```tsx
+import { Suspense } from "react";
+import { ActivityIndicator } from "react-native";
+import { ReflagProvider } from "@reflag/react-native-sdk";
+
+<ReflagProvider publishableKey="{YOUR_PUBLISHABLE_KEY}" suspense>
+  <Suspense fallback={<ActivityIndicator />}>
+    <App />
+  </Suspense>
+</ReflagProvider>;
+```
+
+You can also override the behavior for one call with `useFlag("huddle", { suspense: true })`.
+
+## Bootstrapping
+
+You can use `<ReflagBootstrappedProvider>` in React Native when you already have pre-fetched flags and want to avoid an initial fetch. Pass the full object returned by the Node SDK's `getFlagsForBootstrap()` directly as the provider's `flags` prop; it includes `context`, evaluated `flags`, and an optional `flagStateVersion`.
+
+If you want live flag updates to continue working after bootstrapping, use a recent `@reflag/node-sdk` so `getFlagsForBootstrap()` includes `flagStateVersion`.
+
+After bootstrapping, any live flag updates are fetched directly by the client SDK from Reflag using the client-visible context. If your bootstrapped snapshot depends on server-only or secret context that is not available in the app, later live refreshes may differ. In that case, keep `enableLiveFlagUpdates` disabled.
+
+For bootstrap usage patterns and options, see the [React SDK bootstrapping docs](../../sdk/documents/react-sdk/).

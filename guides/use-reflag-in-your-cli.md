@@ -5,7 +5,7 @@ icon: rectangle-terminal
 
 # Use Reflag in your CLI
 
-### If you use API token for auth&#x20;
+### If you use API token for auth
 
 First, create an endpoint in your backend for the CLI to call:
 
@@ -43,7 +43,7 @@ Authorization: Bearer <APIKEY>
 
 The endpoint will take the API key and use it to look up the associated user.
 
-Use the [node-sdk](../sdk/@reflag/node-sdk/ "mention") get enabled flags for the authenticated user.
+Use the [node-sdk](../supported-languages/node-sdk/ "mention") get enabled flags for the authenticated user.
 
 ```jsx
 import { ReflagClient } from "@reflag/node-sdk";
@@ -72,11 +72,9 @@ if(flags['myflag'].isEnabled) {
 }
 ```
 
-
-
 ### If you use OAuth for auth
 
-Use [node-sdk](../sdk/@reflag/node-sdk/ "mention") or [public-api-reference.md](../api/public-api/public-api-reference.md "mention") to get flags for the authenticated user.
+Use [node-sdk](../supported-languages/node-sdk/ "mention") or [public-api-reference.md](../api/public-api/public-api-reference.md "mention") to get flags for the authenticated user.
 
 In Node, configure the SDK like so:
 
@@ -111,4 +109,3 @@ Or get all flags:
 ```jsx
 const flags = boundClient.getFlags();
 ```
-

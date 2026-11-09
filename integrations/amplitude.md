@@ -10,7 +10,7 @@ With the Amplitude integration, you can attach feature access properties to user
 
 ### Get available features from Reflag
 
-In this example, we're using the [Browser SDK](../sdk/@reflag/browser-sdk/):
+In this example, we're using the [Browser SDK](../supported-languages/browser-sdk/):
 
 ```javascript
 //init
