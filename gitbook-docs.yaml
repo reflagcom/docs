@@ -1,0 +1,11 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+site:
+  title: Reflag docs
+  structure:
+    - type: space
+      key: space-1
+      title: Reflag docs
+      path: reflag-docs
+      default: true
+      content:
+        directory: /
