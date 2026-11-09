@@ -41,7 +41,7 @@ You can collect end-user feedback on new flag rollouts to catch and fix issues f
 
 ### Static feedback button
 
-Here's a brief example using the [Reflag React SDK](../../sdk/@reflag/browser-sdk/) to collect feedback:
+Here's a brief example using the [Reflag React SDK](../../supported-languages/browser-sdk/) to collect feedback:
 
 ```tsx
 import { useFlag } from "@reflag/react-sdk";

@@ -1,6 +1,0 @@
-# Single-space Git Sync fallback for this SDK preview branch.
-# Site-wide Git Sync uses gitbook-docs.yaml and each mapped space's config.
-root: ./previews/sdk-versioning/v2/
-structure:
-  readme: README.md
-  summary: SUMMARY.md

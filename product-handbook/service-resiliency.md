@@ -47,25 +47,25 @@ flowchart LR
 
 ## What happens during a disruption?
 
-| Scenario | Resilience feature | Behavior |
-| --- | --- | --- |
-| Reflag is unavailable after a server SDK has initialized | Local evaluation and in-memory flag definitions | The running process keeps evaluating flags from the last successfully fetched definitions. |
-| A server process starts while Reflag is unavailable | `flagsFallbackProvider` | With a saved snapshot, the process initializes from fallback storage. Without a snapshot, it may not have definitions to evaluate. |
-| A client app loads while Reflag is unavailable | Bootstrapped flags | With bootstrapping, the client uses the evaluated flags included in your server response instead of making its own initial request to Reflag. |
-| A returning client loads during a network issue | Client SDK caching | The client can reuse recent cached flags if they are still within your cache settings. |
-| Reflag becomes available again | SDK refreshes and fallback snapshot updates | SDKs resume refreshing from Reflag, and fallback providers save the latest definitions. |
+| Scenario                                                 | Resilience feature                              | Behavior                                                                                                                                      |
+| -------------------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Reflag is unavailable after a server SDK has initialized | Local evaluation and in-memory flag definitions | The running process keeps evaluating flags from the last successfully fetched definitions.                                                    |
+| A server process starts while Reflag is unavailable      | `flagsFallbackProvider`                         | With a saved snapshot, the process initializes from fallback storage. Without a snapshot, it may not have definitions to evaluate.            |
+| A client app loads while Reflag is unavailable           | Bootstrapped flags                              | With bootstrapping, the client uses the evaluated flags included in your server response instead of making its own initial request to Reflag. |
+| A returning client loads during a network issue          | Client SDK caching                              | The client can reuse recent cached flags if they are still within your cache settings.                                                        |
+| Reflag becomes available again                           | SDK refreshes and fallback snapshot updates     | SDKs resume refreshing from Reflag, and fallback providers save the latest definitions.                                                       |
 
 ## Recommended production setup
 
-1. Evaluate flags on the server with a local-evaluation SDK, such as the [Node.js SDK](../sdk/@reflag/node-sdk/) or [OpenFeature Node.js provider](../supported-languages/openfeature.md).
-2. Configure a [`flagsFallbackProvider`](../sdk/@reflag/node-sdk/#fallback-provider) so fresh server processes can initialize from saved flag definitions when Reflag cannot be reached.
-3. Use [`getFlagsForBootstrap()`](../sdk/@reflag/node-sdk/#bootstrapping-client-side-applications) on the server and a bootstrapped client provider in React, React Native, Vue, or the Browser SDK.
+1. Evaluate flags on the server with a local-evaluation SDK, such as the [Node.js SDK](../supported-languages/node-sdk/) or [OpenFeature Node.js provider](../supported-languages/openfeature.md).
+2. Configure a [`flagsFallbackProvider`](../supported-languages/node-sdk/#fallback-provider) so fresh server processes can initialize from saved flag definitions when Reflag cannot be reached.
+3. Use [`getFlagsForBootstrap()`](../supported-languages/node-sdk/#bootstrapping-client-side-applications) on the server and a bootstrapped client provider in React, React Native, Vue, or the Browser SDK.
 4. If your client SDK supports caching, tune it based on how long your app can tolerate stale flags.
 5. Test the disruption path in staging: block access to Reflag, start a fresh server process, and confirm it initializes from fallback storage and the client renders from bootstrapped flags.
 
 ## Local evaluation
 
-The [Node.js SDK](../sdk/@reflag/node-sdk/) and [OpenFeature Node.js provider](../supported-languages/openfeature.md) perform local evaluation of flag rules.
+The [Node.js SDK](../supported-languages/node-sdk/) and [OpenFeature Node.js provider](../supported-languages/openfeature.md) perform local evaluation of flag rules.
 
 With local evaluation, the SDK downloads flag definitions from Reflag and evaluates rules against your targeting context inside your application process. Your application does not call Reflag for each evaluation, which improves latency and removes Reflag from the request-time critical path.
 
@@ -73,7 +73,7 @@ Local evaluation protects processes that have already initialized. If a process 
 
 ## Flag fallback providers
 
-Building on local evaluation, the [Node.js SDK](../sdk/@reflag/node-sdk/) supports `flagsFallbackProvider`. A fallback provider saves a snapshot of the latest successfully fetched flag definitions to a local file, Redis, S3, GCS, or your own storage backend.
+Building on local evaluation, the [Node.js SDK](../supported-languages/node-sdk/) supports `flagsFallbackProvider`. A fallback provider saves a snapshot of the latest successfully fetched flag definitions to a local file, Redis, S3, GCS, or your own storage backend.
 
 On startup, the SDK follows this flow:
 
@@ -90,18 +90,18 @@ Use the file provider for single-server deployments only when the disk persists 
 
 Choose fallback storage based on where your application runs. The storage should be reachable whenever your application is reachable, so prefer storage in the same cloud provider, region, or network as the application deployment that will use it. If an outage affects Reflag's infrastructure but your application is still running elsewhere, your application can still load the saved snapshot. If the same provider or region outage also takes down your application, fallback storage cannot help until your application environment is available again.
 
-For all built-in providers and custom provider examples, see the [fallback provider docs](../sdk/@reflag/node-sdk/#fallback-provider).
+For all built-in providers and custom provider examples, see the [fallback provider docs](../supported-languages/node-sdk/#fallback-provider).
 
 ## Bootstrapped flags
 
 Bootstrapping lets your server evaluate flags and pass the server-evaluated state to your client-side application. The client can render immediately from that state instead of depending on an initial request to Reflag.
 
-Use [`getFlagsForBootstrap()`](../sdk/@reflag/node-sdk/#bootstrapping-client-side-applications) in the Node.js SDK together with the bootstrapping APIs in your client SDK:
+Use [`getFlagsForBootstrap()`](../supported-languages/node-sdk/#bootstrapping-client-side-applications) in the Node.js SDK together with the bootstrapping APIs in your client SDK:
 
-* [React SDK](../sdk/@reflag/react-sdk/#server-side-rendering-and-bootstrapping): `ReflagBootstrappedProvider`
-* [React Native SDK](../sdk/@reflag/react-native-sdk/#bootstrapping): `ReflagBootstrappedProvider`
-* [Vue SDK](../sdk/@reflag/vue-sdk/#reflagbootstrappedprovider-component): `ReflagBootstrappedProvider`
-* [Browser SDK](../sdk/@reflag/browser-sdk/#using-bootstrappedstate): `bootstrappedState`
+* [React SDK](../supported-languages/react-sdk/#server-side-rendering-and-bootstrapping): `ReflagBootstrappedProvider`
+* [React Native SDK](../supported-languages/react-native-sdk/#bootstrapping): `ReflagBootstrappedProvider`
+* [Vue SDK](../supported-languages/vue-sdk/#reflagbootstrappedprovider-component): `ReflagBootstrappedProvider`
+* [Browser SDK](../supported-languages/browser-sdk/#using-bootstrappedstate): `bootstrappedState`
 
 Bootstrapping is the recommended client setup for high-availability applications because the first render depends on your application server response, not on the client's ability to reach Reflag. Combined with server-side local evaluation and `flagsFallbackProvider`, it lets end users continue receiving evaluated flags during a Reflag service disruption.
 

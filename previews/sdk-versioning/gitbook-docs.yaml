@@ -1,7 +1,7 @@
-# Generated SDK v1/v2 preview, not the production site's content mapping.
-# This nested project and the repository-root mapping use identical space keys.
-# Do not apply these fixture keys to the existing live site: changing a space's
-# key replaces its identity. Export and preserve the real site's keys first.
+# Standalone SDK v1/v2 fixture, not the repository-root site's full mapping.
+# Only the SDK subtree shares identity keys with the repository-root mapping.
+# The root mapping preserves real documentation space-1 instead of this sample.
+# Never replace an existing production space key with these fixture keys.
 $schema: https://api.gitbook.com/gitbook-docs.yaml
 site:
   title: Reflag docs — SDK versioning preview

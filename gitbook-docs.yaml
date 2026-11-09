@@ -1,15 +1,24 @@
-# SDK preview branch mapping, not a production-site migration.
-# These are the SAME identity keys as the existing nested preview project.
-# Do not merge/apply to the live site without preserving its production keys.
 $schema: https://api.gitbook.com/gitbook-docs.yaml
 site:
-  title: Reflag docs — SDK versioning preview
+  title: Reflag docs
   structure:
+    - type: section
+      key: documentation
+      title: Documentation
+      path: documentation
+      default: true
+      children:
+        - type: space
+          key: space-1
+          title: Reflag docs
+          path: reflag-docs
+          default: true
+          content:
+            directory: /
     - type: section
       key: sdk-preview-javascript
       title: JavaScript SDKs
-      path: sdk
-      default: true
+      path: javascript-sdks
       children:
         - type: space
           key: sdk-preview-v2
@@ -24,15 +33,3 @@ site:
           path: v1
           content:
             directory: ./previews/sdk-versioning/v1
-    - type: section
-      key: sdk-preview-guides
-      title: Shared docs
-      path: guides
-      children:
-        - type: space
-          key: sdk-preview-shared
-          title: Shared docs
-          path: current
-          default: true
-          content:
-            directory: ./previews/sdk-versioning/shared

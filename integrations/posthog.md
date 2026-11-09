@@ -10,7 +10,7 @@ With the PostHog integration, you can attach feature access properties to users 
 
 ### Get available features from Reflag
 
-In this example, we're using the [@reflag/browser-sdk](../sdk/@reflag/browser-sdk/):
+In this example, we're using the [@reflag/browser-sdk](../supported-languages/browser-sdk/):
 
 ```javascript
 //init

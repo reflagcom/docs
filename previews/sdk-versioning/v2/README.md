@@ -4,7 +4,7 @@
 **Candidate documentation, not a release announcement.** These pages are generated from SDK candidate commit [`9f3a0ae`](https://github.com/reflagcom/javascript/commit/9f3a0ae027e386747a2d4cf7683a68dcab70b355), version **2.0.0-next.0**. Matching SDK/CLI releases and server readiness are still required. A staging server deployment alone does not release these packages.
 {% endhint %}
 
-Use the **v1 / v2 variant picker** in the JavaScript SDKs section to change versions. Both variants use the same package and reference paths so equivalent pages can be matched.
+When both SDK variants are connected to the JavaScript SDKs section, use its **v1 / v2 variant picker** to change versions. A single-space revision preview does not provide that picker. Both variants use the same package and reference paths so equivalent pages can be matched.
 
 ## SDK documentation
 

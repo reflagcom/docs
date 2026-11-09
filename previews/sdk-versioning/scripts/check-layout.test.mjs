@@ -13,8 +13,10 @@ function fixture(t) {
   t.after(() => fs.rmSync(repo, { recursive: true, force: true }));
   const root = path.join(repo, "previews/sdk-versioning");
   fs.mkdirSync(root, { recursive: true });
-  for (const file of ["gitbook-docs.yaml", ".gitbook.yaml"])
-    fs.copyFileSync(path.resolve(project, "../..", file), path.join(repo, file));
+  fs.copyFileSync(
+    path.resolve(project, "../../gitbook-docs.yaml"),
+    path.join(repo, "gitbook-docs.yaml"),
+  );
   for (const file of ["gitbook-docs.yaml", ".gitbook.yaml"]) {
     fs.copyFileSync(path.join(project, file), path.join(root, file));
   }
@@ -29,7 +31,7 @@ function changeConfig(root, change) {
   fs.writeFileSync(file, stringify(config));
 }
 
-test("generated SDK variants and both configuration entrypoints are consistent", () => {
+test("generated SDK variants preserve the exported production mapping", () => {
   checkLayout();
 });
 test("duplicate GitBook identities fail", (t) => {
@@ -73,11 +75,43 @@ test("manual changes to generated pages fail provenance verification", (t) => {
   fs.appendFileSync(path.join(root, "v1/@reflag/node-sdk/README.md"), "\nHandwritten SDK change\n");
   assert.throws(() => checkLayout(root), /Generated file drift/);
 });
-test("root and nested projects must map the same existing identity keys", (t) => {
+test("root and nested projects must map the same SDK identity keys", (t) => {
   const root = fixture(t);
-  const file = path.resolve(root, "../../gitbook-docs.yaml");
-  const config = parse(fs.readFileSync(file, "utf8"));
-  config.site.structure[0].children[1].key = "replacement-space";
-  fs.writeFileSync(file, stringify(config));
-  assert.throws(() => checkLayout(root), /same identities/);
+  changeConfig(path.resolve(root, "../.."), (config) => {
+    config.site.structure[1].children[1].key = "replacement-space";
+  });
+  assert.throws(() => checkLayout(root), /SDK variant identities/);
+});
+test("the exported production space identity cannot be replaced", (t) => {
+  const root = fixture(t);
+  changeConfig(path.resolve(root, "../.."), (config) => {
+    config.site.structure[0].children[0].key = "sdk-preview-shared";
+  });
+  assert.throws(() => checkLayout(root), /preserve production space-1/);
+});
+test("production docs cannot be redirected into the shared sample", (t) => {
+  const root = fixture(t);
+  changeConfig(path.resolve(root, "../.."), (config) => {
+    config.site.structure[0].children[0].content.directory = "./previews/sdk-versioning/shared";
+  });
+  assert.throws(() => checkLayout(root), /preserve production space-1/);
+});
+test("the SDK section cannot replace the default documentation section", (t) => {
+  const root = fixture(t);
+  changeConfig(path.resolve(root, "../.."), (config) => {
+    config.site.structure[0].default = false;
+    config.site.structure[1].default = true;
+  });
+  assert.throws(() => checkLayout(root), /preserve production space-1/);
+});
+test("the root v2-only individual-space fallback cannot be reintroduced", (t) => {
+  const root = fixture(t);
+  fs.writeFileSync(
+    path.resolve(root, "../../.gitbook.yaml"),
+    stringify({
+      root: "./previews/sdk-versioning/v2/",
+      structure: { readme: "README.md", summary: "SUMMARY.md" },
+    }),
+  );
+  assert.throws(() => checkLayout(root), /must not use the v2-only space fallback/);
 });

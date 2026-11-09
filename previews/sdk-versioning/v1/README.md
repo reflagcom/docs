@@ -4,7 +4,7 @@
 Legacy SDK documentation generated from published v1 sources: Node **1.8.3**, Browser/React **1.7.4**, and Vue **1.5.7**. The SDK READMEs and source comments in the [JavaScript repository](https://github.com/reflagcom/javascript) remain the source of truth.
 {% endhint %}
 
-Use the **v1 / v2 variant picker** in the JavaScript SDKs section to change versions. Both variants use the same package and reference paths so equivalent pages can be matched.
+When both SDK variants are connected to the JavaScript SDKs section, use its **v1 / v2 variant picker** to change versions. A single-space revision preview does not provide that picker. Both variants use the same package and reference paths so equivalent pages can be matched.
 
 ## SDK documentation
 

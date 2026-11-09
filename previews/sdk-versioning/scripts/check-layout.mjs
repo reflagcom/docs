@@ -158,19 +158,45 @@ export function checkLayout(root = project) {
   );
   const repository = path.resolve(root, "../..");
   const top = parse(read(path.join(repository, "gitbook-docs.yaml")));
-  const expected = structuredClone(config);
-  for (const section of expected.site.structure)
-    for (const space of section.children)
-      space.content.directory = `./previews/sdk-versioning/${space.content.directory.slice(2)}`;
+  const expectedSdk = structuredClone(sdk);
+  delete expectedSdk.default;
+  expectedSdk.path = "javascript-sdks";
+  for (const space of expectedSdk.children)
+    space.content.directory = `./previews/sdk-versioning/${space.content.directory.slice(2)}`;
   assert.deepEqual(
     top,
-    expected,
-    "Root and nested variant mappings must have the same identities/content",
+    {
+      $schema: schemaURL,
+      site: {
+        title: "Reflag docs",
+        structure: [
+          {
+            type: "section",
+            key: "documentation",
+            title: "Documentation",
+            path: "documentation",
+            default: true,
+            children: [
+              {
+                type: "space",
+                key: "space-1",
+                title: "Reflag docs",
+                path: "reflag-docs",
+                default: true,
+                content: { directory: "/" },
+              },
+            ],
+          },
+          expectedSdk,
+        ],
+      },
+    },
+    "Root mapping must preserve production space-1 and the SDK variant identities/content",
   );
-  assert.deepEqual(parse(read(path.join(repository, ".gitbook.yaml"))), {
-    root: "./previews/sdk-versioning/v2/",
-    structure: { readme: "README.md", summary: "SUMMARY.md" },
-  });
+  assert(
+    !fs.existsSync(path.join(repository, ".gitbook.yaml")),
+    "The production root must not use the v2-only space fallback",
+  );
   return config;
 }
 
@@ -188,6 +214,6 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
   await checkSchema(checkLayout());
   await checkSchema(parse(read(path.resolve(project, "../../gitbook-docs.yaml"))));
   console.log(
-    "GitBook schema, root/nested variants, generated provenance, navigation, local links and anchors passed.",
+    "GitBook schema, production space-1 preservation, SDK variant identities, generated provenance, navigation, local links and anchors passed.",
   );
 }
