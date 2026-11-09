@@ -13,10 +13,8 @@ function fixture(t) {
   t.after(() => fs.rmSync(repo, { recursive: true, force: true }));
   const root = path.join(repo, "previews/sdk-versioning");
   fs.mkdirSync(root, { recursive: true });
-  fs.copyFileSync(
-    path.resolve(project, "../../gitbook-docs.yaml"),
-    path.join(repo, "gitbook-docs.yaml"),
-  );
+  for (const file of ["gitbook-docs.yaml", ".gitbook.yaml"])
+    fs.copyFileSync(path.resolve(project, "../..", file), path.join(repo, file));
   for (const file of ["gitbook-docs.yaml", ".gitbook.yaml"]) {
     fs.copyFileSync(path.join(project, file), path.join(root, file));
   }
@@ -113,5 +111,13 @@ test("the root v2-only individual-space fallback cannot be reintroduced", (t) =>
       structure: { readme: "README.md", summary: "SUMMARY.md" },
     }),
   );
-  assert.throws(() => checkLayout(root), /must not use the v2-only space fallback/);
+  assert.throws(() => checkLayout(root), /must read its README\/SUMMARY/);
+});
+test("the production homepage cannot be replaced by an SDK landing", (t) => {
+  const root = fixture(t);
+  const file = path.resolve(root, "../../.gitbook.yaml");
+  const config = parse(fs.readFileSync(file, "utf8"));
+  config.structure.readme = "previews/sdk-versioning/v2/README.md";
+  fs.writeFileSync(file, stringify(config));
+  assert.throws(() => checkLayout(root), /must read its README\/SUMMARY/);
 });

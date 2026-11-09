@@ -193,9 +193,13 @@ export function checkLayout(root = project) {
     },
     "Root mapping must preserve production space-1 and the SDK variant identities/content",
   );
-  assert(
-    !fs.existsSync(path.join(repository, ".gitbook.yaml")),
-    "The production root must not use the v2-only space fallback",
+  assert.deepEqual(
+    parse(read(path.join(repository, ".gitbook.yaml"))),
+    {
+      root: "./",
+      structure: { readme: "README.md", summary: "SUMMARY.md" },
+    },
+    "The production root must read its README/SUMMARY, not the v2-only space fallback",
   );
   return config;
 }

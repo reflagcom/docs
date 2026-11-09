@@ -1,0 +1,6 @@
+# Keep the existing documentation space on repository-root content.
+# The SDK variants use the configuration inside their own mapped directories.
+root: ./
+structure:
+  readme: README.md
+  summary: SUMMARY.md

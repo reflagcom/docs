@@ -14,7 +14,7 @@ The repository-root `gitbook-docs.yaml` now starts from the user's site-wide exp
 
 GitBook does not allow sections alongside top-level spaces, which is why the existing space needs the Documentation wrapper. Its stable `space-1` key is retained. GitBook matches spaces by `key`, not title/path/directory; new SDK keys must not replace the existing production key.
 
-The root **v2-only `.gitbook.yaml` fallback has been removed**. Otherwise the real space mapped to `/` would read only the generated v2 directory instead of the production homepage and `SUMMARY.md`.
+The root **v2-only `.gitbook.yaml` fallback has been replaced with explicit repository-root defaults**: `root: ./`, `structure.readme: README.md`, and `structure.summary: SUMMARY.md`. This keeps the real space mapped to `/` on its existing homepage/navigation instead of the generated v2 directory. Removing the root configuration entirely produced a successful GitBook status but a revision preview with missing pages; the explicit configuration is being checked against the renderer rather than relying on schema validation alone.
 
 The nested `previews/sdk-versioning/gitbook-docs.yaml` remains a **standalone fixture** with the same SDK subtree identity keys, its separate shared sample and a v2-only individual-space fallback. It is not the root production-compatible mapping. Each SDK space has its own `.gitbook.yaml` and complete `SUMMARY.md`, with equivalent package/reference paths across versions.
 
@@ -64,7 +64,7 @@ yarn test
 yarn check:examples /path/to/built-v2 /path/to/built-v1
 ```
 
-Checks validate both mappings against GitBook's published schema, preserve the exported production `space-1` mapping and default, match the SDK subtree identities/content, reject the root v2-only fallback, and verify generated hashes, complete navigation, equivalent SDK paths, local files/assets/anchors and negative controls. CI independently rebuilds both exact source checkouts and verifies the generated copies. Six original React smoke examples are retained under `scripts/fixtures` plus the shared sample and compiled against matching real 1.7.4/2.0.0-next.0 declarations with anti-`any`/wrapper guards. This is **not** a claim that every partial example in every generated reference was compiled independently.
+Checks validate both mappings against GitBook's published schema, preserve the exported production `space-1` mapping and default, match the SDK subtree identities/content, require the repository-root homepage/navigation instead of the v2-only fallback, and verify generated hashes, complete navigation, equivalent SDK paths, local files/assets/anchors and negative controls. CI independently rebuilds both exact source checkouts and verifies the generated copies. Six original React smoke examples are retained under `scripts/fixtures` plus the shared sample and compiled against matching real 1.7.4/2.0.0-next.0 declarations with anti-`any`/wrapper guards. This is **not** a claim that every partial example in every generated reference was compiled independently.
 
 ## Rendering and remaining work
 
