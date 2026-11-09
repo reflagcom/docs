@@ -16,3 +16,10 @@ site:
       draft: true
       content:
         directory: ./v1-legacy
+    - type: space
+      key: space-3
+      title: v2 (candidate)
+      path: v2-candidate
+      draft: true
+      content:
+        directory: ./v2-candidate
