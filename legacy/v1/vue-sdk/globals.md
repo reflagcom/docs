@@ -332,7 +332,7 @@ Company name
 
 #### Methods <a href="#methods" id="methods"></a>
 
-##### track() <a href="#track" id="track"></a>
+### track() <a href="#track" id="track"></a>
 
 ```ts
 track():
@@ -1452,7 +1452,7 @@ feedback at any point in your application.
 A function that requests feedback from the user. The function accepts:
   - `options`: An object containing feedback request options.
 
-##### Parameters <a href="#parameters-2" id="parameters-2"></a>
+### Parameters <a href="#parameters-2" id="parameters-2"></a>
 
 <table>
 <thead>
@@ -1477,7 +1477,7 @@ A function that requests feedback from the user. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-7" id="returns-7"></a>
+### Returns <a href="#returns-7" id="returns-7"></a>
 
 `void`
 
@@ -1517,7 +1517,7 @@ Reflag SDK. You can use this to send feedback from your application.
 A function that sends feedback to the Reflag SDK. The function accepts:
   - `options`: An object containing feedback options.
 
-##### Parameters <a href="#parameters-3" id="parameters-3"></a>
+### Parameters <a href="#parameters-3" id="parameters-3"></a>
 
 <table>
 <thead>
@@ -1542,7 +1542,7 @@ A function that sends feedback to the Reflag SDK. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-9" id="returns-9"></a>
+### Returns <a href="#returns-9" id="returns-9"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -1583,7 +1583,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 
 `Function`
 
-##### Parameters <a href="#parameters-4" id="parameters-4"></a>
+### Parameters <a href="#parameters-4" id="parameters-4"></a>
 
 <table>
 <thead>
@@ -1620,7 +1620,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 </tbody>
 </table>
 
-##### Returns <a href="#returns-11" id="returns-11"></a>
+### Returns <a href="#returns-11" id="returns-11"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -1651,7 +1651,7 @@ A function that tracks an event. The function accepts:
   - `eventName`: The name of the event to track.
   - `attributes`: (Optional) Additional attributes to associate with the event.
 
-##### Parameters <a href="#parameters-5" id="parameters-5"></a>
+### Parameters <a href="#parameters-5" id="parameters-5"></a>
 
 <table>
 <thead>
@@ -1688,7 +1688,7 @@ A function that tracks an event. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-13" id="returns-13"></a>
+### Returns <a href="#returns-13" id="returns-13"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -1726,7 +1726,7 @@ at any point in your application.
 A function that updates the company context. The function accepts:
   - `opts`: An object containing the company context to update.
 
-##### Parameters <a href="#parameters-6" id="parameters-6"></a>
+### Parameters <a href="#parameters-6" id="parameters-6"></a>
 
 <table>
 <thead>
@@ -1751,7 +1751,7 @@ A function that updates the company context. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-15" id="returns-15"></a>
+### Returns <a href="#returns-15" id="returns-15"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
@@ -1787,7 +1787,7 @@ at any point in your application.
 A function that updates the other context. The function accepts:
   - `opts`: An object containing the other context to update.
 
-##### Parameters <a href="#parameters-7" id="parameters-7"></a>
+### Parameters <a href="#parameters-7" id="parameters-7"></a>
 
 <table>
 <thead>
@@ -1812,7 +1812,7 @@ A function that updates the other context. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-17" id="returns-17"></a>
+### Returns <a href="#returns-17" id="returns-17"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
@@ -1848,7 +1848,7 @@ in your application.
 A function that updates the user context. The function accepts:
   - `opts`: An object containing the user context to update.
 
-##### Parameters <a href="#parameters-8" id="parameters-8"></a>
+### Parameters <a href="#parameters-8" id="parameters-8"></a>
 
 <table>
 <thead>
@@ -1873,7 +1873,7 @@ A function that updates the user context. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-19" id="returns-19"></a>
+### Returns <a href="#returns-19" id="returns-19"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 

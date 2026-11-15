@@ -27,9 +27,9 @@ Generated from [`@reflag/node-sdk@1.8.3`](https://github.com/reflagcom/javascrip
 
 A client bound with a specific user, company, and other context.
 
-#### Constructors <a href="#constructors" id="constructors"></a>
+### Constructors <a href="#constructors" id="constructors"></a>
 
-##### new BoundReflagClient() <a href="#new-boundreflagclient" id="new-boundreflagclient"></a>
+### new BoundReflagClient() <a href="#new-boundreflagclient" id="new-boundreflagclient"></a>
 
 ```ts
 new BoundReflagClient(client: ReflagClient, options: ContextWithTracking): BoundReflagClient
@@ -93,7 +93,7 @@ The options for the client.
 
 #### Accessors <a href="#accessors" id="accessors"></a>
 
-##### company <a href="#company" id="company"></a>
+### company <a href="#company" id="company"></a>
 
 ###### Get Signature <a href="#get-signature" id="get-signature"></a>
 
@@ -120,7 +120,7 @@ Gets the company associated with the client.
 
 The company or `undefined` if it is not set.
 
-##### otherContext <a href="#othercontext" id="othercontext"></a>
+### otherContext <a href="#othercontext" id="othercontext"></a>
 
 ###### Get Signature <a href="#get-signature-1" id="get-signature-1"></a>
 
@@ -139,7 +139,7 @@ Gets the "other" context associated with the client.
 
 The "other" context or `undefined` if it is not set.
 
-##### user <a href="#user" id="user"></a>
+### user <a href="#user" id="user"></a>
 
 ###### Get Signature <a href="#get-signature-2" id="get-signature-2"></a>
 
@@ -170,7 +170,7 @@ The user or `undefined` if it is not set.
 
 #### Methods <a href="#methods" id="methods"></a>
 
-##### bindClient() <a href="#bindclient" id="bindclient"></a>
+### bindClient() <a href="#bindclient" id="bindclient"></a>
 
 ```ts
 bindClient(context: ContextWithTracking): BoundReflagClient
@@ -216,7 +216,7 @@ The context to bind the client to.
 
 new client bound with the additional context
 
-##### flush() <a href="#flush" id="flush"></a>
+### flush() <a href="#flush" id="flush"></a>
 
 ```ts
 flush(): Promise<void>
@@ -228,7 +228,7 @@ Flushes the batch buffer.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### getFlag() <a href="#getflag" id="getflag"></a>
+### getFlag() <a href="#getflag" id="getflag"></a>
 
 ```ts
 getFlag<TKey>(key: TKey): Flag
@@ -293,7 +293,7 @@ The key of the flag to get.
 
 Flags for the given user/company and whether each one is enabled or not
 
-##### getFlagRemote() <a href="#getflagremote" id="getflagremote"></a>
+### getFlagRemote() <a href="#getflagremote" id="getflagremote"></a>
 
 ```ts
 getFlagRemote(key: string): Promise<Flag>
@@ -338,7 +338,7 @@ The key of the flag to get.
 
 Flag for the given user/company and key and whether it's enabled or not
 
-##### getFlags() <a href="#getflags" id="getflags"></a>
+### getFlags() <a href="#getflags" id="getflags"></a>
 
 ```ts
 getFlags(): Record<string, Flag>
@@ -353,7 +353,7 @@ Meant for use in serialization of flags for transferring to the client-side/brow
 
 Flags for the given user/company and whether each one is enabled or not
 
-##### getFlagsForBootstrap() <a href="#getflagsforbootstrap" id="getflagsforbootstrap"></a>
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap" id="getflagsforbootstrap"></a>
 
 ```ts
 getFlagsForBootstrap(): BootstrappedFlags
@@ -368,7 +368,7 @@ This method returns raw flag data suitable for bootstrapping client-side applica
 
 Raw flags for the given user/company and whether each one is enabled or not
 
-##### getFlagsRemote() <a href="#getflagsremote" id="getflagsremote"></a>
+### getFlagsRemote() <a href="#getflagsremote" id="getflagsremote"></a>
 
 ```ts
 getFlagsRemote(): Promise<Record<string, Flag>>
@@ -382,7 +382,7 @@ Get remotely evaluated flag for the user/company/other context bound to this cli
 
 Flags for the given user/company and whether each one is enabled or not
 
-##### refreshFlags() <a href="#refreshflags" id="refreshflags"></a>
+### refreshFlags() <a href="#refreshflags" id="refreshflags"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
@@ -433,7 +433,7 @@ Optional flag state version to wait for before returning updated definitions.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### track() <a href="#track" id="track"></a>
+### track() <a href="#track" id="track"></a>
 
 ```ts
 track(event: string, options?: TrackOptions & {
@@ -533,7 +533,7 @@ const { isEnabled } = client.getFlag(context, "flag-key");
 
 #### Constructors <a href="#constructors-1" id="constructors-1"></a>
 
-##### new EdgeClient() <a href="#new-edgeclient" id="new-edgeclient"></a>
+### new EdgeClient() <a href="#new-edgeclient" id="new-edgeclient"></a>
 
 ```ts
 new EdgeClient(options: EdgeClientOptions): EdgeClient
@@ -633,7 +633,7 @@ Gets the logger associated with the client.
 
 #### Accessors <a href="#accessors-1" id="accessors-1"></a>
 
-##### flagOverrides <a href="#flagoverrides" id="flagoverrides"></a>
+### flagOverrides <a href="#flagoverrides" id="flagoverrides"></a>
 
 ###### Set Signature <a href="#set-signature" id="set-signature"></a>
 
@@ -682,7 +682,7 @@ Use `setFlagOverrides()` for replacing the base override set.
 
 #### Methods <a href="#methods-1" id="methods-1"></a>
 
-##### bindClient() <a href="#bindclient-1" id="bindclient-1"></a>
+### bindClient() <a href="#bindclient-1" id="bindclient-1"></a>
 
 ```ts
 bindClient(context: ContextWithTracking): BoundReflagClient
@@ -742,7 +742,7 @@ the user/company is set respectively.
 
 [`ReflagClient`](globals.md#reflagclient).[`bindClient`](globals.md#bindclient)
 
-##### clearFlagOverrides() <a href="#clearflagoverrides" id="clearflagoverrides"></a>
+### clearFlagOverrides() <a href="#clearflagoverrides" id="clearflagoverrides"></a>
 
 ```ts
 clearFlagOverrides(): void
@@ -768,7 +768,7 @@ client.clearFlagOverrides();
 
 [`ReflagClient`](globals.md#reflagclient).[`clearFlagOverrides`](globals.md#clearflagoverrides)
 
-##### destroy() <a href="#destroy" id="destroy"></a>
+### destroy() <a href="#destroy" id="destroy"></a>
 
 ```ts
 destroy(): void
@@ -790,7 +790,7 @@ multiple background processes from running simultaneously.
 
 [`ReflagClient`](globals.md#reflagclient).[`destroy`](globals.md#destroy)
 
-##### flush() <a href="#flush-1" id="flush-1"></a>
+### flush() <a href="#flush-1" id="flush-1"></a>
 
 ```ts
 flush(): Promise<void>
@@ -816,7 +816,7 @@ shutdown hook before exiting. The SDK does not install signal handlers.
 
 [`ReflagClient`](globals.md#reflagclient).[`flush`](globals.md#flush)
 
-##### getFlag() <a href="#getflag-1" id="getflag-1"></a>
+### getFlag() <a href="#getflag-1" id="getflag-1"></a>
 
 ```ts
 getFlag<TKey>(__namedParameters: ContextWithTracking, key: TKey): Flag
@@ -906,7 +906,7 @@ Call `initialize` before calling this method to ensure the flag definitions are 
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlag`](globals.md#getflag)
 
-##### getFlagDefinitions() <a href="#getflagdefinitions" id="getflagdefinitions"></a>
+### getFlagDefinitions() <a href="#getflagdefinitions" id="getflagdefinitions"></a>
 
 ```ts
 getFlagDefinitions(): FlagDefinition[]
@@ -925,7 +925,7 @@ The flags definitions.
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlagDefinitions`](globals.md#getflagdefinitions)
 
-##### getFlagRemote() <a href="#getflagremote-1" id="getflagremote-1"></a>
+### getFlagRemote() <a href="#getflagremote-1" id="getflagremote-1"></a>
 
 ```ts
 getFlagRemote<TKey>(
@@ -1049,7 +1049,7 @@ evaluated flag
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlagRemote`](globals.md#getflagremote)
 
-##### getFlags() <a href="#getflags-1" id="getflags-1"></a>
+### getFlags() <a href="#getflags-1" id="getflags-1"></a>
 
 ```ts
 getFlags(options: ContextWithTracking): Record<string, Flag>
@@ -1102,7 +1102,7 @@ Call `initialize` before calling this method to ensure the flag definitions are 
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlags`](globals.md#getflags)
 
-##### getFlagsForBootstrap() <a href="#getflagsforbootstrap-1" id="getflagsforbootstrap-1"></a>
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap-1" id="getflagsforbootstrap-1"></a>
 
 ```ts
 getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
@@ -1157,7 +1157,7 @@ This method returns RawFlag objects without wrapping them in getters, making the
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlagsForBootstrap`](globals.md#getflagsforbootstrap)
 
-##### getFlagsRemote() <a href="#getflagsremote-1" id="getflagsremote-1"></a>
+### getFlagsRemote() <a href="#getflagsremote-1" id="getflagsremote-1"></a>
 
 ```ts
 getFlagsRemote(
@@ -1244,7 +1244,7 @@ evaluated flags
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlagsRemote`](globals.md#getflagsremote)
 
-##### initialize() <a href="#initialize" id="initialize"></a>
+### initialize() <a href="#initialize" id="initialize"></a>
 
 ```ts
 initialize(): Promise<void>
@@ -1265,7 +1265,7 @@ The client will ignore subsequent calls to this method.
 
 [`ReflagClient`](globals.md#reflagclient).[`initialize`](globals.md#initialize)
 
-##### pushFlagOverrides() <a href="#pushflagoverrides" id="pushflagoverrides"></a>
+### pushFlagOverrides() <a href="#pushflagoverrides" id="pushflagoverrides"></a>
 
 ```ts
 pushFlagOverrides(overrides:
@@ -1340,7 +1340,7 @@ afterEach(() => {
 
 [`ReflagClient`](globals.md#reflagclient).[`pushFlagOverrides`](globals.md#pushflagoverrides)
 
-##### refreshFlags() <a href="#refreshflags-1" id="refreshflags-1"></a>
+### refreshFlags() <a href="#refreshflags-1" id="refreshflags-1"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
@@ -1407,7 +1407,7 @@ runs. The pending refresh is executed on the next request/access or
 
 [`ReflagClient`](globals.md#reflagclient).[`refreshFlags`](globals.md#refreshflags)
 
-##### setFlagOverrides() <a href="#setflagoverrides" id="setflagoverrides"></a>
+### setFlagOverrides() <a href="#setflagoverrides" id="setflagoverrides"></a>
 
 ```ts
 setFlagOverrides(overrides:
@@ -1470,7 +1470,7 @@ client.setFlagOverrides({
 
 [`ReflagClient`](globals.md#reflagclient).[`setFlagOverrides`](globals.md#setflagoverrides)
 
-##### track() <a href="#track-1" id="track-1"></a>
+### track() <a href="#track-1" id="track-1"></a>
 
 ```ts
 track(
@@ -1548,7 +1548,7 @@ If the company is set, the event will be associated with the company.
 
 [`ReflagClient`](globals.md#reflagclient).[`track`](globals.md#track)
 
-##### updateCompany() <a href="#updatecompany" id="updatecompany"></a>
+### updateCompany() <a href="#updatecompany" id="updatecompany"></a>
 
 ```ts
 updateCompany(companyId: IdType, options?: TrackOptions & {
@@ -1623,7 +1623,7 @@ If the user is set, the company will be associated with the user.
 
 [`ReflagClient`](globals.md#reflagclient).[`updateCompany`](globals.md#updatecompany)
 
-##### updateUser() <a href="#updateuser" id="updateuser"></a>
+### updateUser() <a href="#updateuser" id="updateuser"></a>
 
 ```ts
 updateUser(userId: IdType, options?: TrackOptions): Promise<void>
@@ -1726,7 +1726,7 @@ const isFlagEnabled = client.getFlag("flag-key", {
 
 #### Constructors <a href="#constructors-2" id="constructors-2"></a>
 
-##### new ReflagClient() <a href="#new-reflagclient" id="new-reflagclient"></a>
+### new ReflagClient() <a href="#new-reflagclient" id="new-reflagclient"></a>
 
 ```ts
 new ReflagClient(options: ClientOptions): ReflagClient
@@ -1835,7 +1835,7 @@ Gets the logger associated with the client.
 
 #### Accessors <a href="#accessors-2" id="accessors-2"></a>
 
-##### flagOverrides <a href="#flagoverrides-1" id="flagoverrides-1"></a>
+### flagOverrides <a href="#flagoverrides-1" id="flagoverrides-1"></a>
 
 ###### Set Signature <a href="#set-signature-1" id="set-signature-1"></a>
 
@@ -1880,7 +1880,7 @@ Use `setFlagOverrides()` for replacing the base override set.
 
 #### Methods <a href="#methods-2" id="methods-2"></a>
 
-##### bindClient() <a href="#bindclient-2" id="bindclient-2"></a>
+### bindClient() <a href="#bindclient-2" id="bindclient-2"></a>
 
 ```ts
 bindClient(context: ContextWithTracking): BoundReflagClient
@@ -1936,7 +1936,7 @@ An error if the user/company is given but their ID is not a string.
 The `updateUser` / `updateCompany` methods will automatically be called when
 the user/company is set respectively.
 
-##### clearFlagOverrides() <a href="#clearflagoverrides-1" id="clearflagoverrides-1"></a>
+### clearFlagOverrides() <a href="#clearflagoverrides-1" id="clearflagoverrides-1"></a>
 
 ```ts
 clearFlagOverrides(): void
@@ -1958,7 +1958,7 @@ This does not affect temporary layers added with `pushFlagOverrides()`.
 client.clearFlagOverrides();
 ```
 
-##### destroy() <a href="#destroy-1" id="destroy-1"></a>
+### destroy() <a href="#destroy-1" id="destroy-1"></a>
 
 ```ts
 destroy(): void
@@ -1976,7 +1976,7 @@ After calling this method, the client should not be used anymore.
 This is particularly useful in development environments with hot reloading to prevent
 multiple background processes from running simultaneously.
 
-##### flush() <a href="#flush-2" id="flush-2"></a>
+### flush() <a href="#flush-2" id="flush-2"></a>
 
 ```ts
 flush(): Promise<void>
@@ -1998,7 +1998,7 @@ This method is automatically called on natural process exit (`beforeExit`) if
 shutdown or an explicit `process.exit()`, await this method in your application's
 shutdown hook before exiting. The SDK does not install signal handlers.
 
-##### getFlag() <a href="#getflag-2" id="getflag-2"></a>
+### getFlag() <a href="#getflag-2" id="getflag-2"></a>
 
 ```ts
 getFlag<TKey>(__namedParameters: ContextWithTracking, key: TKey): Flag
@@ -2084,7 +2084,7 @@ The evaluated flag.
 
 Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
 
-##### getFlagDefinitions() <a href="#getflagdefinitions-1" id="getflagdefinitions-1"></a>
+### getFlagDefinitions() <a href="#getflagdefinitions-1" id="getflagdefinitions-1"></a>
 
 ```ts
 getFlagDefinitions(): FlagDefinition[]
@@ -2099,7 +2099,7 @@ To evaluate which flags are enabled for a given user/company, use `getFlags`.
 
 The flags definitions.
 
-##### getFlagRemote() <a href="#getflagremote-2" id="getflagremote-2"></a>
+### getFlagRemote() <a href="#getflagremote-2" id="getflagremote-2"></a>
 
 ```ts
 getFlagRemote<TKey>(
@@ -2219,7 +2219,7 @@ The additional context to get the flag for.
 
 evaluated flag
 
-##### getFlags() <a href="#getflags-2" id="getflags-2"></a>
+### getFlags() <a href="#getflags-2" id="getflags-2"></a>
 
 ```ts
 getFlags(options: ContextWithTracking): Record<string, Flag>
@@ -2268,7 +2268,7 @@ The evaluated flags.
 
 Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
 
-##### getFlagsForBootstrap() <a href="#getflagsforbootstrap-2" id="getflagsforbootstrap-2"></a>
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap-2" id="getflagsforbootstrap-2"></a>
 
 ```ts
 getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
@@ -2319,7 +2319,7 @@ The evaluated raw flags and the context.
 Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
 This method returns RawFlag objects without wrapping them in getters, making them suitable for serialization.
 
-##### getFlagsRemote() <a href="#getflagsremote-2" id="getflagsremote-2"></a>
+### getFlagsRemote() <a href="#getflagsremote-2" id="getflagsremote-2"></a>
 
 ```ts
 getFlagsRemote(
@@ -2402,7 +2402,7 @@ The additional context to get the flags for.
 
 evaluated flags
 
-##### initialize() <a href="#initialize-1" id="initialize-1"></a>
+### initialize() <a href="#initialize-1" id="initialize-1"></a>
 
 ```ts
 initialize(): Promise<void>
@@ -2419,7 +2419,7 @@ Initializes the client by caching the flags definitions.
 Call this method before calling `getFlags` to ensure the flag definitions are cached.
 The client will ignore subsequent calls to this method.
 
-##### pushFlagOverrides() <a href="#pushflagoverrides-1" id="pushflagoverrides-1"></a>
+### pushFlagOverrides() <a href="#pushflagoverrides-1" id="pushflagoverrides-1"></a>
 
 ```ts
 pushFlagOverrides(overrides:
@@ -2490,7 +2490,7 @@ afterEach(() => {
 });
 ```
 
-##### refreshFlags() <a href="#refreshflags-2" id="refreshflags-2"></a>
+### refreshFlags() <a href="#refreshflags-2" id="refreshflags-2"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
@@ -2553,7 +2553,7 @@ records pending refresh work, and the promise may resolve before that fetch
 runs. The pending refresh is executed on the next request/access or
 `refreshFlags()` call after the throttle window expires.
 
-##### setFlagOverrides() <a href="#setflagoverrides-1" id="setflagoverrides-1"></a>
+### setFlagOverrides() <a href="#setflagoverrides-1" id="setflagoverrides-1"></a>
 
 ```ts
 setFlagOverrides(overrides:
@@ -2612,7 +2612,7 @@ client.setFlagOverrides({
 });
 ```
 
-##### track() <a href="#track-2" id="track-2"></a>
+### track() <a href="#track-2" id="track-2"></a>
 
 ```ts
 track(
@@ -2686,7 +2686,7 @@ An error if the user is not set or the event is invalid or the options are inval
 
 If the company is set, the event will be associated with the company.
 
-##### updateCompany() <a href="#updatecompany-1" id="updatecompany-1"></a>
+### updateCompany() <a href="#updatecompany-1" id="updatecompany-1"></a>
 
 ```ts
 updateCompany(companyId: IdType, options?: TrackOptions & {
@@ -2757,7 +2757,7 @@ An error if the company is not set or the options are invalid.
 The company must be set using `withCompany` before calling this method.
 If the user is set, the company will be associated with the user.
 
-##### updateUser() <a href="#updateuser-1" id="updateuser-1"></a>
+### updateUser() <a href="#updateuser-1" id="updateuser-1"></a>
 
 ```ts
 updateUser(userId: IdType, options?: TrackOptions): Promise<void>
@@ -3154,7 +3154,7 @@ The key of the feature.
 
 #### Methods <a href="#methods-3" id="methods-3"></a>
 
-##### track() <a href="#track-3" id="track-3"></a>
+### track() <a href="#track-3" id="track-3"></a>
 
 ```ts
 track(): Promise<void>
@@ -3184,7 +3184,7 @@ Provider used to load and save raw flag definition snapshots.
 
 #### Methods <a href="#methods-4" id="methods-4"></a>
 
-##### load() <a href="#load" id="load"></a>
+### load() <a href="#load" id="load"></a>
 
 ```ts
 load(context: FlagsFallbackProviderContext): Promise<undefined | FlagsFallbackSnapshot>
@@ -3221,7 +3221,7 @@ Load a previously saved snapshot.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| [`FlagsFallbackSnapshot`](globals.md#flagsfallbacksnapshot)\>
 
-##### save() <a href="#save" id="save"></a>
+### save() <a href="#save" id="save"></a>
 
 ```ts
 save(context: FlagsFallbackProviderContext, snapshot: FlagsFallbackSnapshot): Promise<void>
@@ -3283,7 +3283,7 @@ Define your own implementation of this interface to use a different HTTP client.
 
 #### Methods <a href="#methods-5" id="methods-5"></a>
 
-##### get() <a href="#get" id="get"></a>
+### get() <a href="#get" id="get"></a>
 
 ```ts
 get<TResponse>(
@@ -3384,7 +3384,7 @@ The headers to include in the request.
 
 The response from the server.
 
-##### post() <a href="#post" id="post"></a>
+### post() <a href="#post" id="post"></a>
 
 ```ts
 post<TBody, TResponse>(

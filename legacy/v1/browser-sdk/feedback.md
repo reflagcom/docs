@@ -212,7 +212,7 @@ position: {
 }
 ```
 
-#### Dialog <a href="#dialog" id="dialog"></a>
+### Dialog <a href="#dialog" id="dialog"></a>
 
 A dialog that appears in a specified corner of the viewport, without limiting the
 user's interaction with the rest of the page. It can be dismissed with the dedicated

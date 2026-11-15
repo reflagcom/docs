@@ -1268,7 +1268,7 @@ function useFeature(key: string, defaultValue?: undefined): boolean
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Parameters <a href="#parameters-3" id="parameters-3"></a>
+### Parameters <a href="#parameters-3" id="parameters-3"></a>
 
 <table>
 <thead>
@@ -1305,11 +1305,11 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns <a href="#returns-4" id="returns-4"></a>
+### Returns <a href="#returns-4" id="returns-4"></a>
 
 `boolean`
 
-##### Deprecated <a href="#deprecated-1" id="deprecated-1"></a>
+### Deprecated <a href="#deprecated-1" id="deprecated-1"></a>
 
 Use useFlag.
 
@@ -1321,7 +1321,7 @@ function useFeature<Key, Default>(key: Key, defaultValue: Default): FlagValueFro
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Type Parameters <a href="#type-parameters-1" id="type-parameters-1"></a>
+### Type Parameters <a href="#type-parameters-1" id="type-parameters-1"></a>
 
 <table>
 <thead>
@@ -1347,7 +1347,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Parameters <a href="#parameters-4" id="parameters-4"></a>
+### Parameters <a href="#parameters-4" id="parameters-4"></a>
 
 <table>
 <thead>
@@ -1384,11 +1384,11 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns <a href="#returns-5" id="returns-5"></a>
+### Returns <a href="#returns-5" id="returns-5"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-##### Deprecated <a href="#deprecated-2" id="deprecated-2"></a>
+### Deprecated <a href="#deprecated-2" id="deprecated-2"></a>
 
 Use useFlag.
 
@@ -1400,7 +1400,7 @@ function useFeature<Default>(key: string, defaultValue: Default): FlagValueFromD
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Type Parameters <a href="#type-parameters-2" id="type-parameters-2"></a>
+### Type Parameters <a href="#type-parameters-2" id="type-parameters-2"></a>
 
 <table>
 <thead>
@@ -1419,7 +1419,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Parameters <a href="#parameters-5" id="parameters-5"></a>
+### Parameters <a href="#parameters-5" id="parameters-5"></a>
 
 <table>
 <thead>
@@ -1456,11 +1456,11 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns <a href="#returns-6" id="returns-6"></a>
+### Returns <a href="#returns-6" id="returns-6"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-##### Deprecated <a href="#deprecated-3" id="deprecated-3"></a>
+### Deprecated <a href="#deprecated-3" id="deprecated-3"></a>
 
 Use useFlag.
 
@@ -1476,7 +1476,7 @@ function useFlag(key: string, defaultValue?: undefined): boolean
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Parameters <a href="#parameters-6" id="parameters-6"></a>
+### Parameters <a href="#parameters-6" id="parameters-6"></a>
 
 <table>
 <thead>
@@ -1513,7 +1513,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns <a href="#returns-7" id="returns-7"></a>
+### Returns <a href="#returns-7" id="returns-7"></a>
 
 `boolean`
 
@@ -1525,7 +1525,7 @@ function useFlag<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDe
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Type Parameters <a href="#type-parameters-3" id="type-parameters-3"></a>
+### Type Parameters <a href="#type-parameters-3" id="type-parameters-3"></a>
 
 <table>
 <thead>
@@ -1551,7 +1551,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Parameters <a href="#parameters-7" id="parameters-7"></a>
+### Parameters <a href="#parameters-7" id="parameters-7"></a>
 
 <table>
 <thead>
@@ -1588,7 +1588,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns <a href="#returns-8" id="returns-8"></a>
+### Returns <a href="#returns-8" id="returns-8"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
@@ -1600,7 +1600,7 @@ function useFlag<Default>(key: string, defaultValue: Default): FlagValueFromDefa
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Type Parameters <a href="#type-parameters-4" id="type-parameters-4"></a>
+### Type Parameters <a href="#type-parameters-4" id="type-parameters-4"></a>
 
 <table>
 <thead>
@@ -1619,7 +1619,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Parameters <a href="#parameters-8" id="parameters-8"></a>
+### Parameters <a href="#parameters-8" id="parameters-8"></a>
 
 <table>
 <thead>
@@ -1656,7 +1656,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns <a href="#returns-9" id="returns-9"></a>
+### Returns <a href="#returns-9" id="returns-9"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
@@ -1672,7 +1672,7 @@ function useFlagSuspense(key: string, defaultValue?: undefined): boolean
 
 Wait for initialization, then read once. Missing flags use the default, not an endless suspension.
 
-##### Parameters <a href="#parameters-9" id="parameters-9"></a>
+### Parameters <a href="#parameters-9" id="parameters-9"></a>
 
 <table>
 <thead>
@@ -1709,7 +1709,7 @@ Wait for initialization, then read once. Missing flags use the default, not an e
 </tbody>
 </table>
 
-##### Returns <a href="#returns-10" id="returns-10"></a>
+### Returns <a href="#returns-10" id="returns-10"></a>
 
 `boolean`
 
@@ -1721,7 +1721,7 @@ function useFlagSuspense<Key, Default>(key: Key, defaultValue: Default): FlagVal
 
 Wait for initialization, then read once. Missing flags use the default, not an endless suspension.
 
-##### Type Parameters <a href="#type-parameters-5" id="type-parameters-5"></a>
+### Type Parameters <a href="#type-parameters-5" id="type-parameters-5"></a>
 
 <table>
 <thead>
@@ -1747,7 +1747,7 @@ Wait for initialization, then read once. Missing flags use the default, not an e
 </tbody>
 </table>
 
-##### Parameters <a href="#parameters-10" id="parameters-10"></a>
+### Parameters <a href="#parameters-10" id="parameters-10"></a>
 
 <table>
 <thead>
@@ -1784,7 +1784,7 @@ Wait for initialization, then read once. Missing flags use the default, not an e
 </tbody>
 </table>
 
-##### Returns <a href="#returns-11" id="returns-11"></a>
+### Returns <a href="#returns-11" id="returns-11"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
@@ -1796,7 +1796,7 @@ function useFlagSuspense<Default>(key: string, defaultValue: Default): FlagValue
 
 Wait for initialization, then read once. Missing flags use the default, not an endless suspension.
 
-##### Type Parameters <a href="#type-parameters-6" id="type-parameters-6"></a>
+### Type Parameters <a href="#type-parameters-6" id="type-parameters-6"></a>
 
 <table>
 <thead>
@@ -1815,7 +1815,7 @@ Wait for initialization, then read once. Missing flags use the default, not an e
 </tbody>
 </table>
 
-##### Parameters <a href="#parameters-11" id="parameters-11"></a>
+### Parameters <a href="#parameters-11" id="parameters-11"></a>
 
 <table>
 <thead>
@@ -1852,7 +1852,7 @@ Wait for initialization, then read once. Missing flags use the default, not an e
 </tbody>
 </table>
 
-##### Returns <a href="#returns-12" id="returns-12"></a>
+### Returns <a href="#returns-12" id="returns-12"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
@@ -2065,7 +2065,7 @@ reflag.requestFeedback({
 
 `Function`
 
-##### Parameters <a href="#parameters-14" id="parameters-14"></a>
+### Parameters <a href="#parameters-14" id="parameters-14"></a>
 
 <table>
 <thead>
@@ -2090,7 +2090,7 @@ reflag.requestFeedback({
 </tbody>
 </table>
 
-##### Returns <a href="#returns-17" id="returns-17"></a>
+### Returns <a href="#returns-17" id="returns-17"></a>
 
 `void`
 
@@ -2123,7 +2123,7 @@ sendFeedback({
 
 `Function`
 
-##### Parameters <a href="#parameters-15" id="parameters-15"></a>
+### Parameters <a href="#parameters-15" id="parameters-15"></a>
 
 <table>
 <thead>
@@ -2148,7 +2148,7 @@ sendFeedback({
 </tbody>
 </table>
 
-##### Returns <a href="#returns-19" id="returns-19"></a>
+### Returns <a href="#returns-19" id="returns-19"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2170,7 +2170,7 @@ Returns a function to set whether the current user or company has opted into a f
 
 `Function`
 
-##### Parameters <a href="#parameters-16" id="parameters-16"></a>
+### Parameters <a href="#parameters-16" id="parameters-16"></a>
 
 <table>
 <thead>
@@ -2207,7 +2207,7 @@ Returns a function to set whether the current user or company has opted into a f
 </tbody>
 </table>
 
-##### Returns <a href="#returns-21" id="returns-21"></a>
+### Returns <a href="#returns-21" id="returns-21"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2237,7 +2237,7 @@ track("Started Huddle", { button: "cta" });
 
 `Function`
 
-##### Parameters <a href="#parameters-17" id="parameters-17"></a>
+### Parameters <a href="#parameters-17" id="parameters-17"></a>
 
 <table>
 <thead>
@@ -2274,7 +2274,7 @@ track("Started Huddle", { button: "cta" });
 </tbody>
 </table>
 
-##### Returns <a href="#returns-23" id="returns-23"></a>
+### Returns <a href="#returns-23" id="returns-23"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2304,7 +2304,7 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Flags updated"));
 
 `Function`
 
-##### Parameters <a href="#parameters-18" id="parameters-18"></a>
+### Parameters <a href="#parameters-18" id="parameters-18"></a>
 
 <table>
 <thead>
@@ -2329,7 +2329,7 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Flags updated"));
 </tbody>
 </table>
 
-##### Returns <a href="#returns-25" id="returns-25"></a>
+### Returns <a href="#returns-25" id="returns-25"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
@@ -2358,7 +2358,7 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 
 `Function`
 
-##### Parameters <a href="#parameters-19" id="parameters-19"></a>
+### Parameters <a href="#parameters-19" id="parameters-19"></a>
 
 <table>
 <thead>
@@ -2383,7 +2383,7 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 </tbody>
 </table>
 
-##### Returns <a href="#returns-27" id="returns-27"></a>
+### Returns <a href="#returns-27" id="returns-27"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
@@ -2411,7 +2411,7 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 
 `Function`
 
-##### Parameters <a href="#parameters-20" id="parameters-20"></a>
+### Parameters <a href="#parameters-20" id="parameters-20"></a>
 
 <table>
 <thead>
@@ -2436,6 +2436,6 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 </tbody>
 </table>
 
-##### Returns <a href="#returns-29" id="returns-29"></a>
+### Returns <a href="#returns-29" id="returns-29"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>

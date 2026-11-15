@@ -360,7 +360,7 @@ Request feedback from the user.
 
 #### Methods <a href="#methods" id="methods"></a>
 
-##### track() <a href="#track" id="track"></a>
+### track() <a href="#track" id="track"></a>
 
 ```ts
 track():
@@ -1945,7 +1945,7 @@ reflag.requestFeedback({
 
 `Function`
 
-##### Parameters <a href="#parameters-7" id="parameters-7"></a>
+### Parameters <a href="#parameters-7" id="parameters-7"></a>
 
 <table>
 <thead>
@@ -1970,7 +1970,7 @@ reflag.requestFeedback({
 </tbody>
 </table>
 
-##### Returns <a href="#returns-11" id="returns-11"></a>
+### Returns <a href="#returns-11" id="returns-11"></a>
 
 `void`
 
@@ -2003,7 +2003,7 @@ sendFeedback({
 
 `Function`
 
-##### Parameters <a href="#parameters-8" id="parameters-8"></a>
+### Parameters <a href="#parameters-8" id="parameters-8"></a>
 
 <table>
 <thead>
@@ -2028,7 +2028,7 @@ sendFeedback({
 </tbody>
 </table>
 
-##### Returns <a href="#returns-13" id="returns-13"></a>
+### Returns <a href="#returns-13" id="returns-13"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2055,7 +2055,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 
 `Function`
 
-##### Parameters <a href="#parameters-9" id="parameters-9"></a>
+### Parameters <a href="#parameters-9" id="parameters-9"></a>
 
 <table>
 <thead>
@@ -2092,7 +2092,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 </tbody>
 </table>
 
-##### Returns <a href="#returns-15" id="returns-15"></a>
+### Returns <a href="#returns-15" id="returns-15"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2122,7 +2122,7 @@ track("Started Huddle", { button: "cta" });
 
 `Function`
 
-##### Parameters <a href="#parameters-10" id="parameters-10"></a>
+### Parameters <a href="#parameters-10" id="parameters-10"></a>
 
 <table>
 <thead>
@@ -2159,7 +2159,7 @@ track("Started Huddle", { button: "cta" });
 </tbody>
 </table>
 
-##### Returns <a href="#returns-17" id="returns-17"></a>
+### Returns <a href="#returns-17" id="returns-17"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2189,7 +2189,7 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Flags updated"));
 
 `Function`
 
-##### Parameters <a href="#parameters-11" id="parameters-11"></a>
+### Parameters <a href="#parameters-11" id="parameters-11"></a>
 
 <table>
 <thead>
@@ -2214,7 +2214,7 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Flags updated"));
 </tbody>
 </table>
 
-##### Returns <a href="#returns-19" id="returns-19"></a>
+### Returns <a href="#returns-19" id="returns-19"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
@@ -2243,7 +2243,7 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 
 `Function`
 
-##### Parameters <a href="#parameters-12" id="parameters-12"></a>
+### Parameters <a href="#parameters-12" id="parameters-12"></a>
 
 <table>
 <thead>
@@ -2268,7 +2268,7 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 </tbody>
 </table>
 
-##### Returns <a href="#returns-21" id="returns-21"></a>
+### Returns <a href="#returns-21" id="returns-21"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
@@ -2296,7 +2296,7 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 
 `Function`
 
-##### Parameters <a href="#parameters-13" id="parameters-13"></a>
+### Parameters <a href="#parameters-13" id="parameters-13"></a>
 
 <table>
 <thead>
@@ -2321,6 +2321,6 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 </tbody>
 </table>
 
-##### Returns <a href="#returns-23" id="returns-23"></a>
+### Returns <a href="#returns-23" id="returns-23"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>

@@ -280,7 +280,7 @@ You can access the built-in providers through the `fallbackProviders` namespace:
 - `fallbackProviders.s3(...)`
 - `fallbackProviders.gcs(...)`
 
-##### Static provider <a href="#static-provider" id="static-provider"></a>
+### Static provider <a href="#static-provider" id="static-provider"></a>
 
 If you just want a fixed fallback copy of simple enabled/disabled flags, you can provide a static map:
 
@@ -300,7 +300,7 @@ const client = new ReflagClient({
 await client.initialize();
 ```
 
-##### File provider <a href="#file-provider" id="file-provider"></a>
+### File provider <a href="#file-provider" id="file-provider"></a>
 
 ```typescript
 import { ReflagClient, fallbackProviders } from "@reflag/node-sdk";
@@ -319,7 +319,7 @@ The file provider stores one snapshot file per environment in the configured
 `directory`, using the filename
 `flags-fallback-<secretKeyHash.slice(0, 16)>.json`.
 
-##### Redis provider <a href="#redis-provider" id="redis-provider"></a>
+### Redis provider <a href="#redis-provider" id="redis-provider"></a>
 
 The built-in Redis provider creates a Redis client automatically when omitted and uses `REDIS_URL` from the environment. It stores snapshots under the configured `keyPrefix` and appends the first 16 characters of the secret key hash to that prefix.
 
@@ -336,7 +336,7 @@ const client = new ReflagClient({
 await client.initialize();
 ```
 
-##### S3 provider <a href="#s3-provider" id="s3-provider"></a>
+### S3 provider <a href="#s3-provider" id="s3-provider"></a>
 
 The built-in S3 provider works out of the box using the AWS SDK's default credential chain and region resolution. It stores the snapshot object under the configured `keyPrefix` and uses the filename `flags-fallback-<secretKeyHash.slice(0, 16)>.json`.
 
@@ -355,7 +355,7 @@ const client = new ReflagClient({
 await client.initialize();
 ```
 
-##### GCS provider <a href="#gcs-provider" id="gcs-provider"></a>
+### GCS provider <a href="#gcs-provider" id="gcs-provider"></a>
 
 The built-in GCS provider works out of the box using Google Cloud's default application credentials. It stores the snapshot object under the configured `keyPrefix` and uses the filename `flags-fallback-<secretKeyHash.slice(0, 16)>.json`.
 

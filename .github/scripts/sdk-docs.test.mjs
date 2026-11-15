@@ -150,6 +150,15 @@ test("GitBook heading IDs preserve TypeDoc/generic deep links without changing c
   assert(rendered.includes("```md\n# Leave code alone\n```"));
 });
 
+test("GitBook keeps deep API-member and linked-section anchors without outlining every parameter label", () => {
+  const rendered = anchorHeadings(
+    "### Client\n#### Constructors\n##### getFlag()\n###### Parameters\n[Constructor](globals.md#constructors)\n",
+  );
+  assert.match(rendered, /^### Constructors <a href="#constructors"/m);
+  assert.match(rendered, /^### getFlag\(\) <a href="#getflag"/m);
+  assert.match(rendered, /^###### Parameters /m);
+});
+
 test("missing generated input fails before applying any changes", (t) => {
   const { source, options, destination } = fixture(t);
   fs.unlinkSync(path.join(source, "dist/docs/@reflag/react-sdk/globals.md"));

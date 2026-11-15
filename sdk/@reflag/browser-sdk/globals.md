@@ -31,7 +31,7 @@ ReflagClient lets you interact with the Reflag API.
 
 #### Constructors <a href="#constructors" id="constructors"></a>
 
-##### new ReflagClient() <a href="#new-reflagclient" id="new-reflagclient"></a>
+### new ReflagClient() <a href="#new-reflagclient" id="new-reflagclient"></a>
 
 ```ts
 new ReflagClient(opts: InitOptions): ReflagClient
@@ -101,7 +101,7 @@ Create a new ReflagClient instance.
 
 #### Methods <a href="#methods" id="methods"></a>
 
-##### applyBootstrappedState() <a href="#applybootstrappedstate" id="applybootstrappedstate"></a>
+### applyBootstrappedState() <a href="#applybootstrappedstate" id="applybootstrappedstate"></a>
 
 ```ts
 applyBootstrappedState(bootstrappedState: BootstrappedState, triggerEvent: boolean): void
@@ -159,7 +159,7 @@ applyBootstrappedState(bootstrappedState: BootstrappedState, triggerEvent: boole
 
 `void`
 
-##### feedback() <a href="#feedback" id="feedback"></a>
+### feedback() <a href="#feedback" id="feedback"></a>
 
 ```ts
 feedback(payload: Feedback): Promise<
@@ -208,7 +208,7 @@ The feedback details to submit.
 
 The server response.
 
-##### getConfig() <a href="#getconfig" id="getconfig"></a>
+### getConfig() <a href="#getconfig" id="getconfig"></a>
 
 ```ts
 getConfig(): Config
@@ -220,7 +220,7 @@ Get the current configuration.
 
 [`Config`](../../../supported-languages/browser-sdk/globals.md#config)
 
-##### getContext() <a href="#getcontext" id="getcontext"></a>
+### getContext() <a href="#getcontext" id="getcontext"></a>
 
 ```ts
 getContext(): ReflagContext
@@ -232,7 +232,7 @@ Get the current context.
 
 [`ReflagContext`](../../../supported-languages/browser-sdk/globals.md#reflagcontext)
 
-##### ~~getFeatures()~~ <a href="#getfeatures" id="getfeatures"></a>
+### ~~getFeatures()~~ <a href="#getfeatures" id="getfeatures"></a>
 
 ```ts
 getFeatures(): Record<string, undefined | FlagValue>
@@ -246,7 +246,7 @@ getFeatures(): Record<string, undefined | FlagValue>
 
 Use `getFlags` instead.
 
-##### getFlag() <a href="#getflag" id="getflag"></a>
+### getFlag() <a href="#getflag" id="getflag"></a>
 
 ###### Call Signature <a href="#call-signature" id="call-signature"></a>
 
@@ -365,7 +365,7 @@ Boolean-first reads; positional defaults select other top-level JSON categories.
 
 [`FlagValueFromDefault`](../../../supported-languages/browser-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-##### getFlagOverride() <a href="#getflagoverride" id="getflagoverride"></a>
+### getFlagOverride() <a href="#getflagoverride" id="getflagoverride"></a>
 
 ```ts
 getFlagOverride(key: string): undefined | FlagValue
@@ -400,7 +400,7 @@ getFlagOverride(key: string): undefined | FlagValue
 
 `undefined` \| [`FlagValue`](../../../supported-languages/browser-sdk/globals.md#flagvalue)
 
-##### getFlagResults() <a href="#getflagresults" id="getflagresults"></a>
+### getFlagResults() <a href="#getflagresults" id="getflagresults"></a>
 
 ```ts
 getFlagResults(): RawFlags
@@ -412,7 +412,7 @@ Owned evaluated diagnostics; inspecting these is not an application read.
 
 [`RawFlags`](../../../supported-languages/browser-sdk/globals.md#rawflags)
 
-##### getFlags() <a href="#getflags" id="getflags"></a>
+### getFlags() <a href="#getflags" id="getflags"></a>
 
 ```ts
 getFlags(): Record<string, undefined | FlagValue>
@@ -425,7 +425,7 @@ Use getFlagResults() for diagnostic/serialization access without checks.
 
 [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](../../../supported-languages/browser-sdk/globals.md#flagvalue)\>
 
-##### getFlagsForBootstrap() <a href="#getflagsforbootstrap" id="getflagsforbootstrap"></a>
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap" id="getflagsforbootstrap"></a>
 
 ```ts
 getFlagsForBootstrap(): BootstrappedState
@@ -435,7 +435,7 @@ getFlagsForBootstrap(): BootstrappedState
 
 [`BootstrappedState`](../../../supported-languages/browser-sdk/globals.md#bootstrappedstate)
 
-##### getIsLoadingOptInFlags() <a href="#getisloadingoptinflags" id="getisloadingoptinflags"></a>
+### getIsLoadingOptInFlags() <a href="#getisloadingoptinflags" id="getisloadingoptinflags"></a>
 
 ```ts
 getIsLoadingOptInFlags(): boolean
@@ -449,7 +449,7 @@ Calling this method requests opt-in metadata if it is not already available.
 
 `boolean`
 
-##### getOptInFlags() <a href="#getoptinflags" id="getoptinflags"></a>
+### getOptInFlags() <a href="#getoptinflags" id="getoptinflags"></a>
 
 ```ts
 getOptInFlags(): OptInFlag[]
@@ -461,7 +461,7 @@ Returns opt-in-enabled flags for the current context.
 
 [`OptInFlag`](../../../supported-languages/browser-sdk/globals.md#optinflag)[]
 
-##### getState() <a href="#getstate" id="getstate"></a>
+### getState() <a href="#getstate" id="getstate"></a>
 
 ```ts
 getState(): State
@@ -471,7 +471,7 @@ getState(): State
 
 [`State`](../../../supported-languages/browser-sdk/globals.md#state)
 
-##### initialize() <a href="#initialize" id="initialize"></a>
+### initialize() <a href="#initialize" id="initialize"></a>
 
 ```ts
 initialize(): Promise<void>
@@ -485,7 +485,7 @@ Must be called before calling other SDK methods.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### off() <a href="#off" id="off"></a>
+### off() <a href="#off" id="off"></a>
 
 ```ts
 off<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): void
@@ -566,7 +566,7 @@ The same function that was passed to `on`.
 
 A function to remove the hook.
 
-##### on() <a href="#on" id="on"></a>
+### on() <a href="#on" id="on"></a>
 
 ```ts
 on<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): () => void
@@ -651,7 +651,7 @@ A function to remove the hook.
 
 `void`
 
-##### refresh() <a href="#refresh" id="refresh"></a>
+### refresh() <a href="#refresh" id="refresh"></a>
 
 ```ts
 refresh(): Promise<undefined | RawFlags>
@@ -663,7 +663,7 @@ Force refresh flags from the API, bypassing cache.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| [`RawFlags`](../../../supported-languages/browser-sdk/globals.md#rawflags)\>
 
-##### requestFeedback() <a href="#requestfeedback" id="requestfeedback"></a>
+### requestFeedback() <a href="#requestfeedback" id="requestfeedback"></a>
 
 ```ts
 requestFeedback(options: RequestFeedbackData): void
@@ -702,7 +702,7 @@ This can be used to collect feedback from users in Reflag in cases where Automat
 
 `void`
 
-##### setContext() <a href="#setcontext" id="setcontext"></a>
+### setContext() <a href="#setcontext" id="setcontext"></a>
 
 ```ts
 setContext(context: ReflagDeprecatedContext): Promise<void>
@@ -746,7 +746,7 @@ The context to update.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### setFlagOverride() <a href="#setflagoverride" id="setflagoverride"></a>
+### setFlagOverride() <a href="#setflagoverride" id="setflagoverride"></a>
 
 ```ts
 setFlagOverride(key: string, value: undefined | FlagValue): void
@@ -795,7 +795,7 @@ Overrides are applied after server evaluation and never invent selections.
 
 `void`
 
-##### setOptIn() <a href="#setoptin" id="setoptin"></a>
+### setOptIn() <a href="#setoptin" id="setoptin"></a>
 
 ```ts
 setOptIn(flagKey: string, options: SetOptInOptions): Promise<
@@ -848,7 +848,7 @@ Set whether the current user or company has opted into a flag.
   \| `undefined`
   \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
-##### showToolbarToggle() <a href="#showtoolbartoggle" id="showtoolbartoggle"></a>
+### showToolbarToggle() <a href="#showtoolbartoggle" id="showtoolbartoggle"></a>
 
 ```ts
 showToolbarToggle(position?: ToolbarPosition): void
@@ -883,7 +883,7 @@ showToolbarToggle(position?: ToolbarPosition): void
 
 `void`
 
-##### stop() <a href="#stop" id="stop"></a>
+### stop() <a href="#stop" id="stop"></a>
 
 ```ts
 stop(): Promise<void>
@@ -896,7 +896,7 @@ This will stop any automated feedback surveys.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### track() <a href="#track" id="track"></a>
+### track() <a href="#track" id="track"></a>
 
 ```ts
 track(eventName: string, attributes?:
@@ -962,7 +962,7 @@ Any attributes you want to attach to the event.
   \| `undefined`
   \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
-##### updateCompany() <a href="#updatecompany" id="updatecompany"></a>
+### updateCompany() <a href="#updatecompany" id="updatecompany"></a>
 
 ```ts
 updateCompany(company: {}): Promise<void>
@@ -1007,7 +1007,7 @@ The company details.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### updateFlags() <a href="#updateflags" id="updateflags"></a>
+### updateFlags() <a href="#updateflags" id="updateflags"></a>
 
 ```ts
 updateFlags(
@@ -1103,7 +1103,7 @@ Whether to trigger the `flagsUpdated` event.
 
 `void`
 
-##### updateOtherContext() <a href="#updateothercontext" id="updateothercontext"></a>
+### updateOtherContext() <a href="#updateothercontext" id="updateothercontext"></a>
 
 ```ts
 updateOtherContext(otherContext: {}): Promise<void>
@@ -1148,7 +1148,7 @@ Additional context.
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### updateUser() <a href="#updateuser" id="updateuser"></a>
+### updateUser() <a href="#updateuser" id="updateuser"></a>
 
 ```ts
 updateUser(user: {}): Promise<void>
@@ -1779,7 +1779,7 @@ Use `flagsUpdated` instead.
 
 #### Methods <a href="#methods-1" id="methods-1"></a>
 
-##### debug() <a href="#debug" id="debug"></a>
+### debug() <a href="#debug" id="debug"></a>
 
 ```ts
 debug(message: string, ...args: any[]): void
@@ -1826,7 +1826,7 @@ debug(message: string, ...args: any[]): void
 
 `void`
 
-##### error() <a href="#error" id="error"></a>
+### error() <a href="#error" id="error"></a>
 
 ```ts
 error(message: string, ...args: any[]): void
@@ -1873,7 +1873,7 @@ error(message: string, ...args: any[]): void
 
 `void`
 
-##### info() <a href="#info" id="info"></a>
+### info() <a href="#info" id="info"></a>
 
 ```ts
 info(message: string, ...args: any[]): void
@@ -1920,7 +1920,7 @@ info(message: string, ...args: any[]): void
 
 `void`
 
-##### warn() <a href="#warn" id="warn"></a>
+### warn() <a href="#warn" id="warn"></a>
 
 ```ts
 warn(message: string, ...args: any[]): void

@@ -29,9 +29,9 @@ Generated from [`@reflag/node-sdk@2.0.0-next.0`](https://github.com/reflagcom/ja
 
 Context-bound reads have the same direct-value and immediate-check semantics.
 
-#### Constructors <a href="#constructors" id="constructors"></a>
+### Constructors <a href="#constructors" id="constructors"></a>
 
-##### new BoundReflagClient() <a href="#new-boundreflagclient" id="new-boundreflagclient"></a>
+### new BoundReflagClient() <a href="#new-boundreflagclient" id="new-boundreflagclient"></a>
 
 ```ts
 new BoundReflagClient(client: ReflagClient, options: ContextWithTracking): BoundReflagClient
@@ -80,7 +80,7 @@ new BoundReflagClient(client: ReflagClient, options: ContextWithTracking): Bound
 
 #### Accessors <a href="#accessors" id="accessors"></a>
 
-##### company <a href="#company" id="company"></a>
+### company <a href="#company" id="company"></a>
 
 ###### Get Signature <a href="#get-signature" id="get-signature"></a>
 
@@ -103,7 +103,7 @@ get company():
   `name`: `string`;
  \}
 
-##### otherContext <a href="#othercontext" id="othercontext"></a>
+### otherContext <a href="#othercontext" id="othercontext"></a>
 
 ###### Get Signature <a href="#get-signature-1" id="get-signature-1"></a>
 
@@ -118,7 +118,7 @@ get otherContext():
   \| `undefined`
   \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
-##### user <a href="#user" id="user"></a>
+### user <a href="#user" id="user"></a>
 
 ###### Get Signature <a href="#get-signature-2" id="get-signature-2"></a>
 
@@ -145,7 +145,7 @@ get user():
 
 #### Methods <a href="#methods" id="methods"></a>
 
-##### bindClient() <a href="#bindclient" id="bindclient"></a>
+### bindClient() <a href="#bindclient" id="bindclient"></a>
 
 ```ts
 bindClient(next: ContextWithTracking): BoundReflagClient
@@ -180,7 +180,7 @@ bindClient(next: ContextWithTracking): BoundReflagClient
 
 [`BoundReflagClient`](globals.md#boundreflagclient)
 
-##### flush() <a href="#flush" id="flush"></a>
+### flush() <a href="#flush" id="flush"></a>
 
 ```ts
 flush(): Promise<void>
@@ -190,7 +190,7 @@ flush(): Promise<void>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### getFlag() <a href="#getflag" id="getflag"></a>
+### getFlag() <a href="#getflag" id="getflag"></a>
 
 ###### Call Signature <a href="#call-signature" id="call-signature"></a>
 
@@ -331,7 +331,7 @@ getFlag<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Def
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-##### getFlagRemote() <a href="#getflagremote" id="getflagremote"></a>
+### getFlagRemote() <a href="#getflagremote" id="getflagremote"></a>
 
 ###### Call Signature <a href="#call-signature-2" id="call-signature-2"></a>
 
@@ -472,7 +472,7 @@ getFlagRemote<Key, Default>(key: Key, defaultValue: Default): Promise<FlagValueF
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>\>
 
-##### getFlags() <a href="#getflags" id="getflags"></a>
+### getFlags() <a href="#getflags" id="getflags"></a>
 
 ```ts
 getFlags(): Record<string, undefined | FlagValue>
@@ -482,7 +482,7 @@ getFlags(): Record<string, undefined | FlagValue>
 
 [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](globals.md#flagvalue)\>
 
-##### getFlagsForBootstrap() <a href="#getflagsforbootstrap" id="getflagsforbootstrap"></a>
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap" id="getflagsforbootstrap"></a>
 
 ```ts
 getFlagsForBootstrap(): BootstrappedFlags
@@ -492,7 +492,7 @@ getFlagsForBootstrap(): BootstrappedFlags
 
 [`BootstrappedFlags`](globals.md#bootstrappedflags)
 
-##### getFlagsRemote() <a href="#getflagsremote" id="getflagsremote"></a>
+### getFlagsRemote() <a href="#getflagsremote" id="getflagsremote"></a>
 
 ```ts
 getFlagsRemote(): Promise<Record<string, undefined | FlagValue>>
@@ -502,7 +502,7 @@ getFlagsRemote(): Promise<Record<string, undefined | FlagValue>>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](globals.md#flagvalue)\>\>
 
-##### refreshFlags() <a href="#refreshflags" id="refreshflags"></a>
+### refreshFlags() <a href="#refreshflags" id="refreshflags"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
@@ -537,7 +537,7 @@ refreshFlags(waitForVersion?: number): Promise<void>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### track() <a href="#track" id="track"></a>
+### track() <a href="#track" id="track"></a>
 
 ```ts
 track(event: string, options?: TrackOptions & {
@@ -620,7 +620,7 @@ const { isEnabled } = client.getFlag(context, "flag-key");
 
 #### Constructors <a href="#constructors-1" id="constructors-1"></a>
 
-##### new EdgeClient() <a href="#new-edgeclient" id="new-edgeclient"></a>
+### new EdgeClient() <a href="#new-edgeclient" id="new-edgeclient"></a>
 
 ```ts
 new EdgeClient(options: EdgeClientOptions): EdgeClient
@@ -709,7 +709,7 @@ new EdgeClient(options: EdgeClientOptions): EdgeClient
 
 #### Accessors <a href="#accessors-1" id="accessors-1"></a>
 
-##### flagOverrides <a href="#flagoverrides" id="flagoverrides"></a>
+### flagOverrides <a href="#flagoverrides" id="flagoverrides"></a>
 
 ###### Set Signature <a href="#set-signature" id="set-signature"></a>
 
@@ -758,7 +758,7 @@ Use setFlagOverrides.
 
 #### Methods <a href="#methods-1" id="methods-1"></a>
 
-##### bindClient() <a href="#bindclient-1" id="bindclient-1"></a>
+### bindClient() <a href="#bindclient-1" id="bindclient-1"></a>
 
 ```ts
 bindClient(options: ContextWithTracking): BoundReflagClient
@@ -797,7 +797,7 @@ bindClient(options: ContextWithTracking): BoundReflagClient
 
 [`ReflagClient`](globals.md#reflagclient).[`bindClient`](globals.md#bindclient)
 
-##### clearFlagOverrides() <a href="#clearflagoverrides" id="clearflagoverrides"></a>
+### clearFlagOverrides() <a href="#clearflagoverrides" id="clearflagoverrides"></a>
 
 ```ts
 clearFlagOverrides(): void
@@ -811,7 +811,7 @@ clearFlagOverrides(): void
 
 [`ReflagClient`](globals.md#reflagclient).[`clearFlagOverrides`](globals.md#clearflagoverrides)
 
-##### destroy() <a href="#destroy" id="destroy"></a>
+### destroy() <a href="#destroy" id="destroy"></a>
 
 ```ts
 destroy(): void
@@ -825,7 +825,7 @@ destroy(): void
 
 [`ReflagClient`](globals.md#reflagclient).[`destroy`](globals.md#destroy)
 
-##### flush() <a href="#flush-1" id="flush-1"></a>
+### flush() <a href="#flush-1" id="flush-1"></a>
 
 ```ts
 flush(): Promise<void>
@@ -839,7 +839,7 @@ flush(): Promise<void>
 
 [`ReflagClient`](globals.md#reflagclient).[`flush`](globals.md#flush)
 
-##### getFlag() <a href="#getflag-1" id="getflag-1"></a>
+### getFlag() <a href="#getflag-1" id="getflag-1"></a>
 
 ###### Call Signature <a href="#call-signature-4" id="call-signature-4"></a>
 
@@ -1022,7 +1022,7 @@ Read a Boolean with an implicit false default, or supply an explicit value defau
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlag`](globals.md#getflag)
 
-##### getFlagDefinitions() <a href="#getflagdefinitions" id="getflagdefinitions"></a>
+### getFlagDefinitions() <a href="#getflagdefinitions" id="getflagdefinitions"></a>
 
 ```ts
 getFlagDefinitions(): FlagCollection
@@ -1038,7 +1038,7 @@ Complete definitions, including segments needed for offline evaluation.
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlagDefinitions`](globals.md#getflagdefinitions)
 
-##### getFlagRemote() <a href="#getflagremote-1" id="getflagremote-1"></a>
+### getFlagRemote() <a href="#getflagremote-1" id="getflagremote-1"></a>
 
 ###### Call Signature <a href="#call-signature-6" id="call-signature-6"></a>
 
@@ -1269,7 +1269,7 @@ context?: ContextWithTracking): Promise<FlagValueFromDefault<Default>>
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlagRemote`](globals.md#getflagremote)
 
-##### getFlags() <a href="#getflags-1" id="getflags-1"></a>
+### getFlags() <a href="#getflags-1" id="getflags-1"></a>
 
 ```ts
 getFlags(options: ContextWithTracking): Record<string, undefined | FlagValue>
@@ -1310,7 +1310,7 @@ Return all values and immediately register checks for the returned roots.
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlags`](globals.md#getflags)
 
-##### getFlagsForBootstrap() <a href="#getflagsforbootstrap-1" id="getflagsforbootstrap-1"></a>
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap-1" id="getflagsforbootstrap-1"></a>
 
 ```ts
 getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
@@ -1351,7 +1351,7 @@ Serialization is not a read by the browser; it must not emit check events.
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlagsForBootstrap`](globals.md#getflagsforbootstrap)
 
-##### getFlagsRemote() <a href="#getflagsremote-1" id="getflagsremote-1"></a>
+### getFlagsRemote() <a href="#getflagsremote-1" id="getflagsremote-1"></a>
 
 ```ts
 getFlagsRemote(
@@ -1417,7 +1417,7 @@ context?: ContextWithTracking): Promise<Record<string, undefined | FlagValue>>
 
 [`ReflagClient`](globals.md#reflagclient).[`getFlagsRemote`](globals.md#getflagsremote)
 
-##### initialize() <a href="#initialize" id="initialize"></a>
+### initialize() <a href="#initialize" id="initialize"></a>
 
 ```ts
 initialize(): Promise<void>
@@ -1431,7 +1431,7 @@ initialize(): Promise<void>
 
 [`ReflagClient`](globals.md#reflagclient).[`initialize`](globals.md#initialize)
 
-##### pushFlagOverrides() <a href="#pushflagoverrides" id="pushflagoverrides"></a>
+### pushFlagOverrides() <a href="#pushflagoverrides" id="pushflagoverrides"></a>
 
 ```ts
 pushFlagOverrides(overrides:
@@ -1476,7 +1476,7 @@ pushFlagOverrides(overrides:
 
 [`ReflagClient`](globals.md#reflagclient).[`pushFlagOverrides`](globals.md#pushflagoverrides)
 
-##### refreshFlags() <a href="#refreshflags-1" id="refreshflags-1"></a>
+### refreshFlags() <a href="#refreshflags-1" id="refreshflags-1"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
@@ -1515,7 +1515,7 @@ refreshFlags(waitForVersion?: number): Promise<void>
 
 [`ReflagClient`](globals.md#reflagclient).[`refreshFlags`](globals.md#refreshflags)
 
-##### setFlagOverrides() <a href="#setflagoverrides" id="setflagoverrides"></a>
+### setFlagOverrides() <a href="#setflagoverrides" id="setflagoverrides"></a>
 
 ```ts
 setFlagOverrides(overrides:
@@ -1556,7 +1556,7 @@ setFlagOverrides(overrides:
 
 [`ReflagClient`](globals.md#reflagclient).[`setFlagOverrides`](globals.md#setflagoverrides)
 
-##### track() <a href="#track-1" id="track-1"></a>
+### track() <a href="#track-1" id="track-1"></a>
 
 ```ts
 track(
@@ -1624,7 +1624,7 @@ track(
 
 [`ReflagClient`](globals.md#reflagclient).[`track`](globals.md#track)
 
-##### updateCompany() <a href="#updatecompany" id="updatecompany"></a>
+### updateCompany() <a href="#updatecompany" id="updatecompany"></a>
 
 ```ts
 updateCompany(companyId: IdType, options?: TrackOptions & {
@@ -1677,7 +1677,7 @@ updateCompany(companyId: IdType, options?: TrackOptions & {
 
 [`ReflagClient`](globals.md#reflagclient).[`updateCompany`](globals.md#updatecompany)
 
-##### updateUser() <a href="#updateuser" id="updateuser"></a>
+### updateUser() <a href="#updateuser" id="updateuser"></a>
 
 ```ts
 updateUser(userId: IdType, options?: TrackOptions): Promise<void>
@@ -1740,7 +1740,7 @@ V2 client: flag reads return values and immediately register checks.
 
 #### Constructors <a href="#constructors-2" id="constructors-2"></a>
 
-##### new ReflagClient() <a href="#new-reflagclient" id="new-reflagclient"></a>
+### new ReflagClient() <a href="#new-reflagclient" id="new-reflagclient"></a>
 
 ```ts
 new ReflagClient(options: ClientOptions): ReflagClient
@@ -1825,7 +1825,7 @@ new ReflagClient(options: ClientOptions): ReflagClient
 
 #### Accessors <a href="#accessors-2" id="accessors-2"></a>
 
-##### flagOverrides <a href="#flagoverrides-1" id="flagoverrides-1"></a>
+### flagOverrides <a href="#flagoverrides-1" id="flagoverrides-1"></a>
 
 ###### Set Signature <a href="#set-signature-1" id="set-signature-1"></a>
 
@@ -1870,7 +1870,7 @@ Use setFlagOverrides.
 
 #### Methods <a href="#methods-2" id="methods-2"></a>
 
-##### bindClient() <a href="#bindclient-2" id="bindclient-2"></a>
+### bindClient() <a href="#bindclient-2" id="bindclient-2"></a>
 
 ```ts
 bindClient(options: ContextWithTracking): BoundReflagClient
@@ -1905,7 +1905,7 @@ bindClient(options: ContextWithTracking): BoundReflagClient
 
 [`BoundReflagClient`](globals.md#boundreflagclient)
 
-##### clearFlagOverrides() <a href="#clearflagoverrides-1" id="clearflagoverrides-1"></a>
+### clearFlagOverrides() <a href="#clearflagoverrides-1" id="clearflagoverrides-1"></a>
 
 ```ts
 clearFlagOverrides(): void
@@ -1915,7 +1915,7 @@ clearFlagOverrides(): void
 
 `void`
 
-##### destroy() <a href="#destroy-1" id="destroy-1"></a>
+### destroy() <a href="#destroy-1" id="destroy-1"></a>
 
 ```ts
 destroy(): void
@@ -1925,7 +1925,7 @@ destroy(): void
 
 `void`
 
-##### flush() <a href="#flush-2" id="flush-2"></a>
+### flush() <a href="#flush-2" id="flush-2"></a>
 
 ```ts
 flush(): Promise<void>
@@ -1935,7 +1935,7 @@ flush(): Promise<void>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### getFlag() <a href="#getflag-2" id="getflag-2"></a>
+### getFlag() <a href="#getflag-2" id="getflag-2"></a>
 
 ###### Call Signature <a href="#call-signature-8" id="call-signature-8"></a>
 
@@ -2110,7 +2110,7 @@ Read a Boolean with an implicit false default, or supply an explicit value defau
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-##### getFlagDefinitions() <a href="#getflagdefinitions-1" id="getflagdefinitions-1"></a>
+### getFlagDefinitions() <a href="#getflagdefinitions-1" id="getflagdefinitions-1"></a>
 
 ```ts
 getFlagDefinitions(): FlagCollection
@@ -2122,7 +2122,7 @@ Complete definitions, including segments needed for offline evaluation.
 
 [`FlagCollection`](globals.md#flagcollection)
 
-##### getFlagRemote() <a href="#getflagremote-2" id="getflagremote-2"></a>
+### getFlagRemote() <a href="#getflagremote-2" id="getflagremote-2"></a>
 
 ###### Call Signature <a href="#call-signature-10" id="call-signature-10"></a>
 
@@ -2345,7 +2345,7 @@ context?: ContextWithTracking): Promise<FlagValueFromDefault<Default>>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>\>
 
-##### getFlags() <a href="#getflags-2" id="getflags-2"></a>
+### getFlags() <a href="#getflags-2" id="getflags-2"></a>
 
 ```ts
 getFlags(options: ContextWithTracking): Record<string, undefined | FlagValue>
@@ -2382,7 +2382,7 @@ Return all values and immediately register checks for the returned roots.
 
 [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](globals.md#flagvalue)\>
 
-##### getFlagsForBootstrap() <a href="#getflagsforbootstrap-2" id="getflagsforbootstrap-2"></a>
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap-2" id="getflagsforbootstrap-2"></a>
 
 ```ts
 getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
@@ -2419,7 +2419,7 @@ Serialization is not a read by the browser; it must not emit check events.
 
 [`BootstrappedFlags`](globals.md#bootstrappedflags)
 
-##### getFlagsRemote() <a href="#getflagsremote-2" id="getflagsremote-2"></a>
+### getFlagsRemote() <a href="#getflagsremote-2" id="getflagsremote-2"></a>
 
 ```ts
 getFlagsRemote(
@@ -2481,7 +2481,7 @@ context?: ContextWithTracking): Promise<Record<string, undefined | FlagValue>>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](globals.md#flagvalue)\>\>
 
-##### initialize() <a href="#initialize-1" id="initialize-1"></a>
+### initialize() <a href="#initialize-1" id="initialize-1"></a>
 
 ```ts
 initialize(): Promise<void>
@@ -2491,7 +2491,7 @@ initialize(): Promise<void>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### pushFlagOverrides() <a href="#pushflagoverrides-1" id="pushflagoverrides-1"></a>
+### pushFlagOverrides() <a href="#pushflagoverrides-1" id="pushflagoverrides-1"></a>
 
 ```ts
 pushFlagOverrides(overrides:
@@ -2532,7 +2532,7 @@ pushFlagOverrides(overrides:
 
 `void`
 
-##### refreshFlags() <a href="#refreshflags-2" id="refreshflags-2"></a>
+### refreshFlags() <a href="#refreshflags-2" id="refreshflags-2"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
@@ -2567,7 +2567,7 @@ refreshFlags(waitForVersion?: number): Promise<void>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### setFlagOverrides() <a href="#setflagoverrides-1" id="setflagoverrides-1"></a>
+### setFlagOverrides() <a href="#setflagoverrides-1" id="setflagoverrides-1"></a>
 
 ```ts
 setFlagOverrides(overrides:
@@ -2604,7 +2604,7 @@ setFlagOverrides(overrides:
 
 `void`
 
-##### track() <a href="#track-2" id="track-2"></a>
+### track() <a href="#track-2" id="track-2"></a>
 
 ```ts
 track(
@@ -2668,7 +2668,7 @@ track(
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### updateCompany() <a href="#updatecompany-1" id="updatecompany-1"></a>
+### updateCompany() <a href="#updatecompany-1" id="updatecompany-1"></a>
 
 ```ts
 updateCompany(companyId: IdType, options?: TrackOptions & {
@@ -2717,7 +2717,7 @@ updateCompany(companyId: IdType, options?: TrackOptions & {
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### updateUser() <a href="#updateuser-1" id="updateuser-1"></a>
+### updateUser() <a href="#updateuser-1" id="updateuser-1"></a>
 
 ```ts
 updateUser(userId: IdType, options?: TrackOptions): Promise<void>
@@ -2941,7 +2941,7 @@ Augment this interface with flag keys and their returned value types.
 
 #### Methods <a href="#methods-3" id="methods-3"></a>
 
-##### load() <a href="#load" id="load"></a>
+### load() <a href="#load" id="load"></a>
 
 ```ts
 load(context: FlagsFallbackProviderContext): Promise<undefined | FlagsFallbackSnapshot>
@@ -2976,7 +2976,7 @@ load(context: FlagsFallbackProviderContext): Promise<undefined | FlagsFallbackSn
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| [`FlagsFallbackSnapshot`](globals.md#flagsfallbacksnapshot)\>
 
-##### save() <a href="#save" id="save"></a>
+### save() <a href="#save" id="save"></a>
 
 ```ts
 save(context: FlagsFallbackProviderContext, snapshot: FlagsFallbackSnapshot): Promise<void>
@@ -3029,7 +3029,7 @@ save(context: FlagsFallbackProviderContext, snapshot: FlagsFallbackSnapshot): Pr
 
 #### Methods <a href="#methods-4" id="methods-4"></a>
 
-##### get() <a href="#get" id="get"></a>
+### get() <a href="#get" id="get"></a>
 
 ```ts
 get<Response>(
@@ -3110,7 +3110,7 @@ timeoutMs: number): Promise<HttpClientResponse<Response>>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`HttpClientResponse`](globals.md#httpclientresponseresponse)\<`Response`\>\>
 
-##### post() <a href="#post" id="post"></a>
+### post() <a href="#post" id="post"></a>
 
 ```ts
 post<Body, Response>(
@@ -3204,7 +3204,7 @@ body: Body): Promise<HttpClientResponse<Response>>
 
 #### Methods <a href="#methods-5" id="methods-5"></a>
 
-##### debug() <a href="#debug" id="debug"></a>
+### debug() <a href="#debug" id="debug"></a>
 
 ```ts
 debug(message: string, data?: any): void
@@ -3251,7 +3251,7 @@ debug(message: string, data?: any): void
 
 `void`
 
-##### error() <a href="#error" id="error"></a>
+### error() <a href="#error" id="error"></a>
 
 ```ts
 error(message: string, data?: any): void
@@ -3298,7 +3298,7 @@ error(message: string, data?: any): void
 
 `void`
 
-##### info() <a href="#info" id="info"></a>
+### info() <a href="#info" id="info"></a>
 
 ```ts
 info(message: string, data?: any): void
@@ -3345,7 +3345,7 @@ info(message: string, data?: any): void
 
 `void`
 
-##### warn() <a href="#warn" id="warn"></a>
+### warn() <a href="#warn" id="warn"></a>
 
 ```ts
 warn(message: string, data?: any): void

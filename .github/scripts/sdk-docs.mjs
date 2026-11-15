@@ -55,6 +55,7 @@ export const headingSlug = (text) =>
 
 export function anchorHeadings(content) {
   const ids = new Set();
+  const linked = new Set([...content.matchAll(/#([\w-]+)/g)].map((match) => match[1]));
   let fence;
   return content
     .split("\n")
@@ -66,16 +67,24 @@ export function anchorHeadings(content) {
         return line;
       }
       if (fence) return line;
-      const heading = /^#{1,6} (.+)$/.exec(line)?.[1];
-      if (!heading) return line;
+      const match = /^(#{1,6}) (.+)$/.exec(line);
+      if (!match) return line;
+      const [, prefix, heading] = match;
       const base = headingSlug(heading);
       let id = base;
       for (let suffix = 1; ids.has(id); suffix++) id = `${base}-${suffix}`;
       ids.add(id);
+      // GitBook imports Markdown levels 4–6 as bold paragraphs and drops
+      // their IDs. Promote API members (TypeDoc level 5) and linked headings,
+      // but keep unlinked Parameters/Returns sublabels out of the outline.
+      const rendered =
+        prefix.length > 3 && (prefix.length === 5 || linked.has(id))
+          ? line.replace(/^#{4,6}/, "###")
+          : line;
       // GitBook otherwise expands <T> into "less-than-t-greater-than" and
       // punctuation into different slugs than TypeDoc's existing deep links.
-      if (/\bid=["']/.test(heading)) return line;
-      return `${line} <a href="#${id}" id="${id}"></a>`;
+      if (/\bid=["']/.test(heading)) return rendered;
+      return `${rendered} <a href="#${id}" id="${id}"></a>`;
     })
     .join("\n");
 }

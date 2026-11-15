@@ -988,7 +988,7 @@ function useFlag(key: string, defaultValue?: undefined): ShallowRef<boolean>
 
 Reactive direct values: Boolean/false by default, or infer a positional JSON default.
 
-##### Parameters <a href="#parameters" id="parameters"></a>
+### Parameters <a href="#parameters" id="parameters"></a>
 
 <table>
 <thead>
@@ -1025,7 +1025,7 @@ Reactive direct values: Boolean/false by default, or infer a positional JSON def
 </tbody>
 </table>
 
-##### Returns <a href="#returns-1" id="returns-1"></a>
+### Returns <a href="#returns-1" id="returns-1"></a>
 
 `ShallowRef`\<`boolean`\>
 
@@ -1037,7 +1037,7 @@ function useFlag<Key, Default>(key: Key, defaultValue: Default): ShallowRef<Flag
 
 Reactive direct values: Boolean/false by default, or infer a positional JSON default.
 
-##### Type Parameters <a href="#type-parameters-1" id="type-parameters-1"></a>
+### Type Parameters <a href="#type-parameters-1" id="type-parameters-1"></a>
 
 <table>
 <thead>
@@ -1063,7 +1063,7 @@ Reactive direct values: Boolean/false by default, or infer a positional JSON def
 </tbody>
 </table>
 
-##### Parameters <a href="#parameters-1" id="parameters-1"></a>
+### Parameters <a href="#parameters-1" id="parameters-1"></a>
 
 <table>
 <thead>
@@ -1100,7 +1100,7 @@ Reactive direct values: Boolean/false by default, or infer a positional JSON def
 </tbody>
 </table>
 
-##### Returns <a href="#returns-2" id="returns-2"></a>
+### Returns <a href="#returns-2" id="returns-2"></a>
 
 `ShallowRef`\<[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>\>
 
@@ -1112,7 +1112,7 @@ function useFlag<Default>(key: string, defaultValue: Default): ShallowRef<FlagVa
 
 Reactive direct values: Boolean/false by default, or infer a positional JSON default.
 
-##### Type Parameters <a href="#type-parameters-2" id="type-parameters-2"></a>
+### Type Parameters <a href="#type-parameters-2" id="type-parameters-2"></a>
 
 <table>
 <thead>
@@ -1131,7 +1131,7 @@ Reactive direct values: Boolean/false by default, or infer a positional JSON def
 </tbody>
 </table>
 
-##### Parameters <a href="#parameters-2" id="parameters-2"></a>
+### Parameters <a href="#parameters-2" id="parameters-2"></a>
 
 <table>
 <thead>
@@ -1168,7 +1168,7 @@ Reactive direct values: Boolean/false by default, or infer a positional JSON def
 </tbody>
 </table>
 
-##### Returns <a href="#returns-3" id="returns-3"></a>
+### Returns <a href="#returns-3" id="returns-3"></a>
 
 `ShallowRef`\<[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>\>
 
@@ -1351,7 +1351,7 @@ feedback at any point in your application.
 A function that requests feedback from the user. The function accepts:
   - `options`: An object containing feedback request options.
 
-##### Parameters <a href="#parameters-4" id="parameters-4"></a>
+### Parameters <a href="#parameters-4" id="parameters-4"></a>
 
 <table>
 <thead>
@@ -1376,7 +1376,7 @@ A function that requests feedback from the user. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-8" id="returns-8"></a>
+### Returns <a href="#returns-8" id="returns-8"></a>
 
 `void`
 
@@ -1416,7 +1416,7 @@ Reflag SDK. You can use this to send feedback from your application.
 A function that sends feedback to the Reflag SDK. The function accepts:
   - `options`: An object containing feedback options.
 
-##### Parameters <a href="#parameters-5" id="parameters-5"></a>
+### Parameters <a href="#parameters-5" id="parameters-5"></a>
 
 <table>
 <thead>
@@ -1441,7 +1441,7 @@ A function that sends feedback to the Reflag SDK. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-10" id="returns-10"></a>
+### Returns <a href="#returns-10" id="returns-10"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -1477,7 +1477,7 @@ Vue composable for setting whether the current user or company has opted into a 
 
 `Function`
 
-##### Parameters <a href="#parameters-6" id="parameters-6"></a>
+### Parameters <a href="#parameters-6" id="parameters-6"></a>
 
 <table>
 <thead>
@@ -1514,7 +1514,7 @@ Vue composable for setting whether the current user or company has opted into a 
 </tbody>
 </table>
 
-##### Returns <a href="#returns-12" id="returns-12"></a>
+### Returns <a href="#returns-12" id="returns-12"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -1545,7 +1545,7 @@ A function that tracks an event. The function accepts:
   - `eventName`: The name of the event to track.
   - `attributes`: (Optional) Additional attributes to associate with the event.
 
-##### Parameters <a href="#parameters-7" id="parameters-7"></a>
+### Parameters <a href="#parameters-7" id="parameters-7"></a>
 
 <table>
 <thead>
@@ -1582,7 +1582,7 @@ A function that tracks an event. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-14" id="returns-14"></a>
+### Returns <a href="#returns-14" id="returns-14"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -1620,7 +1620,7 @@ at any point in your application.
 A function that updates the company context. The function accepts:
   - `opts`: An object containing the company context to update.
 
-##### Parameters <a href="#parameters-8" id="parameters-8"></a>
+### Parameters <a href="#parameters-8" id="parameters-8"></a>
 
 <table>
 <thead>
@@ -1645,7 +1645,7 @@ A function that updates the company context. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-16" id="returns-16"></a>
+### Returns <a href="#returns-16" id="returns-16"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
@@ -1681,7 +1681,7 @@ at any point in your application.
 A function that updates the other context. The function accepts:
   - `opts`: An object containing the other context to update.
 
-##### Parameters <a href="#parameters-9" id="parameters-9"></a>
+### Parameters <a href="#parameters-9" id="parameters-9"></a>
 
 <table>
 <thead>
@@ -1706,7 +1706,7 @@ A function that updates the other context. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-18" id="returns-18"></a>
+### Returns <a href="#returns-18" id="returns-18"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
@@ -1742,7 +1742,7 @@ in your application.
 A function that updates the user context. The function accepts:
   - `opts`: An object containing the user context to update.
 
-##### Parameters <a href="#parameters-10" id="parameters-10"></a>
+### Parameters <a href="#parameters-10" id="parameters-10"></a>
 
 <table>
 <thead>
@@ -1767,7 +1767,7 @@ A function that updates the user context. The function accepts:
 </tbody>
 </table>
 
-##### Returns <a href="#returns-20" id="returns-20"></a>
+### Returns <a href="#returns-20" id="returns-20"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
