@@ -157,7 +157,7 @@ applyBootstrappedState(bootstrappedState: BootstrappedState, triggerEvent: boole
 
 `void`
 
-### feedback() <a href="#feedback" id="feedback"></a>
+### feedback() <a href="#feedback-1" id="feedback-1"></a>
 
 ```ts
 feedback(payload: Feedback): Promise<
@@ -2695,7 +2695,7 @@ type FallbackFlagOverride =
 
 ***
 
-### Feedback <a href="#feedback-1" id="feedback-1"></a>
+### Feedback <a href="#feedback" id="feedback"></a>
 
 ```ts
 type Feedback = UnassignedFeedback & {

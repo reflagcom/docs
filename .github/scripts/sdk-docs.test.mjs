@@ -159,6 +159,16 @@ test("GitBook keeps deep API-member and linked-section anchors without outlining
   assert.match(rendered, /^###### Parameters /m);
 });
 
+test("type links keep their canonical IDs rather than landing on similarly named properties", () => {
+  const rendered = anchorHeadings(
+    "### Client\n##### logger\n##### flagOverrides\n### Logger\n### FlagOverrides\n[Type](globals.md#logger)\n",
+  );
+  assert.match(rendered, /^### logger <a href="#logger-1"/m);
+  assert.match(rendered, /^### Logger <a href="#logger"/m);
+  assert.match(rendered, /^### flagOverrides <a href="#flagoverrides-1"/m);
+  assert.match(rendered, /^### FlagOverrides <a href="#flagoverrides"/m);
+});
+
 test("missing generated input fails before applying any changes", (t) => {
   const { source, options, destination } = fixture(t);
   fs.unlinkSync(path.join(source, "dist/docs/@reflag/react-sdk/globals.md"));

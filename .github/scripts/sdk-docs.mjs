@@ -54,39 +54,42 @@ export const headingSlug = (text) =>
     .replace(/ /g, "-");
 
 export function anchorHeadings(content) {
-  const ids = new Set();
+  const lines = content.split("\n");
+  const headings = [];
   const linked = new Set([...content.matchAll(/#([\w-]+)/g)].map((match) => match[1]));
   let fence;
-  return content
-    .split("\n")
-    .map((line) => {
-      const marker = /^\s*(`{3,}|~{3,})/.exec(line)?.[1];
-      if (marker) {
-        if (!fence) fence = marker;
-        else if (fence[0] === marker[0] && marker.length >= fence.length) fence = undefined;
-        return line;
-      }
-      if (fence) return line;
-      const match = /^(#{1,6}) (.+)$/.exec(line);
-      if (!match) return line;
-      const [, prefix, heading] = match;
-      const base = headingSlug(heading);
-      let id = base;
-      for (let suffix = 1; ids.has(id); suffix++) id = `${base}-${suffix}`;
-      ids.add(id);
-      // GitBook imports Markdown levels 4–6 as bold paragraphs and drops
-      // their IDs. Promote API members (TypeDoc level 5) and linked headings,
-      // but keep unlinked Parameters/Returns sublabels out of the outline.
-      const rendered =
-        prefix.length > 3 && (prefix.length === 5 || linked.has(id))
-          ? line.replace(/^#{4,6}/, "###")
-          : line;
-      // GitBook otherwise expands <T> into "less-than-t-greater-than" and
-      // punctuation into different slugs than TypeDoc's existing deep links.
-      if (/\bid=["']/.test(heading)) return rendered;
-      return `${rendered} <a href="#${id}" id="${id}"></a>`;
-    })
-    .join("\n");
+  for (const [index, line] of lines.entries()) {
+    const marker = /^\s*(`{3,}|~{3,})/.exec(line)?.[1];
+    if (marker) {
+      if (!fence) fence = marker;
+      else if (fence[0] === marker[0] && marker.length >= fence.length) fence = undefined;
+      continue;
+    }
+    if (fence) continue;
+    const match = /^(#{1,6}) (.+)$/.exec(line);
+    if (match) headings.push({ index, level: match[1].length, text: match[2] });
+  }
+  const ids = new Set();
+  // Canonical docs.sh strips property-collision suffixes from type links.
+  // Reserve public class/interface/type IDs before similarly named members:
+  // #logger must still identify Logger, not the earlier client.logger field.
+  const priority = (heading) => (heading.level <= 3 ? 0 : 1);
+  for (const heading of [...headings].sort((a, b) => priority(a) - priority(b))) {
+    const base = headingSlug(heading.text);
+    let id = base;
+    for (let suffix = 1; ids.has(id); suffix++) id = `${base}-${suffix}`;
+    heading.id = id;
+    ids.add(id);
+  }
+  for (const { index, level, text, id } of headings) {
+    // GitBook drops IDs on Markdown levels 4–6. Promote API members and
+    // linked headings, but keep unlinked Parameters/Returns out of the outline.
+    if (level > 3 && (level === 5 || linked.has(id)))
+      lines[index] = lines[index].replace(/^#{4,6}/, "###");
+    // Explicit IDs also preserve TypeDoc's <T> and punctuation-based slugs.
+    if (!/\bid=["']/.test(text)) lines[index] += ` <a href="#${id}" id="${id}"></a>`;
+  }
+  return lines.join("\n");
 }
 
 export function planPackage({ source, name, commit }) {

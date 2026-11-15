@@ -6,7 +6,7 @@
   "files": {
     "supported-languages/node-sdk/README.md": "af436dd97f0f6fad6db86e947ecc05b7466804ff9d95121d4240323089cb7796",
     "sdk/@reflag/node-sdk/README.md": "2b86f2e8a2a29c1b410a21240f3f23a67a50f1bba9fac6c13f7b086ce26a13e1",
-    "supported-languages/node-sdk/globals.md": "87d603062919887762971b062294994758596eed42d31c272302674e6e298139",
-    "sdk/@reflag/node-sdk/globals.md": "1e58dd6e09322ae84416e3af0a423d8e9507bcb23b9ba976842b9880f79f2b17"
+    "supported-languages/node-sdk/globals.md": "360ad287a39d66217e9fed63cc26f3b165e65528e9febbe0b2dc16f022b2394b",
+    "sdk/@reflag/node-sdk/globals.md": "5cac7f6a369f9c8a4ab4cab0b69902f002eb9bf3e6ac652705ab3b3270cadf51"
   }
 }

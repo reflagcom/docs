@@ -633,7 +633,7 @@ Gets the logger associated with the client.
 
 #### Accessors <a href="#accessors-1" id="accessors-1"></a>
 
-### flagOverrides <a href="#flagoverrides" id="flagoverrides"></a>
+### flagOverrides <a href="#flagoverrides-1" id="flagoverrides-1"></a>
 
 ###### Set Signature <a href="#set-signature" id="set-signature"></a>
 
@@ -1835,7 +1835,7 @@ Gets the logger associated with the client.
 
 #### Accessors <a href="#accessors-2" id="accessors-2"></a>
 
-### flagOverrides <a href="#flagoverrides-1" id="flagoverrides-1"></a>
+### flagOverrides <a href="#flagoverrides-2" id="flagoverrides-2"></a>
 
 ###### Set Signature <a href="#set-signature-1" id="set-signature-1"></a>
 
@@ -5113,7 +5113,7 @@ type FlagOverride =
 
 ***
 
-### FlagOverrides <a href="#flagoverrides-2" id="flagoverrides-2"></a>
+### FlagOverrides <a href="#flagoverrides" id="flagoverrides"></a>
 
 ```ts
 type FlagOverrides = Partial<keyof Flags extends never ? Record<string, FlagOverride> : { [FlagKey in keyof Flags]: Flags[FlagKey] extends FlagOverride ? Flags[FlagKey] : Exclude<FlagOverride, "config"> }>;
