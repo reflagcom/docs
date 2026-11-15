@@ -21,13 +21,13 @@ pagination:
 Generated from [`@reflag/vue-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/vue-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# Reflag Vue SDK v2 (beta)
+# Reflag Vue SDK v2 (beta) <a href="#reflag-vue-sdk-v2-beta" id="reflag-vue-sdk-v2-beta"></a>
 
 Reactive direct-value flags for Vue 3, backed by [Browser SDK v2](../browser-sdk/README.md).
 
 > Breaking prerelease: requires the compatible v2 server protocol. Bootstrap must come from **Node SDK v2**, not v1. Generated declarations are optional; the v2 CLI supports `--format vue` and direct-value schemas. Regenerate legacy wrapper-shaped declarations when migrating.
 
-## Setup
+## Setup <a href="#setup" id="setup"></a>
 
 ```vue
 <script setup lang="ts">
@@ -50,7 +50,7 @@ import { ReflagProvider } from "@reflag/vue-sdk";
 
 Provider options forward Browser settings, including cache/storage, fallback values, offline/tracking, feedback, toolbar, credentials and API origins. `logger` takes precedence over `debug`. Live updates default to true; disable with `:enable-live-flag-updates="false"`. For an ordinary client-only Nuxt provider, wrap it in `<ClientOnly>`.
 
-## `useFlag(key, defaultValue?)`
+## `useFlag(key, defaultValue?)` <a href="#useflagkey-defaultvalue" id="useflagkey-defaultvalue"></a>
 
 ```vue
 <script setup lang="ts">
@@ -85,7 +85,7 @@ Defaults are positional JSON; literals widen without generated types. Non-null d
 
 The ref updates when evaluated flags change. A composable read registers the requested root through the Browser SDK, even if its result is ignored; refresh-driven rereads are identity-aware rate-limited and delivered in batches. Diagnostics/bootstrap inspection register none. Checks carry genuine selected key/source/snapshot identity, never payloads or invented selections for defaults/overrides.
 
-## Loading, context and client access
+## Loading, context and client access <a href="#loading-context-and-client-access" id="loading-context-and-client-access"></a>
 
 - `useIsLoading()` returns a Boolean ref for provider loading; the `#loading` slot and `initialLoading` control initial presentation.
 - `useUpdateUser()`, `useUpdateCompany()` and `useUpdateOtherContext()` return async shallow-update functions.
@@ -95,7 +95,7 @@ The ref updates when evaluated flags change. A composable read registers the req
 
 A context change clears old values while fetching. Late responses for previous contexts or lower snapshot versions cannot replace accepted state. V2 cache/override storage is isolated from v1. Browser fetching uses `/flags/evaluated` and never re-evaluates/caches dependencies locally.
 
-## Bootstrap
+## Bootstrap <a href="#bootstrap" id="bootstrap"></a>
 
 On the server, use Node SDK v2 and your framework's safe serialization mechanism:
 
@@ -113,7 +113,7 @@ Pass the entire envelope (`protocolVersion: 2`, context, evaluated flags and opt
 
 `ReflagClientProvider` accepts an externally initialized Browser v2 client. Its lifecycle belongs to the application.
 
-## Opt-in, tracking and feedback
+## Opt-in, tracking and feedback <a href="#opt-in-tracking-and-feedback" id="opt-in-tracking-and-feedback"></a>
 
 ```ts
 const { flags, isLoading } = useOptInFlags(); // refs to metadata/list loading
@@ -133,7 +133,7 @@ Opt-in metadata arrives with ordinary `/flags/evaluated` responses. Bootstrapped
 
 `enableTracking: false` disables checks and ordinary tracking. Offline mode skips HTTP/tracking. See [Browser feedback documentation](../browser-sdk/feedback.md) for prompting/UI options.
 
-## Optional key registration and migration
+## Optional key registration and migration <a href="#optional-key-registration-and-migration" id="optional-key-registration-and-migration"></a>
 
 ```ts
 import "@reflag/vue-sdk";

@@ -19,15 +19,15 @@ pagination:
 Generated from [`@reflag/react-sdk@1.7.4`](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/react-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# @reflag/react-sdk
+# @reflag/react-sdk <a href="#reflagreact-sdk" id="reflagreact-sdk"></a>
 
-## Interfaces
+## Interfaces <a href="#interfaces" id="interfaces"></a>
 
-### CheckEvent
+### CheckEvent <a href="#checkevent" id="checkevent"></a>
 
 Event representing checking the flag evaluation result
 
-#### Properties
+#### Properties <a href="#properties" id="properties"></a>
 
 <table>
 <thead>
@@ -168,19 +168,19 @@ Version of targeting rules.
 
 ***
 
-### CompanyContext
+### CompanyContext <a href="#companycontext" id="companycontext"></a>
 
 Context is a set of key-value pairs.
 This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing company.
 
-#### Indexable
+#### Indexable <a href="#indexable" id="indexable"></a>
 
 ```ts
 [key: string]: ContextValue
 ```
 
-#### Properties
+#### Properties <a href="#properties-1" id="properties-1"></a>
 
 <table>
 <thead>
@@ -230,11 +230,11 @@ Company name
 
 ***
 
-### Flag\<TConfig\>
+### Flag\<TConfig\> <a href="#flagtconfig" id="flagtconfig"></a>
 
 Describes a feature
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters" id="type-parameters"></a>
 
 <table>
 <thead>
@@ -259,7 +259,7 @@ Describes a feature
 </tbody>
 </table>
 
-#### Properties
+#### Properties <a href="#properties-2" id="properties-2"></a>
 
 <table>
 <thead>
@@ -358,9 +358,9 @@ Request feedback from the user.
 </tbody>
 </table>
 
-#### Methods
+#### Methods <a href="#methods" id="methods"></a>
 
-##### track()
+##### track() <a href="#track" id="track"></a>
 
 ```ts
 track():
@@ -372,7 +372,7 @@ track():
 
 Track feature usage in Reflag.
 
-###### Returns
+###### Returns <a href="#returns" id="returns"></a>
 
   \| `undefined`
   \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
@@ -381,23 +381,23 @@ Track feature usage in Reflag.
 
 ***
 
-### Flags
+### Flags <a href="#flags" id="flags"></a>
 
 ***
 
-### UserContext
+### UserContext <a href="#usercontext" id="usercontext"></a>
 
 Context is a set of key-value pairs.
 This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing user.
 
-#### Indexable
+#### Indexable <a href="#indexable-1" id="indexable-1"></a>
 
 ```ts
 [key: string]: ContextValue
 ```
 
-#### Properties
+#### Properties <a href="#properties-3" id="properties-3"></a>
 
 <table>
 <thead>
@@ -462,9 +462,9 @@ User name
 </tbody>
 </table>
 
-## Type Aliases
+## Type Aliases <a href="#type-aliases" id="type-aliases"></a>
 
-### BootstrappedFlags
+### BootstrappedFlags <a href="#bootstrappedflags" id="bootstrappedflags"></a>
 
 ```ts
 type BootstrappedFlags = BootstrappedState & {
@@ -472,7 +472,7 @@ type BootstrappedFlags = BootstrappedState & {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration" id="type-declaration"></a>
 
 <table>
 <thead>
@@ -499,7 +499,7 @@ type BootstrappedFlags = BootstrappedState & {
 
 ***
 
-### EmptyFlagRemoteConfig
+### EmptyFlagRemoteConfig <a href="#emptyflagremoteconfig" id="emptyflagremoteconfig"></a>
 
 ```ts
 type EmptyFlagRemoteConfig = {
@@ -508,7 +508,7 @@ type EmptyFlagRemoteConfig = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-1" id="type-declaration-1"></a>
 
 <table>
 <thead>
@@ -547,7 +547,7 @@ type EmptyFlagRemoteConfig = {
 
 ***
 
-### FlagKey
+### FlagKey <a href="#flagkey" id="flagkey"></a>
 
 ```ts
 type FlagKey = keyof TypedFlags;
@@ -555,7 +555,7 @@ type FlagKey = keyof TypedFlags;
 
 ***
 
-### FlagRemoteConfig
+### FlagRemoteConfig <a href="#flagremoteconfig" id="flagremoteconfig"></a>
 
 ```ts
 type FlagRemoteConfig =
@@ -568,7 +568,7 @@ type FlagRemoteConfig =
 
 A remotely managed configuration value for a feature.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-2" id="type-declaration-2"></a>
 
 \{
   `key`: `string`;
@@ -625,7 +625,7 @@ The optional user-supplied payload data.
 
 ***
 
-### FlagType
+### FlagType <a href="#flagtype" id="flagtype"></a>
 
 ```ts
 type FlagType = {
@@ -635,7 +635,7 @@ type FlagType = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-3" id="type-declaration-3"></a>
 
 <table>
 <thead>
@@ -676,7 +676,7 @@ type FlagType = {
 
 ***
 
-### OptInFlag
+### OptInFlag <a href="#optinflag" id="optinflag"></a>
 
 ```ts
 type OptInFlag = Omit<import("@reflag/browser-sdk").OptInFlag, "key"> & {
@@ -690,7 +690,7 @@ Includes all fields from [BrowserOptInFlag](../browser-sdk/globals.md#optinflag)
 `isEnabled`, `userOptedIn`, `companyOptedIn`, and `isOptedIn`.
 Only `key` is narrowed to the generated [FlagKey](globals.md#flagkey) type.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-4" id="type-declaration-4"></a>
 
 <table>
 <thead>
@@ -717,7 +717,7 @@ Only `key` is narrowed to the generated [FlagKey](globals.md#flagkey) type.
 
 ***
 
-### RawFlags
+### RawFlags <a href="#rawflags" id="rawflags"></a>
 
 ```ts
 type RawFlags = Record<FlagKey, RawFlag>;
@@ -727,7 +727,7 @@ Describes a collection of evaluated raw flags.
 
 ***
 
-### ReflagBootstrappedProps
+### ReflagBootstrappedProps <a href="#reflagbootstrappedprops" id="reflagbootstrappedprops"></a>
 
 ```ts
 type ReflagBootstrappedProps = ReflagPropsBase & ReflagInitOptionsBase & {
@@ -737,7 +737,7 @@ type ReflagBootstrappedProps = ReflagPropsBase & ReflagInitOptionsBase & {
 
 Props for the ReflagBootstrappedProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-5" id="type-declaration-5"></a>
 
 <table>
 <thead>
@@ -771,7 +771,7 @@ metadata on demand when opt-in flags are requested.
 
 ***
 
-### ReflagClientProviderProps
+### ReflagClientProviderProps <a href="#reflagclientproviderprops" id="reflagclientproviderprops"></a>
 
 ```ts
 type ReflagClientProviderProps = Omit<ReflagPropsBase, "debug" | "logger"> & {
@@ -781,7 +781,7 @@ type ReflagClientProviderProps = Omit<ReflagPropsBase, "debug" | "logger"> & {
 
 Props for the ReflagClientProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-6" id="type-declaration-6"></a>
 
 <table>
 <thead>
@@ -808,7 +808,7 @@ Props for the ReflagClientProvider.
 
 ***
 
-### ReflagInitOptionsBase
+### ReflagInitOptionsBase <a href="#reflaginitoptionsbase" id="reflaginitoptionsbase"></a>
 
 ```ts
 type ReflagInitOptionsBase = Omit<InitOptions,
@@ -827,7 +827,7 @@ Base init options for the ReflagProvider and ReflagBootstrappedProvider.
 
 ***
 
-### ReflagProps
+### ReflagProps <a href="#reflagprops" id="reflagprops"></a>
 
 ```ts
 type ReflagProps = ReflagPropsBase & ReflagInitOptionsBase & {
@@ -840,7 +840,7 @@ type ReflagProps = ReflagPropsBase & ReflagInitOptionsBase & {
 
 Props for the ReflagProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-7" id="type-declaration-7"></a>
 
 <table>
 <thead>
@@ -938,7 +938,7 @@ Use `context` instead, this property will be removed in the next major version
 
 ***
 
-### ReflagPropsBase
+### ReflagPropsBase <a href="#reflagpropsbase" id="reflagpropsbase"></a>
 
 ```ts
 type ReflagPropsBase = {
@@ -955,7 +955,7 @@ type ReflagPropsBase = {
 
 Base props for the ReflagProvider and ReflagBootstrappedProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-8" id="type-declaration-8"></a>
 
 <table>
 <thead>
@@ -1077,7 +1077,7 @@ wrapped in a React `<Suspense>` boundary.
 
 ***
 
-### RequestFeedbackOptions
+### RequestFeedbackOptions <a href="#requestfeedbackoptions" id="requestfeedbackoptions"></a>
 
 ```ts
 type RequestFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">;
@@ -1085,7 +1085,7 @@ type RequestFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">
 
 ***
 
-### SetOptInOptions
+### SetOptInOptions <a href="#setoptinoptions" id="setoptinoptions"></a>
 
 ```ts
 type SetOptInOptions = {
@@ -1096,7 +1096,7 @@ type SetOptInOptions = {
 
 Options for changing the current user or company's opt-in membership.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-9" id="type-declaration-9"></a>
 
 <table>
 <thead>
@@ -1146,7 +1146,7 @@ Whether to update the current user or current company. Defaults to `user`.
 
 ***
 
-### StorageAdapter
+### StorageAdapter <a href="#storageadapter" id="storageadapter"></a>
 
 ```ts
 type StorageAdapter = {
@@ -1156,7 +1156,7 @@ type StorageAdapter = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-10" id="type-declaration-10"></a>
 
 <table>
 <thead>
@@ -1207,7 +1207,7 @@ type StorageAdapter = {
 
 ***
 
-### TrackEvent
+### TrackEvent <a href="#trackevent" id="trackevent"></a>
 
 ```ts
 type TrackEvent = {
@@ -1219,7 +1219,7 @@ type TrackEvent = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-11" id="type-declaration-11"></a>
 
 <table>
 <thead>
@@ -1283,7 +1283,7 @@ type TrackEvent = {
 
 ***
 
-### TypedFlags
+### TypedFlags <a href="#typedflags" id="typedflags"></a>
 
 ```ts
 type TypedFlags = keyof Flags extends never ? Record<string, Flag> : { [TypedFlagKey in keyof Flags]: Flags[TypedFlagKey] extends FlagType ? Flag<Flags[TypedFlagKey]["config"]> : Flag };
@@ -1291,14 +1291,14 @@ type TypedFlags = keyof Flags extends never ? Record<string, Flag> : { [TypedFla
 
 Describes a collection of evaluated feature.
 
-#### Remarks
+#### Remarks <a href="#remarks" id="remarks"></a>
 
 This types falls back to a generic Record<string, Flag> if the Flags interface
 has not been extended.
 
 ***
 
-### UseFlagOptions
+### UseFlagOptions <a href="#useflagoptions" id="useflagoptions"></a>
 
 ```ts
 type UseFlagOptions = {
@@ -1306,7 +1306,7 @@ type UseFlagOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-12" id="type-declaration-12"></a>
 
 <table>
 <thead>
@@ -1340,7 +1340,7 @@ When true, `useFlag` throws a promise while flags are loading.
 
 ***
 
-### UseOptInFlagsOptions
+### UseOptInFlagsOptions <a href="#useoptinflagsoptions" id="useoptinflagsoptions"></a>
 
 ```ts
 type UseOptInFlagsOptions = {
@@ -1348,7 +1348,7 @@ type UseOptInFlagsOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-13" id="type-declaration-13"></a>
 
 <table>
 <thead>
@@ -1382,7 +1382,7 @@ When true, `useOptInFlags` throws a promise while opt-in flags are loading.
 
 ***
 
-### UseOptInFlagsResult
+### UseOptInFlagsResult <a href="#useoptinflagsresult" id="useoptinflagsresult"></a>
 
 ```ts
 type UseOptInFlagsResult = {
@@ -1391,7 +1391,7 @@ type UseOptInFlagsResult = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-14" id="type-declaration-14"></a>
 
 <table>
 <thead>
@@ -1439,9 +1439,9 @@ Whether a bootstrapped provider is fetching opt-in metadata.
 </tbody>
 </table>
 
-## Functions
+## Functions <a href="#functions" id="functions"></a>
 
-### ReflagBootstrappedProvider()
+### ReflagBootstrappedProvider() <a href="#reflagbootstrappedprovider" id="reflagbootstrappedprovider"></a>
 
 ```ts
 function ReflagBootstrappedProvider(__namedParameters: ReflagBootstrappedProps): Element
@@ -1449,7 +1449,7 @@ function ReflagBootstrappedProvider(__namedParameters: ReflagBootstrappedProps):
 
 Bootstrapped Provider for the ReflagClient using pre-fetched flags.
 
-#### Parameters
+#### Parameters <a href="#parameters" id="parameters"></a>
 
 <table>
 <thead>
@@ -1474,19 +1474,19 @@ Bootstrapped Provider for the ReflagClient using pre-fetched flags.
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-1" id="returns-1"></a>
 
 `Element`
 
 ***
 
-### ReflagClientProvider()
+### ReflagClientProvider() <a href="#reflagclientprovider" id="reflagclientprovider"></a>
 
 ```ts
 function ReflagClientProvider(__namedParameters: ReflagClientProviderProps): Element
 ```
 
-#### Parameters
+#### Parameters <a href="#parameters-1" id="parameters-1"></a>
 
 <table>
 <thead>
@@ -1511,13 +1511,13 @@ function ReflagClientProvider(__namedParameters: ReflagClientProviderProps): Ele
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-2" id="returns-2"></a>
 
 `Element`
 
 ***
 
-### ReflagProvider()
+### ReflagProvider() <a href="#reflagprovider" id="reflagprovider"></a>
 
 ```ts
 function ReflagProvider(__namedParameters: ReflagProps): Element
@@ -1525,7 +1525,7 @@ function ReflagProvider(__namedParameters: ReflagProps): Element
 
 Provider for the ReflagClient.
 
-#### Parameters
+#### Parameters <a href="#parameters-2" id="parameters-2"></a>
 
 <table>
 <thead>
@@ -1550,13 +1550,13 @@ Provider for the ReflagClient.
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-3" id="returns-3"></a>
 
 `Element`
 
 ***
 
-### useClient()
+### useClient() <a href="#useclient" id="useclient"></a>
 
 ```ts
 function useClient(): ReflagClient
@@ -1566,13 +1566,13 @@ Returns the current `ReflagClient` used by the `ReflagProvider`.
 
 This is useful if you need to access the `ReflagClient` outside of the `ReflagProvider`.
 
-#### Returns
+#### Returns <a href="#returns-4" id="returns-4"></a>
 
 [`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 The `ReflagClient`.
 
-#### Example
+#### Example <a href="#example" id="example"></a>
 
 ```ts
 import { useClient } from '@reflag/react-sdk';
@@ -1585,13 +1585,13 @@ function App() {
 
 ***
 
-### ~~useFeature()~~
+### ~~useFeature()~~ <a href="#usefeature" id="usefeature"></a>
 
 ```ts
 function useFeature<TKey>(key: TKey, options?: UseFlagOptions): Flag
 ```
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-1" id="type-parameters-1"></a>
 
 <table>
 <thead>
@@ -1610,7 +1610,7 @@ function useFeature<TKey>(key: TKey, options?: UseFlagOptions): Flag
 </tbody>
 </table>
 
-#### Parameters
+#### Parameters <a href="#parameters-3" id="parameters-3"></a>
 
 <table>
 <thead>
@@ -1647,17 +1647,17 @@ function useFeature<TKey>(key: TKey, options?: UseFlagOptions): Flag
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-5" id="returns-5"></a>
 
 [`Flag`](globals.md#flagtconfig)
 
-#### Deprecated
+#### Deprecated <a href="#deprecated" id="deprecated"></a>
 
 use `useFlag` instead
 
 ***
 
-### useFlag()
+### useFlag() <a href="#useflag" id="useflag"></a>
 
 ```ts
 function useFlag<TKey>(key: TKey, options: UseFlagOptions): TypedFlags[TKey]
@@ -1673,7 +1673,7 @@ function HuddleButton() {
 }
 ```
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-2" id="type-parameters-2"></a>
 
 <table>
 <thead>
@@ -1692,7 +1692,7 @@ function HuddleButton() {
 </tbody>
 </table>
 
-#### Parameters
+#### Parameters <a href="#parameters-4" id="parameters-4"></a>
 
 <table>
 <thead>
@@ -1729,13 +1729,13 @@ function HuddleButton() {
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-6" id="returns-6"></a>
 
 [`TypedFlags`](globals.md#typedflags)\[`TKey`\]
 
 ***
 
-### useIsLoading()
+### useIsLoading() <a href="#useisloading" id="useisloading"></a>
 
 ```ts
 function useIsLoading(): boolean
@@ -1745,13 +1745,13 @@ Returns a boolean indicating if the Reflag client is loading.
 You can use this to check if the Reflag client is loading at any point in your application.
 Initially, the value will be true until the client is initialized.
 
-#### Returns
+#### Returns <a href="#returns-7" id="returns-7"></a>
 
 `boolean`
 
 A boolean indicating if the Reflag client is loading.
 
-#### Example
+#### Example <a href="#example-1" id="example-1"></a>
 
 ```ts
 import { useIsLoading } from '@reflag/react-sdk';
@@ -1763,7 +1763,7 @@ console.log(isLoading);
 
 ***
 
-### useOnEvent()
+### useOnEvent() <a href="#useonevent" id="useonevent"></a>
 
 ```ts
 function useOnEvent<THookType>(
@@ -1774,7 +1774,7 @@ function useOnEvent<THookType>(
 
 Attach a callback handler to client events to act on changes. It automatically disposes itself on unmount.
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-3" id="type-parameters-3"></a>
 
 <table>
 <thead>
@@ -1793,7 +1793,7 @@ Attach a callback handler to client events to act on changes. It automatically d
 </tbody>
 </table>
 
-#### Parameters
+#### Parameters <a href="#parameters-5" id="parameters-5"></a>
 
 <table>
 <thead>
@@ -1858,11 +1858,11 @@ The Reflag client to listen to. If not provided, the client will be retrieved fr
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-8" id="returns-8"></a>
 
 `void`
 
-#### Example
+#### Example <a href="#example-2" id="example-2"></a>
 
 ```ts
 import { useOnEvent } from '@reflag/react-sdk';
@@ -1874,7 +1874,7 @@ useOnEvent("flagsUpdated", () => {
 
 ***
 
-### useOptInFlags()
+### useOptInFlags() <a href="#useoptinflags" id="useoptinflags"></a>
 
 ```ts
 function useOptInFlags(options?: UseOptInFlagsOptions): UseOptInFlagsResult
@@ -1891,7 +1891,7 @@ of returning a loading result. A Suspense boundary alone does not enable it.
 If fetching opt-in metadata fails, loading ends without exposing an error.
 Call `refresh()` on the client returned by [useClient](globals.md#useclient) to retry.
 
-#### Parameters
+#### Parameters <a href="#parameters-6" id="parameters-6"></a>
 
 <table>
 <thead>
@@ -1916,13 +1916,13 @@ Call `refresh()` on the client returned by [useClient](globals.md#useclient) to 
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-9" id="returns-9"></a>
 
 [`UseOptInFlagsResult`](globals.md#useoptinflagsresult)
 
 ***
 
-### useRequestFeedback()
+### useRequestFeedback() <a href="#userequestfeedback" id="userequestfeedback"></a>
 
 ```ts
 function useRequestFeedback(): (options: RequestFeedbackData) => void
@@ -1941,11 +1941,11 @@ reflag.requestFeedback({
 });
 ```
 
-#### Returns
+#### Returns <a href="#returns-10" id="returns-10"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-7" id="parameters-7"></a>
 
 <table>
 <thead>
@@ -1970,13 +1970,13 @@ reflag.requestFeedback({
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-11" id="returns-11"></a>
 
 `void`
 
 ***
 
-### useSendFeedback()
+### useSendFeedback() <a href="#usesendfeedback" id="usesendfeedback"></a>
 
 ```ts
 function useSendFeedback(): (opts: UnassignedFeedback) => Promise<
@@ -1999,11 +1999,11 @@ sendFeedback({
 });
 ```
 
-#### Returns
+#### Returns <a href="#returns-12" id="returns-12"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-8" id="parameters-8"></a>
 
 <table>
 <thead>
@@ -2028,7 +2028,7 @@ sendFeedback({
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-13" id="returns-13"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2036,7 +2036,7 @@ sendFeedback({
 
 ***
 
-### useSetOptIn()
+### useSetOptIn() <a href="#usesetoptin" id="usesetoptin"></a>
 
 ```ts
 function useSetOptIn(): (key: string, options: SetOptInOptions) => Promise<
@@ -2051,11 +2051,11 @@ HTTP failures return a non-OK Response; offline mode, invalid arguments, or
 missing scoped context return undefined. Confirmation failures can reject
 after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sdk/globals.md#setoptin).
 
-#### Returns
+#### Returns <a href="#returns-14" id="returns-14"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-9" id="parameters-9"></a>
 
 <table>
 <thead>
@@ -2092,7 +2092,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-15" id="returns-15"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2100,7 +2100,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 
 ***
 
-### useTrack()
+### useTrack() <a href="#usetrack" id="usetrack"></a>
 
 ```ts
 function useTrack(): (eventName: string, attributes?:
@@ -2118,11 +2118,11 @@ const track = useTrack();
 track("Started Huddle", { button: "cta" });
 ```
 
-#### Returns
+#### Returns <a href="#returns-16" id="returns-16"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-10" id="parameters-10"></a>
 
 <table>
 <thead>
@@ -2159,7 +2159,7 @@ track("Started Huddle", { button: "cta" });
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-17" id="returns-17"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2167,7 +2167,7 @@ track("Started Huddle", { button: "cta" });
 
 ***
 
-### useUpdateCompany()
+### useUpdateCompany() <a href="#useupdatecompany" id="useupdatecompany"></a>
 
 ```ts
 function useUpdateCompany(): (opts: {}) => Promise<void>
@@ -2185,11 +2185,11 @@ const updateCompany = useUpdateCompany();
 updateCompany({ plan: "enterprise" }).then(() => console.log("Flags updated"));
 ```
 
-#### Returns
+#### Returns <a href="#returns-18" id="returns-18"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-11" id="parameters-11"></a>
 
 <table>
 <thead>
@@ -2214,13 +2214,13 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Flags updated"));
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-19" id="returns-19"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
-### useUpdateOtherContext()
+### useUpdateOtherContext() <a href="#useupdateothercontext" id="useupdateothercontext"></a>
 
 ```ts
 function useUpdateOtherContext(): (opts: {}) => Promise<void>
@@ -2239,11 +2239,11 @@ updateOtherContext({ workspaceId: newWorkspaceId })
   .then(() => console.log("Flags updated"));
 ```
 
-#### Returns
+#### Returns <a href="#returns-20" id="returns-20"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-12" id="parameters-12"></a>
 
 <table>
 <thead>
@@ -2268,13 +2268,13 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-21" id="returns-21"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
-### useUpdateUser()
+### useUpdateUser() <a href="#useupdateuser" id="useupdateuser"></a>
 
 ```ts
 function useUpdateUser(): (opts: {}) => Promise<void>
@@ -2292,11 +2292,11 @@ const updateUser = useUpdateUser();
 updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 ```
 
-#### Returns
+#### Returns <a href="#returns-22" id="returns-22"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-13" id="parameters-13"></a>
 
 <table>
 <thead>
@@ -2321,6 +2321,6 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-23" id="returns-23"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>

@@ -21,23 +21,23 @@ pagination:
 Generated from [`@reflag/node-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/0809be2b95f43fa1785c6b7b188c03ac8fd40965/packages/node-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# @reflag/node-sdk
+# @reflag/node-sdk <a href="#reflagnode-sdk" id="reflagnode-sdk"></a>
 
-## Classes
+## Classes <a href="#classes" id="classes"></a>
 
-### BoundReflagClient
+### BoundReflagClient <a href="#boundreflagclient" id="boundreflagclient"></a>
 
 Context-bound reads have the same direct-value and immediate-check semantics.
 
-#### Constructors
+#### Constructors <a href="#constructors" id="constructors"></a>
 
-##### new BoundReflagClient()
+##### new BoundReflagClient() <a href="#new-boundreflagclient" id="new-boundreflagclient"></a>
 
 ```ts
 new BoundReflagClient(client: ReflagClient, options: ContextWithTracking): BoundReflagClient
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters" id="parameters"></a>
 
 <table>
 <thead>
@@ -74,15 +74,15 @@ new BoundReflagClient(client: ReflagClient, options: ContextWithTracking): Bound
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns" id="returns"></a>
 
 [`BoundReflagClient`](../../../supported-languages/node-sdk/globals.md#boundreflagclient)
 
-#### Accessors
+#### Accessors <a href="#accessors" id="accessors"></a>
 
-##### company
+##### company <a href="#company" id="company"></a>
 
-###### Get Signature
+###### Get Signature <a href="#get-signature" id="get-signature"></a>
 
 ```ts
 get company():
@@ -94,7 +94,7 @@ get company():
 }
 ```
 
-###### Returns
+###### Returns <a href="#returns-1" id="returns-1"></a>
 
   \| `undefined`
   \| \{
@@ -103,9 +103,9 @@ get company():
   `name`: `string`;
  \}
 
-##### otherContext
+##### otherContext <a href="#othercontext" id="othercontext"></a>
 
-###### Get Signature
+###### Get Signature <a href="#get-signature-1" id="get-signature-1"></a>
 
 ```ts
 get otherContext():
@@ -113,14 +113,14 @@ get otherContext():
 | Record<string, any>
 ```
 
-###### Returns
+###### Returns <a href="#returns-2" id="returns-2"></a>
 
   \| `undefined`
   \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
-##### user
+##### user <a href="#user" id="user"></a>
 
-###### Get Signature
+###### Get Signature <a href="#get-signature-2" id="get-signature-2"></a>
 
 ```ts
 get user():
@@ -133,7 +133,7 @@ get user():
 }
 ```
 
-###### Returns
+###### Returns <a href="#returns-3" id="returns-3"></a>
 
   \| `undefined`
   \| \{
@@ -143,15 +143,15 @@ get user():
   `name`: `string`;
  \}
 
-#### Methods
+#### Methods <a href="#methods" id="methods"></a>
 
-##### bindClient()
+##### bindClient() <a href="#bindclient" id="bindclient"></a>
 
 ```ts
 bindClient(next: ContextWithTracking): BoundReflagClient
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-1" id="parameters-1"></a>
 
 <table>
 <thead>
@@ -176,29 +176,29 @@ bindClient(next: ContextWithTracking): BoundReflagClient
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-4" id="returns-4"></a>
 
 [`BoundReflagClient`](../../../supported-languages/node-sdk/globals.md#boundreflagclient)
 
-##### flush()
+##### flush() <a href="#flush" id="flush"></a>
 
 ```ts
 flush(): Promise<void>
 ```
 
-###### Returns
+###### Returns <a href="#returns-5" id="returns-5"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### getFlag()
+##### getFlag() <a href="#getflag" id="getflag"></a>
 
-###### Call Signature
+###### Call Signature <a href="#call-signature" id="call-signature"></a>
 
 ```ts
 getFlag<Key>(key: Key, defaultValue?: undefined): boolean
 ```
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters" id="type-parameters"></a>
 
 <table>
 <thead>
@@ -217,7 +217,7 @@ getFlag<Key>(key: Key, defaultValue?: undefined): boolean
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-2" id="parameters-2"></a>
 
 <table>
 <thead>
@@ -254,17 +254,17 @@ getFlag<Key>(key: Key, defaultValue?: undefined): boolean
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-6" id="returns-6"></a>
 
 `boolean`
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-1" id="call-signature-1"></a>
 
 ```ts
 getFlag<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Default>
 ```
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-1" id="type-parameters-1"></a>
 
 <table>
 <thead>
@@ -290,7 +290,7 @@ getFlag<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Def
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-3" id="parameters-3"></a>
 
 <table>
 <thead>
@@ -327,19 +327,19 @@ getFlag<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Def
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-7" id="returns-7"></a>
 
 [`FlagValueFromDefault`](../../../supported-languages/node-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-##### getFlagRemote()
+##### getFlagRemote() <a href="#getflagremote" id="getflagremote"></a>
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-2" id="call-signature-2"></a>
 
 ```ts
 getFlagRemote<Key>(key: Key, defaultValue?: undefined): Promise<boolean>
 ```
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-2" id="type-parameters-2"></a>
 
 <table>
 <thead>
@@ -358,7 +358,7 @@ getFlagRemote<Key>(key: Key, defaultValue?: undefined): Promise<boolean>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-4" id="parameters-4"></a>
 
 <table>
 <thead>
@@ -395,17 +395,17 @@ getFlagRemote<Key>(key: Key, defaultValue?: undefined): Promise<boolean>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-8" id="returns-8"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`boolean`\>
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-3" id="call-signature-3"></a>
 
 ```ts
 getFlagRemote<Key, Default>(key: Key, defaultValue: Default): Promise<FlagValueFromDefault<Default>>
 ```
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-3" id="type-parameters-3"></a>
 
 <table>
 <thead>
@@ -431,7 +431,7 @@ getFlagRemote<Key, Default>(key: Key, defaultValue: Default): Promise<FlagValueF
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-5" id="parameters-5"></a>
 
 <table>
 <thead>
@@ -468,47 +468,47 @@ getFlagRemote<Key, Default>(key: Key, defaultValue: Default): Promise<FlagValueF
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-9" id="returns-9"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FlagValueFromDefault`](../../../supported-languages/node-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>\>
 
-##### getFlags()
+##### getFlags() <a href="#getflags" id="getflags"></a>
 
 ```ts
 getFlags(): Record<string, undefined | FlagValue>
 ```
 
-###### Returns
+###### Returns <a href="#returns-10" id="returns-10"></a>
 
 [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](../../../supported-languages/node-sdk/globals.md#flagvalue)\>
 
-##### getFlagsForBootstrap()
+##### getFlagsForBootstrap() <a href="#getflagsforbootstrap" id="getflagsforbootstrap"></a>
 
 ```ts
 getFlagsForBootstrap(): BootstrappedFlags
 ```
 
-###### Returns
+###### Returns <a href="#returns-11" id="returns-11"></a>
 
 [`BootstrappedFlags`](../../../supported-languages/node-sdk/globals.md#bootstrappedflags)
 
-##### getFlagsRemote()
+##### getFlagsRemote() <a href="#getflagsremote" id="getflagsremote"></a>
 
 ```ts
 getFlagsRemote(): Promise<Record<string, undefined | FlagValue>>
 ```
 
-###### Returns
+###### Returns <a href="#returns-12" id="returns-12"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](../../../supported-languages/node-sdk/globals.md#flagvalue)\>\>
 
-##### refreshFlags()
+##### refreshFlags() <a href="#refreshflags" id="refreshflags"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-6" id="parameters-6"></a>
 
 <table>
 <thead>
@@ -533,11 +533,11 @@ refreshFlags(waitForVersion?: number): Promise<void>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-13" id="returns-13"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### track()
+##### track() <a href="#track" id="track"></a>
 
 ```ts
 track(event: string, options?: TrackOptions & {
@@ -545,7 +545,7 @@ track(event: string, options?: TrackOptions & {
 }): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-7" id="parameters-7"></a>
 
 <table>
 <thead>
@@ -582,13 +582,13 @@ track(event: string, options?: TrackOptions & {
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-14" id="returns-14"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
-### EdgeClient
+### EdgeClient <a href="#edgeclient" id="edgeclient"></a>
 
 The EdgeClient is ReflagClient pre-configured to be used in edge runtimes, like
 Cloudflare Workers.
@@ -599,7 +599,7 @@ that throttle window only records pending refresh work, so the call may
 resolve before the fetch runs. That pending refresh is executed on the next
 request/access or `refreshFlags()` call after the window expires.
 
-#### Example
+#### Example <a href="#example" id="example"></a>
 
 ```ts
 // set the REFLAG_SECRET_KEY environment variable or pass the secret key in the constructor
@@ -614,19 +614,19 @@ const { isEnabled } = client.getFlag(context, "flag-key");
 
 ```
 
-#### Extends
+#### Extends <a href="#extends" id="extends"></a>
 
 - [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient)
 
-#### Constructors
+#### Constructors <a href="#constructors-1" id="constructors-1"></a>
 
-##### new EdgeClient()
+##### new EdgeClient() <a href="#new-edgeclient" id="new-edgeclient"></a>
 
 ```ts
 new EdgeClient(options: EdgeClientOptions): EdgeClient
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-8" id="parameters-8"></a>
 
 <table>
 <thead>
@@ -651,15 +651,15 @@ new EdgeClient(options: EdgeClientOptions): EdgeClient
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-15" id="returns-15"></a>
 
 [`EdgeClient`](../../../supported-languages/node-sdk/globals.md#edgeclient)
 
-###### Overrides
+###### Overrides <a href="#overrides" id="overrides"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`constructor`](../../../supported-languages/node-sdk/globals.md#constructors)
 
-#### Properties
+#### Properties <a href="#properties" id="properties"></a>
 
 <table>
 <thead>
@@ -707,11 +707,11 @@ new EdgeClient(options: EdgeClientOptions): EdgeClient
 </tbody>
 </table>
 
-#### Accessors
+#### Accessors <a href="#accessors-1" id="accessors-1"></a>
 
-##### flagOverrides
+##### flagOverrides <a href="#flagoverrides" id="flagoverrides"></a>
 
-###### Set Signature
+###### Set Signature <a href="#set-signature" id="set-signature"></a>
 
 ```ts
 set flagOverrides(overrides:
@@ -719,11 +719,11 @@ set flagOverrides(overrides:
   | FlagOverridesFn): void
 ```
 
-###### Deprecated
+###### Deprecated <a href="#deprecated" id="deprecated"></a>
 
 Use setFlagOverrides.
 
-###### Parameters
+###### Parameters <a href="#parameters-9" id="parameters-9"></a>
 
 <table>
 <thead>
@@ -748,23 +748,23 @@ Use setFlagOverrides.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-16" id="returns-16"></a>
 
 `void`
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from" id="inherited-from"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`flagOverrides`](../../../supported-languages/node-sdk/globals.md#flagoverrides)
 
-#### Methods
+#### Methods <a href="#methods-1" id="methods-1"></a>
 
-##### bindClient()
+##### bindClient() <a href="#bindclient-1" id="bindclient-1"></a>
 
 ```ts
 bindClient(options: ContextWithTracking): BoundReflagClient
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-10" id="parameters-10"></a>
 
 <table>
 <thead>
@@ -789,59 +789,59 @@ bindClient(options: ContextWithTracking): BoundReflagClient
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-17" id="returns-17"></a>
 
 [`BoundReflagClient`](../../../supported-languages/node-sdk/globals.md#boundreflagclient)
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-1" id="inherited-from-1"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`bindClient`](../../../supported-languages/node-sdk/globals.md#bindclient)
 
-##### clearFlagOverrides()
+##### clearFlagOverrides() <a href="#clearflagoverrides" id="clearflagoverrides"></a>
 
 ```ts
 clearFlagOverrides(): void
 ```
 
-###### Returns
+###### Returns <a href="#returns-18" id="returns-18"></a>
 
 `void`
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-2" id="inherited-from-2"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`clearFlagOverrides`](../../../supported-languages/node-sdk/globals.md#clearflagoverrides)
 
-##### destroy()
+##### destroy() <a href="#destroy" id="destroy"></a>
 
 ```ts
 destroy(): void
 ```
 
-###### Returns
+###### Returns <a href="#returns-19" id="returns-19"></a>
 
 `void`
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-3" id="inherited-from-3"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`destroy`](../../../supported-languages/node-sdk/globals.md#destroy)
 
-##### flush()
+##### flush() <a href="#flush-1" id="flush-1"></a>
 
 ```ts
 flush(): Promise<void>
 ```
 
-###### Returns
+###### Returns <a href="#returns-20" id="returns-20"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-4" id="inherited-from-4"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`flush`](../../../supported-languages/node-sdk/globals.md#flush)
 
-##### getFlag()
+##### getFlag() <a href="#getflag-1" id="getflag-1"></a>
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-4" id="call-signature-4"></a>
 
 ```ts
 getFlag<Key>(
@@ -852,7 +852,7 @@ getFlag<Key>(
 
 Read a Boolean with an implicit false default, or supply an explicit value default.
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-4" id="type-parameters-4"></a>
 
 <table>
 <thead>
@@ -871,7 +871,7 @@ Read a Boolean with an implicit false default, or supply an explicit value defau
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-11" id="parameters-11"></a>
 
 <table>
 <thead>
@@ -920,15 +920,15 @@ Read a Boolean with an implicit false default, or supply an explicit value defau
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-21" id="returns-21"></a>
 
 `boolean`
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-5" id="inherited-from-5"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`getFlag`](../../../supported-languages/node-sdk/globals.md#getflag)
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-5" id="call-signature-5"></a>
 
 ```ts
 getFlag<Key, Default>(
@@ -939,7 +939,7 @@ defaultValue: Default): FlagValueFromDefault<Default>
 
 Read a Boolean with an implicit false default, or supply an explicit value default.
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-5" id="type-parameters-5"></a>
 
 <table>
 <thead>
@@ -965,7 +965,7 @@ Read a Boolean with an implicit false default, or supply an explicit value defau
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-12" id="parameters-12"></a>
 
 <table>
 <thead>
@@ -1014,15 +1014,15 @@ Read a Boolean with an implicit false default, or supply an explicit value defau
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-22" id="returns-22"></a>
 
 [`FlagValueFromDefault`](../../../supported-languages/node-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-6" id="inherited-from-6"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`getFlag`](../../../supported-languages/node-sdk/globals.md#getflag)
 
-##### getFlagDefinitions()
+##### getFlagDefinitions() <a href="#getflagdefinitions" id="getflagdefinitions"></a>
 
 ```ts
 getFlagDefinitions(): FlagCollection
@@ -1030,17 +1030,17 @@ getFlagDefinitions(): FlagCollection
 
 Complete definitions, including segments needed for offline evaluation.
 
-###### Returns
+###### Returns <a href="#returns-23" id="returns-23"></a>
 
 [`FlagCollection`](../../../supported-languages/node-sdk/globals.md#flagcollection)
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-7" id="inherited-from-7"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`getFlagDefinitions`](../../../supported-languages/node-sdk/globals.md#getflagdefinitions)
 
-##### getFlagRemote()
+##### getFlagRemote() <a href="#getflagremote-1" id="getflagremote-1"></a>
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-6" id="call-signature-6"></a>
 
 ```ts
 getFlagRemote<Key>(
@@ -1051,7 +1051,7 @@ getFlagRemote<Key>(
 context?: ContextWithTracking): Promise<boolean>
 ```
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-6" id="type-parameters-6"></a>
 
 <table>
 <thead>
@@ -1070,7 +1070,7 @@ context?: ContextWithTracking): Promise<boolean>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-13" id="parameters-13"></a>
 
 <table>
 <thead>
@@ -1143,15 +1143,15 @@ context?: ContextWithTracking): Promise<boolean>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-24" id="returns-24"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`boolean`\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-8" id="inherited-from-8"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`getFlagRemote`](../../../supported-languages/node-sdk/globals.md#getflagremote)
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-7" id="call-signature-7"></a>
 
 ```ts
 getFlagRemote<Key, Default>(
@@ -1162,7 +1162,7 @@ getFlagRemote<Key, Default>(
 context?: ContextWithTracking): Promise<FlagValueFromDefault<Default>>
 ```
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-7" id="type-parameters-7"></a>
 
 <table>
 <thead>
@@ -1188,7 +1188,7 @@ context?: ContextWithTracking): Promise<FlagValueFromDefault<Default>>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-14" id="parameters-14"></a>
 
 <table>
 <thead>
@@ -1261,15 +1261,15 @@ context?: ContextWithTracking): Promise<FlagValueFromDefault<Default>>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-25" id="returns-25"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FlagValueFromDefault`](../../../supported-languages/node-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-9" id="inherited-from-9"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`getFlagRemote`](../../../supported-languages/node-sdk/globals.md#getflagremote)
 
-##### getFlags()
+##### getFlags() <a href="#getflags-1" id="getflags-1"></a>
 
 ```ts
 getFlags(options: ContextWithTracking): Record<string, undefined | FlagValue>
@@ -1277,7 +1277,7 @@ getFlags(options: ContextWithTracking): Record<string, undefined | FlagValue>
 
 Return all values and immediately register checks for the returned roots.
 
-###### Parameters
+###### Parameters <a href="#parameters-15" id="parameters-15"></a>
 
 <table>
 <thead>
@@ -1302,15 +1302,15 @@ Return all values and immediately register checks for the returned roots.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-26" id="returns-26"></a>
 
 [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](../../../supported-languages/node-sdk/globals.md#flagvalue)\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-10" id="inherited-from-10"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`getFlags`](../../../supported-languages/node-sdk/globals.md#getflags)
 
-##### getFlagsForBootstrap()
+##### getFlagsForBootstrap() <a href="#getflagsforbootstrap-1" id="getflagsforbootstrap-1"></a>
 
 ```ts
 getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
@@ -1318,7 +1318,7 @@ getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
 
 Serialization is not a read by the browser; it must not emit check events.
 
-###### Parameters
+###### Parameters <a href="#parameters-16" id="parameters-16"></a>
 
 <table>
 <thead>
@@ -1343,15 +1343,15 @@ Serialization is not a read by the browser; it must not emit check events.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-27" id="returns-27"></a>
 
 [`BootstrappedFlags`](../../../supported-languages/node-sdk/globals.md#bootstrappedflags)
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-11" id="inherited-from-11"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`getFlagsForBootstrap`](../../../supported-languages/node-sdk/globals.md#getflagsforbootstrap)
 
-##### getFlagsRemote()
+##### getFlagsRemote() <a href="#getflagsremote-1" id="getflagsremote-1"></a>
 
 ```ts
 getFlagsRemote(
@@ -1360,7 +1360,7 @@ getFlagsRemote(
 context?: ContextWithTracking): Promise<Record<string, undefined | FlagValue>>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-17" id="parameters-17"></a>
 
 <table>
 <thead>
@@ -1409,29 +1409,29 @@ context?: ContextWithTracking): Promise<Record<string, undefined | FlagValue>>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-28" id="returns-28"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](../../../supported-languages/node-sdk/globals.md#flagvalue)\>\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-12" id="inherited-from-12"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`getFlagsRemote`](../../../supported-languages/node-sdk/globals.md#getflagsremote)
 
-##### initialize()
+##### initialize() <a href="#initialize" id="initialize"></a>
 
 ```ts
 initialize(): Promise<void>
 ```
 
-###### Returns
+###### Returns <a href="#returns-29" id="returns-29"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-13" id="inherited-from-13"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`initialize`](../../../supported-languages/node-sdk/globals.md#initialize)
 
-##### pushFlagOverrides()
+##### pushFlagOverrides() <a href="#pushflagoverrides" id="pushflagoverrides"></a>
 
 ```ts
 pushFlagOverrides(overrides:
@@ -1439,7 +1439,7 @@ pushFlagOverrides(overrides:
   | FlagOverridesFn): () => void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-18" id="parameters-18"></a>
 
 <table>
 <thead>
@@ -1464,25 +1464,25 @@ pushFlagOverrides(overrides:
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-30" id="returns-30"></a>
 
 `Function`
 
-###### Returns
+###### Returns <a href="#returns-31" id="returns-31"></a>
 
 `void`
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-14" id="inherited-from-14"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`pushFlagOverrides`](../../../supported-languages/node-sdk/globals.md#pushflagoverrides)
 
-##### refreshFlags()
+##### refreshFlags() <a href="#refreshflags-1" id="refreshflags-1"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-19" id="parameters-19"></a>
 
 <table>
 <thead>
@@ -1507,15 +1507,15 @@ refreshFlags(waitForVersion?: number): Promise<void>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-32" id="returns-32"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-15" id="inherited-from-15"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`refreshFlags`](../../../supported-languages/node-sdk/globals.md#refreshflags)
 
-##### setFlagOverrides()
+##### setFlagOverrides() <a href="#setflagoverrides" id="setflagoverrides"></a>
 
 ```ts
 setFlagOverrides(overrides:
@@ -1523,7 +1523,7 @@ setFlagOverrides(overrides:
   | FlagOverridesFn): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-20" id="parameters-20"></a>
 
 <table>
 <thead>
@@ -1548,15 +1548,15 @@ setFlagOverrides(overrides:
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-33" id="returns-33"></a>
 
 `void`
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-16" id="inherited-from-16"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`setFlagOverrides`](../../../supported-languages/node-sdk/globals.md#setflagoverrides)
 
-##### track()
+##### track() <a href="#track-1" id="track-1"></a>
 
 ```ts
 track(
@@ -1567,7 +1567,7 @@ track(
 }): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-21" id="parameters-21"></a>
 
 <table>
 <thead>
@@ -1616,15 +1616,15 @@ track(
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-34" id="returns-34"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-17" id="inherited-from-17"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`track`](../../../supported-languages/node-sdk/globals.md#track)
 
-##### updateCompany()
+##### updateCompany() <a href="#updatecompany" id="updatecompany"></a>
 
 ```ts
 updateCompany(companyId: IdType, options?: TrackOptions & {
@@ -1632,7 +1632,7 @@ updateCompany(companyId: IdType, options?: TrackOptions & {
 }): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-22" id="parameters-22"></a>
 
 <table>
 <thead>
@@ -1669,21 +1669,21 @@ updateCompany(companyId: IdType, options?: TrackOptions & {
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-35" id="returns-35"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-18" id="inherited-from-18"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`updateCompany`](../../../supported-languages/node-sdk/globals.md#updatecompany)
 
-##### updateUser()
+##### updateUser() <a href="#updateuser" id="updateuser"></a>
 
 ```ts
 updateUser(userId: IdType, options?: TrackOptions): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-23" id="parameters-23"></a>
 
 <table>
 <thead>
@@ -1720,33 +1720,33 @@ updateUser(userId: IdType, options?: TrackOptions): Promise<void>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-36" id="returns-36"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from-19" id="inherited-from-19"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient).[`updateUser`](../../../supported-languages/node-sdk/globals.md#updateuser)
 
 ***
 
-### ReflagClient
+### ReflagClient <a href="#reflagclient" id="reflagclient"></a>
 
 V2 client: flag reads return values and immediately register checks.
 
-#### Extended by
+#### Extended by <a href="#extended-by" id="extended-by"></a>
 
 - [`EdgeClient`](../../../supported-languages/node-sdk/globals.md#edgeclient)
 
-#### Constructors
+#### Constructors <a href="#constructors-2" id="constructors-2"></a>
 
-##### new ReflagClient()
+##### new ReflagClient() <a href="#new-reflagclient" id="new-reflagclient"></a>
 
 ```ts
 new ReflagClient(options: ClientOptions): ReflagClient
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-24" id="parameters-24"></a>
 
 <table>
 <thead>
@@ -1771,11 +1771,11 @@ new ReflagClient(options: ClientOptions): ReflagClient
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-37" id="returns-37"></a>
 
 [`ReflagClient`](../../../supported-languages/node-sdk/globals.md#reflagclient)
 
-#### Properties
+#### Properties <a href="#properties-1" id="properties-1"></a>
 
 <table>
 <thead>
@@ -1823,11 +1823,11 @@ new ReflagClient(options: ClientOptions): ReflagClient
 </tbody>
 </table>
 
-#### Accessors
+#### Accessors <a href="#accessors-2" id="accessors-2"></a>
 
-##### flagOverrides
+##### flagOverrides <a href="#flagoverrides-1" id="flagoverrides-1"></a>
 
-###### Set Signature
+###### Set Signature <a href="#set-signature-1" id="set-signature-1"></a>
 
 ```ts
 set flagOverrides(overrides:
@@ -1835,11 +1835,11 @@ set flagOverrides(overrides:
   | FlagOverridesFn): void
 ```
 
-###### Deprecated
+###### Deprecated <a href="#deprecated-1" id="deprecated-1"></a>
 
 Use setFlagOverrides.
 
-###### Parameters
+###### Parameters <a href="#parameters-25" id="parameters-25"></a>
 
 <table>
 <thead>
@@ -1864,19 +1864,19 @@ Use setFlagOverrides.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-38" id="returns-38"></a>
 
 `void`
 
-#### Methods
+#### Methods <a href="#methods-2" id="methods-2"></a>
 
-##### bindClient()
+##### bindClient() <a href="#bindclient-2" id="bindclient-2"></a>
 
 ```ts
 bindClient(options: ContextWithTracking): BoundReflagClient
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-26" id="parameters-26"></a>
 
 <table>
 <thead>
@@ -1901,43 +1901,43 @@ bindClient(options: ContextWithTracking): BoundReflagClient
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-39" id="returns-39"></a>
 
 [`BoundReflagClient`](../../../supported-languages/node-sdk/globals.md#boundreflagclient)
 
-##### clearFlagOverrides()
+##### clearFlagOverrides() <a href="#clearflagoverrides-1" id="clearflagoverrides-1"></a>
 
 ```ts
 clearFlagOverrides(): void
 ```
 
-###### Returns
+###### Returns <a href="#returns-40" id="returns-40"></a>
 
 `void`
 
-##### destroy()
+##### destroy() <a href="#destroy-1" id="destroy-1"></a>
 
 ```ts
 destroy(): void
 ```
 
-###### Returns
+###### Returns <a href="#returns-41" id="returns-41"></a>
 
 `void`
 
-##### flush()
+##### flush() <a href="#flush-2" id="flush-2"></a>
 
 ```ts
 flush(): Promise<void>
 ```
 
-###### Returns
+###### Returns <a href="#returns-42" id="returns-42"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### getFlag()
+##### getFlag() <a href="#getflag-2" id="getflag-2"></a>
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-8" id="call-signature-8"></a>
 
 ```ts
 getFlag<Key>(
@@ -1948,7 +1948,7 @@ getFlag<Key>(
 
 Read a Boolean with an implicit false default, or supply an explicit value default.
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-8" id="type-parameters-8"></a>
 
 <table>
 <thead>
@@ -1967,7 +1967,7 @@ Read a Boolean with an implicit false default, or supply an explicit value defau
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-27" id="parameters-27"></a>
 
 <table>
 <thead>
@@ -2016,11 +2016,11 @@ Read a Boolean with an implicit false default, or supply an explicit value defau
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-43" id="returns-43"></a>
 
 `boolean`
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-9" id="call-signature-9"></a>
 
 ```ts
 getFlag<Key, Default>(
@@ -2031,7 +2031,7 @@ defaultValue: Default): FlagValueFromDefault<Default>
 
 Read a Boolean with an implicit false default, or supply an explicit value default.
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-9" id="type-parameters-9"></a>
 
 <table>
 <thead>
@@ -2057,7 +2057,7 @@ Read a Boolean with an implicit false default, or supply an explicit value defau
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-28" id="parameters-28"></a>
 
 <table>
 <thead>
@@ -2106,11 +2106,11 @@ Read a Boolean with an implicit false default, or supply an explicit value defau
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-44" id="returns-44"></a>
 
 [`FlagValueFromDefault`](../../../supported-languages/node-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-##### getFlagDefinitions()
+##### getFlagDefinitions() <a href="#getflagdefinitions-1" id="getflagdefinitions-1"></a>
 
 ```ts
 getFlagDefinitions(): FlagCollection
@@ -2118,13 +2118,13 @@ getFlagDefinitions(): FlagCollection
 
 Complete definitions, including segments needed for offline evaluation.
 
-###### Returns
+###### Returns <a href="#returns-45" id="returns-45"></a>
 
 [`FlagCollection`](../../../supported-languages/node-sdk/globals.md#flagcollection)
 
-##### getFlagRemote()
+##### getFlagRemote() <a href="#getflagremote-2" id="getflagremote-2"></a>
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-10" id="call-signature-10"></a>
 
 ```ts
 getFlagRemote<Key>(
@@ -2135,7 +2135,7 @@ getFlagRemote<Key>(
 context?: ContextWithTracking): Promise<boolean>
 ```
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-10" id="type-parameters-10"></a>
 
 <table>
 <thead>
@@ -2154,7 +2154,7 @@ context?: ContextWithTracking): Promise<boolean>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-29" id="parameters-29"></a>
 
 <table>
 <thead>
@@ -2227,11 +2227,11 @@ context?: ContextWithTracking): Promise<boolean>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-46" id="returns-46"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`boolean`\>
 
-###### Call Signature
+###### Call Signature <a href="#call-signature-11" id="call-signature-11"></a>
 
 ```ts
 getFlagRemote<Key, Default>(
@@ -2242,7 +2242,7 @@ getFlagRemote<Key, Default>(
 context?: ContextWithTracking): Promise<FlagValueFromDefault<Default>>
 ```
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-11" id="type-parameters-11"></a>
 
 <table>
 <thead>
@@ -2268,7 +2268,7 @@ context?: ContextWithTracking): Promise<FlagValueFromDefault<Default>>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-30" id="parameters-30"></a>
 
 <table>
 <thead>
@@ -2341,11 +2341,11 @@ context?: ContextWithTracking): Promise<FlagValueFromDefault<Default>>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-47" id="returns-47"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FlagValueFromDefault`](../../../supported-languages/node-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>\>
 
-##### getFlags()
+##### getFlags() <a href="#getflags-2" id="getflags-2"></a>
 
 ```ts
 getFlags(options: ContextWithTracking): Record<string, undefined | FlagValue>
@@ -2353,7 +2353,7 @@ getFlags(options: ContextWithTracking): Record<string, undefined | FlagValue>
 
 Return all values and immediately register checks for the returned roots.
 
-###### Parameters
+###### Parameters <a href="#parameters-31" id="parameters-31"></a>
 
 <table>
 <thead>
@@ -2378,11 +2378,11 @@ Return all values and immediately register checks for the returned roots.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-48" id="returns-48"></a>
 
 [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](../../../supported-languages/node-sdk/globals.md#flagvalue)\>
 
-##### getFlagsForBootstrap()
+##### getFlagsForBootstrap() <a href="#getflagsforbootstrap-2" id="getflagsforbootstrap-2"></a>
 
 ```ts
 getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
@@ -2390,7 +2390,7 @@ getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
 
 Serialization is not a read by the browser; it must not emit check events.
 
-###### Parameters
+###### Parameters <a href="#parameters-32" id="parameters-32"></a>
 
 <table>
 <thead>
@@ -2415,11 +2415,11 @@ Serialization is not a read by the browser; it must not emit check events.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-49" id="returns-49"></a>
 
 [`BootstrappedFlags`](../../../supported-languages/node-sdk/globals.md#bootstrappedflags)
 
-##### getFlagsRemote()
+##### getFlagsRemote() <a href="#getflagsremote-2" id="getflagsremote-2"></a>
 
 ```ts
 getFlagsRemote(
@@ -2428,7 +2428,7 @@ getFlagsRemote(
 context?: ContextWithTracking): Promise<Record<string, undefined | FlagValue>>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-33" id="parameters-33"></a>
 
 <table>
 <thead>
@@ -2477,21 +2477,21 @@ context?: ContextWithTracking): Promise<Record<string, undefined | FlagValue>>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-50" id="returns-50"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](../../../supported-languages/node-sdk/globals.md#flagvalue)\>\>
 
-##### initialize()
+##### initialize() <a href="#initialize-1" id="initialize-1"></a>
 
 ```ts
 initialize(): Promise<void>
 ```
 
-###### Returns
+###### Returns <a href="#returns-51" id="returns-51"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### pushFlagOverrides()
+##### pushFlagOverrides() <a href="#pushflagoverrides-1" id="pushflagoverrides-1"></a>
 
 ```ts
 pushFlagOverrides(overrides:
@@ -2499,7 +2499,7 @@ pushFlagOverrides(overrides:
   | FlagOverridesFn): () => void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-34" id="parameters-34"></a>
 
 <table>
 <thead>
@@ -2524,21 +2524,21 @@ pushFlagOverrides(overrides:
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-52" id="returns-52"></a>
 
 `Function`
 
-###### Returns
+###### Returns <a href="#returns-53" id="returns-53"></a>
 
 `void`
 
-##### refreshFlags()
+##### refreshFlags() <a href="#refreshflags-2" id="refreshflags-2"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-35" id="parameters-35"></a>
 
 <table>
 <thead>
@@ -2563,11 +2563,11 @@ refreshFlags(waitForVersion?: number): Promise<void>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-54" id="returns-54"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### setFlagOverrides()
+##### setFlagOverrides() <a href="#setflagoverrides-1" id="setflagoverrides-1"></a>
 
 ```ts
 setFlagOverrides(overrides:
@@ -2575,7 +2575,7 @@ setFlagOverrides(overrides:
   | FlagOverridesFn): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-36" id="parameters-36"></a>
 
 <table>
 <thead>
@@ -2600,11 +2600,11 @@ setFlagOverrides(overrides:
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-55" id="returns-55"></a>
 
 `void`
 
-##### track()
+##### track() <a href="#track-2" id="track-2"></a>
 
 ```ts
 track(
@@ -2615,7 +2615,7 @@ track(
 }): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-37" id="parameters-37"></a>
 
 <table>
 <thead>
@@ -2664,11 +2664,11 @@ track(
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-56" id="returns-56"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### updateCompany()
+##### updateCompany() <a href="#updatecompany-1" id="updatecompany-1"></a>
 
 ```ts
 updateCompany(companyId: IdType, options?: TrackOptions & {
@@ -2676,7 +2676,7 @@ updateCompany(companyId: IdType, options?: TrackOptions & {
 }): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-38" id="parameters-38"></a>
 
 <table>
 <thead>
@@ -2713,17 +2713,17 @@ updateCompany(companyId: IdType, options?: TrackOptions & {
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-57" id="returns-57"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### updateUser()
+##### updateUser() <a href="#updateuser-1" id="updateuser-1"></a>
 
 ```ts
 updateUser(userId: IdType, options?: TrackOptions): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-39" id="parameters-39"></a>
 
 <table>
 <thead>
@@ -2760,19 +2760,19 @@ updateUser(userId: IdType, options?: TrackOptions): Promise<void>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-58" id="returns-58"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-## Interfaces
+## Interfaces <a href="#interfaces" id="interfaces"></a>
 
-### ContextWithTracking
+### ContextWithTracking <a href="#contextwithtracking" id="contextwithtracking"></a>
 
-#### Extends
+#### Extends <a href="#extends-1" id="extends-1"></a>
 
 - [`Context`](../../../supported-languages/node-sdk/globals.md#context)
 
-#### Properties
+#### Properties <a href="#properties-2" id="properties-2"></a>
 
 <table>
 <thead>
@@ -2931,23 +2931,23 @@ updateUser(userId: IdType, options?: TrackOptions): Promise<void>
 
 ***
 
-### Flags
+### Flags <a href="#flags" id="flags"></a>
 
 Augment this interface with flag keys and their returned value types.
 
 ***
 
-### FlagsFallbackProvider
+### FlagsFallbackProvider <a href="#flagsfallbackprovider" id="flagsfallbackprovider"></a>
 
-#### Methods
+#### Methods <a href="#methods-3" id="methods-3"></a>
 
-##### load()
+##### load() <a href="#load" id="load"></a>
 
 ```ts
 load(context: FlagsFallbackProviderContext): Promise<undefined | FlagsFallbackSnapshot>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-40" id="parameters-40"></a>
 
 <table>
 <thead>
@@ -2972,17 +2972,17 @@ load(context: FlagsFallbackProviderContext): Promise<undefined | FlagsFallbackSn
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-59" id="returns-59"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| [`FlagsFallbackSnapshot`](../../../supported-languages/node-sdk/globals.md#flagsfallbacksnapshot)\>
 
-##### save()
+##### save() <a href="#save" id="save"></a>
 
 ```ts
 save(context: FlagsFallbackProviderContext, snapshot: FlagsFallbackSnapshot): Promise<void>
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-41" id="parameters-41"></a>
 
 <table>
 <thead>
@@ -3019,17 +3019,17 @@ save(context: FlagsFallbackProviderContext, snapshot: FlagsFallbackSnapshot): Pr
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-60" id="returns-60"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
-### HttpClient
+### HttpClient <a href="#httpclient" id="httpclient"></a>
 
-#### Methods
+#### Methods <a href="#methods-4" id="methods-4"></a>
 
-##### get()
+##### get() <a href="#get" id="get"></a>
 
 ```ts
 get<Response>(
@@ -3038,7 +3038,7 @@ get<Response>(
 timeoutMs: number): Promise<HttpClientResponse<Response>>
 ```
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-12" id="type-parameters-12"></a>
 
 <table>
 <thead>
@@ -3057,7 +3057,7 @@ timeoutMs: number): Promise<HttpClientResponse<Response>>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-42" id="parameters-42"></a>
 
 <table>
 <thead>
@@ -3106,11 +3106,11 @@ timeoutMs: number): Promise<HttpClientResponse<Response>>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-61" id="returns-61"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`HttpClientResponse`](../../../supported-languages/node-sdk/globals.md#httpclientresponseresponse)\<`Response`\>\>
 
-##### post()
+##### post() <a href="#post" id="post"></a>
 
 ```ts
 post<Body, Response>(
@@ -3119,7 +3119,7 @@ post<Body, Response>(
 body: Body): Promise<HttpClientResponse<Response>>
 ```
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-13" id="type-parameters-13"></a>
 
 <table>
 <thead>
@@ -3145,7 +3145,7 @@ body: Body): Promise<HttpClientResponse<Response>>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-43" id="parameters-43"></a>
 
 <table>
 <thead>
@@ -3194,23 +3194,23 @@ body: Body): Promise<HttpClientResponse<Response>>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-62" id="returns-62"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`HttpClientResponse`](../../../supported-languages/node-sdk/globals.md#httpclientresponseresponse)\<`Response`\>\>
 
 ***
 
-### Logger
+### Logger <a href="#logger" id="logger"></a>
 
-#### Methods
+#### Methods <a href="#methods-5" id="methods-5"></a>
 
-##### debug()
+##### debug() <a href="#debug" id="debug"></a>
 
 ```ts
 debug(message: string, data?: any): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-44" id="parameters-44"></a>
 
 <table>
 <thead>
@@ -3247,17 +3247,17 @@ debug(message: string, data?: any): void
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-63" id="returns-63"></a>
 
 `void`
 
-##### error()
+##### error() <a href="#error" id="error"></a>
 
 ```ts
 error(message: string, data?: any): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-45" id="parameters-45"></a>
 
 <table>
 <thead>
@@ -3294,17 +3294,17 @@ error(message: string, data?: any): void
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-64" id="returns-64"></a>
 
 `void`
 
-##### info()
+##### info() <a href="#info" id="info"></a>
 
 ```ts
 info(message: string, data?: any): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-46" id="parameters-46"></a>
 
 <table>
 <thead>
@@ -3341,17 +3341,17 @@ info(message: string, data?: any): void
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-65" id="returns-65"></a>
 
 `void`
 
-##### warn()
+##### warn() <a href="#warn" id="warn"></a>
 
 ```ts
 warn(message: string, data?: any): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-47" id="parameters-47"></a>
 
 <table>
 <thead>
@@ -3388,13 +3388,13 @@ warn(message: string, data?: any): void
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-66" id="returns-66"></a>
 
 `void`
 
-## Type Aliases
+## Type Aliases <a href="#type-aliases" id="type-aliases"></a>
 
-### Attributes
+### Attributes <a href="#attributes" id="attributes"></a>
 
 ```ts
 type Attributes = Record<string, any>;
@@ -3402,7 +3402,7 @@ type Attributes = Record<string, any>;
 
 ***
 
-### BatchBufferOptions\<T\>
+### BatchBufferOptions\<T\> <a href="#batchbufferoptionst" id="batchbufferoptionst"></a>
 
 ```ts
 type BatchBufferOptions<T> = {
@@ -3414,7 +3414,7 @@ type BatchBufferOptions<T> = {
 };
 ```
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-14" id="type-parameters-14"></a>
 
 <table>
 <thead>
@@ -3433,7 +3433,7 @@ type BatchBufferOptions<T> = {
 </tbody>
 </table>
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration" id="type-declaration"></a>
 
 <table>
 <thead>
@@ -3535,7 +3535,7 @@ For signals or process.exit(), await client.flush() in the application hook.
 
 ***
 
-### BootstrappedFlags
+### BootstrappedFlags <a href="#bootstrappedflags" id="bootstrappedflags"></a>
 
 ```ts
 type BootstrappedFlags = {
@@ -3546,7 +3546,7 @@ type BootstrappedFlags = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-1" id="type-declaration-1"></a>
 
 <table>
 <thead>
@@ -3609,7 +3609,7 @@ type BootstrappedFlags = {
 
 ***
 
-### CacheStrategy
+### CacheStrategy <a href="#cachestrategy" id="cachestrategy"></a>
 
 ```ts
 type CacheStrategy = "periodically-update" | "in-request";
@@ -3617,7 +3617,7 @@ type CacheStrategy = "periodically-update" | "in-request";
 
 ***
 
-### ClientOptions
+### ClientOptions <a href="#clientoptions" id="clientoptions"></a>
 
 ```ts
 type ClientOptions = {
@@ -3644,7 +3644,7 @@ type ClientOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-2" id="type-declaration-2"></a>
 
 <table>
 <thead>
@@ -3974,7 +3974,7 @@ Use apiBaseUrl.
 
 ***
 
-### Context
+### Context <a href="#context" id="context"></a>
 
 ```ts
 type Context = {
@@ -3993,7 +3993,7 @@ type Context = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-3" id="type-declaration-3"></a>
 
 <table>
 <thead>
@@ -4137,7 +4137,7 @@ type Context = {
 
 ***
 
-### EdgeClientOptions
+### EdgeClientOptions <a href="#edgeclientoptions" id="edgeclientoptions"></a>
 
 ```ts
 type EdgeClientOptions = Omit<ClientOptions, "flagsSyncMode" | "cacheStrategy" | "flushIntervalMs" | "batchOptions">;
@@ -4145,7 +4145,7 @@ type EdgeClientOptions = Omit<ClientOptions, "flagsSyncMode" | "cacheStrategy" |
 
 ***
 
-### FileFallbackProviderOptions
+### FileFallbackProviderOptions <a href="#filefallbackprovideroptions" id="filefallbackprovideroptions"></a>
 
 ```ts
 type FileFallbackProviderOptions = {
@@ -4153,7 +4153,7 @@ type FileFallbackProviderOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-4" id="type-declaration-4"></a>
 
 <table>
 <thead>
@@ -4186,7 +4186,7 @@ Directory where per-environment snapshots are stored.
 
 ***
 
-### FlagCollection
+### FlagCollection <a href="#flagcollection" id="flagcollection"></a>
 
 ```ts
 type FlagCollection = CompiledCollection<FlagValue> & {
@@ -4194,7 +4194,7 @@ type FlagCollection = CompiledCollection<FlagValue> & {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-5" id="type-declaration-5"></a>
 
 <table>
 <thead>
@@ -4221,7 +4221,7 @@ type FlagCollection = CompiledCollection<FlagValue> & {
 
 ***
 
-### FlagDefaultFor\<Registry, Key\>
+### FlagDefaultFor\<Registry, Key\> <a href="#flagdefaultforregistry-key" id="flagdefaultforregistry-key"></a>
 
 ```ts
 type FlagDefaultFor<Registry, Key> = keyof Registry extends never ? FlagDefaultValue | object : Key extends keyof Registry ? ReadonlyFlagValue<Registry[Key]> | null : never;
@@ -4229,7 +4229,7 @@ type FlagDefaultFor<Registry, Key> = keyof Registry extends never ? FlagDefaultV
 
 Registered defaults match the value schema; null explicitly requests arbitrary JSON.
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-15" id="type-parameters-15"></a>
 
 <table>
 <thead>
@@ -4257,7 +4257,7 @@ Registered defaults match the value schema; null explicitly requests arbitrary J
 
 ***
 
-### FlagDefaultValue
+### FlagDefaultValue <a href="#flagdefaultvalue" id="flagdefaultvalue"></a>
 
 ```ts
 type FlagDefaultValue =
@@ -4273,7 +4273,7 @@ JSON defaults may be readonly; returned values are independent mutable copies.
 
 ***
 
-### FlagDefinition
+### FlagDefinition <a href="#flagdefinition" id="flagdefinition"></a>
 
 ```ts
 type FlagDefinition = CompiledFlag<FlagValue>;
@@ -4281,7 +4281,7 @@ type FlagDefinition = CompiledFlag<FlagValue>;
 
 ***
 
-### FlagEvent
+### FlagEvent <a href="#flagevent" id="flagevent"></a>
 
 ```ts
 type FlagEvent = {
@@ -4305,7 +4305,7 @@ type FlagEvent = {
 
 A check records the selected variant key, never its JSON payload.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-6" id="type-declaration-6"></a>
 
 <table>
 <thead>
@@ -4482,7 +4482,7 @@ Use evalErrors and check for MISSING_CONTEXT_FIELD.
 
 ***
 
-### FlagOverrides
+### FlagOverrides <a href="#flagoverrides-2" id="flagoverrides-2"></a>
 
 ```ts
 type FlagOverrides = Partial<keyof Flags extends never ? Record<string, FlagValue> : { [Key in keyof Flags]: Flags[Key] }>;
@@ -4490,13 +4490,13 @@ type FlagOverrides = Partial<keyof Flags extends never ? Record<string, FlagValu
 
 ***
 
-### FlagOverridesFn()
+### FlagOverridesFn() <a href="#flagoverridesfn" id="flagoverridesfn"></a>
 
 ```ts
 type FlagOverridesFn = (context: Context) => FlagOverrides;
 ```
 
-#### Parameters
+#### Parameters <a href="#parameters-48" id="parameters-48"></a>
 
 <table>
 <thead>
@@ -4521,13 +4521,13 @@ type FlagOverridesFn = (context: Context) => FlagOverrides;
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-67" id="returns-67"></a>
 
 [`FlagOverrides`](../../../supported-languages/node-sdk/globals.md#flagoverrides)
 
 ***
 
-### FlagsAPIResponse
+### FlagsAPIResponse <a href="#flagsapiresponse" id="flagsapiresponse"></a>
 
 ```ts
 type FlagsAPIResponse = FlagCollection & {
@@ -4536,7 +4536,7 @@ type FlagsAPIResponse = FlagCollection & {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-7" id="type-declaration-7"></a>
 
 <table>
 <thead>
@@ -4575,7 +4575,7 @@ type FlagsAPIResponse = FlagCollection & {
 
 ***
 
-### FlagsFallbackProviderContext
+### FlagsFallbackProviderContext <a href="#flagsfallbackprovidercontext" id="flagsfallbackprovidercontext"></a>
 
 ```ts
 type FlagsFallbackProviderContext = {
@@ -4583,7 +4583,7 @@ type FlagsFallbackProviderContext = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-8" id="type-declaration-8"></a>
 
 <table>
 <thead>
@@ -4610,7 +4610,7 @@ type FlagsFallbackProviderContext = {
 
 ***
 
-### FlagsFallbackSnapshot
+### FlagsFallbackSnapshot <a href="#flagsfallbacksnapshot" id="flagsfallbacksnapshot"></a>
 
 ```ts
 type FlagsFallbackSnapshot = FlagCollection & {
@@ -4623,7 +4623,7 @@ type FlagsFallbackSnapshot = FlagCollection & {
 
 V1 snapshots cannot be evaluated by the collection evaluator.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-9" id="type-declaration-9"></a>
 
 <table>
 <thead>
@@ -4686,7 +4686,7 @@ V1 snapshots cannot be evaluated by the collection evaluator.
 
 ***
 
-### FlagsSyncMode
+### FlagsSyncMode <a href="#flagssyncmode" id="flagssyncmode"></a>
 
 ```ts
 type FlagsSyncMode = "polling" | "in-request" | "push";
@@ -4694,7 +4694,7 @@ type FlagsSyncMode = "polling" | "in-request" | "push";
 
 ***
 
-### FlagValue
+### FlagValue <a href="#flagvalue" id="flagvalue"></a>
 
 ```ts
 type FlagValue =
@@ -4708,7 +4708,7 @@ type FlagValue =
 
 ***
 
-### FlagValueFromDefault\<T\>
+### FlagValueFromDefault\<T\> <a href="#flagvaluefromdefaultt" id="flagvaluefromdefaultt"></a>
 
 ```ts
 type FlagValueFromDefault<T> = T extends null ? FlagValue : T extends boolean ? boolean : T extends number ? number : T extends string ? string : T extends readonly infer Element[] ? [Element] extends [never] ? FlagValue[] : FlagValueFromDefault<Element>[] : T extends object ? { -readonly [Key in keyof T]: FlagValueFromDefault<T[Key]> } : never;
@@ -4716,7 +4716,7 @@ type FlagValueFromDefault<T> = T extends null ? FlagValue : T extends boolean ? 
 
 Infer values from defaults, widening literals. Null explicitly requests arbitrary JSON.
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-16" id="type-parameters-16"></a>
 
 <table>
 <thead>
@@ -4737,7 +4737,7 @@ Infer values from defaults, widening literals. Null explicitly requests arbitrar
 
 ***
 
-### GCSFallbackProviderClient
+### GCSFallbackProviderClient <a href="#gcsfallbackproviderclient" id="gcsfallbackproviderclient"></a>
 
 ```ts
 type GCSFallbackProviderClient =
@@ -4747,7 +4747,7 @@ type GCSFallbackProviderClient =
 
 ***
 
-### GCSFallbackProviderOptions
+### GCSFallbackProviderOptions <a href="#gcsfallbackprovideroptions" id="gcsfallbackprovideroptions"></a>
 
 ```ts
 type GCSFallbackProviderOptions = {
@@ -4757,7 +4757,7 @@ type GCSFallbackProviderOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-10" id="type-declaration-10"></a>
 
 <table>
 <thead>
@@ -4829,7 +4829,7 @@ Prefix for generated per-environment keys.
 
 ***
 
-### GCSGoogleApisClient
+### GCSGoogleApisClient <a href="#gcsgoogleapisclient" id="gcsgoogleapisclient"></a>
 
 ```ts
 type GCSGoogleApisClient = {
@@ -4842,7 +4842,7 @@ type GCSGoogleApisClient = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-11" id="type-declaration-11"></a>
 
 <table>
 <thead>
@@ -4900,7 +4900,7 @@ type GCSGoogleApisClient = {
 
 ***
 
-### GCSLegacyClient
+### GCSLegacyClient <a href="#gcslegacyclient" id="gcslegacyclient"></a>
 
 ```ts
 type GCSLegacyClient = {
@@ -4914,7 +4914,7 @@ type GCSLegacyClient = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-12" id="type-declaration-12"></a>
 
 <table>
 <thead>
@@ -4947,7 +4947,7 @@ type GCSLegacyClient = {
 
 ***
 
-### HttpClientResponse\<Response\>
+### HttpClientResponse\<Response\> <a href="#httpclientresponseresponse" id="httpclientresponseresponse"></a>
 
 ```ts
 type HttpClientResponse<Response> = {
@@ -4958,7 +4958,7 @@ type HttpClientResponse<Response> = {
 };
 ```
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-17" id="type-parameters-17"></a>
 
 <table>
 <thead>
@@ -4977,7 +4977,7 @@ type HttpClientResponse<Response> = {
 </tbody>
 </table>
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-13" id="type-declaration-13"></a>
 
 <table>
 <thead>
@@ -5061,7 +5061,7 @@ Exact response ETag for conditional definition refreshes, when available.
 
 ***
 
-### IdType
+### IdType <a href="#idtype" id="idtype"></a>
 
 ```ts
 type IdType = string | number;
@@ -5069,7 +5069,7 @@ type IdType = string | number;
 
 ***
 
-### LogLevel
+### LogLevel <a href="#loglevel" id="loglevel"></a>
 
 ```ts
 type LogLevel = typeof LOG_LEVELS[number];
@@ -5077,7 +5077,7 @@ type LogLevel = typeof LOG_LEVELS[number];
 
 ***
 
-### RawFlag
+### RawFlag <a href="#rawflag" id="rawflag"></a>
 
 ```ts
 type RawFlag = Omit<FlagEvaluationResult<FlagValue>, "sourceVersionId" | "value" | "resolved"> & {
@@ -5087,7 +5087,7 @@ type RawFlag = Omit<FlagEvaluationResult<FlagValue>, "sourceVersionId" | "value"
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-14" id="type-declaration-14"></a>
 
 <table>
 <thead>
@@ -5138,7 +5138,7 @@ type RawFlag = Omit<FlagEvaluationResult<FlagValue>, "sourceVersionId" | "value"
 
 ***
 
-### RawFlags
+### RawFlags <a href="#rawflags" id="rawflags"></a>
 
 ```ts
 type RawFlags = Record<string, RawFlag>;
@@ -5146,7 +5146,7 @@ type RawFlags = Record<string, RawFlag>;
 
 ***
 
-### RedisFallbackProviderOptions
+### RedisFallbackProviderOptions <a href="#redisfallbackprovideroptions" id="redisfallbackprovideroptions"></a>
 
 ```ts
 type RedisFallbackProviderOptions = {
@@ -5158,7 +5158,7 @@ type RedisFallbackProviderOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-15" id="type-declaration-15"></a>
 
 <table>
 <thead>
@@ -5245,7 +5245,7 @@ Prefix for generated per-environment keys.
 
 ***
 
-### S3FallbackProviderOptions
+### S3FallbackProviderOptions <a href="#s3fallbackprovideroptions" id="s3fallbackprovideroptions"></a>
 
 ```ts
 type S3FallbackProviderOptions = {
@@ -5257,7 +5257,7 @@ type S3FallbackProviderOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-16" id="type-declaration-16"></a>
 
 <table>
 <thead>
@@ -5343,7 +5343,7 @@ Prefix for generated per-environment keys.
 
 ***
 
-### StaticFallbackProviderOptions
+### StaticFallbackProviderOptions <a href="#staticfallbackprovideroptions" id="staticfallbackprovideroptions"></a>
 
 ```ts
 type StaticFallbackProviderOptions = {
@@ -5351,7 +5351,7 @@ type StaticFallbackProviderOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-17" id="type-declaration-17"></a>
 
 <table>
 <thead>
@@ -5384,7 +5384,7 @@ Static fallback flags keyed by flag key.
 
 ***
 
-### TrackingMeta
+### TrackingMeta <a href="#trackingmeta" id="trackingmeta"></a>
 
 ```ts
 type TrackingMeta = {
@@ -5392,7 +5392,7 @@ type TrackingMeta = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-18" id="type-declaration-18"></a>
 
 <table>
 <thead>
@@ -5419,7 +5419,7 @@ type TrackingMeta = {
 
 ***
 
-### TrackOptions
+### TrackOptions <a href="#trackoptions" id="trackoptions"></a>
 
 ```ts
 type TrackOptions = {
@@ -5428,7 +5428,7 @@ type TrackOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-19" id="type-declaration-19"></a>
 
 <table>
 <thead>
@@ -5467,7 +5467,7 @@ type TrackOptions = {
 
 ***
 
-### TypedFlagKey
+### TypedFlagKey <a href="#typedflagkey" id="typedflagkey"></a>
 
 ```ts
 type TypedFlagKey = keyof Flags extends never ? string : Extract<keyof Flags, string>;
@@ -5475,15 +5475,15 @@ type TypedFlagKey = keyof Flags extends never ? string : Extract<keyof Flags, st
 
 ***
 
-### TypedFlags
+### TypedFlags <a href="#typedflags" id="typedflags"></a>
 
 ```ts
 type TypedFlags = keyof Flags extends never ? Record<string, FlagValue | undefined> : { [Key in keyof Flags]: Flags[Key] | undefined };
 ```
 
-## Variables
+## Variables <a href="#variables" id="variables"></a>
 
-### fallbackProviders
+### fallbackProviders <a href="#fallbackproviders" id="fallbackproviders"></a>
 
 ```ts
 const fallbackProviders: {
@@ -5495,7 +5495,7 @@ const fallbackProviders: {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-20" id="type-declaration-20"></a>
 
 <table>
 <thead>

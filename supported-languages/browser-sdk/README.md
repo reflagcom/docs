@@ -21,13 +21,13 @@ pagination:
 Generated from [`@reflag/browser-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/browser-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# Reflag Browser SDK v2
+# Reflag Browser SDK v2 <a href="#reflag-browser-sdk-v2" id="reflag-browser-sdk-v2"></a>
 
 Client-side feature flags and JSON values for [Reflag](https://reflag.com).
 
 > This is a breaking v2 prerelease. It requires the v2 evaluated-flags/check protocol on the server. Do not switch existing v1 applications or bootstrap consumers without coordinating that upgrade. Nothing in this branch publishes or deploys the SDK/server.
 
-## Get started
+## Get started <a href="#get-started" id="get-started"></a>
 
 ```ts
 import { ReflagClient } from "@reflag/browser-sdk";
@@ -51,7 +51,7 @@ if (enabled) {
 
 Use only a **publishable** key in a browser. Secret keys belong on your server.
 
-## Direct-value reads
+## Direct-value reads <a href="#direct-value-reads" id="direct-value-reads"></a>
 
 ```ts
 reflag.getFlag("release"); // boolean; missing/mismatched -> false
@@ -70,7 +70,7 @@ reflag.getFlag("nullable-settings", null); // FlagValue (arbitrary JSON)
 
 `getFlags()` returns a direct-value record (entries may be undefined) and registers checks for its returned roots. `getFlagResults()` returns owned evaluated diagnostics **without checks**; it is intended for tooling, not ordinary application reads. `getFlagsForBootstrap()` serializes protocol-v2 evaluated state without checks.
 
-## Checks and delivery
+## Checks and delivery <a href="#checks-and-delivery" id="checks-and-delivery"></a>
 
 Calling a getter registers a requested-root check immediately, even if its return value is ignored. There are no `.isEnabled`, `.config`, `.value` or flag `.track()` wrappers. Delivery remains buffered through `/bulk` and identity-aware rate-limited.
 
@@ -78,7 +78,7 @@ A selected check carries the authored selected key as `evalResult`, its `sourceV
 
 `enableTracking: false` disables checks and user/company/usage tracking. `offline: true` skips HTTP and tracking. `await reflag.stop()` flushes buffered events and closes the client's background transports.
 
-## Context, refresh and cache
+## Context, refresh and cache <a href="#context-refresh-and-cache" id="context-refresh-and-cache"></a>
 
 ```ts
 await reflag.updateUser({ role: "admin" });
@@ -114,7 +114,7 @@ Constructor options include:
 
 Evaluated cache and override storage use isolated v2 keys. V1 cache entries are never interpreted as v2 values. Malformed refreshes leave known-good state intact. Valid saved v2 selections retain their real provenance on restore. There is no automatic periodic HTTP fallback after an SSE failure; manual refresh/context updates remain available.
 
-## Overrides and toolbar
+## Overrides and toolbar <a href="#overrides-and-toolbar" id="overrides-and-toolbar"></a>
 
 ```ts
 reflag.setFlagOverride("release", true);
@@ -125,7 +125,7 @@ reflag.setFlagOverride("release", undefined); // clear the override
 
 Overrides apply after server evaluation and do not rewrite authored dependency results. The built-in toolbar appears on localhost by default and offers Boolean overrides only. It uses diagnostic access, so opening it does not register application checks.
 
-## Server bootstrap
+## Server bootstrap <a href="#server-bootstrap" id="server-bootstrap"></a>
 
 Generate the full payload with **Node SDK v2** on your server:
 
@@ -142,7 +142,7 @@ const enabled = reflag.getFlag("release");
 
 The payload includes `protocolVersion: 2`, context, evaluated diagnostics/selections and an optional snapshot version. V1 payloads and the old `bootstrappedFlags` option are rejected. Preserve the entire envelope; do not pass just its `flags` property. A version is required for bootstrapped live updates. Never embed secrets or server-only context in public bootstrap data. Later refreshes use browser-visible context and can differ from server-only evaluation; disable live updates when that is inappropriate.
 
-## End-user opt-in
+## End-user opt-in <a href="#end-user-opt-in" id="end-user-opt-in"></a>
 
 ```ts
 const options = reflag.getOptInFlags();
@@ -155,13 +155,13 @@ The list contains presentation/membership metadata (`key`, `name`, `description`
 
 Metadata arrives with ordinary `/flags/evaluated` responses and is cached with the evaluated snapshot. Bootstrapped clients whose snapshot lacks metadata fetch it on demand from the same v2 endpoint, without replacing server-derived values or provenance with browser-context evaluations. Loading settles on success or failure, including an empty list. Opt-in mutations confirm values and membership together in one versioned refresh. `optInFlagsLoadingUpdated` and `flagsUpdated` support UI subscriptions.
 
-## Tracking, feedback and events
+## Tracking, feedback and events <a href="#tracking-feedback-and-events" id="tracking-feedback-and-events"></a>
 
 Use `track(eventName, attributes?)`, `feedback(payload)` and `requestFeedback({ flagKey, ... })` on the client. See [FEEDBACK.md](feedback.md) for the feedback UI and prompting configuration.
 
 `on(event, handler)` returns an unsubscribe function. Events include `stateUpdated`, `flagsUpdated` (evaluated diagnostics), `check`, `track`, `user`, `company` and `optInFlagsLoadingUpdated`.
 
-## Migration from v1
+## Migration from v1 <a href="#migration-from-v1" id="migration-from-v1"></a>
 
 - Replace `getFlag(key).isEnabled` with `getFlag(key)`.
 - Replace legacy remote config access with a separately authored multivariate flag and a positional default. Legacy config is **not** automatically converted into v2 values.

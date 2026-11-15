@@ -4,7 +4,14 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { applyPlan, docsPath, planPackage, releaseFiles, webSDKs } from "./sdk-docs.mjs";
+import {
+  anchorHeadings,
+  applyPlan,
+  docsPath,
+  planPackage,
+  releaseFiles,
+  webSDKs,
+} from "./sdk-docs.mjs";
 import { anchors, checkLinks, checkSDKDocs, root, sourceMatrix } from "./check-sdk-docs.mjs";
 
 function fixture(t, major = 2) {
@@ -131,6 +138,16 @@ test("Management and CLI updates never own coordinated SDK trees", (t) => {
       ),
     );
   }
+});
+
+test("GitBook heading IDs preserve TypeDoc/generic deep links without changing code fences", () => {
+  const content =
+    "# `<ReflagProvider>` component\n## FlagValueFromDefault\\<T\\>\n## Properties\n## Properties\n```md\n# Leave code alone\n```\n";
+  const rendered = anchorHeadings(content);
+  assert.match(rendered, /id="reflagprovider-component"/);
+  assert.match(rendered, /id="flagvaluefromdefaultt"/);
+  assert.match(rendered, /id="properties-1"/);
+  assert(rendered.includes("```md\n# Leave code alone\n```"));
 });
 
 test("missing generated input fails before applying any changes", (t) => {

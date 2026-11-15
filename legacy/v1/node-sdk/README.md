@@ -19,13 +19,13 @@ pagination:
 Generated from [`@reflag/node-sdk@1.8.3`](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/node-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# Reflag Node.js SDK
+# Reflag Node.js SDK <a href="#reflag-nodejs-sdk" id="reflag-nodejs-sdk"></a>
 
 Node.js, JavaScript/TypeScript client for [Reflag.com](https://reflag.com).
 
 Reflag supports flag toggling, tracking flag usage, collecting feedback on features, and [remotely configuring flags](#remote-config).
 
-## Installation
+## Installation <a href="#installation" id="installation"></a>
 
 Install using your favorite package manager:
 
@@ -75,7 +75,7 @@ Other supported languages/frameworks are in the [Supported languages](https://do
 
 You can also [use the HTTP API directly](https://docs.reflag.com/api/http-api)
 
-## Basic usage
+## Basic usage <a href="#basic-usage" id="basic-usage"></a>
 
 To get started you need to obtain your secret key from the [environment settings](https://app.reflag.com/env-current/settings/app-environments)
 in Reflag.
@@ -157,7 +157,7 @@ const flags = boundClient.getFlags();
 const bothEnabled = flags.huddle?.isEnabled && flags.voiceHuddle?.isEnabled;
 ```
 
-## High performance flag targeting
+## High performance flag targeting <a href="#high-performance-flag-targeting" id="high-performance-flag-targeting"></a>
 
 The SDK contacts the Reflag servers when you call `initialize()`
 and downloads the flags with their targeting rules.
@@ -169,7 +169,7 @@ to `getFlags()` (or through `bindClient(..).getFlags()`). That means the
 updates. You can switch `flagsSyncMode` to `polling` for periodic background
 refreshes or `in-request` for request-driven refreshes instead.
 
-### Batch Operations
+### Batch Operations <a href="#batch-operations" id="batch-operations"></a>
 
 The SDK automatically batches operations like user/company updates and flag tracking events to minimize API calls.
 The batch buffer is configurable through the client options:
@@ -193,13 +193,13 @@ await client.flush();
 It's recommended to call `flush()` before your application shuts down to ensure all events are sent.
 {% endhint %}
 
-### Rate Limiting
+### Rate Limiting <a href="#rate-limiting" id="rate-limiting"></a>
 
 The SDK includes automatic rate limiting for flag events to prevent overwhelming the API.
 Rate limiting is applied per unique combination of flag key and evaluation context.
 This behavior is built in and does not currently require configuration.
 
-### Flag definitions
+### Flag definitions <a href="#flag-definitions" id="flag-definitions"></a>
 
 Flag definitions include the rules needed to determine which flags should be enabled and which config values should be applied to any given user/company.
 Flag definitions are automatically fetched when calling `initialize()`.
@@ -232,7 +232,7 @@ const flagDefs = await client.getFlagDefinitions();
 // }]
 ```
 
-### Fallback provider
+### Fallback provider <a href="#fallback-provider" id="fallback-provider"></a>
 
 `flagsFallbackProvider` is a reliability feature that lets the SDK persist the latest successfully fetched raw flag definitions to fallback storage such as a local file, Redis, S3, GCS, or a custom backend.
 
@@ -242,7 +242,7 @@ const flagDefs = await client.getFlagDefinitions();
 `flagsFallbackProvider` is not used in offline mode.
 {% endhint %}
 
-#### How it works
+#### How it works <a href="#how-it-works" id="how-it-works"></a>
 
 Reflag servers remain the primary source of truth. On `initialize()`, the SDK always tries to fetch a live copy of the flag definitions first, and it continues refreshing those definitions from the Reflag servers over time.
 
@@ -270,7 +270,7 @@ If you are building a web or client-side application and want the most resilient
 This applies to React (`getFlagsForBootstrap()` + `ReflagBootstrappedProvider`), React Native, the Browser SDK (`bootstrappedState`), and the Vue SDK (bootstrapped flags via the provider).
 {% endhint %}
 
-#### Built-in providers
+#### Built-in providers <a href="#built-in-providers" id="built-in-providers"></a>
 
 You can access the built-in providers through the `fallbackProviders` namespace:
 
@@ -280,7 +280,7 @@ You can access the built-in providers through the `fallbackProviders` namespace:
 - `fallbackProviders.s3(...)`
 - `fallbackProviders.gcs(...)`
 
-##### Static provider
+##### Static provider <a href="#static-provider" id="static-provider"></a>
 
 If you just want a fixed fallback copy of simple enabled/disabled flags, you can provide a static map:
 
@@ -300,7 +300,7 @@ const client = new ReflagClient({
 await client.initialize();
 ```
 
-##### File provider
+##### File provider <a href="#file-provider" id="file-provider"></a>
 
 ```typescript
 import { ReflagClient, fallbackProviders } from "@reflag/node-sdk";
@@ -319,7 +319,7 @@ The file provider stores one snapshot file per environment in the configured
 `directory`, using the filename
 `flags-fallback-<secretKeyHash.slice(0, 16)>.json`.
 
-##### Redis provider
+##### Redis provider <a href="#redis-provider" id="redis-provider"></a>
 
 The built-in Redis provider creates a Redis client automatically when omitted and uses `REDIS_URL` from the environment. It stores snapshots under the configured `keyPrefix` and appends the first 16 characters of the secret key hash to that prefix.
 
@@ -336,7 +336,7 @@ const client = new ReflagClient({
 await client.initialize();
 ```
 
-##### S3 provider
+##### S3 provider <a href="#s3-provider" id="s3-provider"></a>
 
 The built-in S3 provider works out of the box using the AWS SDK's default credential chain and region resolution. It stores the snapshot object under the configured `keyPrefix` and uses the filename `flags-fallback-<secretKeyHash.slice(0, 16)>.json`.
 
@@ -355,7 +355,7 @@ const client = new ReflagClient({
 await client.initialize();
 ```
 
-##### GCS provider
+##### GCS provider <a href="#gcs-provider" id="gcs-provider"></a>
 
 The built-in GCS provider works out of the box using Google Cloud's default application credentials. It stores the snapshot object under the configured `keyPrefix` and uses the filename `flags-fallback-<secretKeyHash.slice(0, 16)>.json`.
 
@@ -374,11 +374,11 @@ const client = new ReflagClient({
 await client.initialize();
 ```
 
-#### Testing fallback startup locally
+#### Testing fallback startup locally <a href="#testing-fallback-startup-locally" id="testing-fallback-startup-locally"></a>
 
 To test fallback startup in your own app, first run it once with a working Reflag connection so a snapshot is saved. Then restart it with the same secret key and fallback provider configuration, but set `apiBaseUrl` (or set the `REFLAG_API_BASE_URL` environment variable) to `http://127.0.0.1:65535`. That forces the live fetch to fail and lets you verify that the SDK initializes from the saved snapshot instead.
 
-#### Writing a custom provider
+#### Writing a custom provider <a href="#writing-a-custom-provider" id="writing-a-custom-provider"></a>
 
 If you just store definitions in your database or similar, a custom provider can be very small:
 
@@ -402,7 +402,7 @@ export const customFallbackProvider: FlagsFallbackProvider = {
 };
 ```
 
-## Bootstrapping client-side applications
+## Bootstrapping client-side applications <a href="#bootstrapping-client-side-applications" id="bootstrapping-client-side-applications"></a>
 
 The `getFlagsForBootstrap()` method is useful whenever you need to pass flag data to another runtime or serialize it without wrapper functions. Server-side rendering (SSR) is a common example, but it is also useful for other bootstrapping and hydration flows.
 
@@ -457,14 +457,14 @@ const boundClient = client.bindClient({
 const bootstrappedState = boundClient.getFlagsForBootstrap();
 ```
 
-### Key differences from `getFlags()`
+### Key differences from `getFlags()` <a href="#key-differences-from-getflags" id="key-differences-from-getflags"></a>
 
 - **Raw data**: Returns plain objects without `track()` functions, making them JSON serializable
 - **Context included**: Returns both the evaluated flags and the context used for evaluation
 - **Version included**: Returns `flagStateVersion` when known so bootstrapped clients can avoid redundant live-update refreshes
 - **Bootstrapping focus**: Designed specifically for passing data to client-side applications
 
-## Edge-runtimes like Cloudflare Workers
+## Edge-runtimes like Cloudflare Workers <a href="#edge-runtimes-like-cloudflare-workers" id="edge-runtimes-like-cloudflare-workers"></a>
 
 To use the Reflag NodeSDK with Cloudflare workers, set the `node_compat` flag [in your wrangler file](https://developers.cloudflare.com/workers/runtime-apis/nodejs/#get-started).
 
@@ -505,7 +505,7 @@ The SDK caches flag definitions in memory for fast performance. The first reques
 
 `EdgeClient` uses `flagsSyncMode: "in-request"`. Refresh fetch starts are throttled to at most once per second, and Cloudflare Workers cannot rely on delayed timer callbacks to run follow-up refreshes later. That means `refreshFlags()` calls made during the throttle window only mark a refresh as pending, so the call itself may resolve before the fetch runs. The queued refresh runs on the next request/access or `refreshFlags()` call after the throttle window expires.
 
-## Error Handling
+## Error Handling <a href="#error-handling" id="error-handling"></a>
 
 The SDK is designed to fail gracefully and never throw exceptions to the caller. Instead, it logs errors and provides
 fallback behavior:
@@ -569,7 +569,7 @@ const client = new ReflagClient({
 });
 ```
 
-## Remote config
+## Remote config <a href="#remote-config" id="remote-config"></a>
 
 Remote config is a dynamic and flexible approach to configuring flag behavior outside of your app – without needing to re-deploy it.
 
@@ -596,7 +596,7 @@ const flags = reflagClient.getFlags();
 Just as `isEnabled`, accessing `config` on the object returned by `getFlags` does not automatically
 generate a `check` event, contrary to the `config` property on the object returned by `getFlag`.
 
-## Configuring
+## Configuring <a href="#configuring" id="configuring"></a>
 
 The Reflag `Node.js` SDK can be configured through environment variables,
 a configuration file on disk or by passing options to the `ReflagClient`
@@ -653,7 +653,7 @@ order of importance:
 2. Environment variable,
 3. The config file.
 
-## Type safe flags
+## Type safe flags <a href="#type-safe-flags" id="type-safe-flags"></a>
 
 To get type checked flags, install the Reflag CLI:
 
@@ -705,7 +705,7 @@ reflagClient.initialize().then(() => {
 
 ![Config type check failed](../_media/type-check-payload-failed.png "Remote config type check failed")
 
-## Testing with flag overrides
+## Testing with flag overrides <a href="#testing-with-flag-overrides" id="testing-with-flag-overrides"></a>
 
 When writing tests that cover code with flags, you can toggle flags on/off programmatically to test different behavior. For tests, you will often want to run the client in offline mode:
 
@@ -721,7 +721,7 @@ export const reflag = new ReflagClient({
 
 There are a few ways to programmatically manipulate the overrides which are appropriate when testing:
 
-### Base overrides
+### Base overrides <a href="#base-overrides" id="base-overrides"></a>
 
 You can set base overrides for a test run by passing `flagOverrides` in the constructor, replacing them later with `setFlagOverrides()` and clearing them with `clearFlagOverrides()`:
 
@@ -762,7 +762,7 @@ describe("API Tests", () => {
 });
 ```
 
-### Layering overrides
+### Layering overrides <a href="#layering-overrides" id="layering-overrides"></a>
 
 `pushFlagOverrides()` serves a different purpose: it adds a temporary layer on top of the base overrides and returns a remove function that removes only that layer. This is useful for nested tests:
 
@@ -800,7 +800,7 @@ The precedence is:
 
 If the same flag is set in both places, the pushed override wins until its remove function is called.
 
-### Context dependent overrides
+### Context dependent overrides <a href="#context-dependent-overrides" id="context-dependent-overrides"></a>
 
 `setFlagOverrides()` and `pushFlagOverrides()` also accept a function if the override depends on the evaluation context:
 
@@ -814,7 +814,7 @@ const remove = client.pushFlagOverrides((context) => ({
 remove();
 ```
 
-### Additional ways to provide flag overrides
+### Additional ways to provide flag overrides <a href="#additional-ways-to-provide-flag-overrides" id="additional-ways-to-provide-flag-overrides"></a>
 
 You also have these additional ways to provide overrides, which can be helpful when testing out locally:
 
@@ -844,7 +844,7 @@ REFLAG_FLAGS_DISABLED=flag3,flag4
 }
 ```
 
-## Remote Flag Evaluation
+## Remote Flag Evaluation <a href="#remote-flag-evaluation" id="remote-flag-evaluation"></a>
 
 In addition to local flag evaluation, Reflag supports remote evaluation using stored context. This is useful when you want to evaluate flags using user/company attributes that were previously sent to Reflag:
 
@@ -888,7 +888,7 @@ Remote evaluation is particularly useful when:
 - You don't want to pass all context attributes with every evaluation
 - You need to ensure consistent flag evaluation across different services
 
-## Using with Express
+## Using with Express <a href="#using-with-express" id="using-with-express"></a>
 
 A popular way to integrate the Reflag Node.js SDK is through an express middleware.
 
@@ -951,7 +951,7 @@ app.get("/todos", async (_req, res) => {
 
 See [examples/express/app.ts](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/node-sdk/example/express/app.ts) for a full example.
 
-## Remote flag evaluation with stored context
+## Remote flag evaluation with stored context <a href="#remote-flag-evaluation-with-stored-context" id="remote-flag-evaluation-with-stored-context"></a>
 
 If you don't want to provide context each time when evaluating flags but
 rather you would like to utilize the attributes you sent to Reflag previously
@@ -988,7 +988,7 @@ be a small delay between when attributes are updated and when they are available
 for evaluation.
 {% endhint %}
 
-## Opting out of tracking
+## Opting out of tracking <a href="#opting-out-of-tracking" id="opting-out-of-tracking"></a>
 
 There are use cases in which you not want to be sending `user`, `company` and
 `track` events to [Reflag.com](https://reflag.com). These are usually cases where you could be impersonating
@@ -1021,7 +1021,7 @@ will still send tracking data. As such, it is always recommended to use `bindCli
 when using this SDK.
 {% endhint %}
 
-## Flushing
+## Flushing <a href="#flushing" id="flushing"></a>
 
 ReflagClient employs a batching technique to minimize the number of calls that are sent to
 Reflag's servers.
@@ -1044,7 +1044,7 @@ waiting for in-flight requests or jobs to finish, and before exiting. This ensur
 produced during shutdown are included. Automatic flushing is best-effort and does not replace
 an application-managed shutdown hook.
 
-## Tracking custom events and setting custom attributes
+## Tracking custom events and setting custom attributes <a href="#tracking-custom-events-and-setting-custom-attributes" id="tracking-custom-events-and-setting-custom-attributes"></a>
 
 Tracking allows events and updating user/company attributes in Reflag.
 For example, if a customer changes their plan, you'll want Reflag to know about it,
@@ -1086,7 +1086,7 @@ to provide for easier navigation:
 Attributes cannot be nested (multiple levels) and must be either strings,
 integers or booleans.
 
-## Managing `Last seen`
+## Managing `Last seen` <a href="#managing-last-seen" id="managing-last-seen"></a>
 
 By default `updateUser`/`updateCompany` calls automatically update the given
 user/company `Last seen` property on Reflag servers.
@@ -1113,7 +1113,7 @@ client.updateCompany("acme_inc", {
 `bindClient()` updates attributes on the Reflag servers but does not automatically
 update `Last seen`.
 
-## Zero PII
+## Zero PII <a href="#zero-pii" id="zero-pii"></a>
 
 The Reflag SDK doesn't collect any metadata and HTTP IP addresses are _not_ being
 stored. For tracking individual users, we recommend using something like database
@@ -1128,7 +1128,7 @@ import { sha256 } from 'crypto-hash';
 client.updateUser({ userId: await sha256("john_doe"), ... });
 ```
 
-## Migrating from Bucket SDK
+## Migrating from Bucket SDK <a href="#migrating-from-bucket-sdk" id="migrating-from-bucket-sdk"></a>
 
 If you have been using the Bucket SDKs previously, the following list will help you migrate to Reflag SDK:
 
@@ -1144,12 +1144,12 @@ If you have been using the Bucket SDKs previously, the following list will help 
 - `featureKey` has been renamed to `flagKey` in all methods that accepts that argument
 - The SDKs will not emit `evaluate` and `evaluate-config` events anymore
 
-## Typescript
+## Typescript <a href="#typescript" id="typescript"></a>
 
 Types are bundled together with the library and exposed automatically when importing
 through a package manager.
 
-## License
+## License <a href="#license" id="license"></a>
 
 > MIT License
 > Copyright (c) 2025 Bucket ApS

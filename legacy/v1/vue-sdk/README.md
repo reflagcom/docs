@@ -19,7 +19,7 @@ pagination:
 Generated from [`@reflag/vue-sdk@1.5.7`](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/vue-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# Reflag Vue SDK
+# Reflag Vue SDK <a href="#reflag-vue-sdk" id="reflag-vue-sdk"></a>
 
 Vue client side library for [Reflag.com](https://reflag.com)
 
@@ -27,7 +27,7 @@ Reflag supports flag toggling, tracking flag usage, requesting feedback on featu
 
 The Reflag Vue SDK comes with the same built-in toolbar as the browser SDK which appears on `localhost` by default.
 
-## Install
+## Install <a href="#install" id="install"></a>
 
 Install via npm:
 
@@ -35,7 +35,7 @@ Install via npm:
 npm i @reflag/vue-sdk@1
 ```
 
-## Migrating from Bucket SDK
+## Migrating from Bucket SDK <a href="#migrating-from-bucket-sdk" id="migrating-from-bucket-sdk"></a>
 
 If you have been using the Bucket SDKs, the following list will help you migrate to Reflag SDK:
 
@@ -61,9 +61,9 @@ If you are running with strict Content Security Policies active on your website,
 
 Finally, if you have customized the look & feel of the Feedback component, update `--bucket-feedback-*` CSS classes to `--reflag-feedback-*`
 
-## Get started
+## Get started <a href="#get-started" id="get-started"></a>
 
-### 1. Add the `ReflagProvider` context provider
+### 1. Add the `ReflagProvider` context provider <a href="#1-add-the-reflagprovider-context-provider" id="1-add-the-reflagprovider-context-provider"></a>
 
 Add the `ReflagProvider` context provider to your application:
 
@@ -87,7 +87,7 @@ import { ReflagProvider } from "@reflag/vue-sdk";
 
 If using Nuxt, wrap `<ReflagProvider>` in `<ClientOnly>`. `<ReflagProvider>` only renders client-side currently.
 
-### 2. Use `useFlag get flag status
+### 2. Use `useFlag get flag status <a href="#2-use-useflag-get-flag-status" id="2-use-useflag-get-flag-status"></a>
 
 ```vue
 <script setup lang="ts">
@@ -105,12 +105,12 @@ const { isEnabled } = useFlag("huddles");
 
 See [useFlag()](#useflag) for a full example
 
-## Setting context
+## Setting context <a href="#setting-context" id="setting-context"></a>
 
 Reflag determines which flags are active for a given `user`, `company`, or `other` context.
 You can pass these to the `ReflagProvider` using the `context` prop.
 
-### Using the `context` prop
+### Using the `context` prop <a href="#using-the-context-prop" id="using-the-context-prop"></a>
 
 ```vue
 <ReflagProvider
@@ -125,7 +125,7 @@ You can pass these to the `ReflagProvider` using the `context` prop.
 </ReflagProvider>
 ```
 
-### Legacy individual props (deprecated)
+### Legacy individual props (deprecated) <a href="#legacy-individual-props-deprecated" id="legacy-individual-props-deprecated"></a>
 
 For backward compatibility, you can still use individual props, but these are deprecated and will be removed in the next major version:
 
@@ -143,7 +143,7 @@ For backward compatibility, you can still use individual props, but these are de
 > [!Important]
 > The `user`, `company`, and `otherContext` props are deprecated. Use the `context` prop instead, which provides the same functionality in a more structured way.
 
-### Context requirements
+### Context requirements <a href="#context-requirements" id="context-requirements"></a>
 
 If you supply `user` or `company` objects, they must include at least the `id` property otherwise they will be ignored in their entirety.
 In addition to the `id`, you must also supply anything additional that you want to be able to evaluate flag targeting rules against.
@@ -161,14 +161,14 @@ To retrieve flags along with their targeting information, use `useFlag(key: stri
 Note that accessing `isEnabled` on the object returned by `useFlag()` automatically
 generates a `check` event.
 
-## Remote config
+## Remote config <a href="#remote-config" id="remote-config"></a>
 
 Remote config is a dynamic and flexible approach to configuring flag behavior outside of your app – without needing to re-deploy it.
 
 Similar to `isEnabled`, each flag accessed using the `useFlag()` hook, has a `config` property. This configuration is managed from within Reflag. It is managed similar to the way access to flags is managed, but instead of the
 binary `isEnabled` you can have multiple configuration values which are given to different user/companies.
 
-### Get started with Remote config
+### Get started with Remote config <a href="#get-started-with-remote-config" id="get-started-with-remote-config"></a>
 
 ```ts
 const {
@@ -186,7 +186,7 @@ const {
 Note that, similar to `isEnabled`, accessing `config` on the object returned by `useFlag()` automatically
 generates a `check` event.
 
-## `<ReflagProvider>` component
+## `<ReflagProvider>` component <a href="#reflagprovider-component" id="reflagprovider-component"></a>
 
 The `<ReflagProvider>` initializes the Reflag SDK, fetches flags and starts listening for automated feedback survey events. The component can be configured using a number of props:
 
@@ -212,7 +212,7 @@ The `<ReflagProvider>` initializes the Reflag SDK, fetches flags and starts list
 - `toolbar`: Optional [configuration](../browser-sdk/globals.md#toolbaroptions) for the Reflag toolbar,
 - `feedback`: Optional configuration for feedback collection
 
-### Loading states
+### Loading states <a href="#loading-states" id="loading-states"></a>
 
 ReflagProvider lets you define a template to be shown while ReflagProvider is initializing:
 
@@ -231,11 +231,11 @@ ReflagProvider lets you define a template to be shown while ReflagProvider is in
 
 If you want more control over loading screens, `useIsLoading()` returns a `Ref<boolean>` which you can use to customize the loading experience.
 
-## `<ReflagBootstrappedProvider>` component
+## `<ReflagBootstrappedProvider>` component <a href="#reflagbootstrappedprovider-component" id="reflagbootstrappedprovider-component"></a>
 
 The `<ReflagBootstrappedProvider>` component is a specialized version of `ReflagProvider` designed for server-side rendering and preloaded flag scenarios. It uses pre-fetched flags for the initial render, resulting in faster initial page loads and better SSR compatibility.
 
-### Usage
+### Usage <a href="#usage" id="usage"></a>
 
 ```vue
 <script setup lang="ts">
@@ -270,7 +270,7 @@ const bootstrappedFlags = {
 </template>
 ```
 
-### Getting bootstrapped flags
+### Getting bootstrapped flags <a href="#getting-bootstrapped-flags" id="getting-bootstrapped-flags"></a>
 
 You'll typically generate the `bootstrappedFlags` object on your server using the Node.js SDK or by fetching from the Reflag API. Pass the full object returned by `getFlagsForBootstrap()` directly to `<ReflagBootstrappedProvider>`. It contains:
 
@@ -304,7 +304,7 @@ const bootstrappedFlags = client.getFlagsForBootstrap(context);
 // Pass to your Vue app
 ```
 
-### ReflagBootstrappedProvider Props
+### ReflagBootstrappedProvider Props <a href="#reflagbootstrappedprovider-props" id="reflagbootstrappedprovider-props"></a>
 
 `ReflagBootstrappedProvider` accepts all the same props as `ReflagProvider` except:
 
@@ -319,11 +319,11 @@ After bootstrapping, any live flag updates are fetched directly by the browser S
 Requesting opt-in flags also triggers a browser-side refresh, even when `enableLiveFlagUpdates` is disabled.
 {% endhint %}
 
-## `<ReflagClientProvider>` component
+## `<ReflagClientProvider>` component <a href="#reflagclientprovider-component" id="reflagclientprovider-component"></a>
 
 The `<ReflagClientProvider>` is a lower-level component that accepts a pre-initialized `ReflagClient` instance. This is useful for advanced use cases where you need full control over client initialization or want to share a client instance across multiple parts of your application.
 
-### ReflagClientProvider Usage
+### ReflagClientProvider Usage <a href="#reflagclientprovider-usage" id="reflagclientprovider-usage"></a>
 
 ```vue
 <script setup lang="ts">
@@ -350,22 +350,22 @@ await client.initialize();
 </template>
 ```
 
-### ReflagClientProvider Props
+### ReflagClientProvider Props <a href="#reflagclientprovider-props" id="reflagclientprovider-props"></a>
 
 The `ReflagClientProvider` accepts the following props:
 
 - `client`: A pre-initialized `ReflagClient` instance
 
-### Slots
+### Slots <a href="#slots" id="slots"></a>
 
 - `loading`: Optional slot to show while the client is initializing (same as `ReflagProvider`)
 
 > [!Note]
 > Most applications should use `ReflagProvider` or `ReflagBootstrappedProvider` instead of `ReflagClientProvider`. Only use this component when you need the advanced control it provides.
 
-## Hooks
+## Hooks <a href="#hooks" id="hooks"></a>
 
-### `useFlag()`
+### `useFlag()` <a href="#useflag" id="useflag"></a>
 
 Returns the state of a given flag for the current context. The composable provides access to flags and their configurations.
 
@@ -417,7 +417,7 @@ const { isEnabled, track, requestFeedback, config } = useFlag("huddles");
 
 See the reference docs for details.
 
-### `useOptInFlags()` and `useSetOptIn()`
+### `useOptInFlags()` and `useSetOptIn()` <a href="#useoptinflags-and-usesetoptin" id="useoptinflags-and-usesetoptin"></a>
 
 Use these composables to build an end-user opt-in UI for flags where opt-in is enabled in Reflag.
 
@@ -477,7 +477,7 @@ If fetching opt-in metadata fails, loading ends without exposing an error. Call 
 
 With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal initial flags request, so `useOptInFlags().isLoading` remains `false`. Use the general `useIsLoading()` composable or the provider's loading slot for that initial loading state.
 
-### `useTrack()`
+### `useTrack()` <a href="#usetrack" id="usetrack"></a>
 
 `useTrack()` returns a function which lets you send custom events to Reflag. It takes a string argument with the event name and optionally an object with properties to attach the event.
 
@@ -499,7 +499,7 @@ const track = useTrack();
 </template>
 ```
 
-### `useRequestFeedback()`
+### `useRequestFeedback()` <a href="#userequestfeedback" id="userequestfeedback"></a>
 
 Returns a function that lets you open up a dialog to ask for feedback on a specific feature. This is useful for collecting targeted feedback about specific features.
 
@@ -541,7 +541,7 @@ const requestFeedback = useRequestFeedback();
 
 See the [Feedback Documentation](https://github.com/reflagcom/javascript/blob/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/browser-sdk/FEEDBACK.md#manual-feedback-collection) for more information on `requestFeedback` options.
 
-### `useSendFeedback()`
+### `useSendFeedback()` <a href="#usesendfeedback" id="usesendfeedback"></a>
 
 Returns a function that lets you send feedback to Reflag. This is useful if you've manually collected feedback through your own UI and want to send it to Reflag.
 
@@ -567,7 +567,7 @@ const handleSubmit = async (data: FormData) => {
 </template>
 ```
 
-### `useUpdateUser()`, `useUpdateCompany()` and `useUpdateOtherContext()`
+### `useUpdateUser()`, `useUpdateCompany()` and `useUpdateOtherContext()` <a href="#useupdateuser-useupdatecompany-and-useupdateothercontext" id="useupdateuser-useupdatecompany-and-useupdateothercontext"></a>
 
 These composables return functions that let you update the attributes for the currently set user, company, or other context. Updates to user/company are stored remotely and affect flag targeting, while "other" context updates only affect the current session.
 
@@ -616,7 +616,7 @@ const handleContextUpdate = async () => {
 
 Note: To change the `user.id` or `company.id`, you need to update the props passed to `ReflagProvider` instead of using these composables.
 
-### `useClient()`
+### `useClient()` <a href="#useclient" id="useclient"></a>
 
 Returns the `ReflagClient` used by the `ReflagProvider`. The client offers more functionality that
 is not directly accessible through the other composables.
@@ -636,7 +636,7 @@ console.log(client.getContext());
 </template>
 ```
 
-### `useIsLoading()`
+### `useIsLoading()` <a href="#useisloading" id="useisloading"></a>
 
 Returns a `Ref<boolean>` to indicate if Reflag has finished loading.
 Initially, the value will be `true` if no bootstrap flags have been provided and the client has not be initialized.
@@ -654,7 +654,7 @@ const isLoading = useIsLoading();
 </template>
 ```
 
-### `useOnEvent()`
+### `useOnEvent()` <a href="#useonevent" id="useonevent"></a>
 
 Vue composable for listening to Reflag client events. This composable automatically handles mounting and unmounting of event listeners.
 
@@ -701,11 +701,11 @@ useOnEvent(
 </template>
 ```
 
-## Content Security Policy (CSP)
+## Content Security Policy (CSP) <a href="#content-security-policy-csp" id="content-security-policy-csp"></a>
 
 See [CSP](https://github.com/reflagcom/javascript/blob/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/browser-sdk/README.md#content-security-policy-csp) for info on using Reflag React SDK with CSP
 
-## License
+## License <a href="#license" id="license"></a>
 
 MIT License
 

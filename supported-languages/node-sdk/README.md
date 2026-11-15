@@ -21,13 +21,13 @@ pagination:
 Generated from [`@reflag/node-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/0809be2b95f43fa1785c6b7b188c03ac8fd40965/packages/node-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# Reflag Node.js SDK
+# Reflag Node.js SDK <a href="#reflag-nodejs-sdk" id="reflag-nodejs-sdk"></a>
 
 Server-side Boolean and multivariate flag values for [Reflag](https://reflag.com).
 
 > This branch implements the breaking v2 API. It requires the collection-capable evaluator, the v2 `/flags` endpoint, and compatible variant-key check ingestion. It has not been published or deployed.
 
-## Installation and initialization
+## Installation and initialization <a href="#installation-and-initialization" id="installation-and-initialization"></a>
 
 ```sh
 yarn add @reflag/node-sdk@2
@@ -44,7 +44,7 @@ export const reflag = new ReflagClient({
 await reflag.initialize();
 ```
 
-## Direct values, immediate checks
+## Direct values, immediate checks <a href="#direct-values-immediate-checks" id="direct-values-immediate-checks"></a>
 
 ```ts
 const context = {
@@ -101,7 +101,7 @@ Local reads made before initialization include a `CLIENT_NOT_INITIALIZED` diagno
 
 `enableTracking: false` disables checks, context synchronization, and bound-client usage tracking. Explicit calls to the root client's `track()`, `updateUser()`, and `updateCompany()` remain separate operations.
 
-## Evaluation and synchronization
+## Evaluation and synchronization <a href="#evaluation-and-synchronization" id="evaluation-and-synchronization"></a>
 
 The SDK fetches a complete `{ flags, segments }` graph from secret-key-only `GET /flags`. Definitions are validated and prepared before the flags, segments, and snapshot version replace the current cache together. Malformed graphs and stale responses cannot replace last-known-good state.
 
@@ -123,7 +123,7 @@ Refreshes are throttled. In-request mode can queue a refresh during the throttle
 
 Ordinary warm `/flags` refreshes send `If-None-Match` when the accepted snapshot has an ETag. A bodyless `304` retains the complete prepared graph and version while resetting freshness, without recompiling or saving it again. Cold/fallback initialization and version-targeted requests remain unconditional. Custom HTTP clients can return the exact optional `HttpClientResponse.etag` to enable this behavior; clients without one continue to use full GETs. Validators are enabled only after the snapshot's fallback save succeeds. Failed or pending saves leave refreshes unconditional, and rejected snapshots cannot replace a validator or overwrite fallback storage.
 
-## Fallback providers
+## Fallback providers <a href="#fallback-providers" id="fallback-providers"></a>
 
 ```ts
 import { ReflagClient, fallbackProviders } from "@reflag/node-sdk";
@@ -161,7 +161,7 @@ fallbackProviders.static({
 
 Static values, `fallbackFlags`, and overrides do not identify authored variants. Their checks omit `evalResult` and `sourceVersionId`; they must not claim exposure to an authored selection. Restored real collection snapshots retain their real selection/version metadata. Providers are not loaded in offline mode.
 
-## Overrides and tests
+## Overrides and tests <a href="#overrides-and-tests" id="overrides-and-tests"></a>
 
 ```ts
 const client = new ReflagClient({
@@ -179,7 +179,7 @@ client.clearFlagOverrides();
 
 Overrides are direct JSON values. Pushed layers win over base overrides and can be removed independently. They apply **after evaluation**, so overriding a dependency's returned value does not rewrite dependent flag evaluations. Offline mode does not fetch, load a provider, or send tracking events.
 
-## Typed flags
+## Typed flags <a href="#typed-flags" id="typed-flags"></a>
 
 Generated declarations are optional. Singular reads infer their return type from the default, or return Boolean when no default is supplied. Optionally augment `Flags` to constrain keys, check non-null defaults against each key's value schema, and type batch records:
 
@@ -198,7 +198,7 @@ const models = reflag.getFlags(context); // models.model: "quick" | "quality" | 
 
 Augmentation rejects defaults with the wrong category, missing required properties, or incompatible nested types. Named-interface and readonly defaults are supported. Explicit `null` remains an arbitrary-JSON request, and bare/`undefined` reads still return Boolean. Return types continue to be inferred and widened from the default; generated types do not add nested runtime validation. The v2 CLI generates direct-value schemas from current production-environment variants. Regenerate old CLI wrapper declarations when migrating. Both destructuring `.isEnabled` and accessing it through an assigned singular value fail type checking, including without generated declarations. See the Express example for a typed direct-value integration.
 
-## Bootstrap state
+## Bootstrap state <a href="#bootstrap-state" id="bootstrap-state"></a>
 
 ```ts
 const bootstrap = reflag.getFlagsForBootstrap(context);
@@ -211,7 +211,7 @@ Bootstrap uses batch evaluation and preserves selection metadata and raw context
 
 **This is a v2 bootstrap contract, not the existing v1 Browser/React/Vue bootstrap shape.** Those consumers require a coordinated migration before accepting this state. Likewise, the current OpenFeature provider deliberately remains on published Node SDK v1 until its separate migration.
 
-## Remote evaluation
+## Remote evaluation <a href="#remote-evaluation" id="remote-evaluation"></a>
 
 ```ts
 const enabled = await reflag.getFlagRemote(
@@ -233,11 +233,11 @@ These methods use `/flags/evaluated` and return direct values. Singular remote r
 
 Each requested singular root registers a check, including a default after a failed/missing remote evaluation, unless tracking is disabled. Only accepted authored selections retain the server's selection/version metadata. Explicit IDs, including numeric zero, take precedence over IDs in additional context. Stored attribute updates are asynchronous; remote evaluation need not immediately observe a just-sent update.
 
-## Edge runtimes
+## Edge runtimes <a href="#edge-runtimes" id="edge-runtimes"></a>
 
 Use `EdgeClient` with Node compatibility enabled. It selects in-request synchronization. Call `ctx.waitUntil(client.flush())` before returning from a Worker so queued events and refresh work can complete.
 
-## Configuration
+## Configuration <a href="#configuration" id="configuration"></a>
 
 Configuration precedence is constructor options, environment variables, then `reflag.config.json`. Supported environment variables include `REFLAG_SECRET_KEY`, `REFLAG_API_BASE_URL`, `REFLAG_LOG_LEVEL`, `REFLAG_OFFLINE`, `REFLAG_CONFIG_FILE`, and Boolean override lists `REFLAG_FLAGS_ENABLED` / `REFLAG_FLAGS_DISABLED`.
 
@@ -245,6 +245,6 @@ Constructor options also include a custom `logger` / `httpClient`, `flagsSyncMod
 
 Invalid options/context or non-JSON defaults can throw. Network or definition-refresh failures are logged and retain usable state. Singular reads use their caller default (implicit `false`) without fabricating an authored false selection; batch reads retain raw values/`undefined`. Call `await client.flush()` before shutting down, then `client.destroy()` to stop background work. `batchOptions.flushOnExit` only flushes on natural Node process exit (`beforeExit`); it does not install signal handlers or force application shutdown. For signal-driven shutdown or an explicit `process.exit()`, await `flush()` in the application's own shutdown hook before exiting.
 
-## License
+## License <a href="#license" id="license"></a>
 
 MIT License. Copyright (c) 2025 Bucket ApS.

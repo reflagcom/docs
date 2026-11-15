@@ -46,6 +46,40 @@ function withBanner(content, message) {
   return content.slice(0, end + 5) + "\n" + note + content.slice(end + 5).trimStart();
 }
 
+export const headingSlug = (text) =>
+  text
+    .toLowerCase()
+    .replace(/<\/?(?:a|code|strong|em|span|br)(?:\s[^>]*)?>/g, "")
+    .replace(/[^\p{L}\p{N}_ -]/gu, "")
+    .replace(/ /g, "-");
+
+export function anchorHeadings(content) {
+  const ids = new Set();
+  let fence;
+  return content
+    .split("\n")
+    .map((line) => {
+      const marker = /^\s*(`{3,}|~{3,})/.exec(line)?.[1];
+      if (marker) {
+        if (!fence) fence = marker;
+        else if (fence[0] === marker[0] && marker.length >= fence.length) fence = undefined;
+        return line;
+      }
+      if (fence) return line;
+      const heading = /^#{1,6} (.+)$/.exec(line)?.[1];
+      if (!heading) return line;
+      const base = headingSlug(heading);
+      let id = base;
+      for (let suffix = 1; ids.has(id); suffix++) id = `${base}-${suffix}`;
+      ids.add(id);
+      // GitBook otherwise expands <T> into "less-than-t-greater-than" and
+      // punctuation into different slugs than TypeDoc's existing deep links.
+      if (/\bid=["']/.test(heading)) return line;
+      return `${line} <a href="#${id}" id="${id}"></a>`;
+    })
+    .join("\n");
+}
+
 export function planPackage({ source, name, commit }) {
   assert(/^[a-f\d]{40}$/.test(commit), "A full SDK source commit is required");
   const pkg = metadata(source, name);
@@ -145,6 +179,7 @@ export function planPackage({ source, name, commit }) {
       /((?:src|href)=["'])([^"']+)(["'])/g,
       (_, open, url, close) => `${open}${route(url, { raw, file })}${close}`,
     );
+    content = anchorHeadings(content);
     if (web) {
       // Pin installation/CDN commands, never imports or JSON application data.
       content = content

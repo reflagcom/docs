@@ -19,14 +19,14 @@ pagination:
 Generated from [`@reflag/browser-sdk@1.7.4`](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/browser-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# Reflag Feedback UI
+# Reflag Feedback UI <a href="#reflag-feedback-ui" id="reflag-feedback-ui"></a>
 
 The Reflag Browser SDK includes a UI you can use to collect feedback from user
 about particular flags.
 
 ![image](https://github.com/reflagcom/javascript/assets/34348/c387bac1-f2e2-4efd-9dda-5030d76f9532)
 
-## Global feedback configuration
+## Global feedback configuration <a href="#global-feedback-configuration" id="global-feedback-configuration"></a>
 
 The Reflag Browser SDK feedback UI is configured with reasonable defaults,
 positioning itself as a [dialog](#dialog) in the lower right-hand corner of
@@ -64,7 +64,7 @@ See also:
 - [Static language configuration](#static-language-configuration) if you want to translate the feedback UI,
 - [Automated feedback surveys](#automated-feedback-surveys) to override default configuration.
 
-## Automated feedback surveys
+## Automated feedback surveys <a href="#automated-feedback-surveys" id="automated-feedback-surveys"></a>
 
 Automated feedback surveys are enabled by default.
 
@@ -78,7 +78,7 @@ browser, but you can intercept the request and override this behavior.
 The live connection for automated feedback is established when the
 `ReflagClient` is initialized.
 
-### Disabling automated feedback surveys
+### Disabling automated feedback surveys <a href="#disabling-automated-feedback-surveys" id="disabling-automated-feedback-surveys"></a>
 
 You can disable automated collection in the `ReflagClient` constructor:
 
@@ -92,7 +92,7 @@ const reflag = new ReflagClient({
 });
 ```
 
-### Overriding prompt event defaults
+### Overriding prompt event defaults <a href="#overriding-prompt-event-defaults" id="overriding-prompt-event-defaults"></a>
 
 If you are not satisfied with the default UI behavior when an automated prompt
 event arrives, you can can [override the global defaults](#global-feedback-configuration)
@@ -133,7 +133,7 @@ See also:
 - [Use your own UI to collect feedback](#using-your-own-ui-to-collect-feedback) if
   the feedback UI doesn't match your design.
 
-## Manual feedback collection
+## Manual feedback collection <a href="#manual-feedback-collection" id="manual-feedback-collection"></a>
 
 To open up the feedback collection UI, call `reflagClient.requestFeedback(options)`
 with the appropriate options. This approach is particularly beneficial if you wish
@@ -145,7 +145,7 @@ Examples of this could be if you want the click of a `give us feedback`-button
 or the end of a specific user flow, to trigger a pop-up displaying the feedback
 user interface.
 
-### reflagClient.requestFeedback() options
+### reflagClient.requestFeedback() options <a href="#reflagclientrequestfeedback-options" id="reflagclientrequestfeedback-options"></a>
 
 Minimal usage with defaults:
 
@@ -186,13 +186,13 @@ See also:
 - [Runtime language configuration](#runtime-language-configuration) if
   you want to translate the feedback UI.
 
-## Positioning and behavior
+## Positioning and behavior <a href="#positioning-and-behavior" id="positioning-and-behavior"></a>
 
 The feedback UI can be configured to be placed and behave in 3 different ways:
 
-### Positioning configuration
+### Positioning configuration <a href="#positioning-configuration" id="positioning-configuration"></a>
 
-#### Modal
+#### Modal <a href="#modal" id="modal"></a>
 
 A modal overlay with a backdrop that blocks interaction with the underlying
 page. It can be dismissed with the keyboard shortcut `<ESC>` or the dedicated
@@ -212,7 +212,7 @@ position: {
 }
 ```
 
-#### Dialog
+#### Dialog <a href="#dialog" id="dialog"></a>
 
 A dialog that appears in a specified corner of the viewport, without limiting the
 user's interaction with the rest of the page. It can be dismissed with the dedicated
@@ -242,7 +242,7 @@ position: {
 }
 ```
 
-#### Popover
+#### Popover <a href="#popover" id="popover"></a>
 
 A popover that is anchored relative to a DOM-element (typically a button). It can
 be dismissed by clicking outside the popover or by pressing the dedicated close button.
@@ -278,7 +278,7 @@ Popover feedback button example:
 </script>
 ```
 
-## Internationalization (i18n)
+## Internationalization (i18n) <a href="#internationalization-i18n" id="internationalization-i18n"></a>
 
 By default, the feedback UI is written in English. However, you can supply your own
 translations by passing an object in the options to either or both of the
@@ -291,7 +291,7 @@ See examples below.
 See [default English localization keys](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/browser-sdk/src/feedback/ui/config/defaultTranslations.tsx)
 for a reference of what translation keys can be supplied.
 
-### Static language configuration
+### Static language configuration <a href="#static-language-configuration" id="static-language-configuration"></a>
 
 If you know the language at page load, you can configure your translation keys while
 initializing the Reflag Browser SDK:
@@ -322,7 +322,7 @@ new ReflagClient({
 });
 ```
 
-### Runtime language configuration
+### Runtime language configuration <a href="#runtime-language-configuration" id="runtime-language-configuration"></a>
 
 If you only know the user's language after the page has loaded, you can provide
 translations to either the `reflagClient.requestFeedback(options)` call or
@@ -338,7 +338,7 @@ reflagClient.requestFeedback({
 })
 ```
 
-### Translations
+### Translations <a href="#translations" id="translations"></a>
 
 When you are collecting feedback through the Reflag automation, you can intercept
 the default prompt handling and override the defaults.
@@ -365,7 +365,7 @@ new ReflagClient({
 });
 ```
 
-## Custom styling
+## Custom styling <a href="#custom-styling" id="custom-styling"></a>
 
 You can adapt parts of the look of the Reflag feedback UI by applying CSS custom
 properties to your page in your CSS `:root`-scope.
@@ -404,7 +404,7 @@ For example, a dark mode theme might look like this:
 
 Other examples of custom styling can be found in our [development example style-sheet](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/browser-sdk/src/feedback/ui/index.css).
 
-## Using your own UI to collect feedback
+## Using your own UI to collect feedback <a href="#using-your-own-ui-to-collect-feedback" id="using-your-own-ui-to-collect-feedback"></a>
 
 You may have very strict design guidelines for your app and maybe the Reflag feedback
 UI doesn't quite work for you. In this case, you can implement your own feedback
@@ -424,7 +424,7 @@ type DataToCollect = {
 Either `score` or `comment` must be defined in order to pass validation in the
 Reflag API.
 
-### Manual feedback collection with custom UI
+### Manual feedback collection with custom UI <a href="#manual-feedback-collection-with-custom-ui" id="manual-feedback-collection-with-custom-ui"></a>
 
 Examples of a HTML-form that collects the relevant data can be found
 in [feedback.html](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/browser-sdk/example/feedback/feedback.html) and [feedback.jsx](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/browser-sdk/example/feedback/Feedback.jsx).
@@ -440,7 +440,7 @@ reflagClient.feedback({
 });
 ```
 
-### Intercepting automated feedback survey events
+### Intercepting automated feedback survey events <a href="#intercepting-automated-feedback-survey-events" id="intercepting-automated-feedback-survey-events"></a>
 
 When using automated feedback surveys, the Reflag service will, when specified,
 send a feedback prompt message to your user's instance of the Reflag Browser SDK.

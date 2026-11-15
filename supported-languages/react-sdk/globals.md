@@ -21,15 +21,15 @@ pagination:
 Generated from [`@reflag/react-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/react-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# @reflag/react-sdk
+# @reflag/react-sdk <a href="#reflagreact-sdk" id="reflagreact-sdk"></a>
 
-## Interfaces
+## Interfaces <a href="#interfaces" id="interfaces"></a>
 
-### CheckEvent
+### CheckEvent <a href="#checkevent" id="checkevent"></a>
 
 A root read records selection identity, never its JSON payload.
 
-#### Properties
+#### Properties <a href="#properties" id="properties"></a>
 
 <table>
 <thead>
@@ -152,19 +152,19 @@ A root read records selection identity, never its JSON payload.
 
 ***
 
-### CompanyContext
+### CompanyContext <a href="#companycontext" id="companycontext"></a>
 
 Context is a set of key-value pairs.
 This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing company.
 
-#### Indexable
+#### Indexable <a href="#indexable" id="indexable"></a>
 
 ```ts
 [key: string]: ContextValue
 ```
 
-#### Properties
+#### Properties <a href="#properties-1" id="properties-1"></a>
 
 <table>
 <thead>
@@ -214,25 +214,25 @@ Company name
 
 ***
 
-### Flags
+### Flags <a href="#flags" id="flags"></a>
 
 Optional key/value registration; singular reads infer their type from defaults.
 
 ***
 
-### UserContext
+### UserContext <a href="#usercontext" id="usercontext"></a>
 
 Context is a set of key-value pairs.
 This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing user.
 
-#### Indexable
+#### Indexable <a href="#indexable-1" id="indexable-1"></a>
 
 ```ts
 [key: string]: ContextValue
 ```
 
-#### Properties
+#### Properties <a href="#properties-2" id="properties-2"></a>
 
 <table>
 <thead>
@@ -297,9 +297,9 @@ User name
 </tbody>
 </table>
 
-## Type Aliases
+## Type Aliases <a href="#type-aliases" id="type-aliases"></a>
 
-### BootstrappedFlags
+### BootstrappedFlags <a href="#bootstrappedflags" id="bootstrappedflags"></a>
 
 ```ts
 type BootstrappedFlags = BootstrappedState & {
@@ -307,7 +307,7 @@ type BootstrappedFlags = BootstrappedState & {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration" id="type-declaration"></a>
 
 <table>
 <thead>
@@ -334,7 +334,7 @@ type BootstrappedFlags = BootstrappedState & {
 
 ***
 
-### FlagDefaultValue
+### FlagDefaultValue <a href="#flagdefaultvalue" id="flagdefaultvalue"></a>
 
 ```ts
 type FlagDefaultValue =
@@ -348,7 +348,7 @@ type FlagDefaultValue =
 
 ***
 
-### FlagKey
+### FlagKey <a href="#flagkey" id="flagkey"></a>
 
 ```ts
 type FlagKey = keyof Flags extends never ? string : Extract<keyof Flags, string>;
@@ -356,7 +356,7 @@ type FlagKey = keyof Flags extends never ? string : Extract<keyof Flags, string>
 
 ***
 
-### FlagValue
+### FlagValue <a href="#flagvalue" id="flagvalue"></a>
 
 ```ts
 type FlagValue =
@@ -370,7 +370,7 @@ type FlagValue =
 
 ***
 
-### FlagValueFromDefault\<T\>
+### FlagValueFromDefault\<T\> <a href="#flagvaluefromdefaultt" id="flagvaluefromdefaultt"></a>
 
 ```ts
 type FlagValueFromDefault<T> = T extends null ? FlagValue : T extends boolean ? boolean : T extends number ? number : T extends string ? string : T extends readonly infer Element[] ? [Element] extends [never] ? FlagValue[] : FlagValueFromDefault<Element>[] : T extends object ? { -readonly [Key in keyof T]: FlagValueFromDefault<T[Key]> } : never;
@@ -378,7 +378,7 @@ type FlagValueFromDefault<T> = T extends null ? FlagValue : T extends boolean ? 
 
 Widen literals and return mutable copies. Null requests arbitrary JSON.
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters" id="type-parameters"></a>
 
 <table>
 <thead>
@@ -399,7 +399,7 @@ Widen literals and return mutable copies. Null requests arbitrary JSON.
 
 ***
 
-### OptInFlag
+### OptInFlag <a href="#optinflag" id="optinflag"></a>
 
 ```ts
 type OptInFlag = Omit<OptInFlag, "key"> & {
@@ -409,7 +409,7 @@ type OptInFlag = Omit<OptInFlag, "key"> & {
 
 An opt-in-enabled flag for the generated React SDK flag definitions.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-1" id="type-declaration-1"></a>
 
 <table>
 <thead>
@@ -436,7 +436,7 @@ An opt-in-enabled flag for the generated React SDK flag definitions.
 
 ***
 
-### RawFlags
+### RawFlags <a href="#rawflags" id="rawflags"></a>
 
 ```ts
 type RawFlags = RawFlags;
@@ -446,7 +446,7 @@ Describes a collection of evaluated raw flags.
 
 ***
 
-### ReflagBootstrappedProps
+### ReflagBootstrappedProps <a href="#reflagbootstrappedprops" id="reflagbootstrappedprops"></a>
 
 ```ts
 type ReflagBootstrappedProps = ReflagPropsBase & ReflagInitOptionsBase & {
@@ -456,7 +456,7 @@ type ReflagBootstrappedProps = ReflagPropsBase & ReflagInitOptionsBase & {
 
 Props for the ReflagBootstrappedProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-2" id="type-declaration-2"></a>
 
 <table>
 <thead>
@@ -490,7 +490,7 @@ metadata on demand when opt-in flags are requested.
 
 ***
 
-### ReflagClientProviderProps
+### ReflagClientProviderProps <a href="#reflagclientproviderprops" id="reflagclientproviderprops"></a>
 
 ```ts
 type ReflagClientProviderProps = Omit<ReflagPropsBase, "debug" | "logger"> & {
@@ -500,7 +500,7 @@ type ReflagClientProviderProps = Omit<ReflagPropsBase, "debug" | "logger"> & {
 
 Props for the ReflagClientProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-3" id="type-declaration-3"></a>
 
 <table>
 <thead>
@@ -527,7 +527,7 @@ Props for the ReflagClientProvider.
 
 ***
 
-### ReflagInitOptionsBase
+### ReflagInitOptionsBase <a href="#reflaginitoptionsbase" id="reflaginitoptionsbase"></a>
 
 ```ts
 type ReflagInitOptionsBase = Omit<InitOptions,
@@ -546,7 +546,7 @@ Base init options for the ReflagProvider and ReflagBootstrappedProvider.
 
 ***
 
-### ReflagProps
+### ReflagProps <a href="#reflagprops" id="reflagprops"></a>
 
 ```ts
 type ReflagProps = ReflagPropsBase & ReflagInitOptionsBase & {
@@ -559,7 +559,7 @@ type ReflagProps = ReflagPropsBase & ReflagInitOptionsBase & {
 
 Props for the ReflagProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-4" id="type-declaration-4"></a>
 
 <table>
 <thead>
@@ -657,7 +657,7 @@ Use `context` instead, this property will be removed in the next major version
 
 ***
 
-### ReflagPropsBase
+### ReflagPropsBase <a href="#reflagpropsbase" id="reflagpropsbase"></a>
 
 ```ts
 type ReflagPropsBase = {
@@ -674,7 +674,7 @@ type ReflagPropsBase = {
 
 Base props for the ReflagProvider and ReflagBootstrappedProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-5" id="type-declaration-5"></a>
 
 <table>
 <thead>
@@ -795,7 +795,7 @@ Use `useFlagSuspense` for suspending direct-value reads.
 
 ***
 
-### RequestFeedbackOptions
+### RequestFeedbackOptions <a href="#requestfeedbackoptions" id="requestfeedbackoptions"></a>
 
 ```ts
 type RequestFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">;
@@ -803,7 +803,7 @@ type RequestFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">
 
 ***
 
-### SetOptInOptions
+### SetOptInOptions <a href="#setoptinoptions" id="setoptinoptions"></a>
 
 ```ts
 type SetOptInOptions = {
@@ -814,7 +814,7 @@ type SetOptInOptions = {
 
 Represents a flag.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-6" id="type-declaration-6"></a>
 
 <table>
 <thead>
@@ -864,7 +864,7 @@ Whether to update the current user or current company. Defaults to `user`.
 
 ***
 
-### StorageAdapter
+### StorageAdapter <a href="#storageadapter" id="storageadapter"></a>
 
 ```ts
 type StorageAdapter = {
@@ -874,7 +874,7 @@ type StorageAdapter = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-7" id="type-declaration-7"></a>
 
 <table>
 <thead>
@@ -925,7 +925,7 @@ type StorageAdapter = {
 
 ***
 
-### TrackEvent
+### TrackEvent <a href="#trackevent" id="trackevent"></a>
 
 ```ts
 type TrackEvent = {
@@ -937,7 +937,7 @@ type TrackEvent = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-8" id="type-declaration-8"></a>
 
 <table>
 <thead>
@@ -1001,7 +1001,7 @@ type TrackEvent = {
 
 ***
 
-### TypedFlags
+### TypedFlags <a href="#typedflags" id="typedflags"></a>
 
 ```ts
 type TypedFlags = keyof Flags extends never ? Record<string, FlagValue | undefined> : { [Key in keyof Flags]: Flags[Key] | undefined };
@@ -1009,7 +1009,7 @@ type TypedFlags = keyof Flags extends never ? Record<string, FlagValue | undefin
 
 ***
 
-### UseOptInFlagsOptions
+### UseOptInFlagsOptions <a href="#useoptinflagsoptions" id="useoptinflagsoptions"></a>
 
 ```ts
 type UseOptInFlagsOptions = {
@@ -1017,7 +1017,7 @@ type UseOptInFlagsOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-9" id="type-declaration-9"></a>
 
 <table>
 <thead>
@@ -1051,7 +1051,7 @@ When true, `useOptInFlags` throws a promise while opt-in flags are loading.
 
 ***
 
-### UseOptInFlagsResult
+### UseOptInFlagsResult <a href="#useoptinflagsresult" id="useoptinflagsresult"></a>
 
 ```ts
 type UseOptInFlagsResult = {
@@ -1060,7 +1060,7 @@ type UseOptInFlagsResult = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-10" id="type-declaration-10"></a>
 
 <table>
 <thead>
@@ -1108,9 +1108,9 @@ Whether a bootstrapped provider is fetching opt-in metadata.
 </tbody>
 </table>
 
-## Functions
+## Functions <a href="#functions" id="functions"></a>
 
-### ReflagBootstrappedProvider()
+### ReflagBootstrappedProvider() <a href="#reflagbootstrappedprovider" id="reflagbootstrappedprovider"></a>
 
 ```ts
 function ReflagBootstrappedProvider(__namedParameters: ReflagBootstrappedProps): Element
@@ -1118,7 +1118,7 @@ function ReflagBootstrappedProvider(__namedParameters: ReflagBootstrappedProps):
 
 Bootstrapped Provider for the ReflagClient using pre-fetched flags.
 
-#### Parameters
+#### Parameters <a href="#parameters" id="parameters"></a>
 
 <table>
 <thead>
@@ -1143,19 +1143,19 @@ Bootstrapped Provider for the ReflagClient using pre-fetched flags.
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns" id="returns"></a>
 
 `Element`
 
 ***
 
-### ReflagClientProvider()
+### ReflagClientProvider() <a href="#reflagclientprovider" id="reflagclientprovider"></a>
 
 ```ts
 function ReflagClientProvider(__namedParameters: ReflagClientProviderProps): Element
 ```
 
-#### Parameters
+#### Parameters <a href="#parameters-1" id="parameters-1"></a>
 
 <table>
 <thead>
@@ -1180,13 +1180,13 @@ function ReflagClientProvider(__namedParameters: ReflagClientProviderProps): Ele
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-1" id="returns-1"></a>
 
 `Element`
 
 ***
 
-### ReflagProvider()
+### ReflagProvider() <a href="#reflagprovider" id="reflagprovider"></a>
 
 ```ts
 function ReflagProvider(__namedParameters: ReflagProps): Element
@@ -1194,7 +1194,7 @@ function ReflagProvider(__namedParameters: ReflagProps): Element
 
 Provider for the ReflagClient.
 
-#### Parameters
+#### Parameters <a href="#parameters-2" id="parameters-2"></a>
 
 <table>
 <thead>
@@ -1219,13 +1219,13 @@ Provider for the ReflagClient.
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-2" id="returns-2"></a>
 
 `Element`
 
 ***
 
-### useClient()
+### useClient() <a href="#useclient" id="useclient"></a>
 
 ```ts
 function useClient(): ReflagClient
@@ -1235,13 +1235,13 @@ Returns the current `ReflagClient` used by the `ReflagProvider`.
 
 This is useful if you need to access the `ReflagClient` outside of the `ReflagProvider`.
 
-#### Returns
+#### Returns <a href="#returns-3" id="returns-3"></a>
 
 [`ReflagClient`](../browser-sdk/globals.md#reflagclient)
 
 The `ReflagClient`.
 
-#### Example
+#### Example <a href="#example" id="example"></a>
 
 ```ts
 import { useClient } from '@reflag/react-sdk';
@@ -1254,13 +1254,13 @@ function App() {
 
 ***
 
-### ~~useFeature()~~
+### ~~useFeature()~~ <a href="#usefeature" id="usefeature"></a>
 
-#### Deprecated
+#### Deprecated <a href="#deprecated" id="deprecated"></a>
 
 Use useFlag.
 
-#### Call Signature
+#### Call Signature <a href="#call-signature" id="call-signature"></a>
 
 ```ts
 function useFeature(key: string, defaultValue?: undefined): boolean
@@ -1268,7 +1268,7 @@ function useFeature(key: string, defaultValue?: undefined): boolean
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Parameters
+##### Parameters <a href="#parameters-3" id="parameters-3"></a>
 
 <table>
 <thead>
@@ -1305,15 +1305,15 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-4" id="returns-4"></a>
 
 `boolean`
 
-##### Deprecated
+##### Deprecated <a href="#deprecated-1" id="deprecated-1"></a>
 
 Use useFlag.
 
-#### Call Signature
+#### Call Signature <a href="#call-signature-1" id="call-signature-1"></a>
 
 ```ts
 function useFeature<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Default>
@@ -1321,7 +1321,7 @@ function useFeature<Key, Default>(key: Key, defaultValue: Default): FlagValueFro
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Type Parameters
+##### Type Parameters <a href="#type-parameters-1" id="type-parameters-1"></a>
 
 <table>
 <thead>
@@ -1347,7 +1347,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Parameters
+##### Parameters <a href="#parameters-4" id="parameters-4"></a>
 
 <table>
 <thead>
@@ -1384,15 +1384,15 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-5" id="returns-5"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-##### Deprecated
+##### Deprecated <a href="#deprecated-2" id="deprecated-2"></a>
 
 Use useFlag.
 
-#### Call Signature
+#### Call Signature <a href="#call-signature-2" id="call-signature-2"></a>
 
 ```ts
 function useFeature<Default>(key: string, defaultValue: Default): FlagValueFromDefault<Default>
@@ -1400,7 +1400,7 @@ function useFeature<Default>(key: string, defaultValue: Default): FlagValueFromD
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Type Parameters
+##### Type Parameters <a href="#type-parameters-2" id="type-parameters-2"></a>
 
 <table>
 <thead>
@@ -1419,7 +1419,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Parameters
+##### Parameters <a href="#parameters-5" id="parameters-5"></a>
 
 <table>
 <thead>
@@ -1456,19 +1456,19 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-6" id="returns-6"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-##### Deprecated
+##### Deprecated <a href="#deprecated-3" id="deprecated-3"></a>
 
 Use useFlag.
 
 ***
 
-### useFlag()
+### useFlag() <a href="#useflag" id="useflag"></a>
 
-#### Call Signature
+#### Call Signature <a href="#call-signature-3" id="call-signature-3"></a>
 
 ```ts
 function useFlag(key: string, defaultValue?: undefined): boolean
@@ -1476,7 +1476,7 @@ function useFlag(key: string, defaultValue?: undefined): boolean
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Parameters
+##### Parameters <a href="#parameters-6" id="parameters-6"></a>
 
 <table>
 <thead>
@@ -1513,11 +1513,11 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-7" id="returns-7"></a>
 
 `boolean`
 
-#### Call Signature
+#### Call Signature <a href="#call-signature-4" id="call-signature-4"></a>
 
 ```ts
 function useFlag<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Default>
@@ -1525,7 +1525,7 @@ function useFlag<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDe
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Type Parameters
+##### Type Parameters <a href="#type-parameters-3" id="type-parameters-3"></a>
 
 <table>
 <thead>
@@ -1551,7 +1551,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Parameters
+##### Parameters <a href="#parameters-7" id="parameters-7"></a>
 
 <table>
 <thead>
@@ -1588,11 +1588,11 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-8" id="returns-8"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-#### Call Signature
+#### Call Signature <a href="#call-signature-5" id="call-signature-5"></a>
 
 ```ts
 function useFlag<Default>(key: string, defaultValue: Default): FlagValueFromDefault<Default>
@@ -1600,7 +1600,7 @@ function useFlag<Default>(key: string, defaultValue: Default): FlagValueFromDefa
 
 Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-##### Type Parameters
+##### Type Parameters <a href="#type-parameters-4" id="type-parameters-4"></a>
 
 <table>
 <thead>
@@ -1619,7 +1619,7 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Parameters
+##### Parameters <a href="#parameters-8" id="parameters-8"></a>
 
 <table>
 <thead>
@@ -1656,15 +1656,15 @@ Boolean-first, non-suspending reads. Supply a positional default for JSON values
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-9" id="returns-9"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
 ***
 
-### useFlagSuspense()
+### useFlagSuspense() <a href="#useflagsuspense" id="useflagsuspense"></a>
 
-#### Call Signature
+#### Call Signature <a href="#call-signature-6" id="call-signature-6"></a>
 
 ```ts
 function useFlagSuspense(key: string, defaultValue?: undefined): boolean
@@ -1672,7 +1672,7 @@ function useFlagSuspense(key: string, defaultValue?: undefined): boolean
 
 Wait for initialization, then read once. Missing flags use the default, not an endless suspension.
 
-##### Parameters
+##### Parameters <a href="#parameters-9" id="parameters-9"></a>
 
 <table>
 <thead>
@@ -1709,11 +1709,11 @@ Wait for initialization, then read once. Missing flags use the default, not an e
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-10" id="returns-10"></a>
 
 `boolean`
 
-#### Call Signature
+#### Call Signature <a href="#call-signature-7" id="call-signature-7"></a>
 
 ```ts
 function useFlagSuspense<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Default>
@@ -1721,7 +1721,7 @@ function useFlagSuspense<Key, Default>(key: Key, defaultValue: Default): FlagVal
 
 Wait for initialization, then read once. Missing flags use the default, not an endless suspension.
 
-##### Type Parameters
+##### Type Parameters <a href="#type-parameters-5" id="type-parameters-5"></a>
 
 <table>
 <thead>
@@ -1747,7 +1747,7 @@ Wait for initialization, then read once. Missing flags use the default, not an e
 </tbody>
 </table>
 
-##### Parameters
+##### Parameters <a href="#parameters-10" id="parameters-10"></a>
 
 <table>
 <thead>
@@ -1784,11 +1784,11 @@ Wait for initialization, then read once. Missing flags use the default, not an e
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-11" id="returns-11"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-#### Call Signature
+#### Call Signature <a href="#call-signature-8" id="call-signature-8"></a>
 
 ```ts
 function useFlagSuspense<Default>(key: string, defaultValue: Default): FlagValueFromDefault<Default>
@@ -1796,7 +1796,7 @@ function useFlagSuspense<Default>(key: string, defaultValue: Default): FlagValue
 
 Wait for initialization, then read once. Missing flags use the default, not an endless suspension.
 
-##### Type Parameters
+##### Type Parameters <a href="#type-parameters-6" id="type-parameters-6"></a>
 
 <table>
 <thead>
@@ -1815,7 +1815,7 @@ Wait for initialization, then read once. Missing flags use the default, not an e
 </tbody>
 </table>
 
-##### Parameters
+##### Parameters <a href="#parameters-11" id="parameters-11"></a>
 
 <table>
 <thead>
@@ -1852,13 +1852,13 @@ Wait for initialization, then read once. Missing flags use the default, not an e
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-12" id="returns-12"></a>
 
 [`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
 ***
 
-### useIsLoading()
+### useIsLoading() <a href="#useisloading" id="useisloading"></a>
 
 ```ts
 function useIsLoading(): boolean
@@ -1868,13 +1868,13 @@ Returns a boolean indicating if the Reflag client is loading.
 You can use this to check if the Reflag client is loading at any point in your application.
 Initially, the value will be true until the client is initialized.
 
-#### Returns
+#### Returns <a href="#returns-13" id="returns-13"></a>
 
 `boolean`
 
 A boolean indicating if the Reflag client is loading.
 
-#### Example
+#### Example <a href="#example-1" id="example-1"></a>
 
 ```ts
 import { useIsLoading } from '@reflag/react-sdk';
@@ -1886,7 +1886,7 @@ console.log(isLoading);
 
 ***
 
-### useOnEvent()
+### useOnEvent() <a href="#useonevent" id="useonevent"></a>
 
 ```ts
 function useOnEvent<THookType>(
@@ -1897,7 +1897,7 @@ function useOnEvent<THookType>(
 
 Attach a callback handler to client events to act on changes. It automatically disposes itself on unmount.
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-7" id="type-parameters-7"></a>
 
 <table>
 <thead>
@@ -1916,7 +1916,7 @@ Attach a callback handler to client events to act on changes. It automatically d
 </tbody>
 </table>
 
-#### Parameters
+#### Parameters <a href="#parameters-12" id="parameters-12"></a>
 
 <table>
 <thead>
@@ -1981,11 +1981,11 @@ The Reflag client to listen to. If not provided, the client will be retrieved fr
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-14" id="returns-14"></a>
 
 `void`
 
-#### Example
+#### Example <a href="#example-2" id="example-2"></a>
 
 ```ts
 import { useOnEvent } from '@reflag/react-sdk';
@@ -1997,7 +1997,7 @@ useOnEvent("flagsUpdated", () => {
 
 ***
 
-### useOptInFlags()
+### useOptInFlags() <a href="#useoptinflags" id="useoptinflags"></a>
 
 ```ts
 function useOptInFlags(options: UseOptInFlagsOptions): UseOptInFlagsResult
@@ -2011,7 +2011,7 @@ with the initial flags.
 When suspense is enabled for the provider or this hook, it suspends instead
 of returning a loading result.
 
-#### Parameters
+#### Parameters <a href="#parameters-13" id="parameters-13"></a>
 
 <table>
 <thead>
@@ -2036,13 +2036,13 @@ of returning a loading result.
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-15" id="returns-15"></a>
 
 [`UseOptInFlagsResult`](globals.md#useoptinflagsresult)
 
 ***
 
-### useRequestFeedback()
+### useRequestFeedback() <a href="#userequestfeedback" id="userequestfeedback"></a>
 
 ```ts
 function useRequestFeedback(): (options: RequestFeedbackData) => void
@@ -2061,11 +2061,11 @@ reflag.requestFeedback({
 });
 ```
 
-#### Returns
+#### Returns <a href="#returns-16" id="returns-16"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-14" id="parameters-14"></a>
 
 <table>
 <thead>
@@ -2090,13 +2090,13 @@ reflag.requestFeedback({
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-17" id="returns-17"></a>
 
 `void`
 
 ***
 
-### useSendFeedback()
+### useSendFeedback() <a href="#usesendfeedback" id="usesendfeedback"></a>
 
 ```ts
 function useSendFeedback(): (opts: UnassignedFeedback) => Promise<
@@ -2119,11 +2119,11 @@ sendFeedback({
 });
 ```
 
-#### Returns
+#### Returns <a href="#returns-18" id="returns-18"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-15" id="parameters-15"></a>
 
 <table>
 <thead>
@@ -2148,7 +2148,7 @@ sendFeedback({
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-19" id="returns-19"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2156,7 +2156,7 @@ sendFeedback({
 
 ***
 
-### useSetOptIn()
+### useSetOptIn() <a href="#usesetoptin" id="usesetoptin"></a>
 
 ```ts
 function useSetOptIn(): (key: string, options: SetOptInOptions) => Promise<
@@ -2166,11 +2166,11 @@ function useSetOptIn(): (key: string, options: SetOptInOptions) => Promise<
 
 Returns a function to set whether the current user or company has opted into a flag.
 
-#### Returns
+#### Returns <a href="#returns-20" id="returns-20"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-16" id="parameters-16"></a>
 
 <table>
 <thead>
@@ -2207,7 +2207,7 @@ Returns a function to set whether the current user or company has opted into a f
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-21" id="returns-21"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2215,7 +2215,7 @@ Returns a function to set whether the current user or company has opted into a f
 
 ***
 
-### useTrack()
+### useTrack() <a href="#usetrack" id="usetrack"></a>
 
 ```ts
 function useTrack(): (eventName: string, attributes?:
@@ -2233,11 +2233,11 @@ const track = useTrack();
 track("Started Huddle", { button: "cta" });
 ```
 
-#### Returns
+#### Returns <a href="#returns-22" id="returns-22"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-17" id="parameters-17"></a>
 
 <table>
 <thead>
@@ -2274,7 +2274,7 @@ track("Started Huddle", { button: "cta" });
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-23" id="returns-23"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -2282,7 +2282,7 @@ track("Started Huddle", { button: "cta" });
 
 ***
 
-### useUpdateCompany()
+### useUpdateCompany() <a href="#useupdatecompany" id="useupdatecompany"></a>
 
 ```ts
 function useUpdateCompany(): (opts: {}) => Promise<void>
@@ -2300,11 +2300,11 @@ const updateCompany = useUpdateCompany();
 updateCompany({ plan: "enterprise" }).then(() => console.log("Flags updated"));
 ```
 
-#### Returns
+#### Returns <a href="#returns-24" id="returns-24"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-18" id="parameters-18"></a>
 
 <table>
 <thead>
@@ -2329,13 +2329,13 @@ updateCompany({ plan: "enterprise" }).then(() => console.log("Flags updated"));
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-25" id="returns-25"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
-### useUpdateOtherContext()
+### useUpdateOtherContext() <a href="#useupdateothercontext" id="useupdateothercontext"></a>
 
 ```ts
 function useUpdateOtherContext(): (opts: {}) => Promise<void>
@@ -2354,11 +2354,11 @@ updateOtherContext({ workspaceId: newWorkspaceId })
   .then(() => console.log("Flags updated"));
 ```
 
-#### Returns
+#### Returns <a href="#returns-26" id="returns-26"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-19" id="parameters-19"></a>
 
 <table>
 <thead>
@@ -2383,13 +2383,13 @@ updateOtherContext({ workspaceId: newWorkspaceId })
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-27" id="returns-27"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
-### useUpdateUser()
+### useUpdateUser() <a href="#useupdateuser" id="useupdateuser"></a>
 
 ```ts
 function useUpdateUser(): (opts: {}) => Promise<void>
@@ -2407,11 +2407,11 @@ const updateUser = useUpdateUser();
 updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 ```
 
-#### Returns
+#### Returns <a href="#returns-28" id="returns-28"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-20" id="parameters-20"></a>
 
 <table>
 <thead>
@@ -2436,6 +2436,6 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-29" id="returns-29"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>

@@ -21,15 +21,15 @@ pagination:
 Generated from [`@reflag/vue-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/vue-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# @reflag/vue-sdk
+# @reflag/vue-sdk <a href="#reflagvue-sdk" id="reflagvue-sdk"></a>
 
-## Interfaces
+## Interfaces <a href="#interfaces" id="interfaces"></a>
 
-### CheckEvent
+### CheckEvent <a href="#checkevent" id="checkevent"></a>
 
 A root read records selection identity, never its JSON payload.
 
-#### Properties
+#### Properties <a href="#properties" id="properties"></a>
 
 <table>
 <thead>
@@ -152,19 +152,19 @@ A root read records selection identity, never its JSON payload.
 
 ***
 
-### CompanyContext
+### CompanyContext <a href="#companycontext" id="companycontext"></a>
 
 Context is a set of key-value pairs.
 This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing company.
 
-#### Indexable
+#### Indexable <a href="#indexable" id="indexable"></a>
 
 ```ts
 [key: string]: ContextValue
 ```
 
-#### Properties
+#### Properties <a href="#properties-1" id="properties-1"></a>
 
 <table>
 <thead>
@@ -214,23 +214,23 @@ Company name
 
 ***
 
-### Flags
+### Flags <a href="#flags" id="flags"></a>
 
 ***
 
-### UserContext
+### UserContext <a href="#usercontext" id="usercontext"></a>
 
 Context is a set of key-value pairs.
 This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing user.
 
-#### Indexable
+#### Indexable <a href="#indexable-1" id="indexable-1"></a>
 
 ```ts
 [key: string]: ContextValue
 ```
 
-#### Properties
+#### Properties <a href="#properties-2" id="properties-2"></a>
 
 <table>
 <thead>
@@ -295,9 +295,9 @@ User name
 </tbody>
 </table>
 
-## Type Aliases
+## Type Aliases <a href="#type-aliases" id="type-aliases"></a>
 
-### BootstrappedFlags
+### BootstrappedFlags <a href="#bootstrappedflags" id="bootstrappedflags"></a>
 
 ```ts
 type BootstrappedFlags = BootstrappedState;
@@ -305,7 +305,7 @@ type BootstrappedFlags = BootstrappedState;
 
 ***
 
-### FlagDefaultValue
+### FlagDefaultValue <a href="#flagdefaultvalue" id="flagdefaultvalue"></a>
 
 ```ts
 type FlagDefaultValue =
@@ -319,7 +319,7 @@ type FlagDefaultValue =
 
 ***
 
-### FlagKey
+### FlagKey <a href="#flagkey" id="flagkey"></a>
 
 ```ts
 type FlagKey = keyof Flags extends never ? string : Extract<keyof Flags, string>;
@@ -327,7 +327,7 @@ type FlagKey = keyof Flags extends never ? string : Extract<keyof Flags, string>
 
 ***
 
-### FlagValue
+### FlagValue <a href="#flagvalue" id="flagvalue"></a>
 
 ```ts
 type FlagValue =
@@ -341,7 +341,7 @@ type FlagValue =
 
 ***
 
-### FlagValueFromDefault\<T\>
+### FlagValueFromDefault\<T\> <a href="#flagvaluefromdefaultt" id="flagvaluefromdefaultt"></a>
 
 ```ts
 type FlagValueFromDefault<T> = T extends null ? FlagValue : T extends boolean ? boolean : T extends number ? number : T extends string ? string : T extends readonly infer Element[] ? [Element] extends [never] ? FlagValue[] : FlagValueFromDefault<Element>[] : T extends object ? { -readonly [Key in keyof T]: FlagValueFromDefault<T[Key]> } : never;
@@ -349,7 +349,7 @@ type FlagValueFromDefault<T> = T extends null ? FlagValue : T extends boolean ? 
 
 Widen literals and return mutable copies. Null requests arbitrary JSON.
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters" id="type-parameters"></a>
 
 <table>
 <thead>
@@ -370,7 +370,7 @@ Widen literals and return mutable copies. Null requests arbitrary JSON.
 
 ***
 
-### OptInFlag
+### OptInFlag <a href="#optinflag" id="optinflag"></a>
 
 ```ts
 type OptInFlag = Omit<OptInFlag, "key"> & {
@@ -378,7 +378,7 @@ type OptInFlag = Omit<OptInFlag, "key"> & {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration" id="type-declaration"></a>
 
 <table>
 <thead>
@@ -405,7 +405,7 @@ type OptInFlag = Omit<OptInFlag, "key"> & {
 
 ***
 
-### ReflagBaseProps
+### ReflagBaseProps <a href="#reflagbaseprops" id="reflagbaseprops"></a>
 
 ```ts
 type ReflagBaseProps = {
@@ -419,7 +419,7 @@ type ReflagBaseProps = {
 
 Base props for the ReflagProvider and ReflagBootstrappedProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-1" id="type-declaration-1"></a>
 
 <table>
 <thead>
@@ -488,7 +488,7 @@ If both `logger` and `debug` are provided, `logger` takes precedence.
 
 ***
 
-### ReflagBootstrappedProps
+### ReflagBootstrappedProps <a href="#reflagbootstrappedprops" id="reflagbootstrappedprops"></a>
 
 ```ts
 type ReflagBootstrappedProps = ReflagInitOptionsBase & ReflagBaseProps & {
@@ -498,7 +498,7 @@ type ReflagBootstrappedProps = ReflagInitOptionsBase & ReflagBaseProps & {
 
 Props for the ReflagBootstrappedProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-2" id="type-declaration-2"></a>
 
 <table>
 <thead>
@@ -532,7 +532,7 @@ metadata on demand when opt-in flags are requested.
 
 ***
 
-### ReflagClientProviderProps
+### ReflagClientProviderProps <a href="#reflagclientproviderprops" id="reflagclientproviderprops"></a>
 
 ```ts
 type ReflagClientProviderProps = Omit<ReflagBaseProps, "debug" | "logger"> & {
@@ -542,7 +542,7 @@ type ReflagClientProviderProps = Omit<ReflagBaseProps, "debug" | "logger"> & {
 
 Props for the ReflagClientProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-3" id="type-declaration-3"></a>
 
 <table>
 <thead>
@@ -575,7 +575,7 @@ A pre-initialized ReflagClient to use.
 
 ***
 
-### ReflagInitOptionsBase
+### ReflagInitOptionsBase <a href="#reflaginitoptionsbase" id="reflaginitoptionsbase"></a>
 
 ```ts
 type ReflagInitOptionsBase = Omit<InitOptions,
@@ -594,7 +594,7 @@ Base init options for the ReflagProvider and ReflagBootstrappedProvider.
 
 ***
 
-### ReflagProps
+### ReflagProps <a href="#reflagprops" id="reflagprops"></a>
 
 ```ts
 type ReflagProps = ReflagInitOptionsBase & ReflagBaseProps & {
@@ -607,7 +607,7 @@ type ReflagProps = ReflagInitOptionsBase & ReflagBaseProps & {
 
 Props for the ReflagProvider.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-4" id="type-declaration-4"></a>
 
 <table>
 <thead>
@@ -705,7 +705,7 @@ Use `context` instead, this property will be removed in the next major version
 
 ***
 
-### RequestFlagFeedbackOptions
+### RequestFlagFeedbackOptions <a href="#requestflagfeedbackoptions" id="requestflagfeedbackoptions"></a>
 
 ```ts
 type RequestFlagFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">;
@@ -713,7 +713,7 @@ type RequestFlagFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "feature
 
 ***
 
-### SetOptInOptions
+### SetOptInOptions <a href="#setoptinoptions" id="setoptinoptions"></a>
 
 ```ts
 type SetOptInOptions = {
@@ -724,7 +724,7 @@ type SetOptInOptions = {
 
 Represents a flag.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-5" id="type-declaration-5"></a>
 
 <table>
 <thead>
@@ -774,7 +774,7 @@ Whether to update the current user or current company. Defaults to `user`.
 
 ***
 
-### TrackEvent
+### TrackEvent <a href="#trackevent" id="trackevent"></a>
 
 ```ts
 type TrackEvent = {
@@ -786,7 +786,7 @@ type TrackEvent = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-6" id="type-declaration-6"></a>
 
 <table>
 <thead>
@@ -850,7 +850,7 @@ type TrackEvent = {
 
 ***
 
-### TypedFlags
+### TypedFlags <a href="#typedflags" id="typedflags"></a>
 
 ```ts
 type TypedFlags = keyof Flags extends never ? Record<string, FlagValue | undefined> : { [Key in keyof Flags]: Flags[Key] | undefined };
@@ -858,7 +858,7 @@ type TypedFlags = keyof Flags extends never ? Record<string, FlagValue | undefin
 
 ***
 
-### UseOptInFlagsResult
+### UseOptInFlagsResult <a href="#useoptinflagsresult" id="useoptinflagsresult"></a>
 
 ```ts
 type UseOptInFlagsResult = {
@@ -867,7 +867,7 @@ type UseOptInFlagsResult = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-7" id="type-declaration-7"></a>
 
 <table>
 <thead>
@@ -904,9 +904,9 @@ type UseOptInFlagsResult = {
 </tbody>
 </table>
 
-## Variables
+## Variables <a href="#variables" id="variables"></a>
 
-### default
+### default <a href="#default" id="default"></a>
 
 ```ts
 default: {
@@ -914,7 +914,7 @@ default: {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-8" id="type-declaration-8"></a>
 
 <table>
 <thead>
@@ -941,15 +941,15 @@ default: {
 
 ***
 
-### ReflagBootstrappedProvider
+### ReflagBootstrappedProvider <a href="#reflagbootstrappedprovider" id="reflagbootstrappedprovider"></a>
 
 ```ts
 const ReflagBootstrappedProvider: DefineComponent<Record<string, unknown>, Record<string, unknown>, unknown>;
 ```
 
-## Functions
+## Functions <a href="#functions" id="functions"></a>
 
-### useClient()
+### useClient() <a href="#useclient" id="useclient"></a>
 
 ```ts
 function useClient(): ReflagClient
@@ -960,13 +960,13 @@ Vue composable for getting the Reflag client.
 This composable returns the Reflag client. You can use this to get the Reflag
 client at any point in your application.
 
-#### Returns
+#### Returns <a href="#returns" id="returns"></a>
 
 [`ReflagClient`](../../../supported-languages/browser-sdk/globals.md#reflagclient)
 
 The Reflag client.
 
-#### Example
+#### Example <a href="#example" id="example"></a>
 
 ```ts
 import { useClient } from '@reflag/vue-sdk';
@@ -978,9 +978,9 @@ console.log(client.getContext());
 
 ***
 
-### useFlag()
+### useFlag() <a href="#useflag" id="useflag"></a>
 
-#### Call Signature
+#### Call Signature <a href="#call-signature" id="call-signature"></a>
 
 ```ts
 function useFlag(key: string, defaultValue?: undefined): ShallowRef<boolean>
@@ -988,7 +988,7 @@ function useFlag(key: string, defaultValue?: undefined): ShallowRef<boolean>
 
 Reactive direct values: Boolean/false by default, or infer a positional JSON default.
 
-##### Parameters
+##### Parameters <a href="#parameters" id="parameters"></a>
 
 <table>
 <thead>
@@ -1025,11 +1025,11 @@ Reactive direct values: Boolean/false by default, or infer a positional JSON def
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-1" id="returns-1"></a>
 
 `ShallowRef`\<`boolean`\>
 
-#### Call Signature
+#### Call Signature <a href="#call-signature-1" id="call-signature-1"></a>
 
 ```ts
 function useFlag<Key, Default>(key: Key, defaultValue: Default): ShallowRef<FlagValueFromDefault<Default>>
@@ -1037,7 +1037,7 @@ function useFlag<Key, Default>(key: Key, defaultValue: Default): ShallowRef<Flag
 
 Reactive direct values: Boolean/false by default, or infer a positional JSON default.
 
-##### Type Parameters
+##### Type Parameters <a href="#type-parameters-1" id="type-parameters-1"></a>
 
 <table>
 <thead>
@@ -1063,7 +1063,7 @@ Reactive direct values: Boolean/false by default, or infer a positional JSON def
 </tbody>
 </table>
 
-##### Parameters
+##### Parameters <a href="#parameters-1" id="parameters-1"></a>
 
 <table>
 <thead>
@@ -1100,11 +1100,11 @@ Reactive direct values: Boolean/false by default, or infer a positional JSON def
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-2" id="returns-2"></a>
 
 `ShallowRef`\<[`FlagValueFromDefault`](../../../supported-languages/vue-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>\>
 
-#### Call Signature
+#### Call Signature <a href="#call-signature-2" id="call-signature-2"></a>
 
 ```ts
 function useFlag<Default>(key: string, defaultValue: Default): ShallowRef<FlagValueFromDefault<Default>>
@@ -1112,7 +1112,7 @@ function useFlag<Default>(key: string, defaultValue: Default): ShallowRef<FlagVa
 
 Reactive direct values: Boolean/false by default, or infer a positional JSON default.
 
-##### Type Parameters
+##### Type Parameters <a href="#type-parameters-2" id="type-parameters-2"></a>
 
 <table>
 <thead>
@@ -1131,7 +1131,7 @@ Reactive direct values: Boolean/false by default, or infer a positional JSON def
 </tbody>
 </table>
 
-##### Parameters
+##### Parameters <a href="#parameters-2" id="parameters-2"></a>
 
 <table>
 <thead>
@@ -1168,13 +1168,13 @@ Reactive direct values: Boolean/false by default, or infer a positional JSON def
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-3" id="returns-3"></a>
 
 `ShallowRef`\<[`FlagValueFromDefault`](../../../supported-languages/vue-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>\>
 
 ***
 
-### useIsLoading()
+### useIsLoading() <a href="#useisloading" id="useisloading"></a>
 
 ```ts
 function useIsLoading(): Ref<boolean, boolean>
@@ -1186,11 +1186,11 @@ This composable returns a boolean value that indicates whether the Reflag client
 You can use this to check if the Reflag client is loading at any point in your application.
 Initially, the value will be true until the client is initialized.
 
-#### Returns
+#### Returns <a href="#returns-4" id="returns-4"></a>
 
 `Ref`\<`boolean`, `boolean`\>
 
-#### Example
+#### Example <a href="#example-1" id="example-1"></a>
 
 ```ts
 import { useIsLoading } from '@reflag/vue-sdk';
@@ -1202,7 +1202,7 @@ console.log(isLoading);
 
 ***
 
-### useOnEvent()
+### useOnEvent() <a href="#useonevent" id="useonevent"></a>
 
 ```ts
 function useOnEvent<THookType>(
@@ -1213,7 +1213,7 @@ function useOnEvent<THookType>(
 
 Vue composable for listening to Reflag client events.
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-3" id="type-parameters-3"></a>
 
 <table>
 <thead>
@@ -1232,7 +1232,7 @@ Vue composable for listening to Reflag client events.
 </tbody>
 </table>
 
-#### Parameters
+#### Parameters <a href="#parameters-3" id="parameters-3"></a>
 
 <table>
 <thead>
@@ -1297,11 +1297,11 @@ The Reflag client to listen to. If not provided, the client will be retrieved fr
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-5" id="returns-5"></a>
 
 `void`
 
-#### Example
+#### Example <a href="#example-2" id="example-2"></a>
 
 ```ts
 import { useOnEvent } from '@reflag/vue-sdk';
@@ -1313,7 +1313,7 @@ useOnEvent("flagsUpdated", () => {
 
 ***
 
-### useOptInFlags()
+### useOptInFlags() <a href="#useoptinflags" id="useoptinflags"></a>
 
 ```ts
 function useOptInFlags(): UseOptInFlagsResult
@@ -1326,13 +1326,13 @@ The loading state is only used with `ReflagBootstrappedProvider` while
 opt-in metadata is fetched on demand. Regular providers load opt-in metadata
 with the initial flags.
 
-#### Returns
+#### Returns <a href="#returns-6" id="returns-6"></a>
 
 [`UseOptInFlagsResult`](../../../supported-languages/vue-sdk/globals.md#useoptinflagsresult)
 
 ***
 
-### useRequestFeedback()
+### useRequestFeedback() <a href="#userequestfeedback" id="userequestfeedback"></a>
 
 ```ts
 function useRequestFeedback(): (options: RequestFeedbackData) => void
@@ -1344,14 +1344,14 @@ This composable returns a function that can be used to trigger the feedback
 collection flow with the Reflag SDK. You can use this to prompt users for
 feedback at any point in your application.
 
-#### Returns
+#### Returns <a href="#returns-7" id="returns-7"></a>
 
 `Function`
 
 A function that requests feedback from the user. The function accepts:
   - `options`: An object containing feedback request options.
 
-##### Parameters
+##### Parameters <a href="#parameters-4" id="parameters-4"></a>
 
 <table>
 <thead>
@@ -1376,11 +1376,11 @@ A function that requests feedback from the user. The function accepts:
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-8" id="returns-8"></a>
 
 `void`
 
-#### Example
+#### Example <a href="#example-3" id="example-3"></a>
 
 ```ts
 import { useRequestFeedback } from '@reflag/vue-sdk';
@@ -1396,7 +1396,7 @@ requestFeedback({
 
 ***
 
-### useSendFeedback()
+### useSendFeedback() <a href="#usesendfeedback" id="usesendfeedback"></a>
 
 ```ts
 function useSendFeedback(): (opts: UnassignedFeedback) => Promise<
@@ -1409,14 +1409,14 @@ Vue composable for sending feedback.
 This composable returns a function that can be used to send feedback to the
 Reflag SDK. You can use this to send feedback from your application.
 
-#### Returns
+#### Returns <a href="#returns-9" id="returns-9"></a>
 
 `Function`
 
 A function that sends feedback to the Reflag SDK. The function accepts:
   - `options`: An object containing feedback options.
 
-##### Parameters
+##### Parameters <a href="#parameters-5" id="parameters-5"></a>
 
 <table>
 <thead>
@@ -1441,13 +1441,13 @@ A function that sends feedback to the Reflag SDK. The function accepts:
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-10" id="returns-10"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
   \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
-#### Example
+#### Example <a href="#example-4" id="example-4"></a>
 
 ```ts
 import { useSendFeedback } from '@reflag/vue-sdk';
@@ -1463,7 +1463,7 @@ sendFeedback({
 
 ***
 
-### useSetOptIn()
+### useSetOptIn() <a href="#usesetoptin" id="usesetoptin"></a>
 
 ```ts
 function useSetOptIn(): (key: string, options: SetOptInOptions) => Promise<
@@ -1473,11 +1473,11 @@ function useSetOptIn(): (key: string, options: SetOptInOptions) => Promise<
 
 Vue composable for setting whether the current user or company has opted into a flag.
 
-#### Returns
+#### Returns <a href="#returns-11" id="returns-11"></a>
 
 `Function`
 
-##### Parameters
+##### Parameters <a href="#parameters-6" id="parameters-6"></a>
 
 <table>
 <thead>
@@ -1514,7 +1514,7 @@ Vue composable for setting whether the current user or company has opted into a 
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-12" id="returns-12"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -1522,7 +1522,7 @@ Vue composable for setting whether the current user or company has opted into a 
 
 ***
 
-### useTrack()
+### useTrack() <a href="#usetrack" id="usetrack"></a>
 
 ```ts
 function useTrack(): (eventName: string, attributes?:
@@ -1537,7 +1537,7 @@ Vue composable for tracking custom events.
 This composable returns a function that can be used to track custom events
 with the Reflag SDK.
 
-#### Returns
+#### Returns <a href="#returns-13" id="returns-13"></a>
 
 `Function`
 
@@ -1545,7 +1545,7 @@ A function that tracks an event. The function accepts:
   - `eventName`: The name of the event to track.
   - `attributes`: (Optional) Additional attributes to associate with the event.
 
-##### Parameters
+##### Parameters <a href="#parameters-7" id="parameters-7"></a>
 
 <table>
 <thead>
@@ -1582,13 +1582,13 @@ A function that tracks an event. The function accepts:
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-14" id="returns-14"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
   \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
-#### Example
+#### Example <a href="#example-5" id="example-5"></a>
 
 ```ts
 import { useTrack } from '@reflag/vue-sdk';
@@ -1601,7 +1601,7 @@ track('button_clicked', { buttonName: 'Start Huddles' });
 
 ***
 
-### useUpdateCompany()
+### useUpdateCompany() <a href="#useupdatecompany" id="useupdatecompany"></a>
 
 ```ts
 function useUpdateCompany(): (opts: {}) => Promise<void>
@@ -1613,14 +1613,14 @@ This composable returns a function that can be used to update the company
 context with the Reflag SDK. You can use this to update the company context
 at any point in your application.
 
-#### Returns
+#### Returns <a href="#returns-15" id="returns-15"></a>
 
 `Function`
 
 A function that updates the company context. The function accepts:
   - `opts`: An object containing the company context to update.
 
-##### Parameters
+##### Parameters <a href="#parameters-8" id="parameters-8"></a>
 
 <table>
 <thead>
@@ -1645,11 +1645,11 @@ A function that updates the company context. The function accepts:
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-16" id="returns-16"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-#### Example
+#### Example <a href="#example-6" id="example-6"></a>
 
 ```ts
 import { useUpdateCompany } from '@reflag/vue-sdk';
@@ -1662,7 +1662,7 @@ updateCompany({ id: "123", name: "Acme Inc." });
 
 ***
 
-### useUpdateOtherContext()
+### useUpdateOtherContext() <a href="#useupdateothercontext" id="useupdateothercontext"></a>
 
 ```ts
 function useUpdateOtherContext(): (opts: {}) => Promise<void>
@@ -1674,14 +1674,14 @@ This composable returns a function that can be used to update the other
 context with the Reflag SDK. You can use this to update the other context
 at any point in your application.
 
-#### Returns
+#### Returns <a href="#returns-17" id="returns-17"></a>
 
 `Function`
 
 A function that updates the other context. The function accepts:
   - `opts`: An object containing the other context to update.
 
-##### Parameters
+##### Parameters <a href="#parameters-9" id="parameters-9"></a>
 
 <table>
 <thead>
@@ -1706,11 +1706,11 @@ A function that updates the other context. The function accepts:
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-18" id="returns-18"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-#### Example
+#### Example <a href="#example-7" id="example-7"></a>
 
 ```ts
 import { useUpdateOtherContext } from '@reflag/vue-sdk';
@@ -1723,7 +1723,7 @@ updateOtherContext({ id: "123", name: "Acme Inc." });
 
 ***
 
-### useUpdateUser()
+### useUpdateUser() <a href="#useupdateuser" id="useupdateuser"></a>
 
 ```ts
 function useUpdateUser(): (opts: {}) => Promise<void>
@@ -1735,14 +1735,14 @@ This composable returns a function that can be used to update the user context
 with the Reflag SDK. You can use this to update the user context at any point
 in your application.
 
-#### Returns
+#### Returns <a href="#returns-19" id="returns-19"></a>
 
 `Function`
 
 A function that updates the user context. The function accepts:
   - `opts`: An object containing the user context to update.
 
-##### Parameters
+##### Parameters <a href="#parameters-10" id="parameters-10"></a>
 
 <table>
 <thead>
@@ -1767,11 +1767,11 @@ A function that updates the user context. The function accepts:
 </tbody>
 </table>
 
-##### Returns
+##### Returns <a href="#returns-20" id="returns-20"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-#### Example
+#### Example <a href="#example-8" id="example-8"></a>
 
 ```ts
 import { useUpdateUser } from '@reflag/vue-sdk';
@@ -1782,12 +1782,12 @@ const updateUser = useUpdateUser();
 updateUser({ id: "123", name: "John Doe" });
 ```
 
-## References
+## References <a href="#references" id="references"></a>
 
-### ReflagClientProvider
+### ReflagClientProvider <a href="#reflagclientprovider" id="reflagclientprovider"></a>
 
 Renames and re-exports [ReflagBootstrappedProvider](../../../supported-languages/vue-sdk/globals.md#reflagbootstrappedprovider)
 
-### ReflagProvider
+### ReflagProvider <a href="#reflagprovider" id="reflagprovider"></a>
 
 Renames and re-exports [ReflagBootstrappedProvider](../../../supported-languages/vue-sdk/globals.md#reflagbootstrappedprovider)

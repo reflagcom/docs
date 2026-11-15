@@ -21,13 +21,13 @@ pagination:
 Generated from [`@reflag/react-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/react-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# Reflag React SDK v2
+# Reflag React SDK v2 <a href="#reflag-react-sdk-v2" id="reflag-react-sdk-v2"></a>
 
 Direct-value feature flags for React, backed by [Browser SDK v2](../../../supported-languages/browser-sdk/README.md).
 
 > Breaking prerelease: requires compatible v2 server endpoints and **Node SDK v2** for bootstrap. The v2 CLI generates direct-value declarations; regenerate legacy wrapper-shaped output when migrating. Useful default-based inference does not require generated declarations. React Native remains on published React/Browser v1 in this repository.
 
-## Setup
+## Setup <a href="#setup" id="setup"></a>
 
 ```tsx
 import { ReflagProvider } from "@reflag/react-sdk";
@@ -45,7 +45,7 @@ import { ReflagProvider } from "@reflag/react-sdk";
 
 Provider options forward Browser SDK settings, including `logger`, `debug`, `enableTracking`, `offline`, cache/fallback options, `toolbar`, `feedback`, `credentials` and API origins. A custom logger takes precedence over debug logging. Live updates default to true; set `enableLiveFlagUpdates={false}` to disable them.
 
-## `useFlag(key, defaultValue?)`
+## `useFlag(key, defaultValue?)` <a href="#useflagkey-defaultvalue" id="useflagkey-defaultvalue"></a>
 
 ```tsx
 import { useFlag, useTrack } from "@reflag/react-sdk";
@@ -76,7 +76,7 @@ Non-null defaults enforce only the top-level JSON category (Boolean/number/strin
 
 `useFlag` never suspends. Its second argument is **payload data**, not `{ suspense: ... }` options; ordinary JSON has no reserved keys. Use the dedicated hook below for suspension. Use `useIsLoading()` or the provider's `loadingComponent` when you need an explicit loading UI.
 
-## `useFlagSuspense(key, defaultValue?)`
+## `useFlagSuspense(key, defaultValue?)` <a href="#useflagsuspensekey-defaultvalue" id="useflagsuspensekey-defaultvalue"></a>
 
 ```tsx
 import { Suspense } from "react";
@@ -96,7 +96,7 @@ This hook has the same Boolean/default-based return types. It waits for initiali
 
 The provider's existing `suspense` prop continues to configure **`useOptInFlags` only**. It does not change `useFlag`; `useFlagSuspense` is explicit.
 
-## Checks and usage tracking
+## Checks and usage tracking <a href="#checks-and-usage-tracking" id="checks-and-usage-tracking"></a>
 
 A completed getter/hook read registers its requested-root check immediately, even if the value is ignored. Actual delivery remains buffered and identity-aware rate-limited by the Browser SDK. Checks contain selected variant/source/snapshot identity, not payloads. Defaults, category mismatches and local overrides never invent authored selections. Diagnostic/bootstrap inspection registers no checks.
 
@@ -113,7 +113,7 @@ await sendFeedback({ flagKey: "huddles", score: 5 });
 
 See [Browser feedback documentation](../../../supported-languages/browser-sdk/feedback.md) for UI/prompt configuration.
 
-## Optional key registration
+## Optional key registration <a href="#optional-key-registration" id="optional-key-registration"></a>
 
 ```ts
 import "@reflag/react-sdk";
@@ -127,7 +127,7 @@ declare module "@reflag/react-sdk" {
 
 Registration constrains keys and checks non-null defaults against the registered value schema, including required and nested properties. Named-interface and readonly defaults are supported. Explicit `null` remains an arbitrary-JSON request; bare/`undefined` reads remain Boolean. The positional default still determines the widened return type, and generated declarations do not add nested runtime validation. The same rules apply to `useFlagSuspense`. The v2 CLI generates direct-value declarations from current production-environment variants; regenerate legacy wrapper declarations when migrating.
 
-## Bootstrap and SSR
+## Bootstrap and SSR <a href="#bootstrap-and-ssr" id="bootstrap-and-ssr"></a>
 
 On the server, use Node SDK v2:
 
@@ -149,7 +149,7 @@ The envelope includes `protocolVersion: 2`, context, evaluated flag results and 
 
 For a pre-existing Browser v2 client, use `<ReflagClientProvider client={client}>`. The provider does not own its lifecycle; initialize/stop externally, except that a suspending read can start on-demand initialization.
 
-## Context, loading and events
+## Context, loading and events <a href="#context-loading-and-events" id="context-loading-and-events"></a>
 
 - `useUpdateUser()`, `useUpdateCompany()` and `useUpdateOtherContext()` return async shallow-update functions. `useClient().setContext(context)` replaces the whole context.
 - Context changes clear old-context values while fetching. Stale/in-flight responses cannot replace a newer context/snapshot.
@@ -157,7 +157,7 @@ For a pre-existing Browser v2 client, use `<ReflagClientProvider client={client}
 - `useClient()` returns the underlying Browser client. Its `getFlags()` returns direct values/checks; `getFlagResults()` is diagnostic-only.
 - `useOnEvent(type, handler, client?)` subscribes and unsubscribes on unmount. A supplied external client works without a provider.
 
-## Opt-in hooks
+## Opt-in hooks <a href="#opt-in-hooks" id="opt-in-hooks"></a>
 
 ```tsx
 const { flags, isLoading } = useOptInFlags();
@@ -170,6 +170,6 @@ Metadata arrives with the initial v2 evaluation for regular providers. Bootstrap
 
 `useOptInFlags({ suspense: true | false })` retains its own per-hook loading options and may inherit provider `suspense`. These options are unrelated to the positional payload defaults used by `useFlag` / `useFlagSuspense`.
 
-## Migration from v1
+## Migration from v1 <a href="#migration-from-v1" id="migration-from-v1"></a>
 
 Use `const enabled = useFlag(key)` instead of destructuring `.isEnabled`. Replace wrapper config access with an authored multivariate flag and positional default. Move `.track()` and `.requestFeedback()` to separate hooks. Replace `useFlag(key, { suspense: true })` with `useFlagSuspense(key)`, and use `useIsLoading()` instead of a flag wrapper's loading property. Upgrade Browser/server bootstrap together. Nothing here publishes the prerelease or deploys its required server changes.

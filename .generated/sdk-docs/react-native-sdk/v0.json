@@ -4,10 +4,10 @@
   "package": "@reflag/react-native-sdk",
   "version": "0.3.7",
   "files": {
-    "supported-languages/react-native-sdk/README.md": "0a9952a6a72c21c6c5baec486671c968e3b290752dbc18a6239a4d3aa4325195",
-    "sdk/@reflag/react-native-sdk/README.md": "360b297aeb72f6ac7accf9f16707437eb4c01ebd060f5f56870764c2f6fa0ad9",
-    "sdk/documents/react-native-sdk/README.md": "360b297aeb72f6ac7accf9f16707437eb4c01ebd060f5f56870764c2f6fa0ad9",
-    "supported-languages/react-native-sdk/globals.md": "b7cd9cc4f5bece6e701fcae3ece028e2ce7588d0a3fbb6f170c69b01eac18ac3",
-    "sdk/@reflag/react-native-sdk/globals.md": "d028c5ff2ad94e2ae670aea1ff159786cc9f117e674af510ee625b1d6e9f7205"
+    "supported-languages/react-native-sdk/README.md": "2ae69a40046d515f59ffd90e3eb8c18c159d582e74aa55bf96defa63228f0424",
+    "sdk/@reflag/react-native-sdk/README.md": "ecf2a23a9ca454ec7f3bd9dbe5e4664d9a93e0a7a1b4ca35637295ec22084b8b",
+    "sdk/documents/react-native-sdk/README.md": "ecf2a23a9ca454ec7f3bd9dbe5e4664d9a93e0a7a1b4ca35637295ec22084b8b",
+    "supported-languages/react-native-sdk/globals.md": "06a0f5349886e508b07709fc51356151c21a747f6c46ba70f173bacd9f988ad6",
+    "sdk/@reflag/react-native-sdk/globals.md": "34ea55c548c3580033d4af2a70564240ec45e3072e10db46f216657e0200627d"
   }
 }

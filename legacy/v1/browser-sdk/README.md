@@ -19,13 +19,13 @@ pagination:
 Generated from [`@reflag/browser-sdk@1.7.4`](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/browser-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
-# Reflag Browser SDK
+# Reflag Browser SDK <a href="#reflag-browser-sdk" id="reflag-browser-sdk"></a>
 
 Basic client for [Reflag.com](https://reflag.com). If you're using React, you'll be better off with the Reflag React SDK.
 
 Reflag supports flag toggling, tracking flag usage, [collecting feedback](#qualitative-feedback-on-beta-flags) on flags, and [remotely configuring flags](#remote-config).
 
-## Install
+## Install <a href="#install" id="install"></a>
 
 First find your `publishableKey` under [environment settings](https://app.reflag.com/env-current/settings/app-environments) in Reflag.
 
@@ -112,7 +112,7 @@ See [example/browser.html](https://github.com/reflagcom/javascript/tree/b4fe5b3d
 </button>
 ```
 
-### Init options
+### Init options <a href="#init-options" id="init-options"></a>
 
 Supply these to the constructor call:
 
@@ -140,7 +140,7 @@ type Configuration = {
 };
 ```
 
-## Migrating from Bucket SDK
+## Migrating from Bucket SDK <a href="#migrating-from-bucket-sdk" id="migrating-from-bucket-sdk"></a>
 
 If you have been using the Bucket SDKs, the following list will help you migrate to Reflag SDK:
 
@@ -165,7 +165,7 @@ If you are running with strict Content Security Policies active on your website,
 
 Finally, if you have customized the look & feel of the Feedback component, update `--bucket-feedback-*` CSS classes to `--reflag-feedback-*`
 
-## Flag toggles
+## Flag toggles <a href="#flag-toggles" id="flag-toggles"></a>
 
 Reflag determines which flags are active for a given user/company. The user/company is given in the ReflagClient constructor.
 
@@ -227,7 +227,7 @@ by down-stream clients, like the React SDK.
 Note that accessing `isEnabled` on the object returned by `getFlags` does not automatically
 generate a `check` event, contrary to the `isEnabled` property on the object returned by `getFlag`.
 
-## End-user opt-in
+## End-user opt-in <a href="#end-user-opt-in" id="end-user-opt-in"></a>
 
 If a flag has end-user opt-in enabled in Reflag, you can list the opt-in options for the current context and set or cancel opt-in for the current user or company.
 
@@ -264,7 +264,7 @@ Listen for `optInFlagsLoadingUpdated` to update UI when this loading state chang
 
 If fetching opt-in metadata fails, loading ends without exposing an error. Call `reflagClient.refresh()` to retry.
 
-## Remote config
+## Remote config <a href="#remote-config" id="remote-config"></a>
 
 Remote config is a dynamic and flexible approach to configuring flag behavior outside of your app – without needing to re-deploy it.
 
@@ -291,11 +291,11 @@ const flags = reflagClient.getFlags();
 Just as `isEnabled`, accessing `config` on the object returned by `getFlags` does not automatically
 generate a `check` event, contrary to the `config` property on the object returned by `getFlag`.
 
-## Server-side rendering and bootstrapping
+## Server-side rendering and bootstrapping <a href="#server-side-rendering-and-bootstrapping" id="server-side-rendering-and-bootstrapping"></a>
 
 For server-side rendered applications, you can render immediately with pre-fetched flag data by bootstrapping the client.
 
-### Init options bootstrapped
+### Init options bootstrapped <a href="#init-options-bootstrapped" id="init-options-bootstrapped"></a>
 
 ```typescript
 type Configuration = {
@@ -314,7 +314,7 @@ type Configuration = {
 };
 ```
 
-### Using `bootstrappedState`
+### Using `bootstrappedState` <a href="#using-bootstrappedstate" id="using-bootstrappedstate"></a>
 
 Use the Node SDK's `getFlagsForBootstrap()` method to pre-fetch evaluated state server-side, then pass the returned object directly to the browser client:
 
@@ -392,9 +392,9 @@ Requesting opt-in flags also triggers a browser-side refresh, even when `enableL
 
 This eliminates loading states and removes the initial render's dependency on the flags API.
 
-## Context management
+## Context management <a href="#context-management" id="context-management"></a>
 
-### Updating user/company/other context
+### Updating user/company/other context <a href="#updating-usercompanyother-context" id="updating-usercompanyother-context"></a>
 
 Attributes given for the user/company/other context in the ReflagClient constructor can be updated for use in flag targeting evaluation with the `updateUser()`, `updateCompany()` and `updateOtherContext()` methods.
 They return a promise which resolves once the flags have been re-evaluated follow the update of the attributes.
@@ -402,7 +402,7 @@ They return a promise which resolves once the flags have been re-evaluated follo
 {% hint style="info" %}
 {% endhint %}
 
-### setContext()
+### setContext() <a href="#setcontext" id="setcontext"></a>
 
 The `setContext()` method allows you to replace the entire context (user, company, and other attributes) at once. This method is useful when you need to completely change the context, such as when a user logs in or switches between different accounts.
 
@@ -433,7 +433,7 @@ The method will:
 - Update the user and company information on Reflag servers
 - Return a promise that resolves once the flags have been re-evaluated
 
-### getContext()
+### getContext() <a href="#getcontext" id="getcontext"></a>
 
 The `getContext()` method returns the current context being used for flag evaluation. This is useful for debugging or when you need to inspect the current user, company, and other attributes.
 
@@ -453,7 +453,7 @@ The returned context object contains:
 - `company`: Current company attributes (if any)
 - `other`: Additional context attributes not related to user or company
 
-## Toolbar
+## Toolbar <a href="#toolbar" id="toolbar"></a>
 
 The Reflag Toolbar is great for toggling flags on/off for yourself to ensure that everything works both when a flag is on and when it's off.
 
@@ -489,11 +489,11 @@ const client = new ReflagClient({
 
 See [the reference](globals.md#toolbaroptions) for details.
 
-## Qualitative feedback on beta flags
+## Qualitative feedback on beta flags <a href="#qualitative-feedback-on-beta-flags" id="qualitative-feedback-on-beta-flags"></a>
 
 Reflag can collect qualitative feedback from your users in the form of a [Customer Satisfaction Score](https://en.wikipedia.org/wiki/Customer_satisfaction) and a comment.
 
-### Automated feedback collection
+### Automated feedback collection <a href="#automated-feedback-collection" id="automated-feedback-collection"></a>
 
 The Reflag Browser SDK comes with automated feedback collection mode enabled by default, which lets the Reflag service ask your users for feedback for relevant flags just after they've used them.
 
@@ -506,13 +506,13 @@ It works because the Reflag Browser SDK maintains a live connection to Reflag's 
 
 You can find all the options to make changes to the default behavior in the [Reflag feedback documentation](feedback.md).
 
-### Reflag feedback UI
+### Reflag feedback UI <a href="#reflag-feedback-ui" id="reflag-feedback-ui"></a>
 
 Reflag can assist you with collecting your user's feedback by offering a pre-built UI, allowing you to get started with minimal code and effort.
 
 [Read the Reflag feedback UI documentation](feedback.md)
 
-### Reflag feedback SDK
+### Reflag feedback SDK <a href="#reflag-feedback-sdk" id="reflag-feedback-sdk"></a>
 
 Feedback can be submitted to Reflag using the SDK:
 
@@ -524,13 +524,13 @@ reflagClient.feedback({
 });
 ```
 
-### Reflag feedback API
+### Reflag feedback API <a href="#reflag-feedback-api" id="reflag-feedback-api"></a>
 
 If you are not using the Reflag Browser SDK, you can still submit feedback using the HTTP API.
 
 See details in [Feedback HTTP API](https://docs.reflag.com/api/http-api#post-feedback)
 
-## Tracking flag usage
+## Tracking flag usage <a href="#tracking-flag-usage" id="tracking-flag-usage"></a>
 
 The `track` function lets you send events to Reflag to denote flag usage.
 By default Reflag expects event names to align with the flag keys, but
@@ -540,7 +540,7 @@ you can customize it as you wish.
 reflagClient.track("huddle", { voiceHuddle: true });
 ```
 
-## Event listeners
+## Event listeners <a href="#event-listeners" id="event-listeners"></a>
 
 Event listeners allow for capturing various events occurring in the `ReflagClient`. This is useful to build integrations with other system or for various debugging purposes. The available events are:
 
@@ -568,7 +568,7 @@ const unsub = client.on("check", (check: CheckEvent) =>
 unsub();
 ```
 
-## Zero PII
+## Zero PII <a href="#zero-pii" id="zero-pii"></a>
 
 The Reflag Browser SDK doesn't collect any metadata and HTTP IP addresses are _not_ being stored.
 
@@ -581,7 +581,7 @@ import { sha256 } from "crypto-hash";
 reflag.user(await sha256("john_doe"));
 ```
 
-## Use of cookies
+## Use of cookies <a href="#use-of-cookies" id="use-of-cookies"></a>
 
 The Reflag Browser SDK uses a couple of cookies to support automated feedback surveys. These cookies are not used for tracking purposes and thus should not need to appear in cookie consent forms.
 
@@ -590,11 +590,11 @@ The two cookies are:
 - `reflag-prompt-${userId}`: store the last automated feedback prompt message ID received to avoid repeating surveys
 - `reflag-token-${userId}`: caching a token used to connect to Reflag's live messaging infrastructure that is used to deliver automated feedback surveys in real time.
 
-## TypeScript
+## TypeScript <a href="#typescript" id="typescript"></a>
 
 Types are bundled together with the library and exposed automatically when importing through a package manager.
 
-## Content Security Policy (CSP)
+## Content Security Policy (CSP) <a href="#content-security-policy-csp" id="content-security-policy-csp"></a>
 
 If you are running with strict Content Security Policies active on your website, you will need to enable these directives in order to use the SDK:
 
@@ -609,7 +609,7 @@ If you are including the Reflag tracking SDK with a `<script>`-tag from `jsdeliv
 | --------------- | ---------------------------------------------------- | ------------------------------- |
 | script-src-elem | [https://cdn.jsdelivr.net](https://cdn.jsdelivr.net) | Loads the Reflag SDK from a CDN |
 
-## License
+## License <a href="#license" id="license"></a>
 
 > MIT License
 > Copyright (c) 2025 Bucket ApS
