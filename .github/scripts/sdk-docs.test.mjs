@@ -12,7 +12,14 @@ import {
   releaseFiles,
   webSDKs,
 } from "./sdk-docs.mjs";
-import { anchors, checkLinks, checkSDKDocs, root, sourceMatrix } from "./check-sdk-docs.mjs";
+import {
+  anchors,
+  checkCurrentPagePresentation,
+  checkLinks,
+  checkSDKDocs,
+  root,
+  sourceMatrix,
+} from "./check-sdk-docs.mjs";
 
 function fixture(t, major = 2) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "reflag-sdk-docs-test-"));
@@ -39,7 +46,7 @@ function fixture(t, major = 2) {
     );
     put(
       path.join(source, `dist/docs/@reflag/${name}/README.md`),
-      `---\nlayout: {}\n---\n# SDK\n[Browser](../../_media/README.md)\n[Feedback](../../documents/browser-sdk/FEEDBACK.md)\n[Toolbar](https://docs.reflag.com/supported-languages/browser-sdk/globals#toolbaroptions)\nnpm install @reflag/${name}\nbun add @reflag/${name}\ndeno add npm:@reflag/${name}\nnpx @reflag/cli new\n<script src="https://cdn.jsdelivr.net/npm/@reflag/browser-sdk@2"></script>\n[Source](https://github.com/reflagcom/javascript/blob/main/packages/${name}/README.md)\n`,
+      `---\nlayout: {}\n---\n# SDK\n[Browser](../../_media/README.md)\n[Feedback](../../documents/browser-sdk/FEEDBACK.md)\n[Toolbar](https://docs.reflag.com/supported-languages/browser-sdk/globals#toolbaroptions)\nnpm install @reflag/${name}\nbun add @reflag/${name}\ndeno add npm:@reflag/${name}\nnpx @reflag/cli new\n<script src="https://cdn.jsdelivr.net/npm/@reflag/browser-sdk"></script>\n[Source](https://github.com/reflagcom/javascript/blob/main/packages/${name}/README.md)\n`,
     );
     put(
       path.join(source, `dist/docs/@reflag/${name}/globals.md`),
@@ -114,6 +121,57 @@ test("v2 sync cannot modify archived docs, navigation, settings or handwritten g
   assert.match(
     files.get("sdk/@reflag/react-sdk/README.md").toString(),
     /\.\.\/\.\.\/\.\.\/legacy\/v1\/react-sdk\/README.md/,
+  );
+});
+
+test("current docs use unpinned installs and one short footer even for prerelease sources", (t) => {
+  const { options, source, put } = fixture(t);
+  put(
+    path.join(source, "packages/react-sdk/package.json"),
+    JSON.stringify({ name: "@reflag/react-sdk", version: "2.0.0-next.0" }),
+  );
+  const files = planPackage(options);
+  for (const file of [
+    "supported-languages/react-sdk/README.md",
+    "sdk/@reflag/react-sdk/README.md",
+    "sdk/documents/react-sdk/README.md",
+  ]) {
+    const content = files.get(file).toString();
+    checkCurrentPagePresentation(content, file);
+    assert(content.indexOf("# SDK") < content.indexOf("Using v1?"));
+    assert.match(content, /npm install @reflag\/react-sdk\n/);
+    assert.match(content, /npx @reflag\/cli new/);
+    assert.match(content, /browser-sdk"><\/script>/);
+    assert(!content.includes("{% hint"));
+    assert(
+      !content.includes("2.0.0-next.0"),
+      "Source versions remain in provenance, not page warnings",
+    );
+  }
+  const manifest = JSON.parse(files.get(".generated/sdk-docs/react-sdk/v2.json"));
+  assert.equal(manifest.version, "2.0.0-next.0");
+});
+
+test("presentation checks reject repeated or leading notices and major-pinned current installs", () => {
+  const note = "Using v1? [Legacy docs](legacy.md) · [Upgrade guide](migration.md).";
+  const page = `# SDK\n\nGet started.\n\n${note}\n`;
+  checkCurrentPagePresentation(page, "page.md");
+  assert.throws(() => checkCurrentPagePresentation(`${note}\n\n# SDK\n`, "page.md"), /at the end/);
+  assert.throws(
+    () => checkCurrentPagePresentation(`${note}\n\n${page}`, "page.md"),
+    /one succinct/,
+  );
+  assert.throws(
+    () =>
+      checkCurrentPagePresentation(
+        page.replace("Get started.", "npm install @reflag/react-sdk@2"),
+        "page.md",
+      ),
+    /Major-pinned installs/,
+  );
+  assert.throws(
+    () => checkCurrentPagePresentation(page.replace("Get started.", "**Protocol v2.**"), "page.md"),
+    /Repeated protocol banner/,
   );
 });
 

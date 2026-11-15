@@ -113,7 +113,7 @@ Cancelling every opt-in does not necessarily disable the flag: an access rule ma
 
 ## Managing opt-in loading state
 
-Check opt-in loading before rendering an empty state, including during ordinary initialization. Metadata arrives with v2 evaluated-flags responses. A bootstrapped snapshot may omit it; the SDK then fetches missing metadata on demand without replacing server-derived flag values.
+Check opt-in loading before rendering an empty state, including during ordinary initialization. Metadata arrives with evaluated-flags responses. A bootstrapped snapshot may omit it; the SDK then fetches missing metadata on demand without replacing server-derived flag values.
 
 Check the hook's `isLoading` value before rendering an empty state:
 

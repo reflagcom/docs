@@ -13,21 +13,15 @@ pagination:
   visible: true
 ---
 
-{% hint style="info" %}
-**Protocol v2.** [Legacy v1 documentation](../../../legacy/v1/vue-sdk/README.md) · [Migration guide](../../../supported-languages/migrating-from-v1.md)
+# Reflag Vue SDK (beta) <a href="#reflag-vue-sdk-beta" id="reflag-vue-sdk-beta"></a>
 
-**Prerelease source documentation.** The installation examples target major 2; use them only when the matching SDK/CLI packages are available. A server rollout alone does not publish npm packages.
-
-Generated from [`@reflag/vue-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/vue-sdk); SDK READMEs and code comments remain the source of truth.
-{% endhint %}
-
-# Reflag Vue SDK v2 (beta) <a href="#reflag-vue-sdk-v2-beta" id="reflag-vue-sdk-v2-beta"></a>
-
-Reactive direct-value flags for Vue 3, backed by [Browser SDK v2](../../../supported-languages/browser-sdk/README.md).
-
-> Breaking prerelease: requires the compatible v2 server protocol. Bootstrap must come from **Node SDK v2**, not v1. Generated declarations are optional; the v2 CLI supports `--format vue` and direct-value schemas. Regenerate legacy wrapper-shaped declarations when migrating.
+Reactive feature flags and JSON configuration for Vue 3, backed by the [Browser SDK](../../../supported-languages/browser-sdk/README.md).
 
 ## Setup <a href="#setup" id="setup"></a>
+
+```sh
+npm install @reflag/vue-sdk
+```
 
 ```vue
 <script setup lang="ts">
@@ -71,7 +65,7 @@ const track = useTrack();
 </template>
 ```
 
-Vue unwraps refs in templates; use `.value` in script. This is a **Vue ref**, not a flag wrapper. There are no `.isEnabled`, `.config`, flag `.track()` or flag loading fields.
+`useFlag()` returns a reactive ref containing the flag value. Vue unwraps refs in templates; use `.value` in script.
 
 ```ts
 useFlag("release"); // ShallowRef<boolean>
@@ -93,11 +87,11 @@ The ref updates when evaluated flags change. A composable read registers the req
 - `getFlags()` returns direct values and registers returned-root checks. Use `getFlagResults()` for tooling without checks.
 - `useOnEvent(type, handler, client?)` subscribes on mount and unsubscribes on unmount. An external client may be supplied explicitly.
 
-A context change clears old values while fetching. Late responses for previous contexts or lower snapshot versions cannot replace accepted state. V2 cache/override storage is isolated from v1. Browser fetching uses `/flags/evaluated` and never re-evaluates/caches dependencies locally.
+A context change clears old values while fetching. Late responses for previous contexts or lower snapshot versions cannot replace accepted state. Browser fetching uses `/flags/evaluated` and never re-evaluates/caches dependencies locally.
 
 ## Bootstrap <a href="#bootstrap" id="bootstrap"></a>
 
-On the server, use Node SDK v2 and your framework's safe serialization mechanism:
+On the server, use the Node.js SDK and your framework's safe serialization mechanism:
 
 ```ts
 const flags = serverClient.getFlagsForBootstrap(context);
@@ -109,9 +103,9 @@ const flags = serverClient.getFlagsForBootstrap(context);
 </ReflagBootstrappedProvider>
 ```
 
-Pass the entire envelope (`protocolVersion: 2`, context, evaluated flags and optional snapshot version). Legacy v1 bootstrap is rejected. A snapshot version is required for live updates. Never expose secret keys/server-only attributes in bootstrap data; later refreshes use browser-visible context, so disable live updates when they must not replace server-only evaluations.
+Pass the entire envelope (`protocolVersion: 2`, context, evaluated flags and optional snapshot version). A snapshot version is required for live updates. Never expose secret keys/server-only attributes in bootstrap data; later refreshes use browser-visible context, so disable live updates when they must not replace server-only evaluations.
 
-`ReflagClientProvider` accepts an externally initialized Browser v2 client. Its lifecycle belongs to the application.
+`ReflagClientProvider` accepts an externally initialized Browser SDK client. Its lifecycle belongs to the application.
 
 ## Opt-in, tracking and feedback <a href="#opt-in-tracking-and-feedback" id="opt-in-tracking-and-feedback"></a>
 
@@ -129,11 +123,11 @@ const sendFeedback = useSendFeedback();
 await sendFeedback({ flagKey: "huddles", score: 5 });
 ```
 
-Opt-in metadata arrives with ordinary `/flags/evaluated` responses. Bootstrapped providers fetch missing metadata on demand from the same v2 endpoint without replacing server-derived values or provenance; loading settles on success or failure. User/company grants remain independent; successful mutations confirm versioned evaluation and membership in a single refresh. The metadata list retains presentation/membership fields such as `isEnabled`; ordinary reads remain direct values.
+Opt-in metadata arrives with ordinary `/flags/evaluated` responses. Bootstrapped providers fetch missing metadata on demand from the same endpoint without replacing server-derived values or provenance; loading settles on success or failure. User/company grants remain independent; successful mutations confirm versioned evaluation and membership in a single refresh. The metadata list retains presentation/membership fields such as `isEnabled`; ordinary reads remain direct values.
 
 `enableTracking: false` disables checks and ordinary tracking. Offline mode skips HTTP/tracking. See [Browser feedback documentation](../../../supported-languages/browser-sdk/feedback.md) for prompting/UI options.
 
-## Optional key registration and migration <a href="#optional-key-registration-and-migration" id="optional-key-registration-and-migration"></a>
+## Optional key registration <a href="#optional-key-registration" id="optional-key-registration"></a>
 
 ```ts
 import "@reflag/vue-sdk";
@@ -145,6 +139,6 @@ declare module "@reflag/vue-sdk" {
 }
 ```
 
-Registration constrains keys and checks non-null defaults against the registered value schema, including required and nested properties. Named-interface and readonly defaults are supported. Explicit `null` remains an arbitrary-JSON request; bare/`undefined` reads remain Boolean refs. Positional defaults still determine widened direct-value types, and generated declarations do not add nested runtime validation. The v2 CLI generates these schemas from current production-environment variants with `--format vue`; regenerate old wrapper declarations when migrating.
+Registration constrains keys and checks non-null defaults against the registered value schema, including required and nested properties. Named-interface and readonly defaults are supported. Explicit `null` remains an arbitrary-JSON request; bare/`undefined` reads remain Boolean refs. Positional defaults still determine widened direct-value types, and generated declarations do not add nested runtime validation. The Reflag CLI can generate these schemas from current production-environment variants with `--format vue`.
 
-Replace `const { isEnabled } = useFlag(key)` with `const enabled = useFlag(key)` (then `enabled.value` in script). Replace remote-config wrappers with separately authored multivariate flags and positional defaults, and move usage/feedback into their separate composables. Bootstrap both ends with v2. This branch does not publish SDKs or deploy the required server changes.
+Using v1? [Legacy docs](../../../legacy/v1/vue-sdk/README.md) · [Upgrade guide](../../../supported-languages/migrating-from-v1.md).

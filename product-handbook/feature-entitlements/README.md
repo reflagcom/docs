@@ -121,7 +121,7 @@ Send usage metrics to Reflag using company attributes.
 For example, you can send the company's current usage metrics to Reflag at an hourly or daily interval.
 
 ```ts
-// On an initialized Browser SDK v2 client:
+// On an initialized Browser SDK client:
 await reflag.updateCompany({ apiRequestsCurrentMonth: 793 });
 ```
 

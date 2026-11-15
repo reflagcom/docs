@@ -1,12 +1,12 @@
 {
   "sourceRepository": "https://github.com/reflagcom/javascript",
-  "sourceCommit": "9f3a0ae027e386747a2d4cf7683a68dcab70b355",
+  "sourceCommit": "23b018b17cd0755fa6512cd209265cdac5f8fb0d",
   "package": "@reflag/vue-sdk",
   "version": "2.0.0-next.0",
   "files": {
-    "supported-languages/vue-sdk/README.md": "6424a2704bfb8cc912cdab966707f26ddc186dc0e3c6e70e12309f535b4e6819",
-    "sdk/@reflag/vue-sdk/README.md": "7e221353ecbd358843f9a900e242402584248c8c5bf845cf1689db50ecef0667",
-    "supported-languages/vue-sdk/globals.md": "1c6b6bccb64efabcefba82c0c1f5eda05f723386b58689e4b5748ddb01723350",
-    "sdk/@reflag/vue-sdk/globals.md": "400710067e631c443d231cc6c04adf4ff2eeccf79d573bbe3814ff10feb68f9f"
+    "supported-languages/vue-sdk/README.md": "068532795b8e5a0612eddf7bb5368e04c3076ea49cf94dc77d7ac758e3a72a1a",
+    "sdk/@reflag/vue-sdk/README.md": "9577c4094b5a5c600c0333ea562ba13bca6397ed463a8ee61b540c2f95cf9684",
+    "supported-languages/vue-sdk/globals.md": "5a06c1f3d48034c3ee0eb1a030e9d47fc574a531810df68908301b3dc575c929",
+    "sdk/@reflag/vue-sdk/globals.md": "5fff272e7ed3dadd76da958c42c214682762039153798836c0924311d17720c2"
   }
 }

@@ -19,7 +19,7 @@ This repository syncs the documentation to [docs.reflag.com](https://docs.reflag
 
 ## SDK documentation ownership
 
-SDK READMEs and source comments are maintained in `reflagcom/javascript`. Current Browser/React/Vue/Node pages are generated into `supported-languages/`; protocol-v1 pages live in `legacy/v1/`. Do not hand-edit their generated bodies. Source/version and file hashes are recorded in `.generated/sdk-docs/`.
+SDK READMEs and source comments are maintained in `reflagcom/javascript`. Current Browser/React/Vue/Node pages are generated into `supported-languages/`; protocol-v1 pages live in `legacy/v1/`. Do not hand-edit their generated bodies. Source/version and file hashes are recorded in `.generated/sdk-docs/`. Current pages assume a new installation and include only a short legacy/upgrade link at the end; prerelease availability and major-pinned upgrade commands belong in the migration guide. Keep release-readiness status in PRs and the migration guide, not repeated page banners.
 
 Generate one SDK from an explicitly selected, clean source checkout after building declarations and running its canonical `docs.sh`:
 

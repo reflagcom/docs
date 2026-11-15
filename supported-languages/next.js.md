@@ -1,10 +1,10 @@
 ---
-description: Use protocol-v2 Node.js and React SDKs with Next.js.
+description: Use the Node.js and React SDKs with Next.js.
 ---
 
 # Next.js
 
-Use [Node SDK v2](node-sdk/README.md) on the server and [React SDK v2](react-sdk/README.md) in client components. Both return flag values directly. For an existing v1 application, see the [migration guide](migrating-from-v1.md).
+Use the [Node.js SDK](node-sdk/README.md) to evaluate flags on the server and the [React SDK](react-sdk/README.md) in client components.
 
 ## Server-side rendering
 
@@ -85,7 +85,7 @@ Recheck authorization in the backend operation, even when the page hides its con
 
 ### Flags SDK by Vercel
 
-When using a custom Vercel Flags SDK definition, return the Boolean value directly from its `decide` function. Do not access `.isEnabled` on the result. See the [Reflag provider integration](https://flags-sdk.dev/providers/reflag) for that provider's own version compatibility.
+When using a custom Vercel Flags SDK definition, return the Boolean flag value from its `decide` function. See the [Reflag provider integration](https://flags-sdk.dev/providers/reflag) for setup and compatibility.
 
 ## Client-side rendering
 
@@ -120,4 +120,6 @@ Replace the example IDs with your signed-in user/company context. Use `useIsLoad
 
 ## Server-to-client bootstrap
 
-For immediate client rendering, generate state with **Node SDK v2** and pass the entire envelope to **React SDK v2**'s `ReflagBootstrappedProvider`. Follow the [React bootstrap documentation](react-sdk/README.md#bootstrap-and-ssr), using your framework's safe serialization mechanism. V1 and v2 bootstrap formats are incompatible; never send server secrets or server-only attributes to the browser.
+For immediate client rendering, generate state with the **Node.js SDK** and pass the entire envelope to the **React SDK**'s `ReflagBootstrappedProvider`. Follow the [React bootstrap documentation](react-sdk/README.md#bootstrap-and-ssr), using your framework's safe serialization mechanism. Never send server secrets or server-only attributes to the browser.
+
+Using v1? [Legacy docs](../legacy/v1/README.md) · [Upgrade guide](migrating-from-v1.md).

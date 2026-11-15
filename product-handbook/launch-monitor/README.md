@@ -40,7 +40,7 @@ You can collect end-user feedback on new flag rollouts to catch and fix issues f
 
 Configure adoption rules to match the usage event name you send. Reading a flag registers a check; tracking usage is a separate operation.
 
-Here's a brief example using the [Reflag React SDK v2](../../supported-languages/react-sdk/README.md) to collect feedback:
+Here's a brief example using the [Reflag React SDK](../../supported-languages/react-sdk/README.md) to collect feedback:
 
 ```tsx
 import { useFlag, useRequestFeedback } from "@reflag/react-sdk";

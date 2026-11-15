@@ -13,14 +13,6 @@ pagination:
   visible: true
 ---
 
-{% hint style="info" %}
-**Protocol v2.** [Legacy v1 documentation](../../../legacy/v1/browser-sdk/globals.md) · [Migration guide](../../../supported-languages/migrating-from-v1.md)
-
-**Prerelease source documentation.** The installation examples target major 2; use them only when the matching SDK/CLI packages are available. A server rollout alone does not publish npm packages.
-
-Generated from [`@reflag/browser-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/browser-sdk); SDK READMEs and code comments remain the source of truth.
-{% endhint %}
-
 # @reflag/browser-sdk <a href="#reflagbrowser-sdk" id="reflagbrowser-sdk"></a>
 
 ## Classes <a href="#classes" id="classes"></a>
@@ -5260,3 +5252,5 @@ These events will be propagated to the feedback dialog
 #### See <a href="#see" id="see"></a>
 
 [https://developer.mozilla.org/en-US/docs/Web/API/Element#events](https://developer.mozilla.org/en-US/docs/Web/API/Element#events)
+
+Using v1? [Legacy docs](../../../legacy/v1/browser-sdk/globals.md) · [Upgrade guide](../../../supported-languages/migrating-from-v1.md).

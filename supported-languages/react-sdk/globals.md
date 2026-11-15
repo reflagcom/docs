@@ -13,14 +13,6 @@ pagination:
   visible: true
 ---
 
-{% hint style="info" %}
-**Protocol v2.** [Legacy v1 documentation](../../legacy/v1/react-sdk/globals.md) · [Migration guide](../migrating-from-v1.md)
-
-**Prerelease source documentation.** The installation examples target major 2; use them only when the matching SDK/CLI packages are available. A server rollout alone does not publish npm packages.
-
-Generated from [`@reflag/react-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/react-sdk); SDK READMEs and code comments remain the source of truth.
-{% endhint %}
-
 # @reflag/react-sdk <a href="#reflagreact-sdk" id="reflagreact-sdk"></a>
 
 ## Interfaces <a href="#interfaces" id="interfaces"></a>
@@ -2439,3 +2431,5 @@ updateUser({ optInHuddles: "true" }).then(() => console.log("Flags updated"));
 ### Returns <a href="#returns-29" id="returns-29"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+Using v1? [Legacy docs](../../legacy/v1/react-sdk/globals.md) · [Upgrade guide](../migrating-from-v1.md).

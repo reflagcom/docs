@@ -13,14 +13,6 @@ pagination:
   visible: true
 ---
 
-{% hint style="info" %}
-**Protocol v2.** [Legacy v1 documentation](../../legacy/v1/node-sdk/globals.md) · [Migration guide](../migrating-from-v1.md)
-
-**Prerelease source documentation.** The installation examples target major 2; use them only when the matching SDK/CLI packages are available. A server rollout alone does not publish npm packages.
-
-Generated from [`@reflag/node-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/0809be2b95f43fa1785c6b7b188c03ac8fd40965/packages/node-sdk); SDK READMEs and code comments remain the source of truth.
-{% endhint %}
-
 # @reflag/node-sdk <a href="#reflagnode-sdk" id="reflagnode-sdk"></a>
 
 ## Classes <a href="#classes" id="classes"></a>
@@ -5593,3 +5585,5 @@ createStaticFallbackProvider
 </tr>
 </tbody>
 </table>
+
+Using v1? [Legacy docs](../../legacy/v1/node-sdk/globals.md) · [Upgrade guide](../migrating-from-v1.md).

@@ -7,7 +7,7 @@ description: Upgrade Browser, React, Vue and Node.js integrations from protocol 
 Protocol v2 is a **breaking change** for the Browser, React, Vue and Node.js SDKs. The main SDK pages and shared guides show v2; complete [legacy v1 documentation](../legacy/v1/README.md) remains available.
 
 {% hint style="warning" %}
-Check the SDK page banners for the exact source versions and prerelease status. During a prerelease rollout, stable npm packages may still be v1: use the exact v2 package versions supplied for your rollout, or wait for the published v2 releases. Do not assume an unversioned install or an `@next` tag installs v2. Installation examples using `@2` require that major to be published.
+The current v2 pages document `2.0.0-next.0` SDK sources. Until stable v2 packages are published, use the exact prerelease SDK/CLI versions supplied for your rollout. Do not assume an unversioned install or an `@next` tag installs v2; the `@2` commands below require a published major 2.
 {% endhint %}
 
 ## Choose a compatible toolchain
@@ -21,6 +21,21 @@ Check the SDK page banners for the exact source versions and prerelease status. 
 | React Native / OpenFeature / Management | Follow each package's documentation | Not automatically upgraded by this migration |
 
 Coordinate the required server protocol, SDKs, generated declarations and authored flag values. A server rollout does not itself publish SDK packages or convert legacy remote config.
+
+Once stable v2 packages are available, update the SDKs your application uses:
+
+```sh
+# Choose the SDKs used by your application.
+npm install @reflag/browser-sdk@2
+npm install @reflag/react-sdk@2
+npm install @reflag/vue-sdk@2
+npm install @reflag/node-sdk@2
+
+# If you generate flag types:
+npm install --save-dev @reflag/cli@2
+```
+
+Update your lockfile and regenerate declarations before checking the code changes below.
 
 ## 1. Read values directly
 

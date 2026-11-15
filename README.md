@@ -1,9 +1,5 @@
 # Getting started
 
-{% hint style="info" %}
-These examples use **protocol v2**. The SDK page banners identify prerelease source versions and package availability. Maintaining a v1 application? Use the [legacy SDK docs](legacy/v1/README.md) or [migration guide](supported-languages/migrating-from-v1.md).
-{% endhint %}
-
 **Welcome!** Let's get started. We'll do the following:
 
 1. Create your first flag.
@@ -19,10 +15,10 @@ Now let's create your first flag.
 {% tabs %}
 {% tab title="CLI" %}
 ```
-npx @reflag/cli@2 new
+npx @reflag/cli new
 ```
 
-This requires a compatible CLI 2 release; for the current v2 prerelease rollout, use the package version supplied to you. You can also create the flag in the UI without installing the CLI. See [Type safety](product-handbook/type-safety.md) for v2 type generation.
+See [Type safety](product-handbook/type-safety.md) to generate TypeScript declarations for your flags.
 {% endtab %}
 
 {% tab title="UI" %}
@@ -146,3 +142,5 @@ Configure your flag's adoption rules to match the event name you send with `trac
 * Need some help? [Chat with us](mailto:hello@reflag.com)
 * Latest product updates? [See Changelog](https://reflag.com/changelog)
 * Create account: [Sign up](https://app.reflag.com/)
+
+Using v1? [Legacy docs](legacy/v1/README.md) · [Upgrade guide](supported-languages/migrating-from-v1.md).

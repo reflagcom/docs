@@ -193,37 +193,37 @@ export function planPackage({ source, name, commit }) {
     );
     content = anchorHeadings(content);
     if (web) {
-      // Pin installation/CDN commands, never imports or JSON application data.
-      content = content
-        .split("\n")
-        .map((line) => {
-          if (!/^\s*(?:npm (?:i|install)|yarn add|pnpm add|bun add|deno add|npx)\b/.test(line))
-            return line;
-          return line.replace(
-            /@reflag\/(?:node-sdk|browser-sdk|react-sdk|vue-sdk|cli)(?:@[\w.^~-]+)?(?![\w/-])/g,
-            (match) => `${match.replace(/@[^@/]+$/, "")}@${major}`,
-          );
-        })
-        .join("\n");
-      content = content.replace(
-        /(https:\/\/cdn\.jsdelivr\.net\/npm\/@reflag\/browser-sdk)(?:@[^/"'<>\s]+)?/g,
-        `$1@${major}`,
-      );
+      if (major === 1) {
+        // Only legacy installs need a major pin; current docs assume a fresh install.
+        content = content
+          .split("\n")
+          .map((line) => {
+            if (!/^\s*(?:npm (?:i|install)|yarn add|pnpm add|bun add|deno add|npx)\b/.test(line))
+              return line;
+            return line.replace(
+              /@reflag\/(?:node-sdk|browser-sdk|react-sdk|vue-sdk|cli)(?:@[\w.^~-]+)?(?![\w/-])/g,
+              (match) => `${match.replace(/@[^@/]+$/, "")}@1`,
+            );
+          })
+          .join("\n");
+        content = content.replace(
+          /(https:\/\/cdn\.jsdelivr\.net\/npm\/@reflag\/browser-sdk)(?:@[^/"'<>\s]+)?/g,
+          "$1@1",
+        );
+      }
       const counterpart = docsPath(
         name,
         major === 1 ? 2 : 1,
         kind === "feedback" ? "feedback.md" : kind === "reference" ? "globals.md" : "README.md",
       );
-      const label = major === 1 ? "Protocol v1 — legacy" : "Protocol v2";
-      const versionLink = major === 1 ? "Current v2 documentation" : "Legacy v1 documentation";
-      const prerelease =
-        major === 2 && versionPattern.exec(pkg.version)[4]
-          ? "\n\n**Prerelease source documentation.** The installation examples target major 2; use them only when the matching SDK/CLI packages are available. A server rollout alone does not publish npm packages."
-          : "";
-      content = withBanner(
-        content,
-        `**${label}.** [${versionLink}](${relative(file, counterpart)}) · [Migration guide](${relative(file, "supported-languages/migrating-from-v1.md")})${prerelease}\n\nGenerated from [\`${pkg.name}@${pkg.version}\`](${repository}/tree/${commit}/packages/${name}); SDK READMEs and code comments remain the source of truth.`,
-      );
+      const migration = relative(file, "supported-languages/migrating-from-v1.md");
+      content =
+        major === 1
+          ? withBanner(
+              content,
+              `**Protocol v1 — legacy.** [Current v2 documentation](${relative(file, counterpart)}) · [Migration guide](${migration})\n\nGenerated from [\`${pkg.name}@${pkg.version}\`](${repository}/tree/${commit}/packages/${name}); SDK READMEs and code comments remain the source of truth.`,
+            )
+          : `${content.trimEnd()}\n\nUsing v1? [Legacy docs](${relative(file, counterpart)}) · [Upgrade guide](${migration}).\n`;
     } else if (name === "react-native-sdk") {
       content = withBanner(
         content,

@@ -1,10 +1,10 @@
 ---
-description: Register flag keys and direct-value schemas with SDK v2 and CLI 2.
+description: Register flag keys and schemas with the Reflag SDKs and CLI.
 ---
 
 # Type safety
 
-Reflag SDK v2 can infer a direct return type from the default you pass, without a generated file. Registering your flag schemas also catches misspelled keys and incompatible non-null defaults.
+The Reflag SDKs infer return types from the defaults you pass, without a generated file. Registering your flag schemas also catches misspelled keys and incompatible non-null defaults.
 
 ```tsx
 import { useFlag } from "@reflag/react-sdk";
@@ -19,10 +19,10 @@ The fallback determines the widened return type: `512` becomes `number`, not the
 
 ## Set up type safety for flags
 
-Use **CLI 2 with Node/React/Vue SDK v2**. Keep CLI 1 with v1 applications. CLI 2 and the SDK v2 packages must be available before using these installation commands; a staging server deployment alone does not release them.
+Install the Reflag CLI and generate declarations for your flags:
 
 ```sh
-npm install --save-dev @reflag/cli@2
+npm install --save-dev @reflag/cli
 npx reflag init
 npx reflag flags types
 ```
@@ -82,4 +82,6 @@ Store an authorized [Management API key](../api/api-access.md) in your CI secret
     REFLAG_API_KEY: ${{ secrets.REFLAG_CI_API_KEY }}
 ```
 
-Install CLI 2 from your lockfile before running this step. The command is **`reflag flags types`**, not `reflag types generate` or `reflag flags generate`. See the [SDK migration guide](../supported-languages/migrating-from-v1.md) before replacing legacy wrapper-shaped declarations.
+Install the CLI from your lockfile before running this step.
+
+Using v1? [Legacy docs](../legacy/v1/README.md) · [Upgrade guide](../supported-languages/migrating-from-v1.md).

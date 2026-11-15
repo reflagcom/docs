@@ -10,7 +10,7 @@ Use a **Multivariate flag** when different users or companies need different con
 
 A value can be an object, array, string, number, Boolean, or `null`. There are no reserved application fields: names such as `model`, `config`, `payload`, or `enabled` are ordinary data that you choose.
 
-For example, configure `assistant-settings` with variants containing different model settings, then read it with React SDK v2:
+For example, configure `assistant-settings` with variants containing different model settings, then read it with the React SDK:
 
 ```tsx
 import { useFlag } from "@reflag/react-sdk";
@@ -31,13 +31,13 @@ export function AssistantSettings() {
 }
 ```
 
-The second argument is the application's fallback value, not hook options. A bare `useFlag("assistant-settings")` is a Boolean read, even if the flag is Multivariate. Supply an appropriate default for a JSON read; use explicit `null` if you need arbitrary JSON and will narrow the result yourself.
+The second argument is the application's fallback value. A bare `useFlag("assistant-settings")` is a Boolean read, even if the flag is Multivariate. Supply an appropriate default for a JSON read; use explicit `null` if you need arbitrary JSON and will narrow the result yourself.
 
 ## Config values
 
 Each environment's definition contains:
 
-- **Variants:** unique keys and their JSON values. The SDK returns the selected **value**, not the variant key or a wrapper.
+- **Variants:** unique keys and their JSON values. The SDK returns the selected variant's **value**.
 - **Specific targets:** explicit user/company assignments to variants.
 - **Ordered rules:** filters and results, including percentage distributions.
 - **Default variant:** the authored selection when no more-specific target or applicable rule selects a variant.
@@ -86,6 +86,6 @@ Combine a Boolean entitlement such as `assistant-enabled` with a separate settin
 1. Create a **Multivariate** flag in an app where Multivariate support is available.
 2. Open its **Variants** tab and configure variants, specific targets, rules, and the default for the selected environment.
 3. Save, then configure and verify any other environments separately.
-4. Read the value with matching [SDK v2](../supported-languages/overview.md) packages and a positional default.
+4. Read the value with a [Reflag SDK](../supported-languages/overview.md) and a positional default.
 
-Existing v1 Boolean flags with an independent remote-config payload do **not** automatically become Multivariate flags. Plan their authored-data migration explicitly; upgrading an SDK does not copy or reinterpret old payloads. See the [v1 → v2 migration guide](../supported-languages/migrating-from-v1.md).
+Using v1? [Legacy docs](../legacy/v1/README.md) · [Upgrade guide](../supported-languages/migrating-from-v1.md).

@@ -7,7 +7,6 @@
 ## Supported languages
 
 * [Overview](supported-languages/overview.md)
-* [Migrating from v1](supported-languages/migrating-from-v1.md)
 * [React SDK](supported-languages/react-sdk/README.md)
   * [Reference](supported-languages/react-sdk/globals.md)
 * [React Native SDK (beta)](supported-languages/react-native-sdk/README.md)
@@ -22,6 +21,7 @@
 * [Next.js](supported-languages/next.js.md)
 * [OpenFeature](supported-languages/openfeature.md)
 * [Ruby SDK](supported-languages/ruby-sdk.md)
+* [Migrating from v1](supported-languages/migrating-from-v1.md)
 
 ## API
 

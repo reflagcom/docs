@@ -1,11 +1,11 @@
 ---
-description: Gate a workflow in your own CLI with SDK v2.
+description: Gate a workflow in your own CLI with Reflag.
 icon: rectangle-terminal
 ---
 
 # Use Reflag in your CLI
 
-This guide is about **your application's CLI**, not the Reflag management CLI. Authenticate your caller using your existing API-token or OAuth flow, then evaluate flags with the server-side Node SDK v2. Do not embed a Reflag secret SDK key or a Management API key in a distributed CLI.
+This guide is about **your application's CLI**, not the Reflag management CLI. Authenticate your caller using your existing API-token or OAuth flow, then evaluate flags with the server-side Node.js SDK. Do not embed a Reflag secret SDK key or a Management API key in a distributed CLI.
 
 ## Evaluate on your backend
 
@@ -31,7 +31,7 @@ export async function getCliAccess(context: Context) {
 
 Call `getCliAccess()` after authentication and return only the values your CLI needs. This registers checks for these requested roots. Diagnostic APIs are not a substitute for application reads.
 
-The JSON response contains direct values, not flag wrappers:
+The JSON response contains the flag values:
 
 ```json
 {
@@ -68,4 +68,6 @@ export async function recordExport(context: Context) {
 }
 ```
 
-There is no `getFlag(...).track()` wrapper method in v2. Initialize the client once per process and use its normal lifecycle/flush handling for short-lived server processes. See [Node SDK v2](../supported-languages/node-sdk/README.md) and the [migration guide](../supported-languages/migrating-from-v1.md).
+Initialize the client once per process and flush queued events before your server process exits. See the [Node.js SDK](../supported-languages/node-sdk/README.md) for lifecycle options.
+
+Using v1? [Legacy docs](../legacy/v1/README.md) · [Upgrade guide](../supported-languages/migrating-from-v1.md).

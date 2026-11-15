@@ -1,5 +1,5 @@
 ---
-description: Add a feedback button with the React SDK v2 feedback hook.
+description: Add a feedback button with the React SDK feedback hook.
 ---
 
 # Give feedback button
@@ -30,4 +30,4 @@ export function StartHuddleButton() {
 }
 ```
 
-Render this component inside a [React SDK v2 provider](../../supported-languages/react-sdk/README.md) with the appropriate user/company context. Configure adoption rules to match the event you track. For widget positioning, translations, styling, or your own UI, see [Browser feedback](../../supported-languages/browser-sdk/feedback.md).
+Render this component inside a [React SDK provider](../../supported-languages/react-sdk/README.md) with the appropriate user/company context. Configure adoption rules to match the event you track. For widget positioning, translations, styling, or your own UI, see [Browser feedback](../../supported-languages/browser-sdk/feedback.md).

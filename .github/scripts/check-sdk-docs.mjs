@@ -91,8 +91,34 @@ export function sourceMatrix(base = root) {
   };
 }
 
+export function checkCurrentPagePresentation(content, file) {
+  const notes = [...content.matchAll(/^Using v1\? .+$/gm)];
+  assert.equal(notes.length, 1, `Expected one succinct version note: ${file}`);
+  assert(content.trimEnd().endsWith(notes[0][0]), `Version note must be at the end: ${file}`);
+  assert(!content.includes("**Protocol v2"), `Repeated protocol banner: ${file}`);
+  assert(!content.includes("Prerelease source documentation"), `Repeated release warning: ${file}`);
+  assert(!content.includes("Generated from ["), `Provenance belongs in the manifest: ${file}`);
+  for (const line of content.split("\n"))
+    if (
+      /^\s*(?:npm (?:i|install)|yarn add|pnpm add|bun add|deno add|npx)\b|cdn\.jsdelivr\.net/.test(
+        line,
+      )
+    )
+      assert(
+        !/@reflag\/(?:node-sdk|browser-sdk|react-sdk|vue-sdk|cli)@2\b/.test(line),
+        `Major-pinned installs belong in the upgrade guide: ${file}`,
+      );
+}
+
 export function checkSDKDocs(base = root) {
   const summary = read(base, "SUMMARY.md");
+  const supported = /^## Supported languages\n([\s\S]*?)(?=\n## )/m.exec(summary)?.[1];
+  assert(supported, "Missing Supported languages section");
+  assert.equal(
+    links(supported).at(-1),
+    "supported-languages/migrating-from-v1.md",
+    "Migration guide must be last in Supported languages",
+  );
   const navigation = links(summary).filter((href) => !/^[a-z][a-z\d+.-]*:/i.test(href));
   assert.equal(new Set(navigation).size, navigation.length, "Duplicate navigation entry");
   const generated = new Set();
@@ -130,8 +156,9 @@ export function checkSDKDocs(base = root) {
           }),
           `Missing equivalent-version link: ${file}`,
         );
-        assert(content.includes(major === 1 ? "Protocol v1 — legacy" : "Protocol v2"));
+        if (major === 2) checkCurrentPagePresentation(content, file);
         if (major === 1) {
+          assert(content.includes("Protocol v1 — legacy"));
           assert(
             !/cdn\.jsdelivr\.net\/npm\/@reflag\/browser-sdk@(?!1\b)/.test(content),
             "Legacy CDN must target v1",
@@ -162,6 +189,12 @@ export function checkSDKDocs(base = root) {
       `Legacy wrapper in shared example: ${file}`,
     );
     assert(!content.includes("../sdk/v2/"), `Obsolete SDK preview link: ${file}`);
+    for (const line of content.split("\n"))
+      if (/^\s*(?:npm (?:i|install)|yarn add|pnpm add|bun add|deno add|npx)\b/.test(line))
+        assert(
+          !/@reflag\/[a-z-]+@2\b/.test(line),
+          `Major-pinned installs belong in the upgrade guide: ${file}`,
+        );
   }
   // Existing unrelated handbook anchors are not a gate for generated SDK output.
   // New SDK links, migration/overview links and all navigation must resolve.

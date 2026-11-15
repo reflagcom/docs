@@ -1,5 +1,5 @@
 ---
-description: Use SDK v2 with anonymous users and optional company context.
+description: Use Reflag with anonymous users and optional company context.
 ---
 
 # Anonymous users
@@ -82,4 +82,4 @@ export function App() {
 {% endtab %}
 {% endtabs %}
 
-A browser's company ID is not an authorization boundary. Enforce sensitive access on your authenticated server, using context derived from your own session or API-token lookup. See [Node SDK v2](../supported-languages/node-sdk/README.md) and [React SDK v2](../supported-languages/react-sdk/README.md) for complete setup.
+A browser's company ID is not an authorization boundary. Enforce sensitive access on your authenticated server, using context derived from your own session or API-token lookup. See the [Node.js SDK](../supported-languages/node-sdk/README.md) and [React SDK](../supported-languages/react-sdk/README.md) for complete setup.

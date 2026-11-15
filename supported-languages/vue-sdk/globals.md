@@ -13,14 +13,6 @@ pagination:
   visible: true
 ---
 
-{% hint style="info" %}
-**Protocol v2.** [Legacy v1 documentation](../../legacy/v1/vue-sdk/globals.md) · [Migration guide](../migrating-from-v1.md)
-
-**Prerelease source documentation.** The installation examples target major 2; use them only when the matching SDK/CLI packages are available. A server rollout alone does not publish npm packages.
-
-Generated from [`@reflag/vue-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/vue-sdk); SDK READMEs and code comments remain the source of truth.
-{% endhint %}
-
 # @reflag/vue-sdk <a href="#reflagvue-sdk" id="reflagvue-sdk"></a>
 
 ## Interfaces <a href="#interfaces" id="interfaces"></a>
@@ -1791,3 +1783,5 @@ Renames and re-exports [ReflagBootstrappedProvider](globals.md#reflagbootstrappe
 ### ReflagProvider <a href="#reflagprovider" id="reflagprovider"></a>
 
 Renames and re-exports [ReflagBootstrappedProvider](globals.md#reflagbootstrappedprovider)
+
+Using v1? [Legacy docs](../../legacy/v1/vue-sdk/globals.md) · [Upgrade guide](../migrating-from-v1.md).
