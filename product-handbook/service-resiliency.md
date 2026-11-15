@@ -57,9 +57,9 @@ flowchart LR
 
 ## Recommended production setup
 
-1. Evaluate flags on the server with a local-evaluation SDK, such as the [Node.js SDK](../supported-languages/node-sdk/) or [OpenFeature Node.js provider](../supported-languages/openfeature.md).
-2. Configure a [`flagsFallbackProvider`](../supported-languages/node-sdk/#fallback-provider) so fresh server processes can initialize from saved flag definitions when Reflag cannot be reached.
-3. Use [`getFlagsForBootstrap()`](../supported-languages/node-sdk/#bootstrapping-client-side-applications) on the server and a bootstrapped client provider in React, React Native, Vue, or the Browser SDK.
+1. Evaluate flags on the server with the [Node.js SDK v2](../supported-languages/node-sdk/README.md).
+2. Configure a [`flagsFallbackProvider`](../supported-languages/node-sdk/README.md#fallback-providers) so fresh server processes can initialize from saved flag definitions when Reflag cannot be reached.
+3. Use [`getFlagsForBootstrap()`](../supported-languages/node-sdk/README.md#bootstrap-state) on the server and a matching v2 bootstrapped client provider in React, Vue, or the Browser SDK.
 4. If your client SDK supports caching, tune it based on how long your app can tolerate stale flags.
 5. Test the disruption path in staging: block access to Reflag, start a fresh server process, and confirm it initializes from fallback storage and the client renders from bootstrapped flags.
 
@@ -90,18 +90,19 @@ Use the file provider for single-server deployments only when the disk persists 
 
 Choose fallback storage based on where your application runs. The storage should be reachable whenever your application is reachable, so prefer storage in the same cloud provider, region, or network as the application deployment that will use it. If an outage affects Reflag's infrastructure but your application is still running elsewhere, your application can still load the saved snapshot. If the same provider or region outage also takes down your application, fallback storage cannot help until your application environment is available again.
 
-For all built-in providers and custom provider examples, see the [fallback provider docs](../supported-languages/node-sdk/#fallback-provider).
+For built-in providers and the v2 snapshot contract, see the [fallback provider docs](../supported-languages/node-sdk/README.md#fallback-providers). V1 snapshots cannot initialize a v2 collection cache; built-in storage uses isolated v2 keys.
 
 ## Bootstrapped flags
 
 Bootstrapping lets your server evaluate flags and pass the server-evaluated state to your client-side application. The client can render immediately from that state instead of depending on an initial request to Reflag.
 
-Use [`getFlagsForBootstrap()`](../supported-languages/node-sdk/#bootstrapping-client-side-applications) in the Node.js SDK together with the bootstrapping APIs in your client SDK:
+Use [`getFlagsForBootstrap()`](../supported-languages/node-sdk/README.md#bootstrap-state) in Node SDK v2 together with the matching v2 bootstrapping APIs:
 
-* [React SDK](../supported-languages/react-sdk/#server-side-rendering-and-bootstrapping): `ReflagBootstrappedProvider`
-* [React Native SDK](../supported-languages/react-native-sdk/#bootstrapping): `ReflagBootstrappedProvider`
-* [Vue SDK](../supported-languages/vue-sdk/#reflagbootstrappedprovider-component): `ReflagBootstrappedProvider`
-* [Browser SDK](../supported-languages/browser-sdk/#using-bootstrappedstate): `bootstrappedState`
+* [React SDK](../supported-languages/react-sdk/README.md#bootstrap-and-ssr): `ReflagBootstrappedProvider`
+* [Vue SDK](../supported-languages/vue-sdk/README.md#bootstrap): `ReflagBootstrappedProvider`
+* [Browser SDK](../supported-languages/browser-sdk/README.md#server-bootstrap): `bootstrappedState`
+
+Pass the entire protocol-v2 envelope, not only its `flags` property. React Native and the OpenFeature providers retain their independently supported contracts. Do not feed Node v2 bootstrap into a v1 consumer; use the [legacy Node SDK](../legacy/v1/node-sdk/README.md) with v1 consumers until their coordinated migration.
 
 Bootstrapping is the recommended client setup for high-availability applications because the first render depends on your application server response, not on the client's ability to reach Reflag. Combined with server-side local evaluation and `flagsFallbackProvider`, it lets end users continue receiving evaluated flags during a Reflag service disruption.
 

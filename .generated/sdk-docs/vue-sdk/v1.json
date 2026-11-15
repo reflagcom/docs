@@ -1,0 +1,10 @@
+{
+  "sourceRepository": "https://github.com/reflagcom/javascript",
+  "sourceCommit": "b4fe5b3d9386b87c6546175c323862d9878e1430",
+  "package": "@reflag/vue-sdk",
+  "version": "1.5.7",
+  "files": {
+    "legacy/v1/vue-sdk/README.md": "64a47b3fa4fd104f19fd14250e34438a00c5b5c0474573d68fb7af0aa40442ce",
+    "legacy/v1/vue-sdk/globals.md": "c6053f46cef5bce2882434cbeb1003d0f08f35147f5d98eb7d8276e572c831bb"
+  }
+}

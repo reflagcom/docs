@@ -1,106 +1,91 @@
 ---
-description: Learn more about remote config in Reflag
+description: Configure JSON-valued Multivariate flags for different audiences.
 ---
 
 # Remote config
 
 ## What is remote config?
 
-Remote config is a dynamic way to configure flags for different audiences. A flag's remote config consists of a set of **config values**. Each config value is a **key** — **payload** pair where the key is unique and the value is any valid JSON value. Both are supplied by you.
+Use a **Multivariate flag** when different users or companies need different configuration values. Unlike a Boolean flag, which answers an access question, a Multivariate flag selects a named variant and returns its JSON value directly.
 
-Config values have **environment-specific targeting rules** used by Reflag to match them against your users and companies.
+A value can be an object, array, string, number, Boolean, or `null`. There are no reserved application fields: names such as `model`, `config`, `payload`, or `enabled` are ordinary data that you choose.
 
-Remote config reduces the need for code changes. It lets you test and adjust flag behavior without redeploying your application.
+For example, configure `assistant-settings` with variants containing different model settings, then read it with React SDK v2:
 
-This is what remote config looks like in React:
-
-{% code fullWidth="false" %}
 ```tsx
-function AISummarizerRemotelyConfigured({copy}: {copy: string}) {
-  const { config: { payload } } = useFlag('my-ai-flag');
+import { useFlag } from "@reflag/react-sdk";
 
-  return <AISummarizer model={payload.model} provider={payload.provider} />
+export function AssistantSettings() {
+  const settings = useFlag("assistant-settings", {
+    model: "quick",
+    maxTokens: 512,
+    includeCitations: false,
+  });
+
+  return (
+    <p>
+      Model: {settings.model}; token limit: {settings.maxTokens};
+      citations: {settings.includeCitations ? "on" : "off"}
+    </p>
+  );
 }
 ```
-{% endcode %}
 
-{% hint style="info" %}
-Remote config works independently from [access rules](feature-rollouts/feature-targeting-rules.md). In other words, remote config is not affected by whether the user has access to the flag.
-{% endhint %}
+The second argument is the application's fallback value, not hook options. A bare `useFlag("assistant-settings")` is a Boolean read, even if the flag is Multivariate. Supply an appropriate default for a JSON read; use explicit `null` if you need arbitrary JSON and will narrow the result yourself.
 
 ## Config values
 
-Config values consist of:
+Each environment's definition contains:
 
-* A mandatory unique string **key**, supplied by you. The key is unique per flag. If you just need a string configuration, you can use the key by itself.
-* An optional JSON **payload**, that can be any valid JSON value: `null`, `string`, `number`, `array` or `object`
-* Targeting rules which are environment-specific, allowing you to target different config values to different users/companies in different environments
-* Default setting, which tells Reflag which config value to use as fallback if no targeting set matches the given user/company context
+- **Variants:** unique keys and their JSON values. The SDK returns the selected **value**, not the variant key or a wrapper.
+- **Specific targets:** explicit user/company assignments to variants.
+- **Ordered rules:** filters and results, including percentage distributions.
+- **Default variant:** the authored selection when no more-specific target or applicable rule selects a variant.
+
+Definitions, targeting, and values are environment-specific. Save the complete definition together; changing another environment does not automatically copy its values or rules. An empty Multivariate definition evaluates to `null`.
+
+The authored default variant is different from the application's SDK fallback. A real default-variant selection retains its selection identity; the SDK fallback does not invent one.
 
 {% hint style="danger" %}
-Do not store sensitive data in the key or the payload of the config value even if the flag is marked as **secret.**
-
-Sensitive data, like API keys or passwords should be managed with proper care outside of Reflag
-{% endhint %}
-
-The config values are shared across all environments. Any new value that you add in one environment is automatically added to other environments, but without targeting rules, making it disabled there by default.
-
-<figure><img src="../.gitbook/assets/Screenshot 2025-09-12 at 14.29.56.png" alt=""><figcaption><p>Remote config with three values in the Production environment</p></figcaption></figure>
-
-In the image above, a flag is set up with three config values. This example configures LLM settings for an AI workflow. The `gpt-4o` value is the default and is served with requests that do not match a more specific rule. The `claude-3-7-sonnet` value is served to users in `Apex` and `Blaze`. The `gpt-5` value is served to `Adrian Borer` and the `Logix` and `Hightrix` companies.
-
-{% hint style="info" %}
-We recommend that you choose simple text values for config value keys. Avoid spaces and special characters unless you plan to use the key as display text in your application.
+Do not store credentials or other secrets in flag values. Anything sent to a browser can be inspected by its users. Keep application secrets in an appropriate secret manager.
 {% endhint %}
 
 ## Matching algorithm
 
-* Users, companies and segments can appear only once in the targeting rules for each environment. This means that you cannot configure two distinct config values in the same environment to target the same entity explicitly
-* Matches are not evaluated in the order of their appearance, but in order of their **specificity**:
-  * Directly specified users match first
-  * Then, directly specified companies match
-  * Then, going top to bottom in order of appearance of the config values, segments specified are matched against the company
-  * Finally, if no rule is matched, the default one is used
-* **`Other context`** is not taken into account when evaluating config value targeting rules
-* _Percentage rollout_ is not supported for remote config
+Specific user assignments take precedence over company assignments. Then rules are considered in order; the default variant handles contexts that do not select an earlier result. Rules can use the supported user, company, segment, and other-context filters. Percentage distributions select a variant using the configured bucketing attribute; preserve stable variant/rule identities when editing definitions.
+
+For a separate on/off gate, use a Boolean flag. A Multivariate value of `false`, `0`, `""`, `[]`, or `null` is application data, not a universal access-denied signal. Do not use JavaScript truthiness to decide whether a variant was selected.
 
 ## Usage scenarios
 
-In addition to the AI model configuration example above, this section shows some other scenarios that can be solved by using remote config.
-
 ### Basic flag configuration
 
-Sometimes it is useful to store flag-specific config that your application can use. This is true even if you do not plan to target different config values to different users. You can create a single config value, set it as **default**, and store any JSON payload in it. In that case, the key can be any value you choose.
+Use a single default variant for centrally managed configuration, or add rules and more variants as different audiences need different settings. Choose a safe application fallback and validate any nested data your application depends on.
 
-On the application side, you can check if the user has access to the flag, and use the accompanying config when needed.
-
-{% hint style="info" %}
-Since config values are evaluated independently from access, your application can still use remote config even if the flag is disabled for the user. For example, the payload can explain why the flag is unavailable or offer an alternative path.
-{% endhint %}
+Non-null SDK defaults check the selected value's **top-level category**. They do not recursively validate a returned object's fields. Generated TypeScript declarations are compile-time assistance, not runtime validation.
 
 ### Multivariate flags
 
-The **multivariate flag** is a classic remote config use case. To create one:
+For string-valued variants, the value can itself be the model or mode your application needs:
 
-1. Create a flag and define its access rules, if any.
-2. Create the "_variants_" by using config values. Each config value has its key representing the variant name.
-3. Adjust the targeting rules on each config value.
-4. Payloads can be be ignored if additional configuration is not required for each variant.
+```tsx
+import { useFlag } from "@reflag/react-sdk";
+
+export function AssistantModel() {
+  const model = useFlag("assistant-model", "quick");
+  return <p>Selected model: {model}</p>;
+}
+```
 
 ### Entitlements
 
-Remote config is a strong fit for [entitlements scenarios](feature-entitlements/). For each flag you create, you can add config values that target different **companies** or **company segments**. Each config value can then define a different access tier or usage limit.
-
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption><p>Example of AI model variations by subscription tier</p></figcaption></figure>
-
-The image above shows a flag called "_AI Transcripts_" that serves four customer categories: "_Not customers_", "_Beta_", "_Business Plan_", and "_Enterprise Plan_". Each category receives a different tier.
+Combine a Boolean entitlement such as `assistant-enabled` with a separate settings flag when access and configuration are independent product decisions. Use company attributes and rules to select settings for each subscription tier. Read only the flags needed by the workflow.
 
 ## Start using remote config
 
-First, [create your first flag](https://app.reflag.com/env-current/flags/new), if you have not already. Then open your flag and click the "_Remote config_" tab.
+1. Create a **Multivariate** flag in an app where Multivariate support is available.
+2. Open its **Variants** tab and configure variants, specific targets, rules, and the default for the selected environment.
+3. Save, then configure and verify any other environments separately.
+4. Read the value with matching [SDK v2](../supported-languages/overview.md) packages and a positional default.
 
-<figure><img src="../.gitbook/assets/Screenshot 2025-09-12 at 14.37.52.png" alt=""><figcaption><p>Click "Create config value" to start</p></figcaption></figure>
-
-Once you have set up your flag and config values, configure the targeting rules in your other environments as well.
-
-Finally, use [any of our SDKs](../supported-languages/overview.md) to access the flag and its config in your application.
+Existing v1 Boolean flags with an independent remote-config payload do **not** automatically become Multivariate flags. Plan their authored-data migration explicitly; upgrading an SDK does not copy or reinterpret old payloads. See the [v1 → v2 migration guide](../supported-languages/migrating-from-v1.md).

@@ -13,13 +13,17 @@ pagination:
   visible: true
 ---
 
+{% hint style="info" %}
+**Independent SDK compatibility.** This React Native release uses React/Browser protocol v1. Follow the [matching React documentation](../../../legacy/v1/react-sdk/README.md) and use a [matching Node SDK](../../../legacy/v1/node-sdk/README.md) for bootstrap. Do not pass protocol-v2 bootstrap into a v1 consumer.
+{% endhint %}
+
 # Reflag React Native SDK
 
 A thin React Native wrapper around `@reflag/react-sdk`.
 
-For more usage details, see the [React SDK README](../react-sdk/README.md).
+For more usage details, see the [React SDK README](../../../legacy/v1/react-sdk/README.md).
 
-An Expo example app lives in [packages/react-native-sdk/dev/expo](https://github.com/reflagcom/javascript/tree/main/packages/react-native-sdk/dev/expo).
+An Expo example app lives in [packages/react-native-sdk/dev/expo](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/react-native-sdk/dev/expo).
 
 ## Get started
 
@@ -61,7 +65,7 @@ function StartHuddleButton() {
 }
 ```
 
-See the [React SDK README](../react-sdk/README.md) for more details.
+See the [React SDK README](../../../legacy/v1/react-sdk/README.md) for more details.
 
 ## React Native differences
 
@@ -74,7 +78,7 @@ See the [React SDK README](../react-sdk/README.md) for more details.
 
 The React Native SDK shares its API with the React SDK. Use the React SDK reference for full types and details:
 
-[React SDK Reference](../react-sdk/README.md)
+[React SDK Reference](../../../legacy/v1/react-sdk/README.md)
 
 ## Cookbook
 
@@ -146,4 +150,4 @@ If you want live flag updates to continue working after bootstrapping, use a rec
 
 After bootstrapping, any live flag updates are fetched directly by the client SDK from Reflag using the client-visible context. If your bootstrapped snapshot depends on server-only or secret context that is not available in the app, later live refreshes may differ. In that case, keep `enableLiveFlagUpdates` disabled.
 
-For bootstrap usage patterns and options, see the [React SDK bootstrapping docs](../react-sdk/README.md).
+For bootstrap usage patterns and options, see the [React SDK bootstrapping docs](../../../legacy/v1/react-sdk/README.md).

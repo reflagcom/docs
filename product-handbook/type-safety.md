@@ -1,54 +1,85 @@
 ---
-description: Reflag offers type safety which reduces errors and frustation
+description: Register flag keys and direct-value schemas with SDK v2 and CLI 2.
 ---
 
 # Type safety
 
-{% embed url="https://www.youtube.com/watch?v=2ay2sc9g6Oc" %}
+Reflag SDK v2 can infer a direct return type from the default you pass, without a generated file. Registering your flag schemas also catches misspelled keys and incompatible non-null defaults.
 
-Type safety in Reflag ensures that flag key typos become build errors. This guarantees that if you try to use a non-existent flag key, you'll receive a type error, preventing potential runtime errors and improving code reliability. For remote config, it also ensures that the shape of the payload defined on Reflag matches what your code expects.
+```tsx
+import { useFlag } from "@reflag/react-sdk";
 
-Use the Reflag CLI to generate flag types from their definition in Reflag. Once flag types have been generated they are automatically picked up by TypeScript.
+export function TokenLimit() {
+  const settings = useFlag("assistant-settings", { maxTokens: 512 });
+  return <span>{settings.maxTokens}</span>;
+}
+```
 
-It's recommended that you do not check in the flag types, but instead generate them in your build process and on your local development machines.
+The fallback determines the widened return type: `512` becomes `number`, not the literal type `512`. Bare or explicit-`undefined` reads return Boolean; explicit `null` requests arbitrary JSON.
 
 ## Set up type safety for flags
 
-1.  Install the Reflag CLI and set up your repository
+Use **CLI 2 with Node/React/Vue SDK v2**. Keep CLI 1 with v1 applications. CLI 2 and the SDK v2 packages must be available before using these installation commands; a staging server deployment alone does not release them.
 
-    ```
-    npm install --save-dev @reflag/cli
-    npx reflag init
-    ```
-2.  Generate the types locally
+```sh
+npm install --save-dev @reflag/cli@2
+npx reflag init
+npx reflag flags types
+```
 
-    ```
-    npx reflag types generate
-    ```
-3.  Add the generated files to `.gitignore`
+Choose the appropriate output format during initialization, or pass it explicitly:
 
-    ```
-    echo "gen/flags.d.ts" >> .gitignore
-    ```
-4. Retrieve an [API Key](http://app.reflag.com/env-current/settings/org-api-access) for your build system
-5.  Set up your build system to run the Reflag CLI to generate types (use the `--api-key` option or specify the API key in the `REFLAG_API_KEY` environment variable)
+```sh
+npx reflag flags types --format react --out gen/flags.d.ts
+npx reflag flags types --format node --out gen/flags.d.ts
+npx reflag flags types --format vue --out gen/flags.d.ts
+```
 
-    ```
-    npx reflag apps list --api-key $REFLAG_API_KEY
-    ```
+Generate only the declarations needed by your application's SDKs and ensure TypeScript includes the output. These examples show alternative formats; do not overwrite the same file three times in your actual build.
 
-Example CI workflow:
+Generation uses current production-environment Multivariate values to describe possible JSON shapes. Empty or unknown data remains JSON-capable rather than being invented as Boolean. Regenerate when flag definitions change. Generation errors must fail your build rather than leaving an unnoticed stale declaration file.
+
+You can commit the generated file, or ignore it and generate it on local setup and in CI. If you ignore it:
+
+```sh
+echo "gen/flags.d.ts" >> .gitignore
+```
+
+## Registered schemas and defaults
+
+A React registration looks like this (the CLI writes the appropriate augmentation for you):
+
+```tsx
+import { useFlag } from "@reflag/react-sdk";
+
+declare module "@reflag/react-sdk" {
+  interface Flags {
+    "assistant-settings": { maxTokens: number; model: "quick" | "reasoner" };
+  }
+}
+
+export function RegisteredSettings() {
+  const settings = useFlag("assistant-settings", {
+    maxTokens: 512,
+    model: "quick",
+  });
+  return <span>{settings.model}: {settings.maxTokens}</span>;
+}
+```
+
+Registered non-null defaults must match the selected key's schema, including required/nested fields, array elements, and literal unions. Named interfaces and readonly defaults are supported. This does not change bare Boolean reads or the arbitrary-JSON meaning of explicit `null`.
+
+The SDK validates that defaults are JSON-compatible and checks the selected value's top-level category. It does **not** recursively enforce generated schemas on server-returned values. Add application validation when nested data is a trust boundary.
+
+## Using in CI/CD pipelines
+
+Store an authorized [Management API key](../api/api-access.md) in your CI secret store. Do not commit it or send it to a browser.
 
 ```yaml
-# GitHub Actions example
-- name: Generate types
-  run: npx reflag flags types --api-key ${{ secrets.REFLAG_API_KEY }}
-
-# GitHub Actions example (using environment):
-- name: Generate types (environment)
+- name: Generate flag types
   run: npx reflag flags types
   env:
     REFLAG_API_KEY: ${{ secrets.REFLAG_CI_API_KEY }}
 ```
 
-There's further guidance and examples of using [Reflag CLI in CI/CD pipelines](https://docs.reflag.com/api/cli#using-in-ci-cd-pipelines-beta).
+Install CLI 2 from your lockfile before running this step. The command is **`reflag flags types`**, not `reflag types generate` or `reflag flags generate`. See the [SDK migration guide](../supported-languages/migrating-from-v1.md) before replacing legacy wrapper-shaped declarations.

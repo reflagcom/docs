@@ -6,6 +6,10 @@ description: >-
 
 # Overview
 
+Browser, React, Vue and Node.js documentation now shows **protocol v2**, a breaking change. Their page banners identify the exact source versions and prerelease status. Maintaining an existing v1 integration? See the [legacy SDK docs](../legacy/v1/README.md) or [migration guide](migrating-from-v1.md).
+
+React Native, OpenFeature and Management have independent version compatibility; follow their own SDK documentation rather than assuming v2 support.
+
 ## Official SDKs
 
 These SDKs are crafted and maintained by the Reflag team.

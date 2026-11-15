@@ -1,111 +1,71 @@
 ---
-description: High-level guide to flagging features in your CLI
+description: Gate a workflow in your own CLI with SDK v2.
 icon: rectangle-terminal
 ---
 
 # Use Reflag in your CLI
 
-### If you use API token for auth
+This guide is about **your application's CLI**, not the Reflag management CLI. Authenticate your caller using your existing API-token or OAuth flow, then evaluate flags with the server-side Node SDK v2. Do not embed a Reflag secret SDK key or a Management API key in a distributed CLI.
 
-First, create an endpoint in your backend for the CLI to call:
+## Evaluate on your backend
 
+Create an authenticated endpoint such as `POST /get-flags`. Look up the user and company from your trusted session/token store; do not trust caller-supplied identities or subscription attributes.
+
+A reusable evaluation helper can accept the resulting context:
+
+```typescript
+import { ReflagClient, type Context } from "@reflag/node-sdk";
+
+const client = new ReflagClient({ secretKey: process.env.REFLAG_SECRET_KEY ?? "" });
+const initialized = client.initialize();
+
+export async function getCliAccess(context: Context) {
+  await initialized;
+  const bound = client.bindClient(context);
+  return {
+    exportEnabled: bound.getFlag("export-to-csv"),
+    settings: bound.getFlag("export-settings", { maxRows: 1000 }),
+  };
+}
 ```
-POST /get-flags
-Authorization: Bearer <APIKEY>
-```
 
-The endpoint will take the API key and use it to look up the associated user.
+Call `getCliAccess()` after authentication and return only the values your CLI needs. This registers checks for these requested roots. Diagnostic APIs are not a substitute for application reads.
 
-Then, use the [public-api-reference.md](../api/public-api/public-api-reference.md "mention") to get enabled flags for the authenticated user. Return the flags to the CLI:
+The JSON response contains direct values, not flag wrappers:
 
-```
+```json
 {
-  flags: ['flag1', 'flag2']
+  "exportEnabled": true,
+  "settings": { "maxRows": 1000 }
 }
 ```
 
-Finally, check for access with a simple:
+## Gate the CLI workflow
 
-```tsx
-/function isFlagEnabled(flag: string) {
-    return flags.contains('myflag');
+Use the Boolean directly and validate the response before using nested configuration. Recheck sensitive access on the backend that performs the operation; a CLI display check is not authorization.
+
+```typescript
+export function canExport(response: { exportEnabled: boolean }) {
+  return response.exportEnabled;
 }
 ```
 
-### If you use API token for auth AND Node.js
+If you expose a list of enabled Boolean keys instead, use `enabledKeys.includes("export-to-csv")`. Do not treat a general JSON-valued flag map as a list of enabled keys or apply truthiness to Multivariate values.
 
-First, create an endpoint in your backend for the CLI to call:
+## Track successful usage separately
 
-```
-POST /get-flags
-Authorization: Bearer <APIKEY>
-```
+After the protected operation succeeds, track the application's adoption event with the same authenticated context. Configure the flag's adoption rules to match that event.
 
-The endpoint will take the API key and use it to look up the associated user.
+```typescript
+import { ReflagClient, type Context } from "@reflag/node-sdk";
 
-Use the [node-sdk](../supported-languages/node-sdk/ "mention") get enabled flags for the authenticated user.
+const client = new ReflagClient({ secretKey: process.env.REFLAG_SECRET_KEY ?? "" });
+const initialized = client.initialize();
 
-```jsx
-import { ReflagClient } from "@reflag/node-sdk";
-
-// configure the client
-const boundClient = reflagClient.bindClient({
-  user: {
-    id: "c1_u1",
-    name: "John Doe"
-  },
-  company: {
-    id: "c1",
-    name: "Acme, Inc."
-  },
-});
-
-// get flags
-const flags = boundClient.getFlags();
-```
-
-Finally, check for access with a simple:
-
-```tsx
-if(flags['myflag'].isEnabled) {
-    //feature access
+export async function recordExport(context: Context) {
+  await initialized;
+  await client.bindClient(context).track("Exported CSV");
 }
 ```
 
-### If you use OAuth for auth
-
-Use [node-sdk](../supported-languages/node-sdk/ "mention") or [public-api-reference.md](../api/public-api/public-api-reference.md "mention") to get flags for the authenticated user.
-
-In Node, configure the SDK like so:
-
-```jsx
-import { ReflagClient } from "@reflag/node-sdk";
-
-// configure the client
-const boundClient = reflagClient.bindClient({
-  user: {
-    id: "c1_u1",
-    name: "John Doe"
-  },
-  company: {
-    id: "c1",
-    name: "Acme, Inc."
-  },
-});
-```
-
-Check access for individual flag:
-
-```jsx
-const { isEnabled } = boundClient.getFlag("myflag");
-
-if (isEnabled) {
-    //feature access
-}    
-```
-
-Or get all flags:
-
-```jsx
-const flags = boundClient.getFlags();
-```
+There is no `getFlag(...).track()` wrapper method in v2. Initialize the client once per process and use its normal lifecycle/flush handling for short-lived server processes. See [Node SDK v2](../supported-languages/node-sdk/README.md) and the [migration guide](../supported-languages/migrating-from-v1.md).

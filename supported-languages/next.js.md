@@ -1,84 +1,56 @@
 ---
-description: Next.js client for Reflag
+description: Use protocol-v2 Node.js and React SDKs with Next.js.
 ---
 
 # Next.js
 
-Using Reflag with Next.js is straightforward. You can use the [@reflag/node-sdk](https://github.com/reflagcom/docs/blob/main/supported-languages/node-sdk/README.md) on the server or [@reflag/react-sdk](https://github.com/reflagcom/docs/blob/main/supported-languages/react-sdk/README.md) in the browser. Handling flag targeting server-side is often advantageous because it removes the need for additional handling of loading states.
+Use [Node SDK v2](node-sdk/README.md) on the server and [React SDK v2](react-sdk/README.md) in client components. Both return flag values directly. For an existing v1 application, see the [migration guide](migrating-from-v1.md).
 
-## Server-side Rendering (SSR)
+## Server-side rendering
 
-It's often advantageous to use Server-side Rendering when possible because it can help avoid extra loading screens while your Reflag flags are loading.
+Create one client per server process. Share the initialization promise so concurrent requests do not create separate clients:
 
-For pages that use server-side rendering, use the `@reflag/node-sdk` in the following manner. Create a new file called `reflag.ts` and adjust it to your needs:
-
-```typescript
+```ts
 // app/reflag.ts
 import { ReflagClient } from "@reflag/node-sdk";
 
-import { auth } from "@/auth";
+const client = new ReflagClient({ secretKey: process.env.REFLAG_SECRET_KEY });
+let initialized: Promise<void> | undefined;
 
-export let reflagClient: ReflagClient;
-
-async function initReflag() {
-  reflagClient = new ReflagClient({
-    secretKey: process.env.REFLAG_SECRET_KEY ?? "",
-    logger: console,
+export async function getReflagClient() {
+  initialized ??= client.initialize().then(() => undefined).catch((error) => {
+    initialized = undefined;
+    throw error;
   });
-  await reflagClient.initialize();
-}
-
-export async function getContext() {
-  // get the logged-in session
-  const session = await auth();
-  const user = session?.user;
-  if (!user || !user.id) {
-    return {};
-  }
-  const userId = user.id;
-
-  return {
-    user: {
-      id: userId,
-      ...user,
-    },
-    company: session.company,
-  };
-}
-
-export async function getFlag(key: string) {
-  if (!reflagClient) {
-    await initReflag();
-  }
-
-  return reflagClient.getFlag(await getContext(), key);
+  await initialized;
+  return client;
 }
 ```
 
-And then start using flags!
+Derive user/company context from your authenticated session on the server, not from client-supplied subscription attributes. The examples below assume your application's `getContext()` helper does that.
 
 {% tabs %}
 {% tab title="App router" %}
-Here's how you use flags with App router:
-
 ```tsx
-// members-add/page.tsx
-import { getFlag } from "@/app/reflag";
+// app/members-add/page.tsx
+import { getReflagClient } from "@/app/reflag";
+import { getContext } from "@/app/auth";
 
-async addMember() {
+async function addMember() {
   "use server";
-  const { track } = await getFlag("member-add");
-  track()
+  const client = await getReflagClient();
+  const bound = client.bindClient(await getContext());
+  if (!bound.getFlag("members-add")) throw new Error("Access denied");
 
-  // add member
+  // Perform the authorized operation here, then track successful usage.
+  await bound.track("Member added");
+  await client.flush();
 }
 
 export default async function Page() {
-  const { isEnabled } = await getFlag("members-add");
-
-  if (!isEnabled) {
-    return null;
-  }
+  const client = await getReflagClient();
+  const enabled = client.getFlag(await getContext(), "members-add");
+  if (!enabled) return null;
 
   return (
     <form action={addMember}>
@@ -88,95 +60,64 @@ export default async function Page() {
 }
 ```
 {% endtab %}
-
 {% tab title="Pages router" %}
-Here's how you use flags with Pages router:
-
 ```tsx
-// members-add/page.tsx
-import { getFlag } from "@/app/reflag";
-import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+// pages/members-add.tsx
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { getReflagClient } from "@/app/reflag";
+import { getContext } from "@/app/auth";
 
 export const getServerSideProps = (async () => {
-  const { isEnabled: membersAddEnabled } = await getFlag("members-add");
-  return { props: { membersAddEnabled } };
-}) satisfies GetServerSideProps<{ membersAddEnabled: boolean }>;
+  const client = await getReflagClient();
+  const enabled = client.getFlag(await getContext(), "members-add");
+  return { props: { enabled } };
+}) satisfies GetServerSideProps<{ enabled: boolean }>;
 
-export default function Page({
-  huddles,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  if (!membersAddEnabled) return null;
-
-  return (
-    <form>
-      <button type="submit">Add member</button>
-    </form>
-  );
+export default function Page({ enabled }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  if (!enabled) return null;
+  return <p>You can add members.</p>;
 }
 ```
 {% endtab %}
 {% endtabs %}
 
+Recheck authorization in the backend operation, even when the page hides its controls. Configure adoption rules to match the usage event name you send. For JSON configuration, pass a default after the key, for example `client.getFlag(context, "member-settings", { maxMembers: 10 })`.
+
 ### Flags SDK by Vercel
 
-[Flags SDK by Vercel](https://flags-sdk.dev/) is a Next.js oriented interface for server-side flags. It's straightforward to use with the Reflag Node.js SDK:
+When using a custom Vercel Flags SDK definition, return the Boolean value directly from its `decide` function. Do not access `.isEnabled` on the result. See the [Reflag provider integration](https://flags-sdk.dev/providers/reflag) for that provider's own version compatibility.
 
-```typescript
-import { flag } from '@vercel/flags/next';
-import { getFlag } from "@/app/reflag";
+## Client-side rendering
 
-export const huddles = flag({
-  key: 'huddles',
-  async decide() {
-    return getFlag(this.key).isEnabled;
-  },
-});
-```
-
-## Client-side Rendering
-
-Use `@reflag/react-sdk` with Next.js client-side rendering like so:
+Put the provider in a client component. Keep secret SDK keys on the server; the browser gets only a publishable key and browser-safe context:
 
 ```tsx
-// layout.tsx
-import { ReflagProvider } from "@reflag/react-sdk";
+"use client";
 
-import { useUser } from "./auth";
+import type { ReactNode } from "react";
+import { ReflagProvider, useFlag, useTrack } from "@reflag/react-sdk";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  const { user } = useUser()
-
+export function FlagProvider({ children }: { children: ReactNode }) {
   return (
     <ReflagProvider
       publishableKey={process.env.NEXT_PUBLIC_REFLAG_PUBLISHABLE_KEY ?? ""}
-      user={{ id: user.id }}
-      company={{ id: user.companyId }}
+      context={{ user: { id: "current-user" }, company: { id: "current-company" } }}
     >
       {children}
     </ReflagProvider>
   );
 }
 
-```
-
-In a client components, use the hooks `useFlag`
-
-```tsx
-"use client";
-
-import { useFlag } from "@reflag/react-sdk";
-
-function StartHuddle() {
-  const { isEnabled, track } = useFlag("huddle");
-
-  if (!isEnabled) {
-    return null
-  }
-
-  return (
-    <button onClick={track}>Start huddle!</button>
-  );
+export function StartHuddle() {
+  const enabled = useFlag("huddle");
+  const track = useTrack();
+  if (!enabled) return null;
+  return <button onClick={() => track("Started huddle")}>Start huddle!</button>;
 }
 ```
 
-For more details, please see the [React SDK documentation](https://github.com/bucketco/docs/blob/main/supported-languages/react-sdk/README.md)
+Replace the example IDs with your signed-in user/company context. Use `useIsLoading()` or `loadingComponent` when you need a loading UI, or `useFlagSuspense()` for an explicitly suspending read.
+
+## Server-to-client bootstrap
+
+For immediate client rendering, generate state with **Node SDK v2** and pass the entire envelope to **React SDK v2**'s `ReflagBootstrappedProvider`. Follow the [React bootstrap documentation](react-sdk/README.md#bootstrap-and-ssr), using your framework's safe serialization mechanism. V1 and v2 bootstrap formats are incompatible; never send server secrets or server-only attributes to the browser.

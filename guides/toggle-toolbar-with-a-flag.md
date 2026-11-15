@@ -1,45 +1,30 @@
 ---
-description: >-
-  Learn how you can control who gets the toolbar in production by toggling a
-  feature flag on/off
+description: Show the SDK v2 toolbar toggle to selected users.
 icon: toolbox
 ---
 
 # Toggle toolbar with a flag
 
-In some cases, you want to limit who has access to the toolbar in production. If you already have an "admin" or "internalUser" boolean on the user model, that is how most people decide whether to show the toolbar.
+Use a Boolean flag to choose who sees the SDK toolbar toggle. Create a `toolbar` flag in Reflag, configure its access rules, and leave the provider's unconditional `toolbar` option disabled.
 
-Beyond those simple cases, using a feature flag that you can enable for certain people is a great way to manage who gets to see the toolbar.
-
-Here's an example of how it can be done with the React SDK:
-
-1. Create the flag:
-
-```bash
-$ npx reflag new toolbar
-```
-
-2. If you've set the `toolbar` prop on the `<ReflagProvider>`, remove it. We'll manage this by calling `client.showToolbar()` when the flag is enabled.
-3. Put this tiny component inside the `<ReflagProvider>`:
+Put this component inside your React SDK v2 provider:
 
 ```tsx
-function ToolbarFlagControl() {
+import { useEffect } from "react";
+import { useClient, useFlag } from "@reflag/react-sdk";
+
+export function ToolbarFlagControl() {
   const client = useClient();
-  const {isEnabled: toolbarEnabled} = useFlag("toolbar");
+  const toolbarEnabled = useFlag("toolbar");
+
   useEffect(() => {
-    if (toolbarEnabled) {
-      client?.showToolbarToggle();
-    }
-  }, [toolbarEnabled]);
+    if (toolbarEnabled) client.showToolbarToggle();
+  }, [client, toolbarEnabled]);
+
+  return null;
 }
 ```
 
-Done! You can now enable/disable the toolbar for users by toggling the `toolbar` feature flag for them inside Reflag.
+This shows the toggle once access is granted. `showToolbarToggle()` does not provide a corresponding hide operation: switching the flag off later does not remove an already mounted toggle. Reload or recreate the client to apply a new visibility decision.
 
-{% hint style="info" %}
-showToolbarToggle() became available in the following SDK versions:
-
-* @reflag/react-sdk: 1.3.0
-* @reflag/vue-sdk: 1.3.0
-* @reflag/browser-sdk: 1.3.0
-{% endhint %}
+This is a convenience control, **not an authorization boundary**. Users control their own browser; never use the toolbar flag to protect secrets or administrative server operations. See [Browser SDK v2](../supported-languages/browser-sdk/README.md) for toolbar options.

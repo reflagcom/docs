@@ -20,7 +20,7 @@ If you zoom out, this is what controlling feature access at the customer subscri
 
 <figure><img src="../../.gitbook/assets/example 1 (1).png" alt=""><figcaption></figcaption></figure>
 
-To add simple user role controls to the mix, you can choose to hard code the user role check within the `isEnabled` check.
+To add simple user role controls to the mix, you can choose to hard code the user role check alongside the Boolean value returned by `useFlag()` or `getFlag()`.
 
 <figure><img src="../../.gitbook/assets/example 2 (1).png" alt=""><figcaption></figcaption></figure>
 

@@ -13,13 +13,21 @@ pagination:
   visible: true
 ---
 
+{% hint style="info" %}
+**Protocol v2.** [Legacy v1 documentation](../../legacy/v1/vue-sdk/globals.md) · [Migration guide](../migrating-from-v1.md)
+
+**Prerelease source documentation.** The installation examples target major 2; use them only when the matching SDK/CLI packages are available. A server rollout alone does not publish npm packages.
+
+Generated from [`@reflag/vue-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/vue-sdk); SDK READMEs and code comments remain the source of truth.
+{% endhint %}
+
 # @reflag/vue-sdk
 
 ## Interfaces
 
 ### CheckEvent
 
-Event representing checking the flag evaluation result
+A root read records selection identity, never its JSON payload.
 
 #### Properties
 
@@ -28,7 +36,6 @@ Event representing checking the flag evaluation result
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -40,29 +47,79 @@ Event representing checking the flag evaluation result
 </td>
 <td>
 
-`"check-is-enabled"` \| `"check-config"`
-
-</td>
-<td>
-
-`check-is-enabled` means `isEnabled` was checked, `check-config` means `config` was checked.
+`"check"`
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="evaluationerrors"></a> `evaluationErrors?`
+<a id="evalcontext"></a> `evalContext?`
 
 </td>
 <td>
 
-\{ `code`: `string`; `field`: `string`; `message`: `string`; `operator`: `string`; \}[]
+[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalerrors"></a> `evalErrors?`
 
 </td>
 <td>
 
-Non-fatal diagnostics produced while evaluating the flag.
+[`EvaluationError`](../browser-sdk/globals.md#evaluationerror)[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalmissingfields"></a> `evalMissingFields?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalresult"></a> `evalResult?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalruleresults"></a> `evalRuleResults?`
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagstateversion"></a> `flagStateVersion?`
+
+</td>
+<td>
+
+`number`
 
 </td>
 </tr>
@@ -77,83 +134,16 @@ Non-fatal diagnostics produced while evaluating the flag.
 `string`
 
 </td>
-<td>
-
-Flag key.
-
-</td>
 </tr>
 <tr>
 <td>
 
-<a id="missingcontextfields"></a> ~~`missingContextFields?`~~
+<a id="sourceversionid"></a> `sourceVersionId?`
 
 </td>
 <td>
 
-`string`[]
-
-</td>
-<td>
-
-Missing context fields.
-
-**Deprecated**
-
-Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="ruleevaluationresults"></a> `ruleEvaluationResults?`
-
-</td>
-<td>
-
-`boolean`[]
-
-</td>
-<td>
-
-Rule evaluation results.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="value"></a> `value?`
-
-</td>
-<td>
-
- \| `boolean` \| \{ `key`: `string`; `payload`: `any`; \}
-
-</td>
-<td>
-
-Result of flag or configuration evaluation.
-If `action` is `check-is-enabled`, this is the result of the flag evaluation and `value` is a boolean.
-If `action` is `check-config`, this is the result of the configuration evaluation.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="version"></a> `version?`
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-Version of targeting rules.
+`string`
 
 </td>
 </tr>
@@ -221,127 +211,6 @@ Company name
 </tr>
 </tbody>
 </table>
-
-***
-
-### Flag\<TConfig\>
-
-#### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-<th>Default type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TConfig` *extends* [`FlagType`](globals.md#flagtype)\[`"config"`\]
-
-</td>
-<td>
-
-[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Properties
-
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config"></a> `config`
-
-</td>
-<td>
-
-`Ref`\< \| [`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig) \| \{ `key`: `string`; \} & `TConfig`, \| [`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig) \| \{ `key`: `string`; \} & `TConfig`\>
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabled"></a> `isEnabled`
-
-</td>
-<td>
-
-`Ref`\<`boolean`, `boolean`\>
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isloading"></a> `isLoading`
-
-</td>
-<td>
-
-`Ref`\<`boolean`, `boolean`\>
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key-1"></a> `key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="requestfeedback"></a> `requestFeedback`
-
-</td>
-<td>
-
-(`opts`: [`RequestFlagFeedbackOptions`](globals.md#requestflagfeedbackoptions)) => `void`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Methods
-
-##### track()
-
-```ts
-track(): 
-  | undefined
-  | Promise<
-  | undefined
-| Response>
-```
-
-###### Returns
-
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-  \| `undefined`
-  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 ***
 
@@ -431,137 +300,68 @@ User name
 ### BootstrappedFlags
 
 ```ts
-type BootstrappedFlags = BootstrappedState & {
-  flags: RawFlags;
-};
+type BootstrappedFlags = BootstrappedState;
 ```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`flags`
-
-</td>
-<td>
-
-[`RawFlags`](../browser-sdk/globals.md#rawflags)
-
-</td>
-</tr>
-</tbody>
-</table>
 
 ***
 
-### EmptyFlagRemoteConfig
+### FlagDefaultValue
 
 ```ts
-type EmptyFlagRemoteConfig = {
-  key: undefined;
-  payload: undefined;
-};
+type FlagDefaultValue =
+  | null
+  | boolean
+  | number
+  | string
+  | readonly FlagDefaultValue[]
+| {};
 ```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="key-2"></a> `key`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="payload"></a> `payload`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-</tbody>
-</table>
 
 ***
 
 ### FlagKey
 
 ```ts
-type FlagKey = keyof TypedFlags;
+type FlagKey = keyof Flags extends never ? string : Extract<keyof Flags, string>;
 ```
 
 ***
 
-### FlagType
+### FlagValue
 
 ```ts
-type FlagType = {
-  config: {
-     payload: any;
-    };
-};
+type FlagValue =
+  | null
+  | boolean
+  | number
+  | string
+  | FlagValue[]
+| {};
 ```
 
-#### Type declaration
+***
+
+### FlagValueFromDefault\<T\>
+
+```ts
+type FlagValueFromDefault<T> = T extends null ? FlagValue : T extends boolean ? boolean : T extends number ? number : T extends string ? string : T extends readonly infer Element[] ? [Element] extends [never] ? FlagValue[] : FlagValueFromDefault<Element>[] : T extends object ? { -readonly [Key in keyof T]: FlagValueFromDefault<T[Key]> } : never;
+```
+
+Widen literals and return mutable copies. Null requests arbitrary JSON.
+
+#### Type Parameters
 
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
+<th>Type Parameter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-<a id="config-1"></a> `config`?
-
-</td>
-<td>
-
-\{
-  `payload`: `any`;
- \}
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.payload`
-
-</td>
-<td>
-
-`any`
+`T`
 
 </td>
 </tr>
@@ -577,12 +377,6 @@ type OptInFlag = Omit<OptInFlag, "key"> & {
   key: FlagKey;
 };
 ```
-
-An opt-in-enabled flag for the generated Vue SDK flag definitions.
-
-Includes all fields from [BrowserOptInFlag](../browser-sdk/globals.md#optinflag): `name`, `description`,
-`isEnabled`, `userOptedIn`, `companyOptedIn`, and `isOptedIn`.
-Only `key` is narrowed to the generated [FlagKey](globals.md#flagkey) type.
 
 #### Type declaration
 
@@ -678,7 +472,7 @@ Set to `true` to show the loading component while the client is initializing.
 </td>
 <td>
 
-[`Logger`](../browser-sdk/globals.md#logger-1)
+[`Logger`](../browser-sdk/globals.md#logger)
 
 </td>
 <td>
@@ -784,7 +578,7 @@ A pre-initialized ReflagClient to use.
 ### ReflagInitOptionsBase
 
 ```ts
-type ReflagInitOptionsBase = Omit<InitOptions, 
+type ReflagInitOptionsBase = Omit<InitOptions,
   | "user"
   | "company"
   | "other"
@@ -928,7 +722,7 @@ type SetOptInOptions = {
 };
 ```
 
-Options for changing the current user or company's opt-in membership.
+Represents a flag.
 
 #### Type declaration
 
@@ -1059,7 +853,7 @@ type TrackEvent = {
 ### TypedFlags
 
 ```ts
-type TypedFlags = keyof Flags extends never ? Record<string, Flag> : { [TypedFlagKey in keyof Flags]: Flags[TypedFlagKey] extends FlagType ? Flag<Flags[TypedFlagKey]["config"]> : Flag };
+type TypedFlags = keyof Flags extends never ? Record<string, FlagValue | undefined> : { [Key in keyof Flags]: Flags[Key] | undefined };
 ```
 
 ***
@@ -1098,7 +892,7 @@ type UseOptInFlagsResult = {
 <tr>
 <td>
 
-<a id="isloading-1"></a> `isLoading`
+<a id="isloading"></a> `isLoading`
 
 </td>
 <td>
@@ -1186,41 +980,21 @@ console.log(client.getContext());
 
 ### useFlag()
 
+#### Call Signature
+
 ```ts
-function useFlag<TKey>(key: TKey): TypedFlags[TKey]
+function useFlag(key: string, defaultValue?: undefined): ShallowRef<boolean>
 ```
 
-Vue composable for getting the state of a given flag for the current context.
+Reactive direct values: Boolean/false by default, or infer a positional JSON default.
 
-This composable returns an object with the state of the flag for the current context.
-
-#### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Parameters
+##### Parameters
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1232,37 +1006,171 @@ This composable returns an object with the state of the flag for the current con
 </td>
 <td>
 
-`TKey`
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`?
 
 </td>
 <td>
 
-The key of the flag to get the state of.
+`undefined`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+##### Returns
 
-[`TypedFlags`](globals.md#typedflags)\[`TKey`\]
+`ShallowRef`\<`boolean`\>
 
-An object with the state of the flag.
-
-#### Example
+#### Call Signature
 
 ```ts
-import { useFlag } from '@reflag/vue-sdk';
-
-const { isEnabled, config, track, requestFeedback } = useFlag("huddles");
-
-function StartHuddlesButton() {
-  const { isEnabled, config: { payload }, track } = useFlag("huddles");
-  if (isEnabled) {
-   return <button onClick={() => track()}>{payload?.buttonTitle ?? "Start Huddles"}</button>;
-}
+function useFlag<Key, Default>(key: Key, defaultValue: Default): ShallowRef<FlagValueFromDefault<Default>>
 ```
+
+Reactive direct values: Boolean/false by default, or infer a positional JSON default.
+
+##### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+`ShallowRef`\<[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>\>
+
+#### Call Signature
+
+```ts
+function useFlag<Default>(key: string, defaultValue: Default): ShallowRef<FlagValueFromDefault<Default>>
+```
+
+Reactive direct values: Boolean/false by default, or infer a positional JSON default.
+
+##### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+`ShallowRef`\<[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>\>
 
 ***
 
@@ -1298,8 +1206,8 @@ console.log(isLoading);
 
 ```ts
 function useOnEvent<THookType>(
-   event: THookType, 
-   handler: (arg0: HookArgs[THookType]) => void, 
+   event: THookType,
+   handler: (arg0: HookArgs[THookType]) => void,
    client?: ReflagClient): void
 ```
 
@@ -1416,10 +1324,7 @@ the current context.
 
 The loading state is only used with `ReflagBootstrappedProvider` while
 opt-in metadata is fetched on demand. Regular providers load opt-in metadata
-with the initial flags; use [useIsLoading](globals.md#useisloading) for their loading state.
-
-If fetching opt-in metadata fails, loading ends without exposing an error.
-Call `refresh()` on the client returned by [useClient](globals.md#useclient) to retry.
+with the initial flags.
 
 #### Returns
 
@@ -1568,11 +1473,6 @@ function useSetOptIn(): (key: string, options: SetOptInOptions) => Promise<
 
 Vue composable for setting whether the current user or company has opted into a flag.
 
-Check the returned Response's `ok` property and catch promise rejections.
-HTTP failures return a non-OK Response; offline mode, invalid arguments, or
-missing scoped context return undefined. Confirmation failures can reject
-after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sdk/globals.md#setoptin).
-
 #### Returns
 
 `Function`
@@ -1625,7 +1525,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 ### useTrack()
 
 ```ts
-function useTrack(): (eventName: string, attributes?: 
+function useTrack(): (eventName: string, attributes?:
   | null
   | Record<string, any>) => Promise<
   | undefined

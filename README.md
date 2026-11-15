@@ -1,5 +1,9 @@
 # Getting started
 
+{% hint style="info" %}
+These examples use **protocol v2**. The SDK page banners identify prerelease source versions and package availability. Maintaining a v1 application? Use the [legacy SDK docs](legacy/v1/README.md) or [migration guide](supported-languages/migrating-from-v1.md).
+{% endhint %}
+
 **Welcome!** Let's get started. We'll do the following:
 
 1. Create your first flag.
@@ -15,10 +19,10 @@ Now let's create your first flag.
 {% tabs %}
 {% tab title="CLI" %}
 ```
-npx @reflag/cli new
+npx @reflag/cli@2 new
 ```
 
-See [CLI docs](api/cli.md).
+This requires a compatible CLI 2 release; for the current v2 prerelease rollout, use the package version supplied to you. You can also create the flag in the UI without installing the CLI. See [Type safety](product-handbook/type-safety.md) for v2 type generation.
 {% endtab %}
 
 {% tab title="UI" %}
@@ -54,13 +58,13 @@ If you've installed the React SDK and created a flag called `my-new-flag`, getti
 import { useFlag } from "@reflag/react-sdk";
 
 const MyFlag = () => {
-  const { isEnabled } = useFlag("my-new-flag");
+  const enabled = useFlag("my-new-flag");
 
-  return isEnabled ? "You have access!" : null;
+  return enabled ? "You have access!" : null;
 };
 ```
 
-You can now use `isEnabled` to gate access to the flag.
+You can now use the Boolean value directly to gate access to the flag.
 
 ## 3. Set access rules
 
@@ -80,10 +84,12 @@ In the React SDK, you enable it with `toolbar:`
 
 ```jsx
 <ReflagProvider
-   publishableKey=""
-   context={}
+   publishableKey="your-publishable-key"
+   context={{}}
    toolbar={true}
 >
+  <MyFlag />
+</ReflagProvider>
 ```
 
 ## 5. Monitor your flag launch <a href="#next-steps-1" id="next-steps-1"></a>
@@ -109,20 +115,22 @@ To get feedback from your users, you can add a [static "Feedback" button](produc
 Here's an example with a static feedback button.
 
 ```tsx
-import { useFlag } from "@reflag/react-sdk";
+import { useFlag, useTrack, useRequestFeedback } from "@reflag/react-sdk";
 
 const MyFlag = () => {
-  const { isEnabled, track, requestFeedback } = useFlag("my-new-flag");
+  const enabled = useFlag("my-new-flag");
+  const track = useTrack();
+  const requestFeedback = useRequestFeedback();
 
-  if (!isEnabled) {
+  if (!enabled) {
     return null;
   }
 
   return (
     <>
-      <button onClick={() => track()}>Try it</button>
+      <button onClick={() => track("Tried my new flag")}>Try it</button>
       <button
-        onClick={() => requestFeedback({ title: "How do you like this new release?" })}
+        onClick={() => requestFeedback({ flagKey: "my-new-flag", title: "How do you like this new release?" })}
       >
         Give feedback
       </button>
@@ -130,6 +138,8 @@ const MyFlag = () => {
   );
 }
 ```
+
+Configure your flag's adoption rules to match the event name you send with `track()`.
 
 ## Get support
 

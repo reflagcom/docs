@@ -1,0 +1,12 @@
+{
+  "sourceRepository": "https://github.com/reflagcom/javascript",
+  "sourceCommit": "9f3a0ae027e386747a2d4cf7683a68dcab70b355",
+  "package": "@reflag/vue-sdk",
+  "version": "2.0.0-next.0",
+  "files": {
+    "supported-languages/vue-sdk/README.md": "58d538146d48b8d90d3a0dbc8836471bb621d72d2706e59cb3bae405bf06bb3d",
+    "sdk/@reflag/vue-sdk/README.md": "bd5f7130b3e920f6affa13a67d54c42664fce7d79fb394b7b88aa7c7f25f6d1e",
+    "supported-languages/vue-sdk/globals.md": "51f74d439a28e1c05c0fdfbbefcea2c85f04b75b6f4c6fb7f82e900bbb21663c",
+    "sdk/@reflag/vue-sdk/globals.md": "acfe7ac37c8599236c8e8a1daabe06eec7dfba179e34d00885a7a1545e443d4b"
+  }
+}

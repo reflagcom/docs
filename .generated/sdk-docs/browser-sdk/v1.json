@@ -1,0 +1,11 @@
+{
+  "sourceRepository": "https://github.com/reflagcom/javascript",
+  "sourceCommit": "b4fe5b3d9386b87c6546175c323862d9878e1430",
+  "package": "@reflag/browser-sdk",
+  "version": "1.7.4",
+  "files": {
+    "legacy/v1/browser-sdk/README.md": "b949d2d5c5d9f2eb4bca99c97d6fad63d95d6ba03592bdb01dc9c632d854fea2",
+    "legacy/v1/browser-sdk/globals.md": "a45fb2bb4784310a826b109bf9e361bcb552974791ee9f142514353eb8da0600",
+    "legacy/v1/browser-sdk/feedback.md": "f2507ea56bbef40b7acafed1f05d55261905e68aa2a8097eee48e348cecc0177"
+  }
+}

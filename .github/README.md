@@ -17,6 +17,22 @@ Reflag is built to work at the company/organization level right out of the box, 
 
 This repository syncs the documentation to [docs.reflag.com](https://docs.reflag.com). For SDK docs, please go to the [javascript repository](https://github.com/reflagcom/javascript) repository.
 
+## SDK documentation ownership
+
+SDK READMEs and source comments are maintained in `reflagcom/javascript`. Current Browser/React/Vue/Node pages are generated into `supported-languages/`; protocol-v1 pages live in `legacy/v1/`. Do not hand-edit their generated bodies. Source/version and file hashes are recorded in `.generated/sdk-docs/`.
+
+Generate one SDK from an explicitly selected, clean source checkout after building declarations and running its canonical `docs.sh`:
+
+```sh
+node .github/scripts/sdk-docs.mjs import --source /path/to/built/javascript --package react-sdk
+node .github/scripts/check-sdk-docs.mjs
+node --test .github/scripts/sdk-docs.test.mjs
+```
+
+The importer derives the destination from the package major, preserves historical SDK aliases, and never deletes a tree or overwrites navigation, migration guidance or GitBook settings. Release automation uses the `release` subcommand with an exact tagged-source plan; prereleases do not promote stable documentation automatically. The SDK documentation workflow rebuilds the source commits listed in the manifests and checks representative examples against matching declarations.
+
+This is ordinary page-based navigation. No GitBook variants or additional published spaces are required.
+
 ## Quick links
 
 - Ready to get started? [Follow the guide](https://docs.reflag.com/)

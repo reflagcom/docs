@@ -13,6 +13,10 @@ pagination:
   visible: true
 ---
 
+{% hint style="info" %}
+**Independent SDK compatibility.** This React Native release uses React/Browser protocol v1. Follow the [matching React documentation](../../../legacy/v1/react-sdk/README.md) and use a [matching Node SDK](../../../legacy/v1/node-sdk/README.md) for bootstrap. Do not pass protocol-v2 bootstrap into a v1 consumer.
+{% endhint %}
+
 # @reflag/react-native-sdk
 
 ## Interfaces
@@ -241,12 +245,12 @@ Describes a feature
 <tr>
 <td>
 
-`TConfig` *extends* [`FlagType`](globals.md#flagtype)\[`"config"`\]
+`TConfig` *extends* [`FlagType`](../../../supported-languages/react-native-sdk/globals.md#flagtype)\[`"config"`\]
 
 </td>
 <td>
 
-[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
+[`EmptyFlagRemoteConfig`](../../../supported-languages/react-native-sdk/globals.md#emptyflagremoteconfig)
 
 </td>
 </tr>
@@ -272,7 +276,7 @@ Describes a feature
 </td>
 <td>
 
- \| [`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig) \| \{ `key`: `string`; \} & `TConfig`
+ \| [`EmptyFlagRemoteConfig`](../../../supported-languages/react-native-sdk/globals.md#emptyflagremoteconfig) \| \{ `key`: `string`; \} & `TConfig`
 
 </td>
 <td>
@@ -340,7 +344,7 @@ The key of the feature.
 </td>
 <td>
 
-(`opts`: [`RequestFeedbackOptions`](globals.md#requestfeedbackoptions)) => `void`
+(`opts`: [`RequestFeedbackOptions`](../../../supported-languages/react-native-sdk/globals.md#requestfeedbackoptions)) => `void`
 
 </td>
 <td>
@@ -357,7 +361,7 @@ Request feedback from the user.
 ##### track()
 
 ```ts
-track(): 
+track():
   | undefined
   | Promise<
   | undefined
@@ -484,7 +488,7 @@ type BootstrappedFlags = BootstrappedState & {
 </td>
 <td>
 
-[`RawFlags`](../browser-sdk/globals.md#rawflags)
+[`RawFlags`](../../../legacy/v1/browser-sdk/globals.md#rawflags)
 
 </td>
 </tr>
@@ -552,7 +556,7 @@ type FlagKey = keyof TypedFlags;
 ### FlagRemoteConfig
 
 ```ts
-type FlagRemoteConfig = 
+type FlagRemoteConfig =
   | {
   key: string;
   payload: any;
@@ -615,7 +619,7 @@ The optional user-supplied payload data.
 </tbody>
 </table>
 
-[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
+[`EmptyFlagRemoteConfig`](../../../supported-languages/react-native-sdk/globals.md#emptyflagremoteconfig)
 
 ***
 
@@ -673,16 +677,16 @@ type FlagType = {
 ### OptInFlag
 
 ```ts
-type OptInFlag = Omit<OptInFlag, "key"> & {
+type OptInFlag = Omit<import("@reflag/browser-sdk").OptInFlag, "key"> & {
   key: FlagKey;
 };
 ```
 
 An opt-in-enabled flag for the generated React SDK flag definitions.
 
-Includes all fields from [BrowserOptInFlag](../browser-sdk/globals.md#optinflag): `name`, `description`,
+Includes all fields from [BrowserOptInFlag](../../../legacy/v1/browser-sdk/globals.md#optinflag): `name`, `description`,
 `isEnabled`, `userOptedIn`, `companyOptedIn`, and `isOptedIn`.
-Only `key` is narrowed to the generated [FlagKey](globals.md#flagkey) type.
+Only `key` is narrowed to the generated [FlagKey](../../../supported-languages/react-native-sdk/globals.md#flagkey) type.
 
 #### Type declaration
 
@@ -702,7 +706,7 @@ Only `key` is narrowed to the generated [FlagKey](globals.md#flagkey) type.
 </td>
 <td>
 
-[`FlagKey`](globals.md#flagkey)
+[`FlagKey`](../../../supported-languages/react-native-sdk/globals.md#flagkey)
 
 </td>
 </tr>
@@ -750,7 +754,7 @@ Props for the ReflagBootstrappedProvider.
 </td>
 <td>
 
-[`BootstrappedFlags`](globals.md#bootstrappedflags)
+[`BootstrappedFlags`](../../../supported-languages/react-native-sdk/globals.md#bootstrappedflags)
 
 </td>
 <td>
@@ -793,7 +797,7 @@ Props for the ReflagClientProvider.
 </td>
 <td>
 
-[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+[`ReflagClient`](../../../legacy/v1/browser-sdk/globals.md#reflagclient)
 
 </td>
 </tr>
@@ -805,7 +809,7 @@ Props for the ReflagClientProvider.
 ### ReflagInitOptionsBase
 
 ```ts
-type ReflagInitOptionsBase = Omit<InitOptions, 
+type ReflagInitOptionsBase = Omit<InitOptions,
   | "user"
   | "company"
   | "other"
@@ -853,7 +857,7 @@ Props for the ReflagProvider.
 </td>
 <td>
 
-[`CompanyContext`](globals.md#companycontext)
+[`CompanyContext`](../../../supported-languages/react-native-sdk/globals.md#companycontext)
 
 </td>
 <td>
@@ -875,7 +879,7 @@ Use `context` instead, this property will be removed in the next major version
 </td>
 <td>
 
-[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
+[`ReflagContext`](../../../legacy/v1/browser-sdk/globals.md#reflagcontext)
 
 </td>
 <td>
@@ -913,7 +917,7 @@ Use `context` instead, this property will be removed in the next major version
 </td>
 <td>
 
-[`UserContext`](globals.md#usercontext)
+[`UserContext`](../../../supported-languages/react-native-sdk/globals.md#usercontext)
 
 </td>
 <td>
@@ -1036,7 +1040,7 @@ A React component to show while the client is initializing.
 </td>
 <td>
 
-[`Logger`](../browser-sdk/globals.md#logger-1)
+[`Logger`](../../../legacy/v1/browser-sdk/globals.md#logger)
 
 </td>
 <td>
@@ -1084,7 +1088,7 @@ type RequestFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">
 ```ts
 type SetOptInOptions = {
   optedIn: boolean;
-  scope: "user" | "company";
+  scope?: "user" | "company";
 };
 ```
 
@@ -1244,7 +1248,7 @@ type TrackEvent = {
 </td>
 <td>
 
-[`CompanyContext`](globals.md#companycontext)
+[`CompanyContext`](../../../supported-languages/react-native-sdk/globals.md#companycontext)
 
 </td>
 </tr>
@@ -1268,7 +1272,7 @@ type TrackEvent = {
 </td>
 <td>
 
-[`UserContext`](globals.md#usercontext)
+[`UserContext`](../../../supported-languages/react-native-sdk/globals.md#usercontext)
 
 </td>
 </tr>
@@ -1358,7 +1362,7 @@ function ReflagBootstrappedProvider(props: ReflagBootstrappedProps): Element
 </td>
 <td>
 
-[`ReflagBootstrappedProps`](globals.md#reflagbootstrappedprops)
+[`ReflagBootstrappedProps`](../../../supported-languages/react-native-sdk/globals.md#reflagbootstrappedprops)
 
 </td>
 </tr>
@@ -1395,7 +1399,7 @@ function ReflagClientProvider(__namedParameters: ReflagClientProviderProps): Rea
 </td>
 <td>
 
-[`ReflagClientProviderProps`](globals.md#reflagclientproviderprops)
+[`ReflagClientProviderProps`](../../../supported-languages/react-native-sdk/globals.md#reflagclientproviderprops)
 
 </td>
 </tr>
@@ -1432,7 +1436,7 @@ function ReflagProvider(props: ReflagProps): Element
 </td>
 <td>
 
-[`ReflagProps`](globals.md#reflagprops)
+[`ReflagProps`](../../../supported-languages/react-native-sdk/globals.md#reflagprops)
 
 </td>
 </tr>
@@ -1457,7 +1461,7 @@ This is useful if you need to access the `ReflagClient` outside of the `ReflagPr
 
 #### Returns
 
-[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+[`ReflagClient`](../../../legacy/v1/browser-sdk/globals.md#reflagclient)
 
 The `ReflagClient`.
 
@@ -1529,7 +1533,7 @@ function useFeature<TKey>(key: TKey, options?: UseFlagOptions): Flag<EmptyFlagRe
 </td>
 <td>
 
-[`UseFlagOptions`](globals.md#useflagoptions)
+[`UseFlagOptions`](../../../supported-languages/react-native-sdk/globals.md#useflagoptions)
 
 </td>
 </tr>
@@ -1538,7 +1542,7 @@ function useFeature<TKey>(key: TKey, options?: UseFlagOptions): Flag<EmptyFlagRe
 
 #### Returns
 
-[`Flag`](globals.md#flagtconfig)\<[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)\>
+[`Flag`](../../../supported-languages/react-native-sdk/globals.md#flagtconfig)\<[`EmptyFlagRemoteConfig`](../../../supported-languages/react-native-sdk/globals.md#emptyflagremoteconfig)\>
 
 #### Deprecated
 
@@ -1611,7 +1615,7 @@ function HuddleButton() {
 </td>
 <td>
 
-[`UseFlagOptions`](globals.md#useflagoptions)
+[`UseFlagOptions`](../../../supported-languages/react-native-sdk/globals.md#useflagoptions)
 
 </td>
 </tr>
@@ -1620,7 +1624,7 @@ function HuddleButton() {
 
 #### Returns
 
-[`TypedFlags`](globals.md#typedflags)\[`TKey`\]
+[`TypedFlags`](../../../supported-languages/react-native-sdk/globals.md#typedflags)\[`TKey`\]
 
 ***
 
@@ -1656,8 +1660,8 @@ console.log(isLoading);
 
 ```ts
 function useOnEvent<THookType>(
-   event: THookType, 
-   handler: (arg0: HookArgs[THookType]) => void, 
+   event: THookType,
+   handler: (arg0: HookArgs[THookType]) => void,
    client?: ReflagClient): void
 ```
 
@@ -1675,7 +1679,7 @@ Attach a callback handler to client events to act on changes. It automatically d
 <tr>
 <td>
 
-`THookType` *extends* keyof [`HookArgs`](../browser-sdk/globals.md#hookargs)
+`THookType` *extends* keyof [`HookArgs`](../../../legacy/v1/browser-sdk/globals.md#hookargs)
 
 </td>
 </tr>
@@ -1718,7 +1722,7 @@ The event to listen to.
 </td>
 <td>
 
-(`arg0`: [`HookArgs`](../browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
+(`arg0`: [`HookArgs`](../../../legacy/v1/browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
 
 </td>
 <td>
@@ -1735,7 +1739,7 @@ The function to call when the event is triggered.
 </td>
 <td>
 
-[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+[`ReflagClient`](../../../legacy/v1/browser-sdk/globals.md#reflagclient)
 
 </td>
 <td>
@@ -1773,12 +1777,12 @@ Returns opt-in-enabled flags and their loading state for the current context.
 
 The loading state is only used with `ReflagBootstrappedProvider` while
 opt-in metadata is fetched on demand. Regular providers load opt-in metadata
-with the initial flags; use [useIsLoading](globals.md#useisloading) for their loading state.
+with the initial flags; use [useIsLoading](../../../supported-languages/react-native-sdk/globals.md#useisloading) for their loading state.
 When suspense is enabled for the provider or this hook, it suspends instead
 of returning a loading result. A Suspense boundary alone does not enable it.
 
 If fetching opt-in metadata fails, loading ends without exposing an error.
-Call `refresh()` on the client returned by [useClient](globals.md#useclient) to retry.
+Call `refresh()` on the client returned by [useClient](../../../supported-languages/react-native-sdk/globals.md#useclient) to retry.
 
 #### Parameters
 
@@ -1798,7 +1802,7 @@ Call `refresh()` on the client returned by [useClient](globals.md#useclient) to 
 </td>
 <td>
 
-[`UseOptInFlagsOptions`](../react-sdk/globals.md#useoptinflagsoptions)
+[`UseOptInFlagsOptions`](../../../legacy/v1/react-sdk/globals.md#useoptinflagsoptions)
 
 </td>
 </tr>
@@ -1807,7 +1811,7 @@ Call `refresh()` on the client returned by [useClient](globals.md#useclient) to 
 
 #### Returns
 
-[`UseOptInFlagsResult`](../react-sdk/globals.md#useoptinflagsresult)
+[`UseOptInFlagsResult`](../../../legacy/v1/react-sdk/globals.md#useoptinflagsresult)
 
 ***
 
@@ -1820,7 +1824,7 @@ function useRequestFeedback(): (options: RequestFeedbackData) => void
 Returns a function to open up the feedback form
 Note: When calling `useRequestFeedback`, user/company must already be set.
 
-See [link](../../browser-sdk/FEEDBACK.md#reflagclientrequestfeedback-options) for more information
+See [link](https://github.com/reflagcom/javascript/blob/b4fe5b3d9386b87c6546175c323862d9878e1430/browser-sdk/FEEDBACK.md#reflagclientrequestfeedback-options) for more information
 
 ```ts
 const requestFeedback = useRequestFeedback();
@@ -1852,7 +1856,7 @@ reflag.requestFeedback({
 </td>
 <td>
 
-[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
+[`RequestFeedbackData`](../../../legacy/v1/browser-sdk/globals.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -1876,7 +1880,7 @@ function useSendFeedback(): (opts: UnassignedFeedback) => Promise<
 Returns a function to manually send feedback collected from a user.
 Note: When calling `useSendFeedback`, user/company must already be set.
 
-See [link](./../../browser-sdk/FEEDBACK.md#using-your-own-ui-to-collect-feedback) for more information
+See [link](https://github.com/reflagcom/javascript/blob/b4fe5b3d9386b87c6546175c323862d9878e1430/browser-sdk/FEEDBACK.md#using-your-own-ui-to-collect-feedback) for more information
 
 ```ts
 const sendFeedback = useSendFeedback();
@@ -1910,7 +1914,7 @@ sendFeedback({
 </td>
 <td>
 
-[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
+[`UnassignedFeedback`](../../../legacy/v1/browser-sdk/globals.md#unassignedfeedback)
 
 </td>
 </tr>
@@ -1938,7 +1942,7 @@ Returns a function to set whether the current user or company has opted into a f
 Check the returned Response's `ok` property and catch promise rejections.
 HTTP failures return a non-OK Response; offline mode, invalid arguments, or
 missing scoped context return undefined. Confirmation failures can reject
-after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sdk/globals.md#setoptin).
+after the membership changed remotely. See [ReflagClient.setOptIn](../../../legacy/v1/browser-sdk/globals.md#setoptin).
 
 #### Returns
 
@@ -1962,7 +1966,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 </td>
 <td>
 
-[`FlagKey`](globals.md#flagkey)
+[`FlagKey`](../../../supported-languages/react-native-sdk/globals.md#flagkey)
 
 </td>
 </tr>
@@ -1974,7 +1978,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 </td>
 <td>
 
-[`SetOptInOptions`](globals.md#setoptinoptions)
+[`SetOptInOptions`](../../../supported-languages/react-native-sdk/globals.md#setoptinoptions)
 
 </td>
 </tr>
@@ -1992,7 +1996,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 ### useTrack()
 
 ```ts
-function useTrack(): (eventName: string, attributes?: 
+function useTrack(): (eventName: string, attributes?:
   | Record<string, any>
   | null) => Promise<
   | Response

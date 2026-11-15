@@ -1,0 +1,13 @@
+{
+  "sourceRepository": "https://github.com/reflagcom/javascript",
+  "sourceCommit": "b4fe5b3d9386b87c6546175c323862d9878e1430",
+  "package": "@reflag/react-native-sdk",
+  "version": "0.3.7",
+  "files": {
+    "supported-languages/react-native-sdk/README.md": "0a9952a6a72c21c6c5baec486671c968e3b290752dbc18a6239a4d3aa4325195",
+    "sdk/@reflag/react-native-sdk/README.md": "360b297aeb72f6ac7accf9f16707437eb4c01ebd060f5f56870764c2f6fa0ad9",
+    "sdk/documents/react-native-sdk/README.md": "360b297aeb72f6ac7accf9f16707437eb4c01ebd060f5f56870764c2f6fa0ad9",
+    "supported-languages/react-native-sdk/globals.md": "b7cd9cc4f5bece6e701fcae3ece028e2ce7588d0a3fbb6f170c69b01eac18ac3",
+    "sdk/@reflag/react-native-sdk/globals.md": "d028c5ff2ad94e2ae670aea1ff159786cc9f117e674af510ee625b1d6e9f7205"
+  }
+}

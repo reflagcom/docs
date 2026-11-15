@@ -13,13 +13,21 @@ pagination:
   visible: true
 ---
 
+{% hint style="info" %}
+**Protocol v2.** [Legacy v1 documentation](../../../legacy/v1/react-sdk/globals.md) · [Migration guide](../../../supported-languages/migrating-from-v1.md)
+
+**Prerelease source documentation.** The installation examples target major 2; use them only when the matching SDK/CLI packages are available. A server rollout alone does not publish npm packages.
+
+Generated from [`@reflag/react-sdk@2.0.0-next.0`](https://github.com/reflagcom/javascript/tree/9f3a0ae027e386747a2d4cf7683a68dcab70b355/packages/react-sdk); SDK READMEs and code comments remain the source of truth.
+{% endhint %}
+
 # @reflag/react-sdk
 
 ## Interfaces
 
 ### CheckEvent
 
-Event representing checking the flag evaluation result
+A root read records selection identity, never its JSON payload.
 
 #### Properties
 
@@ -28,7 +36,6 @@ Event representing checking the flag evaluation result
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -40,29 +47,79 @@ Event representing checking the flag evaluation result
 </td>
 <td>
 
-`"check-is-enabled"` \| `"check-config"`
-
-</td>
-<td>
-
-`check-is-enabled` means `isEnabled` was checked, `check-config` means `config` was checked.
+`"check"`
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="evaluationerrors"></a> `evaluationErrors?`
+<a id="evalcontext"></a> `evalContext?`
 
 </td>
 <td>
 
-\{ `code`: `string`; `field`: `string`; `message`: `string`; `operator`: `string`; \}[]
+[`ReflagContext`](../../../supported-languages/browser-sdk/globals.md#reflagcontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalerrors"></a> `evalErrors?`
 
 </td>
 <td>
 
-Non-fatal diagnostics produced while evaluating the flag.
+[`EvaluationError`](../../../supported-languages/browser-sdk/globals.md#evaluationerror)[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalmissingfields"></a> `evalMissingFields?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalresult"></a> `evalResult?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalruleresults"></a> `evalRuleResults?`
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagstateversion"></a> `flagStateVersion?`
+
+</td>
+<td>
+
+`number`
 
 </td>
 </tr>
@@ -77,83 +134,16 @@ Non-fatal diagnostics produced while evaluating the flag.
 `string`
 
 </td>
-<td>
-
-Flag key.
-
-</td>
 </tr>
 <tr>
 <td>
 
-<a id="missingcontextfields"></a> ~~`missingContextFields?`~~
+<a id="sourceversionid"></a> `sourceVersionId?`
 
 </td>
 <td>
 
-`string`[]
-
-</td>
-<td>
-
-Missing context fields.
-
-**Deprecated**
-
-Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="ruleevaluationresults"></a> `ruleEvaluationResults?`
-
-</td>
-<td>
-
-`boolean`[]
-
-</td>
-<td>
-
-Rule evaluation results.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="value"></a> `value?`
-
-</td>
-<td>
-
- \| `boolean` \| \{ `key`: `string`; `payload`: `any`; \}
-
-</td>
-<td>
-
-Result of flag or configuration evaluation.
-If `action` is `check-is-enabled`, this is the result of the flag evaluation and `value` is a boolean.
-If `action` is `check-config`, this is the result of the configuration evaluation.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="version"></a> `version?`
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-Version of targeting rules.
+`string`
 
 </td>
 </tr>
@@ -224,158 +214,9 @@ Company name
 
 ***
 
-### Flag\<TConfig\>
-
-Describes a feature
-
-#### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-<th>Default type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TConfig` *extends* [`FlagType`](globals.md#flagtype)\[`"config"`\]
-
-</td>
-<td>
-
-[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Properties
-
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config"></a> `config`
-
-</td>
-<td>
-
- \| [`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig) \| \{ `key`: `string`; \} & `TConfig`
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabled"></a> `isEnabled`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-If the feature is enabled.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isloading"></a> `isLoading`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-If the feature is loading.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key-1"></a> `key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the feature.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="requestfeedback"></a> `requestFeedback`
-
-</td>
-<td>
-
-(`opts`: [`RequestFeedbackOptions`](globals.md#requestfeedbackoptions)) => `void`
-
-</td>
-<td>
-
-Request feedback from the user.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Methods
-
-##### track()
-
-```ts
-track(): 
-  | undefined
-  | Promise<
-  | undefined
-| Response>
-```
-
-Track feature usage in Reflag.
-
-###### Returns
-
-  \| `undefined`
-  \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
-  \| `undefined`
-  \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
-
-***
-
 ### Flags
+
+Optional key/value registration; singular reads infer their type from defaults.
 
 ***
 
@@ -484,7 +325,7 @@ type BootstrappedFlags = BootstrappedState & {
 </td>
 <td>
 
-[`RawFlags`](../browser-sdk/globals.md#rawflags)
+[`RawFlags`](../../../supported-languages/browser-sdk/globals.md#rawflags)
 
 </td>
 </tr>
@@ -493,175 +334,63 @@ type BootstrappedFlags = BootstrappedState & {
 
 ***
 
-### EmptyFlagRemoteConfig
+### FlagDefaultValue
 
 ```ts
-type EmptyFlagRemoteConfig = {
-  key: undefined;
-  payload: undefined;
-};
+type FlagDefaultValue =
+  | null
+  | boolean
+  | number
+  | string
+  | readonly FlagDefaultValue[]
+| {};
 ```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="key-2"></a> `key`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="payload"></a> `payload`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-</tbody>
-</table>
 
 ***
 
 ### FlagKey
 
 ```ts
-type FlagKey = keyof TypedFlags;
+type FlagKey = keyof Flags extends never ? string : Extract<keyof Flags, string>;
 ```
 
 ***
 
-### FlagRemoteConfig
+### FlagValue
 
 ```ts
-type FlagRemoteConfig = 
-  | {
-  key: string;
-  payload: any;
- }
-  | EmptyFlagRemoteConfig;
+type FlagValue =
+  | null
+  | boolean
+  | number
+  | string
+  | FlagValue[]
+| {};
 ```
 
-A remotely managed configuration value for a feature.
+***
 
-#### Type declaration
+### FlagValueFromDefault\<T\>
 
-\{
-  `key`: `string`;
-  `payload`: `any`;
- \}
+```ts
+type FlagValueFromDefault<T> = T extends null ? FlagValue : T extends boolean ? boolean : T extends number ? number : T extends string ? string : T extends readonly infer Element[] ? [Element] extends [never] ? FlagValue[] : FlagValueFromDefault<Element>[] : T extends object ? { -readonly [Key in keyof T]: FlagValueFromDefault<T[Key]> } : never;
+```
+
+Widen literals and return mutable copies. Null requests arbitrary JSON.
+
+#### Type Parameters
 
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
+<th>Type Parameter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the matched configuration value.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
-
-***
-
-### FlagType
-
-```ts
-type FlagType = {
-  config: {
-     payload: any;
-    };
-};
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config-1"></a> `config`?
-
-</td>
-<td>
-
-\{
-  `payload`: `any`;
- \}
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.payload`
-
-</td>
-<td>
-
-`any`
+`T`
 
 </td>
 </tr>
@@ -680,10 +409,6 @@ type OptInFlag = Omit<OptInFlag, "key"> & {
 
 An opt-in-enabled flag for the generated React SDK flag definitions.
 
-Includes all fields from [BrowserOptInFlag](../browser-sdk/globals.md#optinflag): `name`, `description`,
-`isEnabled`, `userOptedIn`, `companyOptedIn`, and `isOptedIn`.
-Only `key` is narrowed to the generated [FlagKey](globals.md#flagkey) type.
-
 #### Type declaration
 
 <table>
@@ -702,7 +427,7 @@ Only `key` is narrowed to the generated [FlagKey](globals.md#flagkey) type.
 </td>
 <td>
 
-[`FlagKey`](globals.md#flagkey)
+[`FlagKey`](../../../supported-languages/react-sdk/globals.md#flagkey)
 
 </td>
 </tr>
@@ -714,7 +439,7 @@ Only `key` is narrowed to the generated [FlagKey](globals.md#flagkey) type.
 ### RawFlags
 
 ```ts
-type RawFlags = Record<FlagKey, RawFlag>;
+type RawFlags = RawFlags;
 ```
 
 Describes a collection of evaluated raw flags.
@@ -750,7 +475,7 @@ Props for the ReflagBootstrappedProvider.
 </td>
 <td>
 
-[`BootstrappedFlags`](globals.md#bootstrappedflags)
+[`BootstrappedFlags`](../../../supported-languages/react-sdk/globals.md#bootstrappedflags)
 
 </td>
 <td>
@@ -793,7 +518,7 @@ Props for the ReflagClientProvider.
 </td>
 <td>
 
-[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+[`ReflagClient`](../../../supported-languages/browser-sdk/globals.md#reflagclient)
 
 </td>
 </tr>
@@ -805,7 +530,7 @@ Props for the ReflagClientProvider.
 ### ReflagInitOptionsBase
 
 ```ts
-type ReflagInitOptionsBase = Omit<InitOptions, 
+type ReflagInitOptionsBase = Omit<InitOptions,
   | "user"
   | "company"
   | "other"
@@ -853,7 +578,7 @@ Props for the ReflagProvider.
 </td>
 <td>
 
-[`CompanyContext`](globals.md#companycontext)
+[`CompanyContext`](../../../supported-languages/react-sdk/globals.md#companycontext)
 
 </td>
 <td>
@@ -875,7 +600,7 @@ Use `context` instead, this property will be removed in the next major version
 </td>
 <td>
 
-[`ReflagContext`](../browser-sdk/globals.md#reflagcontext)
+[`ReflagContext`](../../../supported-languages/browser-sdk/globals.md#reflagcontext)
 
 </td>
 <td>
@@ -913,7 +638,7 @@ Use `context` instead, this property will be removed in the next major version
 </td>
 <td>
 
-[`UserContext`](globals.md#usercontext)
+[`UserContext`](../../../supported-languages/react-sdk/globals.md#usercontext)
 
 </td>
 <td>
@@ -1036,7 +761,7 @@ A React component to show while the client is initializing.
 </td>
 <td>
 
-[`Logger`](../browser-sdk/globals.md#logger-1)
+[`Logger`](../../../supported-languages/browser-sdk/globals.md#logger)
 
 </td>
 <td>
@@ -1060,9 +785,8 @@ If both `logger` and `debug` are provided, `logger` takes precedence.
 </td>
 <td>
 
-Set to `true` to make `useFlag` and `useOptInFlags` suspend while their
-required flag data is loading. Components that call either hook must be
-wrapped in a React `<Suspense>` boundary.
+Set to `true` to make `useOptInFlags` suspend while its metadata loads.
+Use `useFlagSuspense` for suspending direct-value reads.
 
 </td>
 </tr>
@@ -1088,7 +812,7 @@ type SetOptInOptions = {
 };
 ```
 
-Options for changing the current user or company's opt-in membership.
+Represents a flag.
 
 #### Type declaration
 
@@ -1244,7 +968,7 @@ type TrackEvent = {
 </td>
 <td>
 
-[`CompanyContext`](globals.md#companycontext)
+[`CompanyContext`](../../../supported-languages/react-sdk/globals.md#companycontext)
 
 </td>
 </tr>
@@ -1268,7 +992,7 @@ type TrackEvent = {
 </td>
 <td>
 
-[`UserContext`](globals.md#usercontext)
+[`UserContext`](../../../supported-languages/react-sdk/globals.md#usercontext)
 
 </td>
 </tr>
@@ -1280,57 +1004,8 @@ type TrackEvent = {
 ### TypedFlags
 
 ```ts
-type TypedFlags = keyof Flags extends never ? Record<string, Flag> : { [TypedFlagKey in keyof Flags]: Flags[TypedFlagKey] extends FlagType ? Flag<Flags[TypedFlagKey]["config"]> : Flag };
+type TypedFlags = keyof Flags extends never ? Record<string, FlagValue | undefined> : { [Key in keyof Flags]: Flags[Key] | undefined };
 ```
-
-Describes a collection of evaluated feature.
-
-#### Remarks
-
-This types falls back to a generic Record<string, Flag> if the Flags interface
-has not been extended.
-
-***
-
-### UseFlagOptions
-
-```ts
-type UseFlagOptions = {
-  suspense: boolean;
-};
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="suspense-1"></a> `suspense`?
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-Override the provider suspense setting for this `useFlag` call.
-When true, `useFlag` throws a promise while flags are loading.
-
-</td>
-</tr>
-</tbody>
-</table>
 
 ***
 
@@ -1356,7 +1031,7 @@ type UseOptInFlagsOptions = {
 <tr>
 <td>
 
-<a id="suspense-2"></a> `suspense`?
+<a id="suspense-1"></a> `suspense`?
 
 </td>
 <td>
@@ -1404,7 +1079,7 @@ type UseOptInFlagsResult = {
 </td>
 <td>
 
-[`OptInFlag`](globals.md#optinflag)[]
+[`OptInFlag`](../../../supported-languages/react-sdk/globals.md#optinflag)[]
 
 </td>
 <td>
@@ -1416,7 +1091,7 @@ Opt-in-enabled flags for the current context.
 <tr>
 <td>
 
-<a id="isloading-1"></a> `isLoading`
+<a id="isloading"></a> `isLoading`
 
 </td>
 <td>
@@ -1461,7 +1136,7 @@ Bootstrapped Provider for the ReflagClient using pre-fetched flags.
 </td>
 <td>
 
-[`ReflagBootstrappedProps`](globals.md#reflagbootstrappedprops)
+[`ReflagBootstrappedProps`](../../../supported-languages/react-sdk/globals.md#reflagbootstrappedprops)
 
 </td>
 </tr>
@@ -1498,7 +1173,7 @@ function ReflagClientProvider(__namedParameters: ReflagClientProviderProps): Ele
 </td>
 <td>
 
-[`ReflagClientProviderProps`](globals.md#reflagclientproviderprops)
+[`ReflagClientProviderProps`](../../../supported-languages/react-sdk/globals.md#reflagclientproviderprops)
 
 </td>
 </tr>
@@ -1537,7 +1212,7 @@ Provider for the ReflagClient.
 </td>
 <td>
 
-[`ReflagProps`](globals.md#reflagprops)
+[`ReflagProps`](../../../supported-languages/react-sdk/globals.md#reflagprops)
 
 </td>
 </tr>
@@ -1562,7 +1237,7 @@ This is useful if you need to access the `ReflagClient` outside of the `ReflagPr
 
 #### Returns
 
-[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+[`ReflagClient`](../../../supported-languages/browser-sdk/globals.md#reflagclient)
 
 The `ReflagClient`.
 
@@ -1581,30 +1256,19 @@ function App() {
 
 ### ~~useFeature()~~
 
+#### Deprecated
+
+Use useFlag.
+
+#### Call Signature
+
 ```ts
-function useFeature<TKey>(key: TKey, options?: UseFlagOptions): Flag
+function useFeature(key: string, defaultValue?: undefined): boolean
 ```
 
-#### Type Parameters
+Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Parameters
+##### Parameters
 
 <table>
 <thead>
@@ -1622,71 +1286,197 @@ function useFeature<TKey>(key: TKey, options?: UseFlagOptions): Flag
 </td>
 <td>
 
-`TKey`
+`string`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options`?
+`defaultValue`?
 
 </td>
 <td>
 
-[`UseFlagOptions`](globals.md#useflagoptions)
+`undefined`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+##### Returns
 
-[`Flag`](globals.md#flagtconfig)
+`boolean`
 
-#### Deprecated
+##### Deprecated
 
-use `useFlag` instead
+Use useFlag.
+
+#### Call Signature
+
+```ts
+function useFeature<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Default>
+```
+
+Boolean-first, non-suspending reads. Supply a positional default for JSON values.
+
+##### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](../../../supported-languages/react-sdk/globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`FlagValueFromDefault`](../../../supported-languages/react-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
+
+##### Deprecated
+
+Use useFlag.
+
+#### Call Signature
+
+```ts
+function useFeature<Default>(key: string, defaultValue: Default): FlagValueFromDefault<Default>
+```
+
+Boolean-first, non-suspending reads. Supply a positional default for JSON values.
+
+##### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](../../../supported-languages/react-sdk/globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`FlagValueFromDefault`](../../../supported-languages/react-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
+
+##### Deprecated
+
+Use useFlag.
 
 ***
 
 ### useFlag()
 
-```ts
-function useFlag<TKey>(key: TKey, options: UseFlagOptions): TypedFlags[TKey]
-```
-
-Returns the state of a given feature for the current context, e.g.
+#### Call Signature
 
 ```ts
-function HuddleButton() {
-  const {isEnabled, config: { payload }, track} = useFlag("huddle");
-  if (isEnabled) {
-   return <button onClick={() => track()}>{payload?.buttonTitle ?? "Start Huddle"}</button>;
-}
+function useFlag(key: string, defaultValue?: undefined): boolean
 ```
 
-#### Type Parameters
+Boolean-first, non-suspending reads. Supply a positional default for JSON values.
 
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Parameters
+##### Parameters
 
 <table>
 <thead>
@@ -1704,28 +1494,367 @@ function HuddleButton() {
 </td>
 <td>
 
-`TKey`
+`string`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options`
+`defaultValue`?
 
 </td>
 <td>
 
-[`UseFlagOptions`](globals.md#useflagoptions)
+`undefined`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+##### Returns
 
-[`TypedFlags`](globals.md#typedflags)\[`TKey`\]
+`boolean`
+
+#### Call Signature
+
+```ts
+function useFlag<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Default>
+```
+
+Boolean-first, non-suspending reads. Supply a positional default for JSON values.
+
+##### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](../../../supported-languages/react-sdk/globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`FlagValueFromDefault`](../../../supported-languages/react-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
+
+#### Call Signature
+
+```ts
+function useFlag<Default>(key: string, defaultValue: Default): FlagValueFromDefault<Default>
+```
+
+Boolean-first, non-suspending reads. Supply a positional default for JSON values.
+
+##### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](../../../supported-languages/react-sdk/globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`FlagValueFromDefault`](../../../supported-languages/react-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
+
+***
+
+### useFlagSuspense()
+
+#### Call Signature
+
+```ts
+function useFlagSuspense(key: string, defaultValue?: undefined): boolean
+```
+
+Wait for initialization, then read once. Missing flags use the default, not an endless suspension.
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`?
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+`boolean`
+
+#### Call Signature
+
+```ts
+function useFlagSuspense<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Default>
+```
+
+Wait for initialization, then read once. Missing flags use the default, not an endless suspension.
+
+##### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](../../../supported-languages/react-sdk/globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`FlagValueFromDefault`](../../../supported-languages/react-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
+
+#### Call Signature
+
+```ts
+function useFlagSuspense<Default>(key: string, defaultValue: Default): FlagValueFromDefault<Default>
+```
+
+Wait for initialization, then read once. Missing flags use the default, not an endless suspension.
+
+##### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](../../../supported-languages/react-sdk/globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+##### Returns
+
+[`FlagValueFromDefault`](../../../supported-languages/react-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
 
 ***
 
@@ -1761,8 +1890,8 @@ console.log(isLoading);
 
 ```ts
 function useOnEvent<THookType>(
-   event: THookType, 
-   handler: (arg0: HookArgs[THookType]) => void, 
+   event: THookType,
+   handler: (arg0: HookArgs[THookType]) => void,
    client?: ReflagClient): void
 ```
 
@@ -1780,7 +1909,7 @@ Attach a callback handler to client events to act on changes. It automatically d
 <tr>
 <td>
 
-`THookType` *extends* keyof [`HookArgs`](../browser-sdk/globals.md#hookargs)
+`THookType` *extends* keyof [`HookArgs`](../../../supported-languages/browser-sdk/globals.md#hookargs)
 
 </td>
 </tr>
@@ -1823,7 +1952,7 @@ The event to listen to.
 </td>
 <td>
 
-(`arg0`: [`HookArgs`](../browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
+(`arg0`: [`HookArgs`](../../../supported-languages/browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
 
 </td>
 <td>
@@ -1840,7 +1969,7 @@ The function to call when the event is triggered.
 </td>
 <td>
 
-[`ReflagClient`](../browser-sdk/globals.md#reflagclient)
+[`ReflagClient`](../../../supported-languages/browser-sdk/globals.md#reflagclient)
 
 </td>
 <td>
@@ -1878,12 +2007,9 @@ Returns opt-in-enabled flags and their loading state for the current context.
 
 The loading state is only used with `ReflagBootstrappedProvider` while
 opt-in metadata is fetched on demand. Regular providers load opt-in metadata
-with the initial flags; use [useIsLoading](globals.md#useisloading) for their loading state.
+with the initial flags.
 When suspense is enabled for the provider or this hook, it suspends instead
-of returning a loading result. A Suspense boundary alone does not enable it.
-
-If fetching opt-in metadata fails, loading ends without exposing an error.
-Call `refresh()` on the client returned by [useClient](globals.md#useclient) to retry.
+of returning a loading result.
 
 #### Parameters
 
@@ -1903,7 +2029,7 @@ Call `refresh()` on the client returned by [useClient](globals.md#useclient) to 
 </td>
 <td>
 
-[`UseOptInFlagsOptions`](globals.md#useoptinflagsoptions)
+[`UseOptInFlagsOptions`](../../../supported-languages/react-sdk/globals.md#useoptinflagsoptions)
 
 </td>
 </tr>
@@ -1912,7 +2038,7 @@ Call `refresh()` on the client returned by [useClient](globals.md#useclient) to 
 
 #### Returns
 
-[`UseOptInFlagsResult`](globals.md#useoptinflagsresult)
+[`UseOptInFlagsResult`](../../../supported-languages/react-sdk/globals.md#useoptinflagsresult)
 
 ***
 
@@ -1925,7 +2051,7 @@ function useRequestFeedback(): (options: RequestFeedbackData) => void
 Returns a function to open up the feedback form
 Note: When calling `useRequestFeedback`, user/company must already be set.
 
-See [link](../../documents/browser-sdk/FEEDBACK.md) for more information
+See [link](../../../supported-languages/browser-sdk/feedback.md) for more information
 
 ```ts
 const requestFeedback = useRequestFeedback();
@@ -1957,7 +2083,7 @@ reflag.requestFeedback({
 </td>
 <td>
 
-[`RequestFeedbackData`](../browser-sdk/globals.md#requestfeedbackdata)
+[`RequestFeedbackData`](../../../supported-languages/browser-sdk/globals.md#requestfeedbackdata)
 
 </td>
 </tr>
@@ -1981,7 +2107,7 @@ function useSendFeedback(): (opts: UnassignedFeedback) => Promise<
 Returns a function to manually send feedback collected from a user.
 Note: When calling `useSendFeedback`, user/company must already be set.
 
-See [link](../../documents/browser-sdk/FEEDBACK.md) for more information
+See [link](../../../supported-languages/browser-sdk/feedback.md) for more information
 
 ```ts
 const sendFeedback = useSendFeedback();
@@ -2015,7 +2141,7 @@ sendFeedback({
 </td>
 <td>
 
-[`UnassignedFeedback`](../browser-sdk/globals.md#unassignedfeedback)
+[`UnassignedFeedback`](../../../supported-languages/browser-sdk/globals.md#unassignedfeedback)
 
 </td>
 </tr>
@@ -2039,11 +2165,6 @@ function useSetOptIn(): (key: string, options: SetOptInOptions) => Promise<
 ```
 
 Returns a function to set whether the current user or company has opted into a flag.
-
-Check the returned Response's `ok` property and catch promise rejections.
-HTTP failures return a non-OK Response; offline mode, invalid arguments, or
-missing scoped context return undefined. Confirmation failures can reject
-after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sdk/globals.md#setoptin).
 
 #### Returns
 
@@ -2079,7 +2200,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 </td>
 <td>
 
-[`SetOptInOptions`](globals.md#setoptinoptions)
+[`SetOptInOptions`](../../../supported-languages/react-sdk/globals.md#setoptinoptions)
 
 </td>
 </tr>
@@ -2097,7 +2218,7 @@ after the membership changed remotely. See [ReflagClient.setOptIn](../browser-sd
 ### useTrack()
 
 ```ts
-function useTrack(): (eventName: string, attributes?: 
+function useTrack(): (eventName: string, attributes?:
   | null
   | Record<string, any>) => Promise<
   | undefined

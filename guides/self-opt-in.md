@@ -31,7 +31,11 @@ import {
 import { Spinner } from "your-component-library";
 
 function OptInPage() {
-  const { flags: optInFlags } = useOptInFlags();
+  const { flags: optInFlags, isLoading } = useOptInFlags({ suspense: false });
+
+  if (isLoading) {
+    return <Spinner aria-label="Loading opt-in flags" />;
+  }
 
   if (optInFlags.length === 0) {
     return <p>No opt-in flags are available.</p>;
@@ -107,9 +111,9 @@ User and company opt-ins are independent. Setting `optedIn` to `false` removes o
 
 Cancelling every opt-in does not necessarily disable the flag: an access rule may independently enable it for the current context.
 
-## Managing loading state with `<ReflagBootstrappedProvider>` and without `<Suspense>`
+## Managing opt-in loading state
 
-Only apps using `ReflagBootstrappedProvider` without Suspense need to handle this loading state. Bootstrapped flag data does not include opt-in metadata, so the SDK fetches it when `useOptInFlags()` is first used.
+Check opt-in loading before rendering an empty state, including during ordinary initialization. Metadata arrives with v2 evaluated-flags responses. A bootstrapped snapshot may omit it; the SDK then fetches missing metadata on demand without replacing server-derived flag values.
 
 Check the hook's `isLoading` value before rendering an empty state:
 
@@ -125,7 +129,7 @@ if (optInFlags.length === 0) {
 }
 ```
 
-With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()`, suspense or the provider's `loadingComponent` for the normal initial loading state.
+For general provider initialization, use `useIsLoading()` or `loadingComponent`. React `useFlag()` itself never suspends; use `useFlagSuspense()` for a suspending flag read. Opt-in hooks have their own suspense/loading contract; do not assume their loading value is always `false` with a regular provider.
 
 ## Next steps
 

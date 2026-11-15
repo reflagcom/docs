@@ -7,6 +7,7 @@
 ## Supported languages
 
 * [Overview](supported-languages/overview.md)
+* [Migrating from v1](supported-languages/migrating-from-v1.md)
 * [React SDK](supported-languages/react-sdk/README.md)
   * [Reference](supported-languages/react-sdk/globals.md)
 * [React Native SDK (beta)](supported-languages/react-native-sdk/README.md)
@@ -95,6 +96,19 @@
 * [Use Reflag in your CLI](guides/use-reflag-in-your-cli.md)
 * [Beta feature opt-in](guides/self-opt-in.md)
 * [Toggle toolbar with a flag](guides/toggle-toolbar-with-a-flag.md)
+
+## Legacy SDKs
+
+* [Legacy SDKs (v1)](legacy/v1/README.md)
+  * [Browser SDK (v1)](legacy/v1/browser-sdk/README.md)
+    * [Reference](legacy/v1/browser-sdk/globals.md)
+    * [Feedback](legacy/v1/browser-sdk/feedback.md)
+  * [React SDK (v1)](legacy/v1/react-sdk/README.md)
+    * [Reference](legacy/v1/react-sdk/globals.md)
+  * [Vue SDK (v1)](legacy/v1/vue-sdk/README.md)
+    * [Reference](legacy/v1/vue-sdk/globals.md)
+  * [Node.js SDK (v1)](legacy/v1/node-sdk/README.md)
+    * [Reference](legacy/v1/node-sdk/globals.md)
 
 ## Support
 
