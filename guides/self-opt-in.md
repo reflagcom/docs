@@ -19,8 +19,6 @@ For an overview of how opt-in affects access and how memberships are managed in 
 
 Render the available opt-in flags and let the current user set their opt-in status.
 
-If you're using `<ReflagBootstrappedProvider>` without a `<Suspense>` boundary, see the loading section below.
-
 ```tsx
 import { useState } from "react";
 import {
@@ -113,23 +111,9 @@ Cancelling every opt-in does not necessarily disable the flag: an access rule ma
 
 ## Managing opt-in loading state
 
-Check opt-in loading before rendering an empty state, including during ordinary initialization. Metadata arrives with evaluated-flags responses. A bootstrapped snapshot may omit it; the SDK then fetches missing metadata on demand without replacing server-derived flag values.
+The list of opt-in flags can still be loading after the rest of your flags are ready, for example when you bootstrap flags from the server. Check `isLoading` before rendering an empty state, as the quick start does, so users don't briefly see "No opt-in flags are available."
 
-Check the hook's `isLoading` value before rendering an empty state:
-
-```tsx
-const { flags: optInFlags, isLoading } = useOptInFlags({ suspense: false });
-
-if (isLoading) {
-  return <Spinner aria-label="Loading opt-in flags" />;
-}
-
-if (optInFlags.length === 0) {
-  return <p>No opt-in flags are available.</p>;
-}
-```
-
-For general provider initialization, use `useIsLoading()` or `loadingComponent`. React `useFlag()` itself never suspends; use `useFlagSuspense()` for a suspending flag read. Opt-in hooks have their own suspense/loading contract; do not assume their loading value is always `false` with a regular provider.
+To use a Suspense boundary instead, call `useOptInFlags({ suspense: true })`.
 
 ## Next steps
 

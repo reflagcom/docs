@@ -38,7 +38,7 @@ You can collect end-user feedback on new flag rollouts to catch and fix issues f
 
 ### Static feedback button
 
-Configure adoption rules to match the usage event name you send. Reading a flag registers a check; tracking usage is a separate operation.
+Configure the flag's adoption rules to match the event name you track. Reading a flag records a check automatically; call `track()` when someone actually uses the feature.
 
 Here's a brief example using the [Reflag React SDK](../../supported-languages/react-sdk/README.md) to collect feedback:
 

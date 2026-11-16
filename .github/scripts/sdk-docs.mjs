@@ -7,7 +7,7 @@ import { pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
 
 export const webSDKs = ["browser-sdk", "react-sdk", "vue-sdk", "node-sdk"];
-export const currentVersionNote = "This documentation covers SDK v2.";
+export const currentVersionNote = "This page covers SDK v2.";
 const references = [...webSDKs, "react-native-sdk", "management-sdk"];
 export const documentedPackages = [...references, "cli"];
 const repository = "https://github.com/reflagcom/javascript";

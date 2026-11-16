@@ -15,15 +15,19 @@ pagination:
 
 # Reflag React SDK <a href="#reflag-react-sdk" id="reflag-react-sdk"></a>
 
-Feature flags and JSON configuration for React, backed by the [Browser SDK](../../../supported-languages/browser-sdk/README.md).
+Feature flags, remote configuration, usage tracking and feedback for React applications. Built on the [Browser SDK](../../../supported-languages/browser-sdk/README.md).
 
-This documentation covers SDK v2.
+This page covers SDK v2.
 
-## Setup <a href="#setup" id="setup"></a>
+## Get started <a href="#get-started" id="get-started"></a>
+
+Install the SDK:
 
 ```sh
 npm install @reflag/react-sdk
 ```
+
+Wrap your application in `ReflagProvider` with your **publishable** key and the signed-in user's context:
 
 ```tsx
 import { ReflagProvider } from "@reflag/react-sdk";
@@ -39,40 +43,53 @@ import { ReflagProvider } from "@reflag/react-sdk";
 </ReflagProvider>;
 ```
 
-Provider options forward Browser SDK settings, including `logger`, `debug`, `enableTracking`, `offline`, cache/fallback options, `toolbar`, `feedback`, `credentials` and API origins. A custom logger takes precedence over debug logging. Live updates default to true; set `enableLiveFlagUpdates={false}` to disable them.
-
-## `useFlag(key, defaultValue?)` <a href="#useflagkey-defaultvalue" id="useflagkey-defaultvalue"></a>
+Then read a flag in any component:
 
 ```tsx
 import { useFlag, useTrack } from "@reflag/react-sdk";
 
 function Huddles() {
-  const enabled = useFlag("huddles"); // boolean, implicit false
-  const settings = useFlag("huddle-settings", { maxParticipants: 10 });
+  const enabled = useFlag("huddles");
   const track = useTrack();
   if (!enabled) return null;
-  return (
-    <button onClick={() => track("Started huddle")}>
-      Start huddle (up to {settings.maxParticipants} people)
-    </button>
-  );
+  return <button onClick={() => track("Started huddle")}>Start huddle</button>;
 }
 ```
 
-Bare reads return Boolean/false, including while initial data is unavailable. A positional default infers widened direct types, even without generated declarations:
+## Read flags <a href="#read-flags" id="read-flags"></a>
 
-```ts
+Without a default, `useFlag()` returns a Boolean. You get `false` while flags are loading, and if the flag is missing or isn't a Boolean.
+
+To read a configuration value, pass a default. The return type follows the default, and you get the default back while loading, or if the flag is missing or holds a different type of value:
+
+```tsx
+const settings = useFlag("huddle-settings", { maxParticipants: 10 });
+// settings.maxParticipants: number
+
 useFlag("model", "quick"); // string
 useFlag("limit", 10); // number
-useFlag("settings", { model: "quick" }); // { model: string }
-useFlag("nullable-settings", null); // FlagValue: arbitrary JSON
+useFlag("nullable-settings", null); // any JSON value; narrow it yourself
 ```
 
-Non-null defaults enforce only the top-level JSON category (Boolean/number/string/array/object). Mismatches return the default and warn without logging the payload. Explicit null accepts authored null and all other JSON; missing values return null. Accepted false, zero and empty strings are preserved. Nested fields/elements are not schema-validated. Values/defaults are independent mutable copies; readonly defaults are accepted.
+The SDK checks only the top-level type of a value. If your application depends on nested fields, validate them.
 
-`useFlag` returns immediately, using the default while flags load. Use `useIsLoading()` or the provider's `loadingComponent` for an explicit loading UI, or `useFlagSuspense()` to wait with React Suspense.
+Reading a flag records a check, even if you don't use the value. Reflag uses checks for launch monitoring.
 
-## `useFlagSuspense(key, defaultValue?)` <a href="#useflagsuspensekey-defaultvalue" id="useflagsuspensekey-defaultvalue"></a>
+## Loading states and Suspense <a href="#loading-states-and-suspense" id="loading-states-and-suspense"></a>
+
+`useFlag()` returns immediately and never suspends. To show a loading UI, use `useIsLoading()` or the provider's `loadingComponent` prop:
+
+```tsx
+<ReflagProvider
+  publishableKey="your-publishable-key"
+  context={context}
+  loadingComponent={<Spinner />}
+>
+  <App />
+</ReflagProvider>
+```
+
+To wait for flags with React Suspense, use `useFlagSuspense()`. It takes the same arguments as `useFlag()`:
 
 ```tsx
 import { Suspense } from "react";
@@ -88,50 +105,34 @@ function Model() {
 </Suspense>;
 ```
 
-This hook has the same Boolean/default-based return types. It waits for initialization before reading. Once initialization settles, missing flags return their default rather than suspending forever. Bootstrap values can render immediately. Suspended attempts do not register a root read before data is ready.
+## Track usage and feedback <a href="#track-usage-and-feedback" id="track-usage-and-feedback"></a>
 
-The provider's `suspense` prop configures **`useOptInFlags` only**. Use `useFlagSuspense` for flag reads with Suspense.
-
-## Checks and usage tracking <a href="#checks-and-usage-tracking" id="checks-and-usage-tracking"></a>
-
-A completed getter/hook read registers its requested-root check immediately, even if the value is ignored. Actual delivery remains buffered and identity-aware rate-limited by the Browser SDK. Checks contain selected variant/source/snapshot identity, not payloads. Defaults, category mismatches and local overrides never invent authored selections. Diagnostic/bootstrap inspection registers no checks.
-
-Track application usage and collect feedback with these hooks:
-
-```ts
+```tsx
 const track = useTrack();
 await track("Started huddle", { button: "cta" });
+
 const requestFeedback = useRequestFeedback();
 requestFeedback({ flagKey: "huddles", title: "How did it go?" });
+
 const sendFeedback = useSendFeedback();
 await sendFeedback({ flagKey: "huddles", score: 5 });
 ```
 
-See [Browser feedback documentation](../../../supported-languages/browser-sdk/feedback.md) for UI/prompt configuration.
+Configure your flag's adoption rules to match the event names you send. See the [Browser feedback documentation](../../../supported-languages/browser-sdk/feedback.md) to configure feedback prompts and the feedback UI.
 
-## Optional key registration <a href="#optional-key-registration" id="optional-key-registration"></a>
+## Update context <a href="#update-context" id="update-context"></a>
 
-```ts
-import "@reflag/react-sdk";
-declare module "@reflag/react-sdk" {
-  interface Flags {
-    huddles: boolean;
-    "huddle-settings": { maxParticipants: number };
-  }
-}
-```
+`useUpdateUser()`, `useUpdateCompany()` and `useUpdateOtherContext()` return functions that merge new attributes into the current context. To replace the whole context, call `useClient().setContext(context)`. Flag values are refetched for the new context.
 
-Registration constrains keys and checks non-null defaults against the registered value schema, including required and nested properties. Named-interface and readonly defaults are supported. Explicit `null` remains an arbitrary-JSON request; bare/`undefined` reads remain Boolean. The positional default still determines the widened return type, and generated declarations do not add nested runtime validation. The same rules apply to `useFlagSuspense`. The Reflag CLI can generate these declarations from current production-environment variants.
+## Bootstrap from the server <a href="#bootstrap-from-the-server" id="bootstrap-from-the-server"></a>
 
-## Bootstrap and SSR <a href="#bootstrap-and-ssr" id="bootstrap-and-ssr"></a>
-
-On the server, use the Node.js SDK:
+To render flags immediately, without waiting for a network request, evaluate them on your server with the **Node.js SDK**:
 
 ```ts
 const flags = serverClient.getFlagsForBootstrap(context);
 ```
 
-Pass the **entire** safe, serialized envelope to the client provider:
+Then pass the whole result to `ReflagBootstrappedProvider`, serialized with your framework's usual mechanism:
 
 ```tsx
 import { ReflagBootstrappedProvider } from "@reflag/react-sdk";
@@ -141,29 +142,59 @@ import { ReflagBootstrappedProvider } from "@reflag/react-sdk";
 </ReflagBootstrappedProvider>;
 ```
 
-The envelope includes `protocolVersion: 2`, context, evaluated flag results and optional `flagStateVersion`. Use a snapshot version for live updates; later refreshes use browser-visible context. Do not send secrets/server-only attributes to the browser. Disable live updates if later browser evaluation must not replace server-only results.
+Leave secrets and server-only attributes out of the context you bootstrap, because the browser can read it. Later refreshes evaluate flags using the browser's context. If values that depend on server-only attributes must not change, set `enableLiveFlagUpdates={false}`.
 
-For an existing Browser SDK client, use `<ReflagClientProvider client={client}>`. The provider does not own its lifecycle; initialize/stop externally, except that a suspending read can start on-demand initialization.
-
-## Context, loading and events <a href="#context-loading-and-events" id="context-loading-and-events"></a>
-
-- `useUpdateUser()`, `useUpdateCompany()` and `useUpdateOtherContext()` return async shallow-update functions. `useClient().setContext(context)` replaces the whole context.
-- Context changes clear old-context values while fetching. Stale/in-flight responses cannot replace a newer context/snapshot.
-- `useIsLoading()` returns provider loading state. `loadingComponent` and `initialLoading` configure initial presentation; they are not getter arguments.
-- `useClient()` returns the underlying Browser client. Its `getFlags()` returns direct values/checks; `getFlagResults()` is diagnostic-only.
-- `useOnEvent(type, handler, client?)` subscribes and unsubscribes on unmount. A supplied external client works without a provider.
-
-## Opt-in hooks <a href="#opt-in-hooks" id="opt-in-hooks"></a>
+## Let users opt in to flags <a href="#let-users-opt-in-to-flags" id="let-users-opt-in-to-flags"></a>
 
 ```tsx
 const { flags, isLoading } = useOptInFlags();
 const setOptIn = useSetOptIn();
+
 await setOptIn("huddles", { optedIn: true });
 await setOptIn("huddles", { optedIn: false, scope: "company" });
 ```
 
-Metadata arrives with the initial evaluation for regular providers. Bootstrapped providers fetch missing metadata on demand from `/flags/evaluated` without replacing server-derived values. `isLoading` covers initialization and metadata retrieval; it settles on success or failure. Metadata presentation includes `isEnabled` and membership fields, separately from direct flag reads. User/company grants remain independent. Mutations confirm versioned evaluation and membership in a single refresh.
+Each entry includes the flag's `key`, `name`, `description` and whether the user or company has opted in. User and company opt-ins are independent. Check `isLoading` before rendering an empty state. The provider's `suspense` prop, or `useOptInFlags({ suspense: true })`, makes this hook suspend instead. See [Beta feature opt-in](https://docs.reflag.com/guides/self-opt-in) for a complete example.
 
-`useOptInFlags({ suspense: true | false })` retains its own per-hook loading options and may inherit provider `suspense`. These options are unrelated to the positional payload defaults used by `useFlag` / `useFlagSuspense`.
+## Toolbar <a href="#toolbar" id="toolbar"></a>
+
+The toolbar shows on `localhost` by default and lets you toggle Boolean flags for yourself. Use the `toolbar` prop to show it elsewhere, for example to internal users in production:
+
+```tsx
+<ReflagProvider
+  publishableKey="your-publishable-key"
+  context={context}
+  toolbar={user.isInternal}
+>
+  <App />
+</ReflagProvider>
+```
+
+## Type safety <a href="#type-safety" id="type-safety"></a>
+
+Optionally declare your flags to get autocompletion for keys and type checks for defaults:
+
+```ts
+import "@reflag/react-sdk";
+
+declare module "@reflag/react-sdk" {
+  interface Flags {
+    huddles: boolean;
+    "huddle-settings": { maxParticipants: number };
+  }
+}
+```
+
+The [Reflag CLI](https://docs.reflag.com/api/cli) can generate these declarations for you. Declarations are checked at compile time only.
+
+## Use an existing client <a href="#use-an-existing-client" id="use-an-existing-client"></a>
+
+`useClient()` returns the underlying Browser SDK client. If you already create a Browser SDK client yourself, pass it to `<ReflagClientProvider client={client}>`; your application is then responsible for initializing and stopping it. `useOnEvent(type, handler)` subscribes to client events and unsubscribes when the component unmounts.
+
+## Configuration <a href="#configuration" id="configuration"></a>
+
+The provider accepts the Browser SDK's configuration options, such as `fallbackFlags`, `enableTracking`, `offline`, `feedback` and `logger`, as props. Live updates are on by default in React; set `enableLiveFlagUpdates={false}` to turn them off. Set `debug` to log to the console.
+
+For Content Security Policy requirements and the full list of options, see the [Browser SDK](../../../supported-languages/browser-sdk/README.md).
 
 Using v1? [Legacy docs](../../../legacy/v1/react-sdk/README.md) · [Upgrade guide](../../../supported-languages/migrating-from-v1.md).

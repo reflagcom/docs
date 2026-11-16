@@ -127,5 +127,5 @@ function StartHuddleButton() {
 
 **Limitations**:
 
-* Review the generated PR carefully. Removing the Boolean gate does not imply that usage tracking, feedback hooks or separately authored configuration should be removed. Multivariate values need an explicit cleanup decision; do not apply Boolean truthiness to arbitrary JSON.
+* Review the generated PR carefully. The cleanup removes the flag check only; keep any usage tracking, feedback or configuration you still need. For Multivariate flags, decide yourself which value to keep.
 * Works best with the React SDK while in beta.

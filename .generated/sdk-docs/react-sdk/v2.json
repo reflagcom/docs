@@ -1,13 +1,13 @@
 {
   "sourceRepository": "https://github.com/reflagcom/javascript",
-  "sourceCommit": "23b018b17cd0755fa6512cd209265cdac5f8fb0d",
+  "sourceCommit": "f7b6eb4fe2ca5ff5339de95d3f4f9158b5d60684",
   "package": "@reflag/react-sdk",
   "version": "2.0.0-next.0",
   "files": {
-    "supported-languages/react-sdk/README.md": "02cf3f7f06a0e0efae439a2641cddaa0e93f070a0ad3dfe4fdc2977deabe43b7",
-    "sdk/@reflag/react-sdk/README.md": "fa6cfeaa7dc03d2460810ca6609b2adf1cf375ef903dfa522c2531b22c598b1f",
-    "sdk/documents/react-sdk/README.md": "fa6cfeaa7dc03d2460810ca6609b2adf1cf375ef903dfa522c2531b22c598b1f",
-    "supported-languages/react-sdk/globals.md": "be2241ca671643f5b9584463948e3bbde89c7c90d38ffbf011125d087890d5e1",
-    "sdk/@reflag/react-sdk/globals.md": "846f78f9ab8dbac0faeaad0c9aa2dc36525b31d891ba53a407811567dcdf8a9a"
+    "supported-languages/react-sdk/README.md": "ec75e4663a2a51707a81ee290b6267b7e53e6fdf9380e6d12f1d5dbd32b517bd",
+    "sdk/@reflag/react-sdk/README.md": "d4312429334e929032c66aa45cd93bc831947592465917532596bdbdae48fd0c",
+    "sdk/documents/react-sdk/README.md": "d4312429334e929032c66aa45cd93bc831947592465917532596bdbdae48fd0c",
+    "supported-languages/react-sdk/globals.md": "f414859dd7cc94089d06f27613e1c554e3e3d5f049a9a141c2590058af768b1a",
+    "sdk/@reflag/react-sdk/globals.md": "4cf0d20cca9c19d3998d9c5d0f6670d17d6782c24ee0ccd25e1d34100f42fcc6"
   }
 }

@@ -4,7 +4,7 @@ description: Register flag keys and schemas with the Reflag SDKs and CLI.
 
 # Type safety
 
-The Reflag SDKs infer return types from the defaults you pass, without a generated file. Registering your flag schemas also catches misspelled keys and incompatible non-null defaults.
+The Reflag SDKs infer a flag's type from the default you pass, so you get useful types without any setup. Registering your flags also catches misspelled keys and defaults that don't match your flag's values.
 
 ```tsx
 import { useFlag } from "@reflag/react-sdk";
@@ -15,7 +15,7 @@ export function TokenLimit() {
 }
 ```
 
-The fallback determines the widened return type: `512` becomes `number`, not the literal type `512`. Bare or explicit-`undefined` reads return Boolean; explicit `null` requests arbitrary JSON.
+Here the default `512` gives `maxTokens` the type `number`. Without a default, you get a Boolean; with `null`, you get any JSON value.
 
 ## Set up type safety for flags
 
@@ -35,9 +35,9 @@ npx reflag flags types --format node --out gen/flags.d.ts
 npx reflag flags types --format vue --out gen/flags.d.ts
 ```
 
-Generate only the declarations needed by your application's SDKs and ensure TypeScript includes the output. These examples show alternative formats; do not overwrite the same file three times in your actual build.
+Pick the format for the SDK you use, and make sure TypeScript includes the output file.
 
-Generation uses current production-environment Multivariate values to describe possible JSON shapes. Empty or unknown data remains JSON-capable rather than being invented as Boolean. Regenerate when flag definitions change. Generation errors must fail your build rather than leaving an unnoticed stale declaration file.
+Types are generated from the variant values in your production environment. Regenerate them when your flags change, and let generation errors fail your build so the types don't silently go stale.
 
 You can commit the generated file, or ignore it and generate it on local setup and in CI. If you ignore it:
 
@@ -67,13 +67,13 @@ export function RegisteredSettings() {
 }
 ```
 
-Registered non-null defaults must match the selected key's schema, including required/nested fields, array elements, and literal unions. Named interfaces and readonly defaults are supported. This does not change bare Boolean reads or the arbitrary-JSON meaning of explicit `null`.
+With a registered flag, TypeScript checks that the default you pass matches the flag's type, including nested fields.
 
-The SDK validates that defaults are JSON-compatible and checks the selected value's top-level category. It does **not** recursively enforce generated schemas on server-returned values. Add application validation when nested data is a trust boundary.
+These checks happen at compile time. At runtime, the SDK checks only the top-level type of a value, so validate nested fields your application depends on.
 
 ## Using in CI/CD pipelines
 
-Store an authorized [Management API key](../api/api-access.md) in your CI secret store. Do not commit it or send it to a browser.
+Store a [Management API key](../api/api-access.md) as a secret in your CI system.
 
 ```yaml
 - name: Generate flag types
@@ -83,5 +83,3 @@ Store an authorized [Management API key](../api/api-access.md) in your CI secret
 ```
 
 Install the CLI from your lockfile before running this step.
-
-Using v1? [Legacy docs](../legacy/v1/README.md) · [Upgrade guide](../supported-languages/migrating-from-v1.md).

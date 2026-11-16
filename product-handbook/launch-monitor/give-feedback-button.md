@@ -4,7 +4,7 @@ description: Add a feedback button with the React SDK feedback hook.
 
 # Give feedback button
 
-Use a separate feedback hook to open a feedback form. The flag read controls the workflow; it does not return feedback or tracking methods.
+Use the `useRequestFeedback()` hook to open a feedback form from your own button:
 
 ```tsx
 import { useFlag, useRequestFeedback, useTrack } from "@reflag/react-sdk";

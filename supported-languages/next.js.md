@@ -6,7 +6,7 @@ description: Use the Node.js and React SDKs with Next.js.
 
 Use the [Node.js SDK](node-sdk/README.md) to evaluate flags on the server and the [React SDK](react-sdk/README.md) in client components.
 
-This documentation covers SDK v2.
+This page covers SDK v2.
 
 ## Server-side rendering
 
@@ -29,7 +29,7 @@ export async function getReflagClient() {
 }
 ```
 
-Derive user/company context from your authenticated session on the server, not from client-supplied subscription attributes. The examples below assume your application's `getContext()` helper does that.
+Build the user and company context from your authenticated session on the server. The examples below assume a `getContext()` helper in your application that does this.
 
 {% tabs %}
 {% tab title="App router" %}
@@ -83,7 +83,7 @@ export default function Page({ enabled }: InferGetServerSidePropsType<typeof get
 {% endtab %}
 {% endtabs %}
 
-Recheck authorization in the backend operation, even when the page hides its controls. Configure adoption rules to match the usage event name you send. For JSON configuration, pass a default after the key, for example `client.getFlag(context, "member-settings", { maxMembers: 10 })`.
+The server action checks the flag again, because hiding a button doesn't stop someone from calling the action directly. Configure the flag's adoption rules to match the event name you track. To read a configuration value, pass a default after the key, for example `client.getFlag(context, "member-settings", { maxMembers: 10 })`.
 
 ### Flags SDK by Vercel
 
@@ -91,7 +91,7 @@ When using a custom Vercel Flags SDK definition, return the Boolean flag value f
 
 ## Client-side rendering
 
-Put the provider in a client component. Keep secret SDK keys on the server; the browser gets only a publishable key and browser-safe context:
+Put the provider in a client component. In the browser, use your publishable key; the secret key stays on the server:
 
 ```tsx
 "use client";
@@ -118,10 +118,10 @@ export function StartHuddle() {
 }
 ```
 
-Replace the example IDs with your signed-in user/company context. Use `useIsLoading()` or `loadingComponent` when you need a loading UI, or `useFlagSuspense()` for an explicitly suspending read.
+Replace the example IDs with your signed-in user and company. For a loading UI, use `useIsLoading()` or the provider's `loadingComponent` prop, or use `useFlagSuspense()` to wait with React Suspense.
 
 ## Server-to-client bootstrap
 
-For immediate client rendering, generate state with the **Node.js SDK** and pass the entire envelope to the **React SDK**'s `ReflagBootstrappedProvider`. Follow the [React bootstrap documentation](react-sdk/README.md#bootstrap-and-ssr), using your framework's safe serialization mechanism. Never send server secrets or server-only attributes to the browser.
+To render flags on the client immediately, evaluate them on the server with the Node.js SDK's `getFlagsForBootstrap()` and pass the result to the React SDK's `ReflagBootstrappedProvider`. See [Bootstrap from the server](react-sdk/README.md#bootstrap-from-the-server) in the React SDK guide.
 
 Using v1? [Legacy docs](../legacy/v1/README.md) · [Upgrade guide](migrating-from-v1.md).

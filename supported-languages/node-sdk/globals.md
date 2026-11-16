@@ -15,7 +15,7 @@ pagination:
 
 # @reflag/node-sdk <a href="#reflagnode-sdk" id="reflagnode-sdk"></a>
 
-This documentation covers SDK v2.
+This page covers SDK v2.
 
 ## Classes <a href="#classes" id="classes"></a>
 

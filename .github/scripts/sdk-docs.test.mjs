@@ -248,7 +248,7 @@ test("the current-version line stays in the introduction without entering code f
   const content = "# SDK\n\nIntroduction.\n\n```md\n## Code example\n```\n\n## Setup\n";
   const rendered = anchorHeadings(content, { introNote: currentVersionNote });
   assert(rendered.includes("```md\n## Code example\n```"));
-  assert(rendered.indexOf("```\n\nThis documentation") > rendered.indexOf("## Code example"));
+  assert(rendered.indexOf(`\`\`\`\n\n${currentVersionNote}`) > rendered.indexOf("## Code example"));
   assert(rendered.indexOf(currentVersionNote) < rendered.indexOf("## Setup"));
   assert.equal(rendered.split(currentVersionNote).length - 1, 1);
 });

@@ -18,7 +18,7 @@ Now let's create your first flag.
 npx @reflag/cli new
 ```
 
-See [Type safety](product-handbook/type-safety.md) to generate TypeScript declarations for your flags.
+See the [CLI docs](api/cli.md), and [Type safety](product-handbook/type-safety.md) to generate TypeScript types for your flags.
 {% endtab %}
 
 {% tab title="UI" %}
@@ -60,7 +60,7 @@ const MyFlag = () => {
 };
 ```
 
-You can now use the Boolean value directly to gate access to the flag.
+`enabled` is `true` for users who have access to the flag.
 
 ## 3. Set access rules
 
@@ -142,5 +142,3 @@ Configure your flag's adoption rules to match the event name you send with `trac
 * Need some help? [Chat with us](mailto:hello@reflag.com)
 * Latest product updates? [See Changelog](https://reflag.com/changelog)
 * Create account: [Sign up](https://app.reflag.com/)
-
-Using v1? [Legacy docs](legacy/v1/README.md) · [Upgrade guide](supported-languages/migrating-from-v1.md).

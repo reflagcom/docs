@@ -99,7 +99,7 @@
 
 ## Legacy SDKs
 
-* [Legacy SDKs (v1)](legacy/v1/README.md)
+* [SDK v1](legacy/v1/README.md)
   * [Browser SDK (v1)](legacy/v1/browser-sdk/README.md)
     * [Reference](legacy/v1/browser-sdk/globals.md)
     * [Feedback](legacy/v1/browser-sdk/feedback.md)

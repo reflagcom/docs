@@ -5,13 +5,13 @@ icon: rectangle-terminal
 
 # Use Reflag in your CLI
 
-This guide is about **your application's CLI**, not the Reflag management CLI. Authenticate your caller using your existing API-token or OAuth flow, then evaluate flags with the server-side Node.js SDK. Do not embed a Reflag secret SDK key or a Management API key in a distributed CLI.
+This guide is about **your application's CLI**, not the Reflag management CLI. Your CLI asks your backend for flag values; the backend evaluates them with the Node.js SDK. That way, your Reflag keys stay on your servers instead of shipping inside the CLI.
 
 ## Evaluate on your backend
 
-Create an authenticated endpoint such as `POST /get-flags`. Look up the user and company from your trusted session/token store; do not trust caller-supplied identities or subscription attributes.
+Create an endpoint such as `POST /get-flags`, authenticated with your existing API-token or OAuth flow. Look up the user and company from the caller's token, rather than trusting identities the CLI sends.
 
-A reusable evaluation helper can accept the resulting context:
+Then evaluate the flags for that context:
 
 ```typescript
 import { ReflagClient, type Context } from "@reflag/node-sdk";
@@ -29,9 +29,7 @@ export async function getCliAccess(context: Context) {
 }
 ```
 
-Call `getCliAccess()` after authentication and return only the values your CLI needs. This registers checks for these requested roots. Diagnostic APIs are not a substitute for application reads.
-
-The JSON response contains the flag values:
+Return only the values your CLI needs:
 
 ```json
 {
@@ -42,7 +40,7 @@ The JSON response contains the flag values:
 
 ## Gate the CLI workflow
 
-Use the Boolean directly and validate the response before using nested configuration. Recheck sensitive access on the backend that performs the operation; a CLI display check is not authorization.
+In the CLI, use the Boolean directly. Users can modify a CLI they run, so if the CLI calls your backend to perform the operation, check the flag there too.
 
 ```typescript
 export function canExport(response: { exportEnabled: boolean }) {
@@ -50,11 +48,9 @@ export function canExport(response: { exportEnabled: boolean }) {
 }
 ```
 
-If you expose a list of enabled Boolean keys instead, use `enabledKeys.includes("export-to-csv")`. Do not treat a general JSON-valued flag map as a list of enabled keys or apply truthiness to Multivariate values.
-
 ## Track successful usage separately
 
-After the protected operation succeeds, track the application's adoption event with the same authenticated context. Configure the flag's adoption rules to match that event.
+When the operation succeeds, track it with the same context, and configure the flag's adoption rules to match the event name.
 
 ```typescript
 import { ReflagClient, type Context } from "@reflag/node-sdk";
@@ -69,5 +65,3 @@ export async function recordExport(context: Context) {
 ```
 
 Initialize the client once per process and flush queued events before your server process exits. See the [Node.js SDK](../supported-languages/node-sdk/README.md) for lifecycle options.
-
-Using v1? [Legacy docs](../legacy/v1/README.md) · [Upgrade guide](../supported-languages/migrating-from-v1.md).

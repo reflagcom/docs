@@ -42,7 +42,7 @@ import { ReflagProvider } from "@reflag/react-sdk";
 </ReflagProvider>;
 ```
 
-Reflag can now target the company's Business subscription plan. Enforce sensitive entitlements on the server with context derived from your trusted session or subscription store; browser-supplied attributes are not an authorization boundary.
+Reflag can now target the company's Business subscription plan. Users can change what their browser sends, so also check sensitive entitlements on your server, using the plan from your own billing data.
 
 {% hint style="info" %}
 You can send company attributes as part of the user sign-in event, via a nightly job, or use `updateCompany()` when the attribute value changes.

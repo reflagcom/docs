@@ -1,10 +1,10 @@
 ---
-description: Legacy protocol-v1 documentation for the Browser, React, Vue and Node.js SDKs.
+description: Documentation for v1 of the Browser, React, Vue and Node.js SDKs.
 ---
 
 # Legacy SDKs (v1)
 
-These pages document the **protocol-v1 SDKs**. For new v2 integrations, start with the [current SDK documentation](../../supported-languages/overview.md). For an existing application, read [Migrating from v1](../../supported-languages/migrating-from-v1.md) before upgrading.
+These pages document **v1** of the Browser, React, Vue and Node.js SDKs. For a new integration, start with the [current SDK documentation](../../supported-languages/overview.md). To upgrade an existing application, read [Migrating from v1](../../supported-languages/migrating-from-v1.md).
 
 | SDK | Package major | Documentation | API reference |
 | --- | --- | --- | --- |
@@ -23,12 +23,12 @@ Pin the major when maintaining a v1 application:
 npm install @reflag/react-sdk@1
 ```
 
-Use `@reflag/browser-sdk@1`, `@reflag/vue-sdk@1`, or `@reflag/node-sdk@1` as appropriate. Keep CLI 1 with legacy generated declarations. Unversioned installation commands can select a breaking major after it becomes the default on npm.
+Use `@reflag/browser-sdk@1`, `@reflag/vue-sdk@1` or `@reflag/node-sdk@1` in the same way, and keep generating types with CLI 1. Without `@1`, npm installs the latest major version.
 
 ## Compatibility
 
-- Keep both ends of a server-to-browser bootstrap integration on protocol v1. A Node v2 bootstrap envelope cannot initialize a v1 Browser, React or Vue client.
-- React Native and the OpenFeature providers have independent release schedules. Follow their own supported dependency versions; their presence in the main navigation does not imply protocol-v2 support.
-- General guides and handbook examples show v2. Use the SDK pages in this archive for legacy wrapper APIs such as `.isEnabled` and `.config.payload`.
+- If you bootstrap flags from the server, keep the Node.js SDK and your Browser, React or Vue SDK on the same major version. v1 clients can't read v2 bootstrap data.
+- React Native and the OpenFeature providers are released separately. Check their own documentation for the versions they support.
+- Guides and handbook examples use v2. For v1 APIs such as `.isEnabled` and `.config.payload`, use the SDK pages in this section.
 
-Legacy means an older protocol, not a claim about an end-of-support date. See the [migration guide](../../supported-languages/migrating-from-v1.md) for the breaking changes.
+"Legacy" means v1 is no longer the latest version. It doesn't announce an end-of-support date. See the [migration guide](../../supported-languages/migrating-from-v1.md) for what changes in v2.

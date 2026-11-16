@@ -5,7 +5,7 @@ icon: toolbox
 
 # Toggle toolbar with a flag
 
-Use a Boolean flag to choose who sees the SDK toolbar toggle. Create a `toolbar` flag in Reflag, configure its access rules, and leave the provider's unconditional `toolbar` option disabled.
+The Reflag toolbar lets you toggle flags for yourself in the browser. Use a flag to choose who gets it in production, such as your team or beta testers: create a Boolean `toolbar` flag in Reflag, enable it for those users, and don't set the provider's `toolbar` prop.
 
 Put this component inside your React SDK provider:
 
@@ -25,6 +25,6 @@ export function ToolbarFlagControl() {
 }
 ```
 
-This shows the toggle once access is granted. `showToolbarToggle()` does not provide a corresponding hide operation: switching the flag off later does not remove an already mounted toggle. Reload or recreate the client to apply a new visibility decision.
+Now you can turn the toolbar on or off for anyone by changing who the `toolbar` flag is enabled for. Turning it off takes effect the next time the page loads, because the toolbar stays open once it's shown.
 
-This is a convenience control, **not an authorization boundary**. Users control their own browser; never use the toolbar flag to protect secrets or administrative server operations. See [Browser SDK](../supported-languages/browser-sdk/README.md) for toolbar options.
+The toolbar only overrides flags in the user's own browser, so it isn't a security control. See the [Browser SDK](../supported-languages/browser-sdk/README.md#overrides-and-toolbar) for more toolbar options.

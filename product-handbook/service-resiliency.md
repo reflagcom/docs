@@ -59,7 +59,7 @@ flowchart LR
 
 1. Evaluate flags on the server with the [Node.js SDK](../supported-languages/node-sdk/README.md).
 2. Configure a [`flagsFallbackProvider`](../supported-languages/node-sdk/README.md#fallback-providers) so fresh server processes can initialize from saved flag definitions when Reflag cannot be reached.
-3. Use [`getFlagsForBootstrap()`](../supported-languages/node-sdk/README.md#bootstrap-state) on the server and a bootstrapped client provider in React, Vue, or the Browser SDK.
+3. Use [`getFlagsForBootstrap()`](../supported-languages/node-sdk/README.md#bootstrap-the-browser) on the server and a bootstrapped client provider in React, Vue, or the Browser SDK.
 4. If your client SDK supports caching, tune it based on how long your app can tolerate stale flags.
 5. Test the disruption path in staging: block access to Reflag, start a fresh server process, and confirm it initializes from fallback storage and the client renders from bootstrapped flags.
 
@@ -90,19 +90,19 @@ Use the file provider for single-server deployments only when the disk persists 
 
 Choose fallback storage based on where your application runs. The storage should be reachable whenever your application is reachable, so prefer storage in the same cloud provider, region, or network as the application deployment that will use it. If an outage affects Reflag's infrastructure but your application is still running elsewhere, your application can still load the saved snapshot. If the same provider or region outage also takes down your application, fallback storage cannot help until your application environment is available again.
 
-See the [fallback provider docs](../supported-languages/node-sdk/README.md#fallback-providers) for built-in storage options and the snapshot format.
+See the [fallback provider docs](../supported-languages/node-sdk/README.md#fallback-providers) for the built-in storage options.
 
 ## Bootstrapped flags
 
 Bootstrapping lets your server evaluate flags and pass the server-evaluated state to your client-side application. The client can render immediately from that state instead of depending on an initial request to Reflag.
 
-Use [`getFlagsForBootstrap()`](../supported-languages/node-sdk/README.md#bootstrap-state) in the Node.js SDK together with your client SDK's bootstrapping API:
+Use [`getFlagsForBootstrap()`](../supported-languages/node-sdk/README.md#bootstrap-the-browser) in the Node.js SDK together with your client SDK's bootstrapping API:
 
-* [React SDK](../supported-languages/react-sdk/README.md#bootstrap-and-ssr): `ReflagBootstrappedProvider`
-* [Vue SDK](../supported-languages/vue-sdk/README.md#bootstrap): `ReflagBootstrappedProvider`
-* [Browser SDK](../supported-languages/browser-sdk/README.md#server-bootstrap): `bootstrappedState`
+* [React SDK](../supported-languages/react-sdk/README.md#bootstrap-from-the-server): `ReflagBootstrappedProvider`
+* [Vue SDK](../supported-languages/vue-sdk/README.md#bootstrap-from-the-server): `ReflagBootstrappedProvider`
+* [Browser SDK](../supported-languages/browser-sdk/README.md#bootstrap-from-the-server): `bootstrappedState`
 
-Pass the entire bootstrap envelope, including context and selection metadata. React Native and OpenFeature have their own compatibility requirements; follow their SDK documentation.
+Pass the whole object returned by `getFlagsForBootstrap()`. React Native and OpenFeature have their own compatibility requirements; follow their SDK documentation.
 
 Bootstrapping is the recommended client setup for high-availability applications because the first render depends on your application server response, not on the client's ability to reach Reflag. Combined with server-side local evaluation and `flagsFallbackProvider`, it lets end users continue receiving evaluated flags during a Reflag service disruption.
 
@@ -115,5 +115,3 @@ If you enable live client-side flag updates after bootstrapping, the client refr
 After a client SDK has loaded flags, it keeps recent flag state in memory so temporary network failures do not stop flag usage. Browser-based SDKs can also cache flag state across page loads. Tune cache behavior with options such as `staleTimeMs`, `staleWhileRevalidate`, and `expireTimeMs`.
 
 Client caching is a useful safety net for client-side evaluation. For applications that need resilience through server restarts and first render, combine server-side evaluation, fallback storage, and bootstrapping.
-
-Using v1? [Legacy docs](../legacy/v1/README.md) · [Upgrade guide](../supported-languages/migrating-from-v1.md).

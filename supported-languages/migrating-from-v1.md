@@ -4,25 +4,25 @@ description: Upgrade Browser, React, Vue and Node.js integrations from protocol 
 
 # Migrating from v1
 
-Protocol v2 is a **breaking change** for the Browser, React, Vue and Node.js SDKs. The main SDK pages and shared guides show v2; complete [legacy v1 documentation](../legacy/v1/README.md) remains available.
+Version 2 of the Browser, React, Vue and Node.js SDKs changes how you read flags, and includes breaking changes. The [v1 documentation](../legacy/v1/README.md) is still available.
+
+## What changes
+
+- **Flags return their value directly.** `useFlag("new-editor")` returns `true` or `false` instead of `{ isEnabled }`.
+- **Remote config is a Multivariate flag.** Pass a default and get the value back, instead of reading `.config.payload`.
+- **Tracking and feedback are separate.** They have their own hooks and client methods instead of being returned with a flag.
+- **React's `useFlag()` no longer suspends.** Use `useFlagSuspense()` when you want Suspense.
+- **v1 bootstrap data, fallback snapshots and generated types don't work with v2.** Regenerate them.
+
+React Native, OpenFeature and the Management SDK are released separately and aren't covered by this guide.
+
+## Upgrade the packages
 
 {% hint style="warning" %}
-The current v2 pages document `2.0.0-next.0` SDK sources. Until stable v2 packages are published, use the exact prerelease SDK/CLI versions supplied for your rollout. Do not assume an unversioned install or an `@next` tag installs v2; the `@2` commands below require a published major 2.
+These pages document the `2.0.0-next.0` prerelease. Until stable v2 packages are published, install the exact prerelease versions you were given: an unversioned install or the `@next` tag may not give you v2. The `@2` commands below work once v2 is published.
 {% endhint %}
 
-## Choose a compatible toolchain
-
-| Component | Protocol v1 | Protocol v2 |
-| --- | --- | --- |
-| Browser / React / Vue / Node.js SDK | Package major 1 | Package major 2 |
-| Generated declarations | CLI 1, wrapper-shaped schemas | Compatible CLI 2, direct-value schemas |
-| Bootstrap | V1 server and client SDKs | V2 server and client SDKs; `protocolVersion: 2` |
-| Node fallback snapshots | V1 snapshots | Complete v2 collection snapshots |
-| React Native / OpenFeature / Management | Follow each package's documentation | Not automatically upgraded by this migration |
-
-Coordinate the required server protocol, SDKs, generated declarations and authored flag values. A server rollout does not itself publish SDK packages or convert legacy remote config.
-
-Once stable v2 packages are available, update the SDKs your application uses:
+Update the SDKs your application uses:
 
 ```sh
 # Choose the SDKs used by your application.
@@ -35,7 +35,7 @@ npm install @reflag/node-sdk@2
 npm install --save-dev @reflag/cli@2
 ```
 
-Update your lockfile and regenerate declarations before checking the code changes below.
+Then work through the steps below.
 
 ## 1. Read values directly
 
@@ -80,15 +80,24 @@ const enabled = useFlag("new-editor");
 const settings = useFlag("editor-settings", { maxItems: 10 });
 ```
 
-A bare singular read is Boolean with an implicit `false` fallback. Pass a positional JSON default for other values. Explicit `null` accepts arbitrary JSON, including authored null; narrow it before accessing fields. Valid `false`, `0` and empty strings are preserved. A non-null default checks the selected value's top-level category, not its nested schema.
+Without a default, a read returns a Boolean: `false` if the flag is missing. Pass a default to read any other value; the return type follows the default. Pass `null` to accept any JSON value and narrow it yourself.
 
-`getFlags()` now returns a direct-value record and registers checks for the returned roots. Use diagnostic APIs for inspection without application checks; do not consume diagnostic result objects as the ordinary getter contract.
+`getFlags()` now returns a record of values, such as `{ "new-editor": true }`.
 
 ## 2. Migrate remote config explicitly
 
-There is no v2 `.config.key` / `.config.payload` wrapper. Author a Multivariate flag with the values your application needs and read it with a positional default. Legacy remote config is **not automatically converted** by installing v2.
+v2 has no `.config` property. Create a Multivariate flag with the values your application needs, and read it with a default:
 
-If access and configuration are independent, keep a Boolean access flag and a separate settings flag. Do not use JavaScript truthiness of arbitrary JSON as an access check. See [Remote config](../product-handbook/remote-config.md).
+```ts
+// v1
+const { config } = useFlag("editor-settings");
+const maxItems = config.payload?.maxItems ?? 10;
+
+// v2
+const { maxItems } = useFlag("editor-settings", { maxItems: 10 });
+```
+
+Existing remote config is **not converted automatically**. If a v1 flag controlled both access and configuration, split it into a Boolean flag for access and a Multivariate flag for the settings. See [Remote config](../product-handbook/remote-config.md).
 
 ## 3. Separate usage tracking and feedback
 
@@ -101,26 +110,28 @@ track("Document created");
 requestFeedback({ flagKey: "new-editor", title: "How is the new editor?" });
 ```
 
-In Browser and Node.js, use the ordinary client or context-bound client tracking methods. Browser feedback uses the client's feedback methods. Calling a v2 getter registers a check immediately; it no longer waits for a wrapper property to be read. Tracking product usage remains a separate action.
+In Browser and Node.js, call `track()` and the feedback methods on the client. Either way, you name the event you track; configure your flag's adoption rules to match it.
 
 ## 4. Update loading and Suspense
 
 - React `useFlag()` never suspends. Use `useFlagSuspense()` for a suspending read, or `useIsLoading()` / the provider's `loadingComponent` for loading presentation.
 - React's second `useFlag()` argument is the fallback value, not `{ suspense: ... }` options.
 - Vue returns a ref containing the direct value; use `useIsLoading()` or the provider's loading slot for loading presentation.
-- Opt-in lists retain their own presentation/membership metadata, including `isEnabled`. Those fields are not ordinary getter wrappers.
+- `useOptInFlags()` is unchanged: its entries still include `isEnabled` and the opt-in fields.
 
 ## 5. Upgrade bootstrap and saved state together
 
-Generate bootstrap with Node SDK v2 and pass the **entire** envelope to Browser, React or Vue SDK v2. Do not pass only its `flags` property. Never expose secret keys or server-only attributes in the public envelope.
+Generate bootstrap data with Node.js SDK v2 and pass the whole object returned by `getFlagsForBootstrap()` to Browser, React or Vue SDK v2, not just its `flags` property.
 
-V1 and v2 bootstrap formats are incompatible. Do not feed Node v2 bootstrap into React Native or another consumer still using v1. Browser cache/override keys and built-in Node fallback storage are version-isolated. Existing v1 fallback snapshots must not be relabeled as v2: restore a valid complete v2 snapshot or fetch one from the compatible service.
+v1 and v2 bootstrap data aren't compatible, so upgrade the server and client SDKs together. Anything still on v1, such as React Native, needs bootstrap data from Node.js SDK v1.
+
+Saved state doesn't carry over. The Browser SDK starts with a fresh cache and no overrides, and Node.js fallback providers store v2 snapshots separately from v1 ones. Let a v2 process fetch flags once to save a new snapshot; don't rename v1 snapshot files.
 
 ## 6. Regenerate types and review overrides
 
-Regenerate wrapper-shaped declarations with a compatible CLI 2. Direct-value defaults already provide useful inference without generation; see [Type safety](../product-handbook/type-safety.md) for optional schema registration.
+Regenerate flag types with CLI 2. Generated types are optional in v2, because the default you pass already determines the return type. See [Type safety](../product-handbook/type-safety.md).
 
-Overrides and static fallback values are direct JSON values. In Browser SDK v2, `undefined` clears an override while `null` is a real value. Review your offline and disruption tests against the new contracts before upgrading production.
+Overrides and static fallback values are now plain values, such as `true` or `{ maxItems: 5 }`. In the Browser SDK, `undefined` removes an override, while `null` sets the value to `null`. Run your offline and outage tests against v2 before upgrading production.
 
 ## SDK documentation
 

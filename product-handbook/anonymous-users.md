@@ -41,7 +41,7 @@ export function App() {
 {% endtab %}
 {% endtabs %}
 
-Bare reads return Boolean with implicit false. Supply a positional default when reading JSON-valued Multivariate flags.
+Without a default, `getFlag()` and `useFlag()` return a Boolean. Pass a default to read a Multivariate flag's value.
 
 ## How to toggle features for anonymous users where you know their company
 
@@ -82,4 +82,4 @@ export function App() {
 {% endtab %}
 {% endtabs %}
 
-A browser's company ID is not an authorization boundary. Enforce sensitive access on your authenticated server, using context derived from your own session or API-token lookup. See the [Node.js SDK](../supported-languages/node-sdk/README.md) and [React SDK](../supported-languages/react-sdk/README.md) for complete setup.
+Anyone can change the company ID their browser sends, so check access to sensitive features on your server too. See the [Node.js SDK](../supported-languages/node-sdk/README.md) and [React SDK](../supported-languages/react-sdk/README.md) for complete setup.
