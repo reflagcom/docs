@@ -284,7 +284,7 @@ See examples below.
 
 ![image](https://github.com/reflagcom/javascript/assets/331790/68805b38-e9f6-4de5-9f55-188216983e3c)
 
-See [default English localization keys](https://github.com/reflagcom/javascript/tree/f7b6eb4fe2ca5ff5339de95d3f4f9158b5d60684/packages/browser-sdk/src/feedback/ui/config/defaultTranslations.tsx)
+See [default English localization keys](https://github.com/reflagcom/javascript/tree/e7d2a4039d435f4f1c758b6e72d4ff5222bcc340/packages/browser-sdk/src/feedback/ui/config/defaultTranslations.tsx)
 for a reference of what translation keys can be supplied.
 
 ### Static language configuration <a href="#static-language-configuration" id="static-language-configuration"></a>
@@ -398,7 +398,7 @@ For example, a dark mode theme might look like this:
 }
 ```
 
-Other examples of custom styling can be found in our [development example style-sheet](https://github.com/reflagcom/javascript/tree/f7b6eb4fe2ca5ff5339de95d3f4f9158b5d60684/packages/browser-sdk/src/feedback/ui/index.css).
+Other examples of custom styling can be found in our [development example style-sheet](https://github.com/reflagcom/javascript/tree/e7d2a4039d435f4f1c758b6e72d4ff5222bcc340/packages/browser-sdk/src/feedback/ui/index.css).
 
 ## Using your own UI to collect feedback <a href="#using-your-own-ui-to-collect-feedback" id="using-your-own-ui-to-collect-feedback"></a>
 
@@ -423,7 +423,7 @@ Reflag API.
 ### Manual feedback collection with custom UI <a href="#manual-feedback-collection-with-custom-ui" id="manual-feedback-collection-with-custom-ui"></a>
 
 Examples of a HTML-form that collects the relevant data can be found
-in [feedback.html](https://github.com/reflagcom/javascript/tree/f7b6eb4fe2ca5ff5339de95d3f4f9158b5d60684/packages/browser-sdk/example/feedback/feedback.html) and [feedback.jsx](https://github.com/reflagcom/javascript/tree/f7b6eb4fe2ca5ff5339de95d3f4f9158b5d60684/packages/browser-sdk/example/feedback/Feedback.jsx).
+in [feedback.html](https://github.com/reflagcom/javascript/tree/e7d2a4039d435f4f1c758b6e72d4ff5222bcc340/packages/browser-sdk/example/feedback/feedback.html) and [feedback.jsx](https://github.com/reflagcom/javascript/tree/e7d2a4039d435f4f1c758b6e72d4ff5222bcc340/packages/browser-sdk/example/feedback/Feedback.jsx).
 
 Once you have collected the feedback data, pass it along to `reflagClient.feedback()`:
 
