@@ -99,6 +99,11 @@ test("v1 import owns only the archive, pins installers/CDN and routes SDK links 
   assert.match(readme, /\(\.\.\/browser-sdk\/globals.md#toolbaroptions\)/);
   assert.match(readme, /blob\/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\//);
   assert(readme.indexOf("---") < readme.indexOf("{% hint"), "Keep frontmatter first");
+  for (const [file, content] of files)
+    if (file.endsWith(".md")) assert.doesNotMatch(content.toString(), /generated from/i);
+  const manifest = JSON.parse(files.get(".generated/sdk-docs/react-sdk/v1.json"));
+  assert.equal(manifest.sourceCommit, options.commit);
+  assert.equal(manifest.version, "1.0.0");
 });
 
 test("v2 sync cannot modify archived docs, navigation, settings or handwritten guides", (t) => {

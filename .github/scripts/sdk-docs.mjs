@@ -221,7 +221,7 @@ export function planPackage({ source, name, commit }) {
         major === 1
           ? withBanner(
               content,
-              `**Protocol v1 — legacy.** [Current v2 documentation](${relative(file, counterpart)}) · [Migration guide](${migration})\n\nGenerated from [\`${pkg.name}@${pkg.version}\`](${repository}/tree/${commit}/packages/${name}); SDK READMEs and code comments remain the source of truth.`,
+              `**Protocol v1 — legacy.** [Current v2 documentation](${relative(file, counterpart)}) · [Migration guide](${migration})`,
             )
           : `${content.trimEnd()}\n\nUsing v1? [Legacy docs](${relative(file, counterpart)}) · [Upgrade guide](${migration}).\n`;
     } else if (name === "react-native-sdk") {

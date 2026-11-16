@@ -15,8 +15,6 @@ pagination:
 
 {% hint style="info" %}
 **Protocol v1 — legacy.** [Current v2 documentation](../../../supported-languages/react-sdk/README.md) · [Migration guide](../../../supported-languages/migrating-from-v1.md)
-
-Generated from [`@reflag/react-sdk@1.7.4`](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/react-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
 # Reflag React SDK <a href="#reflag-react-sdk" id="reflag-react-sdk"></a>

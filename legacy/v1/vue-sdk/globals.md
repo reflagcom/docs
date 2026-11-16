@@ -15,8 +15,6 @@ pagination:
 
 {% hint style="info" %}
 **Protocol v1 — legacy.** [Current v2 documentation](../../../supported-languages/vue-sdk/globals.md) · [Migration guide](../../../supported-languages/migrating-from-v1.md)
-
-Generated from [`@reflag/vue-sdk@1.5.7`](https://github.com/reflagcom/javascript/tree/b4fe5b3d9386b87c6546175c323862d9878e1430/packages/vue-sdk); SDK READMEs and code comments remain the source of truth.
 {% endhint %}
 
 # @reflag/vue-sdk <a href="#reflagvue-sdk" id="reflagvue-sdk"></a>

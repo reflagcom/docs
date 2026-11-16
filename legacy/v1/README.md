@@ -13,7 +13,7 @@ These pages document the **protocol-v1 SDKs**. For new v2 integrations, start wi
 | Vue | `@reflag/vue-sdk@1` | [Vue SDK v1](vue-sdk/README.md) | [Reference](vue-sdk/globals.md) |
 | Node.js | `@reflag/node-sdk@1` | [Node.js SDK v1](node-sdk/README.md) | [Reference](node-sdk/globals.md) |
 
-The archive includes [Browser feedback documentation](browser-sdk/feedback.md). Each page's banner identifies the exact archived source version. SDK content is generated from the matching published v1 sources, not reconstructed from v2 examples.
+The archive also includes [Browser feedback documentation](browser-sdk/feedback.md).
 
 ## Installing v1
 

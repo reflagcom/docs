@@ -4,7 +4,7 @@
   "package": "@reflag/react-sdk",
   "version": "1.7.4",
   "files": {
-    "legacy/v1/react-sdk/README.md": "109a2a300fa2d1d77064ff41cc3d073acacf715b88d1c780f82f65c88981258b",
-    "legacy/v1/react-sdk/globals.md": "60ef8ace59811c37abf90d249ed10f07b66ebc2339ce7dc7c3ff96a9c086623b"
+    "legacy/v1/react-sdk/README.md": "843ed048847c9a84a904f3ac2b9a0a10c17bc954f7b55e9271d02bd8804eb70c",
+    "legacy/v1/react-sdk/globals.md": "821f640a266168ef35f25114b6a99f4abf80af5aaae9461e2188749526a5eb20"
   }
 }

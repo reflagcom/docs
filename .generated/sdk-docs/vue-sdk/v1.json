@@ -4,7 +4,7 @@
   "package": "@reflag/vue-sdk",
   "version": "1.5.7",
   "files": {
-    "legacy/v1/vue-sdk/README.md": "2f05a529e8d056a89967a48a8df050fdf9c8c0c05bac7784bc80289faecc147d",
-    "legacy/v1/vue-sdk/globals.md": "ab596262dd096c3b58bdd48c23f8cb889533b63d0e316c94fe93c1bc748a63e2"
+    "legacy/v1/vue-sdk/README.md": "831dc43f40a1d4248d9c17211c9bc00383778877270f8fe2cacb01dc5659f9fc",
+    "legacy/v1/vue-sdk/globals.md": "9cbe3d8a579e34b6126860052479464e274b0ef3069bfc3752e46ca49d59e8ac"
   }
 }

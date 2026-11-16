@@ -4,8 +4,8 @@
   "package": "@reflag/browser-sdk",
   "version": "1.7.4",
   "files": {
-    "legacy/v1/browser-sdk/README.md": "b090a9913b825df8d3e6baecc30aecff8a2a235451152314b78d96e7851be630",
-    "legacy/v1/browser-sdk/globals.md": "5248c3de2f5f184fcd760d40d99b4112badd587dcb5939071a9e7dab75f604db",
-    "legacy/v1/browser-sdk/feedback.md": "1c87f79eacadd25e3ace73263410086f6206be5ff91d50bf57e20c156b0c6028"
+    "legacy/v1/browser-sdk/README.md": "f532502e44f9d999d2c19c238538df3d8e7985c47b62eee058a89291562e7126",
+    "legacy/v1/browser-sdk/globals.md": "bc8ad724e3dea10a0ed618bdc91a1fa26617e0505675dd0edbd93c84516aa3b2",
+    "legacy/v1/browser-sdk/feedback.md": "968e3d393e91c5a1e98d8dfad2ed225e4b3a477ad33aabce23d971a786896cfb"
   }
 }

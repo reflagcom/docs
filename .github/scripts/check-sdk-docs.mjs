@@ -133,7 +133,13 @@ export function checkSDKDocs(base = root) {
         assert.equal(actual, expected, `Generated file drift: ${file}`);
         assert(!owners.has(file) || owners.get(file) === actual, `Conflicting ownership: ${file}`);
         owners.set(file, actual);
-        if (file.endsWith(".md")) generated.add(file);
+        if (file.endsWith(".md")) {
+          assert(
+            !/^Generated from\b/im.test(read(base, file)),
+            `Provenance belongs in the manifest: ${file}`,
+          );
+          generated.add(file);
+        }
       }
     }
   }
