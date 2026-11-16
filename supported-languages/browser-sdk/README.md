@@ -17,6 +17,8 @@ pagination:
 
 Client-side feature flags and JSON values for [Reflag](https://reflag.com).
 
+This documentation covers SDK v2.
+
 ## Get started <a href="#get-started" id="get-started"></a>
 
 ```sh

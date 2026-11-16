@@ -4,11 +4,11 @@
   "package": "@reflag/browser-sdk",
   "version": "2.0.0-next.0",
   "files": {
-    "supported-languages/browser-sdk/README.md": "1459e870ed50467101dfd8c61971f572b73607c712cda253e30412a164a411d6",
-    "sdk/@reflag/browser-sdk/README.md": "59f72e4e5f307c5fdc79e470f53e95bb51a8a5ebb27094431158fe4bc0f7c068",
-    "supported-languages/browser-sdk/globals.md": "71e4eb330322caa6231e5a5841725775698dd57e202c47c6e1682c6bb766df3c",
-    "sdk/@reflag/browser-sdk/globals.md": "50ff60cac46c7fbe76728e2bf78230c4d1ffb6087d399a6ee46630b59e20b273",
-    "supported-languages/browser-sdk/feedback.md": "9c60f618407d6ede10ef0c34daa9063e0b1e8a7757d86496de8aca474df2982f",
-    "sdk/documents/browser-sdk/FEEDBACK.md": "c27fc587f9f98eb6f60cddc0466a52c54ad1fe6189615548789358441e00dfb3"
+    "supported-languages/browser-sdk/README.md": "ccd9abfd0a9107868e5402d0b4d77a56f11a9b4c5936c0fa385144c96888ccb2",
+    "sdk/@reflag/browser-sdk/README.md": "7f2ec63c0769966840e1a9e95df00050609716fff224a1ab582d2d9b27434035",
+    "supported-languages/browser-sdk/globals.md": "b14c58f0368bfe307ae221fd2cf743e4e72c7f7ac61fc995ef05bb42c6c87766",
+    "sdk/@reflag/browser-sdk/globals.md": "0903191a59424fe17d3c916781c3a837aeeaba854af1321c038e8e5cae7549d5",
+    "supported-languages/browser-sdk/feedback.md": "dec2542a2edb7e86545f14be652f8e9af40185483fe19b87e2ae0fbabed5756a",
+    "sdk/documents/browser-sdk/FEEDBACK.md": "d6457320a70e4152a08bb41f14f9d03c01ab5478b20fbd4f4855d562b598ed03"
   }
 }

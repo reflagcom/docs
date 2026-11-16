@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { docsPath, hash, webSDKs, documentedPackages } from "./sdk-docs.mjs";
+import { currentVersionNote, docsPath, hash, webSDKs, documentedPackages } from "./sdk-docs.mjs";
 
 export const root = path.resolve(fileURLToPath(new URL("../../", import.meta.url)));
 const read = (base, file) => fs.readFileSync(path.join(base, file), "utf8");
@@ -94,7 +94,20 @@ export function sourceMatrix(base = root) {
 export function checkCurrentPagePresentation(content, file) {
   const notes = [...content.matchAll(/^Using v1\? .+$/gm)];
   assert.equal(notes.length, 1, `Expected one succinct version note: ${file}`);
-  assert(content.trimEnd().endsWith(notes[0][0]), `Version note must be at the end: ${file}`);
+  assert(content.trimEnd().endsWith(notes[0][0]), `Legacy link must be at the end: ${file}`);
+  const body = prose(content);
+  assert.equal(
+    body.split("\n").filter((line) => line === currentVersionNote).length,
+    1,
+    `Expected one SDK v2 scope note: ${file}`,
+  );
+  const title = /^# .+$/m.exec(body);
+  const firstSection = /^#{2,6} /m.exec(body);
+  const scope = body.indexOf(currentVersionNote);
+  assert(
+    title && scope > title.index + title[0].length && scope < (firstSection?.index ?? body.length),
+    `SDK v2 scope note must be in the introduction: ${file}`,
+  );
   assert(!content.includes("**Protocol v2"), `Repeated protocol banner: ${file}`);
   assert(!content.includes("Prerelease source documentation"), `Repeated release warning: ${file}`);
   assert(!content.includes("Generated from ["), `Provenance belongs in the manifest: ${file}`);
@@ -195,6 +208,7 @@ export function checkSDKDocs(base = root) {
       `Legacy wrapper in shared example: ${file}`,
     );
     assert(!content.includes("../sdk/v2/"), `Obsolete SDK preview link: ${file}`);
+    if (file === "supported-languages/next.js.md") checkCurrentPagePresentation(content, file);
     for (const line of content.split("\n"))
       if (/^\s*(?:npm (?:i|install)|yarn add|pnpm add|bun add|deno add|npx)\b/.test(line))
         assert(

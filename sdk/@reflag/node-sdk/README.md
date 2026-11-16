@@ -17,6 +17,8 @@ pagination:
 
 Server-side Boolean and multivariate flag values for [Reflag](https://reflag.com).
 
+This documentation covers SDK v2.
+
 ## Installation and initialization <a href="#installation-and-initialization" id="installation-and-initialization"></a>
 
 ```sh

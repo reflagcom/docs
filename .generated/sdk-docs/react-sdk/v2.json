@@ -4,10 +4,10 @@
   "package": "@reflag/react-sdk",
   "version": "2.0.0-next.0",
   "files": {
-    "supported-languages/react-sdk/README.md": "365d800d4160174ee5d1d47c0d59ae6cb31ab7e90e869cca01a86794913634c1",
-    "sdk/@reflag/react-sdk/README.md": "f60059ac924806644b4fa3a171500e26c797221e0405805c7a879abe9c065d36",
-    "sdk/documents/react-sdk/README.md": "f60059ac924806644b4fa3a171500e26c797221e0405805c7a879abe9c065d36",
-    "supported-languages/react-sdk/globals.md": "611067bf210651caa8ac12f72df44092bc4d167df18c4f75cf74a2f27053a34b",
-    "sdk/@reflag/react-sdk/globals.md": "fb59333ae5e0fde2a6823fffc9ff33ea318934997d07ecad6c3dc8c1f9479c78"
+    "supported-languages/react-sdk/README.md": "02cf3f7f06a0e0efae439a2641cddaa0e93f070a0ad3dfe4fdc2977deabe43b7",
+    "sdk/@reflag/react-sdk/README.md": "fa6cfeaa7dc03d2460810ca6609b2adf1cf375ef903dfa522c2531b22c598b1f",
+    "sdk/documents/react-sdk/README.md": "fa6cfeaa7dc03d2460810ca6609b2adf1cf375ef903dfa522c2531b22c598b1f",
+    "supported-languages/react-sdk/globals.md": "be2241ca671643f5b9584463948e3bbde89c7c90d38ffbf011125d087890d5e1",
+    "sdk/@reflag/react-sdk/globals.md": "846f78f9ab8dbac0faeaad0c9aa2dc36525b31d891ba53a407811567dcdf8a9a"
   }
 }

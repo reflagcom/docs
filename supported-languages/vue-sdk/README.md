@@ -17,6 +17,8 @@ pagination:
 
 Reactive feature flags and JSON configuration for Vue 3, backed by the [Browser SDK](../browser-sdk/README.md).
 
+This documentation covers SDK v2.
+
 ## Setup <a href="#setup" id="setup"></a>
 
 ```sh

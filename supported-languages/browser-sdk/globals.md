@@ -15,6 +15,8 @@ pagination:
 
 # @reflag/browser-sdk <a href="#reflagbrowser-sdk" id="reflagbrowser-sdk"></a>
 
+This documentation covers SDK v2.
+
 ## Classes <a href="#classes" id="classes"></a>
 
 ### ReflagClient <a href="#reflagclient" id="reflagclient"></a>

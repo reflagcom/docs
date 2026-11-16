@@ -4,9 +4,9 @@
   "package": "@reflag/vue-sdk",
   "version": "2.0.0-next.0",
   "files": {
-    "supported-languages/vue-sdk/README.md": "068532795b8e5a0612eddf7bb5368e04c3076ea49cf94dc77d7ac758e3a72a1a",
-    "sdk/@reflag/vue-sdk/README.md": "9577c4094b5a5c600c0333ea562ba13bca6397ed463a8ee61b540c2f95cf9684",
-    "supported-languages/vue-sdk/globals.md": "5a06c1f3d48034c3ee0eb1a030e9d47fc574a531810df68908301b3dc575c929",
-    "sdk/@reflag/vue-sdk/globals.md": "5fff272e7ed3dadd76da958c42c214682762039153798836c0924311d17720c2"
+    "supported-languages/vue-sdk/README.md": "59849b310c4033135737eca9eaa1ff5340ebfd054179d79c5ba66fde3f687c9f",
+    "sdk/@reflag/vue-sdk/README.md": "12077de855aba05ca3f15d2545a68de2ca19a6a5dbc3a30fab7d4bf0bf492b2d",
+    "supported-languages/vue-sdk/globals.md": "498b5479d79803b6ad0d889c3bf810d797cfbe2bc7f0fe5e8f6fa7746fb6d073",
+    "sdk/@reflag/vue-sdk/globals.md": "b736b0a49ab26f8771ecccbad5ab220186f33ae627f385d2df6dfcde45db5643"
   }
 }

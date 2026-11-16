@@ -4,9 +4,9 @@
   "package": "@reflag/node-sdk",
   "version": "2.0.0-next.0",
   "files": {
-    "supported-languages/node-sdk/README.md": "49521bd6ae84baab1ed931f6d27b52ea0d9d6c621af28f0a5c29c5163a821fd8",
-    "sdk/@reflag/node-sdk/README.md": "36a3907d1313654768d52329beb7b4dbf3f93289d4961da2c74aa227dbbfcab3",
-    "supported-languages/node-sdk/globals.md": "0045ad91d8cb7ccb9bf2f092b58a0b141eca77d6881c4de79efe1edc6b82eb82",
-    "sdk/@reflag/node-sdk/globals.md": "b50580b7998535987891e4b02232ab881e26d3cf1f3b7d71a90bb85552d08212"
+    "supported-languages/node-sdk/README.md": "001b1815d3c291c8362fe0e8a52f5e326880ce4d9f1687853afde2c5cb350198",
+    "sdk/@reflag/node-sdk/README.md": "6f74756bae2e52bf86011b158da34fd6c804958741b048dfb85d1c3856f9e01f",
+    "supported-languages/node-sdk/globals.md": "a59f27d9a3c3418e43e16ef919d5eadb817186e847396ce9dc71c7c2c7844b5d",
+    "sdk/@reflag/node-sdk/globals.md": "dd2d9c51aa2bad7fd2f87cd1b6e36773d3d4f3a2efae13c6d916c9fef2d2b800"
   }
 }

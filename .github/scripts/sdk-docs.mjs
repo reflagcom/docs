@@ -7,6 +7,7 @@ import { pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
 
 export const webSDKs = ["browser-sdk", "react-sdk", "vue-sdk", "node-sdk"];
+export const currentVersionNote = "This documentation covers SDK v2.";
 const references = [...webSDKs, "react-native-sdk", "management-sdk"];
 export const documentedPackages = [...references, "cli"];
 const repository = "https://github.com/reflagcom/javascript";
@@ -53,7 +54,7 @@ export const headingSlug = (text) =>
     .replace(/[^\p{L}\p{N}_ -]/gu, "")
     .replace(/ /g, "-");
 
-export function anchorHeadings(content) {
+export function anchorHeadings(content, { introNote } = {}) {
   const lines = content.split("\n");
   const headings = [];
   const linked = new Set([...content.matchAll(/#([\w-]+)/g)].map((match) => match[1]));
@@ -88,6 +89,10 @@ export function anchorHeadings(content) {
       lines[index] = lines[index].replace(/^#{4,6}/, "###");
     // Explicit IDs also preserve TypeDoc's <T> and punctuation-based slugs.
     if (!/\bid=["']/.test(text)) lines[index] += ` <a href="#${id}" id="${id}"></a>`;
+  }
+  if (introNote) {
+    const firstSection = headings.find((heading) => heading.level > 1)?.index ?? lines.length;
+    lines.splice(firstSection, 0, introNote, "");
   }
   return lines.join("\n");
 }
@@ -191,7 +196,9 @@ export function planPackage({ source, name, commit }) {
       /((?:src|href)=["'])([^"']+)(["'])/g,
       (_, open, url, close) => `${open}${route(url, { raw, file })}${close}`,
     );
-    content = anchorHeadings(content);
+    content = anchorHeadings(content, {
+      introNote: web && major === 2 ? currentVersionNote : undefined,
+    });
     if (web) {
       if (major === 1) {
         // Only legacy installs need a major pin; current docs assume a fresh install.

@@ -20,6 +20,8 @@ about particular flags.
 
 ![image](https://github.com/reflagcom/javascript/assets/34348/c387bac1-f2e2-4efd-9dda-5030d76f9532)
 
+This documentation covers SDK v2.
+
 ## Global feedback configuration <a href="#global-feedback-configuration" id="global-feedback-configuration"></a>
 
 The Reflag Browser SDK feedback UI is configured with reasonable defaults,

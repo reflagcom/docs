@@ -17,6 +17,8 @@ pagination:
 
 Feature flags and JSON configuration for React, backed by the [Browser SDK](../../../supported-languages/browser-sdk/README.md).
 
+This documentation covers SDK v2.
+
 ## Setup <a href="#setup" id="setup"></a>
 
 ```sh

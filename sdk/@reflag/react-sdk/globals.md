@@ -15,6 +15,8 @@ pagination:
 
 # @reflag/react-sdk <a href="#reflagreact-sdk" id="reflagreact-sdk"></a>
 
+This documentation covers SDK v2.
+
 ## Interfaces <a href="#interfaces" id="interfaces"></a>
 
 ### CheckEvent <a href="#checkevent" id="checkevent"></a>

@@ -6,6 +6,8 @@ description: Use the Node.js and React SDKs with Next.js.
 
 Use the [Node.js SDK](node-sdk/README.md) to evaluate flags on the server and the [React SDK](react-sdk/README.md) in client components.
 
+This documentation covers SDK v2.
+
 ## Server-side rendering
 
 Create one client per server process. Share the initialization promise so concurrent requests do not create separate clients:

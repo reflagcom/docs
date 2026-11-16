@@ -7,6 +7,7 @@ import test from "node:test";
 import {
   anchorHeadings,
   applyPlan,
+  currentVersionNote,
   docsPath,
   planPackage,
   releaseFiles,
@@ -46,7 +47,7 @@ function fixture(t, major = 2) {
     );
     put(
       path.join(source, `dist/docs/@reflag/${name}/README.md`),
-      `---\nlayout: {}\n---\n# SDK\n[Browser](../../_media/README.md)\n[Feedback](../../documents/browser-sdk/FEEDBACK.md)\n[Toolbar](https://docs.reflag.com/supported-languages/browser-sdk/globals#toolbaroptions)\nnpm install @reflag/${name}\nbun add @reflag/${name}\ndeno add npm:@reflag/${name}\nnpx @reflag/cli new\n<script src="https://cdn.jsdelivr.net/npm/@reflag/browser-sdk"></script>\n[Source](https://github.com/reflagcom/javascript/blob/main/packages/${name}/README.md)\n`,
+      `---\nlayout: {}\n---\n# SDK\n\nSDK introduction.\n\n## Setup\n[Browser](../../_media/README.md)\n[Feedback](../../documents/browser-sdk/FEEDBACK.md)\n[Toolbar](https://docs.reflag.com/supported-languages/browser-sdk/globals#toolbaroptions)\nnpm install @reflag/${name}\nbun add @reflag/${name}\ndeno add npm:@reflag/${name}\nnpx @reflag/cli new\n<script src="https://cdn.jsdelivr.net/npm/@reflag/browser-sdk"></script>\n[Source](https://github.com/reflagcom/javascript/blob/main/packages/${name}/README.md)\n`,
     );
     put(
       path.join(source, `dist/docs/@reflag/${name}/globals.md`),
@@ -100,7 +101,10 @@ test("v1 import owns only the archive, pins installers/CDN and routes SDK links 
   assert.match(readme, /blob\/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\//);
   assert(readme.indexOf("---") < readme.indexOf("{% hint"), "Keep frontmatter first");
   for (const [file, content] of files)
-    if (file.endsWith(".md")) assert.doesNotMatch(content.toString(), /generated from/i);
+    if (file.endsWith(".md")) {
+      assert.doesNotMatch(content.toString(), /generated from/i);
+      assert(!content.toString().includes(currentVersionNote));
+    }
   const manifest = JSON.parse(files.get(".generated/sdk-docs/react-sdk/v1.json"));
   assert.equal(manifest.sourceCommit, options.commit);
   assert.equal(manifest.version, "1.0.0");
@@ -129,7 +133,7 @@ test("v2 sync cannot modify archived docs, navigation, settings or handwritten g
   );
 });
 
-test("current docs use unpinned installs and one short footer even for prerelease sources", (t) => {
+test("current docs retain the introduction, add one v2 scope line and keep unpinned installs", (t) => {
   const { options, source, put } = fixture(t);
   put(
     path.join(source, "packages/react-sdk/package.json"),
@@ -143,7 +147,9 @@ test("current docs use unpinned installs and one short footer even for prereleas
   ]) {
     const content = files.get(file).toString();
     checkCurrentPagePresentation(content, file);
-    assert(content.indexOf("# SDK") < content.indexOf("Using v1?"));
+    assert(content.indexOf("SDK introduction.") < content.indexOf(currentVersionNote));
+    assert(content.indexOf(currentVersionNote) < content.indexOf("## Setup"));
+    assert(content.indexOf("## Setup") < content.indexOf("Using v1?"));
     assert.match(content, /npm install @reflag\/react-sdk\n/);
     assert.match(content, /npx @reflag\/cli new/);
     assert.match(content, /browser-sdk"><\/script>/);
@@ -159,8 +165,32 @@ test("current docs use unpinned installs and one short footer even for prereleas
 
 test("presentation checks reject repeated or leading notices and major-pinned current installs", () => {
   const note = "Using v1? [Legacy docs](legacy.md) · [Upgrade guide](migration.md).";
-  const page = `# SDK\n\nGet started.\n\n${note}\n`;
+  const page = `# SDK\n\nGet started.\n\n${currentVersionNote}\n\n## Setup\n\nInstall the SDK.\n\n${note}\n`;
   checkCurrentPagePresentation(page, "page.md");
+  assert.throws(
+    () => checkCurrentPagePresentation(page.replace(currentVersionNote, ""), "page.md"),
+    /one SDK v2 scope note/,
+  );
+  assert.throws(
+    () => checkCurrentPagePresentation(`${currentVersionNote}\n\n${page}`, "page.md"),
+    /one SDK v2 scope note/,
+  );
+  assert.throws(
+    () =>
+      checkCurrentPagePresentation(
+        `${currentVersionNote}\n\n${page.replace(currentVersionNote, "")}`,
+        "page.md",
+      ),
+    /in the introduction/,
+  );
+  assert.throws(
+    () =>
+      checkCurrentPagePresentation(
+        page.replace(`${currentVersionNote}\n\n## Setup`, `## Setup\n\n${currentVersionNote}`),
+        "page.md",
+      ),
+    /in the introduction/,
+  );
   assert.throws(() => checkCurrentPagePresentation(`${note}\n\n# SDK\n`, "page.md"), /at the end/);
   assert.throws(
     () => checkCurrentPagePresentation(`${note}\n\n${page}`, "page.md"),
@@ -186,6 +216,7 @@ test("independent Native references route to its pinned React/Browser major, not
   const readme = files.get("supported-languages/react-native-sdk/README.md").toString();
   assert.match(readme, /legacy\/v1\/browser-sdk\/README.md/);
   assert.match(readme, /legacy\/v1\/react-sdk\/README.md/);
+  assert(!readme.includes(currentVersionNote));
   assert(!files.has("supported-languages/react-sdk/README.md"));
   assert(!files.has("legacy/v1/react-sdk/README.md"));
 });
@@ -211,6 +242,15 @@ test("GitBook heading IDs preserve TypeDoc/generic deep links without changing c
   assert.match(rendered, /id="flagvaluefromdefaultt"/);
   assert.match(rendered, /id="properties-1"/);
   assert(rendered.includes("```md\n# Leave code alone\n```"));
+});
+
+test("the current-version line stays in the introduction without entering code fences", () => {
+  const content = "# SDK\n\nIntroduction.\n\n```md\n## Code example\n```\n\n## Setup\n";
+  const rendered = anchorHeadings(content, { introNote: currentVersionNote });
+  assert(rendered.includes("```md\n## Code example\n```"));
+  assert(rendered.indexOf("```\n\nThis documentation") > rendered.indexOf("## Code example"));
+  assert(rendered.indexOf(currentVersionNote) < rendered.indexOf("## Setup"));
+  assert.equal(rendered.split(currentVersionNote).length - 1, 1);
 });
 
 test("GitBook keeps deep API-member and linked-section anchors without outlining every parameter label", () => {
