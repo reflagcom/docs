@@ -90,6 +90,8 @@ test("handbook keeps Remote config as a short pointer to the full Multivariate f
   assert.match(multivariate, /^# Multivariate flags$/m);
   assert(multivariate.includes("export function AssistantSettings()"));
   assert(multivariate.includes("export function AssistantModel()"));
+  assert.match(multivariate, /^## Migrating from Remote config$/m);
+  assert(multivariate.includes("[Reflag MCP](../api/mcp.md)"));
   checkLinks(root, ["product-handbook/remote-config.md", "product-handbook/multivariate-flags.md"]);
 });
 

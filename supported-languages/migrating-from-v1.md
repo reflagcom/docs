@@ -86,7 +86,7 @@ Without a default, a read returns a Boolean: `false` if the flag is missing. Pas
 
 ## 2. Migrate remote config explicitly
 
-v2 has no `.config` property. Create a Multivariate flag with the values your application needs, and read it with a default:
+v2 has no `.config` property. Create a Multivariate flag with a new key and the values your application needs, then read it with a default:
 
 ```ts
 // v1
@@ -94,10 +94,10 @@ const { config } = useFlag("editor-settings");
 const maxItems = config.payload?.maxItems ?? 10;
 
 // v2
-const { maxItems } = useFlag("editor-settings", { maxItems: 10 });
+const { maxItems } = useFlag("editor-config", { maxItems: 10 });
 ```
 
-Existing remote config is **not converted automatically**. If a v1 flag controlled both access and configuration, split it into a Boolean flag for access and a Multivariate flag for the settings. See [Multivariate flags](../product-handbook/multivariate-flags.md).
+Existing remote config is **not converted automatically**. If a v1 flag controlled both access and configuration, keep the existing Boolean flag for access and use the new Multivariate flag for settings. Follow the [Remote config migration steps](../product-handbook/multivariate-flags.md#migrating-from-remote-config).
 
 ## 3. Separate usage tracking and feedback
 
@@ -135,9 +135,9 @@ Overrides and static fallback values are now plain values, such as `true` or `{ 
 
 ## SDK documentation
 
-| SDK | Current v2 | Legacy v1 |
-| --- | --- | --- |
+| SDK     | Current v2                                                           | Legacy v1                                                                                      |
+| ------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | Browser | [Guide](browser-sdk/README.md) · [Reference](browser-sdk/globals.md) | [Guide](../legacy/v1/browser-sdk/README.md) · [Reference](../legacy/v1/browser-sdk/globals.md) |
-| React | [Guide](react-sdk/README.md) · [Reference](react-sdk/globals.md) | [Guide](../legacy/v1/react-sdk/README.md) · [Reference](../legacy/v1/react-sdk/globals.md) |
-| Vue | [Guide](vue-sdk/README.md) · [Reference](vue-sdk/globals.md) | [Guide](../legacy/v1/vue-sdk/README.md) · [Reference](../legacy/v1/vue-sdk/globals.md) |
-| Node.js | [Guide](node-sdk/README.md) · [Reference](node-sdk/globals.md) | [Guide](../legacy/v1/node-sdk/README.md) · [Reference](../legacy/v1/node-sdk/globals.md) |
+| React   | [Guide](react-sdk/README.md) · [Reference](react-sdk/globals.md)     | [Guide](../legacy/v1/react-sdk/README.md) · [Reference](../legacy/v1/react-sdk/globals.md)     |
+| Vue     | [Guide](vue-sdk/README.md) · [Reference](vue-sdk/globals.md)         | [Guide](../legacy/v1/vue-sdk/README.md) · [Reference](../legacy/v1/vue-sdk/globals.md)         |
+| Node.js | [Guide](node-sdk/README.md) · [Reference](node-sdk/globals.md)       | [Guide](../legacy/v1/node-sdk/README.md) · [Reference](../legacy/v1/node-sdk/globals.md)       |
