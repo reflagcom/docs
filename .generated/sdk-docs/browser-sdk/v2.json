@@ -1,14 +1,14 @@
 {
   "sourceRepository": "https://github.com/reflagcom/javascript",
-  "sourceCommit": "e7d2a4039d435f4f1c758b6e72d4ff5222bcc340",
+  "sourceCommit": "d782fd0339de86a82a0b4293d18bf156fcdb63c4",
   "package": "@reflag/browser-sdk",
   "version": "2.0.0-next.0",
   "files": {
-    "supported-languages/browser-sdk/README.md": "170ec681580d7c72dd6d3efbc613ed9947ebee18075ecd279fa8bf73894a0239",
-    "sdk/@reflag/browser-sdk/README.md": "a58def792a7db5e78f2a34936c00b80142e68715352b495f254ea470ef11224b",
+    "supported-languages/browser-sdk/README.md": "a8f1a90ea81f31f6ddcf07e34c6af39f3addf8f3485535652e16bb90b7e3b2c0",
+    "sdk/@reflag/browser-sdk/README.md": "7f64f5357cae8be2328ed38599fb2210ebbd5e0e8210cfb8dc748ae9e3e664b4",
     "supported-languages/browser-sdk/globals.md": "4a3be858a621eb3839408d759329a60ab2ea406d0e21174b44b0639c678a1ffc",
     "sdk/@reflag/browser-sdk/globals.md": "a60d58526686dcc14ea5cdcecfa1d17388aff78f198f97f41bd667d35c7c39aa",
-    "supported-languages/browser-sdk/feedback.md": "821280fe2e6e5282518bfa0b7de912dbfa4db1246aa8e5f12be6539fff5db485",
-    "sdk/documents/browser-sdk/FEEDBACK.md": "4b5879ddb57ee123859df856923a2a2beff55db4a88cd17f3c4c9150c133d354"
+    "supported-languages/browser-sdk/feedback.md": "18902ebb57a7a278095a4b5662b2d023c3ef33092a0646017e39cf2620606794",
+    "sdk/documents/browser-sdk/FEEDBACK.md": "6c98fb8305be3328a7fd70a5bf18246d057ebadc4bfe7fbee0e9c70f56b8137f"
   }
 }

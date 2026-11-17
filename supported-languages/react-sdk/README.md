@@ -75,7 +75,7 @@ While flags are loading, if the flag doesn't exist, or if its value has a differ
 
 The SDK checks only the top-level type of a value. If your application depends on nested fields, validate them.
 
-Reading a flag records a check, even if you don't use the value. Reflag uses checks for launch monitoring.
+Each read records a check, which Reflag uses for launch monitoring.
 
 ## Loading states and Suspense <a href="#loading-states-and-suspense" id="loading-states-and-suspense"></a>
 
@@ -158,7 +158,7 @@ await setOptIn("huddles", { optedIn: false, scope: "company" });
 
 Each entry includes the flag's `key`, `name`, `description` and whether the user or company has opted in. User and company opt-ins are independent. Check `isLoading` before rendering an empty state. The provider's `suspense` prop, or `useOptInFlags({ suspense: true })`, makes this hook suspend instead. See [Beta feature opt-in](https://docs.reflag.com/guides/self-opt-in) for a complete example.
 
-## Toolbar <a href="#toolbar" id="toolbar"></a>
+## Overrides and toolbar <a href="#overrides-and-toolbar" id="overrides-and-toolbar"></a>
 
 The toolbar shows on `localhost` by default and lets you toggle Boolean flags for yourself. Use the `toolbar` prop to show it elsewhere, for example to internal users in production:
 
@@ -171,6 +171,8 @@ The toolbar shows on `localhost` by default and lets you toggle Boolean flags fo
   <App />
 </ReflagProvider>
 ```
+
+To override a flag from code, call `useClient().setFlagOverride(key, value)`. Pass `undefined` to remove the override.
 
 ## Type safety <a href="#type-safety" id="type-safety"></a>
 
@@ -187,11 +189,15 @@ declare module "@reflag/react-sdk" {
 }
 ```
 
-The [Reflag CLI](https://docs.reflag.com/api/cli) can generate these declarations for you. Declarations are checked at compile time only.
+The [Reflag CLI](https://docs.reflag.com/api/cli) can generate these declarations for you with `--format react`. Declarations are checked at compile time only.
 
 ## Use an existing client <a href="#use-an-existing-client" id="use-an-existing-client"></a>
 
-`useClient()` returns the underlying Browser SDK client. If you already create a Browser SDK client yourself, pass it to `<ReflagClientProvider client={client}>`; your application is then responsible for initializing and stopping it. `useOnEvent(type, handler)` subscribes to client events and unsubscribes when the component unmounts.
+`useClient()` returns the underlying Browser SDK client. If you already create a Browser SDK client yourself, pass it to `<ReflagClientProvider client={client}>`; your application is then responsible for initializing and stopping it.
+
+## Events <a href="#events" id="events"></a>
+
+`useOnEvent(type, handler)` subscribes to [client events](../browser-sdk/README.md) and unsubscribes when the component unmounts.
 
 ## Configuration <a href="#configuration" id="configuration"></a>
 

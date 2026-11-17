@@ -27,7 +27,7 @@ npx reflag init
 npx reflag flags types
 ```
 
-Choose the appropriate output format during initialization, or pass it explicitly:
+`reflag init` asks which SDK you use. To choose the format explicitly:
 
 ```sh
 npx reflag flags types --format react --out gen/flags.d.ts
@@ -35,7 +35,7 @@ npx reflag flags types --format node --out gen/flags.d.ts
 npx reflag flags types --format vue --out gen/flags.d.ts
 ```
 
-Pick the format for the SDK you use, and make sure TypeScript includes the output file.
+Make sure TypeScript includes the output file.
 
 Types are generated from the variant values in your production environment. Regenerate them when your flags change, and let generation errors fail your build so the types don't silently go stale.
 
@@ -45,7 +45,7 @@ You can commit the generated file, or ignore it and generate it on local setup a
 echo "gen/flags.d.ts" >> .gitignore
 ```
 
-## Registered schemas and defaults
+## Check defaults against your flags
 
 A React registration looks like this (the CLI writes the appropriate augmentation for you):
 
@@ -63,13 +63,17 @@ export function RegisteredSettings() {
     maxTokens: 512,
     model: "quick",
   });
-  return <span>{settings.model}: {settings.maxTokens}</span>;
+  return (
+    <span>
+      {settings.model}: {settings.maxTokens}
+    </span>
+  );
 }
 ```
 
 With a registered flag, TypeScript checks that the default you pass matches the flag's type, including nested fields.
 
-These checks happen at compile time. At runtime, the SDK checks only the top-level type of a value, so validate nested fields your application depends on.
+These checks happen at compile time only. See your SDK's guide for what it checks at runtime.
 
 ## Using in CI/CD pipelines
 
@@ -82,4 +86,4 @@ Store a [Management API key](../api/api-access.md) as a secret in your CI system
     REFLAG_API_KEY: ${{ secrets.REFLAG_CI_API_KEY }}
 ```
 
-Install the CLI from your lockfile before running this step.
+Install your project's dependencies before this step, so it uses the CLI version from your lockfile.

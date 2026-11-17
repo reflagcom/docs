@@ -1,11 +1,11 @@
 {
   "sourceRepository": "https://github.com/reflagcom/javascript",
-  "sourceCommit": "6ae28701b5deec5e153bb7bb03fe1c32108e89a5",
+  "sourceCommit": "c6d714437b00d1f3303eef3f7ccf86b880c409ff",
   "package": "@reflag/node-sdk",
   "version": "2.0.0-next.0",
   "files": {
-    "supported-languages/node-sdk/README.md": "d8552440b4dabc0fb865aef69c5af3c6478818302ea3e96a3eefe647f7d1004c",
-    "sdk/@reflag/node-sdk/README.md": "4f917c54ba70e34d60922d5b39b97e19694518ec37b2206fe22616d71e2a3122",
+    "supported-languages/node-sdk/README.md": "067e67bf1455824933fbb6e406d3528097ca54e43b61447944847c4763dbbbd2",
+    "sdk/@reflag/node-sdk/README.md": "27a9916f23a1e3cba2640e489ad06a14184cc70257143e0c9187225cf12836f2",
     "supported-languages/node-sdk/globals.md": "e1fc21f052e69b74582782ac7133513b077f328294f674523f087e4846338815",
     "sdk/@reflag/node-sdk/globals.md": "3fc142c7e452af2515b11c7efafa34d81bfe887f29ad1e2d6c81d31fb6736cc3"
   }

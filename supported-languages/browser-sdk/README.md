@@ -65,14 +65,19 @@ If the flag doesn't exist, or its value has a different type, you get `false`, o
 
 The SDK checks only the top-level type of a value. If your application depends on nested fields, validate them.
 
-`getFlags()` returns all flag values as a record. Reading a flag records a check, even if you don't use the value. Reflag uses checks for launch monitoring.
+`getFlags()` returns all flag values as a record.
+
+Each read records a check, which Reflag uses for launch monitoring.
 
 ## Track usage and feedback <a href="#track-usage-and-feedback" id="track-usage-and-feedback"></a>
 
 ```ts
 await reflag.track("Started huddle", { button: "cta" });
 reflag.requestFeedback({ flagKey: "huddles", title: "How did it go?" });
+await reflag.feedback({ flagKey: "huddles", score: 5 });
 ```
+
+`requestFeedback()` opens the feedback form. `feedback()` sends feedback you collected yourself.
 
 Configure your flag's adoption rules to match the event names you send. See [FEEDBACK.md](feedback.md) to configure feedback prompts and the feedback UI.
 
@@ -109,7 +114,7 @@ await reflag.initialize();
 
 Pass the whole object returned by `getFlagsForBootstrap()`, serialized with your framework's usual mechanism. Leave secrets and server-only attributes out of the context you bootstrap, because the browser can read it.
 
-Later refreshes evaluate flags using the browser's context. If values that depend on server-only attributes must not change, disable live updates.
+Later refreshes evaluate flags using the browser's context. If values that depend on server-only attributes must not change, leave `enableLiveFlagUpdates` off (the default).
 
 ## Let users opt in to flags <a href="#let-users-opt-in-to-flags" id="let-users-opt-in-to-flags"></a>
 
@@ -164,7 +169,9 @@ const reflag = new ReflagClient({
 | `eventSourceFactory`       | Custom EventSource implementation for runtimes without one      |
 | `trackingQueue`            | Event batching: `flushDelayMs` and `maxSize`                    |
 
-Call `await reflag.stop()` to send buffered events and close the client.
+## Shut down <a href="#shut-down" id="shut-down"></a>
+
+Call `await reflag.stop()` to send buffered events and close the client, for example when the user signs out.
 
 ## Content Security Policy (CSP) <a href="#content-security-policy-csp" id="content-security-policy-csp"></a>
 

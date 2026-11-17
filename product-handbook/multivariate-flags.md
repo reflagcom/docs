@@ -50,7 +50,7 @@ The **default variant** is a choice you make in Reflag. The **SDK default** is t
 Don't put API keys, passwords, or other secrets in flag values. Values sent to a browser are visible to its users. Store secrets in a secret manager instead.
 {% endhint %}
 
-## Matching algorithm
+## How a variant is chosen
 
 Reflag chooses a variant in this order:
 
@@ -63,7 +63,7 @@ Rules can match user or company attributes, segments, and other context. They ca
 
 ## Usage scenarios
 
-### Basic flag configuration
+### Start simple
 
 Start with one variant and make it the default. Add more variants and targeting rules when different audiences need different settings.
 
@@ -103,7 +103,7 @@ Legacy Remote config and Multivariate flags are separate features. Existing remo
 2. **Create a Multivariate flag with a new key**, such as `assistant-settings`. Keep the original Release flag and its access rules in place while you migrate.
 3. **Copy the values your application uses.** If it reads `config.payload`, use that JSON as the variant value. If it reads `config.key`, use the old key as a string value. If it needs both, include both in an object and update your code to read that object.
 4. **Recreate targeting in each environment.** Copy user/company assignments, rules, and the default. Preserve the original evaluation order when rules overlap. Unlike legacy Remote config, Multivariate variants and values are configured separately in each environment.
-5. **Update and test your application.** Use [SDK v2](../supported-languages/migrating-from-v1.md) to read the new flag's value directly, rather than through `.config`. Keep any existing Boolean access checks. Compare the old and new results for representative users and companies in each environment.
+5. **Update and test your application.** [Upgrade to SDK v2](../supported-languages/migrating-from-v1.md) and read the new flag's value directly, rather than through `.config`. Keep any existing Boolean access checks. Compare the old and new results for representative users and companies in each environment.
 6. **Retire the old config once clients no longer use it.** Leave it available for any clients still on SDK v1. Don't delete a Release flag that's still used for access checks.
 
 ### Using an AI agent
