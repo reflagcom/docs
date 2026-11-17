@@ -21,6 +21,8 @@ This page covers SDK v2.
 
 ## Get started <a href="#get-started" id="get-started"></a>
 
+### 1. Create a client <a href="#1-create-a-client" id="1-create-a-client"></a>
+
 Install the SDK:
 
 ```sh
@@ -38,7 +40,22 @@ export const reflag = new ReflagClient({
 await reflag.initialize();
 ```
 
-Then read a flag for a user and company:
+Keep the secret key on your server.
+
+### 2. Create a flag <a href="#2-create-a-flag" id="2-create-a-flag"></a>
+
+Install the Reflag CLI and create a flag:
+
+```sh
+yarn add --dev @reflag/cli
+npx reflag new
+```
+
+The first time you run it, it signs you in to Reflag, saves its settings in `reflag.config.json` and generates types for your flags in `gen/flags.d.ts`. Choose `node` when asked for the output format, and make sure your `tsconfig.json` includes the generated file. You can also create flags in the Reflag app.
+
+### 3. Read the flag <a href="#3-read-the-flag" id="3-read-the-flag"></a>
+
+Read a flag for a user and company:
 
 ```ts
 const context = {
@@ -51,7 +68,7 @@ if (reflag.getFlag(context, "new-editor")) {
 }
 ```
 
-The SDK downloads your flag definitions and evaluates flags locally, so reads don't make network requests. Keep the secret key on your server.
+The SDK downloads your flag definitions and evaluates flags locally, so reads don't make network requests.
 
 ## Read flags <a href="#read-flags" id="read-flags"></a>
 
@@ -156,7 +173,7 @@ Overrides pushed with `pushFlagOverrides()` take precedence over base overrides 
 
 ## Type safety <a href="#type-safety" id="type-safety"></a>
 
-Optionally declare your flags to get autocompletion for keys, type checks for defaults and typed `getFlags()` results:
+Declaring your flags gives you autocompletion for keys, type checks for defaults and typed `getFlags()` results. If you created a flag with `npx reflag new`, the declarations are already generated; run `npx reflag flags types` again when your flags change. A declaration looks like this:
 
 ```ts
 declare module "@reflag/node-sdk" {
@@ -168,7 +185,7 @@ declare module "@reflag/node-sdk" {
 }
 ```
 
-The [Reflag CLI](https://docs.reflag.com/api/cli) can generate these declarations for you with `--format node`. Declarations are checked at compile time only.
+Declarations are checked at compile time only. See the [Reflag CLI](https://docs.reflag.com/api/cli) for more options.
 
 ## Bootstrap the browser <a href="#bootstrap-the-browser" id="bootstrap-the-browser"></a>
 

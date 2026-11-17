@@ -32,7 +32,6 @@ npx reflag flags types
 ```sh
 npx reflag flags types --format react --out gen/flags.d.ts
 npx reflag flags types --format node --out gen/flags.d.ts
-npx reflag flags types --format vue --out gen/flags.d.ts
 ```
 
 Make sure TypeScript includes the output file.

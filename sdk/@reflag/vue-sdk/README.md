@@ -21,6 +21,8 @@ This page covers SDK v2.
 
 ## Get started <a href="#get-started" id="get-started"></a>
 
+### 1. Add the provider <a href="#1-add-the-provider" id="1-add-the-provider"></a>
+
 Install the SDK:
 
 ```sh
@@ -48,7 +50,15 @@ import { ReflagProvider } from "@reflag/vue-sdk";
 </template>
 ```
 
-Then read a flag in any component:
+In Nuxt, wrap the provider in `<ClientOnly>`.
+
+### 2. Create a flag <a href="#2-create-a-flag" id="2-create-a-flag"></a>
+
+Create a flag with the key `huddles` in the Reflag app.
+
+### 3. Read the flag <a href="#3-read-the-flag" id="3-read-the-flag"></a>
+
+Use `useFlag()` in any component:
 
 ```vue
 <script setup lang="ts">
@@ -62,8 +72,6 @@ const track = useTrack();
   <button v-if="enabled" @click="track('Started huddle')">Start huddle</button>
 </template>
 ```
-
-In Nuxt, wrap the provider in `<ClientOnly>`.
 
 ## Read flags <a href="#read-flags" id="read-flags"></a>
 
@@ -156,23 +164,6 @@ The toolbar shows on `localhost` by default and lets you toggle Boolean flags fo
 ```
 
 To override a flag from code, call `useClient().setFlagOverride(key, value)`. Pass `undefined` to remove the override.
-
-## Type safety <a href="#type-safety" id="type-safety"></a>
-
-Optionally declare your flags to get autocompletion for keys and type checks for defaults:
-
-```ts
-import "@reflag/vue-sdk";
-
-declare module "@reflag/vue-sdk" {
-  interface Flags {
-    huddles: boolean;
-    "huddle-settings": { maxParticipants: number };
-  }
-}
-```
-
-The [Reflag CLI](https://docs.reflag.com/api/cli) can generate these declarations for you with `--format vue`. Declarations are checked at compile time only.
 
 ## Use an existing client <a href="#use-an-existing-client" id="use-an-existing-client"></a>
 

@@ -21,6 +21,8 @@ This page covers SDK v2.
 
 ## Get started <a href="#get-started" id="get-started"></a>
 
+### 1. Add the provider <a href="#1-add-the-provider" id="1-add-the-provider"></a>
+
 Install the SDK:
 
 ```sh
@@ -43,7 +45,20 @@ import { ReflagProvider } from "@reflag/react-sdk";
 </ReflagProvider>;
 ```
 
-Then read a flag in any component:
+### 2. Create a flag <a href="#2-create-a-flag" id="2-create-a-flag"></a>
+
+Install the Reflag CLI and create a flag:
+
+```sh
+npm install --save-dev @reflag/cli
+npx reflag new
+```
+
+The first time you run it, it signs you in to Reflag, saves its settings in `reflag.config.json` and generates types for your flags in `gen/flags.d.ts`. Choose `react` when asked for the output format, and make sure your `tsconfig.json` includes the generated file. You can also create flags in the Reflag app.
+
+### 3. Read the flag <a href="#3-read-the-flag" id="3-read-the-flag"></a>
+
+Use `useFlag()` in any component:
 
 ```tsx
 import { useFlag, useTrack } from "@reflag/react-sdk";
@@ -176,7 +191,7 @@ To override a flag from code, call `useClient().setFlagOverride(key, value)`. Pa
 
 ## Type safety <a href="#type-safety" id="type-safety"></a>
 
-Optionally declare your flags to get autocompletion for keys and type checks for defaults:
+Declaring your flags gives you autocompletion for keys and type checks for defaults. If you created a flag with `npx reflag new`, the declarations are already generated; run `npx reflag flags types` again when your flags change. A declaration looks like this:
 
 ```ts
 import "@reflag/react-sdk";
@@ -189,7 +204,7 @@ declare module "@reflag/react-sdk" {
 }
 ```
 
-The [Reflag CLI](https://docs.reflag.com/api/cli) can generate these declarations for you with `--format react`. Declarations are checked at compile time only.
+Declarations are checked at compile time only. See the [Reflag CLI](https://docs.reflag.com/api/cli) for more options.
 
 ## Use an existing client <a href="#use-an-existing-client" id="use-an-existing-client"></a>
 

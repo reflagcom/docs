@@ -21,13 +21,15 @@ This page covers SDK v2.
 
 ## Get started <a href="#get-started" id="get-started"></a>
 
+### 1. Create a client <a href="#1-create-a-client" id="1-create-a-client"></a>
+
 Install the SDK:
 
 ```sh
 npm install @reflag/browser-sdk
 ```
 
-Create a client with your **publishable** key and the signed-in user's context, then read a flag:
+Create a client with your **publishable** key and the signed-in user's context:
 
 ```ts
 import { ReflagClient } from "@reflag/browser-sdk";
@@ -38,13 +40,21 @@ const reflag = new ReflagClient({
   company: { id: "acme", plan: "enterprise" },
 });
 await reflag.initialize();
+```
 
+Publishable keys are safe to ship to the browser. Keep secret keys on your server.
+
+### 2. Create a flag <a href="#2-create-a-flag" id="2-create-a-flag"></a>
+
+Create a flag with the key `huddles` in the Reflag app.
+
+### 3. Read the flag <a href="#3-read-the-flag" id="3-read-the-flag"></a>
+
+```ts
 if (reflag.getFlag("huddles")) {
   await reflag.track("Started huddle");
 }
 ```
-
-Publishable keys are safe to ship to the browser. Keep secret keys on your server.
 
 ## Read flags <a href="#read-flags" id="read-flags"></a>
 
