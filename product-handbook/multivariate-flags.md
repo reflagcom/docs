@@ -105,7 +105,7 @@ An agent connected to [Reflag MCP](../api/mcp.md) can read your existing Remote 
 
 Start by asking for a migration plan, rather than an immediate bulk migration:
 
-> Review this app's legacy Remote configs through Reflag MCP and plan a migration to Multivariate flags. Preserve values, defaults, and targeting in each environment, and keep existing Boolean access checks. Identify any clients still using SDK v1. Show the proposed flag keys and code changes. Ask for my approval before creating flags or changing configuration. Don't remove the old configs.
+> Review this app's legacy Remote configs through Reflag MCP. Before recommending migration, check the codebase and any available usage data to identify which configs are still used. Propose migration to Multivariate flags only for configs in use, and flag uncertain cases for confirmation. Preserve values, defaults, and targeting in each environment, and keep existing Boolean access checks. Identify any clients still using SDK v1. Show the proposed flag keys and code changes. Ask for my approval before creating flags or changing configuration. Don't remove the old configs.
 
 ### Manual migration
 
