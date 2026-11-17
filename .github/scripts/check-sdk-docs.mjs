@@ -230,6 +230,8 @@ export function checkSDKDocs(base = root) {
         "supported-languages/next.js.md",
         "product-handbook/service-resiliency.md",
         "product-handbook/type-safety.md",
+        "product-handbook/remote-config.md",
+        "product-handbook/multivariate-flags.md",
       ].includes(file),
     ),
   ]);

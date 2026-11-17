@@ -80,7 +80,7 @@ function compile(label, code, legacy = false, extra = {}) {
 }
 try {
   for (const file of [
-    "product-handbook/remote-config.md",
+    "product-handbook/multivariate-flags.md",
     "product-handbook/anonymous-users.md",
     "product-handbook/feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md",
     "product-handbook/type-safety.md",

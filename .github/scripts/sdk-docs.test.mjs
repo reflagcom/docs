@@ -71,6 +71,28 @@ test("repository navigation, provenance, cross-version links, assets and anchors
   assert(checkSDKDocs().generatedPages >= 28);
 });
 
+test("handbook keeps Remote config as a short pointer to the full Multivariate flags guide", () => {
+  const summary = fs.readFileSync(path.join(root, "SUMMARY.md"), "utf8");
+  for (const file of ["remote-config.md", "multivariate-flags.md"])
+    assert(summary.includes(`(product-handbook/${file})`));
+  const remote = fs.readFileSync(path.join(root, "product-handbook/remote-config.md"), "utf8");
+  const paragraph = remote
+    .replace(/^---\n[\s\S]*?\n---\n/, "")
+    .replace(/^# Remote config\s*/m, "")
+    .trim();
+  assert.equal(paragraph.split(/\n\s*\n/).length, 1);
+  assert.match(paragraph, /\[Multivariate flag\]\(multivariate-flags\.md\)/);
+  assert(!paragraph.includes("```"));
+  const multivariate = fs.readFileSync(
+    path.join(root, "product-handbook/multivariate-flags.md"),
+    "utf8",
+  );
+  assert.match(multivariate, /^# Multivariate flags$/m);
+  assert(multivariate.includes("export function AssistantSettings()"));
+  assert(multivariate.includes("export function AssistantModel()"));
+  checkLinks(root, ["product-handbook/remote-config.md", "product-handbook/multivariate-flags.md"]);
+});
+
 test("CI discovers exact source refs from manifests rather than hardcoding the first import", () => {
   const matrix = sourceMatrix();
   assert(matrix.include.length > 0);

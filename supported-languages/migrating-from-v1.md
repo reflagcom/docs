@@ -97,7 +97,7 @@ const maxItems = config.payload?.maxItems ?? 10;
 const { maxItems } = useFlag("editor-settings", { maxItems: 10 });
 ```
 
-Existing remote config is **not converted automatically**. If a v1 flag controlled both access and configuration, split it into a Boolean flag for access and a Multivariate flag for the settings. See [Remote config](../product-handbook/remote-config.md).
+Existing remote config is **not converted automatically**. If a v1 flag controlled both access and configuration, split it into a Boolean flag for access and a Multivariate flag for the settings. See [Multivariate flags](../product-handbook/multivariate-flags.md).
 
 ## 3. Separate usage tracking and feedback
 
