@@ -108,8 +108,8 @@ Legacy Remote config and Multivariate flags are separate features. Existing remo
 
 ### Using an AI agent
 
-With [Reflag MCP](../api/mcp.md), an agent can create and configure Multivariate flags. MCP doesn't currently expose legacy Remote config values or targeting, so you'll need to provide that information to the agent.
+Once the Remote config MCP tool is available, an agent connected to [Reflag MCP](../api/mcp.md) can read your existing configs and help recreate them as Multivariate flags.
 
 Start by asking for a migration plan, rather than an immediate bulk migration:
 
-> Using the legacy Remote config values and targeting I provide, plan a migration to Multivariate flags for this app. Preserve values, defaults, and targeting in each environment, and keep existing Boolean access checks. Show the proposed flag keys and code changes. Ask for my approval before creating flags or changing configuration. Don't remove the old configs.
+> Review this app's legacy Remote configs through Reflag MCP and plan a migration to Multivariate flags. Preserve values, defaults, and targeting in each environment, and keep existing Boolean access checks. Identify any clients still using SDK v1. Show the proposed flag keys and code changes. Ask for my approval before creating flags or changing configuration. Don't remove the old configs.
