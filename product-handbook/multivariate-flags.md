@@ -99,13 +99,6 @@ If access and configuration are separate decisions, use a Boolean flag such as `
 
 Legacy Remote config and Multivariate flags are separate features. Existing remote configs aren't converted automatically.
 
-1. **Review the existing config.** Record its keys and JSON payloads, along with the assignments, rules, and default in each environment. Check whether your application reads `config.payload`, `config.key`, or both.
-2. **Create a Multivariate flag with a new key**, such as `assistant-settings`. Keep the original Release flag and its access rules in place while you migrate.
-3. **Copy the values your application uses.** If it reads `config.payload`, use that JSON as the variant value. If it reads `config.key`, use the old key as a string value. If it needs both, include both in an object and update your code to read that object.
-4. **Recreate targeting in each environment.** Copy user/company assignments, rules, and the default. Preserve the original evaluation order when rules overlap. Unlike legacy Remote config, Multivariate variants and values are configured separately in each environment.
-5. **Update and test your application.** [Upgrade to SDK v2](../supported-languages/migrating-from-v1.md) and read the new flag's value directly, rather than through `.config`. Keep any existing Boolean access checks. Compare the old and new results for representative users and companies in each environment.
-6. **Retire the old config once clients no longer use it.** Leave it available for any clients still on SDK v1. Don't delete a Release flag that's still used for access checks.
-
 ### Using an AI agent
 
 An agent connected to [Reflag MCP](../api/mcp.md) can read your existing Remote configs and help migrate them to Multivariate flags.
@@ -113,3 +106,12 @@ An agent connected to [Reflag MCP](../api/mcp.md) can read your existing Remote 
 Start by asking for a migration plan, rather than an immediate bulk migration:
 
 > Review this app's legacy Remote configs through Reflag MCP and plan a migration to Multivariate flags. Preserve values, defaults, and targeting in each environment, and keep existing Boolean access checks. Identify any clients still using SDK v1. Show the proposed flag keys and code changes. Ask for my approval before creating flags or changing configuration. Don't remove the old configs.
+
+### Manual migration
+
+1. **Review the existing config.** Record its keys and JSON payloads, along with the assignments, rules, and default in each environment. Check whether your application reads `config.payload`, `config.key`, or both.
+2. **Create a Multivariate flag with a new key**, such as `assistant-settings`. Keep the original Release flag and its access rules in place while you migrate.
+3. **Copy the values your application uses.** If it reads `config.payload`, use that JSON as the variant value. If it reads `config.key`, use the old key as a string value. If it needs both, include both in an object and update your code to read that object.
+4. **Recreate targeting in each environment.** Copy user/company assignments, rules, and the default. Preserve the original evaluation order when rules overlap. Unlike legacy Remote config, Multivariate variants and values are configured separately in each environment.
+5. **Update and test your application.** [Upgrade to SDK v2](../supported-languages/migrating-from-v1.md) and read the new flag's value directly, rather than through `.config`. Keep any existing Boolean access checks. Compare the old and new results for representative users and companies in each environment.
+6. **Retire the old config once clients no longer use it.** Leave it available for any clients still on SDK v1. Don't delete a Release flag that's still used for access checks.
