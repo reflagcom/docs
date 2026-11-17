@@ -108,7 +108,7 @@ Legacy Remote config and Multivariate flags are separate features. Existing remo
 
 ### Using an AI agent
 
-Once the Remote config MCP tool is available, an agent connected to [Reflag MCP](../api/mcp.md) can read your existing configs and help recreate them as Multivariate flags.
+An agent connected to [Reflag MCP](../api/mcp.md) can read your existing Remote configs and help migrate them to Multivariate flags.
 
 Start by asking for a migration plan, rather than an immediate bulk migration:
 
