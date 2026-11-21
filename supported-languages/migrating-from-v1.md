@@ -19,7 +19,7 @@ React Native, OpenFeature and the Management SDK are released separately and are
 ## Upgrade the packages
 
 {% hint style="warning" %}
-These pages document the `2.0.0-next.0` prerelease. Until stable v2 packages are published, install the exact prerelease versions you were given: an unversioned install or the `@next` tag may not give you v2. The `@2` commands below work once v2 is published.
+These pages cover SDK v2. Until stable v2 packages are published, pin the exact prerelease version for each package you use. The `@2` commands below work once stable v2 is published.
 {% endhint %}
 
 Update the SDKs your application uses:
@@ -121,17 +121,17 @@ In Browser and Node.js, call `track()` and the feedback methods on the client. E
 
 ## 5. Upgrade bootstrap and saved state together
 
-Bootstrap data must match the client SDK's major version. Pass the whole object returned by `getFlagsForBootstrap()` to the client, not just its `flags` property. Use a Node.js SDK v2 release that excludes secret flags from browser bootstrap data.
+Bootstrap data must match the client SDK's major version. Pass the whole object returned by `getFlagsForBootstrap()` to the client, not just its `flags` property. Use a Node.js SDK release that excludes secret flags from browser bootstrap data, and refresh the SDK's flag definitions after upgrading so it knows which flags are public.
 
 ### Run both Node.js SDK versions during a rolling upgrade
 
-If older browser bundles can still make requests, keep the existing v1 field (here, `flags`) and add a separate `flagsV2` field. Install v2 normally and install your existing v1 version under an alias. Replace `1.8.0` with the v1 version you already run:
+If older browser bundles can still make requests, keep the existing v1 field (here, `flags`) and add a separate `flagsV2` field. Install v2 normally and install a v1 release under an alias. Replace `V1_VERSION` with the exact v1 release that supports public-only bootstrap:
 
 ```sh
-npm install @reflag/node-sdk@2 @reflag/node-sdk-v1@npm:@reflag/node-sdk@1.8.0
+npm install @reflag/node-sdk@2 @reflag/node-sdk-v1@npm:@reflag/node-sdk@V1_VERSION
 ```
 
-On the server, initialize both clients once at startup with the same `REFLAG_SECRET_KEY`. Build the context from the authenticated user's session, using only attributes the browser can see. The example assumes your existing v1 snapshot is safe to send to the browser. Keep any checks that make it safe; if you can't guarantee it contains only public data, use publishable-key fetching instead.
+On the server, initialize both clients once at startup with the same `REFLAG_SECRET_KEY`. Build the context from the authenticated user's session, using only attributes the browser can see. If your v1 SDK can't produce a public-only snapshot, use publishable-key fetching rather than sending its server snapshot.
 
 Use v2 for normal server reads and tracking. Use v1 only to build the legacy snapshot, with `enableTracking: false` so the server doesn't sync the same user and company twice. v1 copies that setting into the snapshot, so restore the request's original tracking preference before sending it to old browsers.
 
