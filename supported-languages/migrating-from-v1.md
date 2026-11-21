@@ -133,9 +133,11 @@ npm install @reflag/node-sdk@2 @reflag/node-sdk-v1@npm:@reflag/node-sdk@1.8.0
 
 On the server, initialize both clients once at startup with the same `REFLAG_SECRET_KEY`. Build the context from the authenticated user's session, using only attributes the browser can see. The example assumes your existing v1 snapshot is safe to send to the browser. Keep any checks that make it safe; if you can't guarantee it contains only public data, use publishable-key fetching instead.
 
+Keep the existing v1 tracking behavior. Set `enableTracking: false` on the additional v2 bootstrap call to avoid syncing the same user and company twice from the server. This doesn't disable tracking in the browser.
+
 ```ts
 import { ReflagClient as ReflagV1 } from "@reflag/node-sdk-v1";
-import { ReflagClient as ReflagV2, type Context } from "@reflag/node-sdk";
+import { ReflagClient as ReflagV2, type ContextWithTracking } from "@reflag/node-sdk";
 
 const v1 = new ReflagV1();
 const v2 = new ReflagV2();
@@ -144,10 +146,10 @@ export async function initializeFlags() {
   await Promise.all([v1.initialize(), v2.initialize()]);
 }
 
-export function getBootstrapData(context: Context) {
+export function getBootstrapData(context: ContextWithTracking) {
   return {
     flags: v1.getFlagsForBootstrap(context),
-    flagsV2: v2.getFlagsForBootstrap(context),
+    flagsV2: v2.getFlagsForBootstrap({ ...context, enableTracking: false }),
   };
 }
 ```
