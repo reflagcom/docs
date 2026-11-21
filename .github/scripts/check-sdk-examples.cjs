@@ -46,6 +46,7 @@ function compile(label, code, legacy = false, extra = {}) {
     "@reflag/react-sdk": [declaration(legacy ? legacyRoot : frameworkRoot, "react-sdk")],
     "@reflag/browser-sdk": [declaration(legacy ? legacyRoot : frameworkRoot, "browser-sdk")],
     "@reflag/node-sdk": [declaration(legacy ? legacyRoot : nodeRoot, "node-sdk")],
+    "@reflag/node-sdk-v1": [declaration(legacyRoot, "node-sdk")],
     "@reflag/vue-sdk": [declaration(legacy ? legacyRoot : frameworkRoot, "vue-sdk")],
     react: [path.join(reactTypes, "index.d.ts")],
     "react/jsx-runtime": [path.join(reactTypes, "jsx-runtime.d.ts")],
@@ -110,6 +111,11 @@ try {
       'import type { Context } from "@reflag/node-sdk"; export async function getContext(): Promise<Context> { return {}; }',
   });
   compile("Next.js client", next[3]);
+  const dualBootstrap = blocks("supported-languages/migrating-from-v1.md").find((code) =>
+    code.includes('from "@reflag/node-sdk-v1"'),
+  );
+  assert(dualBootstrap, "Missing side-by-side Node.js bootstrap example");
+  compile("Migration: side-by-side Node.js bootstrap", dualBootstrap);
   compile(
     "Vue v2 declaration guard",
     `import { useFlag } from "@reflag/vue-sdk";\nconst enabled: boolean = useFlag("huddle").value;\nconst count: number = useFlag("settings", { maxItems: 10 }).value.maxItems;\n// @ts-expect-error Vue returns a ref of the direct value, not a flag wrapper.\nuseFlag("huddle").isEnabled;\n// @ts-expect-error Ref contents are not any.\nconst invalid: string = useFlag("settings", { maxItems: 10 }).value.maxItems;\n`,
