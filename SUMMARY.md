@@ -21,6 +21,7 @@
 * [Next.js](supported-languages/next.js.md)
 * [OpenFeature](supported-languages/openfeature.md)
 * [Ruby SDK](supported-languages/ruby-sdk.md)
+* [Migrating from v1](supported-languages/migrating-from-v1.md)
 
 ## API
 
@@ -58,6 +59,7 @@
   * [End-user opt-in](product-handbook/feature-rollouts/end-user-opt-in.md)
 * [Flag clean-up and archival](product-handbook/feature-clean-up-and-archival-beta/README.md)
   * [AI code clean-up](product-handbook/feature-clean-up-and-archival-beta/ai-code-clean-up-beta.md)
+* [Multivariate flags](product-handbook/multivariate-flags.md)
 * [Remote config](product-handbook/remote-config.md)
 * [Type safety](product-handbook/type-safety.md)
 * [Team permissions](product-handbook/team-permissions.md)
@@ -95,6 +97,19 @@
 * [Use Reflag in your CLI](guides/use-reflag-in-your-cli.md)
 * [Beta feature opt-in](guides/self-opt-in.md)
 * [Toggle toolbar with a flag](guides/toggle-toolbar-with-a-flag.md)
+
+## Legacy SDKs
+
+* [SDK v1](legacy/v1/README.md)
+  * [Browser SDK (v1)](legacy/v1/browser-sdk/README.md)
+    * [Reference](legacy/v1/browser-sdk/globals.md)
+    * [Feedback](legacy/v1/browser-sdk/feedback.md)
+  * [React SDK (v1)](legacy/v1/react-sdk/README.md)
+    * [Reference](legacy/v1/react-sdk/globals.md)
+  * [Vue SDK (v1)](legacy/v1/vue-sdk/README.md)
+    * [Reference](legacy/v1/vue-sdk/globals.md)
+  * [Node.js SDK (v1)](legacy/v1/node-sdk/README.md)
+    * [Reference](legacy/v1/node-sdk/globals.md)
 
 ## Support
 

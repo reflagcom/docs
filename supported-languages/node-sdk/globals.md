@@ -13,34 +13,31 @@ pagination:
   visible: true
 ---
 
-# @reflag/node-sdk
+# @reflag/node-sdk <a href="#reflagnode-sdk" id="reflagnode-sdk"></a>
 
-## Classes
+This page covers SDK v2.
 
-### BoundReflagClient
+## Classes <a href="#classes" id="classes"></a>
 
-A client bound with a specific user, company, and other context.
+### BoundReflagClient <a href="#boundreflagclient" id="boundreflagclient"></a>
 
-#### Constructors
+Context-bound reads have the same direct-value and immediate-check semantics.
 
-##### new BoundReflagClient()
+### Constructors <a href="#constructors" id="constructors"></a>
+
+### new BoundReflagClient() <a href="#new-boundreflagclient" id="new-boundreflagclient"></a>
 
 ```ts
 new BoundReflagClient(client: ReflagClient, options: ContextWithTracking): BoundReflagClient
 ```
 
-**`Internal`**
-
-(Internal) Creates a new BoundReflagClient. Use `bindClient` to create a new client bound with a specific context.
-
-###### Parameters
+###### Parameters <a href="#parameters" id="parameters"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -55,11 +52,6 @@ new BoundReflagClient(client: ReflagClient, options: ContextWithTracking): Bound
 [`ReflagClient`](globals.md#reflagclient)
 
 </td>
-<td>
-
-The `ReflagClient` to use.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -72,122 +64,101 @@ The `ReflagClient` to use.
 [`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
-<td>
-
-The options for the client.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns" id="returns"></a>
 
 [`BoundReflagClient`](globals.md#boundreflagclient)
 
-#### Accessors
+#### Accessors <a href="#accessors" id="accessors"></a>
 
-##### company
+### company <a href="#company" id="company"></a>
 
-###### Get Signature
+###### Get Signature <a href="#get-signature" id="get-signature"></a>
 
 ```ts
-get company(): 
+get company():
   | undefined
   | {
-[k: string]: any;   avatar: string;
-  id: undefined | string | number;
+[key: string]: any;   avatar: string;
+  id: undefined | IdType;
   name: string;
 }
 ```
 
-Gets the company associated with the client.
-
-###### Returns
+###### Returns <a href="#returns-1" id="returns-1"></a>
 
   \| `undefined`
   \| \{
-`[k: string]`: `any`;   `avatar`: `string`;
-  `id`: `undefined` \| `string` \| `number`;
+`[key: string]`: `any`;   `avatar`: `string`;
+  `id`: `undefined` \| [`IdType`](globals.md#idtype);
   `name`: `string`;
  \}
 
-The company or `undefined` if it is not set.
+### otherContext <a href="#othercontext" id="othercontext"></a>
 
-##### otherContext
-
-###### Get Signature
+###### Get Signature <a href="#get-signature-1" id="get-signature-1"></a>
 
 ```ts
-get otherContext(): 
+get otherContext():
   | undefined
 | Record<string, any>
 ```
 
-Gets the "other" context associated with the client.
-
-###### Returns
+###### Returns <a href="#returns-2" id="returns-2"></a>
 
   \| `undefined`
   \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
-The "other" context or `undefined` if it is not set.
+### user <a href="#user" id="user"></a>
 
-##### user
-
-###### Get Signature
+###### Get Signature <a href="#get-signature-2" id="get-signature-2"></a>
 
 ```ts
-get user(): 
+get user():
   | undefined
   | {
-[k: string]: any;   avatar: string;
+[key: string]: any;   avatar: string;
   email: string;
-  id: undefined | string | number;
+  id: undefined | IdType;
   name: string;
 }
 ```
 
-Gets the user associated with the client.
-
-###### Returns
+###### Returns <a href="#returns-3" id="returns-3"></a>
 
   \| `undefined`
   \| \{
-`[k: string]`: `any`;   `avatar`: `string`;
+`[key: string]`: `any`;   `avatar`: `string`;
   `email`: `string`;
-  `id`: `undefined` \| `string` \| `number`;
+  `id`: `undefined` \| [`IdType`](globals.md#idtype);
   `name`: `string`;
  \}
 
-The user or `undefined` if it is not set.
+#### Methods <a href="#methods" id="methods"></a>
 
-#### Methods
-
-##### bindClient()
+### bindClient() <a href="#bindclient" id="bindclient"></a>
 
 ```ts
-bindClient(context: ContextWithTracking): BoundReflagClient
+bindClient(next: ContextWithTracking): BoundReflagClient
 ```
 
-Create a new client bound with the additional context.
-Note: This performs a shallow merge for user/company/other individually.
-
-###### Parameters
+###### Parameters <a href="#parameters-1" id="parameters-1"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`context`
+`next`
 
 </td>
 <td>
@@ -195,43 +166,33 @@ Note: This performs a shallow merge for user/company/other individually.
 [`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
-<td>
-
-The context to bind the client to.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-4" id="returns-4"></a>
 
 [`BoundReflagClient`](globals.md#boundreflagclient)
 
-new client bound with the additional context
-
-##### flush()
+### flush() <a href="#flush" id="flush"></a>
 
 ```ts
 flush(): Promise<void>
 ```
 
-Flushes the batch buffer.
-
-###### Returns
+###### Returns <a href="#returns-5" id="returns-5"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### getFlag()
+### getFlag() <a href="#getflag" id="getflag"></a>
+
+###### Call Signature <a href="#call-signature" id="call-signature"></a>
 
 ```ts
-getFlag<TKey>(key: TKey): Flag
+getFlag<Key>(key: Key, defaultValue?: undefined): boolean
 ```
 
-Get a specific flag for the user/company/other context bound to this client.
-Using the `isEnabled` property sends a `check` event to Reflag.
-
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters" id="type-parameters"></a>
 
 <table>
 <thead>
@@ -243,21 +204,20 @@ Using the `isEnabled` property sends a `check` event to Reflag.
 <tr>
 <td>
 
-`TKey` *extends* `string`
+`Key` *extends* `string`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-2" id="parameters-2"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -269,40 +229,68 @@ Using the `isEnabled` property sends a `check` event to Reflag.
 </td>
 <td>
 
-`TKey`
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`?
 
 </td>
 <td>
 
-The key of the flag to get.
+`undefined`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-6" id="returns-6"></a>
 
-[`Flag`](globals.md#flagtconfig)
+`boolean`
 
-Flags for the given user/company and whether each one is enabled or not
-
-##### getFlagRemote()
+###### Call Signature <a href="#call-signature-1" id="call-signature-1"></a>
 
 ```ts
-getFlagRemote(key: string): Promise<Flag>
+getFlag<Key, Default>(key: Key, defaultValue: Default): FlagValueFromDefault<Default>
 ```
 
-Get remotely evaluated flag for the user/company/other context bound to this client.
+###### Type Parameters <a href="#type-parameters-1" id="type-parameters-1"></a>
 
-###### Parameters
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters <a href="#parameters-3" id="parameters-3"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -314,92 +302,213 @@ Get remotely evaluated flag for the user/company/other context bound to this cli
 </td>
 <td>
 
-`string`
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
 
 </td>
 <td>
 
-The key of the flag to get.
+`Default`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-7" id="returns-7"></a>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Flag`](globals.md#flagtconfig)\>
+[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
 
-Flag for the given user/company and key and whether it's enabled or not
+### getFlagRemote() <a href="#getflagremote" id="getflagremote"></a>
 
-##### getFlags()
+###### Call Signature <a href="#call-signature-2" id="call-signature-2"></a>
 
 ```ts
-getFlags(): Record<string, Flag>
+getFlagRemote<Key>(key: Key, defaultValue?: undefined): Promise<boolean>
 ```
 
-Get flags for the user/company/other context bound to this client.
-Meant for use in serialization of flags for transferring to the client-side/browser.
+###### Type Parameters <a href="#type-parameters-2" id="type-parameters-2"></a>
 
-###### Returns
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>
+`Key` *extends* `string`
 
-Flags for the given user/company and whether each one is enabled or not
+</td>
+</tr>
+</tbody>
+</table>
 
-##### getFlagsForBootstrap()
+###### Parameters <a href="#parameters-4" id="parameters-4"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`?
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-8" id="returns-8"></a>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`boolean`\>
+
+###### Call Signature <a href="#call-signature-3" id="call-signature-3"></a>
+
+```ts
+getFlagRemote<Key, Default>(key: Key, defaultValue: Default): Promise<FlagValueFromDefault<Default>>
+```
+
+###### Type Parameters <a href="#type-parameters-3" id="type-parameters-3"></a>
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters <a href="#parameters-5" id="parameters-5"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-9" id="returns-9"></a>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>\>
+
+### getFlags() <a href="#getflags" id="getflags"></a>
+
+```ts
+getFlags(): Record<string, undefined | FlagValue>
+```
+
+###### Returns <a href="#returns-10" id="returns-10"></a>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](globals.md#flagvalue)\>
+
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap" id="getflagsforbootstrap"></a>
 
 ```ts
 getFlagsForBootstrap(): BootstrappedFlags
 ```
 
-Get raw flags for the user/company/other context bound to this client without wrapping them in getters.
-This method returns raw flag data suitable for bootstrapping client-side applications.
-
-###### Returns
+###### Returns <a href="#returns-11" id="returns-11"></a>
 
 [`BootstrappedFlags`](globals.md#bootstrappedflags)
 
-Raw flags for the given user/company and whether each one is enabled or not
-
-##### getFlagsRemote()
+### getFlagsRemote() <a href="#getflagsremote" id="getflagsremote"></a>
 
 ```ts
-getFlagsRemote(): Promise<Record<string, Flag>>
+getFlagsRemote(): Promise<Record<string, undefined | FlagValue>>
 ```
 
-Get remotely evaluated flag for the user/company/other context bound to this client.
+###### Returns <a href="#returns-12" id="returns-12"></a>
 
-###### Returns
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](globals.md#flagvalue)\>\>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>\>
-
-Flags for the given user/company and whether each one is enabled or not
-
-##### refreshFlags()
+### refreshFlags() <a href="#refreshflags" id="refreshflags"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
 ```
 
-Refreshes the flag definitions from the server.
-
-Fetch starts are throttled to at most once per second. Outside
-`in-request` mode, a call to `refreshFlags(waitForVersion)` still waits
-until the cache has applied that version or newer.
-
-In `in-request` mode, a throttled call only records pending refresh work.
-The fetch then runs on the next request/access or `refreshFlags()` call
-after the throttle window expires.
-
-###### Parameters
+###### Parameters <a href="#parameters-6" id="parameters-6"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -414,37 +523,29 @@ after the throttle window expires.
 `number`
 
 </td>
-<td>
-
-Optional flag state version to wait for before returning updated definitions.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-13" id="returns-13"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### track()
+### track() <a href="#track" id="track"></a>
 
 ```ts
 track(event: string, options?: TrackOptions & {
-  companyId: string;
+  companyId: IdType;
 }): Promise<void>
 ```
 
-Track an event in Reflag.
-
-###### Parameters
+###### Parameters <a href="#parameters-7" id="parameters-7"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -459,11 +560,6 @@ Track an event in Reflag.
 `string`
 
 </td>
-<td>
-
-The event to track.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -473,29 +569,20 @@ The event to track.
 </td>
 <td>
 
-[`TrackOptions`](globals.md#trackoptions) & \{ `companyId`: `string`; \}
-
-</td>
-<td>
-
-The options for the event.
+[`TrackOptions`](globals.md#trackoptions) & \{ `companyId`: [`IdType`](globals.md#idtype); \}
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-14" id="returns-14"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Throws
-
-An error if the event is invalid or the options are invalid.
-
 ***
 
-### EdgeClient
+### EdgeClient <a href="#edgeclient" id="edgeclient"></a>
 
 The EdgeClient is ReflagClient pre-configured to be used in edge runtimes, like
 Cloudflare Workers.
@@ -506,7 +593,7 @@ that throttle window only records pending refresh work, so the call may
 resolve before the fetch runs. That pending refresh is executed on the next
 request/access or `refreshFlags()` call after the window expires.
 
-#### Example
+#### Example <a href="#example" id="example"></a>
 
 ```ts
 // set the REFLAG_SECRET_KEY environment variable or pass the secret key in the constructor
@@ -521,19 +608,19 @@ const { isEnabled } = client.getFlag(context, "flag-key");
 
 ```
 
-#### Extends
+#### Extends <a href="#extends" id="extends"></a>
 
 - [`ReflagClient`](globals.md#reflagclient)
 
-#### Constructors
+#### Constructors <a href="#constructors-1" id="constructors-1"></a>
 
-##### new EdgeClient()
+### new EdgeClient() <a href="#new-edgeclient" id="new-edgeclient"></a>
 
 ```ts
 new EdgeClient(options: EdgeClientOptions): EdgeClient
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-8" id="parameters-8"></a>
 
 <table>
 <thead>
@@ -558,15 +645,15 @@ new EdgeClient(options: EdgeClientOptions): EdgeClient
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-15" id="returns-15"></a>
 
 [`EdgeClient`](globals.md#edgeclient)
 
-###### Overrides
+###### Overrides <a href="#overrides" id="overrides"></a>
 
-[`ReflagClient`](globals.md#reflagclient).[`constructor`](globals.md#constructors-2)
+[`ReflagClient`](globals.md#reflagclient).[`constructor`](globals.md#constructors)
 
-#### Properties
+#### Properties <a href="#properties" id="properties"></a>
 
 <table>
 <thead>
@@ -574,7 +661,6 @@ new EdgeClient(options: EdgeClientOptions): EdgeClient
 <th>Property</th>
 <th>Modifier</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -586,17 +672,12 @@ new EdgeClient(options: EdgeClientOptions): EdgeClient
 </td>
 <td>
 
-`public`
+`readonly`
 
 </td>
 <td>
 
-[`HttpClient`](globals.md#httpclient-2)
-
-</td>
-<td>
-
-&hyphen;
+[`HttpClient`](globals.md#httpclient)
 
 </td>
 </tr>
@@ -613,35 +694,30 @@ new EdgeClient(options: EdgeClientOptions): EdgeClient
 </td>
 <td>
 
-[`Logger`](globals.md#logger-2)
-
-</td>
-<td>
-
-Gets the logger associated with the client.
+[`Logger`](globals.md#logger)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Accessors
+#### Accessors <a href="#accessors-1" id="accessors-1"></a>
 
-##### flagOverrides
+### flagOverrides <a href="#flagoverrides-1" id="flagoverrides-1"></a>
 
-###### Set Signature
+###### Set Signature <a href="#set-signature" id="set-signature"></a>
 
 ```ts
-set flagOverrides(overrides: 
-  | Partial<Record<string, FlagOverride>>
+set flagOverrides(overrides:
+  | Partial<Record<string, FlagValue>>
   | FlagOverridesFn): void
 ```
 
-###### Deprecated
+###### Deprecated <a href="#deprecated" id="deprecated"></a>
 
-Use `setFlagOverrides()` for replacing the base override set.
+Use setFlagOverrides.
 
-###### Parameters
+###### Parameters <a href="#parameters-9" id="parameters-9"></a>
 
 <table>
 <thead>
@@ -659,48 +735,43 @@ Use `setFlagOverrides()` for replacing the base override set.
 </td>
 <td>
 
- \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagValue`](globals.md#flagvalue)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-16" id="returns-16"></a>
 
 `void`
 
-###### Inherited from
+###### Inherited from <a href="#inherited-from" id="inherited-from"></a>
 
-[`ReflagClient`](globals.md#reflagclient).[`flagOverrides`](globals.md#flagoverrides-1)
+[`ReflagClient`](globals.md#reflagclient).[`flagOverrides`](globals.md#flagoverrides)
 
-#### Methods
+#### Methods <a href="#methods-1" id="methods-1"></a>
 
-##### bindClient()
+### bindClient() <a href="#bindclient-1" id="bindclient-1"></a>
 
 ```ts
-bindClient(context: ContextWithTracking): BoundReflagClient
+bindClient(options: ContextWithTracking): BoundReflagClient
 ```
 
-Returns a new BoundReflagClient with the user/company/otherContext
-set to be used in subsequent calls.
-For example, for evaluating flag targeting or tracking events.
-
-###### Parameters
+###### Parameters <a href="#parameters-10" id="parameters-10"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`context`
+`options`
 
 </td>
 <td>
@@ -708,118 +779,74 @@ For example, for evaluating flag targeting or tracking events.
 [`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
-<td>
-
-The context to bind the client to.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-17" id="returns-17"></a>
 
 [`BoundReflagClient`](globals.md#boundreflagclient)
 
-A new client bound with the arguments given.
+###### Inherited from <a href="#inherited-from-1" id="inherited-from-1"></a>
 
-###### Throws
+[`ReflagClient`](globals.md#reflagclient).[`bindClient`](globals.md#bindclient)
 
-An error if the user/company is given but their ID is not a string.
-
-###### Remarks
-
-The `updateUser` / `updateCompany` methods will automatically be called when
-the user/company is set respectively.
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`bindClient`](globals.md#bindclient-2)
-
-##### clearFlagOverrides()
+### clearFlagOverrides() <a href="#clearflagoverrides" id="clearflagoverrides"></a>
 
 ```ts
 clearFlagOverrides(): void
 ```
 
-Clears the base flag overrides.
-
-###### Returns
+###### Returns <a href="#returns-18" id="returns-18"></a>
 
 `void`
 
-###### Remarks
+###### Inherited from <a href="#inherited-from-2" id="inherited-from-2"></a>
 
-This does not affect temporary layers added with `pushFlagOverrides()`.
+[`ReflagClient`](globals.md#reflagclient).[`clearFlagOverrides`](globals.md#clearflagoverrides)
 
-###### Example
-
-```ts
-client.clearFlagOverrides();
-```
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`clearFlagOverrides`](globals.md#clearflagoverrides-1)
-
-##### destroy()
+### destroy() <a href="#destroy" id="destroy"></a>
 
 ```ts
 destroy(): void
 ```
 
-Destroys the client and cleans up all resources including timers and background processes.
-
-###### Returns
+###### Returns <a href="#returns-19" id="returns-19"></a>
 
 `void`
 
-###### Remarks
+###### Inherited from <a href="#inherited-from-3" id="inherited-from-3"></a>
 
-After calling this method, the client should not be used anymore.
-This is particularly useful in development environments with hot reloading to prevent
-multiple background processes from running simultaneously.
+[`ReflagClient`](globals.md#reflagclient).[`destroy`](globals.md#destroy)
 
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`destroy`](globals.md#destroy-1)
-
-##### flush()
+### flush() <a href="#flush-1" id="flush-1"></a>
 
 ```ts
 flush(): Promise<void>
 ```
 
-Flushes and completes any in-flight fetches in the flag cache.
-
-###### Returns
+###### Returns <a href="#returns-20" id="returns-20"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Remarks
+###### Inherited from <a href="#inherited-from-4" id="inherited-from-4"></a>
 
-It is recommended to call this method when the application is shutting down to ensure all events are sent
-before the process exits.
+[`ReflagClient`](globals.md#reflagclient).[`flush`](globals.md#flush)
 
-This method is automatically called on natural process exit (`beforeExit`) if
-`batchOptions.flushOnExit` is `true` in the options (default). For signal-driven
-shutdown or an explicit `process.exit()`, await this method in your application's
-shutdown hook before exiting. The SDK does not install signal handlers.
+### getFlag() <a href="#getflag-1" id="getflag-1"></a>
 
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`flush`](globals.md#flush-2)
-
-##### getFlag()
+###### Call Signature <a href="#call-signature-4" id="call-signature-4"></a>
 
 ```ts
-getFlag<TKey>(__namedParameters: ContextWithTracking, key: TKey): Flag
+getFlag<Key>(
+   options: ContextWithTracking,
+   key: Key,
+   defaultValue?: undefined): boolean
 ```
 
-Gets the evaluated flag for the current context which includes the user, company, and custom context.
-Using the `isEnabled` property sends a `check` event to Reflag.
+Read a Boolean with an implicit false default, or supply an explicit value default.
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-4" id="type-parameters-4"></a>
 
 <table>
 <thead>
@@ -831,234 +858,20 @@ Using the `isEnabled` property sends a `check` event to Reflag.
 <tr>
 <td>
 
-`TKey` *extends* `string`
+`Key` *extends* `string`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-11" id="parameters-11"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`__namedParameters`
-
-</td>
-<td>
-
-[`ContextWithTracking`](globals.md#contextwithtracking)
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`TKey`
-
-</td>
-<td>
-
-The key of the flag to get.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-[`Flag`](globals.md#flagtconfig)
-
-The evaluated flag.
-
-###### Remarks
-
-Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`getFlag`](globals.md#getflag-2)
-
-##### getFlagDefinitions()
-
-```ts
-getFlagDefinitions(): FlagDefinition[]
-```
-
-Gets the flag definitions, including all config values.
-To evaluate which flags are enabled for a given user/company, use `getFlags`.
-
-###### Returns
-
-[`FlagDefinition`](globals.md#flagdefinition)[]
-
-The flags definitions.
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`getFlagDefinitions`](globals.md#getflagdefinitions-1)
-
-##### getFlagRemote()
-
-```ts
-getFlagRemote<TKey>(
-   key: TKey, 
-   userId?: IdType, 
-   companyId?: IdType, 
-additionalContext?: Context): Promise<Flag>
-```
-
-Gets evaluated flag with the usage of remote context.
-This method triggers a network request every time it's called.
-
-###### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`TKey`
-
-</td>
-<td>
-
-The key of the flag to get.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`userId`?
-
-</td>
-<td>
-
-[`IdType`](globals.md#idtype)
-
-</td>
-<td>
-
-The userId of the user to get the flag for.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`companyId`?
-
-</td>
-<td>
-
-[`IdType`](globals.md#idtype)
-
-</td>
-<td>
-
-The companyId of the company to get the flag for.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`additionalContext`?
-
-</td>
-<td>
-
-[`Context`](globals.md#context-1)
-
-</td>
-<td>
-
-The additional context to get the flag for.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Flag`](globals.md#flagtconfig)\>
-
-evaluated flag
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`getFlagRemote`](globals.md#getflagremote-2)
-
-##### getFlags()
-
-```ts
-getFlags(options: ContextWithTracking): Record<string, Flag>
-```
-
-Gets the evaluated flags for the current context which includes the user, company, and custom context.
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1073,46 +886,439 @@ Gets the evaluated flags for the current context which includes the user, compan
 [`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
+</tr>
+<tr>
 <td>
 
-The options for the context.
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`?
+
+</td>
+<td>
+
+`undefined`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-21" id="returns-21"></a>
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>
+`boolean`
 
-The evaluated flags.
+###### Inherited from <a href="#inherited-from-5" id="inherited-from-5"></a>
 
-###### Remarks
+[`ReflagClient`](globals.md#reflagclient).[`getFlag`](globals.md#getflag)
 
-Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
+###### Call Signature <a href="#call-signature-5" id="call-signature-5"></a>
 
-###### Inherited from
+```ts
+getFlag<Key, Default>(
+   options: ContextWithTracking,
+   key: Key,
+defaultValue: Default): FlagValueFromDefault<Default>
+```
 
-[`ReflagClient`](globals.md#reflagclient).[`getFlags`](globals.md#getflags-2)
+Read a Boolean with an implicit false default, or supply an explicit value default.
 
-##### getFlagsForBootstrap()
+###### Type Parameters <a href="#type-parameters-5" id="type-parameters-5"></a>
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters <a href="#parameters-12" id="parameters-12"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-22" id="returns-22"></a>
+
+[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
+
+###### Inherited from <a href="#inherited-from-6" id="inherited-from-6"></a>
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlag`](globals.md#getflag)
+
+### getFlagDefinitions() <a href="#getflagdefinitions" id="getflagdefinitions"></a>
+
+```ts
+getFlagDefinitions(): FlagCollection
+```
+
+Complete definitions, including segments needed for offline evaluation.
+
+###### Returns <a href="#returns-23" id="returns-23"></a>
+
+[`FlagCollection`](globals.md#flagcollection)
+
+###### Inherited from <a href="#inherited-from-7" id="inherited-from-7"></a>
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlagDefinitions`](globals.md#getflagdefinitions)
+
+### getFlagRemote() <a href="#getflagremote-1" id="getflagremote-1"></a>
+
+###### Call Signature <a href="#call-signature-6" id="call-signature-6"></a>
+
+```ts
+getFlagRemote<Key>(
+   key: Key,
+   defaultValue?: undefined,
+   userId?: IdType,
+   companyId?: IdType,
+context?: ContextWithTracking): Promise<boolean>
+```
+
+###### Type Parameters <a href="#type-parameters-6" id="type-parameters-6"></a>
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters <a href="#parameters-13" id="parameters-13"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`?
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`userId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`companyId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`context`?
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-24" id="returns-24"></a>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`boolean`\>
+
+###### Inherited from <a href="#inherited-from-8" id="inherited-from-8"></a>
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlagRemote`](globals.md#getflagremote)
+
+###### Call Signature <a href="#call-signature-7" id="call-signature-7"></a>
+
+```ts
+getFlagRemote<Key, Default>(
+   key: Key,
+   defaultValue: Default,
+   userId?: IdType,
+   companyId?: IdType,
+context?: ContextWithTracking): Promise<FlagValueFromDefault<Default>>
+```
+
+###### Type Parameters <a href="#type-parameters-7" id="type-parameters-7"></a>
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters <a href="#parameters-14" id="parameters-14"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`userId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`companyId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`context`?
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-25" id="returns-25"></a>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>\>
+
+###### Inherited from <a href="#inherited-from-9" id="inherited-from-9"></a>
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlagRemote`](globals.md#getflagremote)
+
+### getFlags() <a href="#getflags-1" id="getflags-1"></a>
+
+```ts
+getFlags(options: ContextWithTracking): Record<string, undefined | FlagValue>
+```
+
+Return all values and immediately register checks for the returned roots.
+
+###### Parameters <a href="#parameters-15" id="parameters-15"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-26" id="returns-26"></a>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](globals.md#flagvalue)\>
+
+###### Inherited from <a href="#inherited-from-10" id="inherited-from-10"></a>
+
+[`ReflagClient`](globals.md#reflagclient).[`getFlags`](globals.md#getflags)
+
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap-1" id="getflagsforbootstrap-1"></a>
 
 ```ts
 getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
 ```
 
-Gets the evaluated flags for the current context without wrapping them in getters.
-This method returns raw flag data suitable for bootstrapping client-side applications.
+Serialization is not a read by the browser; it must not emit check events.
 
-###### Parameters
+###### Parameters <a href="#parameters-16" id="parameters-16"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1127,50 +1333,34 @@ This method returns raw flag data suitable for bootstrapping client-side applica
 [`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
-<td>
-
-The options for the context.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-27" id="returns-27"></a>
 
 [`BootstrappedFlags`](globals.md#bootstrappedflags)
 
-The evaluated raw flags and the context.
+###### Inherited from <a href="#inherited-from-11" id="inherited-from-11"></a>
 
-###### Remarks
+[`ReflagClient`](globals.md#reflagclient).[`getFlagsForBootstrap`](globals.md#getflagsforbootstrap)
 
-Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
-This method returns RawFlag objects without wrapping them in getters, making them suitable for serialization.
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`getFlagsForBootstrap`](globals.md#getflagsforbootstrap-2)
-
-##### getFlagsRemote()
+### getFlagsRemote() <a href="#getflagsremote-1" id="getflagsremote-1"></a>
 
 ```ts
 getFlagsRemote(
-   userId?: IdType, 
-   companyId?: IdType, 
-additionalContext?: Context): Promise<Record<string, Flag>>
+   userId?: IdType,
+   companyId?: IdType,
+context?: ContextWithTracking): Promise<Record<string, undefined | FlagValue>>
 ```
 
-Gets evaluated flags with the usage of remote context.
-This method triggers a network request every time it's called.
-
-###### Parameters
+###### Parameters <a href="#parameters-17" id="parameters-17"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1185,11 +1375,6 @@ This method triggers a network request every time it's called.
 [`IdType`](globals.md#idtype)
 
 </td>
-<td>
-
-The userId of the user to get the flags for.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -1202,81 +1387,59 @@ The userId of the user to get the flags for.
 [`IdType`](globals.md#idtype)
 
 </td>
-<td>
-
-The companyId of the company to get the flags for.
-
-</td>
 </tr>
 <tr>
 <td>
 
-`additionalContext`?
+`context`?
 
 </td>
 <td>
 
-[`Context`](globals.md#context-1)
-
-</td>
-<td>
-
-The additional context to get the flags for.
+[`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-28" id="returns-28"></a>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](globals.md#flagvalue)\>\>
 
-evaluated flags
+###### Inherited from <a href="#inherited-from-12" id="inherited-from-12"></a>
 
-###### Inherited from
+[`ReflagClient`](globals.md#reflagclient).[`getFlagsRemote`](globals.md#getflagsremote)
 
-[`ReflagClient`](globals.md#reflagclient).[`getFlagsRemote`](globals.md#getflagsremote-2)
-
-##### initialize()
+### initialize() <a href="#initialize" id="initialize"></a>
 
 ```ts
 initialize(): Promise<void>
 ```
 
-Initializes the client by caching the flags definitions.
-
-###### Returns
+###### Returns <a href="#returns-29" id="returns-29"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Remarks
+###### Inherited from <a href="#inherited-from-13" id="inherited-from-13"></a>
 
-Call this method before calling `getFlags` to ensure the flag definitions are cached.
-The client will ignore subsequent calls to this method.
+[`ReflagClient`](globals.md#reflagclient).[`initialize`](globals.md#initialize)
 
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`initialize`](globals.md#initialize-1)
-
-##### pushFlagOverrides()
+### pushFlagOverrides() <a href="#pushflagoverrides" id="pushflagoverrides"></a>
 
 ```ts
-pushFlagOverrides(overrides: 
-  | Partial<Record<string, FlagOverride>>
+pushFlagOverrides(overrides:
+  | Partial<Record<string, FlagValue>>
   | FlagOverridesFn): () => void
 ```
 
-Temporarily layers flag overrides on top of the current overrides.
-
-###### Parameters
+###### Parameters <a href="#parameters-18" id="parameters-18"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1288,68 +1451,38 @@ Temporarily layers flag overrides on top of the current overrides.
 </td>
 <td>
 
- \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
-
-</td>
-<td>
-
-The flag overrides to apply for the scoped period.
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagValue`](globals.md#flagvalue)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-30" id="returns-30"></a>
 
 `Function`
 
-A remove function that removes only this override layer.
-
-###### Returns
+###### Returns <a href="#returns-31" id="returns-31"></a>
 
 `void`
 
-###### Remarks
+###### Inherited from <a href="#inherited-from-14" id="inherited-from-14"></a>
 
-This is intended for tests or other short-lived local overrides. The remove
-function is idempotent and can safely be called multiple times.
+[`ReflagClient`](globals.md#reflagclient).[`pushFlagOverrides`](globals.md#pushflagoverrides)
 
-###### Example
-
-```ts
-let remove: (() => void) | undefined;
-
-beforeEach(() => {
-  remove = client.pushFlagOverrides({ "flag-1": true });
-});
-
-afterEach(() => {
-  remove?.();
-  remove = undefined;
-});
-```
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`pushFlagOverrides`](globals.md#pushflagoverrides-1)
-
-##### refreshFlags()
+### refreshFlags() <a href="#refreshflags-1" id="refreshflags-1"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
 ```
 
-Refreshes the flag definitions from the server.
-
-###### Parameters
+###### Parameters <a href="#parameters-19" id="parameters-19"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1364,61 +1497,33 @@ Refreshes the flag definitions from the server.
 `number`
 
 </td>
-<td>
-
-Optional flag state version to wait for before returning updated definitions.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-32" id="returns-32"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Remarks
+###### Inherited from <a href="#inherited-from-15" id="inherited-from-15"></a>
 
-This triggers an on-demand refresh of the cached flag definitions.
-Useful when you know flags have changed and don't want to wait for the next automatic refresh cycle.
+[`ReflagClient`](globals.md#reflagclient).[`refreshFlags`](globals.md#refreshflags)
 
-Note: updated flag rules take a few seconds to propagate to all servers.
-
-Fetch starts are throttled to at most once per second.
-Outside `in-request` mode, throttling only delays when the next fetch
-begins: `refreshFlags(99)` still waits until the cache has applied flag
-definitions from version `99` or newer before the promise resolves.
-Concurrent callers are deduplicated and may share the same in-flight or
-scheduled follow-up refresh.
-
-In `in-request` mode, delayed follow-up refreshes are not scheduled. On edge
-runtimes like Cloudflare Workers, a call during the throttle window only
-records pending refresh work, and the promise may resolve before that fetch
-runs. The pending refresh is executed on the next request/access or
-`refreshFlags()` call after the throttle window expires.
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`refreshFlags`](globals.md#refreshflags-2)
-
-##### setFlagOverrides()
+### setFlagOverrides() <a href="#setflagoverrides" id="setflagoverrides"></a>
 
 ```ts
-setFlagOverrides(overrides: 
-  | Partial<Record<string, FlagOverride>>
+setFlagOverrides(overrides:
+  | Partial<Record<string, FlagValue>>
   | FlagOverridesFn): void
 ```
 
-Replaces the base flag overrides used by the client.
-
-###### Parameters
+###### Parameters <a href="#parameters-20" id="parameters-20"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1430,54 +1535,33 @@ Replaces the base flag overrides used by the client.
 </td>
 <td>
 
- \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
-
-</td>
-<td>
-
-The flag overrides.
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagValue`](globals.md#flagvalue)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-33" id="returns-33"></a>
 
 `void`
 
-###### Remarks
+###### Inherited from <a href="#inherited-from-16" id="inherited-from-16"></a>
 
-Base overrides are always applied before any temporary layers added through
-`pushFlagOverrides()`.
+[`ReflagClient`](globals.md#reflagclient).[`setFlagOverrides`](globals.md#setflagoverrides)
 
-###### Example
-
-```ts
-client.setFlagOverrides({
-  "flag-1": true,
-  "flag-2": false,
-});
-```
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`setFlagOverrides`](globals.md#setflagoverrides-1)
-
-##### track()
+### track() <a href="#track-1" id="track-1"></a>
 
 ```ts
 track(
-   userId: IdType, 
-   event: string, 
+   userId: IdType,
+   event: string,
    options?: TrackOptions & {
   companyId: IdType;
 }): Promise<void>
 ```
 
-Tracks an event in Reflag.
-
-###### Parameters
+###### Parameters <a href="#parameters-21" id="parameters-21"></a>
 
 <table>
 <thead>
@@ -1526,23 +1610,15 @@ Tracks an event in Reflag.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-34" id="returns-34"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Throws
+###### Inherited from <a href="#inherited-from-17" id="inherited-from-17"></a>
 
-An error if the user is not set or the event is invalid or the options are invalid.
+[`ReflagClient`](globals.md#reflagclient).[`track`](globals.md#track)
 
-###### Remarks
-
-If the company is set, the event will be associated with the company.
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`track`](globals.md#track-2)
-
-##### updateCompany()
+### updateCompany() <a href="#updatecompany" id="updatecompany"></a>
 
 ```ts
 updateCompany(companyId: IdType, options?: TrackOptions & {
@@ -1550,16 +1626,13 @@ updateCompany(companyId: IdType, options?: TrackOptions & {
 }): Promise<void>
 ```
 
-Updates the associated company in Reflag.
-
-###### Parameters
+###### Parameters <a href="#parameters-22" id="parameters-22"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1574,11 +1647,6 @@ Updates the associated company in Reflag.
 [`IdType`](globals.md#idtype)
 
 </td>
-<td>
-
-The companyId of the company to update.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -1591,48 +1659,31 @@ The companyId of the company to update.
 [`TrackOptions`](globals.md#trackoptions) & \{ `userId`: [`IdType`](globals.md#idtype); \}
 
 </td>
-<td>
-
-The options for the company.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-35" id="returns-35"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Throws
+###### Inherited from <a href="#inherited-from-18" id="inherited-from-18"></a>
 
-An error if the company is not set or the options are invalid.
+[`ReflagClient`](globals.md#reflagclient).[`updateCompany`](globals.md#updatecompany)
 
-###### Remarks
-
-The company must be set using `withCompany` before calling this method.
-If the user is set, the company will be associated with the user.
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`updateCompany`](globals.md#updatecompany-1)
-
-##### updateUser()
+### updateUser() <a href="#updateuser" id="updateuser"></a>
 
 ```ts
 updateUser(userId: IdType, options?: TrackOptions): Promise<void>
 ```
 
-Updates the associated user in Reflag.
-
-###### Parameters
+###### Parameters <a href="#parameters-23" id="parameters-23"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1647,11 +1698,6 @@ Updates the associated user in Reflag.
 [`IdType`](globals.md#idtype)
 
 </td>
-<td>
-
-The userId of the user to update.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -1664,79 +1710,43 @@ The userId of the user to update.
 [`TrackOptions`](globals.md#trackoptions)
 
 </td>
-<td>
-
-The options for the user.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-36" id="returns-36"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Throws
+###### Inherited from <a href="#inherited-from-19" id="inherited-from-19"></a>
 
-An error if the company is not set or the options are invalid.
-
-###### Remarks
-
-The company must be set using `withCompany` before calling this method.
-If the user is set, the company will be associated with the user.
-
-###### Inherited from
-
-[`ReflagClient`](globals.md#reflagclient).[`updateUser`](globals.md#updateuser-1)
+[`ReflagClient`](globals.md#reflagclient).[`updateUser`](globals.md#updateuser)
 
 ***
 
-### ReflagClient
+### ReflagClient <a href="#reflagclient" id="reflagclient"></a>
 
-The SDK client.
+V2 client: flag reads return values and immediately register checks.
 
-#### Remarks
-
-This is the main class for interacting with Reflag.
-It is used to evaluate flags, update user and company contexts, and track events.
-
-#### Example
-
-```ts
-// set the REFLAG_SECRET_KEY environment variable or pass the secret key to the constructor
-const client = new ReflagClient();
-
-// evaluate a flag
-const isFlagEnabled = client.getFlag("flag-key", {
-  user: { id: "user-id" },
-  company: { id: "company-id" },
-});
-```
-
-#### Extended by
+#### Extended by <a href="#extended-by" id="extended-by"></a>
 
 - [`EdgeClient`](globals.md#edgeclient)
 
-#### Constructors
+#### Constructors <a href="#constructors-2" id="constructors-2"></a>
 
-##### new ReflagClient()
+### new ReflagClient() <a href="#new-reflagclient" id="new-reflagclient"></a>
 
 ```ts
 new ReflagClient(options: ClientOptions): ReflagClient
 ```
 
-Creates a new SDK client.
-See README for configuration options.
-
-###### Parameters
+###### Parameters <a href="#parameters-24" id="parameters-24"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1751,24 +1761,15 @@ See README for configuration options.
 [`ClientOptions`](globals.md#clientoptions)
 
 </td>
-<td>
-
-The options for the client or an existing client to clone.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-37" id="returns-37"></a>
 
 [`ReflagClient`](globals.md#reflagclient)
 
-###### Throws
-
-An error if the options are invalid.
-
-#### Properties
+#### Properties <a href="#properties-1" id="properties-1"></a>
 
 <table>
 <thead>
@@ -1776,7 +1777,6 @@ An error if the options are invalid.
 <th>Property</th>
 <th>Modifier</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1788,17 +1788,12 @@ An error if the options are invalid.
 </td>
 <td>
 
-`public`
+`readonly`
 
 </td>
 <td>
 
-[`HttpClient`](globals.md#httpclient-2)
-
-</td>
-<td>
-
-&hyphen;
+[`HttpClient`](globals.md#httpclient)
 
 </td>
 </tr>
@@ -1815,35 +1810,30 @@ An error if the options are invalid.
 </td>
 <td>
 
-[`Logger`](globals.md#logger-2)
-
-</td>
-<td>
-
-Gets the logger associated with the client.
+[`Logger`](globals.md#logger)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Accessors
+#### Accessors <a href="#accessors-2" id="accessors-2"></a>
 
-##### flagOverrides
+### flagOverrides <a href="#flagoverrides-2" id="flagoverrides-2"></a>
 
-###### Set Signature
+###### Set Signature <a href="#set-signature-1" id="set-signature-1"></a>
 
 ```ts
-set flagOverrides(overrides: 
-  | Partial<Record<string, FlagOverride>>
+set flagOverrides(overrides:
+  | Partial<Record<string, FlagValue>>
   | FlagOverridesFn): void
 ```
 
-###### Deprecated
+###### Deprecated <a href="#deprecated-1" id="deprecated-1"></a>
 
-Use `setFlagOverrides()` for replacing the base override set.
+Use setFlagOverrides.
 
-###### Parameters
+###### Parameters <a href="#parameters-25" id="parameters-25"></a>
 
 <table>
 <thead>
@@ -1861,44 +1851,39 @@ Use `setFlagOverrides()` for replacing the base override set.
 </td>
 <td>
 
- \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagValue`](globals.md#flagvalue)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-38" id="returns-38"></a>
 
 `void`
 
-#### Methods
+#### Methods <a href="#methods-2" id="methods-2"></a>
 
-##### bindClient()
+### bindClient() <a href="#bindclient-2" id="bindclient-2"></a>
 
 ```ts
-bindClient(context: ContextWithTracking): BoundReflagClient
+bindClient(options: ContextWithTracking): BoundReflagClient
 ```
 
-Returns a new BoundReflagClient with the user/company/otherContext
-set to be used in subsequent calls.
-For example, for evaluating flag targeting or tracking events.
-
-###### Parameters
+###### Parameters <a href="#parameters-26" id="parameters-26"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`context`
+`options`
 
 </td>
 <td>
@@ -1906,102 +1891,58 @@ For example, for evaluating flag targeting or tracking events.
 [`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
-<td>
-
-The context to bind the client to.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-39" id="returns-39"></a>
 
 [`BoundReflagClient`](globals.md#boundreflagclient)
 
-A new client bound with the arguments given.
-
-###### Throws
-
-An error if the user/company is given but their ID is not a string.
-
-###### Remarks
-
-The `updateUser` / `updateCompany` methods will automatically be called when
-the user/company is set respectively.
-
-##### clearFlagOverrides()
+### clearFlagOverrides() <a href="#clearflagoverrides-1" id="clearflagoverrides-1"></a>
 
 ```ts
 clearFlagOverrides(): void
 ```
 
-Clears the base flag overrides.
-
-###### Returns
+###### Returns <a href="#returns-40" id="returns-40"></a>
 
 `void`
 
-###### Remarks
-
-This does not affect temporary layers added with `pushFlagOverrides()`.
-
-###### Example
-
-```ts
-client.clearFlagOverrides();
-```
-
-##### destroy()
+### destroy() <a href="#destroy-1" id="destroy-1"></a>
 
 ```ts
 destroy(): void
 ```
 
-Destroys the client and cleans up all resources including timers and background processes.
-
-###### Returns
+###### Returns <a href="#returns-41" id="returns-41"></a>
 
 `void`
 
-###### Remarks
-
-After calling this method, the client should not be used anymore.
-This is particularly useful in development environments with hot reloading to prevent
-multiple background processes from running simultaneously.
-
-##### flush()
+### flush() <a href="#flush-2" id="flush-2"></a>
 
 ```ts
 flush(): Promise<void>
 ```
 
-Flushes and completes any in-flight fetches in the flag cache.
-
-###### Returns
+###### Returns <a href="#returns-42" id="returns-42"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Remarks
+### getFlag() <a href="#getflag-2" id="getflag-2"></a>
 
-It is recommended to call this method when the application is shutting down to ensure all events are sent
-before the process exits.
-
-This method is automatically called on natural process exit (`beforeExit`) if
-`batchOptions.flushOnExit` is `true` in the options (default). For signal-driven
-shutdown or an explicit `process.exit()`, await this method in your application's
-shutdown hook before exiting. The SDK does not install signal handlers.
-
-##### getFlag()
+###### Call Signature <a href="#call-signature-8" id="call-signature-8"></a>
 
 ```ts
-getFlag<TKey>(__namedParameters: ContextWithTracking, key: TKey): Flag
+getFlag<Key>(
+   options: ContextWithTracking,
+   key: Key,
+   defaultValue?: undefined): boolean
 ```
 
-Gets the evaluated flag for the current context which includes the user, company, and custom context.
-Using the `isEnabled` property sends a `check` event to Reflag.
+Read a Boolean with an implicit false default, or supply an explicit value default.
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-8" id="type-parameters-8"></a>
 
 <table>
 <thead>
@@ -2013,222 +1954,20 @@ Using the `isEnabled` property sends a `check` event to Reflag.
 <tr>
 <td>
 
-`TKey` *extends* `string`
+`Key` *extends* `string`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-27" id="parameters-27"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`__namedParameters`
-
-</td>
-<td>
-
-[`ContextWithTracking`](globals.md#contextwithtracking)
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`TKey`
-
-</td>
-<td>
-
-The key of the flag to get.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-[`Flag`](globals.md#flagtconfig)
-
-The evaluated flag.
-
-###### Remarks
-
-Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
-
-##### getFlagDefinitions()
-
-```ts
-getFlagDefinitions(): FlagDefinition[]
-```
-
-Gets the flag definitions, including all config values.
-To evaluate which flags are enabled for a given user/company, use `getFlags`.
-
-###### Returns
-
-[`FlagDefinition`](globals.md#flagdefinition)[]
-
-The flags definitions.
-
-##### getFlagRemote()
-
-```ts
-getFlagRemote<TKey>(
-   key: TKey, 
-   userId?: IdType, 
-   companyId?: IdType, 
-additionalContext?: Context): Promise<Flag>
-```
-
-Gets evaluated flag with the usage of remote context.
-This method triggers a network request every time it's called.
-
-###### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TKey` *extends* `string`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`TKey`
-
-</td>
-<td>
-
-The key of the flag to get.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`userId`?
-
-</td>
-<td>
-
-[`IdType`](globals.md#idtype)
-
-</td>
-<td>
-
-The userId of the user to get the flag for.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`companyId`?
-
-</td>
-<td>
-
-[`IdType`](globals.md#idtype)
-
-</td>
-<td>
-
-The companyId of the company to get the flag for.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`additionalContext`?
-
-</td>
-<td>
-
-[`Context`](globals.md#context-1)
-
-</td>
-<td>
-
-The additional context to get the flag for.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Flag`](globals.md#flagtconfig)\>
-
-evaluated flag
-
-##### getFlags()
-
-```ts
-getFlags(options: ContextWithTracking): Record<string, Flag>
-```
-
-Gets the evaluated flags for the current context which includes the user, company, and custom context.
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2243,42 +1982,415 @@ Gets the evaluated flags for the current context which includes the user, compan
 [`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
+</tr>
+<tr>
 <td>
 
-The options for the context.
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`?
+
+</td>
+<td>
+
+`undefined`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-43" id="returns-43"></a>
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>
+`boolean`
 
-The evaluated flags.
+###### Call Signature <a href="#call-signature-9" id="call-signature-9"></a>
 
-###### Remarks
+```ts
+getFlag<Key, Default>(
+   options: ContextWithTracking,
+   key: Key,
+defaultValue: Default): FlagValueFromDefault<Default>
+```
 
-Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
+Read a Boolean with an implicit false default, or supply an explicit value default.
 
-##### getFlagsForBootstrap()
+###### Type Parameters <a href="#type-parameters-9" id="type-parameters-9"></a>
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters <a href="#parameters-28" id="parameters-28"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-44" id="returns-44"></a>
+
+[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>
+
+### getFlagDefinitions() <a href="#getflagdefinitions-1" id="getflagdefinitions-1"></a>
+
+```ts
+getFlagDefinitions(): FlagCollection
+```
+
+Complete definitions, including segments needed for offline evaluation.
+
+###### Returns <a href="#returns-45" id="returns-45"></a>
+
+[`FlagCollection`](globals.md#flagcollection)
+
+### getFlagRemote() <a href="#getflagremote-2" id="getflagremote-2"></a>
+
+###### Call Signature <a href="#call-signature-10" id="call-signature-10"></a>
+
+```ts
+getFlagRemote<Key>(
+   key: Key,
+   defaultValue?: undefined,
+   userId?: IdType,
+   companyId?: IdType,
+context?: ContextWithTracking): Promise<boolean>
+```
+
+###### Type Parameters <a href="#type-parameters-10" id="type-parameters-10"></a>
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters <a href="#parameters-29" id="parameters-29"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`?
+
+</td>
+<td>
+
+`undefined`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`userId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`companyId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`context`?
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-46" id="returns-46"></a>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`boolean`\>
+
+###### Call Signature <a href="#call-signature-11" id="call-signature-11"></a>
+
+```ts
+getFlagRemote<Key, Default>(
+   key: Key,
+   defaultValue: Default,
+   userId?: IdType,
+   companyId?: IdType,
+context?: ContextWithTracking): Promise<FlagValueFromDefault<Default>>
+```
+
+###### Type Parameters <a href="#type-parameters-11" id="type-parameters-11"></a>
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Key` *extends* `string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Default` *extends* `object` \| [`FlagDefaultValue`](globals.md#flagdefaultvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters <a href="#parameters-30" id="parameters-30"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`Key`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`userId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`companyId`?
+
+</td>
+<td>
+
+[`IdType`](globals.md#idtype)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`context`?
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-47" id="returns-47"></a>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`FlagValueFromDefault`](globals.md#flagvaluefromdefaultt)\<`Default`\>\>
+
+### getFlags() <a href="#getflags-2" id="getflags-2"></a>
+
+```ts
+getFlags(options: ContextWithTracking): Record<string, undefined | FlagValue>
+```
+
+Return all values and immediately register checks for the returned roots.
+
+###### Parameters <a href="#parameters-31" id="parameters-31"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+[`ContextWithTracking`](globals.md#contextwithtracking)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-48" id="returns-48"></a>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](globals.md#flagvalue)\>
+
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap-2" id="getflagsforbootstrap-2"></a>
 
 ```ts
 getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
 ```
 
-Gets the evaluated flags for the current context without wrapping them in getters.
-This method returns raw flag data suitable for bootstrapping client-side applications.
+Serialization is not a read by the browser; it must not emit check events.
 
-###### Parameters
+###### Parameters <a href="#parameters-32" id="parameters-32"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2293,46 +2405,30 @@ This method returns raw flag data suitable for bootstrapping client-side applica
 [`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
-<td>
-
-The options for the context.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-49" id="returns-49"></a>
 
 [`BootstrappedFlags`](globals.md#bootstrappedflags)
 
-The evaluated raw flags and the context.
-
-###### Remarks
-
-Call `initialize` before calling this method to ensure the flag definitions are cached, no flags will be returned otherwise.
-This method returns RawFlag objects without wrapping them in getters, making them suitable for serialization.
-
-##### getFlagsRemote()
+### getFlagsRemote() <a href="#getflagsremote-2" id="getflagsremote-2"></a>
 
 ```ts
 getFlagsRemote(
-   userId?: IdType, 
-   companyId?: IdType, 
-additionalContext?: Context): Promise<Record<string, Flag>>
+   userId?: IdType,
+   companyId?: IdType,
+context?: ContextWithTracking): Promise<Record<string, undefined | FlagValue>>
 ```
 
-Gets evaluated flags with the usage of remote context.
-This method triggers a network request every time it's called.
-
-###### Parameters
+###### Parameters <a href="#parameters-33" id="parameters-33"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2347,11 +2443,6 @@ This method triggers a network request every time it's called.
 [`IdType`](globals.md#idtype)
 
 </td>
-<td>
-
-The userId of the user to get the flags for.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -2364,73 +2455,51 @@ The userId of the user to get the flags for.
 [`IdType`](globals.md#idtype)
 
 </td>
-<td>
-
-The companyId of the company to get the flags for.
-
-</td>
 </tr>
 <tr>
 <td>
 
-`additionalContext`?
+`context`?
 
 </td>
 <td>
 
-[`Context`](globals.md#context-1)
-
-</td>
-<td>
-
-The additional context to get the flags for.
+[`ContextWithTracking`](globals.md#contextwithtracking)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-50" id="returns-50"></a>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`Flag`](globals.md#flagtconfig)\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](globals.md#flagvalue)\>\>
 
-evaluated flags
-
-##### initialize()
+### initialize() <a href="#initialize-1" id="initialize-1"></a>
 
 ```ts
 initialize(): Promise<void>
 ```
 
-Initializes the client by caching the flags definitions.
-
-###### Returns
+###### Returns <a href="#returns-51" id="returns-51"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Remarks
-
-Call this method before calling `getFlags` to ensure the flag definitions are cached.
-The client will ignore subsequent calls to this method.
-
-##### pushFlagOverrides()
+### pushFlagOverrides() <a href="#pushflagoverrides-1" id="pushflagoverrides-1"></a>
 
 ```ts
-pushFlagOverrides(overrides: 
-  | Partial<Record<string, FlagOverride>>
+pushFlagOverrides(overrides:
+  | Partial<Record<string, FlagValue>>
   | FlagOverridesFn): () => void
 ```
 
-Temporarily layers flag overrides on top of the current overrides.
-
-###### Parameters
+###### Parameters <a href="#parameters-34" id="parameters-34"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2442,64 +2511,34 @@ Temporarily layers flag overrides on top of the current overrides.
 </td>
 <td>
 
- \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
-
-</td>
-<td>
-
-The flag overrides to apply for the scoped period.
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagValue`](globals.md#flagvalue)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-52" id="returns-52"></a>
 
 `Function`
 
-A remove function that removes only this override layer.
-
-###### Returns
+###### Returns <a href="#returns-53" id="returns-53"></a>
 
 `void`
 
-###### Remarks
-
-This is intended for tests or other short-lived local overrides. The remove
-function is idempotent and can safely be called multiple times.
-
-###### Example
-
-```ts
-let remove: (() => void) | undefined;
-
-beforeEach(() => {
-  remove = client.pushFlagOverrides({ "flag-1": true });
-});
-
-afterEach(() => {
-  remove?.();
-  remove = undefined;
-});
-```
-
-##### refreshFlags()
+### refreshFlags() <a href="#refreshflags-2" id="refreshflags-2"></a>
 
 ```ts
 refreshFlags(waitForVersion?: number): Promise<void>
 ```
 
-Refreshes the flag definitions from the server.
-
-###### Parameters
+###### Parameters <a href="#parameters-35" id="parameters-35"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2514,57 +2553,29 @@ Refreshes the flag definitions from the server.
 `number`
 
 </td>
-<td>
-
-Optional flag state version to wait for before returning updated definitions.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-54" id="returns-54"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Remarks
-
-This triggers an on-demand refresh of the cached flag definitions.
-Useful when you know flags have changed and don't want to wait for the next automatic refresh cycle.
-
-Note: updated flag rules take a few seconds to propagate to all servers.
-
-Fetch starts are throttled to at most once per second.
-Outside `in-request` mode, throttling only delays when the next fetch
-begins: `refreshFlags(99)` still waits until the cache has applied flag
-definitions from version `99` or newer before the promise resolves.
-Concurrent callers are deduplicated and may share the same in-flight or
-scheduled follow-up refresh.
-
-In `in-request` mode, delayed follow-up refreshes are not scheduled. On edge
-runtimes like Cloudflare Workers, a call during the throttle window only
-records pending refresh work, and the promise may resolve before that fetch
-runs. The pending refresh is executed on the next request/access or
-`refreshFlags()` call after the throttle window expires.
-
-##### setFlagOverrides()
+### setFlagOverrides() <a href="#setflagoverrides-1" id="setflagoverrides-1"></a>
 
 ```ts
-setFlagOverrides(overrides: 
-  | Partial<Record<string, FlagOverride>>
+setFlagOverrides(overrides:
+  | Partial<Record<string, FlagValue>>
   | FlagOverridesFn): void
 ```
 
-Replaces the base flag overrides used by the client.
-
-###### Parameters
+###### Parameters <a href="#parameters-36" id="parameters-36"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2576,50 +2587,29 @@ Replaces the base flag overrides used by the client.
 </td>
 <td>
 
- \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagOverride`](globals.md#flagoverride)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
-
-</td>
-<td>
-
-The flag overrides.
+ \| [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagValue`](globals.md#flagvalue)\>\> \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-55" id="returns-55"></a>
 
 `void`
 
-###### Remarks
-
-Base overrides are always applied before any temporary layers added through
-`pushFlagOverrides()`.
-
-###### Example
-
-```ts
-client.setFlagOverrides({
-  "flag-1": true,
-  "flag-2": false,
-});
-```
-
-##### track()
+### track() <a href="#track-2" id="track-2"></a>
 
 ```ts
 track(
-   userId: IdType, 
-   event: string, 
+   userId: IdType,
+   event: string,
    options?: TrackOptions & {
   companyId: IdType;
 }): Promise<void>
 ```
 
-Tracks an event in Reflag.
-
-###### Parameters
+###### Parameters <a href="#parameters-37" id="parameters-37"></a>
 
 <table>
 <thead>
@@ -2668,19 +2658,11 @@ Tracks an event in Reflag.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-56" id="returns-56"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Throws
-
-An error if the user is not set or the event is invalid or the options are invalid.
-
-###### Remarks
-
-If the company is set, the event will be associated with the company.
-
-##### updateCompany()
+### updateCompany() <a href="#updatecompany-1" id="updatecompany-1"></a>
 
 ```ts
 updateCompany(companyId: IdType, options?: TrackOptions & {
@@ -2688,16 +2670,13 @@ updateCompany(companyId: IdType, options?: TrackOptions & {
 }): Promise<void>
 ```
 
-Updates the associated company in Reflag.
-
-###### Parameters
+###### Parameters <a href="#parameters-38" id="parameters-38"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2712,11 +2691,6 @@ Updates the associated company in Reflag.
 [`IdType`](globals.md#idtype)
 
 </td>
-<td>
-
-The companyId of the company to update.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -2729,44 +2703,27 @@ The companyId of the company to update.
 [`TrackOptions`](globals.md#trackoptions) & \{ `userId`: [`IdType`](globals.md#idtype); \}
 
 </td>
-<td>
-
-The options for the company.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-57" id="returns-57"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Throws
-
-An error if the company is not set or the options are invalid.
-
-###### Remarks
-
-The company must be set using `withCompany` before calling this method.
-If the user is set, the company will be associated with the user.
-
-##### updateUser()
+### updateUser() <a href="#updateuser-1" id="updateuser-1"></a>
 
 ```ts
 updateUser(userId: IdType, options?: TrackOptions): Promise<void>
 ```
 
-Updates the associated user in Reflag.
-
-###### Parameters
+###### Parameters <a href="#parameters-39" id="parameters-39"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2781,11 +2738,6 @@ Updates the associated user in Reflag.
 [`IdType`](globals.md#idtype)
 
 </td>
-<td>
-
-The userId of the user to update.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -2798,46 +2750,29 @@ The userId of the user to update.
 [`TrackOptions`](globals.md#trackoptions)
 
 </td>
-<td>
-
-The options for the user.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-58" id="returns-58"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-###### Throws
+## Interfaces <a href="#interfaces" id="interfaces"></a>
 
-An error if the company is not set or the options are invalid.
+### ContextWithTracking <a href="#contextwithtracking" id="contextwithtracking"></a>
 
-###### Remarks
+#### Extends <a href="#extends-1" id="extends-1"></a>
 
-The company must be set using `withCompany` before calling this method.
-If the user is set, the company will be associated with the user.
+- [`Context`](globals.md#context)
 
-## Interfaces
-
-### ContextWithTracking
-
-A context with tracking option.
-
-#### Extends
-
-- [`Context`](globals.md#context-1)
-
-#### Properties
+#### Properties <a href="#properties-2" id="properties-2"></a>
 
 <table>
 <thead>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2849,12 +2784,7 @@ A context with tracking option.
 </td>
 <td>
 
-\{ `[k: string]`: `any`; `avatar`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
-
-</td>
-<td>
-
-The company context. If no `id` key is set, the whole object is ignored.
+\{ `[key: string]`: `any`; `avatar`: `string`; `id`: `undefined` \| [`IdType`](globals.md#idtype); `name`: `string`; \}
 
 </td>
 </tr>
@@ -2869,11 +2799,6 @@ The company context. If no `id` key is set, the whole object is ignored.
 `string`
 
 </td>
-<td>
-
-The avatar URL of the company.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -2883,12 +2808,7 @@ The avatar URL of the company.
 </td>
 <td>
 
-`undefined` \| `string` \| `number`
-
-</td>
-<td>
-
-The identifier of the company.
+`undefined` \| [`IdType`](globals.md#idtype)
 
 </td>
 </tr>
@@ -2903,11 +2823,6 @@ The identifier of the company.
 `string`
 
 </td>
-<td>
-
-The name of the company.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -2918,12 +2833,6 @@ The name of the company.
 <td>
 
 `boolean`
-
-</td>
-<td>
-
-Enable tracking for the context.
-If set to `false`, tracking will be disabled for the context. Default is `true`.
 
 </td>
 </tr>
@@ -2938,12 +2847,6 @@ If set to `false`, tracking will be disabled for the context. Default is `true`.
 [`TrackingMeta`](globals.md#trackingmeta)
 
 </td>
-<td>
-
-The meta context used to update the user or company when syncing is required during
-feature retrieval.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -2956,11 +2859,6 @@ feature retrieval.
 [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
 </td>
-<td>
-
-The other context. This is used for any additional context that is not related to user or company.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -2970,12 +2868,7 @@ The other context. This is used for any additional context that is not related t
 </td>
 <td>
 
-\{ `[k: string]`: `any`; `avatar`: `string`; `email`: `string`; `id`: `undefined` \| `string` \| `number`; `name`: `string`; \}
-
-</td>
-<td>
-
-The user context. If no `id` key is set, the whole object is ignored.
+\{ `[key: string]`: `any`; `avatar`: `string`; `email`: `string`; `id`: `undefined` \| [`IdType`](globals.md#idtype); `name`: `string`; \}
 
 </td>
 </tr>
@@ -2990,11 +2883,6 @@ The user context. If no `id` key is set, the whole object is ignored.
 `string`
 
 </td>
-<td>
-
-The avatar URL of the user.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -3007,11 +2895,6 @@ The avatar URL of the user.
 `string`
 
 </td>
-<td>
-
-The email of the user.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -3021,12 +2904,7 @@ The email of the user.
 </td>
 <td>
 
-`undefined` \| `string` \| `number`
-
-</td>
-<td>
-
-The identifier of the user.
+`undefined` \| [`IdType`](globals.md#idtype)
 
 </td>
 </tr>
@@ -3041,152 +2919,29 @@ The identifier of the user.
 `string`
 
 </td>
-<td>
-
-The name of the user.
-
-</td>
 </tr>
 </tbody>
 </table>
 
 ***
 
-### Flag\<TConfig\>
+### Flags <a href="#flags" id="flags"></a>
 
-Describes a feature
-
-#### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-<th>Default type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`TConfig` *extends* [`FlagType`](globals.md#flagtype)\[`"config"`\]
-
-</td>
-<td>
-
-[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Properties
-
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config"></a> `config`
-
-</td>
-<td>
-
- \| [`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig) \| \{ `key`: `string`; \} & `TConfig`
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabled"></a> `isEnabled`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-If the feature is enabled.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key"></a> `key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the feature.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Methods
-
-##### track()
-
-```ts
-track(): Promise<void>
-```
-
-Track feature usage in Reflag.
-
-###### Returns
-
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+Augment this interface with flag keys and their returned value types.
 
 ***
 
-### Flags
+### FlagsFallbackProvider <a href="#flagsfallbackprovider" id="flagsfallbackprovider"></a>
 
-Describes a collection of evaluated features.
+#### Methods <a href="#methods-3" id="methods-3"></a>
 
-#### Remarks
-
-You should extend the Flags interface to define the available features.
-
-***
-
-### FlagsFallbackProvider
-
-Provider used to load and save raw flag definition snapshots.
-
-#### Methods
-
-##### load()
+### load() <a href="#load" id="load"></a>
 
 ```ts
 load(context: FlagsFallbackProviderContext): Promise<undefined | FlagsFallbackSnapshot>
 ```
 
-Load a previously saved snapshot.
-
-###### Parameters
+###### Parameters <a href="#parameters-40" id="parameters-40"></a>
 
 <table>
 <thead>
@@ -3211,19 +2966,17 @@ Load a previously saved snapshot.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-59" id="returns-59"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| [`FlagsFallbackSnapshot`](globals.md#flagsfallbacksnapshot)\>
 
-##### save()
+### save() <a href="#save" id="save"></a>
 
 ```ts
 save(context: FlagsFallbackProviderContext, snapshot: FlagsFallbackSnapshot): Promise<void>
 ```
 
-Persist a snapshot after a successful live fetch.
-
-###### Parameters
+###### Parameters <a href="#parameters-41" id="parameters-41"></a>
 
 <table>
 <thead>
@@ -3260,35 +3013,26 @@ Persist a snapshot after a successful live fetch.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-60" id="returns-60"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 ***
 
-### HttpClient
+### HttpClient <a href="#httpclient" id="httpclient"></a>
 
-Defines the interface for an HTTP client.
+#### Methods <a href="#methods-4" id="methods-4"></a>
 
-#### Remarks
-
-This interface is used to abstract the HTTP client implementation from the SDK.
-Define your own implementation of this interface to use a different HTTP client.
-
-#### Methods
-
-##### get()
+### get() <a href="#get" id="get"></a>
 
 ```ts
-get<TResponse>(
-   url: string, 
-   headers: Record<string, string>, 
-timeoutMs: number): Promise<HttpClientResponse<TResponse>>
+get<Response>(
+   url: string,
+   headers: Record<string, string>,
+timeoutMs: number): Promise<HttpClientResponse<Response>>
 ```
 
-Sends a GET request to the specified URL.
-
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-12" id="type-parameters-12"></a>
 
 <table>
 <thead>
@@ -3300,21 +3044,20 @@ Sends a GET request to the specified URL.
 <tr>
 <td>
 
-`TResponse`
+`Response`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-42" id="parameters-42"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -3329,11 +3072,6 @@ Sends a GET request to the specified URL.
 `string`
 
 </td>
-<td>
-
-The URL to send the request to.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -3344,11 +3082,6 @@ The URL to send the request to.
 <td>
 
 [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `string`\>
-
-</td>
-<td>
-
-The headers to include in the request.
 
 </td>
 </tr>
@@ -3363,33 +3096,24 @@ The headers to include in the request.
 `number`
 
 </td>
-<td>
-
-&hyphen;
-
-</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-61" id="returns-61"></a>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`HttpClientResponse`](globals.md#httpclientresponsetresponse)\<`TResponse`\>\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`HttpClientResponse`](globals.md#httpclientresponseresponse)\<`Response`\>\>
 
-The response from the server.
-
-##### post()
+### post() <a href="#post" id="post"></a>
 
 ```ts
-post<TBody, TResponse>(
-   url: string, 
-   headers: Record<string, string>, 
-body: TBody): Promise<HttpClientResponse<TResponse>>
+post<Body, Response>(
+   url: string,
+   headers: Record<string, string>,
+body: Body): Promise<HttpClientResponse<Response>>
 ```
 
-Sends a POST request to the specified URL.
-
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-13" id="type-parameters-13"></a>
 
 <table>
 <thead>
@@ -3401,28 +3125,27 @@ Sends a POST request to the specified URL.
 <tr>
 <td>
 
-`TBody`
+`Body`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`TResponse`
+`Response`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-43" id="parameters-43"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -3437,11 +3160,6 @@ Sends a POST request to the specified URL.
 `string`
 
 </td>
-<td>
-
-The URL to send the request to.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -3454,11 +3172,6 @@ The URL to send the request to.
 [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `string`\>
 
 </td>
-<td>
-
-The headers to include in the request.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -3468,184 +3181,43 @@ The headers to include in the request.
 </td>
 <td>
 
-`TBody`
-
-</td>
-<td>
-
-The body of the request.
+`Body`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-62" id="returns-62"></a>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`HttpClientResponse`](globals.md#httpclientresponsetresponse)\<`TResponse`\>\>
-
-The response from the server.
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`HttpClientResponse`](globals.md#httpclientresponseresponse)\<`Response`\>\>
 
 ***
 
-### Logger
+### Logger <a href="#logger" id="logger"></a>
 
-Logger interface for logging messages
+#### Methods <a href="#methods-5" id="methods-5"></a>
 
-#### Properties
+### debug() <a href="#debug" id="debug"></a>
+
+```ts
+debug(message: string, data?: any): void
+```
+
+###### Parameters <a href="#parameters-44" id="parameters-44"></a>
 
 <table>
 <thead>
 <tr>
-<th>Property</th>
+<th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-<a id="debug"></a> `debug`
-
-</td>
-<td>
-
-(`message`: `string`, `data`?: `any`) => `void`
-
-</td>
-<td>
-
-Log a debug messages
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="error"></a> `error`
-
-</td>
-<td>
-
-(`message`: `string`, `data`?: `any`) => `void`
-
-</td>
-<td>
-
-Log an error messages
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="info"></a> `info`
-
-</td>
-<td>
-
-(`message`: `string`, `data`?: `any`) => `void`
-
-</td>
-<td>
-
-Log an info messages
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="warn"></a> `warn`
-
-</td>
-<td>
-
-(`message`: `string`, `data`?: `any`) => `void`
-
-</td>
-<td>
-
-Log a warning messages
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### RawFlag
-
-Describes a feature.
-
-#### Properties
-
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config-1"></a> `config?`
-
-</td>
-<td>
-
-[`RawFlagRemoteConfig`](globals.md#rawflagremoteconfig)
-
-</td>
-<td>
-
-The remote configuration value for the feature.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="evaluationerrors"></a> `evaluationErrors?`
-
-</td>
-<td>
-
-`EvaluationError`[]
-
-</td>
-<td>
-
-Non-fatal diagnostics produced while evaluating targeting rules.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabled-1"></a> `isEnabled`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-If the feature is enabled.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key-1"></a> `key`
+`message`
 
 </td>
 <td>
@@ -3653,83 +3225,178 @@ If the feature is enabled.
 `string`
 
 </td>
-<td>
-
-The key of the feature.
-
-</td>
 </tr>
 <tr>
 <td>
 
-<a id="missingcontextfields"></a> ~~`missingContextFields?`~~
+`data`?
 
 </td>
 <td>
 
-`string`[]
-
-</td>
-<td>
-
-The missing fields in the evaluation context (optional).
-
-**Deprecated**
-
-Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="ruleevaluationresults"></a> `ruleEvaluationResults?`
-
-</td>
-<td>
-
-`boolean`[]
-
-</td>
-<td>
-
-The rule results of the evaluation (optional).
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="targetingversion"></a> `targetingVersion?`
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-The version of the targeting used to evaluate if the feature is enabled (optional).
+`any`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-## Type Aliases
+###### Returns <a href="#returns-63" id="returns-63"></a>
 
-### Attributes
+`void`
+
+### error() <a href="#error" id="error"></a>
+
+```ts
+error(message: string, data?: any): void
+```
+
+###### Parameters <a href="#parameters-45" id="parameters-45"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`message`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`data`?
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-64" id="returns-64"></a>
+
+`void`
+
+### info() <a href="#info" id="info"></a>
+
+```ts
+info(message: string, data?: any): void
+```
+
+###### Parameters <a href="#parameters-46" id="parameters-46"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`message`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`data`?
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-65" id="returns-65"></a>
+
+`void`
+
+### warn() <a href="#warn" id="warn"></a>
+
+```ts
+warn(message: string, data?: any): void
+```
+
+###### Parameters <a href="#parameters-47" id="parameters-47"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`message`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`data`?
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-66" id="returns-66"></a>
+
+`void`
+
+## Type Aliases <a href="#type-aliases" id="type-aliases"></a>
+
+### Attributes <a href="#attributes" id="attributes"></a>
 
 ```ts
 type Attributes = Record<string, any>;
 ```
 
-Describes the attributes of a user, company or event.
-
 ***
 
-### BatchBufferOptions\<T\>
+### BatchBufferOptions\<T\> <a href="#batchbufferoptionst" id="batchbufferoptionst"></a>
 
 ```ts
 type BatchBufferOptions<T> = {
@@ -3741,15 +3408,12 @@ type BatchBufferOptions<T> = {
 };
 ```
 
-Options for configuring the BatchBuffer.
-
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-14" id="type-parameters-14"></a>
 
 <table>
 <thead>
 <tr>
 <th>Type Parameter</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -3759,16 +3423,11 @@ Options for configuring the BatchBuffer.
 `T`
 
 </td>
-<td>
-
-The type of items in the buffer.
-
-</td>
 </tr>
 </tbody>
 </table>
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration" id="type-declaration"></a>
 
 <table>
 <thead>
@@ -3792,7 +3451,7 @@ The type of items in the buffer.
 </td>
 <td>
 
-A function that handles flushing the items in the buffer.
+&hyphen;
 
 </td>
 </tr>
@@ -3809,10 +3468,8 @@ A function that handles flushing the items in the buffer.
 </td>
 <td>
 
-Whether to flush the buffer on natural process exit (`beforeExit`).
-This does not install signal handlers. For signal-driven shutdown or an
-explicit `process.exit()`, await `client.flush()` in your application's
-shutdown hook before exiting.
+Flush on natural process exit (beforeExit), without installing signal handlers.
+For signals or process.exit(), await client.flush() in the application hook.
 
 </td>
 </tr>
@@ -3829,11 +3486,7 @@ shutdown hook before exiting.
 </td>
 <td>
 
-The interval in milliseconds at which the buffer is flushed.
-
-**Remarks**
-
-If `0`, the buffer is flushed only when `maxSize` is reached.
+&hyphen;
 
 </td>
 </tr>
@@ -3845,12 +3498,12 @@ If `0`, the buffer is flushed only when `maxSize` is reached.
 </td>
 <td>
 
-[`Logger`](globals.md#logger-2)
+[`Logger`](globals.md#logger)
 
 </td>
 <td>
 
-The logger to use for logging (optional).
+&hyphen;
 
 </td>
 </tr>
@@ -3867,7 +3520,7 @@ The logger to use for logging (optional).
 </td>
 <td>
 
-The maximum size of the buffer before it is flushed.
+&hyphen;
 
 </td>
 </tr>
@@ -3876,19 +3529,18 @@ The maximum size of the buffer before it is flushed.
 
 ***
 
-### BootstrappedFlags
+### BootstrappedFlags <a href="#bootstrappedflags" id="bootstrappedflags"></a>
 
 ```ts
 type BootstrappedFlags = {
   context: Context;
   flags: RawFlags;
   flagStateVersion: number;
+  protocolVersion: 2;
 };
 ```
 
-Describes a collection of evaluated raw flags and the context for bootstrapping.
-
-#### Type declaration
+#### Type declaration <a href="#type-declaration-1" id="type-declaration-1"></a>
 
 <table>
 <thead>
@@ -3906,7 +3558,7 @@ Describes a collection of evaluated raw flags and the context for bootstrapping.
 </td>
 <td>
 
-[`Context`](globals.md#context-1)
+[`Context`](globals.md#context)
 
 </td>
 </tr>
@@ -3934,12 +3586,24 @@ Describes a collection of evaluated raw flags and the context for bootstrapping.
 
 </td>
 </tr>
+<tr>
+<td>
+
+<a id="protocolversion"></a> `protocolVersion`
+
+</td>
+<td>
+
+`2`
+
+</td>
+</tr>
 </tbody>
 </table>
 
 ***
 
-### CacheStrategy
+### CacheStrategy <a href="#cachestrategy" id="cachestrategy"></a>
 
 ```ts
 type CacheStrategy = "periodically-update" | "in-request";
@@ -3947,7 +3611,7 @@ type CacheStrategy = "periodically-update" | "in-request";
 
 ***
 
-### ClientOptions
+### ClientOptions <a href="#clientoptions" id="clientoptions"></a>
 
 ```ts
 type ClientOptions = {
@@ -3957,10 +3621,10 @@ type ClientOptions = {
   configFile: string;
   emitEvaluationEvents: boolean;
   fallbackFlags:   | TypedFlagKey[]
-     | Record<TypedFlagKey, Exclude<FlagOverride, false>>;
+     | FlagOverrides;
   fetchTimeoutMs: number;
   flagOverrides:   | FlagOverrides
-     | (context: Context) => FlagOverrides;
+     | FlagOverridesFn;
   flagsFallbackProvider: FlagsFallbackProvider;
   flagsFetchRetries: number;
   flagsPushUrl: string;
@@ -3974,9 +3638,7 @@ type ClientOptions = {
 };
 ```
 
-Defines the options for the SDK client.
-
-#### Type declaration
+#### Type declaration <a href="#type-declaration-2" id="type-declaration-2"></a>
 
 <table>
 <thead>
@@ -4000,7 +3662,7 @@ Defines the options for the SDK client.
 </td>
 <td>
 
-The host to send requests to (optional).
+&hyphen;
 
 </td>
 </tr>
@@ -4017,8 +3679,7 @@ The host to send requests to (optional).
 </td>
 <td>
 
-The options for the batch buffer (optional).
-If not provided, the default options are used.
+&hyphen;
 
 </td>
 </tr>
@@ -4037,7 +3698,7 @@ If not provided, the default options are used.
 
 **Deprecated**
 
-Use `flagsSyncMode`.
+Use flagsSyncMode.
 
 </td>
 </tr>
@@ -4054,9 +3715,7 @@ Use `flagsSyncMode`.
 </td>
 <td>
 
-The path to the config file. If supplied, the config file will be loaded.
-Defaults to `reflag.config.json` when NODE_ENV is not production. Can also be
-set through the environment variable REFLAG_CONFIG_FILE.
+&hyphen;
 
 </td>
 </tr>
@@ -4073,11 +3732,9 @@ set through the environment variable REFLAG_CONFIG_FILE.
 </td>
 <td>
 
-Deprecated: evaluation events are no longer emitted.
-
 **Deprecated**
 
-This option has no effect and will be removed in the next major version.
+Evaluation events are not emitted.
 
 </td>
 </tr>
@@ -4090,20 +3747,12 @@ This option has no effect and will be removed in the next major version.
 <td>
 
   \| [`TypedFlagKey`](globals.md#typedflagkey)[]
-  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<[`TypedFlagKey`](globals.md#typedflagkey), [`Exclude`](https://www.typescriptlang.org/docs/handbook/utility-types.html#excludeuniontype-excludedmembers)\<[`FlagOverride`](globals.md#flagoverride), `false`\>\>
+  \| [`FlagOverrides`](globals.md#flagoverrides)
 
 </td>
 <td>
 
-The features to "enable" as fallbacks when the API is unavailable (optional).
-Can be an array of feature keys, or a record of feature keys and boolean or object values.
-
-If a record is supplied instead of array, the values of each key are either the
-configuration values or the boolean value `true`.
-
-**Deprecated**
-
-Use `flagsFallbackProvider` instead.
+Value-only startup fallbacks. Prefer a complete saved collection.
 
 </td>
 </tr>
@@ -4120,8 +3769,7 @@ Use `flagsFallbackProvider` instead.
 </td>
 <td>
 
-The timeout in milliseconds for fetching feature targeting data (optional).
-Default is 10000 ms.
+&hyphen;
 
 </td>
 </tr>
@@ -4133,16 +3781,13 @@ Default is 10000 ms.
 </td>
 <td>
 
-  \| [`FlagOverrides`](globals.md#flagoverrides-3)
-  \| (`context`: [`Context`](globals.md#context-1)) => [`FlagOverrides`](globals.md#flagoverrides-3)
+  \| [`FlagOverrides`](globals.md#flagoverrides)
+  \| [`FlagOverridesFn`](globals.md#flagoverridesfn)
 
 </td>
 <td>
 
-Local flag overrides for testing or development.
-
-If a function is specified, the function will be called with the context
-and should return a record of flag keys and boolean or object values.
+Applied after evaluation; overrides do not change dependency results.
 
 </td>
 </tr>
@@ -4159,8 +3804,7 @@ and should return a record of flag keys and boolean or object values.
 </td>
 <td>
 
-Optional provider used to load and save raw flag definitions for fallback startup.
-Ignored in offline mode.
+&hyphen;
 
 </td>
 </tr>
@@ -4177,8 +3821,7 @@ Ignored in offline mode.
 </td>
 <td>
 
-Number of times to retry fetching feature definitions (optional).
-Default is 3 times.
+&hyphen;
 
 </td>
 </tr>
@@ -4195,7 +3838,7 @@ Default is 3 times.
 </td>
 <td>
 
-Push endpoint used when `flagsSyncMode` is `"push"`.
+&hyphen;
 
 </td>
 </tr>
@@ -4207,16 +3850,12 @@ Push endpoint used when `flagsSyncMode` is `"push"`.
 </td>
 <td>
 
-[`FlagsSyncMode`](globals.md#flagssyncmode-1)
+[`FlagsSyncMode`](globals.md#flagssyncmode)
 
 </td>
 <td>
 
-How flag definitions are synchronized.
-
-- `push` (default): live updates over SSE keep flag definitions up to date.
-- `polling`: periodic background refresh.
-- `in-request`: stale refresh is triggered during request handling.
+&hyphen;
 
 </td>
 </tr>
@@ -4235,7 +3874,7 @@ How flag definitions are synchronized.
 
 **Deprecated**
 
-Use `apiBaseUrl` instead.
+Use apiBaseUrl.
 
 </td>
 </tr>
@@ -4247,12 +3886,12 @@ Use `apiBaseUrl` instead.
 </td>
 <td>
 
-[`HttpClient`](globals.md#httpclient-2)
+[`HttpClient`](globals.md#httpclient)
 
 </td>
 <td>
 
-The HTTP client to use for sending requests (optional). Default is the built-in fetch client.
+&hyphen;
 
 </td>
 </tr>
@@ -4264,12 +3903,12 @@ The HTTP client to use for sending requests (optional). Default is the built-in 
 </td>
 <td>
 
-[`Logger`](globals.md#logger-2)
+[`Logger`](globals.md#logger)
 
 </td>
 <td>
 
-The logger to use for logging (optional). Default is info level logging to console.
+&hyphen;
 
 </td>
 </tr>
@@ -4281,12 +3920,12 @@ The logger to use for logging (optional). Default is info level logging to conso
 </td>
 <td>
 
-[`LogLevel`](globals.md#loglevel-1)
+[`LogLevel`](globals.md#loglevel)
 
 </td>
 <td>
 
-Use the console logger, but set a log level. Ineffective if a custom logger is provided.
+&hyphen;
 
 </td>
 </tr>
@@ -4303,9 +3942,7 @@ Use the console logger, but set a log level. Ineffective if a custom logger is p
 </td>
 <td>
 
-In offline mode, no data is sent or fetched from the the Reflag API,
-and `flagsFallbackProvider` is not used.
-This is useful for testing or development.
+&hyphen;
 
 </td>
 </tr>
@@ -4322,7 +3959,7 @@ This is useful for testing or development.
 </td>
 <td>
 
-The secret key used to authenticate with the Reflag API.
+&hyphen;
 
 </td>
 </tr>
@@ -4331,36 +3968,32 @@ The secret key used to authenticate with the Reflag API.
 
 ***
 
-### Context
+### Context <a href="#context" id="context"></a>
 
 ```ts
 type Context = {
   company: {
-   [k: string]: any;   avatar: string;
-     id: string | number | undefined;
+   [key: string]: any;   avatar: string;
+     id: IdType | undefined;
      name: string;
     };
   other: Record<string, any>;
   user: {
-   [k: string]: any;   avatar: string;
+   [key: string]: any;   avatar: string;
      email: string;
-     id: string | number | undefined;
+     id: IdType | undefined;
      name: string;
     };
 };
 ```
 
-Describes the current user context, company context, and other context.
-This is used to determine if feature targeting matches and to track events.
-
-#### Type declaration
+#### Type declaration <a href="#type-declaration-3" id="type-declaration-3"></a>
 
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -4373,15 +4006,10 @@ This is used to determine if feature targeting matches and to track events.
 <td>
 
 \{
-`[k: string]`: `any`;   `avatar`: `string`;
-  `id`: `string` \| `number` \| `undefined`;
+`[key: string]`: `any`;   `avatar`: `string`;
+  `id`: [`IdType`](globals.md#idtype) \| `undefined`;
   `name`: `string`;
  \}
-
-</td>
-<td>
-
-The company context. If no `id` key is set, the whole object is ignored.
 
 </td>
 </tr>
@@ -4396,11 +4024,6 @@ The company context. If no `id` key is set, the whole object is ignored.
 `string`
 
 </td>
-<td>
-
-The avatar URL of the company.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -4410,12 +4033,7 @@ The avatar URL of the company.
 </td>
 <td>
 
-`string` \| `number` \| `undefined`
-
-</td>
-<td>
-
-The identifier of the company.
+[`IdType`](globals.md#idtype) \| `undefined`
 
 </td>
 </tr>
@@ -4430,11 +4048,6 @@ The identifier of the company.
 `string`
 
 </td>
-<td>
-
-The name of the company.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -4447,11 +4060,6 @@ The name of the company.
 [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `any`\>
 
 </td>
-<td>
-
-The other context. This is used for any additional context that is not related to user or company.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -4462,16 +4070,11 @@ The other context. This is used for any additional context that is not related t
 <td>
 
 \{
-`[k: string]`: `any`;   `avatar`: `string`;
+`[key: string]`: `any`;   `avatar`: `string`;
   `email`: `string`;
-  `id`: `string` \| `number` \| `undefined`;
+  `id`: [`IdType`](globals.md#idtype) \| `undefined`;
   `name`: `string`;
  \}
-
-</td>
-<td>
-
-The user context. If no `id` key is set, the whole object is ignored.
 
 </td>
 </tr>
@@ -4486,11 +4089,6 @@ The user context. If no `id` key is set, the whole object is ignored.
 `string`
 
 </td>
-<td>
-
-The avatar URL of the user.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -4503,11 +4101,6 @@ The avatar URL of the user.
 `string`
 
 </td>
-<td>
-
-The email of the user.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -4517,12 +4110,7 @@ The email of the user.
 </td>
 <td>
 
-`string` \| `number` \| `undefined`
-
-</td>
-<td>
-
-The identifier of the user.
+[`IdType`](globals.md#idtype) \| `undefined`
 
 </td>
 </tr>
@@ -4537,18 +4125,13 @@ The identifier of the user.
 `string`
 
 </td>
-<td>
-
-The name of the user.
-
-</td>
 </tr>
 </tbody>
 </table>
 
 ***
 
-### EdgeClientOptions
+### EdgeClientOptions <a href="#edgeclientoptions" id="edgeclientoptions"></a>
 
 ```ts
 type EdgeClientOptions = Omit<ClientOptions, "flagsSyncMode" | "cacheStrategy" | "flushIntervalMs" | "batchOptions">;
@@ -4556,55 +4139,7 @@ type EdgeClientOptions = Omit<ClientOptions, "flagsSyncMode" | "cacheStrategy" |
 
 ***
 
-### EmptyFlagRemoteConfig
-
-```ts
-type EmptyFlagRemoteConfig = {
-  key: undefined;
-  payload: undefined;
-};
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="key-2"></a> `key`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="payload"></a> `payload`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### FileFallbackProviderOptions
+### FileFallbackProviderOptions <a href="#filefallbackprovideroptions" id="filefallbackprovideroptions"></a>
 
 ```ts
 type FileFallbackProviderOptions = {
@@ -4612,7 +4147,7 @@ type FileFallbackProviderOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-4" id="type-declaration-4"></a>
 
 <table>
 <thead>
@@ -4645,30 +4180,126 @@ Directory where per-environment snapshots are stored.
 
 ***
 
-### FlagAPIResponse
+### FlagCollection <a href="#flagcollection" id="flagcollection"></a>
 
 ```ts
-type FlagAPIResponse = {
-  config: {
-     variants: FlagConfigVariant[];
-     version: number;
-    };
-  description: string | null;
-  key: string;
-  targeting: {
-     rules: {
-        filter: RuleFilter;
-       }[];
-     version: number;
-    };
+type FlagCollection = CompiledCollection<FlagValue> & {
+  segments: NonNullable<CompiledCollection["segments"]>;
 };
 ```
 
-**`Internal`**
+#### Type declaration <a href="#type-declaration-5" id="type-declaration-5"></a>
 
-(Internal) Describes a specific feature in the API response.
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-#### Type declaration
+`segments`
+
+</td>
+<td>
+
+[`NonNullable`](https://www.typescriptlang.org/docs/handbook/utility-types.html#nonnullabletype)\<`CompiledCollection`\[`"segments"`\]\>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### FlagDefaultFor\<Registry, Key\> <a href="#flagdefaultforregistry-key" id="flagdefaultforregistry-key"></a>
+
+```ts
+type FlagDefaultFor<Registry, Key> = keyof Registry extends never ? FlagDefaultValue | object : Key extends keyof Registry ? ReadonlyFlagValue<Registry[Key]> | null : never;
+```
+
+Registered defaults match the value schema; null explicitly requests arbitrary JSON.
+
+#### Type Parameters <a href="#type-parameters-15" id="type-parameters-15"></a>
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Registry`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Key` *extends* `PropertyKey`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### FlagDefaultValue <a href="#flagdefaultvalue" id="flagdefaultvalue"></a>
+
+```ts
+type FlagDefaultValue =
+  | null
+  | boolean
+  | number
+  | string
+  | readonly FlagDefaultValue[]
+| {};
+```
+
+JSON defaults may be readonly; returned values are independent mutable copies.
+
+***
+
+### FlagDefinition <a href="#flagdefinition" id="flagdefinition"></a>
+
+```ts
+type FlagDefinition = CompiledFlag<FlagValue>;
+```
+
+***
+
+### FlagEvent <a href="#flagevent" id="flagevent"></a>
+
+```ts
+type FlagEvent = {
+  action: "check";
+  evalContext: Record<string, unknown>;
+  evalErrors: (
+     | EvaluationError
+     | {
+     code: "CLIENT_NOT_INITIALIZED";
+     field: string;
+     message: string;
+    })[];
+  evalMissingFields: string[];
+  evalResult: string;
+  evalRuleResults: boolean[];
+  flagStateVersion: number;
+  key: string;
+  sourceVersionId: string;
+};
+```
+
+A check records the selected variant key, never its JSON payload.
+
+#### Type declaration <a href="#type-declaration-6" id="type-declaration-6"></a>
 
 <table>
 <thead>
@@ -4682,78 +4313,83 @@ type FlagAPIResponse = {
 <tr>
 <td>
 
-<a id="config-2"></a> `config`?
+<a id="action"></a> `action`
 
 </td>
 <td>
 
-\{
-  `variants`: [`FlagConfigVariant`](globals.md#flagconfigvariant)[];
-  `version`: `number`;
- \}
+`"check"`
 
 </td>
 <td>
 
-The remote configuration for the feature.
+&hyphen;
 
 </td>
 </tr>
 <tr>
 <td>
 
-`config.variants`
+<a id="evalcontext"></a> `evalContext`?
 
 </td>
 <td>
 
-[`FlagConfigVariant`](globals.md#flagconfigvariant)[]
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `unknown`\>
 
 </td>
 <td>
 
-The variants of the remote configuration.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.version`
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-The version of the remote configuration.
+&hyphen;
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="description"></a> `description`
+<a id="evalerrors"></a> `evalErrors`?
 
 </td>
 <td>
 
-`string` \| `null`
+(
+  \| `EvaluationError`
+  \| \{
+  `code`: `"CLIENT_NOT_INITIALIZED"`;
+  `field`: `string`;
+  `message`: `string`;
+ \})[]
 
 </td>
 <td>
 
-Description of the feature.
+&hyphen;
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="key-3"></a> `key`
+<a id="evalmissingfields"></a> `evalMissingFields`?
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+**Deprecated**
+
+Use evalErrors and check for MISSING_CONTEXT_FIELD.
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalresult"></a> `evalResult`?
 
 </td>
 <td>
@@ -4763,55 +4399,31 @@ Description of the feature.
 </td>
 <td>
 
-The key of the feature.
+&hyphen;
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="targeting"></a> `targeting`
+<a id="evalruleresults"></a> `evalRuleResults`?
 
 </td>
 <td>
 
-\{
-  `rules`: \{
-     `filter`: `RuleFilter`;
-    \}[];
-  `version`: `number`;
- \}
+`boolean`[]
 
 </td>
 <td>
 
-The targeting rules for the feature.
+&hyphen;
 
 </td>
 </tr>
 <tr>
 <td>
 
-`targeting.rules`
-
-</td>
-<td>
-
-\{
-  `filter`: `RuleFilter`;
- \}[]
-
-</td>
-<td>
-
-The targeting rules.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`targeting.version`
+<a id="flagstateversion-1"></a> `flagStateVersion`?
 
 </td>
 <td>
@@ -4821,59 +4433,14 @@ The targeting rules.
 </td>
 <td>
 
-The version of the targeting rules.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### FlagConfigVariant
-
-```ts
-type FlagConfigVariant = {
-  filter: RuleFilter;
-  key: string;
-  payload: any;
-};
-```
-
-Describes a remote feature config variant.
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="filter"></a> `filter`
-
-</td>
-<td>
-
-`RuleFilter`
-
-</td>
-<td>
-
-The filter for the variant.
+&hyphen;
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="key-4"></a> `key`
+<a id="key"></a> `key`
 
 </td>
 <td>
@@ -4883,197 +4450,14 @@ The filter for the variant.
 </td>
 <td>
 
-The key of the variant.
+&hyphen;
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="payload-1"></a> `payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### FlagDefinition
-
-```ts
-type FlagDefinition = {
-  config: {
-     variants: FlagConfigVariant[];
-     version: number;
-    };
-  description: string | null;
-  flag: {
-     rules: {
-        filter: RuleFilter;
-       }[];
-     version: number;
-    };
-  key: string;
-};
-```
-
-Describes a feature definition.
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config-3"></a> `config`?
-
-</td>
-<td>
-
-\{
-  `variants`: [`FlagConfigVariant`](globals.md#flagconfigvariant)[];
-  `version`: `number`;
- \}
-
-</td>
-<td>
-
-The remote configuration for the feature.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.variants`
-
-</td>
-<td>
-
-[`FlagConfigVariant`](globals.md#flagconfigvariant)[]
-
-</td>
-<td>
-
-The variants of the remote configuration.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.version`
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-The version of the remote configuration.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="description-1"></a> `description`
-
-</td>
-<td>
-
-`string` \| `null`
-
-</td>
-<td>
-
-Description of the feature.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="flag"></a> `flag`
-
-</td>
-<td>
-
-\{
-  `rules`: \{
-     `filter`: `RuleFilter`;
-    \}[];
-  `version`: `number`;
- \}
-
-</td>
-<td>
-
-The targeting rules for the feature.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`flag.rules`
-
-</td>
-<td>
-
-\{
-  `filter`: `RuleFilter`;
- \}[]
-
-</td>
-<td>
-
-The targeting rules.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`flag.version`
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-The version of the targeting rules.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key-5"></a> `key`
+<a id="sourceversionid"></a> `sourceVersionId`?
 
 </td>
 <td>
@@ -5083,7 +4467,7 @@ The version of the targeting rules.
 </td>
 <td>
 
-The key of the feature.
+&hyphen;
 
 </td>
 </tr>
@@ -5092,38 +4476,21 @@ The key of the feature.
 
 ***
 
-### FlagOverride
+### FlagOverrides <a href="#flagoverrides" id="flagoverrides"></a>
 
 ```ts
-type FlagOverride = 
-  | FlagType & {
-  config: {
-     key: string;
-    };
-  isEnabled: boolean;
- }
-  | boolean;
+type FlagOverrides = Partial<keyof Flags extends never ? Record<string, FlagValue> : { [Key in keyof Flags]: Flags[Key] }>;
 ```
 
 ***
 
-### FlagOverrides
-
-```ts
-type FlagOverrides = Partial<keyof Flags extends never ? Record<string, FlagOverride> : { [FlagKey in keyof Flags]: Flags[FlagKey] extends FlagOverride ? Flags[FlagKey] : Exclude<FlagOverride, "config"> }>;
-```
-
-Describes the feature overrides.
-
-***
-
-### FlagOverridesFn()
+### FlagOverridesFn() <a href="#flagoverridesfn" id="flagoverridesfn"></a>
 
 ```ts
 type FlagOverridesFn = (context: Context) => FlagOverrides;
 ```
 
-#### Parameters
+#### Parameters <a href="#parameters-48" id="parameters-48"></a>
 
 <table>
 <thead>
@@ -5141,134 +4508,42 @@ type FlagOverridesFn = (context: Context) => FlagOverrides;
 </td>
 <td>
 
-[`Context`](globals.md#context-1)
+[`Context`](globals.md#context)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-67" id="returns-67"></a>
 
-[`FlagOverrides`](globals.md#flagoverrides-3)
-
-***
-
-### FlagRemoteConfig
-
-```ts
-type FlagRemoteConfig = 
-  | {
-  key: string;
-  payload: any;
- }
-  | EmptyFlagRemoteConfig;
-```
-
-A remotely managed configuration value for a feature.
-
-#### Type declaration
-
-\{
-  `key`: `string`;
-  `payload`: `any`;
- \}
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the matched configuration value.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-[`EmptyFlagRemoteConfig`](globals.md#emptyflagremoteconfig)
+[`FlagOverrides`](globals.md#flagoverrides)
 
 ***
 
-### FlagsAPIResponse
+### FlagsAPIResponse <a href="#flagsapiresponse" id="flagsapiresponse"></a>
 
 ```ts
-type FlagsAPIResponse = {
-  features: FlagAPIResponse[];
+type FlagsAPIResponse = FlagCollection & {
   flagStateVersion: number;
+  protocolVersion: 2;
 };
 ```
 
-**`Internal`**
-
-(Internal) Describes the response of the features endpoint.
-
-#### Type declaration
+#### Type declaration <a href="#type-declaration-7" id="type-declaration-7"></a>
 
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-<a id="features"></a> `features`
-
-</td>
-<td>
-
-[`FlagAPIResponse`](globals.md#flagapiresponse)[]
-
-</td>
-<td>
-
-The feature definitions.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="flagstateversion-1"></a> `flagStateVersion`?
+`flagStateVersion`
 
 </td>
 <td>
@@ -5276,10 +4551,16 @@ The feature definitions.
 `number`
 
 </td>
+</tr>
+<tr>
 <td>
 
-Optional for backward compatibility; when absent, the snapshot version
-should be treated as unknown by consumers.
+`protocolVersion`
+
+</td>
+<td>
+
+`2`
 
 </td>
 </tr>
@@ -5288,7 +4569,7 @@ should be treated as unknown by consumers.
 
 ***
 
-### FlagsFallbackProviderContext
+### FlagsFallbackProviderContext <a href="#flagsfallbackprovidercontext" id="flagsfallbackprovidercontext"></a>
 
 ```ts
 type FlagsFallbackProviderContext = {
@@ -5296,17 +4577,13 @@ type FlagsFallbackProviderContext = {
 };
 ```
 
-Non-secret context passed to fallback providers so they can derive
-storage keys without access to the raw secret key.
-
-#### Type declaration
+#### Type declaration <a href="#type-declaration-8" id="type-declaration-8"></a>
 
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -5321,78 +4598,39 @@ storage keys without access to the raw secret key.
 `string`
 
 </td>
-<td>
-
-Deterministic hash of the configured secret key.
-
-</td>
 </tr>
 </tbody>
 </table>
 
 ***
 
-### FlagsFallbackSnapshot
+### FlagsFallbackSnapshot <a href="#flagsfallbacksnapshot" id="flagsfallbacksnapshot"></a>
 
 ```ts
-type FlagsFallbackSnapshot = {
-  flags: FlagAPIResponse[];
+type FlagsFallbackSnapshot = FlagCollection & {
+  flagStateVersion: number;
   savedAt: string;
-  version: number;
+  source: "static";
+  version: 2;
 };
 ```
 
-Snapshot of flag definitions used for fallback initialization.
+V1 snapshots cannot be evaluated by the collection evaluator.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-9" id="type-declaration-9"></a>
 
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-<a id="flags-2"></a> `flags`
-
-</td>
-<td>
-
-[`FlagAPIResponse`](globals.md#flagapiresponse)[]
-
-</td>
-<td>
-
-Raw flag definitions as returned by the API.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="savedat"></a> `savedAt`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-ISO timestamp indicating when the snapshot was saved.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="version"></a> `version`
+`flagStateVersion`?
 
 </td>
 <td>
@@ -5400,9 +4638,40 @@ ISO timestamp indicating when the snapshot was saved.
 `number`
 
 </td>
+</tr>
+<tr>
 <td>
 
-Snapshot schema version.
+`savedAt`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`source`?
+
+</td>
+<td>
+
+`"static"`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`version`
+
+</td>
+<td>
+
+`2`
 
 </td>
 </tr>
@@ -5411,7 +4680,7 @@ Snapshot schema version.
 
 ***
 
-### FlagsSyncMode
+### FlagsSyncMode <a href="#flagssyncmode" id="flagssyncmode"></a>
 
 ```ts
 type FlagsSyncMode = "polling" | "in-request" | "push";
@@ -5419,49 +4688,41 @@ type FlagsSyncMode = "polling" | "in-request" | "push";
 
 ***
 
-### FlagType
+### FlagValue <a href="#flagvalue" id="flagvalue"></a>
 
 ```ts
-type FlagType = {
-  config: {
-     payload: any;
-    };
-};
+type FlagValue =
+  | null
+  | boolean
+  | number
+  | string
+  | FlagValue[]
+| {};
 ```
 
-#### Type declaration
+***
+
+### FlagValueFromDefault\<T\> <a href="#flagvaluefromdefaultt" id="flagvaluefromdefaultt"></a>
+
+```ts
+type FlagValueFromDefault<T> = T extends null ? FlagValue : T extends boolean ? boolean : T extends number ? number : T extends string ? string : T extends readonly infer Element[] ? [Element] extends [never] ? FlagValue[] : FlagValueFromDefault<Element>[] : T extends object ? { -readonly [Key in keyof T]: FlagValueFromDefault<T[Key]> } : never;
+```
+
+Infer values from defaults, widening literals. Null explicitly requests arbitrary JSON.
+
+#### Type Parameters <a href="#type-parameters-16" id="type-parameters-16"></a>
 
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
+<th>Type Parameter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-<a id="config-4"></a> `config`?
-
-</td>
-<td>
-
-\{
-  `payload`: `any`;
- \}
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.payload`
-
-</td>
-<td>
-
-`any`
+`T`
 
 </td>
 </tr>
@@ -5470,17 +4731,17 @@ type FlagType = {
 
 ***
 
-### GCSFallbackProviderClient
+### GCSFallbackProviderClient <a href="#gcsfallbackproviderclient" id="gcsfallbackproviderclient"></a>
 
 ```ts
-type GCSFallbackProviderClient = 
+type GCSFallbackProviderClient =
   | GCSLegacyClient
   | GCSGoogleApisClient;
 ```
 
 ***
 
-### GCSFallbackProviderOptions
+### GCSFallbackProviderOptions <a href="#gcsfallbackprovideroptions" id="gcsfallbackprovideroptions"></a>
 
 ```ts
 type GCSFallbackProviderOptions = {
@@ -5490,7 +4751,7 @@ type GCSFallbackProviderOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-10" id="type-declaration-10"></a>
 
 <table>
 <thead>
@@ -5562,7 +4823,7 @@ Prefix for generated per-environment keys.
 
 ***
 
-### GCSGoogleApisClient
+### GCSGoogleApisClient <a href="#gcsgoogleapisclient" id="gcsgoogleapisclient"></a>
 
 ```ts
 type GCSGoogleApisClient = {
@@ -5575,7 +4836,7 @@ type GCSGoogleApisClient = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-11" id="type-declaration-11"></a>
 
 <table>
 <thead>
@@ -5633,7 +4894,7 @@ type GCSGoogleApisClient = {
 
 ***
 
-### GCSLegacyClient
+### GCSLegacyClient <a href="#gcslegacyclient" id="gcslegacyclient"></a>
 
 ```ts
 type GCSLegacyClient = {
@@ -5647,7 +4908,7 @@ type GCSLegacyClient = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-12" id="type-declaration-12"></a>
 
 <table>
 <thead>
@@ -5680,45 +4941,37 @@ type GCSLegacyClient = {
 
 ***
 
-### HttpClientResponse\<TResponse\>
+### HttpClientResponse\<Response\> <a href="#httpclientresponseresponse" id="httpclientresponseresponse"></a>
 
 ```ts
-type HttpClientResponse<TResponse> = {
-  body: TResponse | undefined;
+type HttpClientResponse<Response> = {
+  body: Response | undefined;
   etag: string;
   ok: boolean;
   status: number;
 };
 ```
 
-Describes the response of a HTTP client.
-
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-17" id="type-parameters-17"></a>
 
 <table>
 <thead>
 <tr>
 <th>Type Parameter</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`TResponse`
-
-</td>
-<td>
-
-The type of the response body.
+`Response`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-13" id="type-declaration-13"></a>
 
 <table>
 <thead>
@@ -5737,12 +4990,12 @@ The type of the response body.
 </td>
 <td>
 
-`TResponse` \| `undefined`
+`Response` \| `undefined`
 
 </td>
 <td>
 
-The body of the response if available.
+&hyphen;
 
 </td>
 </tr>
@@ -5759,8 +5012,7 @@ The body of the response if available.
 </td>
 <td>
 
-The response's ETag, if available. Return its exact value to enable
-conditional flag-definition refreshes with a custom HTTP client.
+Exact response ETag for conditional definition refreshes, when available.
 
 </td>
 </tr>
@@ -5777,7 +5029,7 @@ conditional flag-definition refreshes with a custom HTTP client.
 </td>
 <td>
 
-Indicates that the request succeeded.
+&hyphen;
 
 </td>
 </tr>
@@ -5794,7 +5046,7 @@ Indicates that the request succeeded.
 </td>
 <td>
 
-The status code of the response.
+&hyphen;
 
 </td>
 </tr>
@@ -5803,7 +5055,7 @@ The status code of the response.
 
 ***
 
-### IdType
+### IdType <a href="#idtype" id="idtype"></a>
 
 ```ts
 type IdType = string | number;
@@ -5811,7 +5063,7 @@ type IdType = string | number;
 
 ***
 
-### LogLevel
+### LogLevel <a href="#loglevel" id="loglevel"></a>
 
 ```ts
 type LogLevel = typeof LOG_LEVELS[number];
@@ -5819,53 +5071,42 @@ type LogLevel = typeof LOG_LEVELS[number];
 
 ***
 
-### RawFlagRemoteConfig
+### RawFlag <a href="#rawflag" id="rawflag"></a>
 
 ```ts
-type RawFlagRemoteConfig = {
-  evaluationErrors: EvaluationError[];
-  key: string;
-  missingContextFields: string[];
-  payload: any;
-  ruleEvaluationResults: boolean[];
-  targetingVersion: number;
+type RawFlag = Omit<FlagEvaluationResult<FlagValue>, "sourceVersionId" | "value" | "resolved"> & {
+  resolved: boolean;
+  sourceVersionId: string;
+  value: FlagValue | undefined;
 };
 ```
 
-A remotely managed configuration value for a feature.
-
-#### Type declaration
+#### Type declaration <a href="#type-declaration-14" id="type-declaration-14"></a>
 
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-<a id="evaluationerrors-1"></a> `evaluationErrors`?
+`resolved`
 
 </td>
 <td>
 
-`EvaluationError`[]
-
-</td>
-<td>
-
-Non-fatal diagnostics produced while evaluating targeting rules.
+`boolean`
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="key-6"></a> `key`
+`sourceVersionId`?
 
 </td>
 <td>
@@ -5873,81 +5114,16 @@ Non-fatal diagnostics produced while evaluating targeting rules.
 `string`
 
 </td>
-<td>
-
-The key of the matched configuration value.
-
-</td>
 </tr>
 <tr>
 <td>
 
-<a id="missingcontextfields-1"></a> `missingContextFields`?
+`value`
 
 </td>
 <td>
 
-`string`[]
-
-</td>
-<td>
-
-The missing fields in the evaluation context (optional).
-
-**Deprecated**
-
-Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="payload-2"></a> `payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="ruleevaluationresults-1"></a> `ruleEvaluationResults`?
-
-</td>
-<td>
-
-`boolean`[]
-
-</td>
-<td>
-
-The rule results of the evaluation (optional).
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="targetingversion-1"></a> `targetingVersion`?
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-The version of the targeting rules used to select the config value.
+[`FlagValue`](globals.md#flagvalue) \| `undefined`
 
 </td>
 </tr>
@@ -5956,17 +5132,15 @@ The version of the targeting rules used to select the config value.
 
 ***
 
-### RawFlags
+### RawFlags <a href="#rawflags" id="rawflags"></a>
 
 ```ts
-type RawFlags = Record<TypedFlagKey, RawFlag>;
+type RawFlags = Record<string, RawFlag>;
 ```
-
-Describes a collection of evaluated raw flags.
 
 ***
 
-### RedisFallbackProviderOptions
+### RedisFallbackProviderOptions <a href="#redisfallbackprovideroptions" id="redisfallbackprovideroptions"></a>
 
 ```ts
 type RedisFallbackProviderOptions = {
@@ -5978,7 +5152,7 @@ type RedisFallbackProviderOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-15" id="type-declaration-15"></a>
 
 <table>
 <thead>
@@ -6065,7 +5239,7 @@ Prefix for generated per-environment keys.
 
 ***
 
-### S3FallbackProviderOptions
+### S3FallbackProviderOptions <a href="#s3fallbackprovideroptions" id="s3fallbackprovideroptions"></a>
 
 ```ts
 type S3FallbackProviderOptions = {
@@ -6077,7 +5251,7 @@ type S3FallbackProviderOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-16" id="type-declaration-16"></a>
 
 <table>
 <thead>
@@ -6163,15 +5337,15 @@ Prefix for generated per-environment keys.
 
 ***
 
-### StaticFallbackProviderOptions
+### StaticFallbackProviderOptions <a href="#staticfallbackprovideroptions" id="staticfallbackprovideroptions"></a>
 
 ```ts
 type StaticFallbackProviderOptions = {
-  flags: Record<string, boolean>;
+  flags: Record<string, FlagValue>;
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-17" id="type-declaration-17"></a>
 
 <table>
 <thead>
@@ -6185,12 +5359,12 @@ type StaticFallbackProviderOptions = {
 <tr>
 <td>
 
-<a id="flags-3"></a> `flags`
+<a id="flags-2"></a> `flags`
 
 </td>
 <td>
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `boolean`\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FlagValue`](globals.md#flagvalue)\>
 
 </td>
 <td>
@@ -6204,7 +5378,7 @@ Static fallback flags keyed by flag key.
 
 ***
 
-### TrackingMeta
+### TrackingMeta <a href="#trackingmeta" id="trackingmeta"></a>
 
 ```ts
 type TrackingMeta = {
@@ -6212,16 +5386,13 @@ type TrackingMeta = {
 };
 ```
 
-Describes the meta context associated with tracking.
-
-#### Type declaration
+#### Type declaration <a href="#type-declaration-18" id="type-declaration-18"></a>
 
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -6236,18 +5407,13 @@ Describes the meta context associated with tracking.
 `boolean`
 
 </td>
-<td>
-
-Whether the user or company is active.
-
-</td>
 </tr>
 </tbody>
 </table>
 
 ***
 
-### TrackOptions
+### TrackOptions <a href="#trackoptions" id="trackoptions"></a>
 
 ```ts
 type TrackOptions = {
@@ -6256,16 +5422,13 @@ type TrackOptions = {
 };
 ```
 
-Defines the options for tracking of entities.
-
-#### Type declaration
+#### Type declaration <a href="#type-declaration-19" id="type-declaration-19"></a>
 
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -6280,11 +5443,6 @@ Defines the options for tracking of entities.
 [`Attributes`](globals.md#attributes)
 
 </td>
-<td>
-
-The attributes associated with the event.
-
-</td>
 </tr>
 <tr>
 <td>
@@ -6297,41 +5455,29 @@ The attributes associated with the event.
 [`TrackingMeta`](globals.md#trackingmeta)
 
 </td>
-<td>
-
-The meta context associated with the event.
-
-</td>
 </tr>
 </tbody>
 </table>
 
 ***
 
-### TypedFlagKey
+### TypedFlagKey <a href="#typedflagkey" id="typedflagkey"></a>
 
 ```ts
-type TypedFlagKey = keyof TypedFlags;
+type TypedFlagKey = keyof Flags extends never ? string : Extract<keyof Flags, string>;
 ```
 
 ***
 
-### TypedFlags
+### TypedFlags <a href="#typedflags" id="typedflags"></a>
 
 ```ts
-type TypedFlags = keyof Flags extends never ? Record<string, Flag> : { [FlagKey in keyof Flags]: Flags[FlagKey] extends FlagType ? Flag<Flags[FlagKey]["config"]> : Flag };
+type TypedFlags = keyof Flags extends never ? Record<string, FlagValue | undefined> : { [Key in keyof Flags]: Flags[Key] | undefined };
 ```
 
-Describes a collection of evaluated feature.
+## Variables <a href="#variables" id="variables"></a>
 
-#### Remarks
-
-This types falls back to a generic Record<string, Flag> if the Flags interface
-has not been extended.
-
-## Variables
-
-### fallbackProviders
+### fallbackProviders <a href="#fallbackproviders" id="fallbackproviders"></a>
 
 ```ts
 const fallbackProviders: {
@@ -6343,7 +5489,7 @@ const fallbackProviders: {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-20" id="type-declaration-20"></a>
 
 <table>
 <thead>
@@ -6442,10 +5588,4 @@ createStaticFallbackProvider
 </tbody>
 </table>
 
-***
-
-### LOG\_LEVELS
-
-```ts
-const LOG_LEVELS: readonly ["DEBUG", "INFO", "WARN", "ERROR"];
-```
+Using v1? [Legacy docs](../../legacy/v1/node-sdk/globals.md) · [Upgrade guide](../migrating-from-v1.md).

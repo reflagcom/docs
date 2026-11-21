@@ -1,54 +1,88 @@
 ---
-description: Reflag offers type safety which reduces errors and frustation
+description: Register flag keys and schemas with the Reflag SDKs and CLI.
 ---
 
 # Type safety
 
-{% embed url="https://www.youtube.com/watch?v=2ay2sc9g6Oc" %}
+The Reflag SDKs infer a flag's type from the default you pass, so you get useful types without any setup. Registering your flags also catches misspelled keys and defaults that don't match your flag's values.
 
-Type safety in Reflag ensures that flag key typos become build errors. This guarantees that if you try to use a non-existent flag key, you'll receive a type error, preventing potential runtime errors and improving code reliability. For remote config, it also ensures that the shape of the payload defined on Reflag matches what your code expects.
+```tsx
+import { useFlag } from "@reflag/react-sdk";
 
-Use the Reflag CLI to generate flag types from their definition in Reflag. Once flag types have been generated they are automatically picked up by TypeScript.
+export function TokenLimit() {
+  const settings = useFlag("assistant-settings", { maxTokens: 512 });
+  return <span>{settings.maxTokens}</span>;
+}
+```
 
-It's recommended that you do not check in the flag types, but instead generate them in your build process and on your local development machines.
+Here the default `512` gives `maxTokens` the type `number`. Without a default, you get a Boolean; with `null`, you get any JSON value.
 
 ## Set up type safety for flags
 
-1.  Install the Reflag CLI and set up your repository
+Install the Reflag CLI and generate declarations for your flags:
 
-    ```
-    npm install --save-dev @reflag/cli
-    npx reflag init
-    ```
-2.  Generate the types locally
+```sh
+npm install --save-dev @reflag/cli
+npx reflag init
+npx reflag flags types
+```
 
-    ```
-    npx reflag types generate
-    ```
-3.  Add the generated files to `.gitignore`
+`reflag init` asks which SDK you use. To choose the format explicitly:
 
-    ```
-    echo "gen/flags.d.ts" >> .gitignore
-    ```
-4. Retrieve an [API Key](http://app.reflag.com/env-current/settings/org-api-access) for your build system
-5.  Set up your build system to run the Reflag CLI to generate types (use the `--api-key` option or specify the API key in the `REFLAG_API_KEY` environment variable)
+```sh
+npx reflag flags types --format react --out gen/flags.d.ts
+npx reflag flags types --format node --out gen/flags.d.ts
+```
 
-    ```
-    npx reflag apps list --api-key $REFLAG_API_KEY
-    ```
+Make sure TypeScript includes the output file.
 
-Example CI workflow:
+Types are generated from the variant values in your production environment. Regenerate them when your flags change, and let generation errors fail your build so the types don't silently go stale.
+
+You can commit the generated file, or ignore it and generate it on local setup and in CI. If you ignore it:
+
+```sh
+echo "gen/flags.d.ts" >> .gitignore
+```
+
+## Check defaults against your flags
+
+A React registration looks like this (the CLI writes the appropriate augmentation for you):
+
+```tsx
+import { useFlag } from "@reflag/react-sdk";
+
+declare module "@reflag/react-sdk" {
+  interface Flags {
+    "assistant-settings": { maxTokens: number; model: "quick" | "reasoner" };
+  }
+}
+
+export function RegisteredSettings() {
+  const settings = useFlag("assistant-settings", {
+    maxTokens: 512,
+    model: "quick",
+  });
+  return (
+    <span>
+      {settings.model}: {settings.maxTokens}
+    </span>
+  );
+}
+```
+
+With a registered flag, TypeScript checks that the default you pass matches the flag's type, including nested fields.
+
+These checks happen at compile time only. See your SDK's guide for what it checks at runtime.
+
+## Using in CI/CD pipelines
+
+Store a [Management API key](../api/api-access.md) as a secret in your CI system.
 
 ```yaml
-# GitHub Actions example
-- name: Generate types
-  run: npx reflag flags types --api-key ${{ secrets.REFLAG_API_KEY }}
-
-# GitHub Actions example (using environment):
-- name: Generate types (environment)
+- name: Generate flag types
   run: npx reflag flags types
   env:
     REFLAG_API_KEY: ${{ secrets.REFLAG_CI_API_KEY }}
 ```
 
-There's further guidance and examples of using [Reflag CLI in CI/CD pipelines](https://docs.reflag.com/api/cli#using-in-ci-cd-pipelines-beta).
+Install your project's dependencies before this step, so it uses the CLI version from your lockfile.

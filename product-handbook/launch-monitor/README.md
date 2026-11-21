@@ -12,24 +12,21 @@ The Exposed chart shows the distinct count of companies that have been exposed t
 
 The Tracked chart shows the distinct count of companies that have interacted with the flagged workflow. Interactions are tracked with the `track` method.
 
-```typescript
-import { useFlag } from "@reflag/react-sdk";
+```tsx
+import { useFlag, useTrack } from "@reflag/react-sdk";
 
 function StartHuddleButton() {
-  const { isLoading, isEnabled, track } = useFlag("huddle");
+  const enabled = useFlag("huddle");
+  const track = useTrack();
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!isEnabled) {
+  if (!enabled) {
     return null;
   }
 
   return (
     <div>
       Huddles
-      <button onClick={() => track()}>Start huddle</button>
+      <button onClick={() => track("Started huddle")}>Start huddle</button>
     </div>
   );
 }
@@ -41,19 +38,18 @@ You can collect end-user feedback on new flag rollouts to catch and fix issues f
 
 ### Static feedback button
 
-Here's a brief example using the [Reflag React SDK](../../supported-languages/browser-sdk/) to collect feedback:
+Configure the flag's adoption rules to match the event name you track. Reading a flag records a check automatically; call `track()` when someone actually uses the feature.
+
+Here's a brief example using the [Reflag React SDK](../../supported-languages/react-sdk/README.md) to collect feedback:
 
 ```tsx
-import { useFlag } from "@reflag/react-sdk";
+import { useFlag, useRequestFeedback } from "@reflag/react-sdk";
 
 function StartHuddleButton() {
-  const { isLoading, isEnabled, requestFeedback } = useFlag("my-flag");
+  const enabled = useFlag("my-flag");
+  const requestFeedback = useRequestFeedback();
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!isEnabled) {
+  if (!enabled) {
     return null;
   }
 
@@ -61,7 +57,7 @@ function StartHuddleButton() {
     <>
       <button>Use huddle</button>
       <button
-        onClick={() => requestFeedback({ title: "How do you like huddles?" })}
+        onClick={() => requestFeedback({ flagKey: "my-flag", title: "How do you like huddles?" })}
       >
         Give feedback!
       </button>

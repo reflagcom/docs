@@ -1,0 +1,12 @@
+{
+  "sourceRepository": "https://github.com/reflagcom/javascript",
+  "sourceCommit": "b4fe5b3d9386b87c6546175c323862d9878e1430",
+  "package": "@reflag/node-sdk",
+  "version": "1.8.3",
+  "files": {
+    "legacy/v1/_media/type-check-failed.png": "f04547c0bf0425bcf554aa1a1dddec56096ca9967d120bdca7737562327d4db8",
+    "legacy/v1/_media/type-check-payload-failed.png": "8b53c24ecd19288111bda14eab7c490f7e26abba569eea11e16504cc7abeb54a",
+    "legacy/v1/node-sdk/README.md": "603af9b3c555078fa053e66134670b1e4d55150a340457a90d84e7f97376f57a",
+    "legacy/v1/node-sdk/globals.md": "0ada91a1c29fac51f779c1694e60c1a72cb96241438f17d531b1786ea1ee3ad1"
+  }
+}

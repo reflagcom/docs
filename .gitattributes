@@ -1,0 +1,9 @@
+# Generated SDK copies; authoritative READMEs/comments live in reflagcom/javascript.
+sdk/** linguist-generated=true
+supported-languages/browser-sdk/** linguist-generated=true
+supported-languages/react-sdk/** linguist-generated=true
+supported-languages/vue-sdk/** linguist-generated=true
+supported-languages/node-sdk/** linguist-generated=true
+supported-languages/react-native-sdk/** linguist-generated=true
+legacy/v1/*-sdk/** linguist-generated=true
+.generated/** linguist-generated=true

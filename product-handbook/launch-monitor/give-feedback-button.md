@@ -1,36 +1,33 @@
 ---
-description: Adding a feedback button using Reflag SDKs in a few lines of code.
+description: Add a feedback button with the React SDK feedback hook.
 ---
 
 # Give feedback button
 
-Collecting feedback through a "Give feedback" button is a great way to collect feedback from users.
-
-Here's a brief example using the [Reflag React SDK](../../supported-languages/browser-sdk/):
+Use the `useRequestFeedback()` hook to open a feedback form from your own button:
 
 ```tsx
-import { useFlag } from "@reflag/react-sdk";
+import { useFlag, useRequestFeedback, useTrack } from "@reflag/react-sdk";
 
-function StartHuddleButton() {
-  const { isLoading, isEnabled, track, requestFeedback } = useFlag("huddle");
+export function StartHuddleButton() {
+  const enabled = useFlag("huddle");
+  const track = useTrack();
+  const requestFeedback = useRequestFeedback();
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!isEnabled) {
-    return null;
-  }
+  if (!enabled) return null;
 
   return (
     <>
-      <button onClick={track}>Start huddle!</button>
-      <button
-        onClick={() => requestFeedback({ title: "How do you like Huddles?" })}
-      >
+      <button onClick={() => track("Started huddle")}>Start huddle!</button>
+      <button onClick={() => requestFeedback({
+        flagKey: "huddle",
+        title: "How do you like Huddles?",
+      })}>
         Give feedback!
       </button>
     </>
   );
 }
 ```
+
+Render this component inside a [React SDK provider](../../supported-languages/react-sdk/README.md) with the appropriate user/company context. Configure adoption rules to match the event you track. For widget positioning, translations, styling, or your own UI, see [Browser feedback](../../supported-languages/browser-sdk/feedback.md).

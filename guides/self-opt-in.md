@@ -19,8 +19,6 @@ For an overview of how opt-in affects access and how memberships are managed in 
 
 Render the available opt-in flags and let the current user set their opt-in status.
 
-If you're using `<ReflagBootstrappedProvider>` without a `<Suspense>` boundary, see the loading section below.
-
 ```tsx
 import { useState } from "react";
 import {
@@ -31,7 +29,11 @@ import {
 import { Spinner } from "your-component-library";
 
 function OptInPage() {
-  const { flags: optInFlags } = useOptInFlags();
+  const { flags: optInFlags, isLoading } = useOptInFlags({ suspense: false });
+
+  if (isLoading) {
+    return <Spinner aria-label="Loading opt-in flags" />;
+  }
 
   if (optInFlags.length === 0) {
     return <p>No opt-in flags are available.</p>;
@@ -107,25 +109,11 @@ User and company opt-ins are independent. Setting `optedIn` to `false` removes o
 
 Cancelling every opt-in does not necessarily disable the flag: an access rule may independently enable it for the current context.
 
-## Managing loading state with `<ReflagBootstrappedProvider>` and without `<Suspense>`
+## Managing opt-in loading state
 
-Only apps using `ReflagBootstrappedProvider` without Suspense need to handle this loading state. Bootstrapped flag data does not include opt-in metadata, so the SDK fetches it when `useOptInFlags()` is first used.
+The list of opt-in flags can still be loading after the rest of your flags are ready, for example when you bootstrap flags from the server. Check `isLoading` before rendering an empty state, as the quick start does, so users don't briefly see "No opt-in flags are available."
 
-Check the hook's `isLoading` value before rendering an empty state:
-
-```tsx
-const { flags: optInFlags, isLoading } = useOptInFlags({ suspense: false });
-
-if (isLoading) {
-  return <Spinner aria-label="Loading opt-in flags" />;
-}
-
-if (optInFlags.length === 0) {
-  return <p>No opt-in flags are available.</p>;
-}
-```
-
-With a regular `ReflagProvider`, opt-in metadata arrives as part of the normal flags request, so `useOptInFlags().isLoading` remains `false`. Use `useIsLoading()`, suspense or the provider's `loadingComponent` for the normal initial loading state.
+To use a Suspense boundary instead, call `useOptInFlags({ suspense: true })`.
 
 ## Next steps
 

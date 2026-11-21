@@ -24,24 +24,25 @@ Reflag is purpose-built for B2B, with native support for gating flags at the com
 
 ### Step 1: Initialize Reflag
 
-Choose [an SDK](https://app.gitbook.com/s/pgXAy2Cgsm5pON9oJ06m/supported-languages) to get started, if you haven't already.\
+Choose [an SDK](../../supported-languages/overview.md) to get started, if you haven't already.\
 \
 Reflag needs to know who the authenticated user is and which company they belong to. We attach attribute metadata such as the company's subscription plan.
 
 ```tsx
-// identify user
-reflag.user(userId1356, {
-    name: “Rasmus Makwarth”,
-});
+import { ReflagProvider } from "@reflag/react-sdk";
 
-// associate user with company
-reflag.company(companyId51, {
-    name: “Acme Inc.”,
-    plan: “business”,
-});
+<ReflagProvider
+  publishableKey="your-publishable-key"
+  context={{
+    user: { id: "user-1356", name: "Example user" },
+    company: { id: "company-51", name: "Example company", plan: "business" },
+  }}
+>
+  {/* your application */}
+</ReflagProvider>;
 ```
 
-Reflag now understands that Rasmus works for Acme Inc. and Acme Inc. is on the Business subscription plan.
+Reflag can now target the company's Business subscription plan. Users can change what their browser sends, so also check sensitive entitlements on your server, using the plan from your own billing data.
 
 {% hint style="info" %}
 You can send company attributes as part of the user sign-in event, via a nightly job, or use `updateCompany()` when the attribute value changes.
@@ -74,12 +75,12 @@ Each flag comes with a [flag key](../concepts/feature.md#flag-key), such as `exp
 In React, it’d look like this:
 
 ```tsx
-const { isEnabled } = useFlag("export-to-csv");
+import { useFlag } from "@reflag/react-sdk";
 
-if(isEnabled) { 
-
-      // access to csv export!
-
+function ExportButton() {
+  const enabled = useFlag("export-to-csv");
+  if (!enabled) return null;
+  return <button>Export to CSV</button>;
 }
 ```
 
@@ -119,10 +120,9 @@ Send usage metrics to Reflag using company attributes.
 
 For example, you can send the company's current usage metrics to Reflag at an hourly or daily interval.
 
-```tsx
-reflag.companyUpdate(companyId51, {
-    apiRequestsCurrentMonth: 793
-});
+```ts
+// On an initialized Browser SDK client:
+await reflag.updateCompany({ apiRequestsCurrentMonth: 793 });
 ```
 
 ### Step 2: Gate using usage attribute

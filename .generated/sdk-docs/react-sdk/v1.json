@@ -1,0 +1,10 @@
+{
+  "sourceRepository": "https://github.com/reflagcom/javascript",
+  "sourceCommit": "b4fe5b3d9386b87c6546175c323862d9878e1430",
+  "package": "@reflag/react-sdk",
+  "version": "1.7.4",
+  "files": {
+    "legacy/v1/react-sdk/README.md": "843ed048847c9a84a904f3ac2b9a0a10c17bc954f7b55e9271d02bd8804eb70c",
+    "legacy/v1/react-sdk/globals.md": "821f640a266168ef35f25114b6a99f4abf80af5aaae9461e2188749526a5eb20"
+  }
+}
