@@ -133,7 +133,7 @@ npm install @reflag/node-sdk@2 @reflag/node-sdk-v1@npm:@reflag/node-sdk@1.8.0
 
 On the server, initialize both clients once at startup with the same `REFLAG_SECRET_KEY`. Build the context from the authenticated user's session, using only attributes the browser can see. The example assumes your existing v1 snapshot is safe to send to the browser. Keep any checks that make it safe; if you can't guarantee it contains only public data, use publishable-key fetching instead.
 
-Keep the existing v1 tracking behavior. Set `enableTracking: false` on the additional v2 bootstrap call to avoid syncing the same user and company twice from the server. This doesn't disable tracking in the browser.
+Use v2 for normal server reads and tracking. Use v1 only to build the legacy snapshot, with `enableTracking: false` so the server doesn't sync the same user and company twice. v1 copies that setting into the snapshot, so restore the request's original tracking preference before sending it to old browsers.
 
 ```ts
 import { ReflagClient as ReflagV1 } from "@reflag/node-sdk-v1";
@@ -146,17 +146,25 @@ export async function initializeFlags() {
   await Promise.all([v1.initialize(), v2.initialize()]);
 }
 
+function getLegacyBootstrap(context: ContextWithTracking) {
+  const snapshot = v1.getFlagsForBootstrap({ ...context, enableTracking: false });
+  return {
+    ...snapshot,
+    context: { ...snapshot.context, enableTracking: context.enableTracking ?? true },
+  };
+}
+
 export function getBootstrapData(context: ContextWithTracking) {
   return {
-    flags: v1.getFlagsForBootstrap(context),
-    flagsV2: v2.getFlagsForBootstrap({ ...context, enableTracking: false }),
+    flags: getLegacyBootstrap(context),
+    flagsV2: v2.getFlagsForBootstrap(context),
   };
 }
 ```
 
 1. **Deploy the server first.** Add `flagsV2` wherever you already send bootstrap data (HTML or API), without changing `flags`. Use your framework's safe serializer when embedding data in HTML. The secret key stays on the server.
 2. **Deploy the v2 client.** Old clients continue reading `flags`. New clients read only `flagsV2`: for example, pass it to React or Vue's `ReflagBootstrappedProvider` as `flags`, or to the Browser SDK as `bootstrappedState`. If `flagsV2` is missing (for example, after a server rollback), fetch flags with the v2 SDK and your publishable key instead. Don't pass `flags` to the v2 SDK.
-3. **Remove the bridge when it's no longer needed.** Keep the v1 field and SDK alias until no supported clients need v1 bootstrap data and you no longer need to roll back to a v1 client.
+3. **Remove the bridge when it's no longer needed.** Once no supported clients need v1 bootstrap data and you no longer need to roll back to a v1 client, remove the v1 alias, client, helper and `flags` field. The v2 bootstrap and tracking code stays the same.
 
 ### Replace saved state
 
