@@ -4,15 +4,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import {
-  anchorHeadings,
-  applyPlan,
-  currentVersionNote,
-  docsPath,
-  planPackage,
-  releaseFiles,
-  webSDKs,
-} from "./sdk-docs.mjs";
+
 import {
   anchors,
   checkCurrentPagePresentation,
@@ -21,6 +13,16 @@ import {
   root,
   sourceMatrix,
 } from "./check-sdk-docs.mjs";
+import {
+  anchorHeadings,
+  applyPlan,
+  currentVersionNote,
+  docsPath,
+  planPackage,
+  releaseFiles,
+  versionedDocsReady,
+  webSDKs,
+} from "./sdk-docs.mjs";
 
 function fixture(t, major = 2) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "reflag-sdk-docs-test-"));
@@ -67,47 +69,71 @@ function fixture(t, major = 2) {
   };
 }
 
-test("repository navigation, provenance, cross-version links, assets and anchors", () => {
-  assert(checkSDKDocs().generatedPages >= 28);
+test("repository navigation is valid before the separate public-content cutover", () => {
+  assert(checkSDKDocs().navigationPages > 0);
 });
 
-test("handbook keeps Remote config as a short pointer to the full Multivariate flags guide", () => {
-  const summary = fs.readFileSync(path.join(root, "SUMMARY.md"), "utf8");
-  for (const file of ["remote-config.md", "multivariate-flags.md"])
-    assert(summary.includes(`(product-handbook/${file})`));
-  const remote = fs.readFileSync(path.join(root, "product-handbook/remote-config.md"), "utf8");
-  const paragraph = remote
-    .replace(/^---\n[\s\S]*?\n---\n/, "")
-    .replace(/^# Remote config\s*/m, "")
-    .trim();
-  assert.equal(paragraph.split(/\n\s*\n/).length, 1);
-  assert.match(paragraph, /\[Multivariate flag\]\(multivariate-flags\.md\)/);
-  assert(!paragraph.includes("```"));
-  const multivariate = fs.readFileSync(
-    path.join(root, "product-handbook/multivariate-flags.md"),
-    "utf8",
-  );
-  assert.match(multivariate, /^# Multivariate flags$/m);
-  assert(multivariate.includes("export function AssistantSettings()"));
-  assert(multivariate.includes("export function AssistantModel()"));
-  assert.match(
-    multivariate,
-    /^## Migrating from Remote config$[\s\S]*^### Using an AI agent$[\s\S]*^### Manual migration\n\n1\./m,
-  );
-  assert(multivariate.includes("[Reflag MCP](../api/mcp.md)"));
-  checkLinks(root, ["product-handbook/remote-config.md", "product-handbook/multivariate-flags.md"]);
+test("source discovery supports infrastructure-only installs and groups exact manifest refs", (t) => {
+  const { options, destination } = fixture(t);
+  assert.deepEqual(sourceMatrix(destination), { include: [] });
+  for (const name of ["react-sdk", "browser-sdk"])
+    applyPlan(planPackage({ ...options, name }), destination);
+  assert.deepEqual(sourceMatrix(destination), {
+    include: [
+      {
+        ref: options.commit,
+        packages: "--package browser-sdk --package react-sdk",
+      },
+    ],
+  });
 });
 
-test("CI discovers exact source refs from manifests rather than hardcoding the first import", () => {
-  const matrix = sourceMatrix();
-  assert(matrix.include.length > 0);
-  for (const row of matrix.include) {
-    assert(/^[a-f\d]{40}$/.test(row.ref));
-    assert.match(
-      row.packages,
-      /^(?:--package (?:browser-sdk|react-sdk|vue-sdk|node-sdk|react-native-sdk|management-sdk|cli)(?: |$))+$/,
+test("release readiness waits for both public migration and archive landing pages without writing", (t) => {
+  const { destination, put } = fixture(t);
+  const ready = () =>
+    execFileSync(
+      process.execPath,
+      [path.join(root, ".github/scripts/sdk-docs.mjs"), "ready", "--destination", destination],
+      { encoding: "utf8" },
     );
-  }
+  assert.equal(versionedDocsReady(destination), false);
+  assert.equal(ready(), "ready=false\n");
+  assert(!fs.existsSync(destination));
+  put(path.join(destination, "legacy/v1/README.md"), "# Legacy\n");
+  assert.equal(ready(), "ready=false\n");
+  put(path.join(destination, "supported-languages/migrating-from-v1.md"), "# Migration\n");
+  assert.equal(ready(), "ready=true\n");
+  assert.equal(versionedDocsReady(destination), true);
+});
+
+test("release CLI rejects a pre-cutover destination before reading sources or writing pages", (t) => {
+  const { source, destination } = fixture(t);
+  assert.throws(
+    () =>
+      execFileSync(
+        process.execPath,
+        [
+          path.join(root, ".github/scripts/sdk-docs.mjs"),
+          "release",
+          "--source",
+          source,
+          "--destination",
+          destination,
+          "--plan",
+          "missing.json",
+        ],
+        { stdio: "pipe" },
+      ),
+    /Versioned documentation must be published/,
+  );
+  assert(!fs.existsSync(destination));
+});
+
+test("a partial content cutover fails validation rather than bypassing version isolation", (t) => {
+  const { options, destination, put } = fixture(t);
+  put(path.join(destination, "SUMMARY.md"), "# Contents\n");
+  applyPlan(planPackage(options), destination);
+  assert.throws(() => checkSDKDocs(destination), /Incomplete versioned documentation cutover/);
 });
 
 test("v1 import owns only the archive, pins installers/CDN and routes SDK links to v1", (t) => {
@@ -358,7 +384,10 @@ test("release sync requires the exact clean tagged source and rejects prerelease
     "Fixture",
   );
   const sourceCommit = git("rev-parse", "HEAD");
-  const plan = { sourceCommit, releases: [{ name: "@reflag/react-sdk", version: "2.0.0" }] };
+  const plan = {
+    sourceCommit,
+    releases: [{ name: "@reflag/react-sdk", version: "2.0.0" }],
+  };
   git("tag", "@reflag/react-sdk@2.0.0");
   assert(releaseFiles(source, plan).has("supported-languages/react-sdk/README.md"));
   assert.throws(
@@ -366,7 +395,11 @@ test("release sync requires the exact clean tagged source and rejects prerelease
     /source changed/,
   );
   assert.throws(
-    () => releaseFiles(source, { ...plan, releases: [...plan.releases, ...plan.releases] }),
+    () =>
+      releaseFiles(source, {
+        ...plan,
+        releases: [...plan.releases, ...plan.releases],
+      }),
     /Duplicate package/,
   );
   put(

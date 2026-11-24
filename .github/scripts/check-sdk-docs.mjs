@@ -2,7 +2,15 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { currentVersionNote, docsPath, hash, webSDKs, documentedPackages } from "./sdk-docs.mjs";
+
+import {
+  currentVersionNote,
+  docsPath,
+  hash,
+  webSDKs,
+  documentedPackages,
+  versionedDocsReady,
+} from "./sdk-docs.mjs";
 
 export const root = path.resolve(fileURLToPath(new URL("../../", import.meta.url)));
 const read = (base, file) => fs.readFileSync(path.join(base, file), "utf8");
@@ -70,7 +78,8 @@ export function checkLinks(base, pages) {
 
 export function sourceMatrix(base = root) {
   const commits = new Map();
-  for (const name of fs.readdirSync(path.join(base, ".generated/sdk-docs"))) {
+  const manifests = path.join(base, ".generated/sdk-docs");
+  for (const name of fs.existsSync(manifests) ? fs.readdirSync(manifests) : []) {
     assert(documentedPackages.includes(name), `Unknown generated owner: ${name}`);
     for (const filename of fs.readdirSync(path.join(base, ".generated/sdk-docs", name))) {
       const manifest = JSON.parse(read(base, `.generated/sdk-docs/${name}/${filename}`));
@@ -125,6 +134,18 @@ export function checkCurrentPagePresentation(content, file) {
 
 export function checkSDKDocs(base = root) {
   const summary = read(base, "SUMMARY.md");
+  if (!versionedDocsReady(base)) {
+    // Until the separate public-content cutover, only validate existing navigation.
+    assert(
+      !fs.existsSync(path.join(base, ".generated/sdk-docs")),
+      "Incomplete versioned documentation cutover",
+    );
+    checkLinks(base, ["SUMMARY.md"]);
+    return {
+      generatedPages: 0,
+      navigationPages: links(summary).filter((href) => !/^[a-z][a-z\d+.-]*:/i.test(href)).length,
+    };
+  }
   const supported = /^## Supported languages\n([\s\S]*?)(?=\n## )/m.exec(summary)?.[1];
   assert(supported, "Missing Supported languages section");
   assert.equal(

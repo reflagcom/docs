@@ -8,6 +8,11 @@ on:
       - .github/scripts/**
       - .github/workflows/sdk-docs.yml
       - gitbook-docs.yaml
+  push:
+    branches: [main]
+    paths:
+      - .github/scripts/**
+      - .github/workflows/sdk-docs.yml
 
 permissions:
   contents: read
@@ -28,7 +33,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: node --test .github/scripts/sdk-docs.test.mjs
+      - run: node --test .github/scripts/sdk-docs*.test.mjs
       - id: sources
         name: Discover pinned SDK sources from generated manifests
         run: node .github/scripts/check-sdk-docs.mjs --sources

@@ -10,6 +10,10 @@ export const webSDKs = ["browser-sdk", "react-sdk", "vue-sdk", "node-sdk"];
 export const currentVersionNote = "This page covers SDK v2.";
 const references = [...webSDKs, "react-native-sdk", "management-sdk"];
 export const documentedPackages = [...references, "cli"];
+export const versionedDocsReady = (destination) =>
+  ["legacy/v1/README.md", "supported-languages/migrating-from-v1.md"].every((file) =>
+    fs.existsSync(path.join(destination, file)),
+  );
 const repository = "https://github.com/reflagcom/javascript";
 const versionPattern =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-[\da-zA-Z.-]+)?(?:\+[\da-zA-Z.-]+)?$/;
@@ -331,31 +335,46 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
       check: { type: "boolean", default: false },
     },
   });
-  assert(values.source, "--source is required");
-  const source = path.resolve(values.source);
-  let files;
-  if (positionals[0] === "release") {
-    assert(values.plan, "--plan is required");
-    files = releaseFiles(source, JSON.parse(fs.readFileSync(values.plan, "utf8")));
+  const destination = path.resolve(values.destination);
+  if (positionals[0] === "ready") {
+    // Infrastructure can land before the public v1/v2 documentation cutover.
+    console.log(`ready=${versionedDocsReady(destination)}`);
   } else {
-    assert.equal(positionals[0], "import", "Use import or release");
-    assert(values.package?.length, "Select --package explicitly");
-    assert.equal(
-      git(source, "status", "--porcelain", "--untracked-files=no"),
-      "",
-      "SDK source must be clean",
+    assert(values.source, "--source is required");
+    const source = path.resolve(values.source);
+    let files;
+    if (positionals[0] === "release") {
+      assert(
+        versionedDocsReady(destination),
+        "Versioned documentation must be published before release sync",
+      );
+      assert(values.plan, "--plan is required");
+      files = releaseFiles(source, JSON.parse(fs.readFileSync(values.plan, "utf8")));
+    } else {
+      assert.equal(positionals[0], "import", "Use ready, import or release");
+      assert(values.package?.length, "Select --package explicitly");
+      assert.equal(
+        git(source, "status", "--porcelain", "--untracked-files=no"),
+        "",
+        "SDK source must be clean",
+      );
+      files = new Map();
+      for (const name of values.package)
+        for (const [file, content] of planPackage({
+          source,
+          name,
+          commit: git(source, "rev-parse", "HEAD"),
+        })) {
+          assert(
+            !files.has(file) || files.get(file).equals(content),
+            `Conflicting output: ${file}`,
+          );
+          files.set(file, content);
+        }
+    }
+    applyPlan(files, destination, { check: values.check });
+    console.log(
+      `${values.check ? "Verified" : "Generated"} ${files.size} SDK documentation files.`,
     );
-    files = new Map();
-    for (const name of values.package)
-      for (const [file, content] of planPackage({
-        source,
-        name,
-        commit: git(source, "rev-parse", "HEAD"),
-      })) {
-        assert(!files.has(file) || files.get(file).equals(content), `Conflicting output: ${file}`);
-        files.set(file, content);
-      }
   }
-  applyPlan(files, path.resolve(values.destination), { check: values.check });
-  console.log(`${values.check ? "Verified" : "Generated"} ${files.size} SDK documentation files.`);
 }
