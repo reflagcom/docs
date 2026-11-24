@@ -20,7 +20,7 @@ React Native, OpenFeature and the Management SDK are released separately and are
 
 Share this guide with your assistant and start with this prompt:
 
-> Help me upgrade this project from Reflag SDK v1 to v2. Inspect the SDK versions, flag reads, generated types, and any server bootstrap code. Before making changes, ask me: **Do older app versions or already-open browser tabs need to keep working during rollout or rollback?** Wait for my answer; don't assume a deploy refreshes every client. If I say no, propose a coordinated upgrade. If I say yes or I'm not sure, plan to keep v1 clients working. For apps that bootstrap flags from the server, keep separate v1 and v2 snapshots and let v2 clients fetch if their snapshot is missing. Show me the plan and ask for approval before editing code or changing flag configuration.
+> Help me upgrade this project from Reflag SDK v1 to v2. Inspect the SDK versions, flag reads, generated types, and any server bootstrap code. Before making changes, ask me: **Do older app versions or already-open browser tabs need to keep working during rollout or rollback?** Wait for my answer; don't assume a deploy refreshes every client. If I say no, propose a coordinated upgrade. If I say yes or I'm not sure, plan to keep v1 clients working. For apps that bootstrap flags from the server, keep separate v1 and v2 snapshots and let v2 clients fetch if their snapshot is missing. If the app still reads legacy Remote config, follow the [Remote config migration prompt](../product-handbook/multivariate-flags.md#using-an-ai-agent) as part of the upgrade. Show me the plan and ask for approval before editing code or changing flag configuration.
 
 ## Upgrade the packages
 
