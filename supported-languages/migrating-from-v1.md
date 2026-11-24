@@ -16,6 +16,12 @@ Version 2 of the Browser, React, Vue and Node.js SDKs changes how you read flags
 
 React Native, OpenFeature and the Management SDK are released separately and aren't covered by this guide.
 
+## Upgrade with a coding assistant
+
+Share this guide with your assistant and start with this prompt:
+
+> Help me upgrade this project from Reflag SDK v1 to v2. Inspect the SDK versions, flag reads, generated types, and any server bootstrap code. Before making changes, ask me: **Do older app versions or already-open browser tabs need to keep working during rollout or rollback?** Wait for my answer; don't assume a deploy refreshes every client. If I say no, propose a coordinated upgrade. If I say yes or I'm not sure, plan to keep v1 clients working. For apps that bootstrap flags from the server, keep separate v1 and v2 snapshots and let v2 clients fetch if their snapshot is missing. Show me the plan and ask for approval before editing code or changing flag configuration.
+
 ## Upgrade the packages
 
 {% hint style="warning" %}
@@ -172,7 +178,9 @@ Saved state doesn't carry over. The Browser SDK starts with a fresh cache and no
 
 ## 6. Regenerate types and review overrides
 
-Regenerate flag types with CLI 2. Generated types are optional in v2, because the default you pass already determines the return type. See [Type safety](../product-handbook/type-safety.md).
+If you generate flag types, use only CLI v2 in the upgraded project and rerun `reflag flags types`. Replace the old declarations. Both generators add entries to the SDK module's `Flags` interface, so including both outputs for the same module in one TypeScript project can give a flag two incompatible types.
+
+You don't need CLI v1 or generated types for `@reflag/node-sdk-v1` when it only makes the legacy bootstrap snapshot. The new declarations target the upgraded SDK modules, not the alias. Already-deployed v1 bundles were compiled with their own types and don't use the new declarations. Type generation is optional in v2; see [Type safety](../product-handbook/type-safety.md).
 
 Overrides and static fallback values are now plain values, such as `true` or `{ maxItems: 5 }`. In the Browser SDK, `undefined` removes an override, while `null` sets the value to `null`. Run your offline and outage tests against v2 before upgrading production.
 
