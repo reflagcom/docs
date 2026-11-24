@@ -1,0 +1,434 @@
+import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import test from "node:test";
+
+import {
+  anchors,
+  checkCurrentPagePresentation,
+  checkLinks,
+  checkSDKDocs,
+  root,
+  sourceMatrix,
+} from "./check-sdk-docs.mjs";
+import {
+  anchorHeadings,
+  applyPlan,
+  currentVersionNote,
+  docsPath,
+  planPackage,
+  releaseFiles,
+  versionedDocsReady,
+  webSDKs,
+} from "./sdk-docs.mjs";
+
+function fixture(t, major = 2) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "reflag-sdk-docs-test-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const source = path.join(dir, "source"),
+    destination = path.join(dir, "docs");
+  const put = (file, content) => {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, content);
+  };
+  const names = [...webSDKs, "react-native-sdk", "management-sdk", "cli"];
+  for (const name of names) {
+    put(
+      path.join(source, `packages/${name}/package.json`),
+      JSON.stringify({
+        name: `@reflag/${name}`,
+        version: `${major}.0.0`,
+        dependencies: { "@reflag/react-sdk": "1.7.4" },
+      }),
+    );
+    put(
+      path.join(source, `packages/${name}/README.md`),
+      "# SDK\n[Browser](../browser-sdk/README.md)\n",
+    );
+    put(
+      path.join(source, `dist/docs/@reflag/${name}/README.md`),
+      `---\nlayout: {}\n---\n# SDK\n\nSDK introduction.\n\n## Setup\n[Browser](../../_media/README.md)\n[Feedback](../../documents/browser-sdk/FEEDBACK.md)\n[Toolbar](https://docs.reflag.com/supported-languages/browser-sdk/globals#toolbaroptions)\nnpm install @reflag/${name}\nbun add @reflag/${name}\ndeno add npm:@reflag/${name}\nnpx @reflag/cli new\n<script src="https://cdn.jsdelivr.net/npm/@reflag/browser-sdk"></script>\n[Source](https://github.com/reflagcom/javascript/blob/main/packages/${name}/README.md)\n`,
+    );
+    put(
+      path.join(source, `dist/docs/@reflag/${name}/globals.md`),
+      '# Reference\n## FlagValueFromDefault\\<T\\>\n<a id="toolbaroptions"></a>\n',
+    );
+  }
+  put(
+    path.join(source, "dist/docs/documents/browser-sdk/FEEDBACK.md"),
+    "# Feedback\n[Browser](../../@reflag/browser-sdk/README.md)\n",
+  );
+  put(path.join(source, "dist/docs/documents/cli/README.md"), "# CLI\n");
+  return {
+    source,
+    destination,
+    put,
+    options: { source, name: "react-sdk", commit: "a".repeat(40) },
+  };
+}
+
+test("repository navigation is valid before the separate public-content cutover", () => {
+  assert(checkSDKDocs().navigationPages > 0);
+});
+
+test("source discovery supports infrastructure-only installs and groups exact manifest refs", (t) => {
+  const { options, destination } = fixture(t);
+  assert.deepEqual(sourceMatrix(destination), { include: [] });
+  for (const name of ["react-sdk", "browser-sdk"])
+    applyPlan(planPackage({ ...options, name }), destination);
+  assert.deepEqual(sourceMatrix(destination), {
+    include: [
+      {
+        ref: options.commit,
+        packages: "--package browser-sdk --package react-sdk",
+      },
+    ],
+  });
+});
+
+test("release readiness waits for both public migration and archive landing pages without writing", (t) => {
+  const { destination, put } = fixture(t);
+  const ready = () =>
+    execFileSync(
+      process.execPath,
+      [path.join(root, ".github/scripts/sdk-docs.mjs"), "ready", "--destination", destination],
+      { encoding: "utf8" },
+    );
+  assert.equal(versionedDocsReady(destination), false);
+  assert.equal(ready(), "ready=false\n");
+  assert(!fs.existsSync(destination));
+  put(path.join(destination, "legacy/v1/README.md"), "# Legacy\n");
+  assert.equal(ready(), "ready=false\n");
+  put(path.join(destination, "supported-languages/migrating-from-v1.md"), "# Migration\n");
+  assert.equal(ready(), "ready=true\n");
+  assert.equal(versionedDocsReady(destination), true);
+});
+
+test("release CLI rejects a pre-cutover destination before reading sources or writing pages", (t) => {
+  const { source, destination } = fixture(t);
+  assert.throws(
+    () =>
+      execFileSync(
+        process.execPath,
+        [
+          path.join(root, ".github/scripts/sdk-docs.mjs"),
+          "release",
+          "--source",
+          source,
+          "--destination",
+          destination,
+          "--plan",
+          "missing.json",
+        ],
+        { stdio: "pipe" },
+      ),
+    /Versioned documentation must be published/,
+  );
+  assert(!fs.existsSync(destination));
+});
+
+test("a partial content cutover fails validation rather than bypassing version isolation", (t) => {
+  const { options, destination, put } = fixture(t);
+  put(path.join(destination, "SUMMARY.md"), "# Contents\n");
+  applyPlan(planPackage(options), destination);
+  assert.throws(() => checkSDKDocs(destination), /Incomplete versioned documentation cutover/);
+});
+
+test("v1 import owns only the archive, pins installers/CDN and routes SDK links to v1", (t) => {
+  const { options } = fixture(t, 1);
+  const files = planPackage(options);
+  assert(
+    [...files.keys()].every(
+      (file) => file.startsWith("legacy/v1/") || file.startsWith(".generated/"),
+    ),
+  );
+  const readme = files.get("legacy/v1/react-sdk/README.md").toString();
+  assert.match(readme, /npm install @reflag\/react-sdk@1/);
+  assert.match(readme, /bun add @reflag\/react-sdk@1/);
+  assert.match(readme, /deno add npm:@reflag\/react-sdk@1/);
+  assert.match(readme, /npx @reflag\/cli@1 new/);
+  assert.match(readme, /browser-sdk@1/);
+  assert.match(readme, /\(\.\.\/browser-sdk\/globals.md#toolbaroptions\)/);
+  assert.match(readme, /blob\/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\//);
+  assert(readme.indexOf("---") < readme.indexOf("{% hint"), "Keep frontmatter first");
+  for (const [file, content] of files)
+    if (file.endsWith(".md")) {
+      assert.doesNotMatch(content.toString(), /generated from/i);
+      assert(!content.toString().includes(currentVersionNote));
+    }
+  const manifest = JSON.parse(files.get(".generated/sdk-docs/react-sdk/v1.json"));
+  assert.equal(manifest.sourceCommit, options.commit);
+  assert.equal(manifest.version, "1.0.0");
+});
+
+test("v2 sync cannot modify archived docs, navigation, settings or handwritten guides", (t) => {
+  const { options, destination, put } = fixture(t);
+  const preserved = [
+    "legacy/v1/react-sdk/README.md",
+    "SUMMARY.md",
+    "README.md",
+    "gitbook-docs.yaml",
+    "supported-languages/migrating-from-v1.md",
+  ];
+  for (const file of preserved) put(path.join(destination, file), "preserve");
+  const files = planPackage(options);
+  applyPlan(files, destination);
+  applyPlan(files, destination, { check: true });
+  for (const file of preserved)
+    assert.equal(fs.readFileSync(path.join(destination, file), "utf8"), "preserve");
+  assert(files.has("supported-languages/react-sdk/README.md"));
+  assert(files.has("sdk/@reflag/react-sdk/globals.md"), "Preserve historical reference URLs");
+  assert.match(
+    files.get("sdk/@reflag/react-sdk/README.md").toString(),
+    /\.\.\/\.\.\/\.\.\/legacy\/v1\/react-sdk\/README.md/,
+  );
+});
+
+test("current docs retain the introduction, add one v2 scope line and keep unpinned installs", (t) => {
+  const { options, source, put } = fixture(t);
+  put(
+    path.join(source, "packages/react-sdk/package.json"),
+    JSON.stringify({ name: "@reflag/react-sdk", version: "2.0.0-next.0" }),
+  );
+  const files = planPackage(options);
+  for (const file of [
+    "supported-languages/react-sdk/README.md",
+    "sdk/@reflag/react-sdk/README.md",
+    "sdk/documents/react-sdk/README.md",
+  ]) {
+    const content = files.get(file).toString();
+    checkCurrentPagePresentation(content, file);
+    assert(content.indexOf("SDK introduction.") < content.indexOf(currentVersionNote));
+    assert(content.indexOf(currentVersionNote) < content.indexOf("## Setup"));
+    assert(content.indexOf("## Setup") < content.indexOf("Using v1?"));
+    assert.match(content, /npm install @reflag\/react-sdk\n/);
+    assert.match(content, /npx @reflag\/cli new/);
+    assert.match(content, /browser-sdk"><\/script>/);
+    assert(!content.includes("{% hint"));
+    assert(
+      !content.includes("2.0.0-next.0"),
+      "Source versions remain in provenance, not page warnings",
+    );
+  }
+  const manifest = JSON.parse(files.get(".generated/sdk-docs/react-sdk/v2.json"));
+  assert.equal(manifest.version, "2.0.0-next.0");
+});
+
+test("presentation checks reject repeated or leading notices and major-pinned current installs", () => {
+  const note = "Using v1? [Legacy docs](legacy.md) · [Upgrade guide](migration.md).";
+  const page = `# SDK\n\nGet started.\n\n${currentVersionNote}\n\n## Setup\n\nInstall the SDK.\n\n${note}\n`;
+  checkCurrentPagePresentation(page, "page.md");
+  assert.throws(
+    () => checkCurrentPagePresentation(page.replace(currentVersionNote, ""), "page.md"),
+    /one SDK v2 scope note/,
+  );
+  assert.throws(
+    () => checkCurrentPagePresentation(`${currentVersionNote}\n\n${page}`, "page.md"),
+    /one SDK v2 scope note/,
+  );
+  assert.throws(
+    () =>
+      checkCurrentPagePresentation(
+        `${currentVersionNote}\n\n${page.replace(currentVersionNote, "")}`,
+        "page.md",
+      ),
+    /in the introduction/,
+  );
+  assert.throws(
+    () =>
+      checkCurrentPagePresentation(
+        page.replace(`${currentVersionNote}\n\n## Setup`, `## Setup\n\n${currentVersionNote}`),
+        "page.md",
+      ),
+    /in the introduction/,
+  );
+  assert.throws(() => checkCurrentPagePresentation(`${note}\n\n# SDK\n`, "page.md"), /at the end/);
+  assert.throws(
+    () => checkCurrentPagePresentation(`${note}\n\n${page}`, "page.md"),
+    /one succinct/,
+  );
+  assert.throws(
+    () =>
+      checkCurrentPagePresentation(
+        page.replace("Get started.", "npm install @reflag/react-sdk@2"),
+        "page.md",
+      ),
+    /Major-pinned installs/,
+  );
+  assert.throws(
+    () => checkCurrentPagePresentation(page.replace("Get started.", "**Protocol v2.**"), "page.md"),
+    /Repeated protocol banner/,
+  );
+});
+
+test("independent Native references route to its pinned React/Browser major, not workspace v2", (t) => {
+  const { options } = fixture(t);
+  const files = planPackage({ ...options, name: "react-native-sdk" });
+  const readme = files.get("supported-languages/react-native-sdk/README.md").toString();
+  assert.match(readme, /legacy\/v1\/browser-sdk\/README.md/);
+  assert.match(readme, /legacy\/v1\/react-sdk\/README.md/);
+  assert(!readme.includes(currentVersionNote));
+  assert(!files.has("supported-languages/react-sdk/README.md"));
+  assert(!files.has("legacy/v1/react-sdk/README.md"));
+});
+
+test("Management and CLI updates never own coordinated SDK trees", (t) => {
+  const { options, source, put } = fixture(t);
+  put(path.join(source, "dist/docs/@reflag/management-sdk/README.md"), "# Management SDK\n");
+  for (const name of ["management-sdk", "cli"]) {
+    const files = planPackage({ ...options, name });
+    assert(
+      ![...files.keys()].some(
+        (file) => file.startsWith("legacy/") || file.startsWith("supported-languages/"),
+      ),
+    );
+  }
+});
+
+test("GitBook heading IDs preserve TypeDoc/generic deep links without changing code fences", () => {
+  const content =
+    "# `<ReflagProvider>` component\n## FlagValueFromDefault\\<T\\>\n## Properties\n## Properties\n```md\n# Leave code alone\n```\n";
+  const rendered = anchorHeadings(content);
+  assert.match(rendered, /id="reflagprovider-component"/);
+  assert.match(rendered, /id="flagvaluefromdefaultt"/);
+  assert.match(rendered, /id="properties-1"/);
+  assert(rendered.includes("```md\n# Leave code alone\n```"));
+});
+
+test("the current-version line stays in the introduction without entering code fences", () => {
+  const content = "# SDK\n\nIntroduction.\n\n```md\n## Code example\n```\n\n## Setup\n";
+  const rendered = anchorHeadings(content, { introNote: currentVersionNote });
+  assert(rendered.includes("```md\n## Code example\n```"));
+  assert(rendered.indexOf(`\`\`\`\n\n${currentVersionNote}`) > rendered.indexOf("## Code example"));
+  assert(rendered.indexOf(currentVersionNote) < rendered.indexOf("## Setup"));
+  assert.equal(rendered.split(currentVersionNote).length - 1, 1);
+});
+
+test("GitBook keeps deep API-member and linked-section anchors without outlining every parameter label", () => {
+  const rendered = anchorHeadings(
+    "### Client\n#### Constructors\n##### getFlag()\n###### Parameters\n[Constructor](globals.md#constructors)\n",
+  );
+  assert.match(rendered, /^### Constructors <a href="#constructors"/m);
+  assert.match(rendered, /^### getFlag\(\) <a href="#getflag"/m);
+  assert.match(rendered, /^###### Parameters /m);
+});
+
+test("type links keep their canonical IDs rather than landing on similarly named properties", () => {
+  const rendered = anchorHeadings(
+    "### Client\n##### logger\n##### flagOverrides\n### Logger\n### FlagOverrides\n[Type](globals.md#logger)\n",
+  );
+  assert.match(rendered, /^### logger <a href="#logger-1"/m);
+  assert.match(rendered, /^### Logger <a href="#logger"/m);
+  assert.match(rendered, /^### flagOverrides <a href="#flagoverrides-1"/m);
+  assert.match(rendered, /^### FlagOverrides <a href="#flagoverrides"/m);
+});
+
+test("missing generated input fails before applying any changes", (t) => {
+  const { source, options, destination } = fixture(t);
+  fs.unlinkSync(path.join(source, "dist/docs/@reflag/react-sdk/globals.md"));
+  assert.throws(() => applyPlan(planPackage(options), destination), /ENOENT/);
+  assert(!fs.existsSync(destination));
+});
+
+test("manifest check detects manual generated-content changes", (t) => {
+  const { options, destination, put } = fixture(t);
+  const plan = planPackage(options);
+  applyPlan(plan, destination);
+  put(path.join(destination, "supported-languages/react-sdk/README.md"), "edited");
+  assert.throws(
+    () => applyPlan(plan, destination, { check: true }),
+    /Generated documentation differs/,
+  );
+});
+
+test("unknown owners and majors fail closed", (t) => {
+  const { options } = fixture(t);
+  assert.throws(
+    () => planPackage({ ...options, name: "../../escape" }),
+    /Unknown documentation owner/,
+  );
+  assert.throws(() => docsPath("react-sdk", 3), /Unmapped SDK major/);
+  assert.throws(() => planPackage({ ...options, commit: "main" }), /full SDK source commit/);
+});
+
+test("negative link controls catch missing files and anchors; generic headings remain addressable", (t) => {
+  const { destination, put } = fixture(t);
+  put(path.join(destination, "page.md"), "[missing](other.md)\n");
+  assert.throws(() => checkLinks(destination, ["page.md"]), /Missing file/);
+  put(path.join(destination, "other.md"), "# FlagValueFromDefault\\<T\\>\n");
+  put(path.join(destination, "page.md"), "[missing](other.md#nope)\n");
+  assert.throws(() => checkLinks(destination, ["page.md"]), /Missing anchor/);
+  assert(
+    anchors(fs.readFileSync(path.join(destination, "other.md"), "utf8")).has(
+      "flagvaluefromdefaultt",
+    ),
+  );
+});
+
+test("release sync requires the exact clean tagged source and rejects prereleases before writes", (t) => {
+  const { source, options, put } = fixture(t);
+  const git = (...args) =>
+    execFileSync("git", ["-C", source, ...args], { encoding: "utf8" }).trim();
+  git("init", "--quiet");
+  git("add", ".");
+  git(
+    "-c",
+    "user.name=Test",
+    "-c",
+    "user.email=test@example.invalid",
+    "commit",
+    "--quiet",
+    "-m",
+    "Fixture",
+  );
+  const sourceCommit = git("rev-parse", "HEAD");
+  const plan = {
+    sourceCommit,
+    releases: [{ name: "@reflag/react-sdk", version: "2.0.0" }],
+  };
+  git("tag", "@reflag/react-sdk@2.0.0");
+  assert(releaseFiles(source, plan).has("supported-languages/react-sdk/README.md"));
+  assert.throws(
+    () => releaseFiles(source, { ...plan, sourceCommit: options.commit }),
+    /source changed/,
+  );
+  assert.throws(
+    () =>
+      releaseFiles(source, {
+        ...plan,
+        releases: [...plan.releases, ...plan.releases],
+      }),
+    /Duplicate package/,
+  );
+  put(
+    path.join(source, "packages/react-sdk/package.json"),
+    JSON.stringify({ name: "@reflag/react-sdk", version: "2.0.1-next.0" }),
+  );
+  assert.throws(() => releaseFiles(source, plan), /must be clean/);
+  git("add", ".");
+  git(
+    "-c",
+    "user.name=Test",
+    "-c",
+    "user.email=test@example.invalid",
+    "commit",
+    "--quiet",
+    "-m",
+    "Prerelease",
+  );
+  assert.throws(
+    () =>
+      releaseFiles(source, {
+        sourceCommit: git("rev-parse", "HEAD"),
+        releases: [{ name: "@reflag/react-sdk", version: "2.0.1-next.0" }],
+      }),
+    /Prereleases cannot promote/,
+  );
+});
+
+test("this change does not introduce a GitBook variant picker or alternate site mapping", () => {
+  assert(!fs.existsSync(path.join(root, ".gitbook.yaml")), "No new per-space root mapping");
+  assert(!fs.readFileSync(path.join(root, "SUMMARY.md"), "utf8").includes("v2-candidate/"));
+});
