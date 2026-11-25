@@ -1,10 +1,10 @@
 ---
-description: Upgrade Browser, React, Vue and Node.js integrations from protocol v1 to v2.
+description: Upgrade Browser, React, React Native, Vue and Node.js integrations from protocol v1 to v2.
 ---
 
 # Migrating from v1
 
-Version 2 of the Browser, React, Vue and Node.js SDKs changes how you read flags, and includes breaking changes. The [v1 documentation](../legacy/v1/README.md) is still available.
+Version 2 of the Browser, React, React Native, Vue and Node.js SDKs changes how you read flags, and includes breaking changes. The [v1 documentation](../legacy/v1/README.md) is still available.
 
 ## What changes
 
@@ -14,18 +14,18 @@ Version 2 of the Browser, React, Vue and Node.js SDKs changes how you read flags
 - **React's `useFlag()` no longer suspends.** Use `useFlagSuspense()` when you want Suspense.
 - **v1 bootstrap data, fallback snapshots and generated types don't work with v2.** Regenerate them.
 
-React Native, OpenFeature and the Management SDK are released separately and aren't covered by this guide.
+For mobile rollouts, see [React Native](#react-native). OpenFeature and the Management SDK aren't covered by this guide.
 
 ## Upgrade with a coding assistant
 
 Share this guide with your assistant and start with this prompt:
 
-> Help me upgrade this project from Reflag SDK v1 to v2. Inspect the SDK versions, flag reads, generated types, and any server bootstrap code. Before making changes, ask me: **Do older app versions or already-open browser tabs need to keep working during rollout or rollback?** Wait for my answer; don't assume a deploy refreshes every client. If I say no, propose a coordinated upgrade. If I say yes or I'm not sure, plan to keep v1 clients working. For apps that bootstrap flags from the server, keep separate v1 and v2 snapshots and let v2 clients fetch if their snapshot is missing. If the app still reads legacy Remote config, follow the [Remote config migration prompt](../product-handbook/multivariate-flags.md#using-an-ai-agent) as part of the upgrade. Show me the plan and ask for approval before editing code or changing flag configuration.
+> Help me upgrade this project from Reflag SDK v1 to v2. Inspect the SDK versions, flag reads, generated types, and any server bootstrap code. Before making changes, ask me: **Do older app versions, including installed mobile builds, or already-open browser tabs need to keep working during rollout or rollback?** Wait for my answer; don't assume a release updates every client. If I say no, propose a coordinated upgrade. If I say yes or I'm not sure, plan to keep v1 clients working. For apps that bootstrap flags from the server, keep separate v1 and v2 snapshots and let v2 clients fetch if their snapshot is missing. If the app still reads legacy Remote config, follow the [Remote config migration prompt](../product-handbook/multivariate-flags.md#using-an-ai-agent) as part of the upgrade. Show me the plan and ask for approval before editing code or changing flag configuration.
 
 ## Upgrade the packages
 
 {% hint style="warning" %}
-These pages cover SDK v2. Until stable v2 packages are published, pin the exact prerelease version for each package you use. The `@2` commands below work once stable v2 is published.
+These pages cover SDK v2. Until stable v2 packages are published, pin the exact prerelease version for each package you use. Each `@2` command below works once stable v2 is published for that package.
 {% endhint %}
 
 Update the SDKs your application uses:
@@ -34,6 +34,7 @@ Update the SDKs your application uses:
 # Choose the SDKs used by your application.
 npm install @reflag/browser-sdk@2
 npm install @reflag/react-sdk@2
+npm install @reflag/react-native-sdk@2
 npm install @reflag/vue-sdk@2
 npm install @reflag/node-sdk@2
 
@@ -127,19 +128,19 @@ In Browser and Node.js, call `track()` and the feedback methods on the client. E
 
 ## 5. Upgrade bootstrap and saved state together
 
-Bootstrap data must match the client SDK's major version. Pass the whole object returned by `getFlagsForBootstrap()` to the client, not just its `flags` property. Use a Node.js SDK release that excludes secret flags from browser bootstrap data, and refresh the SDK's flag definitions after upgrading so it knows which flags are public.
+Bootstrap data must use the same protocol version as the client SDK. Pass the whole object returned by `getFlagsForBootstrap()` to the client, not just its `flags` property. Use a Node.js SDK release that excludes secret flags from client bootstrap data, and refresh the SDK's flag definitions after upgrading so it knows which flags are public.
 
 ### Run both Node.js SDK versions during a rolling upgrade
 
-If older browser bundles can still make requests, keep the existing v1 field (here, `flags`) and add a separate `flagsV2` field. Install v2 normally and install a v1 release under an alias. Replace `V1_VERSION` with the exact v1 release that supports public-only bootstrap:
+If old browser bundles or installed mobile builds can still make requests, keep the existing v1 field (here, `flags`) and add a separate `flagsV2` field. Install v2 normally and install a v1 release under an alias. Replace `V1_VERSION` with the exact v1 release that supports public-only bootstrap:
 
 ```sh
 npm install @reflag/node-sdk@2 @reflag/node-sdk-v1@npm:@reflag/node-sdk@V1_VERSION
 ```
 
-On the server, initialize both clients once at startup with the same `REFLAG_SECRET_KEY`. Build the context from the authenticated user's session, using only attributes the browser can see. If your v1 SDK can't produce a public-only snapshot, use publishable-key fetching rather than sending its server snapshot.
+On the server, initialize both clients once at startup with the same `REFLAG_SECRET_KEY`. Build the context from the authenticated user's session, using only attributes the client can see. If your v1 SDK can't produce a public-only snapshot, use publishable-key fetching rather than sending its server snapshot.
 
-Use v2 for normal server reads and tracking. Use v1 only to build the legacy snapshot, with `enableTracking: false` so the server doesn't sync the same user and company twice. v1 copies that setting into the snapshot, so restore the request's original tracking preference before sending it to old browsers.
+Use v2 for normal server reads and tracking. Use v1 only to build the legacy snapshot, with `enableTracking: false` so the server doesn't sync the same user and company twice. v1 copies that setting into the snapshot, so restore the request's original tracking preference before sending it to old clients.
 
 ```ts
 import { ReflagClient as ReflagV1 } from "@reflag/node-sdk-v1";
@@ -169,7 +170,7 @@ export function getBootstrapData(context: ContextWithTracking) {
 ```
 
 1. **Deploy the server first.** Add `flagsV2` wherever you already send bootstrap data (HTML or API), without changing `flags`. Use your framework's safe serializer when embedding data in HTML. The secret key stays on the server.
-2. **Deploy the v2 client.** Old clients continue reading `flags`. New clients read only `flagsV2`: for example, pass it to React or Vue's `ReflagBootstrappedProvider` as `flags`, or to the Browser SDK as `bootstrappedState`. If `flagsV2` is missing (for example, after a server rollback), fetch flags with the v2 SDK and your publishable key instead. Don't pass `flags` to the v2 SDK.
+2. **Deploy the v2 client.** Old clients continue reading `flags`. New clients read only `flagsV2`: for example, pass it to React, React Native or Vue's `ReflagBootstrappedProvider` as `flags`, or to the Browser SDK as `bootstrappedState`. If `flagsV2` is missing (for example, after a server rollback), fetch flags with the v2 SDK and your publishable key instead. Don't pass `flags` to the v2 SDK.
 3. **Remove the bridge when it's no longer needed.** Once no supported clients need v1 bootstrap data and you no longer need to roll back to a v1 client, remove the v1 alias, client, helper and `flags` field. The v2 bootstrap and tracking code stays the same.
 
 ### Replace saved state
@@ -183,6 +184,14 @@ If you generate flag types, use only CLI v2 in the upgraded project and rerun `r
 You don't need CLI v1 or generated types for `@reflag/node-sdk-v1` when it only makes the legacy bootstrap snapshot. The new declarations target the upgraded SDK modules, not the alias. Already-deployed v1 bundles were compiled with their own types and don't use the new declarations. Type generation is optional in v2; see [Type safety](../product-handbook/type-safety.md).
 
 Overrides and static fallback values are now plain values, such as `true` or `{ maxItems: 5 }`. In the Browser SDK, `undefined` removes an override, while `null` sets the value to `null`. Run your offline and outage tests against v2 before upgrading production.
+
+## React Native
+
+`@reflag/react-native-sdk` `0.3.x` uses protocol v1. The v2 package requires React 17 or later. Follow the React examples above, but keep importing `ReflagProvider`, `useFlag` and `useTrack` from `@reflag/react-native-sdk`. If you generate types, use CLI v2 with `"format": "react"` in `reflag.config.json` and replace the old declarations. Native shares the `Flags` interface in `@reflag/react-sdk`. If your package manager doesn't expose that package to TypeScript, add it as a direct dependency at the same version the Native SDK uses.
+
+A store release doesn't update every installed app. Keep the existing Boolean flags and legacy Remote config available for the older builds you still support. If your app fetches flags with `ReflagProvider`, you don't need a server bootstrap change. If it receives snapshots from your backend, [keep separate v1 and v2 snapshots](#run-both-nodejs-sdk-versions-during-a-rolling-upgrade) and let v2 clients fetch when their snapshot is missing.
+
+Test on iOS and Android before rolling out: run old and new builds against the same environment, and check offline startup, flag defaults and refresh after resuming the app. See the [React Native SDK v2 guide](https://github.com/reflagcom/javascript/tree/main/packages/react-native-sdk#migrating-from-v1) for Native-specific APIs.
 
 ## SDK documentation
 
