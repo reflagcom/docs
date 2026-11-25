@@ -130,7 +130,7 @@ In Browser and Node.js, call `track()` and the feedback methods on the client. E
 
 Bootstrap data must use the same protocol version as the client SDK. Pass the whole object returned by `getFlagsForBootstrap()` to the client, not just its `flags` property. Use a Node.js SDK release that excludes secret flags from client bootstrap data, and refresh the SDK's flag definitions after upgrading so it knows which flags are public.
 
-### Run both Node.js SDK versions during a rolling upgrade
+### Run both Node SDK versions during a rolling upgrade
 
 If old browser bundles or installed mobile builds can still make requests, keep the existing v1 field (here, `flags`) and add a separate `flagsV2` field. Install v2 normally and install a v1 release under an alias. Replace `V1_VERSION` with the exact v1 release that supports public-only bootstrap:
 
@@ -189,7 +189,7 @@ Overrides and static fallback values are now plain values, such as `true` or `{ 
 
 `@reflag/react-native-sdk` `0.3.x` uses protocol v1. The v2 package requires React 17 or later. Follow the React examples above, but keep importing `ReflagProvider`, `useFlag` and `useTrack` from `@reflag/react-native-sdk`. If you generate types, use CLI v2 with `"format": "react"` in `reflag.config.json` and replace the old declarations. Native shares the `Flags` interface in `@reflag/react-sdk`. If your package manager doesn't expose that package to TypeScript, add it as a direct dependency at the same version the Native SDK uses.
 
-A store release doesn't update every installed app. Keep the existing Boolean flags and legacy Remote config available for the older builds you still support. If your app fetches flags with `ReflagProvider`, you don't need a server bootstrap change. If it receives snapshots from your backend, [keep separate v1 and v2 snapshots](#run-both-nodejs-sdk-versions-during-a-rolling-upgrade) and let v2 clients fetch when their snapshot is missing.
+A store release doesn't update every installed app. Keep the existing Boolean flags and legacy Remote config available for the older builds you still support. If your app fetches flags with `ReflagProvider`, you don't need a server bootstrap change. If it receives snapshots from your backend, [keep separate v1 and v2 snapshots](#run-both-node-sdk-versions-during-a-rolling-upgrade) and let v2 clients fetch when their snapshot is missing.
 
 Test on iOS and Android before rolling out: run old and new builds against the same environment, and check offline startup, flag defaults and refresh after resuming the app. See the [React Native SDK v2 guide](https://github.com/reflagcom/javascript/tree/main/packages/react-native-sdk#migrating-from-v1) for Native-specific APIs.
 
