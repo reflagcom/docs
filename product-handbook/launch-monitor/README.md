@@ -6,7 +6,7 @@ Use the launch monitor to track exposure and adoption, and to collect end-user f
 
 ## Exposure
 
-The Exposed chart shows the distinct count of companies that have been exposed to the flag. Exposed means they were checked for flag access in the SDK and the check returned `enabled`.
+The Exposed chart counts companies exposed to the feature. For Boolean flags, exposure means the SDK selected `true`. For Multivariate flags, selecting any variant counts as exposure, even if its value is `false`, `0` or `null`.
 
 ## Adoption
 

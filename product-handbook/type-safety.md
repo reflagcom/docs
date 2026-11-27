@@ -15,7 +15,7 @@ export function TokenLimit() {
 }
 ```
 
-Here the default `512` gives `maxTokens` the type `number`. Without a default, you get a Boolean; with `null`, you get any JSON value.
+The default `{ maxTokens: 512 }` gives `settings.maxTokens` the type `number`. Without a default, `useFlag()` returns a Boolean; pass `null` to handle any JSON value.
 
 ## Set up type safety for flags
 

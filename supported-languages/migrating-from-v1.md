@@ -9,10 +9,10 @@ Version 2 of the Browser, React, React Native, Vue and Node.js SDKs changes how 
 ## What changes
 
 - **Flags return their value directly.** `useFlag("new-editor")` returns `true` or `false` instead of `{ isEnabled }`.
-- **Remote config is a Multivariate flag.** Pass a default and get the value back, instead of reading `.config.payload`.
+- **Move legacy Remote config to a new Multivariate flag.** Existing configs aren't converted automatically; read the new flag's value instead of `.config.payload`.
 - **Tracking and feedback are separate.** They have their own hooks and client methods instead of being returned with a flag.
 - **React's `useFlag()` no longer suspends.** Use `useFlagSuspense()` when you want Suspense.
-- **v1 bootstrap data, fallback snapshots and generated types don't work with v2.** Regenerate them.
+- **v1 bootstrap data, fallback snapshots and generated types can't be reused in v2.** Rebuild snapshots and regenerate types.
 
 For mobile rollouts, see [React Native](#react-native). OpenFeature and the Management SDK aren't covered by this guide.
 
@@ -87,9 +87,9 @@ const enabled = useFlag("new-editor");
 const settings = useFlag("editor-settings", { maxItems: 10 });
 ```
 
-Without a default, a read returns a Boolean: `false` if the flag is missing. Pass a default to read any other value; the return type follows the default. Pass `null` to accept any JSON value and narrow it yourself.
+Without a default, a read expects a Boolean and returns `false` if the flag is missing or has another JSON type. Pass a default to read another type of value. Pass `null` to allow any JSON value, then check its type before using it.
 
-`getFlags()` now returns a record of values, such as `{ "new-editor": true }`.
+`getFlags()` now returns an object mapping flag keys to values, such as `{ "new-editor": true }`.
 
 ## 2. Migrate remote config explicitly
 
@@ -117,7 +117,7 @@ track("Document created");
 requestFeedback({ flagKey: "new-editor", title: "How is the new editor?" });
 ```
 
-In Browser and Node.js, call `track()` and the feedback methods on the client. Either way, you name the event you track; configure your flag's adoption rules to match it.
+In Browser and Node.js, call `track()` on the client. For Browser feedback, use `requestFeedback()` to open the form or `feedback()` to send a response. Configure your flag's adoption rules to match the event names you track.
 
 ## 4. Update loading and Suspense
 
