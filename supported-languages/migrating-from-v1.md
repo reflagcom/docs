@@ -128,7 +128,7 @@ In Browser and Node.js, call `track()` and the feedback methods on the client. E
 
 ## 5. Upgrade bootstrap and saved state together
 
-Bootstrap data must use the same protocol version as the client SDK. Pass the whole object returned by `getFlagsForBootstrap()` to the client, not just its `flags` property. Use a Node.js SDK release that excludes secret flags from client bootstrap data, and refresh the SDK's flag definitions after upgrading so it knows which flags are public.
+Bootstrap data must use the same protocol version as the client SDK. Pass the whole object returned by `getFlagsForBootstrap()` to the client, not just its `flags` property.
 
 ### Run both Node SDK versions during a rolling upgrade
 
