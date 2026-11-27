@@ -93,7 +93,7 @@ Without a default, a read expects a Boolean and returns `false` if the flag is m
 
 ## 2. Migrate remote config explicitly
 
-v2 has no `.config` property. Create a Multivariate flag with a new key and the values your application needs, then read it with a default:
+v2 has no `.config` property. Create a Multivariate flag with a new key and shape its value around what your app reads. Use a single value for one setting or a flat object with meaningful field names for related settings. You don't need the old `{ key, payload }` wrapper. Read the new value with a default:
 
 ```ts
 // v1
