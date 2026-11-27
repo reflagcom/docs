@@ -187,7 +187,9 @@ Overrides and static fallback values are now plain values, such as `true` or `{ 
 
 ## React Native
 
-`@reflag/react-native-sdk` `0.3.x` uses protocol v1. The v2 package requires React 17 or later. Follow the React examples above, but keep importing `ReflagProvider`, `useFlag` and `useTrack` from `@reflag/react-native-sdk`. If you generate types, use CLI v2 with `"format": "react"` in `reflag.config.json` and replace the old declarations. Native shares the `Flags` interface in `@reflag/react-sdk`. If your package manager doesn't expose that package to TypeScript, add it as a direct dependency at the same version the Native SDK uses.
+`@reflag/react-native-sdk` `0.3.x` uses protocol v1. The v2 package requires React 17 or later. Follow the React examples above, but keep importing your provider and hooks from `@reflag/react-native-sdk`.
+
+For React Native, choose the `react` format when generating flag types with CLI v2. Set `"format": "react"` in `reflag.config.json` and replace the old declarations. If TypeScript can't resolve `@reflag/react-sdk` from the generated file, add it as a direct dependency at the same version the Native SDK uses.
 
 A store release doesn't update every installed app. Keep the existing Boolean flags and legacy Remote config available for the older builds you still support. If your app fetches flags with `ReflagProvider`, you don't need a server bootstrap change. If it receives snapshots from your backend, [keep separate v1 and v2 snapshots](#run-both-node-sdk-versions-during-a-rolling-upgrade) and let v2 clients fetch when their snapshot is missing.
 
