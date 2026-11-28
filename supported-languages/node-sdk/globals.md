@@ -1310,7 +1310,10 @@ Return all values and immediately register checks for the returned roots.
 getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
 ```
 
-Serialization is not a read by the browser; it must not emit check events.
+Get public flag data for a browser without recording flag checks.
+Secret flags can still be read on the server and used by public flags.
+Flags without `secret: false` are left out. Dependency names are removed
+from error details. Include only browser-safe attributes in the context.
 
 ###### Parameters <a href="#parameters-16" id="parameters-16"></a>
 
@@ -2382,7 +2385,10 @@ Return all values and immediately register checks for the returned roots.
 getFlagsForBootstrap(options: ContextWithTracking): BootstrappedFlags
 ```
 
-Serialization is not a read by the browser; it must not emit check events.
+Get public flag data for a browser without recording flag checks.
+Secret flags can still be read on the server and used by public flags.
+Flags without `secret: false` are left out. Dependency names are removed
+from error details. Include only browser-safe attributes in the context.
 
 ###### Parameters <a href="#parameters-32" id="parameters-32"></a>
 
@@ -4183,7 +4189,8 @@ Directory where per-environment snapshots are stored.
 ### FlagCollection <a href="#flagcollection" id="flagcollection"></a>
 
 ```ts
-type FlagCollection = CompiledCollection<FlagValue> & {
+type FlagCollection = {
+  flags: FlagDefinition[];
   segments: NonNullable<CompiledCollection["segments"]>;
 };
 ```
@@ -4201,7 +4208,19 @@ type FlagCollection = CompiledCollection<FlagValue> & {
 <tr>
 <td>
 
-`segments`
+<a id="flags-2"></a> `flags`
+
+</td>
+<td>
+
+[`FlagDefinition`](globals.md#flagdefinition)[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="segments"></a> `segments`
 
 </td>
 <td>
@@ -4270,8 +4289,41 @@ JSON defaults may be readonly; returned values are independent mutable copies.
 ### FlagDefinition <a href="#flagdefinition" id="flagdefinition"></a>
 
 ```ts
-type FlagDefinition = CompiledFlag<FlagValue>;
+type FlagDefinition = CompiledFlag<FlagValue> & {
+  secret: boolean;
+};
 ```
+
+#### Type declaration <a href="#type-declaration-6" id="type-declaration-6"></a>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`secret`?
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+Only explicit false authorizes export to a browser bootstrap payload.
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
@@ -4299,7 +4351,7 @@ type FlagEvent = {
 
 A check records the selected variant key, never its JSON payload.
 
-#### Type declaration <a href="#type-declaration-6" id="type-declaration-6"></a>
+#### Type declaration <a href="#type-declaration-7" id="type-declaration-7"></a>
 
 <table>
 <thead>
@@ -4530,7 +4582,7 @@ type FlagsAPIResponse = FlagCollection & {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-7" id="type-declaration-7"></a>
+#### Type declaration <a href="#type-declaration-8" id="type-declaration-8"></a>
 
 <table>
 <thead>
@@ -4577,7 +4629,7 @@ type FlagsFallbackProviderContext = {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-8" id="type-declaration-8"></a>
+#### Type declaration <a href="#type-declaration-9" id="type-declaration-9"></a>
 
 <table>
 <thead>
@@ -4617,7 +4669,7 @@ type FlagsFallbackSnapshot = FlagCollection & {
 
 V1 snapshots cannot be evaluated by the collection evaluator.
 
-#### Type declaration <a href="#type-declaration-9" id="type-declaration-9"></a>
+#### Type declaration <a href="#type-declaration-10" id="type-declaration-10"></a>
 
 <table>
 <thead>
@@ -4751,7 +4803,7 @@ type GCSFallbackProviderOptions = {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-10" id="type-declaration-10"></a>
+#### Type declaration <a href="#type-declaration-11" id="type-declaration-11"></a>
 
 <table>
 <thead>
@@ -4836,7 +4888,7 @@ type GCSGoogleApisClient = {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-11" id="type-declaration-11"></a>
+#### Type declaration <a href="#type-declaration-12" id="type-declaration-12"></a>
 
 <table>
 <thead>
@@ -4908,7 +4960,7 @@ type GCSLegacyClient = {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-12" id="type-declaration-12"></a>
+#### Type declaration <a href="#type-declaration-13" id="type-declaration-13"></a>
 
 <table>
 <thead>
@@ -4971,7 +5023,7 @@ type HttpClientResponse<Response> = {
 </tbody>
 </table>
 
-#### Type declaration <a href="#type-declaration-13" id="type-declaration-13"></a>
+#### Type declaration <a href="#type-declaration-14" id="type-declaration-14"></a>
 
 <table>
 <thead>
@@ -5081,7 +5133,7 @@ type RawFlag = Omit<FlagEvaluationResult<FlagValue>, "sourceVersionId" | "value"
 };
 ```
 
-#### Type declaration <a href="#type-declaration-14" id="type-declaration-14"></a>
+#### Type declaration <a href="#type-declaration-15" id="type-declaration-15"></a>
 
 <table>
 <thead>
@@ -5152,7 +5204,7 @@ type RedisFallbackProviderOptions = {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-15" id="type-declaration-15"></a>
+#### Type declaration <a href="#type-declaration-16" id="type-declaration-16"></a>
 
 <table>
 <thead>
@@ -5251,7 +5303,7 @@ type S3FallbackProviderOptions = {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-16" id="type-declaration-16"></a>
+#### Type declaration <a href="#type-declaration-17" id="type-declaration-17"></a>
 
 <table>
 <thead>
@@ -5345,7 +5397,7 @@ type StaticFallbackProviderOptions = {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-17" id="type-declaration-17"></a>
+#### Type declaration <a href="#type-declaration-18" id="type-declaration-18"></a>
 
 <table>
 <thead>
@@ -5359,7 +5411,7 @@ type StaticFallbackProviderOptions = {
 <tr>
 <td>
 
-<a id="flags-2"></a> `flags`
+<a id="flags-3"></a> `flags`
 
 </td>
 <td>
@@ -5386,7 +5438,7 @@ type TrackingMeta = {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-18" id="type-declaration-18"></a>
+#### Type declaration <a href="#type-declaration-19" id="type-declaration-19"></a>
 
 <table>
 <thead>
@@ -5422,7 +5474,7 @@ type TrackOptions = {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-19" id="type-declaration-19"></a>
+#### Type declaration <a href="#type-declaration-20" id="type-declaration-20"></a>
 
 <table>
 <thead>
@@ -5489,7 +5541,7 @@ const fallbackProviders: {
 };
 ```
 
-#### Type declaration <a href="#type-declaration-20" id="type-declaration-20"></a>
+#### Type declaration <a href="#type-declaration-21" id="type-declaration-21"></a>
 
 <table>
 <thead>
