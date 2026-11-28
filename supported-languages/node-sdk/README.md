@@ -89,7 +89,7 @@ If the flag is missing or has a different JSON type, such as a string instead of
 
 The SDK doesn't check object fields or fill in missing fields from your default.
 
-`getFlags(context)` returns an object mapping flag keys to values. Unavailable flags can have an `undefined` value.
+`getFlags(context)` returns an object mapping flag keys to values.
 
 Each read records a check, which Reflag uses for launch monitoring.
 
@@ -202,6 +202,7 @@ Pass the whole object, serialized with your framework's usual mechanism. Leave s
 To evaluate flags on Reflag's servers instead of locally, use the remote methods:
 
 ```ts
+// Root client: key, default, user ID, company ID
 const model = await reflag.getFlagRemote("model", "quick", "user-1", "acme");
 const boundModel = await reflag
   .bindClient(context)
@@ -211,7 +212,7 @@ const values = await reflag.getFlagsRemote("user-1", "acme", {
 });
 ```
 
-Unlike `getFlag()`, `getFlagRemote()` on the root client takes the default before the user and company IDs. To read a Boolean, pass `undefined` as the default.
+To read a Boolean with the root client, pass `undefined` as the default.
 
 ## Edge runtimes <a href="#edge-runtimes" id="edge-runtimes"></a>
 
@@ -254,7 +255,11 @@ Options can be set in the constructor, through environment variables, or in `ref
 | `batchOptions`          |                                                 | Event batching: `maxSize`, `intervalMs` and `flushOnExit`            |
 | `httpClient`            |                                                 | Custom HTTP client                                                   |
 
-To stop sending checks and events for a context, include `enableTracking: false` in it.
+To stop sending checks and events for a context, include `enableTracking: false` in it:
+
+```ts
+const untracked = reflag.bindClient({ ...context, enableTracking: false });
+```
 
 ## Shutting down <a href="#shutting-down" id="shutting-down"></a>
 

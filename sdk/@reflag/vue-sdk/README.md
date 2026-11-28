@@ -13,7 +13,7 @@ pagination:
   visible: true
 ---
 
-# Reflag Vue SDK (beta) <a href="#reflag-vue-sdk-beta" id="reflag-vue-sdk-beta"></a>
+# Reflag Vue SDK <a href="#reflag-vue-sdk" id="reflag-vue-sdk"></a>
 
 Feature flags, remote configuration, usage tracking and feedback for Vue 3 applications. Built on the [Browser SDK](../../../supported-languages/browser-sdk/README.md).
 

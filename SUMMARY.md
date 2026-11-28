@@ -11,7 +11,7 @@
   * [Reference](supported-languages/react-sdk/globals.md)
 * [React Native SDK (beta)](supported-languages/react-native-sdk/README.md)
   * [Reference](supported-languages/react-native-sdk/globals.md)
-* [Vue SDK (beta)](supported-languages/vue-sdk/README.md)
+* [Vue SDK](supported-languages/vue-sdk/README.md)
   * [Reference](supported-languages/vue-sdk/globals.md)
 * [Browser SDK](supported-languages/browser-sdk/README.md)
   * [Reference](supported-languages/browser-sdk/globals.md)

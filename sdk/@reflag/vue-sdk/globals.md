@@ -367,10 +367,16 @@ Widen literals and return mutable copies. Null requests arbitrary JSON.
 ### OptInFlag <a href="#optinflag" id="optinflag"></a>
 
 ```ts
-type OptInFlag = Omit<OptInFlag, "key"> & {
+type OptInFlag = Omit<import("@reflag/browser-sdk").OptInFlag, "key"> & {
   key: FlagKey;
 };
 ```
+
+An opt-in-enabled flag for the generated Vue SDK flag definitions.
+
+Includes all fields from [BrowserOptInFlag](../../../supported-languages/browser-sdk/globals.md#optinflag): `name`, `description`,
+`isEnabled`, `userOptedIn`, `companyOptedIn`, and `isOptedIn`.
+Only `key` is narrowed to the generated [FlagKey](../../../supported-languages/vue-sdk/globals.md#flagkey) type.
 
 #### Type declaration <a href="#type-declaration" id="type-declaration"></a>
 
@@ -712,11 +718,11 @@ type RequestFlagFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "feature
 ```ts
 type SetOptInOptions = {
   optedIn: boolean;
-  scope: "user" | "company";
+  scope?: "user" | "company";
 };
 ```
 
-Represents a flag.
+Options for changing the current user or company's opt-in membership.
 
 #### Type declaration <a href="#type-declaration-5" id="type-declaration-5"></a>
 
@@ -1318,7 +1324,10 @@ the current context.
 
 The loading state is only used with `ReflagBootstrappedProvider` while
 opt-in metadata is fetched on demand. Regular providers load opt-in metadata
-with the initial flags.
+with the initial flags; use [useIsLoading](../../../supported-languages/vue-sdk/globals.md#useisloading) for their loading state.
+
+If fetching opt-in metadata fails, loading ends without exposing an error.
+Call `refresh()` on the client returned by [useClient](../../../supported-languages/vue-sdk/globals.md#useclient) to retry.
 
 #### Returns <a href="#returns-6" id="returns-6"></a>
 
@@ -1466,6 +1475,11 @@ function useSetOptIn(): (key: string, options: SetOptInOptions) => Promise<
 ```
 
 Vue composable for setting whether the current user or company has opted into a flag.
+
+Check the returned Response's `ok` property and catch promise rejections.
+HTTP failures return a non-OK Response; offline mode, invalid arguments, or
+missing scoped context return undefined. Confirmation failures can reject
+after the membership changed remotely. See [ReflagClient.setOptIn](../../../supported-languages/browser-sdk/globals.md#setoptin).
 
 #### Returns <a href="#returns-11" id="returns-11"></a>
 

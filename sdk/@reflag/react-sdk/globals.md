@@ -396,12 +396,16 @@ Widen literals and return mutable copies. Null requests arbitrary JSON.
 ### OptInFlag <a href="#optinflag" id="optinflag"></a>
 
 ```ts
-type OptInFlag = Omit<OptInFlag, "key"> & {
+type OptInFlag = Omit<import("@reflag/browser-sdk").OptInFlag, "key"> & {
   key: FlagKey;
 };
 ```
 
 An opt-in-enabled flag for the generated React SDK flag definitions.
+
+Includes all fields from [@reflag/browser-sdk!OptInFlag](../../../supported-languages/browser-sdk/globals.md#optinflag): `name`, `description`,
+`isEnabled`, `userOptedIn`, `companyOptedIn`, and `isOptedIn`.
+Only `key` is narrowed to the generated [FlagKey](../../../supported-languages/react-sdk/globals.md#flagkey) type.
 
 #### Type declaration <a href="#type-declaration-1" id="type-declaration-1"></a>
 
@@ -802,11 +806,11 @@ type RequestFeedbackOptions = Omit<RequestFeedbackData, "flagKey" | "featureId">
 ```ts
 type SetOptInOptions = {
   optedIn: boolean;
-  scope: "user" | "company";
+  scope?: "user" | "company";
 };
 ```
 
-Represents a flag.
+Options for changing the current user or company's opt-in membership.
 
 #### Type declaration <a href="#type-declaration-6" id="type-declaration-6"></a>
 
@@ -1007,7 +1011,7 @@ type TypedFlags = keyof Flags extends never ? Record<string, FlagValue | undefin
 
 ```ts
 type UseOptInFlagsOptions = {
-  suspense: boolean;
+  suspense?: boolean;
 };
 ```
 
@@ -1994,16 +1998,19 @@ useOnEvent("flagsUpdated", () => {
 ### useOptInFlags() <a href="#useoptinflags" id="useoptinflags"></a>
 
 ```ts
-function useOptInFlags(options: UseOptInFlagsOptions): UseOptInFlagsResult
+function useOptInFlags(options?: UseOptInFlagsOptions): UseOptInFlagsResult
 ```
 
 Returns opt-in-enabled flags and their loading state for the current context.
 
 The loading state is only used with `ReflagBootstrappedProvider` while
 opt-in metadata is fetched on demand. Regular providers load opt-in metadata
-with the initial flags.
+with the initial flags; use [useIsLoading](../../../supported-languages/react-sdk/globals.md#useisloading) for their loading state.
 When suspense is enabled for the provider or this hook, it suspends instead
-of returning a loading result.
+of returning a loading result. A Suspense boundary alone does not enable it.
+
+If fetching opt-in metadata fails, loading ends without exposing an error.
+Call `refresh()` on the client returned by [useClient](../../../supported-languages/react-sdk/globals.md#useclient) to retry.
 
 #### Parameters <a href="#parameters-13" id="parameters-13"></a>
 
@@ -2018,7 +2025,7 @@ of returning a loading result.
 <tr>
 <td>
 
-`options`
+`options`?
 
 </td>
 <td>
@@ -2159,6 +2166,11 @@ function useSetOptIn(): (key: string, options: SetOptInOptions) => Promise<
 ```
 
 Returns a function to set whether the current user or company has opted into a flag.
+
+Check the returned Response's `ok` property and catch promise rejections.
+HTTP failures return a non-OK Response; offline mode, invalid arguments, or
+missing scoped context return undefined. Confirmation failures can reject
+after the membership changed remotely. See [@reflag/browser-sdk!ReflagClient.setOptIn](../../../supported-languages/browser-sdk/globals.md#setoptin).
 
 #### Returns <a href="#returns-20" id="returns-20"></a>
 

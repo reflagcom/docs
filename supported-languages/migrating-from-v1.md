@@ -1,5 +1,5 @@
 ---
-description: Upgrade Browser, React, React Native, Vue and Node.js integrations from protocol v1 to v2.
+description: Upgrade Browser, React, React Native, Vue and Node.js integrations from SDK v1 to v2.
 ---
 
 # Migrating from v1
@@ -132,15 +132,15 @@ Bootstrap data must use the same protocol version as the client SDK. Pass the wh
 
 ### Run both Node SDK versions during a rolling upgrade
 
-If old browser bundles or installed mobile builds can still make requests, keep the existing v1 field (here, `flags`) and add a separate `flagsV2` field. Install v2 normally and install a v1 release under an alias. Replace `V1_VERSION` with the exact v1 release that supports public-only bootstrap:
+If old browser bundles or installed mobile builds can still make requests, keep the existing v1 field (here, `flags`) and add a separate `flagsV2` field. Install v2 normally, and install Node.js SDK v1 under an alias. Use 1.8.4 or later, which keeps secret flags out of bootstrap data:
 
 ```sh
-npm install @reflag/node-sdk@2 @reflag/node-sdk-v1@npm:@reflag/node-sdk@V1_VERSION
+npm install @reflag/node-sdk@2 @reflag/node-sdk-v1@npm:@reflag/node-sdk@^1.8.4
 ```
 
-On the server, initialize both clients once at startup with the same `REFLAG_SECRET_KEY`. Build the context from the authenticated user's session, using only attributes the client can see. If your v1 SDK can't produce a public-only snapshot, use publishable-key fetching rather than sending its server snapshot.
+On the server, initialize both clients once at startup with the same `REFLAG_SECRET_KEY`. Build the context from the authenticated user's session, using only attributes the client can see.
 
-Use v2 for normal server reads and tracking. Use v1 only to build the legacy snapshot, with `enableTracking: false` so the server doesn't sync the same user and company twice. v1 copies that setting into the snapshot, so restore the request's original tracking preference before sending it to old clients.
+Use v2 for normal server reads and tracking, and v1 only to build the legacy snapshot. The helper below turns off tracking for the v1 call so users and companies aren't synced twice, without changing how old clients track.
 
 ```ts
 import { ReflagClient as ReflagV1 } from "@reflag/node-sdk-v1";
@@ -179,21 +179,19 @@ Saved state doesn't carry over. The Browser SDK starts with a fresh cache and no
 
 ## 6. Regenerate types and review overrides
 
-If you generate flag types, use only CLI v2 in the upgraded project and rerun `reflag flags types`. Replace the old declarations. Both generators add entries to the SDK module's `Flags` interface, so including both outputs for the same module in one TypeScript project can give a flag two incompatible types.
-
-You don't need CLI v1 or generated types for `@reflag/node-sdk-v1` when it only makes the legacy bootstrap snapshot. The new declarations target the upgraded SDK modules, not the alias. Already-deployed v1 bundles were compiled with their own types and don't use the new declarations. Type generation is optional in v2; see [Type safety](../product-handbook/type-safety.md).
+If you generate flag types, use CLI v2, rerun `reflag flags types` and replace the old declarations. Don't keep v1 and v2 declarations in the same project. You don't need types for the `@reflag/node-sdk-v1` alias. See [Type safety](../product-handbook/type-safety.md).
 
 Overrides and static fallback values are now plain values, such as `true` or `{ maxItems: 5 }`. In the Browser SDK, `undefined` removes an override, while `null` sets the value to `null`. Run your offline and outage tests against v2 before upgrading production.
 
 ## React Native
 
-`@reflag/react-native-sdk` `0.3.x` uses protocol v1. The v2 package requires React 17 or later. Follow the React examples above, but keep importing your provider and hooks from `@reflag/react-native-sdk`.
+`@reflag/react-native-sdk` `0.3.x` works with SDK v1. The v2 package requires React 17 or later. Follow the React examples above, but keep importing your provider and hooks from `@reflag/react-native-sdk`.
 
 For React Native, choose the `react` format when generating flag types with CLI v2. Set `"format": "react"` in `reflag.config.json` and replace the old declarations. If TypeScript can't resolve `@reflag/react-sdk` from the generated file, add it as a direct dependency at the same version the Native SDK uses.
 
 A store release doesn't update every installed app. Keep the existing Boolean flags and legacy Remote config available for the older builds you still support. If your app fetches flags with `ReflagProvider`, you don't need a server bootstrap change. If it receives snapshots from your backend, [keep separate v1 and v2 snapshots](#run-both-node-sdk-versions-during-a-rolling-upgrade) and let v2 clients fetch when their snapshot is missing.
 
-Test on iOS and Android before rolling out: run old and new builds against the same environment, and check offline startup, flag defaults and refresh after resuming the app. See the [React Native SDK v2 guide](https://github.com/reflagcom/javascript/tree/main/packages/react-native-sdk#migrating-from-v1) for Native-specific APIs.
+Test on iOS and Android before rolling out: run old and new builds against the same environment, and check offline startup, flag defaults and refresh after resuming the app. See the [React Native SDK v2 guide](https://github.com/reflagcom/javascript/tree/main/packages/react-native-sdk#readme) for React Native-specific setup.
 
 ## SDK documentation
 
