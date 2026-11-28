@@ -3,11 +3,11 @@
 When the [GitHub integration](../../integrations/github.md) is enabled, Reflag can automatically clean up your code after flags turn stale. The Reflag bot submits a pull request to your GitHub repository that removes flag code once a flag turns stale.
 
 {% hint style="warning" %}
-This automation **keeps the codepath that grants access (`isEnabled == true`)** when cleaning up and archiving a flag. In practice, it releases the flag to everyone by removing the flagging code.
+This automation **keeps the codepath that grants access (the Boolean flag value is `true`)** when cleaning up and archiving a flag. In practice, it releases the flag to everyone by removing the flagging code.
 {% endhint %}
 
 {% hint style="info" %}
-Note: This works best when using the [React SDK](../../supported-languages/browser-sdk/), but stay tuned for improved Node.js support
+Note: This works best when using the [React SDK](../../supported-languages/react-sdk/README.md), but stay tuned for improved Node.js support
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/1753259671871 (1).jpeg" alt=""><figcaption></figcaption></figure>
@@ -101,25 +101,31 @@ When the AI clean-up bot runs, it searches for usage of the Reflag SDK in your c
 
 For React, this usually corresponds to the `useFlag` hook, like in this contrived example:
 
-```javascript
+```tsx
+import { useFlag, useTrack } from "@reflag/react-sdk";
+
 function StartHuddleButton() {
-  const { isEnabled } = useFlag("huddle");
-  if (!isEnabled) {
+  const enabled = useFlag("huddle");
+  const track = useTrack();
+  if (!enabled) {
     return null;
   }
-  return <button onClick={track}>Start huddle!</button>;
+  return <button onClick={() => track("Started huddle")}>Start huddle!</button>;
 }
 ```
 
-When the bot cleans up the file, it removes the hook and only retains the `isEnabled` codepath:
+When the bot cleans up the file, it removes the hook and only retains the enabled codepath:
 
-```javascript
+```tsx
+import { useTrack } from "@reflag/react-sdk";
+
 function StartHuddleButton() {
-  return <button onClick={track}>Start huddle!</button>;
+  const track = useTrack();
+  return <button onClick={() => track("Started huddle")}>Start huddle!</button>;
 }
 ```
 
 **Limitations**:
 
-* Only `isEnabled` is removed, whereas `track`, `config`, and `requestFeedback` are untouched.
+* Review the generated PR carefully. The cleanup removes the flag check only; keep any usage tracking, feedback or configuration you still need. For Multivariate flags, decide yourself which value to keep.
 * Works best with the React SDK while in beta.

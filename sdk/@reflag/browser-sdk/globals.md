@@ -13,17 +13,19 @@ pagination:
   visible: true
 ---
 
-# @reflag/browser-sdk
+# @reflag/browser-sdk <a href="#reflagbrowser-sdk" id="reflagbrowser-sdk"></a>
 
-## Classes
+This page covers SDK v2.
 
-### ReflagClient
+## Classes <a href="#classes" id="classes"></a>
+
+### ReflagClient <a href="#reflagclient" id="reflagclient"></a>
 
 ReflagClient lets you interact with the Reflag API.
 
-#### Constructors
+#### Constructors <a href="#constructors" id="constructors"></a>
 
-##### new ReflagClient()
+### new ReflagClient() <a href="#new-reflagclient" id="new-reflagclient"></a>
 
 ```ts
 new ReflagClient(opts: InitOptions): ReflagClient
@@ -31,7 +33,7 @@ new ReflagClient(opts: InitOptions): ReflagClient
 
 Create a new ReflagClient instance.
 
-###### Parameters
+###### Parameters <a href="#parameters" id="parameters"></a>
 
 <table>
 <thead>
@@ -49,18 +51,18 @@ Create a new ReflagClient instance.
 </td>
 <td>
 
-[`InitOptions`](globals.md#initoptions)
+[`InitOptions`](../../../supported-languages/browser-sdk/globals.md#initoptions)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns" id="returns"></a>
 
-[`ReflagClient`](globals.md#reflagclient)
+[`ReflagClient`](../../../supported-languages/browser-sdk/globals.md#reflagclient)
 
-#### Properties
+#### Properties <a href="#properties" id="properties"></a>
 
 <table>
 <thead>
@@ -84,22 +86,22 @@ Create a new ReflagClient instance.
 </td>
 <td>
 
-[`Logger`](globals.md#logger-1)
+[`Logger`](../../../supported-languages/browser-sdk/globals.md#logger)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Methods
+#### Methods <a href="#methods" id="methods"></a>
 
-##### applyBootstrappedState()
+### applyBootstrappedState() <a href="#applybootstrappedstate" id="applybootstrappedstate"></a>
 
 ```ts
 applyBootstrappedState(bootstrappedState: BootstrappedState, triggerEvent: boolean): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-1" id="parameters-1"></a>
 
 <table>
 <thead>
@@ -118,7 +120,7 @@ applyBootstrappedState(bootstrappedState: BootstrappedState, triggerEvent: boole
 </td>
 <td>
 
-[`BootstrappedState`](globals.md#bootstrappedstate)
+[`BootstrappedState`](../../../supported-languages/browser-sdk/globals.md#bootstrappedstate)
 
 </td>
 <td>
@@ -147,11 +149,11 @@ applyBootstrappedState(bootstrappedState: BootstrappedState, triggerEvent: boole
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-1" id="returns-1"></a>
 
 `void`
 
-##### feedback()
+### feedback() <a href="#feedback-1" id="feedback-1"></a>
 
 ```ts
 feedback(payload: Feedback): Promise<
@@ -161,7 +163,7 @@ feedback(payload: Feedback): Promise<
 
 Submit user feedback to Reflag. Must include either `score` or `comment`, or both.
 
-###### Parameters
+###### Parameters <a href="#parameters-2" id="parameters-2"></a>
 
 <table>
 <thead>
@@ -180,7 +182,7 @@ Submit user feedback to Reflag. Must include either `score` or `comment`, or bot
 </td>
 <td>
 
-[`Feedback`](globals.md#feedback-1)
+[`Feedback`](../../../supported-languages/browser-sdk/globals.md#feedback)
 
 </td>
 <td>
@@ -192,7 +194,7 @@ The feedback details to submit.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-2" id="returns-2"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
@@ -200,7 +202,7 @@ The feedback details to submit.
 
 The server response.
 
-##### getConfig()
+### getConfig() <a href="#getconfig" id="getconfig"></a>
 
 ```ts
 getConfig(): Config
@@ -208,11 +210,11 @@ getConfig(): Config
 
 Get the current configuration.
 
-###### Returns
+###### Returns <a href="#returns-3" id="returns-3"></a>
 
-[`Config`](globals.md#config)
+[`Config`](../../../supported-languages/browser-sdk/globals.md#config)
 
-##### getContext()
+### getContext() <a href="#getcontext" id="getcontext"></a>
 
 ```ts
 getContext(): ReflagContext
@@ -220,86 +222,48 @@ getContext(): ReflagContext
 
 Get the current context.
 
-###### Returns
+###### Returns <a href="#returns-4" id="returns-4"></a>
 
-[`ReflagContext`](globals.md#reflagcontext)
+[`ReflagContext`](../../../supported-languages/browser-sdk/globals.md#reflagcontext)
 
-##### ~~getFeature()~~
-
-```ts
-getFeature(flagKey: string): Flag
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`flagKey`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-[`Flag`](globals.md#flag)
-
-###### Deprecated
-
-Use `getFlag` instead.
-
-##### ~~getFeatures()~~
+### ~~getFeatures()~~ <a href="#getfeatures" id="getfeatures"></a>
 
 ```ts
-getFeatures(): RawFlags
+getFeatures(): Record<string, undefined | FlagValue>
 ```
 
-###### Returns
+###### Returns <a href="#returns-5" id="returns-5"></a>
 
-[`RawFlags`](globals.md#rawflags)
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](../../../supported-languages/browser-sdk/globals.md#flagvalue)\>
 
-###### Deprecated
+###### Deprecated <a href="#deprecated" id="deprecated"></a>
 
 Use `getFlags` instead.
 
-##### getFlag()
+### getFlag() <a href="#getflag" id="getflag"></a>
+
+###### Call Signature <a href="#call-signature" id="call-signature"></a>
 
 ```ts
-getFlag(flagKey: string): Flag
+getFlag(key: string, defaultValue?: undefined): boolean
 ```
 
-Return a flag. Accessing `isEnabled` or `config` will automatically send a `check` event.
+Boolean-first reads; positional defaults select other top-level JSON categories.
 
-###### Parameters
+###### Parameters <a href="#parameters-3" id="parameters-3"></a>
 
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`flagKey`
+`key`
 
 </td>
 <td>
@@ -307,97 +271,35 @@ Return a flag. Accessing `isEnabled` or `config` will automatically send a `chec
 `string`
 
 </td>
+</tr>
+<tr>
 <td>
 
-The key of the flag to get.
+`defaultValue`?
+
+</td>
+<td>
+
+`undefined`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
-
-[`Flag`](globals.md#flag)
-
-A flag.
-
-##### getFlags()
-
-```ts
-getFlags(): RawFlags
-```
-
-Returns a map of enabled flags.
-Accessing a flag will *not* send a check event
-and `isEnabled` does not take any flag overrides
-into account.
-
-###### Returns
-
-[`RawFlags`](globals.md#rawflags)
-
-Map of flags.
-
-##### getIsLoadingOptInFlags()
-
-```ts
-getIsLoadingOptInFlags(): boolean
-```
-
-Returns whether opt-in flags are loading for the current context.
-
-Calling this method requests opt-in metadata if it is not already available.
-
-###### Returns
+###### Returns <a href="#returns-6" id="returns-6"></a>
 
 `boolean`
 
-##### getOptInFlags()
+###### Call Signature <a href="#call-signature-1" id="call-signature-1"></a>
 
 ```ts
-getOptInFlags(): OptInFlag[]
+getFlag<Default>(key: string, defaultValue: Default): FlagValueFromDefault<Default>
 ```
 
-Returns opt-in-enabled flags for the current context.
+Boolean-first reads; positional defaults select other top-level JSON categories.
 
-###### Returns
-
-[`OptInFlag`](globals.md#optinflag)[]
-
-##### getState()
-
-```ts
-getState(): State
-```
-
-###### Returns
-
-[`State`](globals.md#state)
-
-##### initialize()
-
-```ts
-initialize(): Promise<void>
-```
-
-Initialize the Reflag SDK.
-
-Must be called before calling other SDK methods.
-
-###### Returns
-
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
-
-##### off()
-
-```ts
-off<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): void
-```
-
-Remove an event listener
-
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters" id="type-parameters"></a>
 
 <table>
 <thead>
@@ -409,14 +311,202 @@ Remove an event listener
 <tr>
 <td>
 
-`THookType` *extends* keyof [`HookArgs`](globals.md#hookargs)
+`Default` *extends* `object` \| [`FlagDefaultValue`](../../../supported-languages/browser-sdk/globals.md#flagdefaultvalue)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-4" id="parameters-4"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`defaultValue`
+
+</td>
+<td>
+
+`Default`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-7" id="returns-7"></a>
+
+[`FlagValueFromDefault`](../../../supported-languages/browser-sdk/globals.md#flagvaluefromdefaultt)\<`Default`\>
+
+### getFlagOverride() <a href="#getflagoverride" id="getflagoverride"></a>
+
+```ts
+getFlagOverride(key: string): undefined | FlagValue
+```
+
+###### Parameters <a href="#parameters-5" id="parameters-5"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-8" id="returns-8"></a>
+
+`undefined` \| [`FlagValue`](../../../supported-languages/browser-sdk/globals.md#flagvalue)
+
+### getFlagResults() <a href="#getflagresults" id="getflagresults"></a>
+
+```ts
+getFlagResults(): RawFlags
+```
+
+Owned evaluated diagnostics; inspecting these is not an application read.
+
+###### Returns <a href="#returns-9" id="returns-9"></a>
+
+[`RawFlags`](../../../supported-languages/browser-sdk/globals.md#rawflags)
+
+### getFlags() <a href="#getflags" id="getflags"></a>
+
+```ts
+getFlags(): Record<string, undefined | FlagValue>
+```
+
+Return direct values and register checks for these returned roots.
+Use getFlagResults() for diagnostic/serialization access without checks.
+
+###### Returns <a href="#returns-10" id="returns-10"></a>
+
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `undefined` \| [`FlagValue`](../../../supported-languages/browser-sdk/globals.md#flagvalue)\>
+
+### getFlagsForBootstrap() <a href="#getflagsforbootstrap" id="getflagsforbootstrap"></a>
+
+```ts
+getFlagsForBootstrap(): BootstrappedState
+```
+
+###### Returns <a href="#returns-11" id="returns-11"></a>
+
+[`BootstrappedState`](../../../supported-languages/browser-sdk/globals.md#bootstrappedstate)
+
+### getIsLoadingOptInFlags() <a href="#getisloadingoptinflags" id="getisloadingoptinflags"></a>
+
+```ts
+getIsLoadingOptInFlags(): boolean
+```
+
+Returns whether opt-in flags are loading for the current context.
+
+Calling this method requests opt-in metadata if it is not already available.
+
+###### Returns <a href="#returns-12" id="returns-12"></a>
+
+`boolean`
+
+### getOptInFlags() <a href="#getoptinflags" id="getoptinflags"></a>
+
+```ts
+getOptInFlags(): OptInFlag[]
+```
+
+Returns opt-in-enabled flags for the current context.
+
+###### Returns <a href="#returns-13" id="returns-13"></a>
+
+[`OptInFlag`](../../../supported-languages/browser-sdk/globals.md#optinflag)[]
+
+### getState() <a href="#getstate" id="getstate"></a>
+
+```ts
+getState(): State
+```
+
+###### Returns <a href="#returns-14" id="returns-14"></a>
+
+[`State`](../../../supported-languages/browser-sdk/globals.md#state)
+
+### initialize() <a href="#initialize" id="initialize"></a>
+
+```ts
+initialize(): Promise<void>
+```
+
+Initialize the Reflag SDK.
+
+Must be called before calling other SDK methods.
+
+###### Returns <a href="#returns-15" id="returns-15"></a>
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+
+### off() <a href="#off" id="off"></a>
+
+```ts
+off<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): void
+```
+
+Remove an event listener
+
+###### Type Parameters <a href="#type-parameters-1" id="type-parameters-1"></a>
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`THookType` *extends* keyof [`HookArgs`](../../../supported-languages/browser-sdk/globals.md#hookargs)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Parameters <a href="#parameters-6" id="parameters-6"></a>
 
 <table>
 <thead>
@@ -452,7 +542,7 @@ Type of event to remove.
 </td>
 <td>
 
-(`args0`: [`HookArgs`](globals.md#hookargs)\[`THookType`\]) => `void`
+(`args0`: [`HookArgs`](../../../supported-languages/browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
 
 </td>
 <td>
@@ -464,13 +554,13 @@ The same function that was passed to `on`.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-16" id="returns-16"></a>
 
 `void`
 
 A function to remove the hook.
 
-##### on()
+### on() <a href="#on" id="on"></a>
 
 ```ts
 on<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): () => void
@@ -478,7 +568,7 @@ on<THookType>(type: THookType, handler: (args0: HookArgs[THookType]) => void): (
 
 Add an event listener
 
-###### Type Parameters
+###### Type Parameters <a href="#type-parameters-2" id="type-parameters-2"></a>
 
 <table>
 <thead>
@@ -490,14 +580,14 @@ Add an event listener
 <tr>
 <td>
 
-`THookType` *extends* keyof [`HookArgs`](globals.md#hookargs)
+`THookType` *extends* keyof [`HookArgs`](../../../supported-languages/browser-sdk/globals.md#hookargs)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Parameters
+###### Parameters <a href="#parameters-7" id="parameters-7"></a>
 
 <table>
 <thead>
@@ -533,7 +623,7 @@ Type of events to listen for
 </td>
 <td>
 
-(`args0`: [`HookArgs`](globals.md#hookargs)\[`THookType`\]) => `void`
+(`args0`: [`HookArgs`](../../../supported-languages/browser-sdk/globals.md#hookargs)\[`THookType`\]) => `void`
 
 </td>
 <td>
@@ -545,17 +635,17 @@ The function to call when the event is triggered.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-17" id="returns-17"></a>
 
 `Function`
 
 A function to remove the hook.
 
-###### Returns
+###### Returns <a href="#returns-18" id="returns-18"></a>
 
 `void`
 
-##### refresh()
+### refresh() <a href="#refresh" id="refresh"></a>
 
 ```ts
 refresh(): Promise<undefined | RawFlags>
@@ -563,11 +653,11 @@ refresh(): Promise<undefined | RawFlags>
 
 Force refresh flags from the API, bypassing cache.
 
-###### Returns
+###### Returns <a href="#returns-19" id="returns-19"></a>
 
-[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| [`RawFlags`](globals.md#rawflags)\>
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`undefined` \| [`RawFlags`](../../../supported-languages/browser-sdk/globals.md#rawflags)\>
 
-##### requestFeedback()
+### requestFeedback() <a href="#requestfeedback" id="requestfeedback"></a>
 
 ```ts
 requestFeedback(options: RequestFeedbackData): void
@@ -577,7 +667,7 @@ Display the Reflag feedback form UI programmatically.
 
 This can be used to collect feedback from users in Reflag in cases where Automated Feedback Surveys isn't appropriate.
 
-###### Parameters
+###### Parameters <a href="#parameters-8" id="parameters-8"></a>
 
 <table>
 <thead>
@@ -595,18 +685,18 @@ This can be used to collect feedback from users in Reflag in cases where Automat
 </td>
 <td>
 
-[`RequestFeedbackData`](globals.md#requestfeedbackdata)
+[`RequestFeedbackData`](../../../supported-languages/browser-sdk/globals.md#requestfeedbackdata)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-20" id="returns-20"></a>
 
 `void`
 
-##### setContext()
+### setContext() <a href="#setcontext" id="setcontext"></a>
 
 ```ts
 setContext(context: ReflagDeprecatedContext): Promise<void>
@@ -615,7 +705,7 @@ setContext(context: ReflagDeprecatedContext): Promise<void>
 Update the context.
 Replaces the existing context with a new context.
 
-###### Parameters
+###### Parameters <a href="#parameters-9" id="parameters-9"></a>
 
 <table>
 <thead>
@@ -634,7 +724,7 @@ Replaces the existing context with a new context.
 </td>
 <td>
 
-[`ReflagDeprecatedContext`](globals.md#reflagdeprecatedcontext)
+[`ReflagDeprecatedContext`](../../../supported-languages/browser-sdk/globals.md#reflagdeprecatedcontext)
 
 </td>
 <td>
@@ -646,11 +736,60 @@ The context to update.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-21" id="returns-21"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### setOptIn()
+### setFlagOverride() <a href="#setflagoverride" id="setflagoverride"></a>
+
+```ts
+setFlagOverride(key: string, value: undefined | FlagValue): void
+```
+
+Overrides are applied after server evaluation and never invent selections.
+
+###### Parameters <a href="#parameters-10" id="parameters-10"></a>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`value`
+
+</td>
+<td>
+
+`undefined` \| [`FlagValue`](../../../supported-languages/browser-sdk/globals.md#flagvalue)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns <a href="#returns-22" id="returns-22"></a>
+
+`void`
+
+### setOptIn() <a href="#setoptin" id="setoptin"></a>
 
 ```ts
 setOptIn(flagKey: string, options: SetOptInOptions): Promise<
@@ -661,12 +800,12 @@ setOptIn(flagKey: string, options: SetOptInOptions): Promise<
 Set whether the current user or company has opted into a flag.
 
 A successful Response is returned after the refreshed flag state confirms
-the membership change. HTTP failures return a non-OK Response without
-refreshing flags. Offline mode, invalid arguments, or missing scoped context
-return undefined. Network and confirmation failures reject the promise;
-a confirmation failure may occur after membership changed remotely.
+the membership change. HTTP failures return a readable non-OK Response
+without refreshing flags. Offline mode, invalid arguments, or missing scoped
+context return undefined. Network and confirmation failures reject; a
+confirmation failure may occur after membership changed remotely.
 
-###### Parameters
+###### Parameters <a href="#parameters-11" id="parameters-11"></a>
 
 <table>
 <thead>
@@ -696,26 +835,26 @@ a confirmation failure may occur after membership changed remotely.
 </td>
 <td>
 
-[`SetOptInOptions`](globals.md#setoptinoptions)
+[`SetOptInOptions`](../../../supported-languages/browser-sdk/globals.md#setoptinoptions)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-23" id="returns-23"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
   \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
-##### showToolbarToggle()
+### showToolbarToggle() <a href="#showtoolbartoggle" id="showtoolbartoggle"></a>
 
 ```ts
 showToolbarToggle(position?: ToolbarPosition): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-12" id="parameters-12"></a>
 
 <table>
 <thead>
@@ -733,18 +872,18 @@ showToolbarToggle(position?: ToolbarPosition): void
 </td>
 <td>
 
-[`ToolbarPosition`](globals.md#toolbarposition)
+[`ToolbarPosition`](../../../supported-languages/browser-sdk/globals.md#toolbarposition)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-24" id="returns-24"></a>
 
 `void`
 
-##### stop()
+### stop() <a href="#stop" id="stop"></a>
 
 ```ts
 stop(): Promise<void>
@@ -753,14 +892,14 @@ stop(): Promise<void>
 Stop the SDK.
 This will stop any automated feedback surveys.
 
-###### Returns
+###### Returns <a href="#returns-25" id="returns-25"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### track()
+### track() <a href="#track" id="track"></a>
 
 ```ts
-track(eventName: string, attributes?: 
+track(eventName: string, attributes?:
   | null
   | Record<string, any>): Promise<
   | undefined
@@ -769,7 +908,7 @@ track(eventName: string, attributes?:
 
 Track an event in Reflag.
 
-###### Parameters
+###### Parameters <a href="#parameters-13" id="parameters-13"></a>
 
 <table>
 <thead>
@@ -817,13 +956,13 @@ Any attributes you want to attach to the event.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-26" id="returns-26"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<
   \| `undefined`
   \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
-##### updateCompany()
+### updateCompany() <a href="#updatecompany" id="updatecompany"></a>
 
 ```ts
 updateCompany(company: {}): Promise<void>
@@ -833,7 +972,7 @@ Update the company context.
 Performs a shallow merge with the existing company context.
 It will not update the context if nothing has changed.
 
-###### Parameters
+###### Parameters <a href="#parameters-14" id="parameters-14"></a>
 
 <table>
 <thead>
@@ -864,22 +1003,22 @@ The company details.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-27" id="returns-27"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### updateFlags()
+### updateFlags() <a href="#updateflags" id="updateflags"></a>
 
 ```ts
 updateFlags(
-   flags: RawFlags, 
-   triggerEvent: boolean, 
+   flags: RawFlags,
+   triggerEvent: boolean,
    flagStateVersion?: number): void
 ```
 
 Update the flags.
 
-###### Parameters
+###### Parameters <a href="#parameters-15" id="parameters-15"></a>
 
 <table>
 <thead>
@@ -899,7 +1038,7 @@ Update the flags.
 </td>
 <td>
 
-[`RawFlags`](globals.md#rawflags)
+[`RawFlags`](../../../supported-languages/browser-sdk/globals.md#rawflags)
 
 </td>
 <td>
@@ -960,11 +1099,11 @@ Whether to trigger the `flagsUpdated` event.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-28" id="returns-28"></a>
 
 `void`
 
-##### updateOtherContext()
+### updateOtherContext() <a href="#updateothercontext" id="updateothercontext"></a>
 
 ```ts
 updateOtherContext(otherContext: {}): Promise<void>
@@ -974,7 +1113,7 @@ Update the company context.
 Performs a shallow merge with the existing company context.
 It will not update the context if nothing has changed.
 
-###### Parameters
+###### Parameters <a href="#parameters-16" id="parameters-16"></a>
 
 <table>
 <thead>
@@ -1005,11 +1144,11 @@ Additional context.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-29" id="returns-29"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-##### updateUser()
+### updateUser() <a href="#updateuser" id="updateuser"></a>
 
 ```ts
 updateUser(user: {}): Promise<void>
@@ -1019,7 +1158,7 @@ Update the user context.
 Performs a shallow merge with the existing user context.
 It will not update the context if nothing has changed.
 
-###### Parameters
+###### Parameters <a href="#parameters-17" id="parameters-17"></a>
 
 <table>
 <thead>
@@ -1044,24 +1183,23 @@ It will not update the context if nothing has changed.
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-30" id="returns-30"></a>
 
 [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
-## Interfaces
+## Interfaces <a href="#interfaces" id="interfaces"></a>
 
-### CheckEvent
+### CheckEvent <a href="#checkevent" id="checkevent"></a>
 
-Event representing checking the flag evaluation result
+A root read records selection identity, never its JSON payload.
 
-#### Properties
+#### Properties <a href="#properties-1" id="properties-1"></a>
 
 <table>
 <thead>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1073,29 +1211,79 @@ Event representing checking the flag evaluation result
 </td>
 <td>
 
-`"check-is-enabled"` \| `"check-config"`
-
-</td>
-<td>
-
-`check-is-enabled` means `isEnabled` was checked, `check-config` means `config` was checked.
+`"check"`
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="evaluationerrors"></a> `evaluationErrors?`
+<a id="evalcontext"></a> `evalContext?`
 
 </td>
 <td>
 
-\{ `code`: `string`; `field`: `string`; `message`: `string`; `operator`: `string`; \}[]
+[`ReflagContext`](../../../supported-languages/browser-sdk/globals.md#reflagcontext)
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalerrors"></a> `evalErrors?`
 
 </td>
 <td>
 
-Non-fatal diagnostics produced while evaluating the flag.
+[`EvaluationError`](../../../supported-languages/browser-sdk/globals.md#evaluationerror)[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalmissingfields"></a> `evalMissingFields?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalresult"></a> `evalResult?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="evalruleresults"></a> `evalRuleResults?`
+
+</td>
+<td>
+
+`boolean`[]
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="flagstateversion"></a> `flagStateVersion?`
+
+</td>
+<td>
+
+`number`
 
 </td>
 </tr>
@@ -1110,83 +1298,16 @@ Non-fatal diagnostics produced while evaluating the flag.
 `string`
 
 </td>
-<td>
-
-Flag key.
-
-</td>
 </tr>
 <tr>
 <td>
 
-<a id="missingcontextfields"></a> ~~`missingContextFields?`~~
+<a id="sourceversionid"></a> `sourceVersionId?`
 
 </td>
 <td>
 
-`string`[]
-
-</td>
-<td>
-
-Missing context fields.
-
-**Deprecated**
-
-Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="ruleevaluationresults"></a> `ruleEvaluationResults?`
-
-</td>
-<td>
-
-`boolean`[]
-
-</td>
-<td>
-
-Rule evaluation results.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="value"></a> `value?`
-
-</td>
-<td>
-
- \| `boolean` \| \{ `key`: `string`; `payload`: `any`; \}
-
-</td>
-<td>
-
-Result of flag or configuration evaluation.
-If `action` is `check-is-enabled`, this is the result of the flag evaluation and `value` is a boolean.
-If `action` is `check-config`, this is the result of the configuration evaluation.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="version"></a> `version?`
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-Version of targeting rules.
+`string`
 
 </td>
 </tr>
@@ -1195,19 +1316,19 @@ Version of targeting rules.
 
 ***
 
-### CompanyContext
+### CompanyContext <a href="#companycontext" id="companycontext"></a>
 
 Context is a set of key-value pairs.
 This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing company.
 
-#### Indexable
+#### Indexable <a href="#indexable" id="indexable"></a>
 
 ```ts
 [key: string]: ContextValue
 ```
 
-#### Properties
+#### Properties <a href="#properties-2" id="properties-2"></a>
 
 <table>
 <thead>
@@ -1257,11 +1378,11 @@ Company name
 
 ***
 
-### Config
+### Config <a href="#config" id="config"></a>
 
 ReflagClient configuration.
 
-#### Properties
+#### Properties <a href="#properties-3" id="properties-3"></a>
 
 <table>
 <thead>
@@ -1380,9 +1501,9 @@ Defaults to `apiBaseUrl`.
 
 ***
 
-### FeedbackScoreSubmission
+### FeedbackScoreSubmission <a href="#feedbackscoresubmission" id="feedbackscoresubmission"></a>
 
-#### Properties
+#### Properties <a href="#properties-4" id="properties-4"></a>
 
 <table>
 <thead>
@@ -1433,9 +1554,9 @@ Defaults to `apiBaseUrl`.
 
 ***
 
-### FeedbackSubmission
+### FeedbackSubmission <a href="#feedbacksubmission" id="feedbacksubmission"></a>
 
-#### Properties
+#### Properties <a href="#properties-5" id="properties-5"></a>
 
 <table>
 <thead>
@@ -1498,153 +1619,9 @@ Defaults to `apiBaseUrl`.
 
 ***
 
-### Flag
+### HookArgs <a href="#hookargs" id="hookargs"></a>
 
-#### Properties
-
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-<a id="config-1"></a> `config`
-
-</td>
-<td>
-
-[`FlagRemoteConfig`](globals.md#flagremoteconfig)
-
-</td>
-<td>
-
-&hyphen;
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabled"></a> `isEnabled`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-Result of flag flag evaluation.
-Note: Does not take local overrides into account.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabledoverride"></a> `isEnabledOverride`
-
-</td>
-<td>
-
-`null` \| `boolean`
-
-</td>
-<td>
-
-The current override status of isEnabled for the flag.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="requestfeedback-1"></a> `requestFeedback`
-
-</td>
-<td>
-
-(`options`: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)\<[`RequestFeedbackData`](globals.md#requestfeedbackdata), `"featureId"` \| `"flagKey"`\>) => `void`
-
-</td>
-<td>
-
-Function to request feedback for this flag.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="track-1"></a> `track`
-
-</td>
-<td>
-
-() => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\< \| `undefined` \| [`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
-
-</td>
-<td>
-
-Function to send analytics events for this flag.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Methods
-
-##### setIsEnabledOverride()
-
-```ts
-setIsEnabledOverride(isEnabled: null | boolean): void
-```
-
-Set the override status for isEnabled for the flag.
-Set to `null` to remove the override.
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`isEnabled`
-
-</td>
-<td>
-
-`null` \| `boolean`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`void`
-
-***
-
-### HookArgs
-
-#### Properties
+#### Properties <a href="#properties-6" id="properties-6"></a>
 
 <table>
 <thead>
@@ -1663,7 +1640,7 @@ Set to `null` to remove the override.
 </td>
 <td>
 
-[`CheckEvent`](globals.md#checkevent)
+[`CheckEvent`](../../../supported-languages/browser-sdk/globals.md#checkevent)
 
 </td>
 <td>
@@ -1680,7 +1657,7 @@ Set to `null` to remove the override.
 </td>
 <td>
 
-[`CompanyContext`](globals.md#companycontext)
+[`CompanyContext`](../../../supported-languages/browser-sdk/globals.md#companycontext)
 
 </td>
 <td>
@@ -1697,7 +1674,7 @@ Set to `null` to remove the override.
 </td>
 <td>
 
-[`RawFlags`](globals.md#rawflags)
+[`RawFlags`](../../../supported-languages/browser-sdk/globals.md#rawflags)
 
 </td>
 <td>
@@ -1716,7 +1693,7 @@ Use `flagsUpdated` instead.
 </td>
 <td>
 
-[`RawFlags`](globals.md#rawflags)
+[`RawFlags`](../../../supported-languages/browser-sdk/globals.md#rawflags)
 
 </td>
 <td>
@@ -1750,7 +1727,7 @@ Use `flagsUpdated` instead.
 </td>
 <td>
 
-[`State`](globals.md#state)
+[`State`](../../../supported-languages/browser-sdk/globals.md#state)
 
 </td>
 <td>
@@ -1762,12 +1739,12 @@ Use `flagsUpdated` instead.
 <tr>
 <td>
 
-<a id="track-2"></a> `track`
+<a id="track-1"></a> `track`
 
 </td>
 <td>
 
-[`TrackEvent`](globals.md#trackevent)
+[`TrackEvent`](../../../supported-languages/browser-sdk/globals.md#trackevent)
 
 </td>
 <td>
@@ -1784,7 +1761,7 @@ Use `flagsUpdated` instead.
 </td>
 <td>
 
-[`UserContext`](globals.md#usercontext)
+[`UserContext`](../../../supported-languages/browser-sdk/globals.md#usercontext)
 
 </td>
 <td>
@@ -1798,17 +1775,17 @@ Use `flagsUpdated` instead.
 
 ***
 
-### Logger
+### Logger <a href="#logger" id="logger"></a>
 
-#### Methods
+#### Methods <a href="#methods-1" id="methods-1"></a>
 
-##### debug()
+### debug() <a href="#debug" id="debug"></a>
 
 ```ts
 debug(message: string, ...args: any[]): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-18" id="parameters-18"></a>
 
 <table>
 <thead>
@@ -1845,17 +1822,17 @@ debug(message: string, ...args: any[]): void
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-31" id="returns-31"></a>
 
 `void`
 
-##### error()
+### error() <a href="#error" id="error"></a>
 
 ```ts
 error(message: string, ...args: any[]): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-19" id="parameters-19"></a>
 
 <table>
 <thead>
@@ -1892,17 +1869,17 @@ error(message: string, ...args: any[]): void
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-32" id="returns-32"></a>
 
 `void`
 
-##### info()
+### info() <a href="#info" id="info"></a>
 
 ```ts
 info(message: string, ...args: any[]): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-20" id="parameters-20"></a>
 
 <table>
 <thead>
@@ -1939,17 +1916,17 @@ info(message: string, ...args: any[]): void
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-33" id="returns-33"></a>
 
 `void`
 
-##### warn()
+### warn() <a href="#warn" id="warn"></a>
 
 ```ts
 warn(message: string, ...args: any[]): void
 ```
 
-###### Parameters
+###### Parameters <a href="#parameters-21" id="parameters-21"></a>
 
 <table>
 <thead>
@@ -1986,15 +1963,15 @@ warn(message: string, ...args: any[]): void
 </tbody>
 </table>
 
-###### Returns
+###### Returns <a href="#returns-34" id="returns-34"></a>
 
 `void`
 
 ***
 
-### OnScoreSubmitResult
+### OnScoreSubmitResult <a href="#onscoresubmitresult" id="onscoresubmitresult"></a>
 
-#### Properties
+#### Properties <a href="#properties-7" id="properties-7"></a>
 
 <table>
 <thead>
@@ -2021,9 +1998,9 @@ warn(message: string, ...args: any[]): void
 
 ***
 
-### OpenFeedbackFormOptions
+### OpenFeedbackFormOptions <a href="#openfeedbackformoptions" id="openfeedbackformoptions"></a>
 
-#### Properties
+#### Properties <a href="#properties-8" id="properties-8"></a>
 
 <table>
 <thead>
@@ -2093,7 +2070,7 @@ warn(message: string, ...args: any[]): void
 </td>
 <td>
 
-(`data`: [`FeedbackScoreSubmission`](globals.md#feedbackscoresubmission)) => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`OnScoreSubmitResult`](globals.md#onscoresubmitresult)\>
+(`data`: [`FeedbackScoreSubmission`](../../../supported-languages/browser-sdk/globals.md#feedbackscoresubmission)) => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`OnScoreSubmitResult`](../../../supported-languages/browser-sdk/globals.md#onscoresubmitresult)\>
 
 </td>
 <td>
@@ -2110,7 +2087,7 @@ warn(message: string, ...args: any[]): void
 </td>
 <td>
 
-(`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => \| `void` \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
+(`data`: [`FeedbackSubmission`](../../../supported-languages/browser-sdk/globals.md#feedbacksubmission)) => \| `void` \| [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\>
 
 </td>
 <td>
@@ -2145,7 +2122,7 @@ Defaults to `false`
 </td>
 <td>
 
-[`Position`](globals.md#position-1)
+[`Position`](../../../supported-languages/browser-sdk/globals.md#position)
 
 </td>
 <td>
@@ -2179,7 +2156,7 @@ Control the placement and behavior of the feedback form.
 </td>
 <td>
 
-[`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
+[`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](../../../supported-languages/browser-sdk/globals.md#feedbacktranslations)\>
 
 </td>
 <td>
@@ -2194,16 +2171,16 @@ Undefined translation keys fall back to english defaults.
 
 ***
 
-### ReflagContext
+### ReflagContext <a href="#reflagcontext" id="reflagcontext"></a>
 
 Context is a set of key-value pairs.
 This is used to determine if feature targeting matches and to track events.
 
-#### Extended by
+#### Extended by <a href="#extended-by" id="extended-by"></a>
 
-- [`ReflagDeprecatedContext`](globals.md#reflagdeprecatedcontext)
+- [`ReflagDeprecatedContext`](../../../supported-languages/browser-sdk/globals.md#reflagdeprecatedcontext)
 
-#### Properties
+#### Properties <a href="#properties-9" id="properties-9"></a>
 
 <table>
 <thead>
@@ -2222,7 +2199,7 @@ This is used to determine if feature targeting matches and to track events.
 </td>
 <td>
 
-[`CompanyContext`](globals.md#companycontext)
+[`CompanyContext`](../../../supported-languages/browser-sdk/globals.md#companycontext)
 
 </td>
 <td>
@@ -2240,7 +2217,7 @@ company attributes on Reflag servers.
 </td>
 <td>
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`ContextValue`](globals.md#contextvalue)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`ContextValue`](../../../supported-languages/browser-sdk/globals.md#contextvalue)\>
 
 </td>
 <td>
@@ -2257,7 +2234,7 @@ Context which is not related to a user or a company.
 </td>
 <td>
 
-[`UserContext`](globals.md#usercontext)
+[`UserContext`](../../../supported-languages/browser-sdk/globals.md#usercontext)
 
 </td>
 <td>
@@ -2272,19 +2249,19 @@ user attributes on Reflag servers.
 
 ***
 
-### ~~ReflagDeprecatedContext~~
+### ~~ReflagDeprecatedContext~~ <a href="#reflagdeprecatedcontext" id="reflagdeprecatedcontext"></a>
 
 **`Internal`**
 
-#### Deprecated
+#### Deprecated <a href="#deprecated-1" id="deprecated-1"></a>
 
 Use `ReflagContext` instead, this interface will be removed in the next major version
 
-#### Extends
+#### Extends <a href="#extends" id="extends"></a>
 
-- [`ReflagContext`](globals.md#reflagcontext)
+- [`ReflagContext`](../../../supported-languages/browser-sdk/globals.md#reflagcontext)
 
-#### Properties
+#### Properties <a href="#properties-10" id="properties-10"></a>
 
 <table>
 <thead>
@@ -2303,7 +2280,7 @@ Use `ReflagContext` instead, this interface will be removed in the next major ve
 </td>
 <td>
 
-[`CompanyContext`](globals.md#companycontext)
+[`CompanyContext`](../../../supported-languages/browser-sdk/globals.md#companycontext)
 
 </td>
 <td>
@@ -2321,7 +2298,7 @@ company attributes on Reflag servers.
 </td>
 <td>
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`ContextValue`](globals.md#contextvalue)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`ContextValue`](../../../supported-languages/browser-sdk/globals.md#contextvalue)\>
 
 </td>
 <td>
@@ -2338,7 +2315,7 @@ Context which is not related to a user or a company.
 </td>
 <td>
 
-[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`ContextValue`](globals.md#contextvalue)\>
+[`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`ContextValue`](../../../supported-languages/browser-sdk/globals.md#contextvalue)\>
 
 </td>
 <td>
@@ -2359,7 +2336,7 @@ Use `other` instead, this property will be removed in the next major version
 </td>
 <td>
 
-[`UserContext`](globals.md#usercontext)
+[`UserContext`](../../../supported-languages/browser-sdk/globals.md#usercontext)
 
 </td>
 <td>
@@ -2374,9 +2351,9 @@ user attributes on Reflag servers.
 
 ***
 
-### ToolbarPosition
+### ToolbarPosition <a href="#toolbarposition" id="toolbarposition"></a>
 
-#### Properties
+#### Properties <a href="#properties-11" id="properties-11"></a>
 
 <table>
 <thead>
@@ -2394,7 +2371,7 @@ user attributes on Reflag servers.
 </td>
 <td>
 
-[`Offset`](globals.md#offset-1)
+[`Offset`](../../../supported-languages/browser-sdk/globals.md#offset)
 
 </td>
 </tr>
@@ -2406,7 +2383,7 @@ user attributes on Reflag servers.
 </td>
 <td>
 
-[`DialogPlacement`](globals.md#dialogplacement)
+[`DialogPlacement`](../../../supported-languages/browser-sdk/globals.md#dialogplacement)
 
 </td>
 </tr>
@@ -2415,19 +2392,19 @@ user attributes on Reflag servers.
 
 ***
 
-### UserContext
+### UserContext <a href="#usercontext" id="usercontext"></a>
 
 Context is a set of key-value pairs.
 This is used to determine if feature targeting matches and to track events.
 Id should always be present so that it can be referenced to an existing user.
 
-#### Indexable
+#### Indexable <a href="#indexable-1" id="indexable-1"></a>
 
 ```ts
 [key: string]: ContextValue
 ```
 
-#### Properties
+#### Properties <a href="#properties-12" id="properties-12"></a>
 
 <table>
 <thead>
@@ -2492,21 +2469,22 @@ User name
 </tbody>
 </table>
 
-## Type Aliases
+## Type Aliases <a href="#type-aliases" id="type-aliases"></a>
 
-### BootstrappedState
+### BootstrappedState <a href="#bootstrappedstate" id="bootstrappedstate"></a>
 
 ```ts
 type BootstrappedState = {
   context: ReflagContext;
   flags: RawFlags;
   flagStateVersion: number;
+  protocolVersion: 2;
 };
 ```
 
 Pre-fetched evaluated state used to bootstrap the client.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration" id="type-declaration"></a>
 
 <table>
 <thead>
@@ -2524,7 +2502,7 @@ Pre-fetched evaluated state used to bootstrap the client.
 </td>
 <td>
 
-[`ReflagContext`](globals.md#reflagcontext)
+[`ReflagContext`](../../../supported-languages/browser-sdk/globals.md#reflagcontext)
 
 </td>
 </tr>
@@ -2536,14 +2514,14 @@ Pre-fetched evaluated state used to bootstrap the client.
 </td>
 <td>
 
-[`RawFlags`](globals.md#rawflags)
+[`RawFlags`](../../../supported-languages/browser-sdk/globals.md#rawflags)
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="flagstateversion"></a> `flagStateVersion`?
+<a id="flagstateversion-1"></a> `flagStateVersion`?
 
 </td>
 <td>
@@ -2552,12 +2530,24 @@ Pre-fetched evaluated state used to bootstrap the client.
 
 </td>
 </tr>
+<tr>
+<td>
+
+<a id="protocolversion"></a> `protocolVersion`
+
+</td>
+<td>
+
+`2`
+
+</td>
+</tr>
 </tbody>
 </table>
 
 ***
 
-### ContextValue
+### ContextValue <a href="#contextvalue" id="contextvalue"></a>
 
 ```ts
 type ContextValue = DefinedContextValue | undefined;
@@ -2567,10 +2557,10 @@ A context value. Object properties set to `undefined` are omitted.
 
 ***
 
-### DefinedContextValue
+### DefinedContextValue <a href="#definedcontextvalue" id="definedcontextvalue"></a>
 
 ```ts
-type DefinedContextValue = 
+type DefinedContextValue =
   | string
   | number
   | boolean
@@ -2583,7 +2573,7 @@ A JSON-compatible context value that is not `undefined`.
 
 ***
 
-### DialogPlacement
+### DialogPlacement <a href="#dialogplacement" id="dialogplacement"></a>
 
 ```ts
 type DialogPlacement = "bottom-right" | "bottom-left" | "top-right" | "top-left";
@@ -2591,13 +2581,130 @@ type DialogPlacement = "bottom-right" | "bottom-left" | "top-right" | "top-left"
 
 ***
 
-### EventSourceFactory()
+### EvaluationError <a href="#evaluationerror" id="evaluationerror"></a>
+
+```ts
+type EvaluationError = {
+  code: string;
+  field: string;
+  message: string;
+  operator: string;
+  source: {
+     key: string;
+     type: "flag" | "segment";
+    };
+};
+```
+
+#### Type declaration <a href="#type-declaration-1" id="type-declaration-1"></a>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="code"></a> `code`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="field"></a> `field`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="message"></a> `message`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="operator"></a> `operator`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="source"></a> `source`?
+
+</td>
+<td>
+
+\{
+  `key`: `string`;
+  `type`: `"flag"` \| `"segment"`;
+ \}
+
+</td>
+</tr>
+<tr>
+<td>
+
+`source.key`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`source.type`
+
+</td>
+<td>
+
+`"flag"` \| `"segment"`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### EventSourceFactory() <a href="#eventsourcefactory" id="eventsourcefactory"></a>
 
 ```ts
 type EventSourceFactory = (url: string) => EventSourceLike;
 ```
 
-#### Parameters
+#### Parameters <a href="#parameters-22" id="parameters-22"></a>
 
 <table>
 <thead>
@@ -2622,13 +2729,13 @@ type EventSourceFactory = (url: string) => EventSourceLike;
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-35" id="returns-35"></a>
 
-[`EventSourceLike`](globals.md#eventsourcelike)
+[`EventSourceLike`](../../../supported-languages/browser-sdk/globals.md#eventsourcelike)
 
 ***
 
-### EventSourceLike
+### EventSourceLike <a href="#eventsourcelike" id="eventsourcelike"></a>
 
 ```ts
 type EventSourceLike = {
@@ -2637,7 +2744,7 @@ type EventSourceLike = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-2" id="type-declaration-2"></a>
 
 <table>
 <thead>
@@ -2676,20 +2783,15 @@ type EventSourceLike = {
 
 ***
 
-### FallbackFlagOverride
+### FallbackFlagOverride <a href="#fallbackflagoverride" id="fallbackflagoverride"></a>
 
 ```ts
-type FallbackFlagOverride = 
-  | {
-  key: string;
-  payload: any;
- }
-  | true;
+type FallbackFlagOverride = FlagValue;
 ```
 
 ***
 
-### Feedback
+### Feedback <a href="#feedback" id="feedback"></a>
 
 ```ts
 type Feedback = UnassignedFeedback & {
@@ -2698,7 +2800,7 @@ type Feedback = UnassignedFeedback & {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-3" id="type-declaration-3"></a>
 
 <table>
 <thead>
@@ -2748,7 +2850,7 @@ User ID from your own application.
 
 ***
 
-### FeedbackOptions
+### FeedbackOptions <a href="#feedbackoptions" id="feedbackoptions"></a>
 
 ```ts
 type FeedbackOptions = {
@@ -2761,7 +2863,7 @@ type FeedbackOptions = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-4" id="type-declaration-4"></a>
 
 <table>
 <thead>
@@ -2780,7 +2882,7 @@ type FeedbackOptions = {
 </td>
 <td>
 
-[`FeedbackPromptHandler`](globals.md#feedbackprompthandler)
+[`FeedbackPromptHandler`](../../../supported-languages/browser-sdk/globals.md#feedbackprompthandler)
 
 </td>
 <td>
@@ -2815,8 +2917,8 @@ Enables automatic feedback prompting if it's set up in Reflag
 <td>
 
 \{
-  `position`: [`Position`](globals.md#position-1);
-  `translations`: [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>;
+  `position`: [`Position`](../../../supported-languages/browser-sdk/globals.md#position);
+  `translations`: [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](../../../supported-languages/browser-sdk/globals.md#feedbacktranslations)\>;
  \}
 
 </td>
@@ -2834,7 +2936,7 @@ With these options you can override the look of the feedback prompt
 </td>
 <td>
 
-[`Position`](globals.md#position-1)
+[`Position`](../../../supported-languages/browser-sdk/globals.md#position)
 
 </td>
 <td>
@@ -2851,7 +2953,7 @@ Control the placement and behavior of the feedback form.
 </td>
 <td>
 
-[`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](globals.md#feedbacktranslations)\>
+[`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)\<[`FeedbackTranslations`](../../../supported-languages/browser-sdk/globals.md#feedbacktranslations)\>
 
 </td>
 <td>
@@ -2866,7 +2968,7 @@ Undefined translation keys fall back to english defaults.
 
 ***
 
-### FeedbackPrompt
+### FeedbackPrompt <a href="#feedbackprompt" id="feedbackprompt"></a>
 
 ```ts
 type FeedbackPrompt = {
@@ -2878,7 +2980,7 @@ type FeedbackPrompt = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-5" id="type-declaration-5"></a>
 
 <table>
 <thead>
@@ -2979,13 +3081,13 @@ Feedback prompt will not be shown after this time
 
 ***
 
-### FeedbackPromptHandler()
+### FeedbackPromptHandler() <a href="#feedbackprompthandler" id="feedbackprompthandler"></a>
 
 ```ts
 type FeedbackPromptHandler = (prompt: FeedbackPrompt, handlers: FeedbackPromptHandlerCallbacks) => void;
 ```
 
-#### Parameters
+#### Parameters <a href="#parameters-23" id="parameters-23"></a>
 
 <table>
 <thead>
@@ -3003,7 +3105,7 @@ type FeedbackPromptHandler = (prompt: FeedbackPrompt, handlers: FeedbackPromptHa
 </td>
 <td>
 
-[`FeedbackPrompt`](globals.md#feedbackprompt)
+[`FeedbackPrompt`](../../../supported-languages/browser-sdk/globals.md#feedbackprompt)
 
 </td>
 </tr>
@@ -3015,20 +3117,20 @@ type FeedbackPromptHandler = (prompt: FeedbackPrompt, handlers: FeedbackPromptHa
 </td>
 <td>
 
-[`FeedbackPromptHandlerCallbacks`](globals.md#feedbackprompthandlercallbacks)
+[`FeedbackPromptHandlerCallbacks`](../../../supported-languages/browser-sdk/globals.md#feedbackprompthandlercallbacks)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-36" id="returns-36"></a>
 
 `void`
 
 ***
 
-### FeedbackPromptHandlerCallbacks
+### FeedbackPromptHandlerCallbacks <a href="#feedbackprompthandlercallbacks" id="feedbackprompthandlercallbacks"></a>
 
 ```ts
 type FeedbackPromptHandlerCallbacks = {
@@ -3037,7 +3139,7 @@ type FeedbackPromptHandlerCallbacks = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-6" id="type-declaration-6"></a>
 
 <table>
 <thead>
@@ -3055,7 +3157,7 @@ type FeedbackPromptHandlerCallbacks = {
 </td>
 <td>
 
-(`options`: [`FeedbackPromptHandlerOpenFeedbackFormOptions`](globals.md#feedbackprompthandleropenfeedbackformoptions)) => `void`
+(`options`: [`FeedbackPromptHandlerOpenFeedbackFormOptions`](../../../supported-languages/browser-sdk/globals.md#feedbackprompthandleropenfeedbackformoptions)) => `void`
 
 </td>
 </tr>
@@ -3067,7 +3169,7 @@ type FeedbackPromptHandlerCallbacks = {
 </td>
 <td>
 
-[`FeedbackPromptReplyHandler`](globals.md#feedbackpromptreplyhandler)
+[`FeedbackPromptReplyHandler`](../../../supported-languages/browser-sdk/globals.md#feedbackpromptreplyhandler)
 
 </td>
 </tr>
@@ -3076,10 +3178,10 @@ type FeedbackPromptHandlerCallbacks = {
 
 ***
 
-### FeedbackPromptHandlerOpenFeedbackFormOptions
+### FeedbackPromptHandlerOpenFeedbackFormOptions <a href="#feedbackprompthandleropenfeedbackformoptions" id="feedbackprompthandleropenfeedbackformoptions"></a>
 
 ```ts
-type FeedbackPromptHandlerOpenFeedbackFormOptions = Omit<RequestFeedbackOptions, 
+type FeedbackPromptHandlerOpenFeedbackFormOptions = Omit<RequestFeedbackOptions,
   | "featureId"
   | "flagKey"
   | "userId"
@@ -3090,7 +3192,7 @@ type FeedbackPromptHandlerOpenFeedbackFormOptions = Omit<RequestFeedbackOptions,
 
 ***
 
-### FeedbackPromptReply
+### FeedbackPromptReply <a href="#feedbackpromptreply" id="feedbackpromptreply"></a>
 
 ```ts
 type FeedbackPromptReply = {
@@ -3101,7 +3203,7 @@ type FeedbackPromptReply = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-7" id="type-declaration-7"></a>
 
 <table>
 <thead>
@@ -3164,7 +3266,7 @@ type FeedbackPromptReply = {
 
 ***
 
-### FeedbackPromptReplyHandler()
+### FeedbackPromptReplyHandler() <a href="#feedbackpromptreplyhandler" id="feedbackpromptreplyhandler"></a>
 
 ```ts
 type FeedbackPromptReplyHandler = <T>(reply: T) => T extends null ? Promise<void> : Promise<{
@@ -3172,7 +3274,7 @@ type FeedbackPromptReplyHandler = <T>(reply: T) => T extends null ? Promise<void
 }>;
 ```
 
-#### Type Parameters
+#### Type Parameters <a href="#type-parameters-3" id="type-parameters-3"></a>
 
 <table>
 <thead>
@@ -3184,14 +3286,14 @@ type FeedbackPromptReplyHandler = <T>(reply: T) => T extends null ? Promise<void
 <tr>
 <td>
 
-`T` *extends* [`FeedbackPromptReply`](globals.md#feedbackpromptreply) \| `null`
+`T` *extends* [`FeedbackPromptReply`](../../../supported-languages/browser-sdk/globals.md#feedbackpromptreply) \| `null`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Parameters
+#### Parameters <a href="#parameters-24" id="parameters-24"></a>
 
 <table>
 <thead>
@@ -3216,7 +3318,7 @@ type FeedbackPromptReplyHandler = <T>(reply: T) => T extends null ? Promise<void
 </tbody>
 </table>
 
-#### Returns
+#### Returns <a href="#returns-37" id="returns-37"></a>
 
 `T` *extends* `null` ? [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<`void`\> : [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<\{
   `feedbackId`: `string`;
@@ -3224,7 +3326,7 @@ type FeedbackPromptReplyHandler = <T>(reply: T) => T extends null ? Promise<void
 
 ***
 
-### FeedbackTranslations
+### FeedbackTranslations <a href="#feedbacktranslations" id="feedbacktranslations"></a>
 
 ```ts
 type FeedbackTranslations = {
@@ -3246,7 +3348,7 @@ type FeedbackTranslations = {
 You can use this to override text values in the feedback form
 with desired language translation
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-8" id="type-declaration-8"></a>
 
 <table>
 <thead>
@@ -3405,117 +3507,34 @@ with desired language translation
 
 ***
 
-### FlagOverrides
+### FlagDefaultFor\<Registry, Key\> <a href="#flagdefaultforregistry-key" id="flagdefaultforregistry-key"></a>
 
 ```ts
-type FlagOverrides = Record<string, boolean | undefined>;
+type FlagDefaultFor<Registry, Key> = keyof Registry extends never ? FlagDefaultValue | object : Key extends keyof Registry ? ReadonlyFlagValue<Registry[Key]> | null : never;
 ```
 
-***
+Registered defaults match the value schema; null explicitly requests arbitrary JSON.
 
-### FlagRemoteConfig
-
-```ts
-type FlagRemoteConfig = 
-  | {
-  key: string;
-  payload: any;
- }
-  | {
-  key: undefined;
-  payload: undefined;
-};
-```
-
-A remotely managed configuration value for a flag.
-
-#### Type declaration
-
-\{
-  `key`: `string`;
-  `payload`: `any`;
- \}
+#### Type Parameters <a href="#type-parameters-4" id="type-parameters-4"></a>
 
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
+<th>Type Parameter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the matched configuration value.
+`Registry`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`payload`
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-\{
-  `key`: `undefined`;
-  `payload`: `undefined`;
- \}
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`key`
-
-</td>
-<td>
-
-`undefined`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`payload`
-
-</td>
-<td>
-
-`undefined`
+`Key` *extends* `PropertyKey`
 
 </td>
 </tr>
@@ -3524,13 +3543,85 @@ The optional user-supplied payload data.
 
 ***
 
-### InitOptions
+### FlagDefaultValue <a href="#flagdefaultvalue" id="flagdefaultvalue"></a>
+
+```ts
+type FlagDefaultValue =
+  | null
+  | boolean
+  | number
+  | string
+  | readonly FlagDefaultValue[]
+| {};
+```
+
+***
+
+### FlagOverrides <a href="#flagoverrides" id="flagoverrides"></a>
+
+```ts
+type FlagOverrides = Record<string, FlagValue | undefined>;
+```
+
+***
+
+### FlagValue <a href="#flagvalue" id="flagvalue"></a>
+
+```ts
+type FlagValue =
+  | null
+  | boolean
+  | number
+  | string
+  | FlagValue[]
+| {};
+```
+
+***
+
+### FlagValueFromDefault\<T\> <a href="#flagvaluefromdefaultt" id="flagvaluefromdefaultt"></a>
+
+```ts
+type FlagValueFromDefault<T> = T extends null ? FlagValue : T extends boolean ? boolean : T extends number ? number : T extends string ? string : T extends readonly infer Element[] ? [Element] extends [never] ? FlagValue[] : FlagValueFromDefault<Element>[] : T extends object ? { -readonly [Key in keyof T]: FlagValueFromDefault<T[Key]> } : never;
+```
+
+Widen literals and return mutable copies. Null requests arbitrary JSON.
+
+#### Type Parameters <a href="#type-parameters-5" id="type-parameters-5"></a>
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`T`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### FlagValues <a href="#flagvalues" id="flagvalues"></a>
+
+```ts
+type FlagValues = Record<string, FlagValue | undefined>;
+```
+
+***
+
+### InitOptions <a href="#initoptions" id="initoptions"></a>
 
 ```ts
 type InitOptions = ReflagDeprecatedContext & {
   apiBaseUrl: string;
   appBaseUrl: string;
-  bootstrappedFlags: RawFlags;
   bootstrappedState: BootstrappedState;
   credentials: "include" | "same-origin" | "omit";
   enableLiveFlagUpdates: boolean;
@@ -3561,7 +3652,7 @@ type InitOptions = ReflagDeprecatedContext & {
 
 ReflagClient initialization options.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-9" id="type-declaration-9"></a>
 
 <table>
 <thead>
@@ -3609,34 +3700,12 @@ Base URL of the Reflag web app. Links open ín this app by default.
 <tr>
 <td>
 
-`bootstrappedFlags`?
-
-</td>
-<td>
-
-[`RawFlags`](globals.md#rawflags)
-
-</td>
-<td>
-
-Pre-fetched flags used for the initial flag state.
-The client fetches opt-in metadata on demand when opt-in flags are requested.
-
-**Deprecated**
-
-Use `bootstrappedState` instead.
-
-</td>
-</tr>
-<tr>
-<td>
-
 `bootstrappedState`?
 
 </td>
 <td>
 
-[`BootstrappedState`](globals.md#bootstrappedstate)
+[`BootstrappedState`](../../../supported-languages/browser-sdk/globals.md#bootstrappedstate)
 
 </td>
 <td>
@@ -3713,7 +3782,7 @@ Whether to enable tracking. Defaults to `true`.
 </td>
 <td>
 
-[`EventSourceFactory`](globals.md#eventsourcefactory)
+[`EventSourceFactory`](../../../supported-languages/browser-sdk/globals.md#eventsourcefactory)
 
 </td>
 <td>
@@ -3753,15 +3822,13 @@ If set, flags will be cached between page loads for this duration
 <td>
 
   \| `string`[]
-  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FallbackFlagOverride`](globals.md#fallbackflagoverride)\>
+  \| [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, [`FallbackFlagOverride`](../../../supported-languages/browser-sdk/globals.md#fallbackflagoverride)\>
 
 </td>
 <td>
 
-Flag keys for which `isEnabled` should fallback to true
-if SDK fails to fetch flags from Reflag servers. If a record
-is supplied instead of array, the values of each key represent the
-configuration values and `isEnabled` is assume `true`.
+Value-only startup fallbacks. An array enables the listed Boolean flags.
+Fallback values never identify an authored selection.
 
 </td>
 </tr>
@@ -3773,7 +3840,7 @@ configuration values and `isEnabled` is assume `true`.
 </td>
 <td>
 
-[`FeedbackOptions`](globals.md#feedbackoptions)
+[`FeedbackOptions`](../../../supported-languages/browser-sdk/globals.md#feedbackoptions)
 
 </td>
 <td>
@@ -3790,7 +3857,7 @@ AutoFeedback specific configuration
 </td>
 <td>
 
-[`Logger`](globals.md#logger-1)
+[`Logger`](../../../supported-languages/browser-sdk/globals.md#logger)
 
 </td>
 <td>
@@ -3917,7 +3984,7 @@ If set to true stale flags will be returned while refetching flags
 </td>
 <td>
 
-[`StorageAdapter`](globals.md#storageadapter)
+[`StorageAdapter`](../../../supported-languages/browser-sdk/globals.md#storageadapter)
 
 </td>
 <td>
@@ -3952,7 +4019,7 @@ Timeout in milliseconds when fetching flags
 </td>
 <td>
 
-[`ToolbarOptions`](globals.md#toolbaroptions)
+[`ToolbarOptions`](../../../supported-languages/browser-sdk/globals.md#toolbaroptions)
 
 </td>
 <td>
@@ -4062,7 +4129,7 @@ Deprecated: retries are no longer performed for bulk delivery.
 
 ***
 
-### Offset
+### Offset <a href="#offset" id="offset"></a>
 
 ```ts
 type Offset = {
@@ -4071,7 +4138,7 @@ type Offset = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-10" id="type-declaration-10"></a>
 
 <table>
 <thead>
@@ -4121,7 +4188,7 @@ Offset from the nearest vertical screen edge after placement is resolved
 
 ***
 
-### OptInFlag
+### OptInFlag <a href="#optinflag" id="optinflag"></a>
 
 ```ts
 type OptInFlag = RawFlagOptIn & {
@@ -4130,7 +4197,7 @@ type OptInFlag = RawFlagOptIn & {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-11" id="type-declaration-11"></a>
 
 <table>
 <thead>
@@ -4180,7 +4247,7 @@ Flag key.
 
 ***
 
-### PopoverPlacement
+### PopoverPlacement <a href="#popoverplacement" id="popoverplacement"></a>
 
 ```ts
 type PopoverPlacement = Placement;
@@ -4188,10 +4255,10 @@ type PopoverPlacement = Placement;
 
 ***
 
-### Position
+### Position <a href="#position" id="position"></a>
 
 ```ts
-type Position = 
+type Position =
   | {
   type: "MODAL";
  }
@@ -4209,38 +4276,26 @@ type Position =
 
 ***
 
-### RawFlag
+### RawFlag <a href="#rawflag" id="rawflag"></a>
 
 ```ts
 type RawFlag = {
-  config: {
-     evaluationErrors: RawFlag["evaluationErrors"];
-     key: string;
-     missingContextFields: string[];
-     payload: any;
-     ruleEvaluationResults: boolean[];
-     version: number;
-    };
-  evaluationErrors: {
-     code: string;
-     field: string;
-     message: string;
-     operator: string;
-    }[];
-  isEnabled: boolean;
-  isEnabledOverride: boolean | null;
-  key: string;
-  missingContextFields: string[];
+  allocationIndex: number;
+  errors: EvaluationError[];
+  matchedRuleId: string;
   optIn: RawFlagOptIn | null;
   optInEnabled: boolean;
-  ruleEvaluationResults: boolean[];
-  targetingVersion: number;
+  resolved: boolean;
+  ruleResults: RuleEvaluationResult[];
+  sourceVersionId: string;
+  value: FlagValue | undefined;
+  variantKey: string;
 };
 ```
 
-A flag fetched from the server.
+Evaluated diagnostics for v2 transport/bootstrap, not a flag wrapper.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-12" id="type-declaration-12"></a>
 
 <table>
 <thead>
@@ -4254,120 +4309,7 @@ A flag fetched from the server.
 <tr>
 <td>
 
-<a id="config-2"></a> `config`?
-
-</td>
-<td>
-
-\{
-  `evaluationErrors`: [`RawFlag`](globals.md#rawflag)\[`"evaluationErrors"`\];
-  `key`: `string`;
-  `missingContextFields`: `string`[];
-  `payload`: `any`;
-  `ruleEvaluationResults`: `boolean`[];
-  `version`: `number`;
- \}
-
-</td>
-<td>
-
-Optional user-defined dynamic configuration.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.evaluationErrors`?
-
-</td>
-<td>
-
-[`RawFlag`](globals.md#rawflag)\[`"evaluationErrors"`\]
-
-</td>
-<td>
-
-Non-fatal diagnostics produced while evaluating targeting rules.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.key`
-
-</td>
-<td>
-
-`string`
-
-</td>
-<td>
-
-The key of the matched configuration value.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.missingContextFields`?
-
-</td>
-<td>
-
-`string`[]
-
-</td>
-<td>
-
-The missing context fields.
-
-**Deprecated**
-
-Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.payload`?
-
-</td>
-<td>
-
-`any`
-
-</td>
-<td>
-
-The optional user-supplied payload data.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.ruleEvaluationResults`?
-
-</td>
-<td>
-
-`boolean`[]
-
-</td>
-<td>
-
-The rule evaluation results.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`config.version`?
+<a id="allocationindex"></a> `allocationIndex`?
 
 </td>
 <td>
@@ -4377,71 +4319,31 @@ The rule evaluation results.
 </td>
 <td>
 
-The version of the matched configuration value.
+&hyphen;
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="evaluationerrors-1"></a> `evaluationErrors`?
+<a id="errors"></a> `errors`
 
 </td>
 <td>
 
-\{
-  `code`: `string`;
-  `field`: `string`;
-  `message`: `string`;
-  `operator`: `string`;
- \}[]
+[`EvaluationError`](../../../supported-languages/browser-sdk/globals.md#evaluationerror)[]
 
 </td>
 <td>
 
-Non-fatal diagnostics produced while evaluating targeting rules.
+&hyphen;
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="isenabled-1"></a> `isEnabled`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-Result of flag evaluation.
-Note: does not take local overrides into account.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="isenabledoverride-1"></a> `isEnabledOverride`?
-
-</td>
-<td>
-
-`boolean` \| `null`
-
-</td>
-<td>
-
-If not null or undefined, the result is being overridden locally
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="key-2"></a> `key`
+<a id="matchedruleid"></a> `matchedRuleId`?
 
 </td>
 <td>
@@ -4451,28 +4353,7 @@ If not null or undefined, the result is being overridden locally
 </td>
 <td>
 
-Flag key.
-
-</td>
-</tr>
-<tr>
-<td>
-
-<a id="missingcontextfields-1"></a> `missingContextFields`?
-
-</td>
-<td>
-
-`string`[]
-
-</td>
-<td>
-
-Missing context fields.
-
-**Deprecated**
-
-Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
+&hyphen;
 
 </td>
 </tr>
@@ -4484,12 +4365,12 @@ Use `evaluationErrors` and check for `MISSING_CONTEXT_FIELD`.
 </td>
 <td>
 
-[`RawFlagOptIn`](globals.md#rawflagoptin) \| `null`
+[`RawFlagOptIn`](../../../supported-languages/browser-sdk/globals.md#rawflagoptin) \| `null`
 
 </td>
 <td>
 
-Opt-in metadata for this flag and the current context.
+&hyphen;
 
 </td>
 </tr>
@@ -4506,41 +4387,92 @@ Opt-in metadata for this flag and the current context.
 </td>
 <td>
 
-Whether end-user opt-in is enabled for this flag.
+Absent in Node bootstrap/older snapshots; null optIn means unavailable.
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="ruleevaluationresults-1"></a> `ruleEvaluationResults`?
+<a id="resolved"></a> `resolved`
 
 </td>
 <td>
 
-`boolean`[]
+`boolean`
 
 </td>
 <td>
 
-Rule evaluation results.
+&hyphen;
 
 </td>
 </tr>
 <tr>
 <td>
 
-<a id="targetingversion"></a> `targetingVersion`?
+<a id="ruleresults"></a> `ruleResults`
 
 </td>
 <td>
 
-`number`
+[`RuleEvaluationResult`](../../../supported-languages/browser-sdk/globals.md#ruleevaluationresult)[]
 
 </td>
 <td>
 
-Version of targeting rules.
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="sourceversionid-1"></a> `sourceVersionId`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="value"></a> `value`
+
+</td>
+<td>
+
+[`FlagValue`](../../../supported-languages/browser-sdk/globals.md#flagvalue) \| `undefined`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="variantkey"></a> `variantKey`?
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
 
 </td>
 </tr>
@@ -4549,7 +4481,7 @@ Version of targeting rules.
 
 ***
 
-### RawFlagOptIn
+### RawFlagOptIn <a href="#rawflagoptin" id="rawflagoptin"></a>
 
 ```ts
 type RawFlagOptIn = {
@@ -4561,7 +4493,7 @@ type RawFlagOptIn = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-13" id="type-declaration-13"></a>
 
 <table>
 <thead>
@@ -4662,7 +4594,7 @@ Whether the current user has opted into the flag.
 
 ***
 
-### RawFlags
+### RawFlags <a href="#rawflags" id="rawflags"></a>
 
 ```ts
 type RawFlags = Record<string, RawFlag>;
@@ -4670,7 +4602,7 @@ type RawFlags = Record<string, RawFlag>;
 
 ***
 
-### RequestFeedbackData
+### RequestFeedbackData <a href="#requestfeedbackdata" id="requestfeedbackdata"></a>
 
 ```ts
 type RequestFeedbackData = Omit<OpenFeedbackFormOptions, "key" | "onSubmit"> & {
@@ -4680,7 +4612,7 @@ type RequestFeedbackData = Omit<OpenFeedbackFormOptions, "key" | "onSubmit"> & {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-14" id="type-declaration-14"></a>
 
 <table>
 <thead>
@@ -4733,7 +4665,7 @@ Flag key.
 </td>
 <td>
 
-(`data`: [`FeedbackSubmission`](globals.md#feedbacksubmission)) => `void`
+(`data`: [`FeedbackSubmission`](../../../supported-languages/browser-sdk/globals.md#feedbacksubmission)) => `void`
 
 </td>
 <td>
@@ -4751,7 +4683,7 @@ copy of the feedback in your own application or CRM.
 
 ***
 
-### RequestFeedbackOptions
+### RequestFeedbackOptions <a href="#requestfeedbackoptions" id="requestfeedbackoptions"></a>
 
 ```ts
 type RequestFeedbackOptions = RequestFeedbackData & {
@@ -4759,7 +4691,7 @@ type RequestFeedbackOptions = RequestFeedbackData & {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-15" id="type-declaration-15"></a>
 
 <table>
 <thead>
@@ -4792,18 +4724,104 @@ User ID from your own application.
 
 ***
 
-### SetOptInOptions
+### RuleEvaluationResult <a href="#ruleevaluationresult" id="ruleevaluationresult"></a>
+
+```ts
+type RuleEvaluationResult = {
+  allocationIndex: number;
+  destination:   | {
+     type: "nextRule";
+    }
+     | {
+     type: "variant";
+     variantKey: string;
+    };
+  matched: boolean;
+  ruleId: string;
+};
+```
+
+#### Type declaration <a href="#type-declaration-16" id="type-declaration-16"></a>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="allocationindex-1"></a> `allocationIndex`?
+
+</td>
+<td>
+
+`number`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="destination"></a> `destination`?
+
+</td>
+<td>
+
+  \| \{
+  `type`: `"nextRule"`;
+ \}
+  \| \{
+  `type`: `"variant"`;
+  `variantKey`: `string`;
+ \}
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="matched"></a> `matched`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ruleid"></a> `ruleId`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### SetOptInOptions <a href="#setoptinoptions" id="setoptinoptions"></a>
 
 ```ts
 type SetOptInOptions = {
   optedIn: boolean;
-  scope: "user" | "company";
+  scope?: "user" | "company";
 };
 ```
 
 Options for changing the current user or company's opt-in membership.
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-17" id="type-declaration-17"></a>
 
 <table>
 <thead>
@@ -4853,7 +4871,7 @@ Whether to update the current user or current company. Defaults to `user`.
 
 ***
 
-### State
+### State <a href="#state" id="state"></a>
 
 ```ts
 type State = "idle" | "initializing" | "initialized" | "stopped";
@@ -4863,7 +4881,7 @@ State of the client.
 
 ***
 
-### StorageAdapter
+### StorageAdapter <a href="#storageadapter" id="storageadapter"></a>
 
 ```ts
 type StorageAdapter = {
@@ -4873,7 +4891,7 @@ type StorageAdapter = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-18" id="type-declaration-18"></a>
 
 <table>
 <thead>
@@ -4924,10 +4942,10 @@ type StorageAdapter = {
 
 ***
 
-### ToolbarOptions
+### ToolbarOptions <a href="#toolbaroptions" id="toolbaroptions"></a>
 
 ```ts
-type ToolbarOptions = 
+type ToolbarOptions =
   | boolean
   | {
   position: ToolbarPosition;
@@ -4939,7 +4957,7 @@ Toolbar options.
 
 ***
 
-### TrackEvent
+### TrackEvent <a href="#trackevent" id="trackevent"></a>
 
 ```ts
 type TrackEvent = {
@@ -4951,7 +4969,7 @@ type TrackEvent = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-19" id="type-declaration-19"></a>
 
 <table>
 <thead>
@@ -4982,7 +5000,7 @@ type TrackEvent = {
 </td>
 <td>
 
-[`CompanyContext`](globals.md#companycontext)
+[`CompanyContext`](../../../supported-languages/browser-sdk/globals.md#companycontext)
 
 </td>
 </tr>
@@ -5006,7 +5024,7 @@ type TrackEvent = {
 </td>
 <td>
 
-[`UserContext`](globals.md#usercontext)
+[`UserContext`](../../../supported-languages/browser-sdk/globals.md#usercontext)
 
 </td>
 </tr>
@@ -5015,7 +5033,7 @@ type TrackEvent = {
 
 ***
 
-### UnassignedFeedback
+### UnassignedFeedback <a href="#unassignedfeedback" id="unassignedfeedback"></a>
 
 ```ts
 type UnassignedFeedback = {
@@ -5030,7 +5048,7 @@ type UnassignedFeedback = {
 };
 ```
 
-#### Type declaration
+#### Type declaration <a href="#type-declaration-20" id="type-declaration-20"></a>
 
 <table>
 <thead>
@@ -5170,7 +5188,7 @@ Customer satisfaction score.
 <tr>
 <td>
 
-<a id="source"></a> `source`?
+<a id="source-1"></a> `source`?
 
 </td>
 <td>
@@ -5190,9 +5208,9 @@ Source of the feedback, depending on how the user was asked
 </tbody>
 </table>
 
-## Variables
+## Variables <a href="#variables" id="variables"></a>
 
-### DEFAULT\_TRANSLATIONS
+### DEFAULT\_TRANSLATIONS <a href="#default_translations" id="default_translations"></a>
 
 ```ts
 const DEFAULT_TRANSLATIONS: FeedbackTranslations;
@@ -5221,7 +5239,7 @@ export const DEFAULT_TRANSLATIONS: FeedbackTranslations = {
 
 ***
 
-### feedbackContainerId
+### feedbackContainerId <a href="#feedbackcontainerid" id="feedbackcontainerid"></a>
 
 ```ts
 const feedbackContainerId: "reflag-feedback-dialog-container" = "reflag-feedback-dialog-container";
@@ -5231,7 +5249,7 @@ ID of HTML DIV element which contains the feedback dialog
 
 ***
 
-### propagatedEvents
+### propagatedEvents <a href="#propagatedevents" id="propagatedevents"></a>
 
 ```ts
 const propagatedEvents: string[];
@@ -5239,6 +5257,8 @@ const propagatedEvents: string[];
 
 These events will be propagated to the feedback dialog
 
-#### See
+#### See <a href="#see" id="see"></a>
 
 [https://developer.mozilla.org/en-US/docs/Web/API/Element#events](https://developer.mozilla.org/en-US/docs/Web/API/Element#events)
+
+Using v1? [Legacy docs](../../../legacy/v1/browser-sdk/globals.md) · [Upgrade guide](../../../supported-languages/migrating-from-v1.md).

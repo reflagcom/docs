@@ -1,80 +1,85 @@
 ---
-description: How to use Reflag with anonymous users
+description: Use Reflag with anonymous users and optional company context.
 ---
 
 # Anonymous users
 
-Reflag is designed for SaaS applications in which users are authenticated and belong to a company group. However, you can still use Reflag for certain use cases where users aren't authenticated.
+Reflag supports contexts without a user, including public pages and company-branded applications. Omit unknown identities rather than supplying empty-string IDs. Rules that require an omitted identity or attribute cannot match it.
 
-Example use cases:
+## How to toggle features for anonymous users
 
-* Toggle features on/off for all anonymous users on marketing pages or docs.
-* For anonymous users that belong to companies, for example for a white-label solution for ordering food online: roll out features to anonymous users belonging to certain restaurants or roll it users belonging to a percentage of restaurants (companies).
-
-### How to toggle features for anonymnous users
-
-First, create a new flag, use it on the respective feature and ship it.
-
-On the Access tab, you can now use "No-one" or "Everyone" to toggle the feature off and on. "Some" is not supported for anonymous users.
-
-For anonymous users you supply an empty user ID and empty company ID.
+For a global Boolean flag, use Everyone/No-one access and an empty context. Initialize the Node client before reading:
 
 {% tabs %}
 {% tab title="Node.js" %}
 ```typescript
 import { ReflagClient } from "@reflag/node-sdk";
 
-const client = new ReflagClient(...)
-// using an empty context for anonymous users
-const { isEnabled } = client.bindClient({}).getFlag("export-to-csv")
+const client = new ReflagClient({ secretKey: process.env.REFLAG_SECRET_KEY ?? "" });
+await client.initialize();
+const enabled = client.getFlag({}, "export-to-csv");
+console.log(enabled);
 ```
 {% endtab %}
-
 {% tab title="React" %}
 ```tsx
-import { ReflagProvider } from "@reflag/react-sdk";
+import { ReflagProvider, useFlag } from "@reflag/react-sdk";
 
-function App() {
+function ExportButton() {
+  const enabled = useFlag("export-to-csv");
+  return enabled ? <button>Export</button> : null;
+}
+
+export function App() {
   return (
-    <ReflagProvider> // no user/company provided
-      <Routes />
+    <ReflagProvider publishableKey="your-publishable-key" context={{}}>
+      <ExportButton />
     </ReflagProvider>
   );
 }
-
 ```
 {% endtab %}
 {% endtabs %}
 
-### How to toggle features for anonymous users where you know their company
+Without a default, `getFlag()` and `useFlag()` return a Boolean. Pass a default to read a Multivariate flag's value.
 
-If the user is anonymous but you do know the company entity, you can simply supply the given company ID and an empty user ID. This lets you control features for anonymous users beloning to the given company.
+## How to toggle features for anonymous users where you know their company
+
+Provide only the company when your application has a trustworthy company identity. Company targeting can then apply without inventing a user.
 
 {% tabs %}
 {% tab title="Node.js" %}
 ```typescript
 import { ReflagClient } from "@reflag/node-sdk";
 
-const client = new ReflagClient(...)
-
-// supply only the company ID if the users is anonymous but belongs to a company
-const { isEnabled } = client.bindClient({company: {id: "petes-burgers"}).getFlag("export-to-csv")
+const client = new ReflagClient({ secretKey: process.env.REFLAG_SECRET_KEY ?? "" });
+await client.initialize();
+const companyClient = client.bindClient({ company: { id: "petes-burgers" } });
+const enabled = companyClient.getFlag("export-to-csv");
+console.log(enabled);
 ```
 {% endtab %}
-
 {% tab title="React" %}
 ```tsx
-import { ReflagProvider } from "@reflag/react-sdk";
+import { ReflagProvider, useFlag } from "@reflag/react-sdk";
 
-function App() {
+function ExportButton() {
+  const enabled = useFlag("export-to-csv");
+  return enabled ? <button>Export</button> : null;
+}
+
+export function App() {
   return (
-    <ReflagProvider company={{id: "petes-burgers"}}> // company provided
-      <Routes />
+    <ReflagProvider
+      publishableKey="your-publishable-key"
+      context={{ company: { id: "petes-burgers" } }}
+    >
+      <ExportButton />
     </ReflagProvider>
   );
 }
-
 ```
 {% endtab %}
 {% endtabs %}
 
+Anyone can change the company ID their browser sends, so check access to sensitive features on your server too. See the [Node.js SDK](../supported-languages/node-sdk/README.md) and [React SDK](../supported-languages/react-sdk/README.md) for complete setup.

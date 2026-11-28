@@ -19,8 +19,13 @@ permissions:
 
 jobs:
   check:
-    name: Importer safety and existing navigation
+    name: Navigation and version isolation
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.sources.outputs.matrix }}
+      react_v1_ref: ${{ steps.sources.outputs.react_v1_ref }}
+      react_v2_ref: ${{ steps.sources.outputs.react_v2_ref }}
+      node_v2_ref: ${{ steps.sources.outputs.node_v2_ref }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,7 +33,85 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: node --test .github/scripts/sdk-docs.test.mjs
-      - run: node .github/scripts/check-sdk-docs.mjs
-      - name: Report public-content cutover readiness without publishing
-        run: node .github/scripts/sdk-docs.mjs ready
+      - run: node --test .github/scripts/sdk-docs*.test.mjs
+      - id: sources
+        name: Discover pinned SDK sources from generated manifests
+        run: node .github/scripts/check-sdk-docs.mjs --sources
+
+  sources:
+    name: Rebuild SDK sources
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.check.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - uses: actions/checkout@v4
+        with:
+          repository: reflagcom/javascript
+          ref: ${{ matrix.ref }}
+          path: .sdk-source
+          persist-credentials: false
+      - name: Install exact SDK sources
+        working-directory: .sdk-source
+        run: yarn install --immutable
+      - name: Build declarations and canonical TypeDoc output
+        working-directory: .sdk-source
+        run: |
+          if test -d packages/flag-evaluation; then
+            yarn workspace @reflag/flag-evaluation build
+          fi
+          yarn workspace @reflag/node-sdk build
+          yarn workspace @reflag/browser-sdk build
+          yarn workspace @reflag/react-sdk build
+          yarn workspace @reflag/vue-sdk build
+          # Published v1 docs.sh uses [[ despite its /bin/sh shebang.
+          yarn exec bash ./docs.sh
+      - name: Verify generated content against pinned sources
+        run: node .github/scripts/sdk-docs.mjs import --source .sdk-source ${{ matrix.packages }} --check
+
+  examples:
+    name: Compile matching SDK examples
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - uses: actions/checkout@v4
+        with:
+          repository: reflagcom/javascript
+          ref: ${{ needs.check.outputs.react_v1_ref }}
+          path: .sdk-v1
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: reflagcom/javascript
+          ref: ${{ needs.check.outputs.react_v2_ref }}
+          path: .sdk-v2
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: reflagcom/javascript
+          ref: ${{ needs.check.outputs.node_v2_ref }}
+          path: .sdk-node-v2
+          persist-credentials: false
+      - name: Build matching declarations
+        run: |
+          (cd .sdk-v1 && yarn install --immutable && yarn workspace @reflag/browser-sdk build && yarn workspace @reflag/react-sdk build && yarn workspace @reflag/vue-sdk build && yarn workspace @reflag/node-sdk build)
+          (cd .sdk-v2 && yarn install --immutable && yarn workspace @reflag/flag-evaluation build && yarn workspace @reflag/node-sdk build && yarn workspace @reflag/browser-sdk build && yarn workspace @reflag/react-sdk build && yarn workspace @reflag/vue-sdk build)
+          (cd .sdk-node-v2 && yarn install --immutable && yarn workspace @reflag/flag-evaluation build && yarn workspace @reflag/node-sdk build)
+      - run: node .github/scripts/check-sdk-examples.cjs .sdk-v2 .sdk-node-v2 .sdk-v1

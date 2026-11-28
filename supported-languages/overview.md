@@ -6,6 +6,10 @@ description: >-
 
 # Overview
 
+Use a Reflag SDK to read feature flags, manage configuration, and track usage in your application. Choose your language or framework below.
+
+Upgrading from v1? Read [Migrating from v1](migrating-from-v1.md). Documentation for the v1 SDKs is in [Legacy SDKs](../legacy/v1/README.md).
+
 ## Official SDKs
 
 These SDKs are crafted and maintained by the Reflag team.

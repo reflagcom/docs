@@ -18,7 +18,7 @@ Now let's create your first flag.
 npx @reflag/cli new
 ```
 
-See [CLI docs](api/cli.md).
+See the [CLI docs](api/cli.md), and [Type safety](product-handbook/type-safety.md) to generate TypeScript types for your flags.
 {% endtab %}
 
 {% tab title="UI" %}
@@ -54,13 +54,13 @@ If you've installed the React SDK and created a flag called `my-new-flag`, getti
 import { useFlag } from "@reflag/react-sdk";
 
 const MyFlag = () => {
-  const { isEnabled } = useFlag("my-new-flag");
+  const enabled = useFlag("my-new-flag");
 
-  return isEnabled ? "You have access!" : null;
+  return enabled ? "You have access!" : null;
 };
 ```
 
-You can now use `isEnabled` to gate access to the flag.
+`enabled` is `true` for users who have access to the flag.
 
 ## 3. Set access rules
 
@@ -80,10 +80,12 @@ In the React SDK, you enable it with `toolbar:`
 
 ```jsx
 <ReflagProvider
-   publishableKey=""
-   context={}
+   publishableKey="your-publishable-key"
+   context={{}}
    toolbar={true}
 >
+  <MyFlag />
+</ReflagProvider>
 ```
 
 ## 5. Monitor your flag launch <a href="#next-steps-1" id="next-steps-1"></a>
@@ -109,20 +111,22 @@ To get feedback from your users, you can add a [static "Feedback" button](produc
 Here's an example with a static feedback button.
 
 ```tsx
-import { useFlag } from "@reflag/react-sdk";
+import { useFlag, useTrack, useRequestFeedback } from "@reflag/react-sdk";
 
 const MyFlag = () => {
-  const { isEnabled, track, requestFeedback } = useFlag("my-new-flag");
+  const enabled = useFlag("my-new-flag");
+  const track = useTrack();
+  const requestFeedback = useRequestFeedback();
 
-  if (!isEnabled) {
+  if (!enabled) {
     return null;
   }
 
   return (
     <>
-      <button onClick={() => track()}>Try it</button>
+      <button onClick={() => track("Tried my new flag")}>Try it</button>
       <button
-        onClick={() => requestFeedback({ title: "How do you like this new release?" })}
+        onClick={() => requestFeedback({ flagKey: "my-new-flag", title: "How do you like this new release?" })}
       >
         Give feedback
       </button>
@@ -130,6 +134,8 @@ const MyFlag = () => {
   );
 }
 ```
+
+Configure your flag's adoption rules to match the event name you send with `track()`.
 
 ## Get support
 
